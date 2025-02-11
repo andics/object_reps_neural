@@ -1,0 +1,4 @@
+bsub -gpu num=1:j_exclusive=yes -Is -R rusage[mem=64000] -R affinity[thread*20] -q waic-long /bin/bash
+export DISPLAY=132.76.83.75:0
+apptainer shell -B /home/projects/bagon/andreyg/ --nvccli /home/projects/bagon/andreyg/Projects/Variable_Resolution_DETR/Programming/detr_var/detr_facebook_torch_v2-2-1.sif
+/apps/easybd/easybuild/software/PyCharm/2022.2/bin/pycharm.sh &

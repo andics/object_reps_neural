@@ -1,0 +1,6 @@
+{'test_gqa_accuracy_answer_attr_unscaled': 0.5738790263681848,
+ 'test_gqa_accuracy_answer_cat_unscaled': 0.6059327415062994,
+ 'test_gqa_accuracy_answer_global_unscaled': 0.9333756345177665,
+ 'test_gqa_accuracy_answer_obj_unscaled': 0.8978426398964703,
+ 'test_gqa_accuracy_answer_rel_unscaled': 0.3371993657106978,
+ 'test_gqa_accuracy_answer_total_unscaled': 0.4368496195313894}

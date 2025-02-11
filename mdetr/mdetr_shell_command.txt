@@ -1,0 +1,9 @@
+bsub -env LSB_CONTAINER_IMAGE="ops:5000/mdetr_pytorch:1.8" -app docker-gpu-interactive -gpu num=1:j_exclusive=yes -Is -m waic_dgx_hosts -R rusage[mem=64000] -R select[hname!=ibdgx010] -q waic-long /bin/bash
+
+export DISPLAY=132.76.80.163:0
+export DISPLAY=132.76.83.75:0
+
+/apps/RH7U2/general/pycharm/2019.2/bin/pycharm.sh &
+/apps/easybd/easybuild/software/PyCharm/2022.2/bin/pycharm.sh &
+
+bsub -env LSB_CONTAINER_IMAGE="ops:5000/mdetr_pytorch:1.8" -app nvidia-gpu-interactive -gpu num=8:j_exclusive=yes:gmodel=NVIDIAA40 -Is -R rusage[mem=64000] -R select[hname!=hgn50] -q waic-short /bin/bash

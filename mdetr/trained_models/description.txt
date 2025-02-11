@@ -1,0 +1,1 @@
+Copying all the checkpoints took too long, you can use them from the Variable_Resolution_VQA/Programming/mdetr folder
