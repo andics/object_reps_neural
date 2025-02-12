@@ -1,0 +1,31 @@
+<component name="InspectionProjectProfileManager">
+  <profile version="1.0">
+    <option name="myName" value="Project Default" />
+    <inspection_tool class="PyPackageRequirementsInspection" enabled="false" level="WARNING" enabled_by_default="false">
+      <option name="ignoredPackages">
+        <value>
+          <list size="0" />
+        </value>
+      </option>
+    </inspection_tool>
+    <inspection_tool class="PyPep8Inspection" enabled="true" level="WEAK WARNING" enabled_by_default="true">
+      <option name="ignoredErrors">
+        <list>
+          <option value="E251" />
+          <option value="E303" />
+        </list>
+      </option>
+    </inspection_tool>
+    <inspection_tool class="PyUnresolvedReferencesInspection" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="ignoredIdentifiers">
+        <list>
+          <option value="data_preparation.remove_unsufficiently_covered_annotations_par.utils" />
+          <option value="data_preparation.remove_non_annotation_images_from_json.utils" />
+          <option value="data_preparation.calculate_max_dets.utils" />
+          <option value="data_preparation.count_ann_types_in_dir.utils" />
+          <option value="experiment_visualization.model_class.utils" />
+        </list>
+      </option>
+    </inspection_tool>
+  </profile>
+</component>
