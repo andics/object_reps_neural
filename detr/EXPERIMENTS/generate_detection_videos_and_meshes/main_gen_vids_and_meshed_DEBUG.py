@@ -184,7 +184,8 @@ def main():
     video_prefix = parse_video_prefix(args.video_path)
 
     folder_root_blobs   = f"{model_prefix}-{video_prefix}-frames_blobs"
-    folder_root_masks   = f"{model_prefix}-{video_prefix}-frames_masks"
+    folder_root_masks   = f"{model_prefix}-{video_prefix}-frames_masks"  # Will hold the memory-based masks
+    folder_root_masks_nonmem = f"{model_prefix}-{video_prefix}-frames_masks_nonmem"  # Will hold immediate masks
     folder_root_memjson = f"{model_prefix}-{video_prefix}-frames_json_memory_processed"
     folder_root_collage = f"{model_prefix}-{video_prefix}-frames_collage"
     folder_root_memcollage = f"{model_prefix}-{video_prefix}-frames_memorycollage"
@@ -194,9 +195,9 @@ def main():
     final_video_path = os.path.join(folder_root_videos, f"{video_prefix}.mp4")
 
     for d in [
-        folder_root_blobs, folder_root_masks, folder_root_memjson,
-        folder_root_collage, folder_root_memcollage, folder_root_proc,
-        folder_root_videos
+        folder_root_blobs, folder_root_masks, folder_root_masks_nonmem,
+        folder_root_memjson, folder_root_collage, folder_root_memcollage,
+        folder_root_proc, folder_root_videos
     ]:
         os.makedirs(d, exist_ok=True)
 
@@ -300,7 +301,7 @@ def main():
                 sub_ = (labeled_ == cc_label)
                 split_pred_masks.append(sub_)
 
-        # (3) if nb=0 => no color blobs => skip
+        # (3) if nb==0 => no color blobs => skip
         if nb == 0:
             outp = os.path.join(folder_root_proc, f"frame_{frame_idx:06d}.png")
             Image.fromarray(frame).save(outp)
@@ -345,7 +346,7 @@ def main():
             fig.savefig(coll_path, bbox_inches='tight', pad_inches=0)
             plt.close(fig)
 
-        # assigned
+        # assigned_submasks => immediate submasks
         assigned_submasks = []
         for b_idx in range(nb):
             sm_idx = assign[b_idx]
@@ -354,13 +355,14 @@ def main():
             else:
                 assigned_submasks.append(None)
 
-        # ========== Save each assigned_submask as a binary PNG ==========
+        # ========== Save each assigned_submask (NON-memory) as PNG ==========
+        # Use the new "frames_masks_nonmem" folder
         for b_i in range(nb):
             submask = assigned_submasks[b_i]
             if submask is not None and submask.sum() > 0:
                 mask_255 = (submask.astype(np.uint8)) * 255
                 mask_path = os.path.join(
-                    folder_root_masks,
+                    folder_root_masks_nonmem,
                     f"mask_blob_{b_i}_frame_{frame_idx:06d}.png"
                 )
                 Image.fromarray(mask_255).save(mask_path)
@@ -375,6 +377,17 @@ def main():
         memory_masks = []
         for b_i in range(args.n_blobs):
             memory_masks.append(mem_floats[b_i] > 0.5)
+
+        # ========== Save each memory mask into the frames_masks folder ==========
+        for b_i in range(args.n_blobs):
+            mem_mask = memory_masks[b_i]
+            if mem_mask.sum() > 0:
+                mask_255 = (mem_mask.astype(np.uint8)) * 255
+                mask_path = os.path.join(
+                    folder_root_masks,
+                    f"mask_memory_blob_{b_i}_frame_{frame_idx:06d}.png"
+                )
+                Image.fromarray(mask_255).save(mask_path)
 
         # ========== 7) memory collage => shape (nb,2) [debug only]
         fig, axes = plt.subplots(nb, 2, figsize=(10, 5*nb), dpi=100)
@@ -439,9 +452,7 @@ def main():
             poly_ = find_contour_polygon(msk_, W/2.0, H/2.0) if msk_ is not None else []
             memory_polys[f"segmentation_blob_{order_i}"] = poly_
 
-        # ========== 10) (MODIFIED) final overlay using PIL, exact WxH ==========
-
-        # Convert `frame` (H,W,3) to a Pillow image for direct drawing
+        # ========== 10) final overlay using PIL (memory polygons), exact WxH ==========
         overlay_img = Image.fromarray(frame)  # 'RGB' by default
         draw = ImageDraw.Draw(overlay_img, "RGBA")
 
@@ -459,6 +470,7 @@ def main():
         cy_ = H / 2.0
 
         # Draw memory polygons
+        # (We intentionally overlay memory shapes here so final frames show memory-based segmentation)
         for i, key in enumerate(memory_polys.keys()):
             pts_ = memory_polys[key]
             if not pts_:

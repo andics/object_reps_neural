@@ -1,31 +1,39 @@
 #!/usr/bin/env python3
 """
-detect_collisions_memory_no_shapely_fixed.py
+detect_collisions_memory_from_png.py
 
 Detect collisions between blob_0 and a "frozen" blob_1 polygon,
-*without* using Shapely. Instead we:
+*without* using Shapely, but this time using PNG masks directly.
 
-1) Rasterize each polygon in a minimal bounding box using matplotlib.path.Path.
-2) Check if there's any overlap of "True" pixels in their boolean masks.
+HOW IT WORKS:
+-------------
+1) We read a directory of PNG masks named:
+   - mask_blob_0_frame_000018.png
+   - mask_blob_1_frame_000018.png
+   ...
+   Each is a binary mask over the *entire* frame, with black background
+   for empty pixels (0) and white (255) for the blob.
 
-We read a folder of JSON files (frame_XXXXXX.json) with:
-{
-  "segmentation_blob_0": [[x0,y0], [x1,y1], ...],
-  "segmentation_blob_1": [[x0,y0], [x1,y1], ...],
-  ...
-}
-All coordinates are in "center-based" format.
+2) For blob_1, we keep track of the "last valid" mask. Once we reach a frame
+   where blob_1's mask is missing, we consider blob_1 "frozen" at that last
+   known mask. From that point on, we compare all subsequent blob_0 masks
+   against the frozen blob_1 mask to see if they overlap.
 
-We track the last valid polygon for blob 1. Once we see an empty one,
-we "freeze" that last polygon for blob 1. For each subsequent frame,
-we see if blob_0's polygon intersects the frozen blob_1 polygon.
-If so, we report the frame/time in ms, given fps=60 by default.
+3) Overlap is defined as any pixel where both masks are True/1.
 
-Usage:
-    python detect_collisions_memory_no_shapely_fixed.py \
-      --json_dir /some/dir/with/frame_jsons \
+4) We stop at the first frame where they overlap and report that frame (and time in ms)
+   in 'collision_info.json'. If there's no collision, we output None for both time/frame.
+
+USAGE:
+------
+    python detect_collisions_memory_from_png.py \
+      --json_dir /some/dir/with/png_masks \
       --output_dir outputs \
       --fps 60
+
+By default, it will look for all 'mask_blob_0_frame_*.png' and 'mask_blob_1_frame_*.png',
+sorted by the frame index. The naming pattern should include the frame number with
+leading zeros if desired, but it must be parseable by the regex:  r"mask_blob_([01])_frame_(\d+)\.png".
 """
 
 import os
@@ -33,140 +41,105 @@ import re
 import json
 import argparse
 import numpy as np
-import matplotlib.path as mpath  # for polygon fill
+from PIL import Image
 
-
-def polygons_intersect(ptsA, ptsB):
+def load_mask(png_path):
     """
-    Return True if the polygons described by ptsA and ptsB (each a list of [x, y])
-    intersect. We'll do a rasterization approach:
-      1) If either polygon has fewer than 3 points => no intersection
-      2) Compute bounding box (integer-floored/ceiled) of all points
-      3) Shift them so bounding box min_x => 0, min_y => 0
-      4) Rasterize each polygon in that bounding box => 2D boolean arrays
-      5) If bitwise AND of the two masks has any 'True' => polygons intersect
+    Loads a PNG file (binary mask) using Pillow and returns
+    a boolean NumPy array of shape (H, W), where True indicates
+    the blob is present in that pixel.
     """
-    if len(ptsA) < 3 or len(ptsB) < 3:
-        return False
+    img = Image.open(png_path).convert('L')  # grayscale
+    arr = np.array(img, dtype=np.uint8)
+    # Assume 0 or 255; consider >128 as True
+    return arr > 128
 
-    # 1) bounding box for all points
-    all_x = [p[0] for p in ptsA] + [p[0] for p in ptsB]
-    all_y = [p[1] for p in ptsA] + [p[1] for p in ptsB]
-    min_x, max_x = min(all_x), max(all_x)
-    min_y, max_y = min(all_y), max(all_y)
-
-    # Convert to integer bounding box using floor/ceil
-    min_xi = int(np.floor(min_x))
-    max_xi = int(np.ceil(max_x))
-    min_yi = int(np.floor(min_y))
-    max_yi = int(np.ceil(max_y))
-
-    # 2) determine bounding box size
-    width = max_xi - min_xi + 1
-    height = max_yi - min_yi + 1
-    if width <= 0 or height <= 0:
-        return False
-
-    # Shift polygons so that min_xi => 0, min_yi => 0
-    shift_x = -min_xi
-    shift_y = -min_yi
-    shiftedA = [(p[0] + shift_x, p[1] + shift_y) for p in ptsA]
-    shiftedB = [(p[0] + shift_x, p[1] + shift_y) for p in ptsB]
-
-    # 3) Rasterize
-    maskA = polygon_to_mask(shiftedA, (height, width))
-    maskB = polygon_to_mask(shiftedB, (height, width))
-
-    # 4) Check overlap
-    overlap = maskA & maskB
-    return overlap.any()
-
-
-def polygon_to_mask(polygon_points, mask_shape):
+def masks_intersect(maskA, maskB):
     """
-    Convert the polygon (list of (x,y)) into a 2D boolean array of shape=mask_shape=(H,W),
-    using a fill operation via matplotlib.path.Path.
-
-    polygon_points are in the same "pixel" space => we fill them.
+    Returns True if there's any pixel overlap between two boolean
+    mask arrays of the same shape.
     """
-    (H, W) = mask_shape
-    if not polygon_points:
-        return np.zeros(mask_shape, dtype=bool)
-
-    # Ensure it is treated as a closed polygon
-    poly_path = mpath.Path(
-        np.array(polygon_points, dtype=np.float32),
-        closed=True
-    )
-
-    # We'll sample each pixel center => (col+0.5, row+0.5)
-    grid_y, grid_x = np.mgrid[0:H, 0:W]
-    flat_coords = np.vstack((grid_x.ravel() + 0.5,
-                             grid_y.ravel() + 0.5)).T  # (H*W, 2)
-
-    inside = poly_path.contains_points(flat_coords)
-    inside_mask = inside.reshape((H, W))
-    return inside_mask
-
+    if maskA.shape != maskB.shape:
+        # We expect same shape if the original frames are the same size.
+        # If not, you might need to resize or handle differently.
+        raise ValueError("Mask shapes differ, cannot check overlap.")
+    return np.any(maskA & maskB)
 
 def main():
     parser = argparse.ArgumentParser(
-        "Detect collisions between a 'frozen' blob-1 memory and updated blob-0 polygons (no Shapely)."
+        "Detect collisions between a 'frozen' blob-1 memory and updated blob-0 PNG masks."
     )
-    parser.add_argument("--json_dir", default="/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/detr/EXPERIMENTS/generate_detection_videos_and_meshes/variable_pretrained_resnet101-BConcave+AConcave+3500-frames_json_memory_processed",
+    parser.add_argument("--json_dir", default="/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/detr/EXPERIMENTS/generate_detection_videos_and_meshes/variable_pretrained_resnet101-BConcave+AConcave+3500-frames_masks",
                         required=False,
-                        help="Folder containing frame_XXXXXX.json files.")
+                        help="Folder containing mask_blob_0_frame_XXXXXX.png and mask_blob_1_frame_XXXXXX.png.")
     parser.add_argument("--output_dir", default="outputs",
                         required=False,
-                        help="Folder to write collision_info.json.")
+                        help="Folder to write collision_info.json (and logs).")
     parser.add_argument("--fps", type=float, default=60.0,
                         help="Frames per second. Default=60 => ~16.67 ms/frame.")
     args = parser.parse_args()
 
     os.makedirs(args.output_dir, exist_ok=True)
 
-    # gather JSON files in ascending order of frame index
-    pattern = r"frame_(\d+)\.json"
-    frames = []
+    # Regex to match the naming pattern:
+    # mask_blob_0_frame_000018.png or mask_blob_1_frame_000018.png
+    pattern = r"mask_blob_([01])_frame_(\d+)\.png"
+
+    # We'll gather all frames for blob 0 and blob 1
+    blob0_frames = {}
+    blob1_frames = {}
+
+    # Scan the directory
     for fname in os.listdir(args.json_dir):
         m = re.match(pattern, fname)
         if m:
-            idx = int(m.group(1))
-            frames.append((idx, os.path.join(args.json_dir, fname)))
-    frames.sort(key=lambda x: x[0])
+            blob_idx = int(m.group(1))   # 0 or 1
+            frame_idx = int(m.group(2)) # e.g. 18
+            full_path = os.path.join(args.json_dir, fname)
 
-    last_poly_blob1 = None
+            if blob_idx == 0:
+                blob0_frames[frame_idx] = full_path
+            else:
+                blob1_frames[frame_idx] = full_path
+
+    # We'll consider all frame indices that appear in either blob_0 or blob_1
+    all_frames = sorted(set(blob0_frames.keys()) | set(blob1_frames.keys()))
+
+    last_blob1_mask = None
     blob1_frozen = False
 
     collision_found = False
     collision_frame_idx = None
 
-    for frame_idx, json_path in frames:
-        with open(json_path, 'r') as f:
-            data = json.load(f)
+    # Iterate frames in ascending order
+    for frame_idx in all_frames:
+        # Attempt to load blob_0 mask if it exists
+        mask0 = None
+        if frame_idx in blob0_frames:
+            mask0 = load_mask(blob0_frames[frame_idx])
 
-        # Extract polygons
-        poly_blob0 = data.get("segmentation_blob_0", [])
-        poly_blob1 = data.get("segmentation_blob_1", [])
-
-        # If blob1 not frozen => update or freeze
+        # If blob_1 not yet frozen => check if there's a new mask
         if not blob1_frozen:
-            if len(poly_blob1) >= 3:
-                last_poly_blob1 = poly_blob1
+            if frame_idx in blob1_frames:
+                # We have a fresh mask for blob_1
+                mask1 = load_mask(blob1_frames[frame_idx])
+                last_blob1_mask = mask1
             else:
-                # freeze now
+                # No mask for blob_1 => freeze the last known
                 blob1_frozen = True
-                # If we never had a valid poly => done (no collisions possible)
-                if last_poly_blob1 is None:
+                # If we never had a valid mask => no collisions possible
+                if last_blob1_mask is None:
                     break
+        # If blob_1 is already frozen, we keep last_blob1_mask as is
 
-        # If blob1 is frozen & we have a last_poly_blob1 => check intersection
-        if blob1_frozen and last_poly_blob1 is not None:
-            if polygons_intersect(poly_blob0, last_poly_blob1):
+        # Now, if we have a valid last_blob1_mask and a mask0 => check collision
+        if last_blob1_mask is not None and mask0 is not None:
+            if masks_intersect(mask0, last_blob1_mask):
                 collision_found = True
                 collision_frame_idx = frame_idx
                 break
 
+    # Prepare output
     result = {}
     if collision_found:
         # compute time in ms => frame_index * (1000/fps)
@@ -177,6 +150,7 @@ def main():
         result["collision_time_ms"] = None
         result["collision_frame_idx"] = None
 
+    # Write to JSON
     out_json = os.path.join(args.output_dir, "collision_info.json")
     with open(out_json, 'w') as f:
         json.dump(result, f, indent=2)
