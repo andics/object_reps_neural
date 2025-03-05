@@ -31,7 +31,7 @@ not_tracked_dir/
 # Allow PNG files in that folder and all its subfolders
 #!detr/EXPERIMENTS/generate_detection_videos_and_meshes/*.png
 #!detr/EXPERIMENTS/generate_detection_videos_and_meshes/**/*.png
-!detr/EXPERIMENTS/generate_detection_videos_and_meshes/variable_pretrained_resnet101-BConcave+BConcavePatient+3900/**/*.png
+!detr/EXPERIMENTS/generate_detection_videos_and_meshes/videos_processed/variable_pretrained_resnet101-BConcave+BConcavePatient+3900/**/*.png
 
 # Allow JPG files in that folder and all its subfolders
 #!detr/EXPERIMENTS/generate_detection_videos_and_meshes/*.jpg
