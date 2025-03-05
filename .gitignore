@@ -1,3 +1,4 @@
+# Ignore patterns
 .nfs*
 *.pyc
 .dumbo.json
@@ -25,3 +26,16 @@ experiment-*
 .mypy_cache/*
 not_tracked_dir/
 .vscode
+
+# --- Override ignore rules for images in EXPERIMENTS/generate_detection_videos_and_meshes ---
+# Allow PNG files in that folder and all its subfolders
+#!detr/EXPERIMENTS/generate_detection_videos_and_meshes/*.png
+#!detr/EXPERIMENTS/generate_detection_videos_and_meshes/**/*.png
+
+# Allow JPG files in that folder and all its subfolders
+#!detr/EXPERIMENTS/generate_detection_videos_and_meshes/*.jpg
+#!detr/EXPERIMENTS/generate_detection_videos_and_meshes/**/*.jpg
+
+# Allow JPEG files in that folder and all its subfolders
+#!detr/EXPERIMENTS/generate_detection_videos_and_meshes/*.jpeg
+#!detr/EXPERIMENTS/generate_detection_videos_and_meshes/**/*.jpeg
