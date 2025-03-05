@@ -76,7 +76,21 @@ def parse_video_prefix(video_path):
     root, _ = os.path.splitext(base)
     return root.replace(" ", "+")
 
-def find_n_color_blobs(frame_np, n_blobs=2, black_thresh=30):
+def video_is_flipped(video_path):
+    """
+    Returns True if the video filename (without extension)
+    ends with '_flipped'. Otherwise returns False.
+    """
+    base = os.path.basename(video_path)
+    root, _ = os.path.splitext(base)
+    return root.endswith("_flipped")
+
+def find_n_color_blobs(frame_np, n_blobs=2, black_thresh=30, flip_blobs=False):
+    """
+    Finds up to n_blobs colored regions in frame_np.
+    Normally sorted from left → right (by mean column).
+    If flip_blobs=True, sort from right → left instead.
+    """
     gray = frame_np.sum(axis=2)
     non_black = (gray > black_thresh)
     labeled = label(non_black, connectivity=2)
@@ -84,14 +98,18 @@ def find_n_color_blobs(frame_np, n_blobs=2, black_thresh=30):
     regs_sorted = sorted(regs, key=lambda r: r.area, reverse=True)
     top = regs_sorted[:n_blobs]
 
-    # reorder left->right
+    # Prepare (region, mean_col) for sorting
     reg_info = []
     for r in top:
         coords = r.coords  # shape (N,2)
         mean_col = coords[:, 1].mean()
         reg_info.append((r, mean_col))
-    reg_info.sort(key=lambda x: x[1])
 
+    # If not flipped, we sort ascending → left→right
+    # If flipped, we sort descending → right→left
+    reg_info.sort(key=lambda x: x[1], reverse=flip_blobs)
+
+    # Extract final masks in sorted order
     masks = []
     for (r, _) in reg_info:
         m = (labeled == r.label)
@@ -173,6 +191,7 @@ def main():
 
     model_prefix = parse_model_prefix(args.model_path)
     video_prefix = parse_video_prefix(args.video_path)
+    flip_blobs = video_is_flipped(args.video_path)  # True if filename ends with "_flipped"
 
     # Create a single root folder = "model_prefix-video_prefix"
     root_folder = os.path.join(args.current_working_directory, "videos_processed", f"{model_prefix}-{video_prefix}")
@@ -254,7 +273,7 @@ def main():
             continue
 
         # ========== 1) color blobs
-        blob_masks = find_n_color_blobs(frame, n_blobs=args.n_blobs)
+        blob_masks = find_n_color_blobs(frame, n_blobs=args.n_blobs, flip_blobs=flip_blobs)
         nb = len(blob_masks)
 
         dbg = frame.astype(np.float32).copy()
@@ -315,6 +334,7 @@ def main():
         # -- top10 collage (for debugging)
         if cost is not None and frame_idx >= 30 and nb > 0:
             fig, axes = plt.subplots(nb, 10, figsize=(25, 5*nb), dpi=100)
+            # If nb==1, axes can be 1D, so reshape if needed
             if nb == 1 and len(axes.shape) == 1:
                 axes = axes[np.newaxis, :]
             for b_idx in range(nb):
@@ -351,7 +371,6 @@ def main():
                 assigned_submasks.append(None)
 
         # ========== Save each assigned_submask (NON-memory) as PNG ==========
-        # Use the new "frames_masks_nonmem" folder
         for b_i in range(nb):
             submask = assigned_submasks[b_i]
             if submask is not None and submask.sum() > 0:
@@ -373,7 +392,7 @@ def main():
         for b_i in range(args.n_blobs):
             memory_masks.append(mem_floats[b_i] > 0.5)
 
-        # ========== Save each memory mask into the frames_masks folder ==========
+        # ========== Save each memory mask ==========
         for b_i in range(args.n_blobs):
             mem_mask = memory_masks[b_i]
             if mem_mask.sum() > 0:
@@ -443,15 +462,14 @@ def main():
                 mem_info.append((b_i,mm_,c_))
         mem_info.sort(key=lambda x: x[2])
         memory_polys={}
-        for order_i,(b_i,msk_, c_) in enumerate(mem_info):
+        for order_i,(b_i,msk_,c_) in enumerate(mem_info):
             poly_ = find_contour_polygon(msk_, W/2.0, H/2.0) if msk_ is not None else []
             memory_polys[f"segmentation_blob_{order_i}"] = poly_
 
-        # ========== 10) final overlay using PIL (memory polygons), exact WxH ==========
+        # ========== 10) final overlay (memory polygons)
         overlay_img = Image.fromarray(frame)  # 'RGB' by default
         draw = ImageDraw.Draw(overlay_img, "RGBA")
 
-        # We can choose a semi-transparent fill color for each memory blob
         color_list = [
             (255, 0, 0, 100),
             (0, 255, 0, 100),
@@ -465,7 +483,6 @@ def main():
         cy_ = H / 2.0
 
         # Draw memory polygons
-        # (We intentionally overlay memory shapes here so final frames show memory-based segmentation)
         for i, key in enumerate(memory_polys.keys()):
             pts_ = memory_polys[key]
             if not pts_:
@@ -474,7 +491,6 @@ def main():
             shifted_pts = [(x+cx_, y+cy_) for (x, y) in pts_]
             # Draw the polygon with a semi-transparent fill
             draw.polygon(shifted_pts, fill=color_list[i % len(color_list)])
-
             # Optionally draw a label at centroid
             cxx, cyy = polygon_centroid(shifted_pts)
             if cxx is not None and cyy is not None:
@@ -484,7 +500,7 @@ def main():
                     fill=text_fill
                 )
 
-        # Save the final overlaid image (exact HxW) with no extra padding
+        # Save the final overlaid image
         out_path = os.path.join(folder_root_proc, f"frame_{frame_idx:06d}.png")
         overlay_img.save(out_path)
 
