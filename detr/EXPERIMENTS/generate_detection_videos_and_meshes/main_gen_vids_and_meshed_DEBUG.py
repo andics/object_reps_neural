@@ -34,7 +34,6 @@ COCO_CLASSES = [
     'vase','scissors','teddy bear','hair drier','toothbrush'
 ]
 
-
 def load_model(model_path):
     """
     Load DETR (panoptic variant) from torch hub, then a custom checkpoint.
@@ -61,7 +60,6 @@ def load_model(model_path):
     model.eval()
     return model
 
-
 def parse_model_prefix(model_path):
     parts = model_path.split("trained_models/")
     if len(parts) < 2:
@@ -73,12 +71,10 @@ def parse_model_prefix(model_path):
         return "unknownModel"
     return prefix
 
-
 def parse_video_prefix(video_path):
     base = os.path.basename(video_path)
     root, _ = os.path.splitext(base)
     return root.replace(" ", "+")
-
 
 def find_n_color_blobs(frame_np, n_blobs=2, black_thresh=30):
     gray = frame_np.sum(axis=2)
@@ -102,14 +98,12 @@ def find_n_color_blobs(frame_np, n_blobs=2, black_thresh=30):
         masks.append(m)
     return masks
 
-
 def iou(maskA, maskB):
     inter = (maskA & maskB).sum()
     union = (maskA | maskB).sum()
     if union == 0:
         return 0.0
     return inter / union
-
 
 def bipartite_assign_blobs_to_masks(blob_masks, pred_masks):
     nb = len(blob_masks)
@@ -128,7 +122,6 @@ def bipartite_assign_blobs_to_masks(blob_masks, pred_masks):
         assign[b] = p
     return assign, cost
 
-
 def make_masks_disjoint(masks):
     for i in range(len(masks)):
         if masks[i] is None:
@@ -138,7 +131,6 @@ def make_masks_disjoint(masks):
                 continue
             masks[j] = masks[j] & ~masks[i]
     return masks
-
 
 def find_contour_polygon(bin_mask, center_x, center_y):
     if bin_mask is None or bin_mask.sum() == 0:
@@ -156,7 +148,6 @@ def find_contour_polygon(bin_mask, center_x, center_y):
         poly.append((x, y))
     return poly
 
-
 def polygon_centroid(poly_pts):
     """
     Simple centroid calculation for a list of (x, y) points.
@@ -166,7 +157,6 @@ def polygon_centroid(poly_pts):
     xs = [p[0] for p in poly_pts]
     ys = [p[1] for p in poly_pts]
     return (sum(xs)/len(xs), sum(ys)/len(ys))
-
 
 def main():
     parser = argparse.ArgumentParser(
@@ -183,14 +173,18 @@ def main():
     model_prefix = parse_model_prefix(args.model_path)
     video_prefix = parse_video_prefix(args.video_path)
 
-    folder_root_blobs   = f"{model_prefix}-{video_prefix}-frames_blobs"
-    folder_root_masks   = f"{model_prefix}-{video_prefix}-frames_masks"  # Will hold the memory-based masks
-    folder_root_masks_nonmem = f"{model_prefix}-{video_prefix}-frames_masks_nonmem"  # Will hold immediate masks
-    folder_root_memjson = f"{model_prefix}-{video_prefix}-frames_json_memory_processed"
-    folder_root_collage = f"{model_prefix}-{video_prefix}-frames_collage"
-    folder_root_memcollage = f"{model_prefix}-{video_prefix}-frames_memorycollage"
-    folder_root_proc    = f"{model_prefix}-{video_prefix}-frames_processed"
-    folder_root_videos  = f"{model_prefix}-{video_prefix}-videos_processed"
+    # Create a single root folder = "model_prefix-video_prefix"
+    root_folder = f"{model_prefix}-{video_prefix}"
+
+    # Now place subfolders inside that root folder
+    folder_root_blobs   = os.path.join(root_folder, "frames_blobs")
+    folder_root_masks   = os.path.join(root_folder, "frames_masks")
+    folder_root_masks_nonmem = os.path.join(root_folder, "frames_masks_nonmem")
+    folder_root_memjson = os.path.join(root_folder, "frames_json_memory_processed")
+    folder_root_collage = os.path.join(root_folder, "frames_collage")
+    folder_root_memcollage = os.path.join(root_folder, "frames_memorycollage")
+    folder_root_proc    = os.path.join(root_folder, "frames_processed")
+    folder_root_videos  = os.path.join(root_folder, "videos_processed")
 
     final_video_path = os.path.join(folder_root_videos, f"{video_prefix}.mp4")
 
@@ -511,7 +505,6 @@ def main():
             writer.append_data(im_)
     writer.close()
     print("Done!")
-
 
 if __name__ == "__main__":
     main()
