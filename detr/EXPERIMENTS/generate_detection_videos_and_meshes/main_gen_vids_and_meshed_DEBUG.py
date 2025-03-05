@@ -165,6 +165,7 @@ def main():
     )
     parser.add_argument("--model_path", required=True)
     parser.add_argument("--video_path", required=True)
+    parser.add_argument("--current_working_directory", required=False, default="/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/detr/EXPERIMENTS/generate_detection_videos_and_meshes")
     parser.add_argument("--n_blobs", type=int, default=2)
     parser.add_argument("--initial_skip_frames", type=int, default=13)
     parser.add_argument("--alpha", type=float, default=0.7)
@@ -174,7 +175,7 @@ def main():
     video_prefix = parse_video_prefix(args.video_path)
 
     # Create a single root folder = "model_prefix-video_prefix"
-    root_folder = f"{model_prefix}-{video_prefix}"
+    root_folder = os.path.join(args.current_working_directory, "videos_processed", f"{model_prefix}-{video_prefix}")
 
     # Now place subfolders inside that root folder
     folder_root_blobs   = os.path.join(root_folder, "frames_blobs")
