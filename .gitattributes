@@ -1,0 +1,1 @@
+detr/EXPERIMENTS/generate_detection_videos_and_meshes/*.zip filter=lfs diff=lfs merge=lfs -text
