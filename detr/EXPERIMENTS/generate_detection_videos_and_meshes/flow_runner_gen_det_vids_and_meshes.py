@@ -5,6 +5,7 @@ import glob
 import re
 import subprocess
 import time
+import argparse
 
 def parse_model_name(model_path):
     """
@@ -26,6 +27,30 @@ def parse_model_name(model_path):
     return model_name
 
 def main():
+    # Parse command-line arguments
+    parser = argparse.ArgumentParser(description="Video generation script with optional arguments.")
+    parser.add_argument(
+        "--video_dir",
+        default=(
+            "/home/projects/bagon/andreyg/Projects/"
+            "Object_reps_neural/Programming/detr/EXPERIMENTS/"
+            "generate_detection_videos_and_meshes/videos_org"
+        ),
+        help="Path to the directory containing .mp4 files (default points to videos_org).",
+        required=False
+    )
+    parser.add_argument(
+        "--model_path",
+        default=(
+            "/home/projects/bagon/andreyg/Projects/Variable_Resolution_DETR/"
+            "Programming/detr_var/trained_models/full_resolution_resnet101/"
+            "box_and_segm/checkpoint.pth"
+        ),
+        help="Path to the model checkpoint file (default is resnet101 checkpoint).",
+        required=False
+    )
+    args = parser.parse_args()
+
     # 1) Ensure we're in /home/projects/bagon/andreyg
     try:
         os.chdir("/home/projects/bagon/andreyg")
@@ -33,17 +58,9 @@ def main():
         print(f"Error: Unable to cd into /home/projects/bagon/andreyg.\n{e}")
         return
 
-    # 2) Configuration
-    VIDEO_DIR = (
-        "/home/projects/bagon/andreyg/Projects/"
-        "Object_reps_neural/Programming/detr/EXPERIMENTS/"
-        "generate_detection_videos_and_meshes/videos_org"
-    )
-    MODEL_PATH = (
-        "/home/projects/bagon/andreyg/Projects/Variable_Resolution_DETR/"
-        "Programming/detr_var/trained_models/variable_pretrained_resnet101/"
-        "box_and_segm/checkpoint.pth"
-    )
+    # 2) Configuration from command-line or defaults
+    VIDEO_DIR = args.video_dir
+    MODEL_PATH = args.model_path
 
     # 3) Parse model name
     model_name = parse_model_name(MODEL_PATH)
@@ -85,8 +102,7 @@ def main():
 
         JOB_NAME = f"object_reps_neural_{prefix_plus}"
 
-        # 6) Construct the command with no quotes needed around --video_path
-        #    because we have removed spaces from the filename
+        # 6) Construct the command (no quotes needed around --video_path now)
         cmd = (
             "../shared/seq_arr.sh "
             "-c \"bsub "
