@@ -1,0 +1,10 @@
+2025-03-10 22:57:14,636 [INFO] Logging to logs/20250310_225714.log
+2025-03-10 22:57:14,637 [INFO] Starting script with arguments:
+2025-03-10 22:57:14,637 [INFO]   zip_path=/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/detr/EXPERIMENTS/generate_detection_videos_and_meshes/videos_processed_copy.zip
+2025-03-10 22:57:14,637 [INFO]   name_mapping=/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/detr/EXPERIMENTS/generate_detection_videos_and_meshes/videos_org/name_mapping.json
+2025-03-10 22:57:14,637 [INFO]   csv_path=/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/detr/DATA_ANALYSIS/data/experiment2-CollisionDetection-Data.csv
+2025-03-10 22:57:14,637 [INFO]   iou_step=0.05
+2025-03-10 22:57:14,637 [INFO]   fps=60.0
+2025-03-10 22:57:14,637 [INFO] Reading name_mapping.json ...
+2025-03-10 22:57:14,638 [INFO] Reading CSV data ...
+2025-03-10 22:57:14,773 [INFO] Extracting ZIP /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/detr/EXPERIMENTS/generate_detection_videos_and_meshes/videos_processed_copy.zip to temp_zip_extract ...

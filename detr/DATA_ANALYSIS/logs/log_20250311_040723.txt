@@ -1,0 +1,85 @@
+2025-03-11 04:07:23,944 [INFO] Script started.
+2025-03-11 04:07:23,944 [INFO] Reading command-line arguments...
+2025-03-11 04:07:23,944 [INFO] ZIP path: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/detr/DATA_ANALYSIS/data/var_videos_processed_copy.zip
+2025-03-11 04:07:23,944 [INFO] name_mapping.json path: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/detr/DATA_ANALYSIS/data/name_mapping.json
+2025-03-11 04:07:23,944 [INFO] CSV path: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/detr/DATA_ANALYSIS/data/experiment2-CollisionDetection-Data.csv
+2025-03-11 04:07:23,945 [INFO] IoU thresholds: [0.05 0.1  0.15 0.2  0.25 0.3  0.35 0.4  0.45 0.5  0.55 0.6  0.65 0.7
+ 0.75 0.8  0.85 0.9  0.95]
+2025-03-11 04:07:23,945 [INFO] Loading CSV from /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/detr/DATA_ANALYSIS/data/experiment2-CollisionDetection-Data.csv
+2025-03-11 04:07:23,963 [INFO] CSV shape: (13974, 10)
+2025-03-11 04:07:23,963 [INFO] Loading name_mapping from /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/detr/DATA_ANALYSIS/data/name_mapping.json
+2025-03-11 04:07:23,966 [INFO] Opening zip file /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/detr/DATA_ANALYSIS/data/var_videos_processed_copy.zip
+2025-03-11 04:07:24,262 [INFO] Scanning zip for relevant subfolders (those containing frames_masks).
+2025-03-11 04:07:24,269 [INFO] Found 48 relevant subfolders with frames_masks.
+2025-03-11 04:07:24,269 [INFO] Computing IoU arrays for each frames_masks folder.
+2025-03-11 04:07:24,269 [INFO] Processing folder: videos_processed_copy/variable_pretrained_resnet101-BConcave+AConcave+3500/frames_masks/
+2025-03-11 04:07:26,364 [INFO] Processing folder: videos_processed_copy/variable_pretrained_resnet101-BConcave+AConcave+3900/frames_masks/
+2025-03-11 04:07:28,054 [INFO] Processing folder: videos_processed_copy/variable_pretrained_resnet101-BConcave+AConcave+4300/frames_masks/
+2025-03-11 04:07:29,822 [INFO] Processing folder: videos_processed_copy/variable_pretrained_resnet101-BConcave+AConvex+3700/frames_masks/
+2025-03-11 04:07:31,488 [INFO] Processing folder: videos_processed_copy/variable_pretrained_resnet101-BConcave+AConvex+4100/frames_masks/
+2025-03-11 04:07:33,172 [INFO] Processing folder: videos_processed_copy/variable_pretrained_resnet101-BConcave+AConvex+4500/frames_masks/
+2025-03-11 04:07:34,855 [INFO] Processing folder: videos_processed_copy/variable_pretrained_resnet101-BConcave+BConcavePatient+3500/frames_masks/
+2025-03-11 04:07:36,573 [INFO] Processing folder: videos_processed_copy/variable_pretrained_resnet101-BConcave+BConcavePatient+3900/frames_masks/
+2025-03-11 04:07:38,342 [INFO] Processing folder: videos_processed_copy/variable_pretrained_resnet101-BConcave+BConcavePatient+4300/frames_masks/
+2025-03-11 04:07:40,122 [INFO] Processing folder: videos_processed_copy/variable_pretrained_resnet101-BConcave+BConvex+3700/frames_masks/
+2025-03-11 04:07:41,797 [INFO] Processing folder: videos_processed_copy/variable_pretrained_resnet101-BConcave+BConvex+4100/frames_masks/
+2025-03-11 04:07:43,464 [INFO] Processing folder: videos_processed_copy/variable_pretrained_resnet101-BConcave+BConvex+4500/frames_masks/
+2025-03-11 04:07:45,093 [INFO] Processing folder: videos_processed_copy/variable_pretrained_resnet101-BConcave+CConcave+3500/frames_masks/
+2025-03-11 04:07:46,801 [INFO] Processing folder: videos_processed_copy/variable_pretrained_resnet101-BConcave+CConcave+3900/frames_masks/
+2025-03-11 04:07:48,491 [INFO] Processing folder: videos_processed_copy/variable_pretrained_resnet101-BConcave+CConcave+4300/frames_masks/
+2025-03-11 04:07:50,236 [INFO] Processing folder: videos_processed_copy/variable_pretrained_resnet101-BConcave+CConvex+3700/frames_masks/
+2025-03-11 04:07:51,897 [INFO] Processing folder: videos_processed_copy/variable_pretrained_resnet101-BConcave+CConvex+4100/frames_masks/
+2025-03-11 04:07:53,572 [INFO] Processing folder: videos_processed_copy/variable_pretrained_resnet101-BConcave+CConvex+4500/frames_masks/
+2025-03-11 04:07:55,214 [INFO] Processing folder: videos_processed_copy/variable_pretrained_resnet101-BConcave+DConcave+3500/frames_masks/
+2025-03-11 04:07:56,945 [INFO] Processing folder: videos_processed_copy/variable_pretrained_resnet101-BConcave+DConcave+3900/frames_masks/
+2025-03-11 04:07:58,666 [INFO] Processing folder: videos_processed_copy/variable_pretrained_resnet101-BConcave+DConcave+4300/frames_masks/
+2025-03-11 04:08:00,360 [INFO] Processing folder: videos_processed_copy/variable_pretrained_resnet101-BConcave+DConvex+3700/frames_masks/
+2025-03-11 04:08:02,367 [INFO] Processing folder: videos_processed_copy/variable_pretrained_resnet101-BConcave+DConvex+4100/frames_masks/
+2025-03-11 04:08:04,296 [INFO] Processing folder: videos_processed_copy/variable_pretrained_resnet101-BConcave+DConvex+4500/frames_masks/
+2025-03-11 04:08:06,210 [INFO] Processing folder: videos_processed_copy/variable_pretrained_resnet101-BConcave+EConcave+3700/frames_masks/
+2025-03-11 04:08:07,846 [INFO] Processing folder: videos_processed_copy/variable_pretrained_resnet101-BConcave+EConcave+4100/frames_masks/
+2025-03-11 04:08:09,687 [INFO] Processing folder: videos_processed_copy/variable_pretrained_resnet101-BConcave+EConcave+4500/frames_masks/
+2025-03-11 04:08:11,291 [INFO] Processing folder: videos_processed_copy/variable_pretrained_resnet101-BConcave+EConvex+3500/frames_masks/
+2025-03-11 04:08:12,927 [INFO] Processing folder: videos_processed_copy/variable_pretrained_resnet101-BConcave+EConvex+3900/frames_masks/
+2025-03-11 04:08:14,574 [INFO] Processing folder: videos_processed_copy/variable_pretrained_resnet101-BConcave+EConvex+4300/frames_masks/
+2025-03-11 04:08:16,170 [INFO] Processing folder: videos_processed_copy/variable_pretrained_resnet101-BConcave+FConcave+3700/frames_masks/
+2025-03-11 04:08:17,807 [INFO] Processing folder: videos_processed_copy/variable_pretrained_resnet101-BConcave+FConcave+4100/frames_masks/
+2025-03-11 04:08:19,550 [INFO] Processing folder: videos_processed_copy/variable_pretrained_resnet101-BConcave+FConcave+4500/frames_masks/
+2025-03-11 04:08:21,181 [INFO] Processing folder: videos_processed_copy/variable_pretrained_resnet101-BConcave+FConvex+3500/frames_masks/
+2025-03-11 04:08:22,918 [INFO] Processing folder: videos_processed_copy/variable_pretrained_resnet101-BConcave+FConvex+3900/frames_masks/
+2025-03-11 04:08:24,543 [INFO] Processing folder: videos_processed_copy/variable_pretrained_resnet101-BConcave+FConvex+4300/frames_masks/
+2025-03-11 04:08:26,224 [INFO] Processing folder: videos_processed_copy/variable_pretrained_resnet101-BConcave+gConcave+3700/frames_masks/
+2025-03-11 04:08:27,894 [INFO] Processing folder: videos_processed_copy/variable_pretrained_resnet101-BConcave+gConcave+4100/frames_masks/
+2025-03-11 04:08:29,586 [INFO] Processing folder: videos_processed_copy/variable_pretrained_resnet101-BConcave+gConcave+4500/frames_masks/
+2025-03-11 04:08:31,244 [INFO] Processing folder: videos_processed_copy/variable_pretrained_resnet101-BConcave+gConvex+3500/frames_masks/
+2025-03-11 04:08:32,956 [INFO] Processing folder: videos_processed_copy/variable_pretrained_resnet101-BConcave+gConvex+3900/frames_masks/
+2025-03-11 04:08:34,625 [INFO] Processing folder: videos_processed_copy/variable_pretrained_resnet101-BConcave+gConvex+4300/frames_masks/
+2025-03-11 04:08:36,305 [INFO] Processing folder: videos_processed_copy/variable_pretrained_resnet101-BConcave+hConcave+3700/frames_masks/
+2025-03-11 04:08:38,053 [INFO] Processing folder: videos_processed_copy/variable_pretrained_resnet101-BConcave+hConcave+4100/frames_masks/
+2025-03-11 04:08:39,844 [INFO] Processing folder: videos_processed_copy/variable_pretrained_resnet101-BConcave+hConcave+4500/frames_masks/
+2025-03-11 04:08:41,524 [INFO] Processing folder: videos_processed_copy/variable_pretrained_resnet101-BConcave+hConvex+3500/frames_masks/
+2025-03-11 04:08:43,467 [INFO] Processing folder: videos_processed_copy/variable_pretrained_resnet101-BConcave+hConvex+3900/frames_masks/
+2025-03-11 04:08:45,144 [INFO] Processing folder: videos_processed_copy/variable_pretrained_resnet101-BConcave+hConvex+4300/frames_masks/
+2025-03-11 04:08:46,869 [INFO] Finished computing IoUs for all frames_masks folders.
+2025-03-11 04:08:46,869 [INFO] Model names found: ['variable_pretrained_resnet101']
+2025-03-11 04:08:46,870 [INFO] ====== PROCESSING MODEL: variable_pretrained_resnet101 ======
+2025-03-11 04:08:46,883 [INFO] --- IoU Threshold = 0.05, output => variable_pretrained_resnet101_0.05
+2025-03-11 04:09:35,449 [INFO] --- IoU Threshold = 0.1, output => variable_pretrained_resnet101_0.1
+2025-03-11 04:10:22,383 [INFO] --- IoU Threshold = 0.15, output => variable_pretrained_resnet101_0.15
+2025-03-11 04:11:11,256 [INFO] --- IoU Threshold = 0.2, output => variable_pretrained_resnet101_0.2
+2025-03-11 04:11:59,751 [INFO] --- IoU Threshold = 0.25, output => variable_pretrained_resnet101_0.25
+2025-03-11 04:12:46,502 [INFO] --- IoU Threshold = 0.3, output => variable_pretrained_resnet101_0.3
+2025-03-11 04:13:35,894 [INFO] --- IoU Threshold = 0.35, output => variable_pretrained_resnet101_0.35
+2025-03-11 04:14:22,199 [INFO] --- IoU Threshold = 0.4, output => variable_pretrained_resnet101_0.4
+2025-03-11 04:15:08,828 [INFO] --- IoU Threshold = 0.45, output => variable_pretrained_resnet101_0.45
+2025-03-11 04:15:54,671 [INFO] --- IoU Threshold = 0.5, output => variable_pretrained_resnet101_0.5
+2025-03-11 04:16:33,721 [INFO] --- IoU Threshold = 0.55, output => variable_pretrained_resnet101_0.55
+2025-03-11 04:16:36,255 [INFO] --- IoU Threshold = 0.6, output => variable_pretrained_resnet101_0.6
+2025-03-11 04:16:38,870 [INFO] --- IoU Threshold = 0.65, output => variable_pretrained_resnet101_0.65
+2025-03-11 04:16:41,349 [INFO] --- IoU Threshold = 0.7, output => variable_pretrained_resnet101_0.7
+2025-03-11 04:16:43,829 [INFO] --- IoU Threshold = 0.75, output => variable_pretrained_resnet101_0.75
+2025-03-11 04:16:46,341 [INFO] --- IoU Threshold = 0.8, output => variable_pretrained_resnet101_0.8
+2025-03-11 04:16:48,845 [INFO] --- IoU Threshold = 0.85, output => variable_pretrained_resnet101_0.85
+2025-03-11 04:16:51,347 [INFO] --- IoU Threshold = 0.9, output => variable_pretrained_resnet101_0.9
+2025-03-11 04:16:53,856 [INFO] --- IoU Threshold = 0.95, output => variable_pretrained_resnet101_0.95
+2025-03-11 04:16:56,492 [INFO] All processing is complete. Exiting script.

@@ -1,0 +1,15 @@
+2025-03-11 02:57:28,070 [INFO] Script started.
+2025-03-11 02:57:28,070 [INFO] Reading command-line arguments...
+2025-03-11 02:57:28,070 [INFO] ZIP path: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/detr/DATA_ANALYSIS/data/var_videos_processed_copy.zip
+2025-03-11 02:57:28,070 [INFO] name_mapping.json path: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/detr/EXPERIMENTS/generate_detection_videos_and_meshes/videos_org/name_mapping.json
+2025-03-11 02:57:28,070 [INFO] CSV path: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/detr/DATA_ANALYSIS/data/experiment2-CollisionDetection-Data.csv
+2025-03-11 02:57:28,071 [INFO] IoU thresholds: [0.05 0.1  0.15 0.2  0.25 0.3  0.35 0.4  0.45 0.5  0.55 0.6  0.65 0.7
+ 0.75 0.8  0.85 0.9  0.95]
+2025-03-11 02:57:28,071 [INFO] Loading CSV from /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/detr/DATA_ANALYSIS/data/experiment2-CollisionDetection-Data.csv
+2025-03-11 02:57:28,087 [INFO] CSV shape: (13974, 10)
+2025-03-11 02:57:28,087 [INFO] Loading name_mapping from /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/detr/EXPERIMENTS/generate_detection_videos_and_meshes/videos_org/name_mapping.json
+2025-03-11 02:57:28,087 [INFO] Opening zip file /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/detr/DATA_ANALYSIS/data/var_videos_processed_copy.zip
+2025-03-11 02:57:28,473 [INFO] Scanning zip for relevant subfolders (those containing frames_masks).
+2025-03-11 02:57:28,479 [INFO] Found 48 relevant subfolders with frames_masks.
+2025-03-11 02:57:28,479 [INFO] Computing IoU arrays for each frames_masks folder.
+2025-03-11 02:57:28,479 [INFO] Processing folder: videos_processed_copy/variable_pretrained_resnet101-BConcave+AConcave+3500/frames_masks/

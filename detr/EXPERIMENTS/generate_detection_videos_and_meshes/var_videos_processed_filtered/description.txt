@@ -1,0 +1,1 @@
+This folder contains all video folders but onyl with the binary detection masks inside

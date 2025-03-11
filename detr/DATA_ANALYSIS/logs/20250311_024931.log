@@ -1,0 +1,23 @@
+2025-03-11 02:49:31,180 [INFO] Logging to logs/20250311_024931.log
+2025-03-11 02:49:31,180 [INFO] Starting script with arguments:
+2025-03-11 02:49:31,180 [INFO]   zip_path=/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/detr/DATA_ANALYSIS/data/var_videos_processed_copy.zip
+2025-03-11 02:49:31,180 [INFO]   name_mapping=/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/detr/EXPERIMENTS/generate_detection_videos_and_meshes/videos_org/name_mapping.json
+2025-03-11 02:49:31,180 [INFO]   csv_path=/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/detr/DATA_ANALYSIS/data/experiment2-CollisionDetection-Data.csv
+2025-03-11 02:49:31,180 [INFO]   iou_step=0.05
+2025-03-11 02:49:31,180 [INFO]   fps=60.0
+2025-03-11 02:49:31,180 [INFO] Reading name_mapping.json ...
+2025-03-11 02:49:31,185 [INFO] Reading CSV data ...
+2025-03-11 02:49:31,229 [INFO] Directory temp_zip_extract already exists. Skipping re-extraction.
+2025-03-11 02:49:31,230 [INFO] Will evaluate IoU thresholds: [0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6, 0.65, 0.7, 0.75, 0.8, 0.85, 0.9, 0.95, 1.0]
+2025-03-11 02:49:32,466 [INFO] Processing model: variable_pretrained_resnet101
+2025-03-11 02:49:32,469 [INFO]   - Creating output for IoU=0.05, total participants: 178
+2025-03-11 02:49:32,477 [INFO]      Participant 32bdb577-576a-4db9-99dc-b1ad83d48c73 => 0 matching videos (IoU=0.05). Creating empty plot.
+2025-03-11 02:49:32,952 [INFO]      Participant 06e99ddc-f878-4fd7-b106-9ade46fd73e0 => 0 matching videos (IoU=0.05). Creating empty plot.
+2025-03-11 02:49:33,194 [INFO]      Participant f5bf3bdb-af0e-4c59-a3bd-19f8e772d4ea => 0 matching videos (IoU=0.05). Creating empty plot.
+2025-03-11 02:49:33,430 [INFO]      Participant e9b40d9d-d0ee-4397-af9c-4b05d787bd48 => 0 matching videos (IoU=0.05). Creating empty plot.
+2025-03-11 02:49:33,663 [INFO]      Participant 364fb9d9-bc95-478e-9ed6-fae43f5a5013 => 0 matching videos (IoU=0.05). Creating empty plot.
+2025-03-11 02:49:33,897 [INFO]      Participant 9f1be8d4-b1d1-4bac-a2c8-e0ed9d326d16 => 0 matching videos (IoU=0.05). Creating empty plot.
+2025-03-11 02:49:34,137 [INFO]      Participant 0bd8489d-4430-46a2-8cac-d7602ba48be3 => 0 matching videos (IoU=0.05). Creating empty plot.
+2025-03-11 02:49:34,392 [INFO]      Participant e5f754d5-8c14-4741-ae5e-7bd80b440257 => 0 matching videos (IoU=0.05). Creating empty plot.
+2025-03-11 02:49:34,646 [INFO]      Participant b4af515d-0931-4fdb-8cab-24a9730134a6 => 0 matching videos (IoU=0.05). Creating empty plot.
+2025-03-11 02:49:34,936 [INFO]      Participant bedf1057-bd90-46df-afd3-17d9ae6a3dcf => 0 matching videos (IoU=0.05). Creating empty plot.

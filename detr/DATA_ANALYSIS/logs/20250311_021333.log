@@ -1,0 +1,8 @@
+2025-03-11 02:13:33,185 [INFO] Logging to logs/20250311_021333.log
+2025-03-11 02:13:33,185 [INFO] Starting script with arguments:
+2025-03-11 02:13:33,185 [INFO]   zip_path=videos_processed_copy.zip
+2025-03-11 02:13:33,185 [INFO]   name_mapping=name_mapping.json
+2025-03-11 02:13:33,185 [INFO]   csv_path=data.csv
+2025-03-11 02:13:33,185 [INFO]   iou_step=0.05
+2025-03-11 02:13:33,185 [INFO]   fps=60.0
+2025-03-11 02:13:33,185 [INFO] Reading name_mapping.json ...

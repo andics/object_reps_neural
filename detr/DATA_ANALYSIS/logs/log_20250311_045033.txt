@@ -1,0 +1,112 @@
+2025-03-11 04:50:33,193 [INFO] Script started.
+2025-03-11 04:50:33,193 [INFO] Reading command-line arguments...
+2025-03-11 04:50:33,193 [INFO] extracted_dir: temp_zip_extract/videos_processed_copy
+2025-03-11 04:50:33,193 [INFO] name_mapping_path: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/detr/DATA_ANALYSIS/data/name_mapping.json
+2025-03-11 04:50:33,193 [INFO] csv_path: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/detr/DATA_ANALYSIS/data/experiment2-CollisionDetection-Data.csv
+2025-03-11 04:50:33,194 [INFO] IoU thresholds: [0.05 0.1  0.15 0.2  0.25 0.3  0.35 0.4  0.45 0.5  0.55 0.6  0.65 0.7
+ 0.75 0.8  0.85 0.9  0.95]
+2025-03-11 04:50:33,210 [INFO] CSV loaded. Shape = (13974, 10)
+2025-03-11 04:50:33,211 [INFO] Found 48 subfolders in temp_zip_extract/videos_processed_copy.
+2025-03-11 04:50:33,211 [INFO] Final relevant subfolders with frames_masks: 48
+2025-03-11 04:50:33,212 [INFO] 
+===== IoU threshold = 0.05 =====
+2025-03-11 04:50:33,212 [INFO] Processing IoU 0.05 for model variable_pretrained_resnet101 -> output to variable_pretrained_resnet101_0.05
+2025-03-11 04:50:33,215 [INFO] Skipping collision-time compute: already exists temp_zip_extract/videos_processed_copy/variable_pretrained_resnet101-BConcave+EConcave+3700/iou_0.05.json
+2025-03-11 04:50:33,216 [INFO] Skipping collision-time compute: already exists temp_zip_extract/videos_processed_copy/variable_pretrained_resnet101-BConcave+FConvex+4300/iou_0.05.json
+2025-03-11 04:50:33,217 [INFO] Skipping collision-time compute: already exists temp_zip_extract/videos_processed_copy/variable_pretrained_resnet101-BConcave+gConvex+3500/iou_0.05.json
+2025-03-11 04:50:33,218 [INFO] Skipping collision-time compute: already exists temp_zip_extract/videos_processed_copy/variable_pretrained_resnet101-BConcave+CConcave+3500/iou_0.05.json
+2025-03-11 04:50:33,219 [INFO] Skipping collision-time compute: already exists temp_zip_extract/videos_processed_copy/variable_pretrained_resnet101-BConcave+BConvex+4100/iou_0.05.json
+2025-03-11 04:50:33,221 [INFO] Skipping collision-time compute: already exists temp_zip_extract/videos_processed_copy/variable_pretrained_resnet101-BConcave+gConcave+3700/iou_0.05.json
+2025-03-11 04:50:33,222 [INFO] Skipping collision-time compute: already exists temp_zip_extract/videos_processed_copy/variable_pretrained_resnet101-BConcave+gConcave+4500/iou_0.05.json
+2025-03-11 04:50:33,223 [INFO] Skipping collision-time compute: already exists temp_zip_extract/videos_processed_copy/variable_pretrained_resnet101-BConcave+CConvex+4500/iou_0.05.json
+2025-03-11 04:50:33,225 [INFO] Skipping collision-time compute: already exists temp_zip_extract/videos_processed_copy/variable_pretrained_resnet101-BConcave+hConcave+4100/iou_0.05.json
+2025-03-11 04:50:33,227 [INFO] Skipping collision-time compute: already exists temp_zip_extract/videos_processed_copy/variable_pretrained_resnet101-BConcave+FConvex+3500/iou_0.05.json
+2025-03-11 04:50:33,228 [INFO] Skipping collision-time compute: already exists temp_zip_extract/videos_processed_copy/variable_pretrained_resnet101-BConcave+hConcave+4500/iou_0.05.json
+2025-03-11 04:50:33,229 [INFO] Skipping collision-time compute: already exists temp_zip_extract/videos_processed_copy/variable_pretrained_resnet101-BConcave+AConvex+4100/iou_0.05.json
+2025-03-11 04:50:33,231 [INFO] Skipping collision-time compute: already exists temp_zip_extract/videos_processed_copy/variable_pretrained_resnet101-BConcave+AConcave+3500/iou_0.05.json
+2025-03-11 04:50:33,232 [INFO] Skipping collision-time compute: already exists temp_zip_extract/videos_processed_copy/variable_pretrained_resnet101-BConcave+FConvex+3900/iou_0.05.json
+2025-03-11 04:50:33,232 [INFO] Skipping collision-time compute: already exists temp_zip_extract/videos_processed_copy/variable_pretrained_resnet101-BConcave+BConcavePatient+3900/iou_0.05.json
+2025-03-11 04:50:33,232 [INFO] Skipping collision-time compute: already exists temp_zip_extract/videos_processed_copy/variable_pretrained_resnet101-BConcave+DConvex+4500/iou_0.05.json
+2025-03-11 04:50:33,232 [INFO] Skipping collision-time compute: already exists temp_zip_extract/videos_processed_copy/variable_pretrained_resnet101-BConcave+FConcave+4500/iou_0.05.json
+2025-03-11 04:50:33,232 [INFO] Skipping collision-time compute: already exists temp_zip_extract/videos_processed_copy/variable_pretrained_resnet101-BConcave+CConcave+4300/iou_0.05.json
+2025-03-11 04:50:33,232 [INFO] Skipping collision-time compute: already exists temp_zip_extract/videos_processed_copy/variable_pretrained_resnet101-BConcave+AConvex+3700/iou_0.05.json
+2025-03-11 04:50:33,232 [INFO] Skipping collision-time compute: already exists temp_zip_extract/videos_processed_copy/variable_pretrained_resnet101-BConcave+BConcavePatient+3500/iou_0.05.json
+2025-03-11 04:50:33,232 [INFO] Skipping collision-time compute: already exists temp_zip_extract/videos_processed_copy/variable_pretrained_resnet101-BConcave+DConvex+3700/iou_0.05.json
+2025-03-11 04:50:33,232 [INFO] Skipping collision-time compute: already exists temp_zip_extract/videos_processed_copy/variable_pretrained_resnet101-BConcave+BConvex+3700/iou_0.05.json
+2025-03-11 04:50:33,233 [INFO] Skipping collision-time compute: already exists temp_zip_extract/videos_processed_copy/variable_pretrained_resnet101-BConcave+DConcave+3900/iou_0.05.json
+2025-03-11 04:50:33,235 [INFO] Skipping collision-time compute: already exists temp_zip_extract/videos_processed_copy/variable_pretrained_resnet101-BConcave+EConvex+3900/iou_0.05.json
+2025-03-11 04:50:33,237 [INFO] Skipping collision-time compute: already exists temp_zip_extract/videos_processed_copy/variable_pretrained_resnet101-BConcave+DConvex+4100/iou_0.05.json
+2025-03-11 04:50:33,238 [INFO] Skipping collision-time compute: already exists temp_zip_extract/videos_processed_copy/variable_pretrained_resnet101-BConcave+EConvex+4300/iou_0.05.json
+2025-03-11 04:50:33,239 [INFO] Skipping collision-time compute: already exists temp_zip_extract/videos_processed_copy/variable_pretrained_resnet101-BConcave+gConvex+4300/iou_0.05.json
+2025-03-11 04:50:33,241 [INFO] Skipping collision-time compute: already exists temp_zip_extract/videos_processed_copy/variable_pretrained_resnet101-BConcave+CConcave+3900/iou_0.05.json
+2025-03-11 04:50:33,242 [INFO] Skipping collision-time compute: already exists temp_zip_extract/videos_processed_copy/variable_pretrained_resnet101-BConcave+CConvex+3700/iou_0.05.json
+2025-03-11 04:50:33,243 [INFO] Skipping collision-time compute: already exists temp_zip_extract/videos_processed_copy/variable_pretrained_resnet101-BConcave+FConcave+4100/iou_0.05.json
+2025-03-11 04:50:33,244 [INFO] Skipping collision-time compute: already exists temp_zip_extract/videos_processed_copy/variable_pretrained_resnet101-BConcave+gConvex+3900/iou_0.05.json
+2025-03-11 04:50:33,246 [INFO] Skipping collision-time compute: already exists temp_zip_extract/videos_processed_copy/variable_pretrained_resnet101-BConcave+CConvex+4100/iou_0.05.json
+2025-03-11 04:50:33,248 [INFO] Skipping collision-time compute: already exists temp_zip_extract/videos_processed_copy/variable_pretrained_resnet101-BConcave+DConcave+3500/iou_0.05.json
+2025-03-11 04:50:33,250 [INFO] Skipping collision-time compute: already exists temp_zip_extract/videos_processed_copy/variable_pretrained_resnet101-BConcave+EConcave+4500/iou_0.05.json
+2025-03-11 04:50:33,252 [INFO] Skipping collision-time compute: already exists temp_zip_extract/videos_processed_copy/variable_pretrained_resnet101-BConcave+hConvex+4300/iou_0.05.json
+2025-03-11 04:50:33,254 [INFO] Skipping collision-time compute: already exists temp_zip_extract/videos_processed_copy/variable_pretrained_resnet101-BConcave+gConcave+4100/iou_0.05.json
+2025-03-11 04:50:33,256 [INFO] Skipping collision-time compute: already exists temp_zip_extract/videos_processed_copy/variable_pretrained_resnet101-BConcave+BConcavePatient+4300/iou_0.05.json
+2025-03-11 04:50:33,258 [INFO] Skipping collision-time compute: already exists temp_zip_extract/videos_processed_copy/variable_pretrained_resnet101-BConcave+EConvex+3500/iou_0.05.json
+2025-03-11 04:50:33,260 [INFO] Skipping collision-time compute: already exists temp_zip_extract/videos_processed_copy/variable_pretrained_resnet101-BConcave+EConcave+4100/iou_0.05.json
+2025-03-11 04:50:33,262 [INFO] Skipping collision-time compute: already exists temp_zip_extract/videos_processed_copy/variable_pretrained_resnet101-BConcave+hConvex+3900/iou_0.05.json
+2025-03-11 04:50:33,264 [INFO] Skipping collision-time compute: already exists temp_zip_extract/videos_processed_copy/variable_pretrained_resnet101-BConcave+AConvex+4500/iou_0.05.json
+2025-03-11 04:50:33,264 [INFO] Skipping collision-time compute: already exists temp_zip_extract/videos_processed_copy/variable_pretrained_resnet101-BConcave+hConcave+3700/iou_0.05.json
+2025-03-11 04:50:33,264 [INFO] Skipping collision-time compute: already exists temp_zip_extract/videos_processed_copy/variable_pretrained_resnet101-BConcave+AConcave+3900/iou_0.05.json
+2025-03-11 04:50:33,264 [INFO] Skipping collision-time compute: already exists temp_zip_extract/videos_processed_copy/variable_pretrained_resnet101-BConcave+hConvex+3500/iou_0.05.json
+2025-03-11 04:50:33,265 [INFO] Skipping collision-time compute: already exists temp_zip_extract/videos_processed_copy/variable_pretrained_resnet101-BConcave+DConcave+4300/iou_0.05.json
+2025-03-11 04:50:33,265 [INFO] Skipping collision-time compute: already exists temp_zip_extract/videos_processed_copy/variable_pretrained_resnet101-BConcave+AConcave+4300/iou_0.05.json
+2025-03-11 04:50:33,265 [INFO] Skipping collision-time compute: already exists temp_zip_extract/videos_processed_copy/variable_pretrained_resnet101-BConcave+BConvex+4500/iou_0.05.json
+2025-03-11 04:50:33,265 [INFO] Skipping collision-time compute: already exists temp_zip_extract/videos_processed_copy/variable_pretrained_resnet101-BConcave+FConcave+3700/iou_0.05.json
+2025-03-11 04:51:25,969 [INFO] 
+===== IoU threshold = 0.1 =====
+2025-03-11 04:51:25,969 [INFO] Processing IoU 0.1 for model variable_pretrained_resnet101 -> output to variable_pretrained_resnet101_0.1
+2025-03-11 04:51:25,972 [INFO] Skipping collision-time compute: already exists temp_zip_extract/videos_processed_copy/variable_pretrained_resnet101-BConcave+EConcave+3700/iou_0.1.json
+2025-03-11 04:51:25,972 [INFO] Skipping collision-time compute: already exists temp_zip_extract/videos_processed_copy/variable_pretrained_resnet101-BConcave+FConvex+4300/iou_0.1.json
+2025-03-11 04:51:25,973 [INFO] Skipping collision-time compute: already exists temp_zip_extract/videos_processed_copy/variable_pretrained_resnet101-BConcave+gConvex+3500/iou_0.1.json
+2025-03-11 04:51:25,974 [INFO] Skipping collision-time compute: already exists temp_zip_extract/videos_processed_copy/variable_pretrained_resnet101-BConcave+CConcave+3500/iou_0.1.json
+2025-03-11 04:51:25,974 [INFO] Skipping collision-time compute: already exists temp_zip_extract/videos_processed_copy/variable_pretrained_resnet101-BConcave+BConvex+4100/iou_0.1.json
+2025-03-11 04:51:25,975 [INFO] Skipping collision-time compute: already exists temp_zip_extract/videos_processed_copy/variable_pretrained_resnet101-BConcave+gConcave+3700/iou_0.1.json
+2025-03-11 04:51:25,975 [INFO] Skipping collision-time compute: already exists temp_zip_extract/videos_processed_copy/variable_pretrained_resnet101-BConcave+gConcave+4500/iou_0.1.json
+2025-03-11 04:51:25,976 [INFO] Skipping collision-time compute: already exists temp_zip_extract/videos_processed_copy/variable_pretrained_resnet101-BConcave+CConvex+4500/iou_0.1.json
+2025-03-11 04:51:25,976 [INFO] Skipping collision-time compute: already exists temp_zip_extract/videos_processed_copy/variable_pretrained_resnet101-BConcave+hConcave+4100/iou_0.1.json
+2025-03-11 04:51:25,977 [INFO] Skipping collision-time compute: already exists temp_zip_extract/videos_processed_copy/variable_pretrained_resnet101-BConcave+FConvex+3500/iou_0.1.json
+2025-03-11 04:51:25,978 [INFO] Skipping collision-time compute: already exists temp_zip_extract/videos_processed_copy/variable_pretrained_resnet101-BConcave+hConcave+4500/iou_0.1.json
+2025-03-11 04:51:25,978 [INFO] Skipping collision-time compute: already exists temp_zip_extract/videos_processed_copy/variable_pretrained_resnet101-BConcave+AConvex+4100/iou_0.1.json
+2025-03-11 04:51:25,979 [INFO] Skipping collision-time compute: already exists temp_zip_extract/videos_processed_copy/variable_pretrained_resnet101-BConcave+AConcave+3500/iou_0.1.json
+2025-03-11 04:51:25,979 [INFO] Skipping collision-time compute: already exists temp_zip_extract/videos_processed_copy/variable_pretrained_resnet101-BConcave+FConvex+3900/iou_0.1.json
+2025-03-11 04:51:25,980 [INFO] Skipping collision-time compute: already exists temp_zip_extract/videos_processed_copy/variable_pretrained_resnet101-BConcave+BConcavePatient+3900/iou_0.1.json
+2025-03-11 04:51:25,981 [INFO] Skipping collision-time compute: already exists temp_zip_extract/videos_processed_copy/variable_pretrained_resnet101-BConcave+DConvex+4500/iou_0.1.json
+2025-03-11 04:51:25,981 [INFO] Skipping collision-time compute: already exists temp_zip_extract/videos_processed_copy/variable_pretrained_resnet101-BConcave+FConcave+4500/iou_0.1.json
+2025-03-11 04:51:25,982 [INFO] Skipping collision-time compute: already exists temp_zip_extract/videos_processed_copy/variable_pretrained_resnet101-BConcave+CConcave+4300/iou_0.1.json
+2025-03-11 04:51:25,982 [INFO] Skipping collision-time compute: already exists temp_zip_extract/videos_processed_copy/variable_pretrained_resnet101-BConcave+AConvex+3700/iou_0.1.json
+2025-03-11 04:51:25,983 [INFO] Skipping collision-time compute: already exists temp_zip_extract/videos_processed_copy/variable_pretrained_resnet101-BConcave+BConcavePatient+3500/iou_0.1.json
+2025-03-11 04:51:25,984 [INFO] Skipping collision-time compute: already exists temp_zip_extract/videos_processed_copy/variable_pretrained_resnet101-BConcave+DConvex+3700/iou_0.1.json
+2025-03-11 04:51:25,984 [INFO] Skipping collision-time compute: already exists temp_zip_extract/videos_processed_copy/variable_pretrained_resnet101-BConcave+BConvex+3700/iou_0.1.json
+2025-03-11 04:51:25,984 [INFO] Skipping collision-time compute: already exists temp_zip_extract/videos_processed_copy/variable_pretrained_resnet101-BConcave+DConcave+3900/iou_0.1.json
+2025-03-11 04:51:25,984 [INFO] Skipping collision-time compute: already exists temp_zip_extract/videos_processed_copy/variable_pretrained_resnet101-BConcave+EConvex+3900/iou_0.1.json
+2025-03-11 04:51:25,985 [INFO] Skipping collision-time compute: already exists temp_zip_extract/videos_processed_copy/variable_pretrained_resnet101-BConcave+DConvex+4100/iou_0.1.json
+2025-03-11 04:51:29,773 [INFO] Saved collision_time for variable_pretrained_resnet101-BConcave+EConvex+4300 @ IoU=0.1: 4516.666666666667
+2025-03-11 04:51:33,687 [INFO] Saved collision_time for variable_pretrained_resnet101-BConcave+gConvex+4300 @ IoU=0.1: 4833.333333333333
+2025-03-11 04:51:37,240 [INFO] Saved collision_time for variable_pretrained_resnet101-BConcave+CConcave+3900 @ IoU=0.1: 3500.0
+2025-03-11 04:51:40,363 [INFO] Saved collision_time for variable_pretrained_resnet101-BConcave+CConvex+3700 @ IoU=0.1: 4300.0
+2025-03-11 04:51:43,206 [INFO] Saved collision_time for variable_pretrained_resnet101-BConcave+FConcave+4100 @ IoU=0.1: 4400.0
+2025-03-11 04:51:47,068 [INFO] Saved collision_time for variable_pretrained_resnet101-BConcave+gConvex+3900 @ IoU=0.1: 4416.666666666667
+2025-03-11 04:51:50,337 [INFO] Saved collision_time for variable_pretrained_resnet101-BConcave+CConvex+4100 @ IoU=0.1: 4666.666666666667
+2025-03-11 04:51:54,031 [INFO] Saved collision_time for variable_pretrained_resnet101-BConcave+DConcave+3500 @ IoU=0.1: 3350.0
+2025-03-11 04:51:56,792 [INFO] Saved collision_time for variable_pretrained_resnet101-BConcave+EConcave+4500 @ IoU=0.1: None
+2025-03-11 04:51:58,782 [INFO] Saved collision_time for variable_pretrained_resnet101-BConcave+hConvex+4300 @ IoU=0.1: 4366.666666666666
+2025-03-11 04:52:01,129 [INFO] Saved collision_time for variable_pretrained_resnet101-BConcave+gConcave+4100 @ IoU=0.1: 4250.0
+2025-03-11 04:52:04,917 [INFO] Saved collision_time for variable_pretrained_resnet101-BConcave+BConcavePatient+4300 @ IoU=0.1: 4216.666666666667
+2025-03-11 04:52:07,421 [INFO] Saved collision_time for variable_pretrained_resnet101-BConcave+EConvex+3500 @ IoU=0.1: 3850.0
+2025-03-11 04:52:11,465 [INFO] Saved collision_time for variable_pretrained_resnet101-BConcave+EConcave+4100 @ IoU=0.1: 4066.6666666666665
+2025-03-11 04:52:13,581 [INFO] Saved collision_time for variable_pretrained_resnet101-BConcave+hConvex+3900 @ IoU=0.1: 4116.666666666666
+2025-03-11 04:52:16,641 [INFO] Saved collision_time for variable_pretrained_resnet101-BConcave+AConvex+4500 @ IoU=0.1: 4366.666666666666
+2025-03-11 04:52:19,386 [INFO] Saved collision_time for variable_pretrained_resnet101-BConcave+hConcave+3700 @ IoU=0.1: 3566.666666666667
+2025-03-11 04:52:21,385 [INFO] Saved collision_time for variable_pretrained_resnet101-BConcave+AConcave+3900 @ IoU=0.1: 3466.666666666667
+2025-03-11 04:52:23,746 [INFO] Saved collision_time for variable_pretrained_resnet101-BConcave+hConvex+3500 @ IoU=0.1: 3666.6666666666665
+2025-03-11 04:52:26,445 [INFO] Saved collision_time for variable_pretrained_resnet101-BConcave+DConcave+4300 @ IoU=0.1: 3966.666666666667
+2025-03-11 04:52:30,533 [INFO] Saved collision_time for variable_pretrained_resnet101-BConcave+AConcave+4300 @ IoU=0.1: 3850.0
+2025-03-11 04:52:35,054 [INFO] Saved collision_time for variable_pretrained_resnet101-BConcave+BConvex+4500 @ IoU=0.1: 4783.333333333333
+2025-03-11 04:52:37,999 [INFO] Saved collision_time for variable_pretrained_resnet101-BConcave+FConcave+3700 @ IoU=0.1: 3700.0

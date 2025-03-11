@@ -1,0 +1,28 @@
+2025-03-11 04:32:23,226 [INFO] Logger initialized.
+2025-03-11 04:32:23,226 [INFO] Extraction directory already exists; skipping extraction.
+2025-03-11 04:32:23,226 [INFO] Reading name mapping from /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/detr/DATA_ANALYSIS/data/name_mapping.json...
+2025-03-11 04:32:23,226 [INFO] Loaded name mapping with 96 entries.
+2025-03-11 04:32:23,226 [INFO] Reading participant CSV from /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/detr/DATA_ANALYSIS/data/experiment2-CollisionDetection-Data.csv...
+2025-03-11 04:32:23,242 [INFO] CSV loaded with 13974 rows and 10 columns.
+2025-03-11 04:32:23,243 [INFO] Starting collision detection across subfolders and IoU thresholds...
+2025-03-11 05:17:05,147 [INFO] Collision detection complete.
+2025-03-11 05:17:45,627 [INFO] Done creating results for variable_pretrained_resnet101, IoU=0.05
+2025-03-11 05:18:27,787 [INFO] Done creating results for variable_pretrained_resnet101, IoU=0.1
+2025-03-11 05:19:07,344 [INFO] Done creating results for variable_pretrained_resnet101, IoU=0.15
+2025-03-11 05:19:48,445 [INFO] Done creating results for variable_pretrained_resnet101, IoU=0.2
+2025-03-11 05:20:28,284 [INFO] Done creating results for variable_pretrained_resnet101, IoU=0.25
+2025-03-11 05:21:07,242 [INFO] Done creating results for variable_pretrained_resnet101, IoU=0.3
+2025-03-11 05:21:48,209 [INFO] Done creating results for variable_pretrained_resnet101, IoU=0.35
+2025-03-11 05:22:28,905 [INFO] Done creating results for variable_pretrained_resnet101, IoU=0.4
+2025-03-11 05:23:08,625 [INFO] Done creating results for variable_pretrained_resnet101, IoU=0.45
+2025-03-11 05:23:48,006 [INFO] Done creating results for variable_pretrained_resnet101, IoU=0.5
+2025-03-11 05:24:28,810 [INFO] Done creating results for variable_pretrained_resnet101, IoU=0.55
+2025-03-11 05:25:09,448 [INFO] Done creating results for variable_pretrained_resnet101, IoU=0.6
+2025-03-11 05:25:51,597 [INFO] Done creating results for variable_pretrained_resnet101, IoU=0.65
+2025-03-11 05:26:32,577 [INFO] Done creating results for variable_pretrained_resnet101, IoU=0.7
+2025-03-11 05:27:15,071 [INFO] Done creating results for variable_pretrained_resnet101, IoU=0.75
+2025-03-11 05:27:56,663 [INFO] Done creating results for variable_pretrained_resnet101, IoU=0.8
+2025-03-11 05:28:40,602 [INFO] Done creating results for variable_pretrained_resnet101, IoU=0.85
+2025-03-11 05:29:21,689 [INFO] Done creating results for variable_pretrained_resnet101, IoU=0.9
+2025-03-11 05:30:07,185 [INFO] Done creating results for variable_pretrained_resnet101, IoU=0.95
+2025-03-11 05:30:07,185 [INFO] All analyses complete. Exiting.

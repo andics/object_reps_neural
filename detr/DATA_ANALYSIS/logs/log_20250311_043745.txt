@@ -1,0 +1,61 @@
+2025-03-11 04:37:45,402 [INFO] Script started.
+2025-03-11 04:37:45,402 [INFO] Reading command-line arguments...
+2025-03-11 04:37:45,402 [INFO] extracted_dir: temp_zip_extract/videos_processed_copy
+2025-03-11 04:37:45,402 [INFO] name_mapping_path: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/detr/DATA_ANALYSIS/data/name_mapping.json
+2025-03-11 04:37:45,402 [INFO] csv_path: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/detr/DATA_ANALYSIS/data/experiment2-CollisionDetection-Data.csv
+2025-03-11 04:37:45,402 [INFO] IoU thresholds: [0.05 0.1  0.15 0.2  0.25 0.3  0.35 0.4  0.45 0.5  0.55 0.6  0.65 0.7
+ 0.75 0.8  0.85 0.9  0.95]
+2025-03-11 04:37:45,422 [INFO] CSV loaded. Shape = (13974, 10)
+2025-03-11 04:37:45,425 [INFO] Found 48 subfolders in temp_zip_extract/videos_processed_copy.
+2025-03-11 04:37:45,427 [INFO] Final relevant subfolders with frames_masks: 48
+2025-03-11 04:37:45,427 [INFO] 
+===== IoU threshold = 0.05 =====
+2025-03-11 04:37:45,428 [INFO] Processing IoU 0.05 for model variable_pretrained_resnet101 -> output to variable_pretrained_resnet101_0.05
+2025-03-11 04:37:45,430 [INFO] Skipping collision-time compute: already exists temp_zip_extract/videos_processed_copy/variable_pretrained_resnet101-BConcave+EConcave+3700/iou_0.05.json
+2025-03-11 04:37:45,431 [INFO] Skipping collision-time compute: already exists temp_zip_extract/videos_processed_copy/variable_pretrained_resnet101-BConcave+FConvex+4300/iou_0.05.json
+2025-03-11 04:37:45,433 [INFO] Skipping collision-time compute: already exists temp_zip_extract/videos_processed_copy/variable_pretrained_resnet101-BConcave+gConvex+3500/iou_0.05.json
+2025-03-11 04:37:45,434 [INFO] Skipping collision-time compute: already exists temp_zip_extract/videos_processed_copy/variable_pretrained_resnet101-BConcave+CConcave+3500/iou_0.05.json
+2025-03-11 04:37:45,436 [INFO] Skipping collision-time compute: already exists temp_zip_extract/videos_processed_copy/variable_pretrained_resnet101-BConcave+BConvex+4100/iou_0.05.json
+2025-03-11 04:37:45,437 [INFO] Skipping collision-time compute: already exists temp_zip_extract/videos_processed_copy/variable_pretrained_resnet101-BConcave+gConcave+3700/iou_0.05.json
+2025-03-11 04:37:45,437 [INFO] Skipping collision-time compute: already exists temp_zip_extract/videos_processed_copy/variable_pretrained_resnet101-BConcave+gConcave+4500/iou_0.05.json
+2025-03-11 04:37:49,873 [INFO] Saved collision_time for variable_pretrained_resnet101-BConcave+CConvex+4500 @ IoU=0.05: 4516.666666666667
+2025-03-11 04:37:53,144 [INFO] Saved collision_time for variable_pretrained_resnet101-BConcave+hConcave+4100 @ IoU=0.05: 3850.0
+2025-03-11 04:37:57,014 [INFO] Saved collision_time for variable_pretrained_resnet101-BConcave+FConvex+3500 @ IoU=0.05: 3716.666666666667
+2025-03-11 04:38:00,108 [INFO] Saved collision_time for variable_pretrained_resnet101-BConcave+hConcave+4500 @ IoU=0.05: 4166.666666666667
+2025-03-11 04:38:04,348 [INFO] Saved collision_time for variable_pretrained_resnet101-BConcave+AConvex+4100 @ IoU=0.05: 4400.0
+2025-03-11 04:38:08,967 [INFO] Saved collision_time for variable_pretrained_resnet101-BConcave+AConcave+3500 @ IoU=0.05: 3016.6666666666665
+2025-03-11 04:38:13,390 [INFO] Saved collision_time for variable_pretrained_resnet101-BConcave+FConvex+3900 @ IoU=0.05: 4333.333333333333
+2025-03-11 04:38:16,445 [INFO] Saved collision_time for variable_pretrained_resnet101-BConcave+BConcavePatient+3900 @ IoU=0.05: 3633.3333333333335
+2025-03-11 04:38:20,310 [INFO] Saved collision_time for variable_pretrained_resnet101-BConcave+DConvex+4500 @ IoU=0.05: 4433.333333333334
+2025-03-11 04:38:23,302 [INFO] Saved collision_time for variable_pretrained_resnet101-BConcave+FConcave+4500 @ IoU=0.05: 4416.666666666667
+2025-03-11 04:38:26,854 [INFO] Saved collision_time for variable_pretrained_resnet101-BConcave+CConcave+4300 @ IoU=0.05: 3666.6666666666665
+2025-03-11 04:38:31,116 [INFO] Saved collision_time for variable_pretrained_resnet101-BConcave+AConvex+3700 @ IoU=0.05: 4116.666666666666
+2025-03-11 04:38:35,367 [INFO] Saved collision_time for variable_pretrained_resnet101-BConcave+BConcavePatient+3500 @ IoU=0.05: 3483.3333333333335
+2025-03-11 04:38:40,271 [INFO] Saved collision_time for variable_pretrained_resnet101-BConcave+DConvex+3700 @ IoU=0.05: 3866.6666666666665
+2025-03-11 04:38:44,770 [INFO] Saved collision_time for variable_pretrained_resnet101-BConcave+BConvex+3700 @ IoU=0.05: 4050.0
+2025-03-11 04:38:49,059 [INFO] Saved collision_time for variable_pretrained_resnet101-BConcave+DConcave+3900 @ IoU=0.05: 3700.0
+2025-03-11 04:38:51,591 [INFO] Saved collision_time for variable_pretrained_resnet101-BConcave+EConvex+3900 @ IoU=0.05: 4016.6666666666665
+2025-03-11 04:38:54,464 [INFO] Saved collision_time for variable_pretrained_resnet101-BConcave+DConvex+4100 @ IoU=0.05: 4233.333333333333
+2025-03-11 04:38:57,895 [INFO] Saved collision_time for variable_pretrained_resnet101-BConcave+EConvex+4300 @ IoU=0.05: 4333.333333333333
+2025-03-11 04:39:01,932 [INFO] Saved collision_time for variable_pretrained_resnet101-BConcave+gConvex+4300 @ IoU=0.05: 4616.666666666666
+2025-03-11 04:39:06,297 [INFO] Saved collision_time for variable_pretrained_resnet101-BConcave+CConcave+3900 @ IoU=0.05: 3216.666666666667
+2025-03-11 04:39:09,919 [INFO] Saved collision_time for variable_pretrained_resnet101-BConcave+CConvex+3700 @ IoU=0.05: 4100.0
+2025-03-11 04:39:13,125 [INFO] Saved collision_time for variable_pretrained_resnet101-BConcave+FConcave+4100 @ IoU=0.05: 4250.0
+2025-03-11 04:39:16,725 [INFO] Saved collision_time for variable_pretrained_resnet101-BConcave+gConvex+3900 @ IoU=0.05: 4333.333333333333
+2025-03-11 04:39:20,864 [INFO] Saved collision_time for variable_pretrained_resnet101-BConcave+CConvex+4100 @ IoU=0.05: 4416.666666666667
+2025-03-11 04:39:24,818 [INFO] Saved collision_time for variable_pretrained_resnet101-BConcave+DConcave+3500 @ IoU=0.05: 3350.0
+2025-03-11 04:39:28,391 [INFO] Saved collision_time for variable_pretrained_resnet101-BConcave+EConcave+4500 @ IoU=0.05: None
+2025-03-11 04:39:32,137 [INFO] Saved collision_time for variable_pretrained_resnet101-BConcave+hConvex+4300 @ IoU=0.05: 4216.666666666667
+2025-03-11 04:39:35,651 [INFO] Saved collision_time for variable_pretrained_resnet101-BConcave+gConcave+4100 @ IoU=0.05: 4050.0
+2025-03-11 04:39:40,419 [INFO] Saved collision_time for variable_pretrained_resnet101-BConcave+BConcavePatient+4300 @ IoU=0.05: 3983.3333333333335
+2025-03-11 04:39:44,681 [INFO] Saved collision_time for variable_pretrained_resnet101-BConcave+EConvex+3500 @ IoU=0.05: 3766.6666666666665
+2025-03-11 04:39:48,659 [INFO] Saved collision_time for variable_pretrained_resnet101-BConcave+EConcave+4100 @ IoU=0.05: 3716.666666666667
+2025-03-11 04:39:53,226 [INFO] Saved collision_time for variable_pretrained_resnet101-BConcave+hConvex+3900 @ IoU=0.05: 3950.0
+2025-03-11 04:39:57,365 [INFO] Saved collision_time for variable_pretrained_resnet101-BConcave+AConvex+4500 @ IoU=0.05: 4183.333333333334
+2025-03-11 04:40:01,328 [INFO] Saved collision_time for variable_pretrained_resnet101-BConcave+hConcave+3700 @ IoU=0.05: 3416.6666666666665
+2025-03-11 04:40:06,801 [INFO] Saved collision_time for variable_pretrained_resnet101-BConcave+AConcave+3900 @ IoU=0.05: 3200.0
+2025-03-11 04:40:10,495 [INFO] Saved collision_time for variable_pretrained_resnet101-BConcave+hConvex+3500 @ IoU=0.05: 3550.0
+2025-03-11 04:40:13,714 [INFO] Saved collision_time for variable_pretrained_resnet101-BConcave+DConcave+4300 @ IoU=0.05: 3866.6666666666665
+2025-03-11 04:40:18,339 [INFO] Saved collision_time for variable_pretrained_resnet101-BConcave+AConcave+4300 @ IoU=0.05: 3633.3333333333335
+2025-03-11 04:40:22,338 [INFO] Saved collision_time for variable_pretrained_resnet101-BConcave+BConvex+4500 @ IoU=0.05: 4700.0
+2025-03-11 04:40:25,774 [INFO] Saved collision_time for variable_pretrained_resnet101-BConcave+FConcave+3700 @ IoU=0.05: 3600.0
