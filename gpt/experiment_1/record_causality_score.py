@@ -1,8 +1,15 @@
 import base64
+import json
 from openai import OpenAI
 
-# Initialize the client with your API key.
-client = OpenAI(api_key="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")
+# Load API key from config.json
+with open("../api_key.json", "r") as f:
+    config = json.load(f)
+
+api_key = config["api_key"]
+
+# Initialize the OpenAI client with the API key.
+client = OpenAI(api_key=api_key)
 
 # Function to encode the image into Base64.
 def encode_image(image_path):
@@ -35,16 +42,16 @@ completion = client.chat.completions.create(
         {
             "role": "user",
             "content": [
-                { "type": "text", "text": question },
+                {"type": "text", "text": question},
                 {
                     "type": "image_url",
                     "image_url": {
-                        "url": f"data:image/jpeg;base64,{base64_image}",
-                    },
-                },
-            ],
+                        "url": f"data:image/jpeg;base64,{base64_image}"
+                    }
+                }
+            ]
         }
-    ],
+    ]
 )
 
 # Print the assistant's response.
