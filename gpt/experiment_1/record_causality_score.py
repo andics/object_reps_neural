@@ -1,58 +1,94 @@
 import base64
 import json
+import os
+import csv
 from openai import OpenAI
 
-# Load API key from config.json
-with open("../api_key.json", "r") as f:
-    config = json.load(f)
+class MultiModalCSVRequester:
+    def __init__(self, csv_file, row_name, image_paths, question):
+        """
+        Initialize with:
+          - csv_file: Path to the CSV file (will be appended to)
+          - row_name: A label to be added in the CSV row (e.g. an identifier)
+          - image_paths: List of local image file paths to include in the request
+          - question: The text prompt/question to send along with the images
+        """
+        # Set working directory to the script's directory.
+        script_dir = os.path.dirname(os.path.abspath(__file__))
+        os.chdir(script_dir)
 
-api_key = config["api_key"]
+        self.csv_file = csv_file
+        self.row_name = row_name
+        self.image_paths = image_paths
+        self.question = question
 
-# Initialize the OpenAI client with the API key.
-client = OpenAI(api_key=api_key)
+        # Load API key from ../api_key.json.
+        config_path = os.path.join("..", "api_key.json")
+        with open(config_path, "r") as f:
+            config = json.load(f)
+        api_key = config["api_key"]
 
-# Function to encode the image into Base64.
-def encode_image(image_path):
-    with open(image_path, "rb") as image_file:
-        return base64.b64encode(image_file.read()).decode("utf-8")
+        # Initialize the OpenAI client.
+        self.client = OpenAI(api_key=api_key)
 
-# Path to your image.
-image_path = "Q:/Projects/Object_reps_neural/Programming/gpt/experiment_1/Exp1_extracted_ult_frames/flipped_H_convex_2.png"
+    def encode_image_from_file(self, image_path):
+        """Reads and Base64-encodes the image from a local file."""
+        with open(image_path, "rb") as f:
+            return base64.b64encode(f.read()).decode("utf-8")
 
-# Get the Base64 string for the image.
-base64_image = encode_image(image_path)
+    def run_request(self):
+        """Encodes the images, makes the API call, and appends the result to the CSV."""
+        # Encode all images.
+        encoded_images = [self.encode_image_from_file(path) for path in self.image_paths]
 
-# Define your specific question.
-question = (
-    "From 1-7, how much do you agree with the statement:\n"
-    "\"The object on the right caused the object on the left to start moving\".\n\n"
-    "Consider that the photo attached is a snippet of a video, where the object on the right "
-    "moves towards the object on the left (right-to-left motion). The frame I have provided "
-    "is the exact frame at which the moving object stops, and the stationary object (the object "
-    "on the left) starts moving with the same velocity and direction as the right object was "
-    "moving until now. I want to understand your perception of causality here as a function "
-    "of distance.\n\n"
-    "Provide a single number as an answer."
-)
-
-# Create the Chat Completion request with a text part and an image_url part (using a data URL).
-completion = client.chat.completions.create(
-    model="gpt-4o",
-    messages=[
-        {
-            "role": "user",
-            "content": [
-                {"type": "text", "text": question},
-                {
-                    "type": "image_url",
-                    "image_url": {
-                        "url": f"data:image/jpeg;base64,{base64_image}"
-                    }
+        # Construct the content list with the text prompt and each image as a data URL.
+        content_list = [
+            {"type": "text", "text": self.question}
+        ]
+        for encoded in encoded_images:
+            content_list.append({
+                "type": "image_url",
+                "image_url": {
+                    "url": f"data:image/jpeg;base64,{encoded}"
                 }
-            ]
-        }
-    ]
-)
+            })
 
-# Print the assistant's response.
-print(completion.choices[0].message.content)
+        messages = [{
+            "role": "user",
+            "content": content_list
+        }]
+
+        # Call the Chat Completions API using model "gpt-4o-mini".
+        response = self.client.chat.completions.create(
+            model="gpt-4o-mini",
+            messages=messages,
+            max_tokens=300,
+        )
+
+        # Extract the assistant's response.
+        response_text = response.choices[0].message.content
+
+        # Append the result to the CSV file.
+        with open(self.csv_file, "a", newline="", encoding="utf-8") as csvfile:
+            writer = csv.writer(csvfile)
+            writer.writerow([self.row_name, response_text])
+
+        print("Response appended to CSV:", response_text)
+        return response_text
+
+# Example usage:
+if __name__ == "__main__":
+    # Specify the CSV file to update, a row name, image paths, and the question text.
+    csv_file = "responses.csv"
+    row_name = "TestRow1"
+    image_paths = [
+        "Q:/Projects/Object_reps_neural/Programming/gpt/experiment_1/Exp1_extracted_ult_frames/flipped_H_convex_2.png",
+        "Q:/Projects/Object_reps_neural/Programming/gpt/experiment_1/Exp1_extracted_ult_frames/flipped_H_convex_2.png",
+        "Q:/Projects/Object_reps_neural/Programming/gpt/experiment_1/Exp1_extracted_ult_frames/flipped_H_convex_2.png",
+    ]
+    question = (
+        "What are in these images? Is there any difference between them?"
+    )
+
+    requester = MultiModalCSVRequester(csv_file, row_name, image_paths, question)
+    requester.run_request()
