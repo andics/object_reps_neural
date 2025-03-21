@@ -1,0 +1,227 @@
+========================================
+Processing video: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/gpt/experiment_1/Exp1/Stimuli/Exp1_videos/flipped_B_convex_1.mp4
+start_frame=200
+crop_width=500, crop_height=400
+========================================
+
+Reading frames...
+  - Total frames: 1199
+[Frame=200] => first frame in sequence => no previous => cannot detect movement yet.
+[Frame=201] left_diff=False, right_diff=True, moving_blob=None
+   => Identified mover as 'right'.
+[Frame=202] left_diff=False, right_diff=True, moving_blob=right
+[Frame=203] left_diff=False, right_diff=True, moving_blob=right
+[Frame=204] left_diff=False, right_diff=True, moving_blob=right
+[Frame=205] left_diff=False, right_diff=True, moving_blob=right
+[Frame=206] left_diff=False, right_diff=True, moving_blob=right
+[Frame=207] left_diff=False, right_diff=True, moving_blob=right
+[Frame=208] left_diff=False, right_diff=True, moving_blob=right
+[Frame=209] left_diff=False, right_diff=True, moving_blob=right
+[Frame=210] left_diff=False, right_diff=True, moving_blob=right
+[Frame=211] left_diff=False, right_diff=True, moving_blob=right
+[Frame=212] left_diff=False, right_diff=True, moving_blob=right
+[Frame=213] left_diff=False, right_diff=True, moving_blob=right
+[Frame=214] left_diff=False, right_diff=True, moving_blob=right
+[Frame=215] left_diff=False, right_diff=True, moving_blob=right
+[Frame=216] left_diff=False, right_diff=True, moving_blob=right
+[Frame=217] left_diff=False, right_diff=True, moving_blob=right
+[Frame=218] left_diff=False, right_diff=True, moving_blob=right
+[Frame=219] left_diff=False, right_diff=True, moving_blob=right
+[Frame=220] left_diff=False, right_diff=True, moving_blob=right
+[Frame=221] left_diff=False, right_diff=True, moving_blob=right
+[Frame=222] left_diff=False, right_diff=True, moving_blob=right
+[Frame=223] left_diff=False, right_diff=True, moving_blob=right
+[Frame=224] left_diff=False, right_diff=True, moving_blob=right
+[Frame=225] left_diff=False, right_diff=True, moving_blob=right
+[Frame=226] left_diff=False, right_diff=True, moving_blob=right
+[Frame=227] left_diff=False, right_diff=True, moving_blob=right
+[Frame=228] left_diff=False, right_diff=True, moving_blob=right
+[Frame=229] left_diff=False, right_diff=True, moving_blob=right
+[Frame=230] left_diff=False, right_diff=True, moving_blob=right
+[Frame=231] left_diff=False, right_diff=True, moving_blob=right
+[Frame=232] left_diff=False, right_diff=True, moving_blob=right
+[Frame=233] left_diff=False, right_diff=True, moving_blob=right
+[Frame=234] left_diff=False, right_diff=True, moving_blob=right
+[Frame=235] left_diff=False, right_diff=True, moving_blob=right
+[Frame=236] left_diff=False, right_diff=True, moving_blob=right
+[Frame=237] left_diff=False, right_diff=True, moving_blob=right
+[Frame=238] left_diff=False, right_diff=True, moving_blob=right
+[Frame=239] left_diff=False, right_diff=True, moving_blob=right
+[Frame=240] left_diff=False, right_diff=True, moving_blob=right
+[Frame=241] left_diff=False, right_diff=True, moving_blob=right
+[Frame=242] left_diff=False, right_diff=True, moving_blob=right
+[Frame=243] left_diff=False, right_diff=True, moving_blob=right
+[Frame=244] left_diff=False, right_diff=True, moving_blob=right
+[Frame=245] left_diff=False, right_diff=True, moving_blob=right
+[Frame=246] left_diff=False, right_diff=True, moving_blob=right
+[Frame=247] left_diff=False, right_diff=True, moving_blob=right
+[Frame=248] left_diff=False, right_diff=True, moving_blob=right
+[Frame=249] left_diff=False, right_diff=True, moving_blob=right
+[Frame=250] left_diff=True, right_diff=True, moving_blob=right
+[Frame=251] left_diff=False, right_diff=True, moving_blob=right
+[Frame=252] left_diff=False, right_diff=True, moving_blob=right
+[Frame=253] left_diff=False, right_diff=True, moving_blob=right
+[Frame=254] left_diff=False, right_diff=True, moving_blob=right
+[Frame=255] left_diff=False, right_diff=True, moving_blob=right
+[Frame=256] left_diff=False, right_diff=True, moving_blob=right
+[Frame=257] left_diff=False, right_diff=True, moving_blob=right
+[Frame=258] left_diff=True, right_diff=True, moving_blob=right
+[Frame=259] left_diff=False, right_diff=True, moving_blob=right
+[Frame=260] left_diff=False, right_diff=True, moving_blob=right
+[Frame=261] left_diff=False, right_diff=True, moving_blob=right
+[Frame=262] left_diff=False, right_diff=True, moving_blob=right
+[Frame=263] left_diff=False, right_diff=True, moving_blob=right
+[Frame=264] left_diff=False, right_diff=True, moving_blob=right
+[Frame=265] left_diff=False, right_diff=True, moving_blob=right
+[Frame=266] left_diff=False, right_diff=True, moving_blob=right
+[Frame=267] left_diff=False, right_diff=True, moving_blob=right
+[Frame=268] left_diff=False, right_diff=True, moving_blob=right
+[Frame=269] left_diff=False, right_diff=True, moving_blob=right
+[Frame=270] left_diff=False, right_diff=True, moving_blob=right
+[Frame=271] left_diff=False, right_diff=True, moving_blob=right
+[Frame=272] left_diff=False, right_diff=True, moving_blob=right
+[Frame=273] left_diff=False, right_diff=True, moving_blob=right
+[Frame=274] left_diff=False, right_diff=True, moving_blob=right
+[Frame=275] left_diff=False, right_diff=True, moving_blob=right
+[Frame=276] left_diff=False, right_diff=True, moving_blob=right
+[Frame=277] left_diff=False, right_diff=True, moving_blob=right
+[Frame=278] left_diff=False, right_diff=True, moving_blob=right
+[Frame=279] left_diff=False, right_diff=True, moving_blob=right
+[Frame=280] left_diff=False, right_diff=True, moving_blob=right
+[Frame=281] left_diff=False, right_diff=True, moving_blob=right
+[Frame=282] left_diff=False, right_diff=True, moving_blob=right
+[Frame=283] left_diff=False, right_diff=True, moving_blob=right
+[Frame=284] left_diff=False, right_diff=True, moving_blob=right
+[Frame=285] left_diff=False, right_diff=True, moving_blob=right
+[Frame=286] left_diff=False, right_diff=True, moving_blob=right
+[Frame=287] left_diff=False, right_diff=True, moving_blob=right
+[Frame=288] left_diff=False, right_diff=True, moving_blob=right
+[Frame=289] left_diff=False, right_diff=True, moving_blob=right
+[Frame=290] left_diff=False, right_diff=True, moving_blob=right
+[Frame=291] left_diff=False, right_diff=True, moving_blob=right
+[Frame=292] left_diff=False, right_diff=True, moving_blob=right
+[Frame=293] left_diff=False, right_diff=True, moving_blob=right
+[Frame=294] left_diff=False, right_diff=True, moving_blob=right
+[Frame=295] left_diff=False, right_diff=True, moving_blob=right
+[Frame=296] left_diff=False, right_diff=True, moving_blob=right
+[Frame=297] left_diff=False, right_diff=True, moving_blob=right
+[Frame=298] left_diff=False, right_diff=True, moving_blob=right
+[Frame=299] left_diff=False, right_diff=True, moving_blob=right
+[Frame=300] left_diff=False, right_diff=True, moving_blob=right
+[Frame=301] left_diff=False, right_diff=True, moving_blob=right
+[Frame=302] left_diff=False, right_diff=True, moving_blob=right
+[Frame=303] left_diff=False, right_diff=True, moving_blob=right
+[Frame=304] left_diff=False, right_diff=True, moving_blob=right
+[Frame=305] left_diff=False, right_diff=True, moving_blob=right
+[Frame=306] left_diff=False, right_diff=True, moving_blob=right
+[Frame=307] left_diff=False, right_diff=True, moving_blob=right
+[Frame=308] left_diff=False, right_diff=True, moving_blob=right
+[Frame=309] left_diff=False, right_diff=True, moving_blob=right
+[Frame=310] left_diff=False, right_diff=True, moving_blob=right
+[Frame=311] left_diff=False, right_diff=True, moving_blob=right
+[Frame=312] left_diff=False, right_diff=True, moving_blob=right
+[Frame=313] left_diff=False, right_diff=True, moving_blob=right
+[Frame=314] left_diff=False, right_diff=True, moving_blob=right
+[Frame=315] left_diff=False, right_diff=True, moving_blob=right
+[Frame=316] left_diff=False, right_diff=True, moving_blob=right
+[Frame=317] left_diff=False, right_diff=True, moving_blob=right
+[Frame=318] left_diff=False, right_diff=True, moving_blob=right
+[Frame=319] left_diff=False, right_diff=True, moving_blob=right
+[Frame=320] left_diff=False, right_diff=True, moving_blob=right
+[Frame=321] left_diff=False, right_diff=True, moving_blob=right
+[Frame=322] left_diff=False, right_diff=True, moving_blob=right
+[Frame=323] left_diff=False, right_diff=True, moving_blob=right
+[Frame=324] left_diff=False, right_diff=True, moving_blob=right
+[Frame=325] left_diff=False, right_diff=True, moving_blob=right
+[Frame=326] left_diff=False, right_diff=True, moving_blob=right
+[Frame=327] left_diff=False, right_diff=True, moving_blob=right
+[Frame=328] left_diff=False, right_diff=True, moving_blob=right
+[Frame=329] left_diff=False, right_diff=True, moving_blob=right
+[Frame=330] left_diff=False, right_diff=True, moving_blob=right
+[Frame=331] left_diff=False, right_diff=True, moving_blob=right
+[Frame=332] left_diff=False, right_diff=True, moving_blob=right
+[Frame=333] left_diff=False, right_diff=True, moving_blob=right
+[Frame=334] left_diff=False, right_diff=True, moving_blob=right
+[Frame=335] left_diff=False, right_diff=True, moving_blob=right
+[Frame=336] left_diff=False, right_diff=True, moving_blob=right
+[Frame=337] left_diff=False, right_diff=True, moving_blob=right
+[Frame=338] left_diff=False, right_diff=True, moving_blob=right
+[Frame=339] left_diff=False, right_diff=True, moving_blob=right
+[Frame=340] left_diff=False, right_diff=True, moving_blob=right
+[Frame=341] left_diff=False, right_diff=True, moving_blob=right
+[Frame=342] left_diff=False, right_diff=True, moving_blob=right
+[Frame=343] left_diff=False, right_diff=True, moving_blob=right
+[Frame=344] left_diff=False, right_diff=True, moving_blob=right
+[Frame=345] left_diff=False, right_diff=True, moving_blob=right
+[Frame=346] left_diff=False, right_diff=True, moving_blob=right
+[Frame=347] left_diff=False, right_diff=True, moving_blob=right
+[Frame=348] left_diff=False, right_diff=True, moving_blob=right
+[Frame=349] left_diff=False, right_diff=True, moving_blob=right
+[Frame=350] left_diff=False, right_diff=True, moving_blob=right
+[Frame=351] left_diff=False, right_diff=True, moving_blob=right
+[Frame=352] left_diff=False, right_diff=True, moving_blob=right
+[Frame=353] left_diff=False, right_diff=True, moving_blob=right
+[Frame=354] left_diff=False, right_diff=True, moving_blob=right
+[Frame=355] left_diff=False, right_diff=True, moving_blob=right
+[Frame=356] left_diff=False, right_diff=True, moving_blob=right
+[Frame=357] left_diff=False, right_diff=True, moving_blob=right
+[Frame=358] left_diff=False, right_diff=True, moving_blob=right
+[Frame=359] left_diff=False, right_diff=True, moving_blob=right
+[Frame=360] left_diff=False, right_diff=True, moving_blob=right
+[Frame=361] left_diff=False, right_diff=True, moving_blob=right
+[Frame=362] left_diff=False, right_diff=True, moving_blob=right
+[Frame=363] left_diff=False, right_diff=True, moving_blob=right
+[Frame=364] left_diff=False, right_diff=True, moving_blob=right
+[Frame=365] left_diff=False, right_diff=True, moving_blob=right
+[Frame=366] left_diff=False, right_diff=True, moving_blob=right
+[Frame=367] left_diff=False, right_diff=True, moving_blob=right
+[Frame=368] left_diff=False, right_diff=True, moving_blob=right
+[Frame=369] left_diff=False, right_diff=True, moving_blob=right
+[Frame=370] left_diff=False, right_diff=True, moving_blob=right
+[Frame=371] left_diff=False, right_diff=True, moving_blob=right
+[Frame=372] left_diff=False, right_diff=True, moving_blob=right
+[Frame=373] left_diff=False, right_diff=True, moving_blob=right
+[Frame=374] left_diff=False, right_diff=True, moving_blob=right
+[Frame=375] left_diff=False, right_diff=True, moving_blob=right
+[Frame=376] left_diff=False, right_diff=True, moving_blob=right
+[Frame=377] left_diff=False, right_diff=True, moving_blob=right
+[Frame=378] left_diff=False, right_diff=True, moving_blob=right
+[Frame=379] left_diff=False, right_diff=True, moving_blob=right
+[Frame=380] left_diff=False, right_diff=True, moving_blob=right
+[Frame=381] left_diff=False, right_diff=True, moving_blob=right
+[Frame=382] left_diff=False, right_diff=True, moving_blob=right
+[Frame=383] left_diff=False, right_diff=True, moving_blob=right
+[Frame=384] left_diff=False, right_diff=True, moving_blob=right
+[Frame=385] left_diff=False, right_diff=True, moving_blob=right
+[Frame=386] left_diff=False, right_diff=True, moving_blob=right
+[Frame=387] left_diff=False, right_diff=True, moving_blob=right
+[Frame=388] left_diff=False, right_diff=True, moving_blob=right
+[Frame=389] left_diff=False, right_diff=True, moving_blob=right
+[Frame=390] left_diff=False, right_diff=True, moving_blob=right
+[Frame=391] left_diff=False, right_diff=True, moving_blob=right
+[Frame=392] left_diff=False, right_diff=True, moving_blob=right
+[Frame=393] left_diff=False, right_diff=True, moving_blob=right
+[Frame=394] left_diff=False, right_diff=True, moving_blob=right
+[Frame=395] left_diff=False, right_diff=True, moving_blob=right
+[Frame=396] left_diff=False, right_diff=True, moving_blob=right
+[Frame=397] left_diff=False, right_diff=True, moving_blob=right
+[Frame=398] left_diff=False, right_diff=True, moving_blob=right
+[Frame=399] left_diff=False, right_diff=True, moving_blob=right
+[Frame=400] left_diff=False, right_diff=True, moving_blob=right
+[Frame=401] left_diff=False, right_diff=True, moving_blob=right
+[Frame=402] left_diff=False, right_diff=True, moving_blob=right
+[Frame=403] left_diff=False, right_diff=False, moving_blob=right
+   => Blob_0 (right) STOPPED at frame=403
+
+Stop frame = M=403. We'll produce crops (M-10, M, M+10).
+Union centroid => (y=244.1, x=549.1).
+   => Saved crop for frame=393: videos_processed/flipped_B_convex_1/crops_output/crop_frame_00393.png
+   => Saved crop for frame=403: videos_processed/flipped_B_convex_1/crops_output/crop_frame_00403.png
+   => Saved crop for frame=413: videos_processed/flipped_B_convex_1/crops_output/crop_frame_00413.png
+
+=== DONE WITH THIS VIDEO! ===
+   - Mover side = 'right'
+   - Stopped at frame M=403
+   - Blob masks => videos_processed/flipped_B_convex_1/blobs
+   - 3 crops => videos_processed/flipped_B_convex_1/crops_output
+   - Log file => videos_processed/flipped_B_convex_1/log_20250321_074215.log
