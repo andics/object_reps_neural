@@ -8,23 +8,16 @@ from PIL import Image
 
 def label_connected(bin_image):
     """
-    Simple connected-component labeling using 8-connectivity.
-    Returns (labeled_image, num_labels).
-    labeled_image has int labels in [0..num_labels].
-
-    For heavier usage, you could replace with scikit-image's 'label()':
-        from skimage.measure import label
-        labeled = label(bin_image, connectivity=2)
-        num_labels = labeled.max()
-        return labeled, num_labels
+    Simple 8-connected component labeling.
+    Returns (labeled_image, num_labels), where labeled_image has int labels [0..num_labels].
     """
     h, w = bin_image.shape
     labeled = np.zeros((h, w), dtype=np.int32)
     current_label = 0
 
     def neighbors(r, c):
-        for nr in (r - 1, r, r + 1):
-            for nc in (c - 1, c, r + 1):
+        for nr in (r-1, r, r+1):
+            for nc in (c-1, c, c+1):
                 if 0 <= nr < h and 0 <= nc < w:
                     yield nr, nc
 
@@ -43,31 +36,29 @@ def label_connected(bin_image):
 
     return labeled, current_label
 
-
 def find_n_color_blobs(frame_np, n_blobs=2, black_thresh=30):
     """
-    Finds up to n_blobs "colored" regions in frame_np by simple summation of RGB,
-    thresholding out near-black. Sorts by area descending, returns boolean masks.
+    Segment up to n_blobs by thresholding near-black areas.
+    Return a list of boolean masks (largest area first).
     """
-    gray = frame_np.sum(axis=2)  # sum across RGB
+    # sum across RGB => "gray"
+    gray = frame_np.sum(axis=2)
     non_black = (gray > black_thresh)
 
     labeled, num_labels = label_connected(non_black)
     if num_labels < 1:
         return []
 
-    # gather (area, mask) for each label
     regions = []
-    for lbl_id in range(1, num_labels + 1):
+    for lbl_id in range(1, num_labels+1):
         mask_ = (labeled == lbl_id)
         area_ = mask_.sum()
         regions.append((area_, mask_))
     regions.sort(key=lambda x: x[0], reverse=True)
 
-    # return up to n_blobs largest
+    # up to n_blobs largest
     top = [r[1] for r in regions[:n_blobs]]
     return top
-
 
 def compute_centroid(bin_mask):
     """
@@ -76,31 +67,15 @@ def compute_centroid(bin_mask):
     if bin_mask is None or bin_mask.sum() == 0:
         return None, None
     coords = np.argwhere(bin_mask)
-    y_ = coords[:, 0].mean()
-    x_ = coords[:, 1].mean()
-    return y_, x_
-
-
-def distance(c0, c1):
-    """
-    Euclidean distance between two centroids (y0,x0) and (y1,x1),
-    or 0 if either is None.
-    """
-    (y0, x0), (y1, x1) = c0, c1
-    if (y0 is None) or (x0 is None) or (y1 is None) or (x1 is None):
-        return 0.0
-    return np.sqrt((y1 - y0) ** 2 + (x1 - x0) ** 2)
-
+    y_ = coords[:,0].mean()
+    x_ = coords[:,1].mean()
+    return (y_, x_)
 
 def clamp_crop_coords(cx, cy, crop_w, crop_h, img_w, img_h):
     """
-    Ensures we can produce a crop_w x crop_h region within [0..img_w-1, 0..img_h-1].
-    Returns (left, top, right, bottom) for PIL's Image.crop().
-    - cx, cy: center in (x, y) coords
-    - crop_w: desired width
-    - crop_h: desired height
-    - img_w: full image width
-    - img_h: full image height
+    Compute a rectangular region of size (crop_w x crop_h)
+    centered on (cx,cy), clamped to [0..img_w-1, 0..img_h-1].
+    Returns (left, top, right, bottom) for PIL Image.crop().
     """
     half_w = crop_w // 2
     half_h = crop_h // 2
@@ -112,7 +87,7 @@ def clamp_crop_coords(cx, cy, crop_w, crop_h, img_w, img_h):
 
     # clamp horizontally
     if left < 0:
-        right -= left  # shift
+        right -= left
         left = 0
     if right > img_w:
         diff = right - img_w
@@ -134,242 +109,234 @@ def clamp_crop_coords(cx, cy, crop_w, crop_h, img_w, img_h):
 
     return (left, top, right, bottom)
 
+def masks_are_different(maskA, maskB):
+    """
+    Returns True if maskA != maskB in any pixel.
+    If either is None, and the other is not empty, that also means 'different'.
+    """
+    if maskA is None and maskB is None:
+        return False  # both empty => no difference
+    if maskA is None and maskB is not None:
+        return maskB.sum() > 0
+    if maskB is None and maskA is not None:
+        return maskA.sum() > 0
+
+    # XOR => True where they differ
+    diff = np.logical_xor(maskA, maskB)
+    return diff.any()
 
 def main():
     parser = argparse.ArgumentParser(
-        "Track two blobs from frame 240 onward, find the last moving frame of blob_0, and produce crops."
-        "Stop processing once we are 10 frames past the stopping moment."
+        description="Detect which blob is moving from classical CV, track until it stops, produce 3 final crops."
     )
     parser.add_argument("--video_path",
-                        default="/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/gpt/experiment_1/Exp1/Stimuli/Exp1_videos/A_concave_4.mp4",
-                        required=False,
-                        help="Input video path.")
-    parser.add_argument("--output_dir", default="crops_output", help="Folder to place final 3 crops.")
-    parser.add_argument("--blobs_dir", default="blobs", help="Folder to store each frame's blob masks.")
-    parser.add_argument("--move_thresh", type=float, default=2.0, help="Velocity threshold for 'moving'.")
-    parser.add_argument("--crop_width", type=int, default=500, help="Width of the final crops.")
-    parser.add_argument("--crop_height", type=int, default=400, help="Height of the final crops.")
+        default="/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/gpt/experiment_1/Exp1/Stimuli/Exp1_videos/A_concave_4.mp4",
+        help="Input video path."
+    )
+    parser.add_argument("--start_frame", type=int, default=200,
+        help="Frame index to begin the segmentation & movement check."
+    )
+    parser.add_argument("--blobs_dir", default="blobs",
+        help="Folder to store each frame's blob masks (two per frame)."
+    )
+    parser.add_argument("--output_dir", default="crops_output",
+        help="Folder to store final 3 crops."
+    )
+    parser.add_argument("--crop_width", type=int, default=500, help="Width of final crops.")
+    parser.add_argument("--crop_height", type=int, default=400, help="Height of final crops.")
     args = parser.parse_args()
 
-    print("==== START ====")
-    print(f"Video path: {args.video_path}")
-    print(f"Output directory for crops: {args.output_dir}")
-    print(f"Blobs directory: {args.blobs_dir}")
-    print(f"move_thresh={args.move_thresh}, crop_width={args.crop_width}, crop_height={args.crop_height}")
+    # 1) Read all frames
+    print(f"Reading video: {args.video_path}")
+    reader = imageio.get_reader(args.video_path, format='ffmpeg')
+    frames = [frm for frm in reader]
+    reader.close()
+    total_frames = len(frames)
+    print(f"Total frames read: {total_frames}\n")
 
-    # 1) Ensure output dirs
-    os.makedirs(args.output_dir, exist_ok=True)
+    # Guard checks
+    if args.start_frame < 0 or args.start_frame >= total_frames-1:
+        print(f"ERROR: start_frame={args.start_frame} is out of range [0..{total_frames-2}]. Exiting.")
+        return
 
-    # Prepare subfolder for the "blobs" masks
+    # 2) Prepare folder for storing blob masks
+    os.makedirs(args.blobs_dir, exist_ok=True)
     video_basename = os.path.splitext(os.path.basename(args.video_path))[0]
     blob_subfolder = os.path.join(args.blobs_dir, video_basename)
     os.makedirs(blob_subfolder, exist_ok=True)
 
-    # 2) Read ALL frames from the video into memory
-    reader = imageio.get_reader(args.video_path, format='ffmpeg')
-    frames = []
-    for frame_idx, frame in enumerate(reader):
-        frames.append(frame)
-    reader.close()
-
-    total_frames = len(frames)
-    print(f"Read total {total_frames} frames from {args.video_path}.")
-
-    # We assume frames >= 241 exist, so we can compare frames 239 <-> 240, etc.
-    if total_frames < 241:
-        print("[WARNING] This script expects >= 241 frames so we can start at frame 239/240. Exiting.")
-        return
-
-    # 3) Identify which blob is "blob_0" (the first mover) by comparing frames 239->240
-    def detect_and_sort_blobs(img):
+    def detect_and_sort_two_blobs(frame_img):
         """
-        Detect up to 2 blobs, sort them left->right by x-centroid.
-        Returns: [ (mask, (cy,cx)), (mask, (cy,cx)) ] sorted by cx ascending
+        Return (mask_left, mask_right) sorted by each blob's centroid.x
         If fewer than 2 found, pad with None.
         """
-        found = find_n_color_blobs(img, n_blobs=2, black_thresh=30)
+        found = find_n_color_blobs(frame_img, n_blobs=2, black_thresh=30)
         while len(found) < 2:
             found.append(None)
-        info = []
+
+        # We'll have up to 2 masks in 'found', each is a boolean array or None
+        # Let's compute their centroids
+        results = []
         for m in found:
             cy, cx = compute_centroid(m)
-            info.append((m, (cy, cx)))
-        # Sort by x
-        info.sort(key=lambda x: (x[1][1] if x[1][1] is not None else 999999))
-        return info
+            results.append((m, (cy, cx)))
+        # Sort by x of centroid
+        results.sort(key=lambda x: (x[1][1] if x[1][1] is not None else 999999))
 
-    info_239 = detect_and_sort_blobs(frames[239])
-    info_240 = detect_and_sort_blobs(frames[240])
+        # Return just the masks in left->right order
+        mask_left = results[0][0]
+        mask_right = results[1][0]
+        return mask_left, mask_right
 
-    dist_left = distance(info_239[0][1], info_240[0][1])   # displacement for left-labeled
-    dist_right = distance(info_239[1][1], info_240[1][1]) # displacement for right-labeled
-
-    if dist_left > dist_right:
-        # left moves first => blob_0, right => blob_1
-        blob0_side = "left"
-        blob1_side = "right"
-    else:
-        # right moves first => blob_0, left => blob_1
-        blob0_side = "right"
-        blob1_side = "left"
-
-    print(f"Between frames 239->240, the {blob0_side} blob moved more => it is blob_0. The other is blob_1.")
-
-    def save_mask_image(bin_mask, out_path, frame_idx):
+    def save_mask_image(bin_mask, out_path, shape_for_empty):
         """
-        Save bin_mask as a single-channel (0 or 255) PNG.
-        If bin_mask is None, creates an empty black image of the frame's size.
+        Save bin_mask as single-channel (0 or 255) PNG.
+        If None, or empty, produce a black image of shape_for_empty (H,W).
         """
-        if bin_mask is None:
-            print(f"   [Info] Frame {frame_idx}: No blob => saving empty mask.")
-            # Suppose we use the shape from frames[240] if in doubt
-            h_ = frames[frame_idx].shape[0]
-            w_ = frames[frame_idx].shape[1]
+        if bin_mask is None or bin_mask.sum() == 0:
+            h_, w_ = shape_for_empty
             empty_im = Image.new("L", (w_, h_), color=0)
             empty_im.save(out_path)
             return
-        mask_255 = (bin_mask.astype(np.uint8)) * 255
-        Image.fromarray(mask_255, mode="L").save(out_path)
+        mask_255 = (bin_mask.astype(np.uint8))*255
+        Image.fromarray(mask_255, "L").save(out_path)
 
-    def get_consistent_blob_labeling(frame_idx):
-        """
-        Detect & sort left->right => info_ = [ (mask_left,(cyL,cxL)), (mask_right,(cyR,cxR)) ]
-        Then reorder so that index0 => blob_0, index1 => blob_1
-        """
-        info_ = detect_and_sort_blobs(frames[frame_idx])
-        if blob0_side == "left":
-            # index0 => blob_0, index1 => blob_1
-            return info_[0], info_[1]
+    # 3) We'll keep track of:
+    #    - prev_left_mask, prev_right_mask from the previous frame
+    #    - which blob is "moving_blob"? ("left" or "right") or None if not determined yet
+    #    - stop_frame = None => frame at which we see the mover has not moved
+    #
+    # We'll process from [start_frame .. total_frames-1], or until we break
+
+    prev_left_mask = None
+    prev_right_mask = None
+    moving_blob = None  # "left" or "right"
+    stop_frame = None
+
+    # 4) Loop over frames from start_frame..(end)
+    # We do the segmentation, store each mask, then compare with previous to see if there's movement
+    for fidx in range(args.start_frame, total_frames):
+        frame_img = frames[fidx]
+        h, w, _ = frame_img.shape
+
+        # detect 2 masks, sorted left->right
+        left_mask, right_mask = detect_and_sort_two_blobs(frame_img)
+
+        # store them
+        out_left = os.path.join(blob_subfolder, f"blob_left_{fidx:05d}.png")
+        out_right = os.path.join(blob_subfolder, f"blob_right_{fidx:05d}.png")
+        save_mask_image(left_mask, out_left, (h,w))
+        save_mask_image(right_mask, out_right, (h,w))
+
+        if fidx == args.start_frame:
+            # no previous frame to compare => skip
+            prev_left_mask = left_mask
+            prev_right_mask = right_mask
+            continue
+
+        # compare with previous to see which masks changed
+        left_changed = masks_are_different(prev_left_mask, left_mask)
+        right_changed = masks_are_different(prev_right_mask, right_mask)
+
+        if moving_blob is None:
+            # we haven't flagged a mover yet
+            # if exactly one changed, that is the mover
+            # if both changed, pick the one that changed more, or just pick left arbitrarily?
+            # For simplicity: if both changed, pick whichever has bigger XOR count
+            if left_changed or right_changed:
+                if left_changed and right_changed:
+                    # measure actual pixel difference to see which is bigger
+                    diff_left = 0 if (left_mask is None or prev_left_mask is None) else np.sum(np.logical_xor(left_mask, prev_left_mask))
+                    diff_right = 0 if (right_mask is None or prev_right_mask is None) else np.sum(np.logical_xor(right_mask, prev_right_mask))
+                    if diff_left >= diff_right:
+                        moving_blob = "left"
+                    else:
+                        moving_blob = "right"
+                elif left_changed:
+                    moving_blob = "left"
+                elif right_changed:
+                    moving_blob = "right"
+                print(f"[Frame={fidx}] Identified moving_blob='{moving_blob}'.")
         else:
-            # index1 => blob_0, index0 => blob_1
-            return info_[1], info_[0]
+            # we do have a moving_blob => check if it still changed
+            if moving_blob == "left":
+                if not left_changed:
+                    # that means it has stopped
+                    stop_frame = fidx
+                    print(f"[Frame={fidx}] Blob_0 (left) has STOPPED moving (no difference).")
+                    break
+            else:  # moving_blob=='right'
+                if not right_changed:
+                    stop_frame = fidx
+                    print(f"[Frame={fidx}] Blob_0 (right) has STOPPED moving (no difference).")
+                    break
 
-    # 4) We define a loop from frame=240 onward, storing each blob mask and
-    #    measuring velocity of blob_0. The last frame for which velocity>threshold
-    #    will be called M. Once we pass M+10, we stop processing further frames.
+        # update previous
+        prev_left_mask = left_mask
+        prev_right_mask = right_mask
 
-    # First, let's handle frame 239->240 to initialize.
-    # We'll create variables:
-    #   last_moving_frame: the last frame index for which velocity_0 > threshold
-    #   we start it at None for safety.
-    last_moving_frame = None
+    # end for
 
-    # We'll store reference centroid for blob_0 from the previous frame
-    # We'll do the detection for frame=240 to get that "previous" centroid.
-    b0_240, b1_240 = get_consistent_blob_labeling(240)
-    prev_centroid_0 = b0_240[1]
-
-    # Save masks for frame 240
-    out0_240 = os.path.join(blob_subfolder, f"blob_0_{240:05d}.png")
-    out1_240 = os.path.join(blob_subfolder, f"blob_1_{240:05d}.png")
-    save_mask_image(b0_240[0], out0_240, 240)
-    save_mask_image(b1_240[0], out1_240, 240)
-
-    # We also check the velocity from frame 239->240 to see if it was > threshold
-    # (the code above used that for deciding which side is which, but let's do it again for completeness)
-    # We'll detect the 'actual' blob_0 at frame239
-    b0_239, b1_239 = get_consistent_blob_labeling(239)
-    c0_239 = b0_239[1]  # centroid
-    c0_240 = b0_240[1]  # centroid
-    v_239_240 = distance(c0_239, c0_240)
-    if v_239_240 > args.move_thresh:
-        last_moving_frame = 240
-
-    print(f"[Initialization] Velocity(239->240)={v_239_240:.3f}, last_moving_frame={last_moving_frame}")
-
-    # Now loop from frame=241..end. If we pass M+10, we break.
-    # Because the user only wants up to 10 frames after the blob_0 stops.
-    # We'll define a small helper so we know if we have definitely a 'stop' moment:
-    def have_stop_moment():
-        return (last_moving_frame is not None)
-
-    # process frames
-    fidx = 241
-    while fidx < total_frames:
-        # If we have a last_moving_frame, and we've gone 10 frames beyond that => break
-        if have_stop_moment() and fidx > (last_moving_frame + 10):
-            print(f"[Info] Reached frame {fidx}, which is more than 10 frames after stop (M={last_moving_frame}). Stopping.")
-            break
-
-        # detect
-        b0_info, b1_info = get_consistent_blob_labeling(fidx)
-        mask0, c0 = b0_info
-        mask1, c1 = b1_info
-
-        # store each mask
-        out0 = os.path.join(blob_subfolder, f"blob_0_{fidx:05d}.png")
-        out1 = os.path.join(blob_subfolder, f"blob_1_{fidx:05d}.png")
-        save_mask_image(mask0, out0, fidx)
-        save_mask_image(mask1, out1, fidx)
-
-        # compute velocity from prev_centroid_0
-        vel_0 = distance(prev_centroid_0, c0)
-        if vel_0 > args.move_thresh:
-            last_moving_frame = fidx
-
-        prev_centroid_0 = c0
-        fidx += 1
-
-    # At this point, we've either processed all frames or stopped upon reaching last_moving_frame+10.
-
-    if last_moving_frame is None:
-        print("[WARNING] It appears blob_0 never exceeded the velocity threshold after frame 239. No 'stop' moment to record.")
-        print("No crops will be produced.")
+    if moving_blob is None:
+        print("\n[WARNING] We never identified which blob was moving. No stops found => no crops.")
         return
 
-    M = last_moving_frame
-    print(f"Determined that blob_0 stops moving at frame M={M} (the last frame with velocity > threshold).")
-
-    # 5) Produce 3 crops at frames: M-10, M, M+10
-    frames_needed = [M - 10, M, M + 10]
-    frames_valid = [f for f in frames_needed if (0 <= f < total_frames)]
-
-    # Union of the two blobs at frame M => centroid => clamp/crop
-    b0_M, b1_M = get_consistent_blob_labeling(M)
-    mask0_M, c0_M = b0_M
-    mask1_M, c1_M = b1_M
-
-    if mask0_M is None and mask1_M is None:
-        print(f"[ERROR] At frame M={M}, both blob_0 and blob_1 are empty. Can't define union centroid. No crops.")
+    if stop_frame is None:
+        print("\nWe reached the end of the video without seeing the mover blob STOP. No crops will be produced.")
         return
 
-    h, w, _ = frames[M].shape
-    union_mask = np.zeros((h, w), dtype=bool)
-    if mask0_M is not None:
-        union_mask |= mask0_M
-    if mask1_M is not None:
-        union_mask |= mask1_M
+    M = stop_frame
+    print(f"\nFinal STOP frame is M={M}. We'll produce 3 crops: (M-10), M, (M+10).")
 
-    yU, xU = compute_centroid(union_mask)
-    if (yU is None) or (xU is None):
-        print("[ERROR] Union mask is empty at frame M. No meaningful crop.")
+    # 5) Produce the 3 crops from frames (M-10), M, (M+10)
+    # center them on the UNION of the two blob masks at frame M
+    frames_of_interest = [M-10, M, M+10]
+    valid_frames = [f for f in frames_of_interest if 0 <= f < total_frames]
+
+    # Re-segment frame M to get union
+    frameM_img = frames[M]
+    hM, wM, _ = frameM_img.shape
+    # get left->right again
+    leftM_mask, rightM_mask = detect_and_sort_two_blobs(frameM_img)
+    union_mask = np.zeros((hM, wM), dtype=bool)
+    if leftM_mask is not None:
+        union_mask |= leftM_mask
+    if rightM_mask is not None:
+        union_mask |= rightM_mask
+
+    if union_mask.sum() == 0:
+        print(f"[ERROR] Union mask at frame M={M} is empty => no centroid => no crops.")
         return
 
-    print(f"[Info] For final crops, union centroid at M={M} => (y={yU:.1f}, x={xU:.1f}).")
+    # centroid
+    coords = np.argwhere(union_mask)
+    yU = coords[:,0].mean()
+    xU = coords[:,1].mean()
+    print(f"Union centroid at M={M} => (y={yU:.1f}, x={xU:.1f}).")
 
-    # create the crops (width=500, height=400 by default)
-    for fidx in frames_valid:
-        frm = frames[fidx]
-        pil_im = Image.fromarray(frm)
-        # clamp
+    # produce crops
+    os.makedirs(args.output_dir, exist_ok=True)
+    for fidx in valid_frames:
+        crop_img = frames[fidx]
+        pil_img = Image.fromarray(crop_img)
         left, top, right, bottom = clamp_crop_coords(
-            cx=xU,
-            cy=yU,
-            crop_w=args.crop_width,
-            crop_h=args.crop_height,
-            img_w=w,
-            img_h=h
+            cx=xU, cy=yU,
+            crop_w=args.crop_width, crop_h=args.crop_height,
+            img_w=wM, img_h=hM
         )
-        crop_im = pil_im.crop((left, top, right, bottom))
+        cropped = pil_img.crop((left, top, right, bottom))
 
         out_name = f"crop_frame_{fidx:05d}.png"
         out_path = os.path.join(args.output_dir, out_name)
-        crop_im.save(out_path)
-        print(f"Saved crop for frame={fidx}: {out_path}")
+        cropped.save(out_path)
+        print(f"  Saved crop from frame={fidx}: {out_path}")
 
-    print("==== DONE ====")
-    print(f"All blob segmentations are in: {blob_subfolder}")
-    print(f"Final 3 crops are in: {args.output_dir}")
+    print("\n=== DONE! ===")
+    print(f"   - Moving blob was '{moving_blob}'.")
+    print(f"   - It stopped at frame M={M}.")
+    print("   - Blob masks are in:", blob_subfolder)
+    print("   - Final 3 crops are in:", args.output_dir)
+
 
 if __name__ == "__main__":
     main()
