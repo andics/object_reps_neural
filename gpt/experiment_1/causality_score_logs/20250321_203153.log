@@ -1,0 +1,554 @@
+======================================================
+REAL GPT-4o multi-modal requests: Causality Score Script - Starting
+parent_dir = q:\Projects\Object_reps_neural\Programming\gpt\experiment_1\videos_processed
+csv_file   = q:\Projects\Object_reps_neural\Programming\gpt\experiment_1\responses.csv
+percentage = 20
+Log file   = q:\Projects\Object_reps_neural\Programming\gpt\experiment_1\causality_score_logs\20250321_203153.log
+======================================================
+
+[Info] CSV file 'q:\Projects\Object_reps_neural\Programming\gpt\experiment_1\responses.csv' does not exist yet => starting fresh.
+Found 180 total subfolders in 'q:\Projects\Object_reps_neural\Programming\gpt\experiment_1\videos_processed'.
+We will process 36 subfolders (alphabetical order).
+
+Processing folder: A_concave_2
+   => Middle crop: q:\Projects\Object_reps_neural\Programming\gpt\experiment_1\videos_processed\A_concave_2\crops_output\crop_frame_00405.png
+   => Final question:
+From 1-7, how much do you agree with the statement: "The object on the left caused the object on the right to start moving".
+Consider that the photo attached is a snippet of a video, where the object on the left moves towards the object on the right (left to right motion). The frame I have provided you is the exact frame at which the left object stops, and the right object starts moving with the same velocity and direction as the left object was moving until now. I want to understand your perception of causality here based on distance between the objects.
+You should not output anything more than a single number from 1-7, answering how much you agree with the above statement.
+
+   [Request Start] folder=A_concave_2
+   Encoding image: q:\Projects\Object_reps_neural\Programming\gpt\experiment_1\videos_processed\A_concave_2\crops_output\crop_frame_00405.png
+   Sending request to model='gpt-4o' (multi-modal style).
+   Received response: 3
+   [Request End]
+
+   => Updated in-memory data for folder 'A_concave_2'.
+
+Processing folder: A_concave_3
+   => Middle crop: q:\Projects\Object_reps_neural\Programming\gpt\experiment_1\videos_processed\A_concave_3\crops_output\crop_frame_00401.png
+   => Final question:
+From 1-7, how much do you agree with the statement: "The object on the left caused the object on the right to start moving".
+Consider that the photo attached is a snippet of a video, where the object on the left moves towards the object on the right (left to right motion). The frame I have provided you is the exact frame at which the left object stops, and the right object starts moving with the same velocity and direction as the left object was moving until now. I want to understand your perception of causality here based on distance between the objects.
+You should not output anything more than a single number from 1-7, answering how much you agree with the above statement.
+
+   [Request Start] folder=A_concave_3
+   Encoding image: q:\Projects\Object_reps_neural\Programming\gpt\experiment_1\videos_processed\A_concave_3\crops_output\crop_frame_00401.png
+   Sending request to model='gpt-4o' (multi-modal style).
+   Received response: 3
+   [Request End]
+
+   => Updated in-memory data for folder 'A_concave_3'.
+
+Processing folder: A_concave_4
+   => Middle crop: q:\Projects\Object_reps_neural\Programming\gpt\experiment_1\videos_processed\A_concave_4\crops_output\crop_frame_00397.png
+   => Final question:
+From 1-7, how much do you agree with the statement: "The object on the left caused the object on the right to start moving".
+Consider that the photo attached is a snippet of a video, where the object on the left moves towards the object on the right (left to right motion). The frame I have provided you is the exact frame at which the left object stops, and the right object starts moving with the same velocity and direction as the left object was moving until now. I want to understand your perception of causality here based on distance between the objects.
+You should not output anything more than a single number from 1-7, answering how much you agree with the above statement.
+
+   [Request Start] folder=A_concave_4
+   Encoding image: q:\Projects\Object_reps_neural\Programming\gpt\experiment_1\videos_processed\A_concave_4\crops_output\crop_frame_00397.png
+   Sending request to model='gpt-4o' (multi-modal style).
+   Received response: 3
+   [Request End]
+
+   => Updated in-memory data for folder 'A_concave_4'.
+
+Processing folder: A_concave_6
+   => Middle crop: q:\Projects\Object_reps_neural\Programming\gpt\experiment_1\videos_processed\A_concave_6\crops_output\crop_frame_00388.png
+   => Final question:
+From 1-7, how much do you agree with the statement: "The object on the left caused the object on the right to start moving".
+Consider that the photo attached is a snippet of a video, where the object on the left moves towards the object on the right (left to right motion). The frame I have provided you is the exact frame at which the left object stops, and the right object starts moving with the same velocity and direction as the left object was moving until now. I want to understand your perception of causality here based on distance between the objects.
+You should not output anything more than a single number from 1-7, answering how much you agree with the above statement.
+
+   [Request Start] folder=A_concave_6
+   Encoding image: q:\Projects\Object_reps_neural\Programming\gpt\experiment_1\videos_processed\A_concave_6\crops_output\crop_frame_00388.png
+   Sending request to model='gpt-4o' (multi-modal style).
+   Received response: 3
+   [Request End]
+
+   => Updated in-memory data for folder 'A_concave_6'.
+
+Processing folder: A_convex_4
+   => Middle crop: q:\Projects\Object_reps_neural\Programming\gpt\experiment_1\videos_processed\A_convex_4\crops_output\crop_frame_00378.png
+   => Final question:
+From 1-7, how much do you agree with the statement: "The object on the left caused the object on the right to start moving".
+Consider that the photo attached is a snippet of a video, where the object on the left moves towards the object on the right (left to right motion). The frame I have provided you is the exact frame at which the left object stops, and the right object starts moving with the same velocity and direction as the left object was moving until now. I want to understand your perception of causality here based on distance between the objects.
+You should not output anything more than a single number from 1-7, answering how much you agree with the above statement.
+
+   [Request Start] folder=A_convex_4
+   Encoding image: q:\Projects\Object_reps_neural\Programming\gpt\experiment_1\videos_processed\A_convex_4\crops_output\crop_frame_00378.png
+   Sending request to model='gpt-4o' (multi-modal style).
+   Received response: 7
+   [Request End]
+
+   => Updated in-memory data for folder 'A_convex_4'.
+
+Processing folder: A_convex_9
+   => Middle crop: q:\Projects\Object_reps_neural\Programming\gpt\experiment_1\videos_processed\A_convex_9\crops_output\crop_frame_00330.png
+   => Final question:
+From 1-7, how much do you agree with the statement: "The object on the left caused the object on the right to start moving".
+Consider that the photo attached is a snippet of a video, where the object on the left moves towards the object on the right (left to right motion). The frame I have provided you is the exact frame at which the left object stops, and the right object starts moving with the same velocity and direction as the left object was moving until now. I want to understand your perception of causality here based on distance between the objects.
+You should not output anything more than a single number from 1-7, answering how much you agree with the above statement.
+
+   [Request Start] folder=A_convex_9
+   Encoding image: q:\Projects\Object_reps_neural\Programming\gpt\experiment_1\videos_processed\A_convex_9\crops_output\crop_frame_00330.png
+   Sending request to model='gpt-4o' (multi-modal style).
+   Received response: 3
+   [Request End]
+
+   => Updated in-memory data for folder 'A_convex_9'.
+
+Processing folder: B_concave_0
+   => Middle crop: q:\Projects\Object_reps_neural\Programming\gpt\experiment_1\videos_processed\B_concave_0\crops_output\crop_frame_00422.png
+   => Final question:
+From 1-7, how much do you agree with the statement: "The object on the left caused the object on the right to start moving".
+Consider that the photo attached is a snippet of a video, where the object on the left moves towards the object on the right (left to right motion). The frame I have provided you is the exact frame at which the left object stops, and the right object starts moving with the same velocity and direction as the left object was moving until now. I want to understand your perception of causality here based on distance between the objects.
+You should not output anything more than a single number from 1-7, answering how much you agree with the above statement.
+
+   [Request Start] folder=B_concave_0
+   Encoding image: q:\Projects\Object_reps_neural\Programming\gpt\experiment_1\videos_processed\B_concave_0\crops_output\crop_frame_00422.png
+   Sending request to model='gpt-4o' (multi-modal style).
+   Received response: 5
+   [Request End]
+
+   => Updated in-memory data for folder 'B_concave_0'.
+
+Processing folder: B_concave_5
+   => Middle crop: q:\Projects\Object_reps_neural\Programming\gpt\experiment_1\videos_processed\B_concave_5\crops_output\crop_frame_00402.png
+   => Final question:
+From 1-7, how much do you agree with the statement: "The object on the left caused the object on the right to start moving".
+Consider that the photo attached is a snippet of a video, where the object on the left moves towards the object on the right (left to right motion). The frame I have provided you is the exact frame at which the left object stops, and the right object starts moving with the same velocity and direction as the left object was moving until now. I want to understand your perception of causality here based on distance between the objects.
+You should not output anything more than a single number from 1-7, answering how much you agree with the above statement.
+
+   [Request Start] folder=B_concave_5
+   Encoding image: q:\Projects\Object_reps_neural\Programming\gpt\experiment_1\videos_processed\B_concave_5\crops_output\crop_frame_00402.png
+   Sending request to model='gpt-4o' (multi-modal style).
+   Received response: 3
+   [Request End]
+
+   => Updated in-memory data for folder 'B_concave_5'.
+
+Processing folder: B_concave_6
+   => Middle crop: q:\Projects\Object_reps_neural\Programming\gpt\experiment_1\videos_processed\B_concave_6\crops_output\crop_frame_00397.png
+   => Final question:
+From 1-7, how much do you agree with the statement: "The object on the left caused the object on the right to start moving".
+Consider that the photo attached is a snippet of a video, where the object on the left moves towards the object on the right (left to right motion). The frame I have provided you is the exact frame at which the left object stops, and the right object starts moving with the same velocity and direction as the left object was moving until now. I want to understand your perception of causality here based on distance between the objects.
+You should not output anything more than a single number from 1-7, answering how much you agree with the above statement.
+
+   [Request Start] folder=B_concave_6
+   Encoding image: q:\Projects\Object_reps_neural\Programming\gpt\experiment_1\videos_processed\B_concave_6\crops_output\crop_frame_00397.png
+   Sending request to model='gpt-4o' (multi-modal style).
+   Received response: 5
+   [Request End]
+
+   => Updated in-memory data for folder 'B_concave_6'.
+
+Processing folder: B_concave_7
+   => Middle crop: q:\Projects\Object_reps_neural\Programming\gpt\experiment_1\videos_processed\B_concave_7\crops_output\crop_frame_00390.png
+   => Final question:
+From 1-7, how much do you agree with the statement: "The object on the left caused the object on the right to start moving".
+Consider that the photo attached is a snippet of a video, where the object on the left moves towards the object on the right (left to right motion). The frame I have provided you is the exact frame at which the left object stops, and the right object starts moving with the same velocity and direction as the left object was moving until now. I want to understand your perception of causality here based on distance between the objects.
+You should not output anything more than a single number from 1-7, answering how much you agree with the above statement.
+
+   [Request Start] folder=B_concave_7
+   Encoding image: q:\Projects\Object_reps_neural\Programming\gpt\experiment_1\videos_processed\B_concave_7\crops_output\crop_frame_00390.png
+   Sending request to model='gpt-4o' (multi-modal style).
+   Received response: I'm sorry, but I can't make that determination from the image provided.
+   [Request End]
+
+   => Updated in-memory data for folder 'B_concave_7'.
+
+Processing folder: B_concave_8
+   => Middle crop: q:\Projects\Object_reps_neural\Programming\gpt\experiment_1\videos_processed\B_concave_8\crops_output\crop_frame_00377.png
+   => Final question:
+From 1-7, how much do you agree with the statement: "The object on the left caused the object on the right to start moving".
+Consider that the photo attached is a snippet of a video, where the object on the left moves towards the object on the right (left to right motion). The frame I have provided you is the exact frame at which the left object stops, and the right object starts moving with the same velocity and direction as the left object was moving until now. I want to understand your perception of causality here based on distance between the objects.
+You should not output anything more than a single number from 1-7, answering how much you agree with the above statement.
+
+   [Request Start] folder=B_concave_8
+   Encoding image: q:\Projects\Object_reps_neural\Programming\gpt\experiment_1\videos_processed\B_concave_8\crops_output\crop_frame_00377.png
+   Sending request to model='gpt-4o' (multi-modal style).
+   Received response: 4
+   [Request End]
+
+   => Updated in-memory data for folder 'B_concave_8'.
+
+Processing folder: B_convex_3
+   => Middle crop: q:\Projects\Object_reps_neural\Programming\gpt\experiment_1\videos_processed\B_convex_3\crops_output\crop_frame_00395.png
+   => Final question:
+From 1-7, how much do you agree with the statement: "The object on the left caused the object on the right to start moving".
+Consider that the photo attached is a snippet of a video, where the object on the left moves towards the object on the right (left to right motion). The frame I have provided you is the exact frame at which the left object stops, and the right object starts moving with the same velocity and direction as the left object was moving until now. I want to understand your perception of causality here based on distance between the objects.
+You should not output anything more than a single number from 1-7, answering how much you agree with the above statement.
+
+   [Request Start] folder=B_convex_3
+   Encoding image: q:\Projects\Object_reps_neural\Programming\gpt\experiment_1\videos_processed\B_convex_3\crops_output\crop_frame_00395.png
+   Sending request to model='gpt-4o' (multi-modal style).
+   Received response: 3
+   [Request End]
+
+   => Updated in-memory data for folder 'B_convex_3'.
+
+Processing folder: B_convex_5
+   => Middle crop: q:\Projects\Object_reps_neural\Programming\gpt\experiment_1\videos_processed\B_convex_5\crops_output\crop_frame_00387.png
+   => Final question:
+From 1-7, how much do you agree with the statement: "The object on the left caused the object on the right to start moving".
+Consider that the photo attached is a snippet of a video, where the object on the left moves towards the object on the right (left to right motion). The frame I have provided you is the exact frame at which the left object stops, and the right object starts moving with the same velocity and direction as the left object was moving until now. I want to understand your perception of causality here based on distance between the objects.
+You should not output anything more than a single number from 1-7, answering how much you agree with the above statement.
+
+   [Request Start] folder=B_convex_5
+   Encoding image: q:\Projects\Object_reps_neural\Programming\gpt\experiment_1\videos_processed\B_convex_5\crops_output\crop_frame_00387.png
+   Sending request to model='gpt-4o' (multi-modal style).
+   Received response: 5
+   [Request End]
+
+   => Updated in-memory data for folder 'B_convex_5'.
+
+Processing folder: B_convex_6
+   => Middle crop: q:\Projects\Object_reps_neural\Programming\gpt\experiment_1\videos_processed\B_convex_6\crops_output\crop_frame_00382.png
+   => Final question:
+From 1-7, how much do you agree with the statement: "The object on the left caused the object on the right to start moving".
+Consider that the photo attached is a snippet of a video, where the object on the left moves towards the object on the right (left to right motion). The frame I have provided you is the exact frame at which the left object stops, and the right object starts moving with the same velocity and direction as the left object was moving until now. I want to understand your perception of causality here based on distance between the objects.
+You should not output anything more than a single number from 1-7, answering how much you agree with the above statement.
+
+   [Request Start] folder=B_convex_6
+   Encoding image: q:\Projects\Object_reps_neural\Programming\gpt\experiment_1\videos_processed\B_convex_6\crops_output\crop_frame_00382.png
+   Sending request to model='gpt-4o' (multi-modal style).
+   Received response: 5
+   [Request End]
+
+   => Updated in-memory data for folder 'B_convex_6'.
+
+Processing folder: C_concave_0
+   => Middle crop: q:\Projects\Object_reps_neural\Programming\gpt\experiment_1\videos_processed\C_concave_0\crops_output\crop_frame_00416.png
+   => Final question:
+From 1-7, how much do you agree with the statement: "The object on the left caused the object on the right to start moving".
+Consider that the photo attached is a snippet of a video, where the object on the left moves towards the object on the right (left to right motion). The frame I have provided you is the exact frame at which the left object stops, and the right object starts moving with the same velocity and direction as the left object was moving until now. I want to understand your perception of causality here based on distance between the objects.
+You should not output anything more than a single number from 1-7, answering how much you agree with the above statement.
+
+   [Request Start] folder=C_concave_0
+   Encoding image: q:\Projects\Object_reps_neural\Programming\gpt\experiment_1\videos_processed\C_concave_0\crops_output\crop_frame_00416.png
+   Sending request to model='gpt-4o' (multi-modal style).
+   Received response: 4
+   [Request End]
+
+   => Updated in-memory data for folder 'C_concave_0'.
+
+Processing folder: C_concave_1
+   => Middle crop: q:\Projects\Object_reps_neural\Programming\gpt\experiment_1\videos_processed\C_concave_1\crops_output\crop_frame_00412.png
+   => Final question:
+From 1-7, how much do you agree with the statement: "The object on the left caused the object on the right to start moving".
+Consider that the photo attached is a snippet of a video, where the object on the left moves towards the object on the right (left to right motion). The frame I have provided you is the exact frame at which the left object stops, and the right object starts moving with the same velocity and direction as the left object was moving until now. I want to understand your perception of causality here based on distance between the objects.
+You should not output anything more than a single number from 1-7, answering how much you agree with the above statement.
+
+   [Request Start] folder=C_concave_1
+   Encoding image: q:\Projects\Object_reps_neural\Programming\gpt\experiment_1\videos_processed\C_concave_1\crops_output\crop_frame_00412.png
+   Sending request to model='gpt-4o' (multi-modal style).
+   Received response: 4
+   [Request End]
+
+   => Updated in-memory data for folder 'C_concave_1'.
+
+Processing folder: C_concave_2
+   => Middle crop: q:\Projects\Object_reps_neural\Programming\gpt\experiment_1\videos_processed\C_concave_2\crops_output\crop_frame_00408.png
+   => Final question:
+From 1-7, how much do you agree with the statement: "The object on the left caused the object on the right to start moving".
+Consider that the photo attached is a snippet of a video, where the object on the left moves towards the object on the right (left to right motion). The frame I have provided you is the exact frame at which the left object stops, and the right object starts moving with the same velocity and direction as the left object was moving until now. I want to understand your perception of causality here based on distance between the objects.
+You should not output anything more than a single number from 1-7, answering how much you agree with the above statement.
+
+   [Request Start] folder=C_concave_2
+   Encoding image: q:\Projects\Object_reps_neural\Programming\gpt\experiment_1\videos_processed\C_concave_2\crops_output\crop_frame_00408.png
+   Sending request to model='gpt-4o' (multi-modal style).
+   Received response: 3
+   [Request End]
+
+   => Updated in-memory data for folder 'C_concave_2'.
+
+Processing folder: C_concave_3
+   => Middle crop: q:\Projects\Object_reps_neural\Programming\gpt\experiment_1\videos_processed\C_concave_3\crops_output\crop_frame_00404.png
+   => Final question:
+From 1-7, how much do you agree with the statement: "The object on the left caused the object on the right to start moving".
+Consider that the photo attached is a snippet of a video, where the object on the left moves towards the object on the right (left to right motion). The frame I have provided you is the exact frame at which the left object stops, and the right object starts moving with the same velocity and direction as the left object was moving until now. I want to understand your perception of causality here based on distance between the objects.
+You should not output anything more than a single number from 1-7, answering how much you agree with the above statement.
+
+   [Request Start] folder=C_concave_3
+   Encoding image: q:\Projects\Object_reps_neural\Programming\gpt\experiment_1\videos_processed\C_concave_3\crops_output\crop_frame_00404.png
+   Sending request to model='gpt-4o' (multi-modal style).
+   Received response: 3
+   [Request End]
+
+   => Updated in-memory data for folder 'C_concave_3'.
+
+Processing folder: C_concave_9
+   => Middle crop: q:\Projects\Object_reps_neural\Programming\gpt\experiment_1\videos_processed\C_concave_9\crops_output\crop_frame_00352.png
+   => Final question:
+From 1-7, how much do you agree with the statement: "The object on the left caused the object on the right to start moving".
+Consider that the photo attached is a snippet of a video, where the object on the left moves towards the object on the right (left to right motion). The frame I have provided you is the exact frame at which the left object stops, and the right object starts moving with the same velocity and direction as the left object was moving until now. I want to understand your perception of causality here based on distance between the objects.
+You should not output anything more than a single number from 1-7, answering how much you agree with the above statement.
+
+   [Request Start] folder=C_concave_9
+   Encoding image: q:\Projects\Object_reps_neural\Programming\gpt\experiment_1\videos_processed\C_concave_9\crops_output\crop_frame_00352.png
+   Sending request to model='gpt-4o' (multi-modal style).
+   Received response: 5
+   [Request End]
+
+   => Updated in-memory data for folder 'C_concave_9'.
+
+Processing folder: C_convex_2
+   => Middle crop: q:\Projects\Object_reps_neural\Programming\gpt\experiment_1\videos_processed\C_convex_2\crops_output\crop_frame_00406.png
+   => Final question:
+From 1-7, how much do you agree with the statement: "The object on the left caused the object on the right to start moving".
+Consider that the photo attached is a snippet of a video, where the object on the left moves towards the object on the right (left to right motion). The frame I have provided you is the exact frame at which the left object stops, and the right object starts moving with the same velocity and direction as the left object was moving until now. I want to understand your perception of causality here based on distance between the objects.
+You should not output anything more than a single number from 1-7, answering how much you agree with the above statement.
+
+   [Request Start] folder=C_convex_2
+   Encoding image: q:\Projects\Object_reps_neural\Programming\gpt\experiment_1\videos_processed\C_convex_2\crops_output\crop_frame_00406.png
+   Sending request to model='gpt-4o' (multi-modal style).
+   Received response: 4
+   [Request End]
+
+   => Updated in-memory data for folder 'C_convex_2'.
+
+Processing folder: C_convex_5
+   => Middle crop: q:\Projects\Object_reps_neural\Programming\gpt\experiment_1\videos_processed\C_convex_5\crops_output\crop_frame_00394.png
+   => Final question:
+From 1-7, how much do you agree with the statement: "The object on the left caused the object on the right to start moving".
+Consider that the photo attached is a snippet of a video, where the object on the left moves towards the object on the right (left to right motion). The frame I have provided you is the exact frame at which the left object stops, and the right object starts moving with the same velocity and direction as the left object was moving until now. I want to understand your perception of causality here based on distance between the objects.
+You should not output anything more than a single number from 1-7, answering how much you agree with the above statement.
+
+   [Request Start] folder=C_convex_5
+   Encoding image: q:\Projects\Object_reps_neural\Programming\gpt\experiment_1\videos_processed\C_convex_5\crops_output\crop_frame_00394.png
+   Sending request to model='gpt-4o' (multi-modal style).
+   Received response: 3
+   [Request End]
+
+   => Updated in-memory data for folder 'C_convex_5'.
+
+Processing folder: C_convex_6
+   => Middle crop: q:\Projects\Object_reps_neural\Programming\gpt\experiment_1\videos_processed\C_convex_6\crops_output\crop_frame_00389.png
+   => Final question:
+From 1-7, how much do you agree with the statement: "The object on the left caused the object on the right to start moving".
+Consider that the photo attached is a snippet of a video, where the object on the left moves towards the object on the right (left to right motion). The frame I have provided you is the exact frame at which the left object stops, and the right object starts moving with the same velocity and direction as the left object was moving until now. I want to understand your perception of causality here based on distance between the objects.
+You should not output anything more than a single number from 1-7, answering how much you agree with the above statement.
+
+   [Request Start] folder=C_convex_6
+   Encoding image: q:\Projects\Object_reps_neural\Programming\gpt\experiment_1\videos_processed\C_convex_6\crops_output\crop_frame_00389.png
+   Sending request to model='gpt-4o' (multi-modal style).
+   Received response: 3
+   [Request End]
+
+   => Updated in-memory data for folder 'C_convex_6'.
+
+Processing folder: D_concave_0
+   => Middle crop: q:\Projects\Object_reps_neural\Programming\gpt\experiment_1\videos_processed\D_concave_0\crops_output\crop_frame_00416.png
+   => Final question:
+From 1-7, how much do you agree with the statement: "The object on the left caused the object on the right to start moving".
+Consider that the photo attached is a snippet of a video, where the object on the left moves towards the object on the right (left to right motion). The frame I have provided you is the exact frame at which the left object stops, and the right object starts moving with the same velocity and direction as the left object was moving until now. I want to understand your perception of causality here based on distance between the objects.
+You should not output anything more than a single number from 1-7, answering how much you agree with the above statement.
+
+   [Request Start] folder=D_concave_0
+   Encoding image: q:\Projects\Object_reps_neural\Programming\gpt\experiment_1\videos_processed\D_concave_0\crops_output\crop_frame_00416.png
+   Sending request to model='gpt-4o' (multi-modal style).
+   Received response: 5
+   [Request End]
+
+   => Updated in-memory data for folder 'D_concave_0'.
+
+Processing folder: D_concave_2
+   => Middle crop: q:\Projects\Object_reps_neural\Programming\gpt\experiment_1\videos_processed\D_concave_2\crops_output\crop_frame_00408.png
+   => Final question:
+From 1-7, how much do you agree with the statement: "The object on the left caused the object on the right to start moving".
+Consider that the photo attached is a snippet of a video, where the object on the left moves towards the object on the right (left to right motion). The frame I have provided you is the exact frame at which the left object stops, and the right object starts moving with the same velocity and direction as the left object was moving until now. I want to understand your perception of causality here based on distance between the objects.
+You should not output anything more than a single number from 1-7, answering how much you agree with the above statement.
+
+   [Request Start] folder=D_concave_2
+   Encoding image: q:\Projects\Object_reps_neural\Programming\gpt\experiment_1\videos_processed\D_concave_2\crops_output\crop_frame_00408.png
+   Sending request to model='gpt-4o' (multi-modal style).
+   Received response: 5
+   [Request End]
+
+   => Updated in-memory data for folder 'D_concave_2'.
+
+Processing folder: D_concave_4
+   => Middle crop: q:\Projects\Object_reps_neural\Programming\gpt\experiment_1\videos_processed\D_concave_4\crops_output\crop_frame_00400.png
+   => Final question:
+From 1-7, how much do you agree with the statement: "The object on the left caused the object on the right to start moving".
+Consider that the photo attached is a snippet of a video, where the object on the left moves towards the object on the right (left to right motion). The frame I have provided you is the exact frame at which the left object stops, and the right object starts moving with the same velocity and direction as the left object was moving until now. I want to understand your perception of causality here based on distance between the objects.
+You should not output anything more than a single number from 1-7, answering how much you agree with the above statement.
+
+   [Request Start] folder=D_concave_4
+   Encoding image: q:\Projects\Object_reps_neural\Programming\gpt\experiment_1\videos_processed\D_concave_4\crops_output\crop_frame_00400.png
+   Sending request to model='gpt-4o' (multi-modal style).
+   Received response: 4
+   [Request End]
+
+   => Updated in-memory data for folder 'D_concave_4'.
+
+Processing folder: D_concave_5
+   => Middle crop: q:\Projects\Object_reps_neural\Programming\gpt\experiment_1\videos_processed\D_concave_5\crops_output\crop_frame_00396.png
+   => Final question:
+From 1-7, how much do you agree with the statement: "The object on the left caused the object on the right to start moving".
+Consider that the photo attached is a snippet of a video, where the object on the left moves towards the object on the right (left to right motion). The frame I have provided you is the exact frame at which the left object stops, and the right object starts moving with the same velocity and direction as the left object was moving until now. I want to understand your perception of causality here based on distance between the objects.
+You should not output anything more than a single number from 1-7, answering how much you agree with the above statement.
+
+   [Request Start] folder=D_concave_5
+   Encoding image: q:\Projects\Object_reps_neural\Programming\gpt\experiment_1\videos_processed\D_concave_5\crops_output\crop_frame_00396.png
+   Sending request to model='gpt-4o' (multi-modal style).
+   Received response: 2
+   [Request End]
+
+   => Updated in-memory data for folder 'D_concave_5'.
+
+Processing folder: D_concave_7
+   => Middle crop: q:\Projects\Object_reps_neural\Programming\gpt\experiment_1\videos_processed\D_concave_7\crops_output\crop_frame_00384.png
+   => Final question:
+From 1-7, how much do you agree with the statement: "The object on the left caused the object on the right to start moving".
+Consider that the photo attached is a snippet of a video, where the object on the left moves towards the object on the right (left to right motion). The frame I have provided you is the exact frame at which the left object stops, and the right object starts moving with the same velocity and direction as the left object was moving until now. I want to understand your perception of causality here based on distance between the objects.
+You should not output anything more than a single number from 1-7, answering how much you agree with the above statement.
+
+   [Request Start] folder=D_concave_7
+   Encoding image: q:\Projects\Object_reps_neural\Programming\gpt\experiment_1\videos_processed\D_concave_7\crops_output\crop_frame_00384.png
+   Sending request to model='gpt-4o' (multi-modal style).
+   Received response: 5
+   [Request End]
+
+   => Updated in-memory data for folder 'D_concave_7'.
+
+Processing folder: D_concave_8
+   => Middle crop: q:\Projects\Object_reps_neural\Programming\gpt\experiment_1\videos_processed\D_concave_8\crops_output\crop_frame_00371.png
+   => Final question:
+From 1-7, how much do you agree with the statement: "The object on the left caused the object on the right to start moving".
+Consider that the photo attached is a snippet of a video, where the object on the left moves towards the object on the right (left to right motion). The frame I have provided you is the exact frame at which the left object stops, and the right object starts moving with the same velocity and direction as the left object was moving until now. I want to understand your perception of causality here based on distance between the objects.
+You should not output anything more than a single number from 1-7, answering how much you agree with the above statement.
+
+   [Request Start] folder=D_concave_8
+   Encoding image: q:\Projects\Object_reps_neural\Programming\gpt\experiment_1\videos_processed\D_concave_8\crops_output\crop_frame_00371.png
+   Sending request to model='gpt-4o' (multi-modal style).
+   Received response: 5
+   [Request End]
+
+   => Updated in-memory data for folder 'D_concave_8'.
+
+Processing folder: D_convex_0
+   => Middle crop: q:\Projects\Object_reps_neural\Programming\gpt\experiment_1\videos_processed\D_convex_0\crops_output\crop_frame_00405.png
+   => Final question:
+From 1-7, how much do you agree with the statement: "The object on the left caused the object on the right to start moving".
+Consider that the photo attached is a snippet of a video, where the object on the left moves towards the object on the right (left to right motion). The frame I have provided you is the exact frame at which the left object stops, and the right object starts moving with the same velocity and direction as the left object was moving until now. I want to understand your perception of causality here based on distance between the objects.
+You should not output anything more than a single number from 1-7, answering how much you agree with the above statement.
+
+   [Request Start] folder=D_convex_0
+   Encoding image: q:\Projects\Object_reps_neural\Programming\gpt\experiment_1\videos_processed\D_convex_0\crops_output\crop_frame_00405.png
+   Sending request to model='gpt-4o' (multi-modal style).
+   Received response: 5
+   [Request End]
+
+   => Updated in-memory data for folder 'D_convex_0'.
+
+Processing folder: D_convex_3
+   => Middle crop: q:\Projects\Object_reps_neural\Programming\gpt\experiment_1\videos_processed\D_convex_3\crops_output\crop_frame_00393.png
+   => Final question:
+From 1-7, how much do you agree with the statement: "The object on the left caused the object on the right to start moving".
+Consider that the photo attached is a snippet of a video, where the object on the left moves towards the object on the right (left to right motion). The frame I have provided you is the exact frame at which the left object stops, and the right object starts moving with the same velocity and direction as the left object was moving until now. I want to understand your perception of causality here based on distance between the objects.
+You should not output anything more than a single number from 1-7, answering how much you agree with the above statement.
+
+   [Request Start] folder=D_convex_3
+   Encoding image: q:\Projects\Object_reps_neural\Programming\gpt\experiment_1\videos_processed\D_convex_3\crops_output\crop_frame_00393.png
+   Sending request to model='gpt-4o' (multi-modal style).
+   Received response: 5
+   [Request End]
+
+   => Updated in-memory data for folder 'D_convex_3'.
+
+Processing folder: D_convex_5
+   => Middle crop: q:\Projects\Object_reps_neural\Programming\gpt\experiment_1\videos_processed\D_convex_5\crops_output\crop_frame_00385.png
+   => Final question:
+From 1-7, how much do you agree with the statement: "The object on the left caused the object on the right to start moving".
+Consider that the photo attached is a snippet of a video, where the object on the left moves towards the object on the right (left to right motion). The frame I have provided you is the exact frame at which the left object stops, and the right object starts moving with the same velocity and direction as the left object was moving until now. I want to understand your perception of causality here based on distance between the objects.
+You should not output anything more than a single number from 1-7, answering how much you agree with the above statement.
+
+   [Request Start] folder=D_convex_5
+   Encoding image: q:\Projects\Object_reps_neural\Programming\gpt\experiment_1\videos_processed\D_convex_5\crops_output\crop_frame_00385.png
+   Sending request to model='gpt-4o' (multi-modal style).
+   Received response: 5
+   [Request End]
+
+   => Updated in-memory data for folder 'D_convex_5'.
+
+Processing folder: D_convex_6
+   => Middle crop: q:\Projects\Object_reps_neural\Programming\gpt\experiment_1\videos_processed\D_convex_6\crops_output\crop_frame_00380.png
+   => Final question:
+From 1-7, how much do you agree with the statement: "The object on the left caused the object on the right to start moving".
+Consider that the photo attached is a snippet of a video, where the object on the left moves towards the object on the right (left to right motion). The frame I have provided you is the exact frame at which the left object stops, and the right object starts moving with the same velocity and direction as the left object was moving until now. I want to understand your perception of causality here based on distance between the objects.
+You should not output anything more than a single number from 1-7, answering how much you agree with the above statement.
+
+   [Request Start] folder=D_convex_6
+   Encoding image: q:\Projects\Object_reps_neural\Programming\gpt\experiment_1\videos_processed\D_convex_6\crops_output\crop_frame_00380.png
+   Sending request to model='gpt-4o' (multi-modal style).
+   Received response: 5
+   [Request End]
+
+   => Updated in-memory data for folder 'D_convex_6'.
+
+Processing folder: E_concave_8
+   => Middle crop: q:\Projects\Object_reps_neural\Programming\gpt\experiment_1\videos_processed\E_concave_8\crops_output\crop_frame_00350.png
+   => Final question:
+From 1-7, how much do you agree with the statement: "The object on the left caused the object on the right to start moving".
+Consider that the photo attached is a snippet of a video, where the object on the left moves towards the object on the right (left to right motion). The frame I have provided you is the exact frame at which the left object stops, and the right object starts moving with the same velocity and direction as the left object was moving until now. I want to understand your perception of causality here based on distance between the objects.
+You should not output anything more than a single number from 1-7, answering how much you agree with the above statement.
+
+   [Request Start] folder=E_concave_8
+   Encoding image: q:\Projects\Object_reps_neural\Programming\gpt\experiment_1\videos_processed\E_concave_8\crops_output\crop_frame_00350.png
+   Sending request to model='gpt-4o' (multi-modal style).
+   Received response: 5
+   [Request End]
+
+   => Updated in-memory data for folder 'E_concave_8'.
+
+Processing folder: E_concave_9
+   => Middle crop: q:\Projects\Object_reps_neural\Programming\gpt\experiment_1\videos_processed\E_concave_9\crops_output\crop_frame_00331.png
+   => Final question:
+From 1-7, how much do you agree with the statement: "The object on the left caused the object on the right to start moving".
+Consider that the photo attached is a snippet of a video, where the object on the left moves towards the object on the right (left to right motion). The frame I have provided you is the exact frame at which the left object stops, and the right object starts moving with the same velocity and direction as the left object was moving until now. I want to understand your perception of causality here based on distance between the objects.
+You should not output anything more than a single number from 1-7, answering how much you agree with the above statement.
+
+   [Request Start] folder=E_concave_9
+   Encoding image: q:\Projects\Object_reps_neural\Programming\gpt\experiment_1\videos_processed\E_concave_9\crops_output\crop_frame_00331.png
+   Sending request to model='gpt-4o' (multi-modal style).
+   Received response: 5
+   [Request End]
+
+   => Updated in-memory data for folder 'E_concave_9'.
+
+Processing folder: E_convex_1
+   => Middle crop: q:\Projects\Object_reps_neural\Programming\gpt\experiment_1\videos_processed\E_convex_1\crops_output\crop_frame_00398.png
+   => Final question:
+From 1-7, how much do you agree with the statement: "The object on the left caused the object on the right to start moving".
+Consider that the photo attached is a snippet of a video, where the object on the left moves towards the object on the right (left to right motion). The frame I have provided you is the exact frame at which the left object stops, and the right object starts moving with the same velocity and direction as the left object was moving until now. I want to understand your perception of causality here based on distance between the objects.
+You should not output anything more than a single number from 1-7, answering how much you agree with the above statement.
+
+   [Request Start] folder=E_convex_1
+   Encoding image: q:\Projects\Object_reps_neural\Programming\gpt\experiment_1\videos_processed\E_convex_1\crops_output\crop_frame_00398.png
+   Sending request to model='gpt-4o' (multi-modal style).
+   Received response: 5
+   [Request End]
+
+   => Updated in-memory data for folder 'E_convex_1'.
+
+Processing folder: E_convex_2
+   => Middle crop: q:\Projects\Object_reps_neural\Programming\gpt\experiment_1\videos_processed\E_convex_2\crops_output\crop_frame_00394.png
+   => Final question:
+From 1-7, how much do you agree with the statement: "The object on the left caused the object on the right to start moving".
+Consider that the photo attached is a snippet of a video, where the object on the left moves towards the object on the right (left to right motion). The frame I have provided you is the exact frame at which the left object stops, and the right object starts moving with the same velocity and direction as the left object was moving until now. I want to understand your perception of causality here based on distance between the objects.
+You should not output anything more than a single number from 1-7, answering how much you agree with the above statement.
+
+   [Request Start] folder=E_convex_2
+   Encoding image: q:\Projects\Object_reps_neural\Programming\gpt\experiment_1\videos_processed\E_convex_2\crops_output\crop_frame_00394.png
+   Sending request to model='gpt-4o' (multi-modal style).
+   Received response: I'm sorry, I can't determine causality from images.
+   [Request End]
+
+   => Updated in-memory data for folder 'E_convex_2'.
+
+[Info] Wrote 36 rows to CSV 'q:\Projects\Object_reps_neural\Programming\gpt\experiment_1\responses.csv'.
+All requested subfolders processed. Script finished.

@@ -1,0 +1,8 @@
+======================================================
+REAL OpenAI requests (multi-modal style): Causality Score Script - Starting
+parent_dir = /videos_processed
+csv_file   = responses.csv
+percentage = 20
+Log file   = q:\Projects\Object_reps_neural\Programming\gpt\experiment_1\causality_score_logs\20250321_200623.log
+======================================================
+

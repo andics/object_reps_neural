@@ -1,0 +1,854 @@
+======================================================
+REAL GPT-4o multi-modal requests: Causality Score Script - Starting
+parent_dir = q:\Projects\Object_reps_neural\Programming\gpt\experiment_1\videos_processed
+csv_file   = q:\Projects\Object_reps_neural\Programming\gpt\experiment_1\responses.csv
+percentage = 100
+Log file   = q:\Projects\Object_reps_neural\Programming\gpt\experiment_1\causality_score_logs\20250321_215534.log
+======================================================
+
+[Info] Read 138 rows from existing CSV 'q:\Projects\Object_reps_neural\Programming\gpt\experiment_1\responses.csv'.
+Found 180 total subfolders in 'q:\Projects\Object_reps_neural\Programming\gpt\experiment_1\videos_processed'.
+We will process 180 subfolders (alphabetical order).
+
+Processing folder: A_concave_2
+   => Already has numeric response='5' => skipping.
+
+Processing folder: A_concave_3
+   => Already has numeric response='3' => skipping.
+
+Processing folder: A_concave_4
+   => Already has numeric response='3' => skipping.
+
+Processing folder: A_concave_6
+   => Already has numeric response='5' => skipping.
+
+Processing folder: A_convex_4
+   => Already has numeric response='4' => skipping.
+
+Processing folder: A_convex_9
+   => Already has numeric response='3' => skipping.
+
+Processing folder: B_concave_0
+   => Already has numeric response='3' => skipping.
+
+Processing folder: B_concave_5
+   => Already has numeric response='4' => skipping.
+
+Processing folder: B_concave_6
+   => Already has numeric response='3' => skipping.
+
+Processing folder: B_concave_7
+   => Already has numeric response='3' => skipping.
+
+Processing folder: B_concave_8
+   => Already has numeric response='5' => skipping.
+
+Processing folder: B_convex_3
+   => Already has numeric response='4' => skipping.
+
+Processing folder: B_convex_5
+   => Already has numeric response='4' => skipping.
+
+Processing folder: B_convex_6
+   => Already has numeric response='4' => skipping.
+
+Processing folder: C_concave_0
+   => Already has numeric response='6' => skipping.
+
+Processing folder: C_concave_1
+   => Already has numeric response='5' => skipping.
+
+Processing folder: C_concave_2
+   => Already has numeric response='3' => skipping.
+
+Processing folder: C_concave_3
+   => Already has numeric response='3' => skipping.
+
+Processing folder: C_concave_9
+   => Already has numeric response='4' => skipping.
+
+Processing folder: C_convex_2
+   => Already has numeric response='4' => skipping.
+
+Processing folder: C_convex_5
+   => Already has numeric response='3' => skipping.
+
+Processing folder: C_convex_6
+   => Already has numeric response='5' => skipping.
+
+Processing folder: D_concave_0
+   => Already has numeric response='4' => skipping.
+
+Processing folder: D_concave_2
+   => Already has numeric response='3' => skipping.
+
+Processing folder: D_concave_4
+   => Already has numeric response='5' => skipping.
+
+Processing folder: D_concave_5
+   => Already has numeric response='4' => skipping.
+
+Processing folder: D_concave_7
+   => Already has numeric response='4' => skipping.
+
+Processing folder: D_concave_8
+   => Already has numeric response='6' => skipping.
+
+Processing folder: D_convex_0
+   => Already has numeric response='4' => skipping.
+
+Processing folder: D_convex_3
+   => Already has numeric response='3' => skipping.
+
+Processing folder: D_convex_5
+   => Already has numeric response='4' => skipping.
+
+Processing folder: D_convex_6
+   => Already has numeric response='4' => skipping.
+
+Processing folder: E_concave_8
+   => Already has numeric response='4' => skipping.
+
+Processing folder: E_concave_9
+   => Already has numeric response='6' => skipping.
+
+Processing folder: E_convex_1
+   => Already has numeric response='3' => skipping.
+
+Processing folder: E_convex_2
+   => Already has numeric response='6' => skipping.
+
+Processing folder: E_convex_3
+   => Already has numeric response='3' => skipping.
+
+Processing folder: E_convex_7
+   => Already has numeric response='4' => skipping.
+
+Processing folder: E_convex_9
+   => Already has numeric response='4' => skipping.
+
+Processing folder: F_concave_0
+   => Already has numeric response='6' => skipping.
+
+Processing folder: F_concave_1
+   => Already has numeric response='4' => skipping.
+
+Processing folder: F_concave_3
+   => Already has numeric response='4' => skipping.
+
+Processing folder: F_concave_4
+   => Already has numeric response='4' => skipping.
+
+Processing folder: F_concave_9
+   => Already has numeric response='3' => skipping.
+
+Processing folder: F_convex_5
+   => Already has numeric response='4' => skipping.
+
+Processing folder: F_convex_7
+   => Already has numeric response='4' => skipping.
+
+Processing folder: F_convex_8
+   => Already has numeric response='4' => skipping.
+
+Processing folder: F_convex_9
+   => Already has numeric response='4' => skipping.
+
+Processing folder: G_concave_5
+   => Middle crop: q:\Projects\Object_reps_neural\Programming\gpt\experiment_1\videos_processed\G_concave_5\crops_output\crop_frame_00388.png
+   => Final question:
+Consider this image of two objects on a black background.
+The image is a snippet of a video, where the object on the left moves towards the object on the right (left to right motion). The frame I have provided you is the exact frame at which the left object stops, and the right object starts moving with the same velocity and direction as the left object was moving (left to right).I want to understand your perception of causality here.
+You should not output anything more than a single number from 1-7, answering how much you agree with the following statement: "The object on the left caused the object on the right to move".
+
+   [Request Start] folder=G_concave_5
+   Encoding image: q:\Projects\Object_reps_neural\Programming\gpt\experiment_1\videos_processed\G_concave_5\crops_output\crop_frame_00388.png
+   Sending request to model='gpt-4o' (multi-modal style).
+   Received response: 3
+   [Request End]
+
+   => Updated in-memory data for folder 'G_concave_5'.
+
+Processing folder: G_concave_9
+   => Already has numeric response='5' => skipping.
+
+Processing folder: G_convex_1
+   => Already has numeric response='4' => skipping.
+
+Processing folder: G_convex_4
+   => Already has numeric response='3' => skipping.
+
+Processing folder: G_convex_6
+   => Already has numeric response='4' => skipping.
+
+Processing folder: G_convex_8
+   => Already has numeric response='4' => skipping.
+
+Processing folder: H_concave_2
+   => Already has numeric response='4' => skipping.
+
+Processing folder: H_concave_5
+   => Already has numeric response='3' => skipping.
+
+Processing folder: H_concave_6
+   => Already has numeric response='4' => skipping.
+
+Processing folder: H_concave_7
+   => Already has numeric response='5' => skipping.
+
+Processing folder: H_concave_8
+   => Already has numeric response='4' => skipping.
+
+Processing folder: H_concave_9
+   => Already has numeric response='3' => skipping.
+
+Processing folder: H_convex_1
+   => Already has numeric response='4' => skipping.
+
+Processing folder: H_convex_3
+   => Already has numeric response='6' => skipping.
+
+Processing folder: H_convex_4
+   => Already has numeric response='5' => skipping.
+
+Processing folder: H_convex_5
+   => Already has numeric response='5' => skipping.
+
+Processing folder: H_convex_6
+   => Already has numeric response='4' => skipping.
+
+Processing folder: H_convex_7
+   => Already has numeric response='5' => skipping.
+
+Processing folder: H_convex_8
+   => Already has numeric response='4' => skipping.
+
+Processing folder: exp_0
+   => Folder does not contain 'convex'/'concave'; skipping.
+
+Processing folder: exp_2
+   => Folder does not contain 'convex'/'concave'; skipping.
+
+Processing folder: exp_4
+   => Folder does not contain 'convex'/'concave'; skipping.
+
+Processing folder: exp_6
+   => Folder does not contain 'convex'/'concave'; skipping.
+
+Processing folder: exp_8
+   => Folder does not contain 'convex'/'concave'; skipping.
+
+Processing folder: exp_9
+   => Folder does not contain 'convex'/'concave'; skipping.
+
+Processing folder: flipped_A_concave_0
+   => Already has numeric response='3' => skipping.
+
+Processing folder: flipped_A_concave_1
+   => Already has numeric response='3' => skipping.
+
+Processing folder: flipped_A_concave_5
+   => Already has numeric response='3' => skipping.
+
+Processing folder: flipped_A_concave_7
+   => Already has numeric response='4' => skipping.
+
+Processing folder: flipped_A_concave_8
+   => Already has numeric response='4' => skipping.
+
+Processing folder: flipped_A_concave_9
+   => Already has numeric response='3' => skipping.
+
+Processing folder: flipped_A_convex_0
+   => Already has numeric response='4' => skipping.
+
+Processing folder: flipped_A_convex_1
+   => Already has numeric response='3' => skipping.
+
+Processing folder: flipped_A_convex_2
+   => Already has numeric response='3' => skipping.
+
+Processing folder: flipped_A_convex_3
+   => Already has numeric response='3' => skipping.
+
+Processing folder: flipped_A_convex_5
+   => Already has numeric response='4' => skipping.
+
+Processing folder: flipped_A_convex_6
+   => Already has numeric response='3' => skipping.
+
+Processing folder: flipped_A_convex_7
+   => Already has numeric response='4' => skipping.
+
+Processing folder: flipped_A_convex_8
+   => Already has numeric response='4' => skipping.
+
+Processing folder: flipped_B_concave_1
+   => Already has numeric response='4' => skipping.
+
+Processing folder: flipped_B_concave_2
+   => Already has numeric response='4' => skipping.
+
+Processing folder: flipped_B_concave_3
+   => Middle crop: q:\Projects\Object_reps_neural\Programming\gpt\experiment_1\videos_processed\flipped_B_concave_3\crops_output\crop_frame_00410.png
+   => Final question:
+Consider this image of two objects on a black background.
+The image is a snippet of a video, where the object on the right moves towards the object on the left (right to left motion). The frame I have provided you is the exact frame at which the right object stops, and the left object starts moving with the same velocity and direction as the right object was moving (right to left).I want to understand your perception of causality here.
+You should not output anything more than a single number from 1-7, answering how much you agree with the following statement: "The object on the right caused the object on the left to move".
+
+   [Request Start] folder=flipped_B_concave_3
+   Encoding image: q:\Projects\Object_reps_neural\Programming\gpt\experiment_1\videos_processed\flipped_B_concave_3\crops_output\crop_frame_00410.png
+   Sending request to model='gpt-4o' (multi-modal style).
+   Received response: 5
+   [Request End]
+
+   => Updated in-memory data for folder 'flipped_B_concave_3'.
+
+Processing folder: flipped_B_concave_4
+   => Already has numeric response='4' => skipping.
+
+Processing folder: flipped_B_concave_9
+   => Already has numeric response='5' => skipping.
+
+Processing folder: flipped_B_convex_0
+   => Already has numeric response='3' => skipping.
+
+Processing folder: flipped_B_convex_1
+   => Already has numeric response='4' => skipping.
+
+Processing folder: flipped_B_convex_2
+   => Already has numeric response='6' => skipping.
+
+Processing folder: flipped_B_convex_4
+   => Already has numeric response='5' => skipping.
+
+Processing folder: flipped_B_convex_7
+   => Already has numeric response='4' => skipping.
+
+Processing folder: flipped_B_convex_8
+   => Already has numeric response='4' => skipping.
+
+Processing folder: flipped_B_convex_9
+   => Already has numeric response='5' => skipping.
+
+Processing folder: flipped_C_concave_4
+   => Already has numeric response='4' => skipping.
+
+Processing folder: flipped_C_concave_5
+   => Already has numeric response='4' => skipping.
+
+Processing folder: flipped_C_concave_6
+   => Already has numeric response='5' => skipping.
+
+Processing folder: flipped_C_concave_7
+   => Already has numeric response='5' => skipping.
+
+Processing folder: flipped_C_concave_8
+   => Already has numeric response='4' => skipping.
+
+Processing folder: flipped_C_convex_0
+   => Already has numeric response='4' => skipping.
+
+Processing folder: flipped_C_convex_1
+   => Already has numeric response='4' => skipping.
+
+Processing folder: flipped_C_convex_3
+   => Already has numeric response='5' => skipping.
+
+Processing folder: flipped_C_convex_4
+   => Already has numeric response='4' => skipping.
+
+Processing folder: flipped_C_convex_7
+   => Already has numeric response='4' => skipping.
+
+Processing folder: flipped_C_convex_8
+   => Already has numeric response='3' => skipping.
+
+Processing folder: flipped_C_convex_9
+   => Already has numeric response='4' => skipping.
+
+Processing folder: flipped_D_concave_1
+   => Already has numeric response='5' => skipping.
+
+Processing folder: flipped_D_concave_3
+   => Already has numeric response='3' => skipping.
+
+Processing folder: flipped_D_concave_6
+   => Already has numeric response='4' => skipping.
+
+Processing folder: flipped_D_concave_9
+   => Already has numeric response='3' => skipping.
+
+Processing folder: flipped_D_convex_1
+   => Already has numeric response='4' => skipping.
+
+Processing folder: flipped_D_convex_2
+   => Already has numeric response='4' => skipping.
+
+Processing folder: flipped_D_convex_4
+   => Already has numeric response='5' => skipping.
+
+Processing folder: flipped_D_convex_7
+   => Already has numeric response='4' => skipping.
+
+Processing folder: flipped_D_convex_8
+   => Already has numeric response='4' => skipping.
+
+Processing folder: flipped_D_convex_9
+   => Already has numeric response='4' => skipping.
+
+Processing folder: flipped_E_concave_0
+   => Already has numeric response='5' => skipping.
+
+Processing folder: flipped_E_concave_1
+   => Middle crop: q:\Projects\Object_reps_neural\Programming\gpt\experiment_1\videos_processed\flipped_E_concave_1\crops_output\crop_frame_00391.png
+   => Final question:
+Consider this image of two objects on a black background.
+The image is a snippet of a video, where the object on the right moves towards the object on the left (right to left motion). The frame I have provided you is the exact frame at which the right object stops, and the left object starts moving with the same velocity and direction as the right object was moving (right to left).I want to understand your perception of causality here.
+You should not output anything more than a single number from 1-7, answering how much you agree with the following statement: "The object on the right caused the object on the left to move".
+
+   [Request Start] folder=flipped_E_concave_1
+   Encoding image: q:\Projects\Object_reps_neural\Programming\gpt\experiment_1\videos_processed\flipped_E_concave_1\crops_output\crop_frame_00391.png
+   Sending request to model='gpt-4o' (multi-modal style).
+   Received response: 3
+   [Request End]
+
+   => Updated in-memory data for folder 'flipped_E_concave_1'.
+
+Processing folder: flipped_E_concave_2
+   => Already has numeric response='5' => skipping.
+
+Processing folder: flipped_E_concave_3
+   => Already has numeric response='4' => skipping.
+
+Processing folder: flipped_E_concave_4
+   => Already has numeric response='3' => skipping.
+
+Processing folder: flipped_E_concave_5
+   => Already has numeric response='5' => skipping.
+
+Processing folder: flipped_E_concave_6
+   => Already has numeric response='5' => skipping.
+
+Processing folder: flipped_E_concave_7
+   => Already has numeric response='6' => skipping.
+
+Processing folder: flipped_E_convex_0
+   => Already has numeric response='4' => skipping.
+
+Processing folder: flipped_E_convex_4
+   => Already has numeric response='4' => skipping.
+
+Processing folder: flipped_E_convex_5
+   => Already has numeric response='4' => skipping.
+
+Processing folder: flipped_E_convex_6
+   => Already has numeric response='6' => skipping.
+
+Processing folder: flipped_E_convex_8
+   => Already has numeric response='4' => skipping.
+
+Processing folder: flipped_F_concave_2
+   => Already has numeric response='4' => skipping.
+
+Processing folder: flipped_F_concave_5
+   => Already has numeric response='7' => skipping.
+
+Processing folder: flipped_F_concave_6
+   => Already has numeric response='4' => skipping.
+
+Processing folder: flipped_F_concave_7
+   => Already has numeric response='4' => skipping.
+
+Processing folder: flipped_F_concave_8
+   => Already has numeric response='5' => skipping.
+
+Processing folder: flipped_F_convex_0
+   => Already has numeric response='5' => skipping.
+
+Processing folder: flipped_F_convex_1
+   => Already has numeric response='6' => skipping.
+
+Processing folder: flipped_F_convex_2
+   => Already has numeric response='4' => skipping.
+
+Processing folder: flipped_F_convex_3
+   => Already has numeric response='7' => skipping.
+
+Processing folder: flipped_F_convex_4
+   => Already has numeric response='5' => skipping.
+
+Processing folder: flipped_F_convex_6
+   => Middle crop: q:\Projects\Object_reps_neural\Programming\gpt\experiment_1\videos_processed\flipped_F_convex_6\crops_output\crop_frame_00371.png
+   => Final question:
+Consider this image of two objects on a black background.
+The image is a snippet of a video, where the object on the right moves towards the object on the left (right to left motion). The frame I have provided you is the exact frame at which the right object stops, and the left object starts moving with the same velocity and direction as the right object was moving (right to left).I want to understand your perception of causality here.
+You should not output anything more than a single number from 1-7, answering how much you agree with the following statement: "The object on the right caused the object on the left to move".
+
+   [Request Start] folder=flipped_F_convex_6
+   Encoding image: q:\Projects\Object_reps_neural\Programming\gpt\experiment_1\videos_processed\flipped_F_convex_6\crops_output\crop_frame_00371.png
+   Sending request to model='gpt-4o' (multi-modal style).
+   Received response: 5
+   [Request End]
+
+   => Updated in-memory data for folder 'flipped_F_convex_6'.
+
+Processing folder: flipped_G_concave_0
+   => Middle crop: q:\Projects\Object_reps_neural\Programming\gpt\experiment_1\videos_processed\flipped_G_concave_0\crops_output\crop_frame_00409.png
+   => Final question:
+Consider this image of two objects on a black background.
+The image is a snippet of a video, where the object on the right moves towards the object on the left (right to left motion). The frame I have provided you is the exact frame at which the right object stops, and the left object starts moving with the same velocity and direction as the right object was moving (right to left).I want to understand your perception of causality here.
+You should not output anything more than a single number from 1-7, answering how much you agree with the following statement: "The object on the right caused the object on the left to move".
+
+   [Request Start] folder=flipped_G_concave_0
+   Encoding image: q:\Projects\Object_reps_neural\Programming\gpt\experiment_1\videos_processed\flipped_G_concave_0\crops_output\crop_frame_00409.png
+   Sending request to model='gpt-4o' (multi-modal style).
+   Received response: 4
+   [Request End]
+
+   => Updated in-memory data for folder 'flipped_G_concave_0'.
+
+Processing folder: flipped_G_concave_1
+   => Middle crop: q:\Projects\Object_reps_neural\Programming\gpt\experiment_1\videos_processed\flipped_G_concave_1\crops_output\crop_frame_00404.png
+   => Final question:
+Consider this image of two objects on a black background.
+The image is a snippet of a video, where the object on the right moves towards the object on the left (right to left motion). The frame I have provided you is the exact frame at which the right object stops, and the left object starts moving with the same velocity and direction as the right object was moving (right to left).I want to understand your perception of causality here.
+You should not output anything more than a single number from 1-7, answering how much you agree with the following statement: "The object on the right caused the object on the left to move".
+
+   [Request Start] folder=flipped_G_concave_1
+   Encoding image: q:\Projects\Object_reps_neural\Programming\gpt\experiment_1\videos_processed\flipped_G_concave_1\crops_output\crop_frame_00404.png
+   Sending request to model='gpt-4o' (multi-modal style).
+   Received response: 5
+   [Request End]
+
+   => Updated in-memory data for folder 'flipped_G_concave_1'.
+
+Processing folder: flipped_G_concave_2
+   => Middle crop: q:\Projects\Object_reps_neural\Programming\gpt\experiment_1\videos_processed\flipped_G_concave_2\crops_output\crop_frame_00400.png
+   => Final question:
+Consider this image of two objects on a black background.
+The image is a snippet of a video, where the object on the right moves towards the object on the left (right to left motion). The frame I have provided you is the exact frame at which the right object stops, and the left object starts moving with the same velocity and direction as the right object was moving (right to left).I want to understand your perception of causality here.
+You should not output anything more than a single number from 1-7, answering how much you agree with the following statement: "The object on the right caused the object on the left to move".
+
+   [Request Start] folder=flipped_G_concave_2
+   Encoding image: q:\Projects\Object_reps_neural\Programming\gpt\experiment_1\videos_processed\flipped_G_concave_2\crops_output\crop_frame_00400.png
+   Sending request to model='gpt-4o' (multi-modal style).
+   Received response: 4
+   [Request End]
+
+   => Updated in-memory data for folder 'flipped_G_concave_2'.
+
+Processing folder: flipped_G_concave_3
+   => Middle crop: q:\Projects\Object_reps_neural\Programming\gpt\experiment_1\videos_processed\flipped_G_concave_3\crops_output\crop_frame_00396.png
+   => Final question:
+Consider this image of two objects on a black background.
+The image is a snippet of a video, where the object on the right moves towards the object on the left (right to left motion). The frame I have provided you is the exact frame at which the right object stops, and the left object starts moving with the same velocity and direction as the right object was moving (right to left).I want to understand your perception of causality here.
+You should not output anything more than a single number from 1-7, answering how much you agree with the following statement: "The object on the right caused the object on the left to move".
+
+   [Request Start] folder=flipped_G_concave_3
+   Encoding image: q:\Projects\Object_reps_neural\Programming\gpt\experiment_1\videos_processed\flipped_G_concave_3\crops_output\crop_frame_00396.png
+   Sending request to model='gpt-4o' (multi-modal style).
+   Received response: 4
+   [Request End]
+
+   => Updated in-memory data for folder 'flipped_G_concave_3'.
+
+Processing folder: flipped_G_concave_4
+   => Middle crop: q:\Projects\Object_reps_neural\Programming\gpt\experiment_1\videos_processed\flipped_G_concave_4\crops_output\crop_frame_00392.png
+   => Final question:
+Consider this image of two objects on a black background.
+The image is a snippet of a video, where the object on the right moves towards the object on the left (right to left motion). The frame I have provided you is the exact frame at which the right object stops, and the left object starts moving with the same velocity and direction as the right object was moving (right to left).I want to understand your perception of causality here.
+You should not output anything more than a single number from 1-7, answering how much you agree with the following statement: "The object on the right caused the object on the left to move".
+
+   [Request Start] folder=flipped_G_concave_4
+   Encoding image: q:\Projects\Object_reps_neural\Programming\gpt\experiment_1\videos_processed\flipped_G_concave_4\crops_output\crop_frame_00392.png
+   Sending request to model='gpt-4o' (multi-modal style).
+   Received response: 5
+   [Request End]
+
+   => Updated in-memory data for folder 'flipped_G_concave_4'.
+
+Processing folder: flipped_G_concave_6
+   => Middle crop: q:\Projects\Object_reps_neural\Programming\gpt\experiment_1\videos_processed\flipped_G_concave_6\crops_output\crop_frame_00383.png
+   => Final question:
+Consider this image of two objects on a black background.
+The image is a snippet of a video, where the object on the right moves towards the object on the left (right to left motion). The frame I have provided you is the exact frame at which the right object stops, and the left object starts moving with the same velocity and direction as the right object was moving (right to left).I want to understand your perception of causality here.
+You should not output anything more than a single number from 1-7, answering how much you agree with the following statement: "The object on the right caused the object on the left to move".
+
+   [Request Start] folder=flipped_G_concave_6
+   Encoding image: q:\Projects\Object_reps_neural\Programming\gpt\experiment_1\videos_processed\flipped_G_concave_6\crops_output\crop_frame_00383.png
+   Sending request to model='gpt-4o' (multi-modal style).
+   Received response: 4
+   [Request End]
+
+   => Updated in-memory data for folder 'flipped_G_concave_6'.
+
+Processing folder: flipped_G_concave_7
+   => Middle crop: q:\Projects\Object_reps_neural\Programming\gpt\experiment_1\videos_processed\flipped_G_concave_7\crops_output\crop_frame_00376.png
+   => Final question:
+Consider this image of two objects on a black background.
+The image is a snippet of a video, where the object on the right moves towards the object on the left (right to left motion). The frame I have provided you is the exact frame at which the right object stops, and the left object starts moving with the same velocity and direction as the right object was moving (right to left).I want to understand your perception of causality here.
+You should not output anything more than a single number from 1-7, answering how much you agree with the following statement: "The object on the right caused the object on the left to move".
+
+   [Request Start] folder=flipped_G_concave_7
+   Encoding image: q:\Projects\Object_reps_neural\Programming\gpt\experiment_1\videos_processed\flipped_G_concave_7\crops_output\crop_frame_00376.png
+   Sending request to model='gpt-4o' (multi-modal style).
+   Received response: 3
+   [Request End]
+
+   => Updated in-memory data for folder 'flipped_G_concave_7'.
+
+Processing folder: flipped_G_concave_8
+   => Middle crop: q:\Projects\Object_reps_neural\Programming\gpt\experiment_1\videos_processed\flipped_G_concave_8\crops_output\crop_frame_00363.png
+   => Final question:
+Consider this image of two objects on a black background.
+The image is a snippet of a video, where the object on the right moves towards the object on the left (right to left motion). The frame I have provided you is the exact frame at which the right object stops, and the left object starts moving with the same velocity and direction as the right object was moving (right to left).I want to understand your perception of causality here.
+You should not output anything more than a single number from 1-7, answering how much you agree with the following statement: "The object on the right caused the object on the left to move".
+
+   [Request Start] folder=flipped_G_concave_8
+   Encoding image: q:\Projects\Object_reps_neural\Programming\gpt\experiment_1\videos_processed\flipped_G_concave_8\crops_output\crop_frame_00363.png
+   Sending request to model='gpt-4o' (multi-modal style).
+   Received response: 4
+   [Request End]
+
+   => Updated in-memory data for folder 'flipped_G_concave_8'.
+
+Processing folder: flipped_G_convex_0
+   => Middle crop: q:\Projects\Object_reps_neural\Programming\gpt\experiment_1\videos_processed\flipped_G_convex_0\crops_output\crop_frame_00377.png
+   => Final question:
+Consider this image of two objects on a black background.
+The image is a snippet of a video, where the object on the right moves towards the object on the left (right to left motion). The frame I have provided you is the exact frame at which the right object stops, and the left object starts moving with the same velocity and direction as the right object was moving (right to left).I want to understand your perception of causality here.
+You should not output anything more than a single number from 1-7, answering how much you agree with the following statement: "The object on the right caused the object on the left to move".
+
+   [Request Start] folder=flipped_G_convex_0
+   Encoding image: q:\Projects\Object_reps_neural\Programming\gpt\experiment_1\videos_processed\flipped_G_convex_0\crops_output\crop_frame_00377.png
+   Sending request to model='gpt-4o' (multi-modal style).
+   Received response: 3
+   [Request End]
+
+   => Updated in-memory data for folder 'flipped_G_convex_0'.
+
+Processing folder: flipped_G_convex_2
+   => Middle crop: q:\Projects\Object_reps_neural\Programming\gpt\experiment_1\videos_processed\flipped_G_convex_2\crops_output\crop_frame_00369.png
+   => Final question:
+Consider this image of two objects on a black background.
+The image is a snippet of a video, where the object on the right moves towards the object on the left (right to left motion). The frame I have provided you is the exact frame at which the right object stops, and the left object starts moving with the same velocity and direction as the right object was moving (right to left).I want to understand your perception of causality here.
+You should not output anything more than a single number from 1-7, answering how much you agree with the following statement: "The object on the right caused the object on the left to move".
+
+   [Request Start] folder=flipped_G_convex_2
+   Encoding image: q:\Projects\Object_reps_neural\Programming\gpt\experiment_1\videos_processed\flipped_G_convex_2\crops_output\crop_frame_00369.png
+   Sending request to model='gpt-4o' (multi-modal style).
+   Received response: 4
+   [Request End]
+
+   => Updated in-memory data for folder 'flipped_G_convex_2'.
+
+Processing folder: flipped_G_convex_3
+   => Middle crop: q:\Projects\Object_reps_neural\Programming\gpt\experiment_1\videos_processed\flipped_G_convex_3\crops_output\crop_frame_00365.png
+   => Final question:
+Consider this image of two objects on a black background.
+The image is a snippet of a video, where the object on the right moves towards the object on the left (right to left motion). The frame I have provided you is the exact frame at which the right object stops, and the left object starts moving with the same velocity and direction as the right object was moving (right to left).I want to understand your perception of causality here.
+You should not output anything more than a single number from 1-7, answering how much you agree with the following statement: "The object on the right caused the object on the left to move".
+
+   [Request Start] folder=flipped_G_convex_3
+   Encoding image: q:\Projects\Object_reps_neural\Programming\gpt\experiment_1\videos_processed\flipped_G_convex_3\crops_output\crop_frame_00365.png
+   Sending request to model='gpt-4o' (multi-modal style).
+   Received response: 4
+   [Request End]
+
+   => Updated in-memory data for folder 'flipped_G_convex_3'.
+
+Processing folder: flipped_G_convex_5
+   => Middle crop: q:\Projects\Object_reps_neural\Programming\gpt\experiment_1\videos_processed\flipped_G_convex_5\crops_output\crop_frame_00357.png
+   => Final question:
+Consider this image of two objects on a black background.
+The image is a snippet of a video, where the object on the right moves towards the object on the left (right to left motion). The frame I have provided you is the exact frame at which the right object stops, and the left object starts moving with the same velocity and direction as the right object was moving (right to left).I want to understand your perception of causality here.
+You should not output anything more than a single number from 1-7, answering how much you agree with the following statement: "The object on the right caused the object on the left to move".
+
+   [Request Start] folder=flipped_G_convex_5
+   Encoding image: q:\Projects\Object_reps_neural\Programming\gpt\experiment_1\videos_processed\flipped_G_convex_5\crops_output\crop_frame_00357.png
+   Sending request to model='gpt-4o' (multi-modal style).
+   Received response: 4
+   [Request End]
+
+   => Updated in-memory data for folder 'flipped_G_convex_5'.
+
+Processing folder: flipped_G_convex_7
+   => Middle crop: q:\Projects\Object_reps_neural\Programming\gpt\experiment_1\videos_processed\flipped_G_convex_7\crops_output\crop_frame_00345.png
+   => Final question:
+Consider this image of two objects on a black background.
+The image is a snippet of a video, where the object on the right moves towards the object on the left (right to left motion). The frame I have provided you is the exact frame at which the right object stops, and the left object starts moving with the same velocity and direction as the right object was moving (right to left).I want to understand your perception of causality here.
+You should not output anything more than a single number from 1-7, answering how much you agree with the following statement: "The object on the right caused the object on the left to move".
+
+   [Request Start] folder=flipped_G_convex_7
+   Encoding image: q:\Projects\Object_reps_neural\Programming\gpt\experiment_1\videos_processed\flipped_G_convex_7\crops_output\crop_frame_00345.png
+   Sending request to model='gpt-4o' (multi-modal style).
+   Received response: 6
+   [Request End]
+
+   => Updated in-memory data for folder 'flipped_G_convex_7'.
+
+Processing folder: flipped_G_convex_9
+   => Middle crop: q:\Projects\Object_reps_neural\Programming\gpt\experiment_1\videos_processed\flipped_G_convex_9\crops_output\crop_frame_00313.png
+   => Final question:
+Consider this image of two objects on a black background.
+The image is a snippet of a video, where the object on the right moves towards the object on the left (right to left motion). The frame I have provided you is the exact frame at which the right object stops, and the left object starts moving with the same velocity and direction as the right object was moving (right to left).I want to understand your perception of causality here.
+You should not output anything more than a single number from 1-7, answering how much you agree with the following statement: "The object on the right caused the object on the left to move".
+
+   [Request Start] folder=flipped_G_convex_9
+   Encoding image: q:\Projects\Object_reps_neural\Programming\gpt\experiment_1\videos_processed\flipped_G_convex_9\crops_output\crop_frame_00313.png
+   Sending request to model='gpt-4o' (multi-modal style).
+   Received response: 4
+   [Request End]
+
+   => Updated in-memory data for folder 'flipped_G_convex_9'.
+
+Processing folder: flipped_H_concave_0
+   => Middle crop: q:\Projects\Object_reps_neural\Programming\gpt\experiment_1\videos_processed\flipped_H_concave_0\crops_output\crop_frame_00401.png
+   => Final question:
+Consider this image of two objects on a black background.
+The image is a snippet of a video, where the object on the right moves towards the object on the left (right to left motion). The frame I have provided you is the exact frame at which the right object stops, and the left object starts moving with the same velocity and direction as the right object was moving (right to left).I want to understand your perception of causality here.
+You should not output anything more than a single number from 1-7, answering how much you agree with the following statement: "The object on the right caused the object on the left to move".
+
+   [Request Start] folder=flipped_H_concave_0
+   Encoding image: q:\Projects\Object_reps_neural\Programming\gpt\experiment_1\videos_processed\flipped_H_concave_0\crops_output\crop_frame_00401.png
+   Sending request to model='gpt-4o' (multi-modal style).
+   Received response: 3
+   [Request End]
+
+   => Updated in-memory data for folder 'flipped_H_concave_0'.
+
+Processing folder: flipped_H_concave_1
+   => Middle crop: q:\Projects\Object_reps_neural\Programming\gpt\experiment_1\videos_processed\flipped_H_concave_1\crops_output\crop_frame_00401.png
+   => Final question:
+Consider this image of two objects on a black background.
+The image is a snippet of a video, where the object on the right moves towards the object on the left (right to left motion). The frame I have provided you is the exact frame at which the right object stops, and the left object starts moving with the same velocity and direction as the right object was moving (right to left).I want to understand your perception of causality here.
+You should not output anything more than a single number from 1-7, answering how much you agree with the following statement: "The object on the right caused the object on the left to move".
+
+   [Request Start] folder=flipped_H_concave_1
+   Encoding image: q:\Projects\Object_reps_neural\Programming\gpt\experiment_1\videos_processed\flipped_H_concave_1\crops_output\crop_frame_00401.png
+   Sending request to model='gpt-4o' (multi-modal style).
+   Received response: 3
+   [Request End]
+
+   => Updated in-memory data for folder 'flipped_H_concave_1'.
+
+Processing folder: flipped_H_concave_3
+   => Middle crop: q:\Projects\Object_reps_neural\Programming\gpt\experiment_1\videos_processed\flipped_H_concave_3\crops_output\crop_frame_00393.png
+   => Final question:
+Consider this image of two objects on a black background.
+The image is a snippet of a video, where the object on the right moves towards the object on the left (right to left motion). The frame I have provided you is the exact frame at which the right object stops, and the left object starts moving with the same velocity and direction as the right object was moving (right to left).I want to understand your perception of causality here.
+You should not output anything more than a single number from 1-7, answering how much you agree with the following statement: "The object on the right caused the object on the left to move".
+
+   [Request Start] folder=flipped_H_concave_3
+   Encoding image: q:\Projects\Object_reps_neural\Programming\gpt\experiment_1\videos_processed\flipped_H_concave_3\crops_output\crop_frame_00393.png
+   Sending request to model='gpt-4o' (multi-modal style).
+   Received response: 3
+   [Request End]
+
+   => Updated in-memory data for folder 'flipped_H_concave_3'.
+
+Processing folder: flipped_H_concave_4
+   => Middle crop: q:\Projects\Object_reps_neural\Programming\gpt\experiment_1\videos_processed\flipped_H_concave_4\crops_output\crop_frame_00389.png
+   => Final question:
+Consider this image of two objects on a black background.
+The image is a snippet of a video, where the object on the right moves towards the object on the left (right to left motion). The frame I have provided you is the exact frame at which the right object stops, and the left object starts moving with the same velocity and direction as the right object was moving (right to left).I want to understand your perception of causality here.
+You should not output anything more than a single number from 1-7, answering how much you agree with the following statement: "The object on the right caused the object on the left to move".
+
+   [Request Start] folder=flipped_H_concave_4
+   Encoding image: q:\Projects\Object_reps_neural\Programming\gpt\experiment_1\videos_processed\flipped_H_concave_4\crops_output\crop_frame_00389.png
+   Sending request to model='gpt-4o' (multi-modal style).
+   Received response: 4
+   [Request End]
+
+   => Updated in-memory data for folder 'flipped_H_concave_4'.
+
+Processing folder: flipped_H_convex_0
+   => Middle crop: q:\Projects\Object_reps_neural\Programming\gpt\experiment_1\videos_processed\flipped_H_convex_0\crops_output\crop_frame_00386.png
+   => Final question:
+Consider this image of two objects on a black background.
+The image is a snippet of a video, where the object on the right moves towards the object on the left (right to left motion). The frame I have provided you is the exact frame at which the right object stops, and the left object starts moving with the same velocity and direction as the right object was moving (right to left).I want to understand your perception of causality here.
+You should not output anything more than a single number from 1-7, answering how much you agree with the following statement: "The object on the right caused the object on the left to move".
+
+   [Request Start] folder=flipped_H_convex_0
+   Encoding image: q:\Projects\Object_reps_neural\Programming\gpt\experiment_1\videos_processed\flipped_H_convex_0\crops_output\crop_frame_00386.png
+   Sending request to model='gpt-4o' (multi-modal style).
+   Received response: 4
+   [Request End]
+
+   => Updated in-memory data for folder 'flipped_H_convex_0'.
+
+Processing folder: flipped_H_convex_2
+   => Middle crop: q:\Projects\Object_reps_neural\Programming\gpt\experiment_1\videos_processed\flipped_H_convex_2\crops_output\crop_frame_00378.png
+   => Final question:
+Consider this image of two objects on a black background.
+The image is a snippet of a video, where the object on the right moves towards the object on the left (right to left motion). The frame I have provided you is the exact frame at which the right object stops, and the left object starts moving with the same velocity and direction as the right object was moving (right to left).I want to understand your perception of causality here.
+You should not output anything more than a single number from 1-7, answering how much you agree with the following statement: "The object on the right caused the object on the left to move".
+
+   [Request Start] folder=flipped_H_convex_2
+   Encoding image: q:\Projects\Object_reps_neural\Programming\gpt\experiment_1\videos_processed\flipped_H_convex_2\crops_output\crop_frame_00378.png
+   Sending request to model='gpt-4o' (multi-modal style).
+   Received response: 5
+   [Request End]
+
+   => Updated in-memory data for folder 'flipped_H_convex_2'.
+
+Processing folder: flipped_H_convex_9
+   => Middle crop: q:\Projects\Object_reps_neural\Programming\gpt\experiment_1\videos_processed\flipped_H_convex_9\crops_output\crop_frame_00322.png
+   => Final question:
+Consider this image of two objects on a black background.
+The image is a snippet of a video, where the object on the right moves towards the object on the left (right to left motion). The frame I have provided you is the exact frame at which the right object stops, and the left object starts moving with the same velocity and direction as the right object was moving (right to left).I want to understand your perception of causality here.
+You should not output anything more than a single number from 1-7, answering how much you agree with the following statement: "The object on the right caused the object on the left to move".
+
+   [Request Start] folder=flipped_H_convex_9
+   Encoding image: q:\Projects\Object_reps_neural\Programming\gpt\experiment_1\videos_processed\flipped_H_convex_9\crops_output\crop_frame_00322.png
+   Sending request to model='gpt-4o' (multi-modal style).
+   Received response: 4
+   [Request End]
+
+   => Updated in-memory data for folder 'flipped_H_convex_9'.
+
+Processing folder: flipped_exp_1
+   => Folder does not contain 'convex'/'concave'; skipping.
+
+Processing folder: flipped_exp_3
+   => Folder does not contain 'convex'/'concave'; skipping.
+
+Processing folder: flipped_exp_5
+   => Folder does not contain 'convex'/'concave'; skipping.
+
+Processing folder: flipped_exp_7
+   => Folder does not contain 'convex'/'concave'; skipping.
+
+Processing folder: flipped_warmup_0
+   => Folder does not contain 'convex'/'concave'; skipping.
+
+Processing folder: flipped_warmup_1
+   => Folder does not contain 'convex'/'concave'; skipping.
+
+Processing folder: flipped_warmup_2
+   => Folder does not contain 'convex'/'concave'; skipping.
+
+Processing folder: flipped_warmup_6
+   => Folder does not contain 'convex'/'concave'; skipping.
+
+Processing folder: flipped_warmup_8
+   => Folder does not contain 'convex'/'concave'; skipping.
+
+Processing folder: warmup_3
+   => Folder does not contain 'convex'/'concave'; skipping.
+
+Processing folder: warmup_4
+   => Folder does not contain 'convex'/'concave'; skipping.
+
+Processing folder: warmup_5
+   => Folder does not contain 'convex'/'concave'; skipping.
+
+Processing folder: warmup_7
+   => Folder does not contain 'convex'/'concave'; skipping.
+
+Processing folder: warmup_9
+   => Folder does not contain 'convex'/'concave'; skipping.
+
+[Info] Wrote 160 rows to CSV 'q:\Projects\Object_reps_neural\Programming\gpt\experiment_1\responses.csv'.
+All requested subfolders processed. Script finished.
