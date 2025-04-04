@@ -1,0 +1,552 @@
+======================================================
+Causality Score Script - Starting
+parent_dir = /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/gpt/experiment_1/videos_processed
+csv_file   = /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/gpt/experiment_1/responses.csv
+percentage = 20
+Log file   = /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/gpt/experiment_1/causality_score_logs/20250322_005130.log
+======================================================
+
+Found 180 total subfolders in '/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/gpt/experiment_1/videos_processed'.
+We will process 36 subfolders (alphabetical order).
+
+Processing folder: A_concave_2
+   => Middle crop: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/gpt/experiment_1/videos_processed/A_concave_2/crops_output/crop_frame_00405.png
+   => Final question:
+From 1-7, how much do you agree with the statement: "The object on the left caused the object on the right to start moving".
+Consider that the photo attached is a snippet of a video, where the object on the left moves towards the object on the right (left to right motion). The frame I have provided you is the exact frame at which the left object stops, and the right object starts moving with the same velocity and direction as the left object was moving until now. I want to understand your perception of causality here.
+You should not output anything more than a single number from 1-7, answering how much you agree with the above statement.
+
+   [Request Start] folder=A_concave_2
+   Encoding image: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/gpt/experiment_1/videos_processed/A_concave_2/crops_output/crop_frame_00405.png
+   Creating a new OpenAI client for a fresh chat session.
+   Sending request to model='gpt-4o' with max_tokens=300.
+   Received response: Mocked answer: 4
+   => Wrote row to CSV: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/gpt/experiment_1/responses.csv
+   [Request End]
+
+Processing folder: A_concave_3
+   => Middle crop: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/gpt/experiment_1/videos_processed/A_concave_3/crops_output/crop_frame_00401.png
+   => Final question:
+From 1-7, how much do you agree with the statement: "The object on the left caused the object on the right to start moving".
+Consider that the photo attached is a snippet of a video, where the object on the left moves towards the object on the right (left to right motion). The frame I have provided you is the exact frame at which the left object stops, and the right object starts moving with the same velocity and direction as the left object was moving until now. I want to understand your perception of causality here.
+You should not output anything more than a single number from 1-7, answering how much you agree with the above statement.
+
+   [Request Start] folder=A_concave_3
+   Encoding image: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/gpt/experiment_1/videos_processed/A_concave_3/crops_output/crop_frame_00401.png
+   Creating a new OpenAI client for a fresh chat session.
+   Sending request to model='gpt-4o' with max_tokens=300.
+   Received response: Mocked answer: 4
+   => Wrote row to CSV: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/gpt/experiment_1/responses.csv
+   [Request End]
+
+Processing folder: A_concave_4
+   => Middle crop: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/gpt/experiment_1/videos_processed/A_concave_4/crops_output/crop_frame_00397.png
+   => Final question:
+From 1-7, how much do you agree with the statement: "The object on the left caused the object on the right to start moving".
+Consider that the photo attached is a snippet of a video, where the object on the left moves towards the object on the right (left to right motion). The frame I have provided you is the exact frame at which the left object stops, and the right object starts moving with the same velocity and direction as the left object was moving until now. I want to understand your perception of causality here.
+You should not output anything more than a single number from 1-7, answering how much you agree with the above statement.
+
+   [Request Start] folder=A_concave_4
+   Encoding image: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/gpt/experiment_1/videos_processed/A_concave_4/crops_output/crop_frame_00397.png
+   Creating a new OpenAI client for a fresh chat session.
+   Sending request to model='gpt-4o' with max_tokens=300.
+   Received response: Mocked answer: 4
+   => Wrote row to CSV: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/gpt/experiment_1/responses.csv
+   [Request End]
+
+Processing folder: A_concave_6
+   => Middle crop: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/gpt/experiment_1/videos_processed/A_concave_6/crops_output/crop_frame_00388.png
+   => Final question:
+From 1-7, how much do you agree with the statement: "The object on the left caused the object on the right to start moving".
+Consider that the photo attached is a snippet of a video, where the object on the left moves towards the object on the right (left to right motion). The frame I have provided you is the exact frame at which the left object stops, and the right object starts moving with the same velocity and direction as the left object was moving until now. I want to understand your perception of causality here.
+You should not output anything more than a single number from 1-7, answering how much you agree with the above statement.
+
+   [Request Start] folder=A_concave_6
+   Encoding image: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/gpt/experiment_1/videos_processed/A_concave_6/crops_output/crop_frame_00388.png
+   Creating a new OpenAI client for a fresh chat session.
+   Sending request to model='gpt-4o' with max_tokens=300.
+   Received response: Mocked answer: 4
+   => Wrote row to CSV: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/gpt/experiment_1/responses.csv
+   [Request End]
+
+Processing folder: A_convex_4
+   => Middle crop: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/gpt/experiment_1/videos_processed/A_convex_4/crops_output/crop_frame_00378.png
+   => Final question:
+From 1-7, how much do you agree with the statement: "The object on the left caused the object on the right to start moving".
+Consider that the photo attached is a snippet of a video, where the object on the left moves towards the object on the right (left to right motion). The frame I have provided you is the exact frame at which the left object stops, and the right object starts moving with the same velocity and direction as the left object was moving until now. I want to understand your perception of causality here.
+You should not output anything more than a single number from 1-7, answering how much you agree with the above statement.
+
+   [Request Start] folder=A_convex_4
+   Encoding image: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/gpt/experiment_1/videos_processed/A_convex_4/crops_output/crop_frame_00378.png
+   Creating a new OpenAI client for a fresh chat session.
+   Sending request to model='gpt-4o' with max_tokens=300.
+   Received response: Mocked answer: 4
+   => Wrote row to CSV: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/gpt/experiment_1/responses.csv
+   [Request End]
+
+Processing folder: A_convex_9
+   => Middle crop: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/gpt/experiment_1/videos_processed/A_convex_9/crops_output/crop_frame_00330.png
+   => Final question:
+From 1-7, how much do you agree with the statement: "The object on the left caused the object on the right to start moving".
+Consider that the photo attached is a snippet of a video, where the object on the left moves towards the object on the right (left to right motion). The frame I have provided you is the exact frame at which the left object stops, and the right object starts moving with the same velocity and direction as the left object was moving until now. I want to understand your perception of causality here.
+You should not output anything more than a single number from 1-7, answering how much you agree with the above statement.
+
+   [Request Start] folder=A_convex_9
+   Encoding image: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/gpt/experiment_1/videos_processed/A_convex_9/crops_output/crop_frame_00330.png
+   Creating a new OpenAI client for a fresh chat session.
+   Sending request to model='gpt-4o' with max_tokens=300.
+   Received response: Mocked answer: 4
+   => Wrote row to CSV: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/gpt/experiment_1/responses.csv
+   [Request End]
+
+Processing folder: B_concave_0
+   => Middle crop: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/gpt/experiment_1/videos_processed/B_concave_0/crops_output/crop_frame_00422.png
+   => Final question:
+From 1-7, how much do you agree with the statement: "The object on the left caused the object on the right to start moving".
+Consider that the photo attached is a snippet of a video, where the object on the left moves towards the object on the right (left to right motion). The frame I have provided you is the exact frame at which the left object stops, and the right object starts moving with the same velocity and direction as the left object was moving until now. I want to understand your perception of causality here.
+You should not output anything more than a single number from 1-7, answering how much you agree with the above statement.
+
+   [Request Start] folder=B_concave_0
+   Encoding image: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/gpt/experiment_1/videos_processed/B_concave_0/crops_output/crop_frame_00422.png
+   Creating a new OpenAI client for a fresh chat session.
+   Sending request to model='gpt-4o' with max_tokens=300.
+   Received response: Mocked answer: 4
+   => Wrote row to CSV: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/gpt/experiment_1/responses.csv
+   [Request End]
+
+Processing folder: B_concave_5
+   => Middle crop: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/gpt/experiment_1/videos_processed/B_concave_5/crops_output/crop_frame_00402.png
+   => Final question:
+From 1-7, how much do you agree with the statement: "The object on the left caused the object on the right to start moving".
+Consider that the photo attached is a snippet of a video, where the object on the left moves towards the object on the right (left to right motion). The frame I have provided you is the exact frame at which the left object stops, and the right object starts moving with the same velocity and direction as the left object was moving until now. I want to understand your perception of causality here.
+You should not output anything more than a single number from 1-7, answering how much you agree with the above statement.
+
+   [Request Start] folder=B_concave_5
+   Encoding image: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/gpt/experiment_1/videos_processed/B_concave_5/crops_output/crop_frame_00402.png
+   Creating a new OpenAI client for a fresh chat session.
+   Sending request to model='gpt-4o' with max_tokens=300.
+   Received response: Mocked answer: 4
+   => Wrote row to CSV: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/gpt/experiment_1/responses.csv
+   [Request End]
+
+Processing folder: B_concave_6
+   => Middle crop: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/gpt/experiment_1/videos_processed/B_concave_6/crops_output/crop_frame_00397.png
+   => Final question:
+From 1-7, how much do you agree with the statement: "The object on the left caused the object on the right to start moving".
+Consider that the photo attached is a snippet of a video, where the object on the left moves towards the object on the right (left to right motion). The frame I have provided you is the exact frame at which the left object stops, and the right object starts moving with the same velocity and direction as the left object was moving until now. I want to understand your perception of causality here.
+You should not output anything more than a single number from 1-7, answering how much you agree with the above statement.
+
+   [Request Start] folder=B_concave_6
+   Encoding image: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/gpt/experiment_1/videos_processed/B_concave_6/crops_output/crop_frame_00397.png
+   Creating a new OpenAI client for a fresh chat session.
+   Sending request to model='gpt-4o' with max_tokens=300.
+   Received response: Mocked answer: 4
+   => Wrote row to CSV: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/gpt/experiment_1/responses.csv
+   [Request End]
+
+Processing folder: B_concave_7
+   => Middle crop: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/gpt/experiment_1/videos_processed/B_concave_7/crops_output/crop_frame_00390.png
+   => Final question:
+From 1-7, how much do you agree with the statement: "The object on the left caused the object on the right to start moving".
+Consider that the photo attached is a snippet of a video, where the object on the left moves towards the object on the right (left to right motion). The frame I have provided you is the exact frame at which the left object stops, and the right object starts moving with the same velocity and direction as the left object was moving until now. I want to understand your perception of causality here.
+You should not output anything more than a single number from 1-7, answering how much you agree with the above statement.
+
+   [Request Start] folder=B_concave_7
+   Encoding image: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/gpt/experiment_1/videos_processed/B_concave_7/crops_output/crop_frame_00390.png
+   Creating a new OpenAI client for a fresh chat session.
+   Sending request to model='gpt-4o' with max_tokens=300.
+   Received response: Mocked answer: 4
+   => Wrote row to CSV: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/gpt/experiment_1/responses.csv
+   [Request End]
+
+Processing folder: B_concave_8
+   => Middle crop: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/gpt/experiment_1/videos_processed/B_concave_8/crops_output/crop_frame_00377.png
+   => Final question:
+From 1-7, how much do you agree with the statement: "The object on the left caused the object on the right to start moving".
+Consider that the photo attached is a snippet of a video, where the object on the left moves towards the object on the right (left to right motion). The frame I have provided you is the exact frame at which the left object stops, and the right object starts moving with the same velocity and direction as the left object was moving until now. I want to understand your perception of causality here.
+You should not output anything more than a single number from 1-7, answering how much you agree with the above statement.
+
+   [Request Start] folder=B_concave_8
+   Encoding image: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/gpt/experiment_1/videos_processed/B_concave_8/crops_output/crop_frame_00377.png
+   Creating a new OpenAI client for a fresh chat session.
+   Sending request to model='gpt-4o' with max_tokens=300.
+   Received response: Mocked answer: 4
+   => Wrote row to CSV: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/gpt/experiment_1/responses.csv
+   [Request End]
+
+Processing folder: B_convex_3
+   => Middle crop: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/gpt/experiment_1/videos_processed/B_convex_3/crops_output/crop_frame_00395.png
+   => Final question:
+From 1-7, how much do you agree with the statement: "The object on the left caused the object on the right to start moving".
+Consider that the photo attached is a snippet of a video, where the object on the left moves towards the object on the right (left to right motion). The frame I have provided you is the exact frame at which the left object stops, and the right object starts moving with the same velocity and direction as the left object was moving until now. I want to understand your perception of causality here.
+You should not output anything more than a single number from 1-7, answering how much you agree with the above statement.
+
+   [Request Start] folder=B_convex_3
+   Encoding image: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/gpt/experiment_1/videos_processed/B_convex_3/crops_output/crop_frame_00395.png
+   Creating a new OpenAI client for a fresh chat session.
+   Sending request to model='gpt-4o' with max_tokens=300.
+   Received response: Mocked answer: 4
+   => Wrote row to CSV: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/gpt/experiment_1/responses.csv
+   [Request End]
+
+Processing folder: B_convex_5
+   => Middle crop: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/gpt/experiment_1/videos_processed/B_convex_5/crops_output/crop_frame_00387.png
+   => Final question:
+From 1-7, how much do you agree with the statement: "The object on the left caused the object on the right to start moving".
+Consider that the photo attached is a snippet of a video, where the object on the left moves towards the object on the right (left to right motion). The frame I have provided you is the exact frame at which the left object stops, and the right object starts moving with the same velocity and direction as the left object was moving until now. I want to understand your perception of causality here.
+You should not output anything more than a single number from 1-7, answering how much you agree with the above statement.
+
+   [Request Start] folder=B_convex_5
+   Encoding image: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/gpt/experiment_1/videos_processed/B_convex_5/crops_output/crop_frame_00387.png
+   Creating a new OpenAI client for a fresh chat session.
+   Sending request to model='gpt-4o' with max_tokens=300.
+   Received response: Mocked answer: 4
+   => Wrote row to CSV: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/gpt/experiment_1/responses.csv
+   [Request End]
+
+Processing folder: B_convex_6
+   => Middle crop: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/gpt/experiment_1/videos_processed/B_convex_6/crops_output/crop_frame_00382.png
+   => Final question:
+From 1-7, how much do you agree with the statement: "The object on the left caused the object on the right to start moving".
+Consider that the photo attached is a snippet of a video, where the object on the left moves towards the object on the right (left to right motion). The frame I have provided you is the exact frame at which the left object stops, and the right object starts moving with the same velocity and direction as the left object was moving until now. I want to understand your perception of causality here.
+You should not output anything more than a single number from 1-7, answering how much you agree with the above statement.
+
+   [Request Start] folder=B_convex_6
+   Encoding image: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/gpt/experiment_1/videos_processed/B_convex_6/crops_output/crop_frame_00382.png
+   Creating a new OpenAI client for a fresh chat session.
+   Sending request to model='gpt-4o' with max_tokens=300.
+   Received response: Mocked answer: 4
+   => Wrote row to CSV: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/gpt/experiment_1/responses.csv
+   [Request End]
+
+Processing folder: C_concave_0
+   => Middle crop: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/gpt/experiment_1/videos_processed/C_concave_0/crops_output/crop_frame_00416.png
+   => Final question:
+From 1-7, how much do you agree with the statement: "The object on the left caused the object on the right to start moving".
+Consider that the photo attached is a snippet of a video, where the object on the left moves towards the object on the right (left to right motion). The frame I have provided you is the exact frame at which the left object stops, and the right object starts moving with the same velocity and direction as the left object was moving until now. I want to understand your perception of causality here.
+You should not output anything more than a single number from 1-7, answering how much you agree with the above statement.
+
+   [Request Start] folder=C_concave_0
+   Encoding image: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/gpt/experiment_1/videos_processed/C_concave_0/crops_output/crop_frame_00416.png
+   Creating a new OpenAI client for a fresh chat session.
+   Sending request to model='gpt-4o' with max_tokens=300.
+   Received response: Mocked answer: 4
+   => Wrote row to CSV: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/gpt/experiment_1/responses.csv
+   [Request End]
+
+Processing folder: C_concave_1
+   => Middle crop: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/gpt/experiment_1/videos_processed/C_concave_1/crops_output/crop_frame_00412.png
+   => Final question:
+From 1-7, how much do you agree with the statement: "The object on the left caused the object on the right to start moving".
+Consider that the photo attached is a snippet of a video, where the object on the left moves towards the object on the right (left to right motion). The frame I have provided you is the exact frame at which the left object stops, and the right object starts moving with the same velocity and direction as the left object was moving until now. I want to understand your perception of causality here.
+You should not output anything more than a single number from 1-7, answering how much you agree with the above statement.
+
+   [Request Start] folder=C_concave_1
+   Encoding image: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/gpt/experiment_1/videos_processed/C_concave_1/crops_output/crop_frame_00412.png
+   Creating a new OpenAI client for a fresh chat session.
+   Sending request to model='gpt-4o' with max_tokens=300.
+   Received response: Mocked answer: 4
+   => Wrote row to CSV: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/gpt/experiment_1/responses.csv
+   [Request End]
+
+Processing folder: C_concave_2
+   => Middle crop: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/gpt/experiment_1/videos_processed/C_concave_2/crops_output/crop_frame_00408.png
+   => Final question:
+From 1-7, how much do you agree with the statement: "The object on the left caused the object on the right to start moving".
+Consider that the photo attached is a snippet of a video, where the object on the left moves towards the object on the right (left to right motion). The frame I have provided you is the exact frame at which the left object stops, and the right object starts moving with the same velocity and direction as the left object was moving until now. I want to understand your perception of causality here.
+You should not output anything more than a single number from 1-7, answering how much you agree with the above statement.
+
+   [Request Start] folder=C_concave_2
+   Encoding image: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/gpt/experiment_1/videos_processed/C_concave_2/crops_output/crop_frame_00408.png
+   Creating a new OpenAI client for a fresh chat session.
+   Sending request to model='gpt-4o' with max_tokens=300.
+   Received response: Mocked answer: 4
+   => Wrote row to CSV: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/gpt/experiment_1/responses.csv
+   [Request End]
+
+Processing folder: C_concave_3
+   => Middle crop: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/gpt/experiment_1/videos_processed/C_concave_3/crops_output/crop_frame_00404.png
+   => Final question:
+From 1-7, how much do you agree with the statement: "The object on the left caused the object on the right to start moving".
+Consider that the photo attached is a snippet of a video, where the object on the left moves towards the object on the right (left to right motion). The frame I have provided you is the exact frame at which the left object stops, and the right object starts moving with the same velocity and direction as the left object was moving until now. I want to understand your perception of causality here.
+You should not output anything more than a single number from 1-7, answering how much you agree with the above statement.
+
+   [Request Start] folder=C_concave_3
+   Encoding image: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/gpt/experiment_1/videos_processed/C_concave_3/crops_output/crop_frame_00404.png
+   Creating a new OpenAI client for a fresh chat session.
+   Sending request to model='gpt-4o' with max_tokens=300.
+   Received response: Mocked answer: 4
+   => Wrote row to CSV: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/gpt/experiment_1/responses.csv
+   [Request End]
+
+Processing folder: C_concave_9
+   => Middle crop: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/gpt/experiment_1/videos_processed/C_concave_9/crops_output/crop_frame_00352.png
+   => Final question:
+From 1-7, how much do you agree with the statement: "The object on the left caused the object on the right to start moving".
+Consider that the photo attached is a snippet of a video, where the object on the left moves towards the object on the right (left to right motion). The frame I have provided you is the exact frame at which the left object stops, and the right object starts moving with the same velocity and direction as the left object was moving until now. I want to understand your perception of causality here.
+You should not output anything more than a single number from 1-7, answering how much you agree with the above statement.
+
+   [Request Start] folder=C_concave_9
+   Encoding image: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/gpt/experiment_1/videos_processed/C_concave_9/crops_output/crop_frame_00352.png
+   Creating a new OpenAI client for a fresh chat session.
+   Sending request to model='gpt-4o' with max_tokens=300.
+   Received response: Mocked answer: 4
+   => Wrote row to CSV: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/gpt/experiment_1/responses.csv
+   [Request End]
+
+Processing folder: C_convex_2
+   => Middle crop: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/gpt/experiment_1/videos_processed/C_convex_2/crops_output/crop_frame_00406.png
+   => Final question:
+From 1-7, how much do you agree with the statement: "The object on the left caused the object on the right to start moving".
+Consider that the photo attached is a snippet of a video, where the object on the left moves towards the object on the right (left to right motion). The frame I have provided you is the exact frame at which the left object stops, and the right object starts moving with the same velocity and direction as the left object was moving until now. I want to understand your perception of causality here.
+You should not output anything more than a single number from 1-7, answering how much you agree with the above statement.
+
+   [Request Start] folder=C_convex_2
+   Encoding image: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/gpt/experiment_1/videos_processed/C_convex_2/crops_output/crop_frame_00406.png
+   Creating a new OpenAI client for a fresh chat session.
+   Sending request to model='gpt-4o' with max_tokens=300.
+   Received response: Mocked answer: 4
+   => Wrote row to CSV: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/gpt/experiment_1/responses.csv
+   [Request End]
+
+Processing folder: C_convex_5
+   => Middle crop: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/gpt/experiment_1/videos_processed/C_convex_5/crops_output/crop_frame_00394.png
+   => Final question:
+From 1-7, how much do you agree with the statement: "The object on the left caused the object on the right to start moving".
+Consider that the photo attached is a snippet of a video, where the object on the left moves towards the object on the right (left to right motion). The frame I have provided you is the exact frame at which the left object stops, and the right object starts moving with the same velocity and direction as the left object was moving until now. I want to understand your perception of causality here.
+You should not output anything more than a single number from 1-7, answering how much you agree with the above statement.
+
+   [Request Start] folder=C_convex_5
+   Encoding image: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/gpt/experiment_1/videos_processed/C_convex_5/crops_output/crop_frame_00394.png
+   Creating a new OpenAI client for a fresh chat session.
+   Sending request to model='gpt-4o' with max_tokens=300.
+   Received response: Mocked answer: 4
+   => Wrote row to CSV: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/gpt/experiment_1/responses.csv
+   [Request End]
+
+Processing folder: C_convex_6
+   => Middle crop: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/gpt/experiment_1/videos_processed/C_convex_6/crops_output/crop_frame_00389.png
+   => Final question:
+From 1-7, how much do you agree with the statement: "The object on the left caused the object on the right to start moving".
+Consider that the photo attached is a snippet of a video, where the object on the left moves towards the object on the right (left to right motion). The frame I have provided you is the exact frame at which the left object stops, and the right object starts moving with the same velocity and direction as the left object was moving until now. I want to understand your perception of causality here.
+You should not output anything more than a single number from 1-7, answering how much you agree with the above statement.
+
+   [Request Start] folder=C_convex_6
+   Encoding image: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/gpt/experiment_1/videos_processed/C_convex_6/crops_output/crop_frame_00389.png
+   Creating a new OpenAI client for a fresh chat session.
+   Sending request to model='gpt-4o' with max_tokens=300.
+   Received response: Mocked answer: 4
+   => Wrote row to CSV: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/gpt/experiment_1/responses.csv
+   [Request End]
+
+Processing folder: D_concave_0
+   => Middle crop: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/gpt/experiment_1/videos_processed/D_concave_0/crops_output/crop_frame_00416.png
+   => Final question:
+From 1-7, how much do you agree with the statement: "The object on the left caused the object on the right to start moving".
+Consider that the photo attached is a snippet of a video, where the object on the left moves towards the object on the right (left to right motion). The frame I have provided you is the exact frame at which the left object stops, and the right object starts moving with the same velocity and direction as the left object was moving until now. I want to understand your perception of causality here.
+You should not output anything more than a single number from 1-7, answering how much you agree with the above statement.
+
+   [Request Start] folder=D_concave_0
+   Encoding image: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/gpt/experiment_1/videos_processed/D_concave_0/crops_output/crop_frame_00416.png
+   Creating a new OpenAI client for a fresh chat session.
+   Sending request to model='gpt-4o' with max_tokens=300.
+   Received response: Mocked answer: 4
+   => Wrote row to CSV: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/gpt/experiment_1/responses.csv
+   [Request End]
+
+Processing folder: D_concave_2
+   => Middle crop: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/gpt/experiment_1/videos_processed/D_concave_2/crops_output/crop_frame_00408.png
+   => Final question:
+From 1-7, how much do you agree with the statement: "The object on the left caused the object on the right to start moving".
+Consider that the photo attached is a snippet of a video, where the object on the left moves towards the object on the right (left to right motion). The frame I have provided you is the exact frame at which the left object stops, and the right object starts moving with the same velocity and direction as the left object was moving until now. I want to understand your perception of causality here.
+You should not output anything more than a single number from 1-7, answering how much you agree with the above statement.
+
+   [Request Start] folder=D_concave_2
+   Encoding image: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/gpt/experiment_1/videos_processed/D_concave_2/crops_output/crop_frame_00408.png
+   Creating a new OpenAI client for a fresh chat session.
+   Sending request to model='gpt-4o' with max_tokens=300.
+   Received response: Mocked answer: 4
+   => Wrote row to CSV: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/gpt/experiment_1/responses.csv
+   [Request End]
+
+Processing folder: D_concave_4
+   => Middle crop: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/gpt/experiment_1/videos_processed/D_concave_4/crops_output/crop_frame_00400.png
+   => Final question:
+From 1-7, how much do you agree with the statement: "The object on the left caused the object on the right to start moving".
+Consider that the photo attached is a snippet of a video, where the object on the left moves towards the object on the right (left to right motion). The frame I have provided you is the exact frame at which the left object stops, and the right object starts moving with the same velocity and direction as the left object was moving until now. I want to understand your perception of causality here.
+You should not output anything more than a single number from 1-7, answering how much you agree with the above statement.
+
+   [Request Start] folder=D_concave_4
+   Encoding image: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/gpt/experiment_1/videos_processed/D_concave_4/crops_output/crop_frame_00400.png
+   Creating a new OpenAI client for a fresh chat session.
+   Sending request to model='gpt-4o' with max_tokens=300.
+   Received response: Mocked answer: 4
+   => Wrote row to CSV: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/gpt/experiment_1/responses.csv
+   [Request End]
+
+Processing folder: D_concave_5
+   => Middle crop: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/gpt/experiment_1/videos_processed/D_concave_5/crops_output/crop_frame_00396.png
+   => Final question:
+From 1-7, how much do you agree with the statement: "The object on the left caused the object on the right to start moving".
+Consider that the photo attached is a snippet of a video, where the object on the left moves towards the object on the right (left to right motion). The frame I have provided you is the exact frame at which the left object stops, and the right object starts moving with the same velocity and direction as the left object was moving until now. I want to understand your perception of causality here.
+You should not output anything more than a single number from 1-7, answering how much you agree with the above statement.
+
+   [Request Start] folder=D_concave_5
+   Encoding image: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/gpt/experiment_1/videos_processed/D_concave_5/crops_output/crop_frame_00396.png
+   Creating a new OpenAI client for a fresh chat session.
+   Sending request to model='gpt-4o' with max_tokens=300.
+   Received response: Mocked answer: 4
+   => Wrote row to CSV: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/gpt/experiment_1/responses.csv
+   [Request End]
+
+Processing folder: D_concave_7
+   => Middle crop: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/gpt/experiment_1/videos_processed/D_concave_7/crops_output/crop_frame_00384.png
+   => Final question:
+From 1-7, how much do you agree with the statement: "The object on the left caused the object on the right to start moving".
+Consider that the photo attached is a snippet of a video, where the object on the left moves towards the object on the right (left to right motion). The frame I have provided you is the exact frame at which the left object stops, and the right object starts moving with the same velocity and direction as the left object was moving until now. I want to understand your perception of causality here.
+You should not output anything more than a single number from 1-7, answering how much you agree with the above statement.
+
+   [Request Start] folder=D_concave_7
+   Encoding image: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/gpt/experiment_1/videos_processed/D_concave_7/crops_output/crop_frame_00384.png
+   Creating a new OpenAI client for a fresh chat session.
+   Sending request to model='gpt-4o' with max_tokens=300.
+   Received response: Mocked answer: 4
+   => Wrote row to CSV: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/gpt/experiment_1/responses.csv
+   [Request End]
+
+Processing folder: D_concave_8
+   => Middle crop: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/gpt/experiment_1/videos_processed/D_concave_8/crops_output/crop_frame_00371.png
+   => Final question:
+From 1-7, how much do you agree with the statement: "The object on the left caused the object on the right to start moving".
+Consider that the photo attached is a snippet of a video, where the object on the left moves towards the object on the right (left to right motion). The frame I have provided you is the exact frame at which the left object stops, and the right object starts moving with the same velocity and direction as the left object was moving until now. I want to understand your perception of causality here.
+You should not output anything more than a single number from 1-7, answering how much you agree with the above statement.
+
+   [Request Start] folder=D_concave_8
+   Encoding image: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/gpt/experiment_1/videos_processed/D_concave_8/crops_output/crop_frame_00371.png
+   Creating a new OpenAI client for a fresh chat session.
+   Sending request to model='gpt-4o' with max_tokens=300.
+   Received response: Mocked answer: 4
+   => Wrote row to CSV: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/gpt/experiment_1/responses.csv
+   [Request End]
+
+Processing folder: D_convex_0
+   => Middle crop: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/gpt/experiment_1/videos_processed/D_convex_0/crops_output/crop_frame_00405.png
+   => Final question:
+From 1-7, how much do you agree with the statement: "The object on the left caused the object on the right to start moving".
+Consider that the photo attached is a snippet of a video, where the object on the left moves towards the object on the right (left to right motion). The frame I have provided you is the exact frame at which the left object stops, and the right object starts moving with the same velocity and direction as the left object was moving until now. I want to understand your perception of causality here.
+You should not output anything more than a single number from 1-7, answering how much you agree with the above statement.
+
+   [Request Start] folder=D_convex_0
+   Encoding image: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/gpt/experiment_1/videos_processed/D_convex_0/crops_output/crop_frame_00405.png
+   Creating a new OpenAI client for a fresh chat session.
+   Sending request to model='gpt-4o' with max_tokens=300.
+   Received response: Mocked answer: 4
+   => Wrote row to CSV: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/gpt/experiment_1/responses.csv
+   [Request End]
+
+Processing folder: D_convex_3
+   => Middle crop: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/gpt/experiment_1/videos_processed/D_convex_3/crops_output/crop_frame_00393.png
+   => Final question:
+From 1-7, how much do you agree with the statement: "The object on the left caused the object on the right to start moving".
+Consider that the photo attached is a snippet of a video, where the object on the left moves towards the object on the right (left to right motion). The frame I have provided you is the exact frame at which the left object stops, and the right object starts moving with the same velocity and direction as the left object was moving until now. I want to understand your perception of causality here.
+You should not output anything more than a single number from 1-7, answering how much you agree with the above statement.
+
+   [Request Start] folder=D_convex_3
+   Encoding image: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/gpt/experiment_1/videos_processed/D_convex_3/crops_output/crop_frame_00393.png
+   Creating a new OpenAI client for a fresh chat session.
+   Sending request to model='gpt-4o' with max_tokens=300.
+   Received response: Mocked answer: 4
+   => Wrote row to CSV: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/gpt/experiment_1/responses.csv
+   [Request End]
+
+Processing folder: D_convex_5
+   => Middle crop: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/gpt/experiment_1/videos_processed/D_convex_5/crops_output/crop_frame_00385.png
+   => Final question:
+From 1-7, how much do you agree with the statement: "The object on the left caused the object on the right to start moving".
+Consider that the photo attached is a snippet of a video, where the object on the left moves towards the object on the right (left to right motion). The frame I have provided you is the exact frame at which the left object stops, and the right object starts moving with the same velocity and direction as the left object was moving until now. I want to understand your perception of causality here.
+You should not output anything more than a single number from 1-7, answering how much you agree with the above statement.
+
+   [Request Start] folder=D_convex_5
+   Encoding image: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/gpt/experiment_1/videos_processed/D_convex_5/crops_output/crop_frame_00385.png
+   Creating a new OpenAI client for a fresh chat session.
+   Sending request to model='gpt-4o' with max_tokens=300.
+   Received response: Mocked answer: 4
+   => Wrote row to CSV: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/gpt/experiment_1/responses.csv
+   [Request End]
+
+Processing folder: D_convex_6
+   => Middle crop: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/gpt/experiment_1/videos_processed/D_convex_6/crops_output/crop_frame_00380.png
+   => Final question:
+From 1-7, how much do you agree with the statement: "The object on the left caused the object on the right to start moving".
+Consider that the photo attached is a snippet of a video, where the object on the left moves towards the object on the right (left to right motion). The frame I have provided you is the exact frame at which the left object stops, and the right object starts moving with the same velocity and direction as the left object was moving until now. I want to understand your perception of causality here.
+You should not output anything more than a single number from 1-7, answering how much you agree with the above statement.
+
+   [Request Start] folder=D_convex_6
+   Encoding image: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/gpt/experiment_1/videos_processed/D_convex_6/crops_output/crop_frame_00380.png
+   Creating a new OpenAI client for a fresh chat session.
+   Sending request to model='gpt-4o' with max_tokens=300.
+   Received response: Mocked answer: 4
+   => Wrote row to CSV: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/gpt/experiment_1/responses.csv
+   [Request End]
+
+Processing folder: E_concave_8
+   => Middle crop: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/gpt/experiment_1/videos_processed/E_concave_8/crops_output/crop_frame_00350.png
+   => Final question:
+From 1-7, how much do you agree with the statement: "The object on the left caused the object on the right to start moving".
+Consider that the photo attached is a snippet of a video, where the object on the left moves towards the object on the right (left to right motion). The frame I have provided you is the exact frame at which the left object stops, and the right object starts moving with the same velocity and direction as the left object was moving until now. I want to understand your perception of causality here.
+You should not output anything more than a single number from 1-7, answering how much you agree with the above statement.
+
+   [Request Start] folder=E_concave_8
+   Encoding image: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/gpt/experiment_1/videos_processed/E_concave_8/crops_output/crop_frame_00350.png
+   Creating a new OpenAI client for a fresh chat session.
+   Sending request to model='gpt-4o' with max_tokens=300.
+   Received response: Mocked answer: 4
+   => Wrote row to CSV: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/gpt/experiment_1/responses.csv
+   [Request End]
+
+Processing folder: E_concave_9
+   => Middle crop: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/gpt/experiment_1/videos_processed/E_concave_9/crops_output/crop_frame_00331.png
+   => Final question:
+From 1-7, how much do you agree with the statement: "The object on the left caused the object on the right to start moving".
+Consider that the photo attached is a snippet of a video, where the object on the left moves towards the object on the right (left to right motion). The frame I have provided you is the exact frame at which the left object stops, and the right object starts moving with the same velocity and direction as the left object was moving until now. I want to understand your perception of causality here.
+You should not output anything more than a single number from 1-7, answering how much you agree with the above statement.
+
+   [Request Start] folder=E_concave_9
+   Encoding image: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/gpt/experiment_1/videos_processed/E_concave_9/crops_output/crop_frame_00331.png
+   Creating a new OpenAI client for a fresh chat session.
+   Sending request to model='gpt-4o' with max_tokens=300.
+   Received response: Mocked answer: 4
+   => Wrote row to CSV: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/gpt/experiment_1/responses.csv
+   [Request End]
+
+Processing folder: E_convex_1
+   => Middle crop: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/gpt/experiment_1/videos_processed/E_convex_1/crops_output/crop_frame_00398.png
+   => Final question:
+From 1-7, how much do you agree with the statement: "The object on the left caused the object on the right to start moving".
+Consider that the photo attached is a snippet of a video, where the object on the left moves towards the object on the right (left to right motion). The frame I have provided you is the exact frame at which the left object stops, and the right object starts moving with the same velocity and direction as the left object was moving until now. I want to understand your perception of causality here.
+You should not output anything more than a single number from 1-7, answering how much you agree with the above statement.
+
+   [Request Start] folder=E_convex_1
+   Encoding image: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/gpt/experiment_1/videos_processed/E_convex_1/crops_output/crop_frame_00398.png
+   Creating a new OpenAI client for a fresh chat session.
+   Sending request to model='gpt-4o' with max_tokens=300.
+   Received response: Mocked answer: 4
+   => Wrote row to CSV: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/gpt/experiment_1/responses.csv
+   [Request End]
+
+Processing folder: E_convex_2
+   => Middle crop: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/gpt/experiment_1/videos_processed/E_convex_2/crops_output/crop_frame_00394.png
+   => Final question:
+From 1-7, how much do you agree with the statement: "The object on the left caused the object on the right to start moving".
+Consider that the photo attached is a snippet of a video, where the object on the left moves towards the object on the right (left to right motion). The frame I have provided you is the exact frame at which the left object stops, and the right object starts moving with the same velocity and direction as the left object was moving until now. I want to understand your perception of causality here.
+You should not output anything more than a single number from 1-7, answering how much you agree with the above statement.
+
+   [Request Start] folder=E_convex_2
+   Encoding image: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/gpt/experiment_1/videos_processed/E_convex_2/crops_output/crop_frame_00394.png
+   Creating a new OpenAI client for a fresh chat session.
+   Sending request to model='gpt-4o' with max_tokens=300.
+   Received response: Mocked answer: 4
+   => Wrote row to CSV: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/gpt/experiment_1/responses.csv
+   [Request End]
+
+All requested subfolders processed. Script finished.

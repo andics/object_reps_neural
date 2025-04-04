@@ -1,0 +1,3 @@
+2025-03-22 05:08:40,464 [INFO] Logger initialized.
+2025-03-22 05:08:40,464 [INFO] Extraction directory already exists; skipping extraction.
+2025-03-22 05:08:40,469 [ERROR] temp_zip_extract/videos_processed_copy does not exist, and we cannot autodetect a single subfolder to use. Aborting.
