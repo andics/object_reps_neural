@@ -1,0 +1,4 @@
+v2 was used
+
+The script needs a folder called temp_zip_extract as argument. This folder needs to contain
+the various videos as well as iou_THRESH.jsons inside each video folder: this indicates when the collision time was and so on.

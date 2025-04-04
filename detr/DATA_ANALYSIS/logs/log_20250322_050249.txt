@@ -1,0 +1,3 @@
+2025-03-22 05:02:49,505 [INFO] Logger initialized.
+2025-03-22 05:02:49,505 [INFO] Extraction directory already exists; skipping extraction.
+2025-03-22 05:02:49,505 [INFO] Reading name mapping from /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/detr/DATA_ANALYSIS/data/name_mapping.json...

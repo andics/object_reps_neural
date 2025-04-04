@@ -1,0 +1,15 @@
+2025-03-22 21:12:21,690 [INFO] Logger initialized.
+2025-03-22 21:12:21,690 [INFO] Skipping collision detection; reusing existing iou_{X}.json data only.
+2025-03-22 21:12:21,690 [INFO] Reading name mapping from /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/detr/DATA_ANALYSIS/data_org/name_mapping.json...
+2025-03-22 21:12:21,691 [INFO] Loaded name mapping with 96 entries.
+2025-03-22 21:12:21,691 [INFO] Reading participant CSV from /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/detr/DATA_ANALYSIS/data_org/experiment2-CollisionDetection-Data.csv...
+2025-03-22 21:12:21,708 [INFO] CSV loaded with 13974 rows and 10 columns.
+2025-03-22 21:12:21,708 [INFO] Reading precomputed collision times from iou_{thr}.json files...
+2025-03-22 21:12:21,929 [INFO] Collision time loading complete.
+2025-03-22 21:13:04,883 [INFO] Done creating results for full_resolution_resnet101, IoU=0.05
+2025-03-22 21:13:44,138 [INFO] Done creating results for full_resolution_resnet101, IoU=0.1
+2025-03-22 21:14:22,006 [INFO] Done creating results for full_resolution_resnet101, IoU=0.15
+2025-03-22 21:15:00,840 [INFO] Done creating results for full_resolution_resnet101, IoU=0.2
+2025-03-22 21:15:38,340 [INFO] Done creating results for full_resolution_resnet101, IoU=0.25
+2025-03-22 21:16:16,395 [INFO] Done creating results for full_resolution_resnet101, IoU=0.3
+2025-03-22 21:16:56,093 [INFO] Done creating results for full_resolution_resnet101, IoU=0.35
