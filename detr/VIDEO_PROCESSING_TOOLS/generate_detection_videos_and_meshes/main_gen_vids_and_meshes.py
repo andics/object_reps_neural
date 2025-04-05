@@ -79,11 +79,11 @@ def parse_video_prefix(video_path):
 def video_is_flipped(video_path):
     """
     Returns True if the video filename (without extension)
-    ends with '_flipped'. Otherwise returns False.
+    contains the substring 'flipped'. Otherwise returns False.
     """
     base = os.path.basename(video_path)
     root, _ = os.path.splitext(base)
-    return root.endswith("_flipped")
+    return "flipped" in root
 
 def find_n_color_blobs(frame_np, n_blobs=2, black_thresh=30, flip_blobs=False):
     """
@@ -105,8 +105,8 @@ def find_n_color_blobs(frame_np, n_blobs=2, black_thresh=30, flip_blobs=False):
         mean_col = coords[:, 1].mean()
         reg_info.append((r, mean_col))
 
-    # If not flipped, we sort ascending → left→right
-    # If flipped, we sort descending → right→left
+    # If not flipped, we sort ascending -> left->right
+    # If flipped, we sort descending -> right->left
     reg_info.sort(key=lambda x: x[1], reverse=flip_blobs)
 
     # Extract final masks in sorted order
@@ -183,7 +183,7 @@ def main():
     )
     parser.add_argument("--model_path", required=True)
     parser.add_argument("--video_path", required=True)
-    parser.add_argument("--current_working_directory", required=False, default="/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/detr/EXP_2_TTC/generate_detection_videos_and_meshes")
+    parser.add_argument("--current_working_directory", required=False, default="/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/detr/VIDEO_PROCESSING_TOOLS/generate_detection_videos_and_meshes/exp_1_videos_processed")
     parser.add_argument("--n_blobs", type=int, default=2)
     parser.add_argument("--initial_skip_frames", type=int, default=13)
     parser.add_argument("--alpha", type=float, default=0.7)
@@ -194,7 +194,8 @@ def main():
     flip_blobs = video_is_flipped(args.video_path)  # True if filename ends with "_flipped"
 
     # Create a single root folder = "model_prefix-video_prefix"
-    root_folder = os.path.join(args.current_working_directory, "videos_processed", f"{model_prefix}-{video_prefix}")
+    root_folder = os.path.join(args.current_working_directory, f"{model_prefix.split('_')[0]}_videos_processed",
+                               f"{model_prefix}-{video_prefix}")
 
     # Now place subfolders inside that root folder
     folder_root_blobs   = os.path.join(root_folder, "frames_blobs")
@@ -443,7 +444,8 @@ def main():
                 coords = np.argwhere(mm)
                 c_ = coords[:, 1].mean()
                 assigned_info.append((b_i, mm, c_))
-        assigned_info.sort(key=lambda x: x[2])
+        # Sort assigned blobs left→right, or right→left if flipped
+        assigned_info.sort(key=lambda x: x[2], reverse=flip_blobs)
         assigned_polys = {}
         for order_i,(b_i,msk_, col_) in enumerate(assigned_info):
             poly_ = find_contour_polygon(msk_, W/2.0, H/2.0) if msk_ is not None else []
@@ -460,7 +462,8 @@ def main():
                 coords = np.argwhere(mm_)
                 c_ = coords[:,1].mean()
                 mem_info.append((b_i,mm_,c_))
-        mem_info.sort(key=lambda x: x[2])
+        # Sort memory blobs left→right, or right→left if flipped
+        mem_info.sort(key=lambda x: x[2], reverse=flip_blobs)
         memory_polys={}
         for order_i,(b_i,msk_,c_) in enumerate(mem_info):
             poly_ = find_contour_polygon(msk_, W/2.0, H/2.0) if msk_ is not None else []
