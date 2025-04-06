@@ -1,0 +1,7 @@
+{
+  "combine_datasets": ["gqa"],
+  "combine_datasets_val": ["gqa"],
+  "vg_img_path": "/home/projects/bagon/andreyg/Projects/Variable_Resolution_VQA/Datasets/gqa_baseline_no_filt",
+  "gqa_ann_path": "/home/projects/bagon/andreyg/Projects/Variable_Resolution_VQA/Datasets_annotation_files/gqa_mdetr_annotations",
+  "gqa_split_type": "balanced"
+}

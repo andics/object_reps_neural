@@ -1,0 +1,14 @@
+{
+    "combine_datasets": ["flickr", "mixed"],
+    "combine_datasets_val": ["gqa", "flickr", "refexp"],
+    "coco_path": "/home/projects/bagon/andreyg/Projects/Variable_Resolution_VQA/Datasets/mdetr_pretrain_equiconst_10d",
+    "vg_img_path": "/home/projects/bagon/andreyg/Projects/Variable_Resolution_VQA/Datasets/mdetr_pretrain_equiconst_10d/vg_img_path",
+    "flickr_img_path": "/home/projects/bagon/andreyg/Projects/Variable_Resolution_VQA/Datasets/mdetr_pretrain_equiconst_10d/flickr_img_path",
+    "refexp_ann_path": "/home/projects/bagon/dannyh/data/mdetr_annotations/OpenSource",
+    "flickr_ann_path": "/home/projects/bagon/dannyh/data/mdetr_annotations/OpenSource",
+    "gqa_ann_path": "/home/projects/bagon/dannyh/data/mdetr_annotations/OpenSource",
+    "refexp_dataset_name": "all",
+    "GT_type": "separate",
+    "flickr_dataset_path": "/home/projects/bagon/andreyg/Projects/Variable_Resolution_VQA/Datasets/flickr_annotations"
+}
+
