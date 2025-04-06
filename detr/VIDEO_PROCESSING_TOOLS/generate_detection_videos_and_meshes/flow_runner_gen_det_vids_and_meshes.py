@@ -33,8 +33,8 @@ def main():
         "--video_dir",
         default=(
             "/home/projects/bagon/andreyg/Projects/"
-            "Object_reps_neural/Programming/detr/EXP_2_TTC/"
-            "generate_detection_videos_and_meshes/exp_2_videos_org"
+            "Object_reps_neural/Programming/detr/VIDEO_PROCESSING_TOOLS/"
+            "generate_detection_videos_and_meshes/exp_1_videos_org"
         ),
         help="Path to the directory containing .mp4 files (default points to exp_2_videos_org).",
         required=False
@@ -119,7 +119,7 @@ def main():
             f" -J \"{JOB_NAME}\" "
             " -H python3 "
             "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/detr/"
-            "EXP_2_TTC/generate_detection_videos_and_meshes/main_gen_vids_and_meshes.py "
+            "VIDEO_PROCESSING_TOOLS/generate_detection_videos_and_meshes/main_gen_vids_and_meshes.py "
             f"--model_path {MODEL_PATH} "
             f"--video_path {new_path} "
             "--n_blobs 2\" "
