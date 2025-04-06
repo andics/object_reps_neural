@@ -36,7 +36,6 @@ gpt/api_key.json
 !detr/EXPERIMENTS/generate_detection_videos_and_meshes/var_videos_processed_full/variable_pretrained_resnet101-BConcave+BConcavePatient+3900/**/*.png
 !detr/EXPERIMENTS/generate_detection_videos_and_meshes/full_videos_processed_full/full_resolution_resnet101-BConcave+BConcavePatient+3900/**/*.png
 !detr/EXPERIMENTS/generate_detection_videos_and_meshes/videos_org/*.json
-!gpt/experiment_1/videos_processed/**/*.png
 
 # Allow JPG files in that folder and all its subfolders
 #!detr/EXPERIMENTS/generate_detection_videos_and_meshes/*.jpg
