@@ -1,0 +1,13 @@
+T-test results per GT distance, comparing concave vs. convex (on distance_to_boundary)
+Generated on 2025-04-07 14:18:12
+
+GT distance=0: t=-1.4031, p=0.184834, n_concave=8, n_convex=8
+GT distance=1: t=-7.1605, p=0.000096, n_concave=8, n_convex=9
+GT distance=2: t=-5.3593, p=0.000237, n_concave=8, n_convex=8
+GT distance=3: t=-5.3026, p=0.000112, n_concave=8, n_convex=8
+GT distance=4: t=-64.8974, p=0.000000, n_concave=8, n_convex=8
+GT distance=5: t=0.5248, p=0.615657, n_concave=8, n_convex=8
+GT distance=6: t=-15.0908, p=0.000000, n_concave=8, n_convex=8
+GT distance=7: t=-5.4052, p=0.000155, n_concave=8, n_convex=8
+GT distance=8: t=-2.6204, p=0.034275, n_concave=8, n_convex=8
+GT distance=9: t=0.5733, p=0.584243, n_concave=8, n_convex=7

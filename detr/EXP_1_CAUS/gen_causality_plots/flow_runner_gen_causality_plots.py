@@ -1,291 +1,253 @@
 #!/usr/bin/env python3
-import os
-import csv
-import math
+"""
+Script: plot_causality.py
+=========================
+Reads a CSV file with columns:
+    folder_name, gt_distance, distance_to_boundary, distance_to_centroid, frame_used
+
+Steps performed:
+1) Reads data from CSV (default path is specified; can be overridden via --csv_path).
+2) Rows are kept only if folder_name contains "concave" or "convex" (case-insensitive). Others ignored.
+3) Negative distance_to_boundary is set to 0 (instead of discarding).
+4) Two "causality" measures are computed:
+   - boundary_causality = a * exp(-distance_to_boundary / b) + c
+   - centroid_causality = a * exp(-distance_to_centroid   / B) + C
+   (each with min≈7, max≈2 in a simplified fit)
+5) The script then plots, side-by-side:
+   - Subplot #1: GT Distance (x-axis) vs. boundary_causality (y-axis)
+   - Subplot #2: GT Distance (x-axis) vs. centroid_causality (y-axis)
+   with lines for concave (orange) vs. convex (green). The figure is displayed and saved.
+6) A t-test (Welch's) is performed on distance_to_boundary and distance_to_centroid
+   for each GT distance, comparing concave vs. convex. Results are written to a .log file
+   in a 'logs' subfolder, along with descriptive statistics (mean, std, sample sizes).
+
+Usage:
+    python plot_causality.py --csv_path <path_to_csv>
+
+If --csv_path is omitted, it defaults to:
+    Q:\Projects\Object_reps_neural\Programming\detr\EXP_1_CAUS\gen_collision_dist_csv_from_frames\full_videos_processed_csv\results_final_1px.csv
+
+Outputs:
+    - A PNG figure saved in a 'plots' subfolder (created if not exist) in the same folder as this script.
+    - A log file with t-test results + descriptive statistics saved in a 'logs' subfolder in the same folder.
+"""
+
+import argparse
+import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
-from scipy import stats
-from collections import defaultdict
+import os
+from datetime import datetime
+from scipy.stats import ttest_ind
 
-
-###############################################################################
-# Exponential decay function to map distance -> causality
-# We will figure out alpha so that distance=0 => 7, distance=d_max => 2:
-#   C(d) = 7 * exp( -alpha * d )
-#   with alpha = ln(7/2) / d_max
-###############################################################################
-def distance_to_causality(d, d_max):
-    """
-    Exponential mapping from distance [0..d_max] to causality [7..2].
-    - If d_max == 0 (edge case, e.g. if all distances are 0), we default
-      causality to 7.
-    """
-    if d_max <= 0:
-        return 7.0
-    alpha = math.log(7.0 / 2.0) / d_max
-    cval = 7.0 * math.exp(-alpha * d)
-    return cval
-
-
-###############################################################################
-# Read the CSV (produced by the first script for threshold=1 pixel).
-# It has columns: folder_name, gt_distance, distance_to_boundary, ...
-# We parse them, find shape from "folder_name", and compute a causality measure.
-# Return:
-#   convex_list => [ (distance, causality), ...]
-#   concave_list => [ (distance, causality), ...]
-###############################################################################
-def read_and_convert(csv_path):
-    """
-    Reads the _1px.csv file, IGNORES (skips) any row where distance_to_boundary < 0,
-    and converts each (non-negative) distance to a [2..7] causality by exponential decay.
-    Returns two lists of (distance, causality): one for convex, one for concave.
-    """
-    if not os.path.isfile(csv_path):
-        print(f"[ERROR] CSV file '{csv_path}' not found.")
-        return [], []
-
-    # We must gather all distances first to find d_max
-    all_distances = []
-    rows_cache = []
-
-    with open(csv_path, "r", encoding="utf-8") as f:
-        rdr = csv.DictReader(f)
-        for row in rdr:
-            try:
-                dval = float(row.get("distance_to_boundary", "0"))
-            except ValueError:
-                continue
-            # Skip rows that have distance_to_boundary below zero
-            if dval < 0:
-                continue
-
-            rows_cache.append(row)
-            all_distances.append(dval)
-
-    # find d_max among the non-negative distances we kept
-    if len(all_distances) == 0:
-        d_max = 0
-    else:
-        d_max = max(all_distances)
-
-    convex_data = []
-    concave_data = []
-
-    for row in rows_cache:
-        fname = row.get("folder_name", "").lower()
-        try:
-            dval = float(row["distance_to_boundary"])
-        except:
-            continue
-        # (We already know dval >= 0 since we didn't skip it.)
-
-        caus = distance_to_causality(dval, d_max)
-        data_point = (dval, caus)
-
-        if "convex" in fname:
-            convex_data.append(data_point)
-        elif "concave" in fname:
-            concave_data.append(data_point)
-        else:
-            # If neither "convex" nor "concave" is in folder_name,
-            # we skip or store in another category.
-            pass
-
-    return convex_data, concave_data
-
-
-###############################################################################
-# Utility: compute average and standard errors for each distinct distance bucket
-###############################################################################
-def compute_stats(data_list):
-    """
-    data_list is a list of (distance, causality).
-    We'll group by distance, compute the mean/SEM for each distinct distance.
-    Return arrays xvals, means, sems
-    """
-    from collections import defaultdict
-    bucket = defaultdict(list)
-    for (dist_, c_) in data_list:
-        bucket[dist_].append(c_)
-
-    xvals = []
-    means = []
-    sems = []
-    for dist_ in sorted(bucket.keys()):
-        arr = np.array(bucket[dist_], dtype=float)
-        m_ = np.mean(arr)
-        # std error of the mean
-        sem_ = np.std(arr, ddof=1) / math.sqrt(len(arr)) if len(arr) > 1 else 0
-        xvals.append(dist_)
-        means.append(m_)
-        sems.append(sem_)
-    return np.array(xvals), np.array(means), np.array(sems)
-
-
-###############################################################################
-# We'll do a t-test for all convex vs concave causality (pooled).
-###############################################################################
-def perform_statistical_tests(convex_data, concave_data):
-    """
-    Just lumps all convex_data, concave_data together and does a Welch's t-test.
-    Also prints out means, difference, p-value, etc.
-    """
-    cvx_vals = np.array([c for (_, c) in convex_data])
-    ccv_vals = np.array([c for (_, c) in concave_data])
-
-    if len(cvx_vals) < 2 or len(ccv_vals) < 2:
-        print("Not enough data points for a meaningful t-test.")
-        return
-
-    t_stat, p_val = stats.ttest_ind(cvx_vals, ccv_vals, equal_var=False)
-
-    cvx_mean = np.mean(cvx_vals)
-    ccv_mean = np.mean(ccv_vals)
-    diff = cvx_mean - ccv_mean
-
-    # Compute effect size (Cohen's d)
-    n1, n2 = len(cvx_vals), len(ccv_vals)
-    var1, var2 = np.var(cvx_vals, ddof=1), np.var(ccv_vals, ddof=1)
-    pooled_std = np.sqrt(((n1 - 1) * var1 + (n2 - 1) * var2) / (n1 + n2 - 2))
-    if pooled_std != 0:
-        cohens_d = diff / pooled_std
-    else:
-        cohens_d = float('inf')
-
-    print("\n===== STATISTICAL ANALYSIS (Overall) =====")
-    print(f"Convex mean: {cvx_mean:.3f}  (n={n1})")
-    print(f"Concave mean: {ccv_mean:.3f} (n={n2})")
-    print(f"Difference: {diff:.3f}")
-    print(f"t-statistic: {t_stat:.3f}")
-    print(f"p-value: {p_val:.6f}")
-    print(f"Cohen's d: {cohens_d:.3f}")
-    if p_val < 0.05:
-        if diff < 0:
-            print("=> Convex is significantly LOWER in causality than Concave (p<0.05).")
-        else:
-            print("=> Convex is significantly HIGHER in causality than Concave (p<0.05).")
-    else:
-        print("=> No statistically significant difference (p ≥ 0.05).")
-
-
-###############################################################################
-# Simple function to plot raw data => scatter
-###############################################################################
-def plot_raw(ax, data_list, color_, label_):
-    """
-    data_list => list of (distance, causality)
-    Just scatter them, no fancy fitting for now.
-    """
-    if not data_list:
-        return
-    data_list = sorted(data_list, key=lambda x: x[0])
-    xvals = [d[0] for d in data_list]
-    yvals = [d[1] for d in data_list]
-
-    ax.scatter(xvals, yvals, s=60, alpha=0.7, color=color_, label=label_)
-
-
-###############################################################################
-# Plot average => error bar
-###############################################################################
-def plot_avg(ax, xvals, means, sems, color_, label_):
-    """
-    xvals, means, sems => arrays from compute_stats
-    We just do an errorbar plot.
-    """
-    if len(xvals) == 0:
-        return
-    ax.errorbar(xvals, means, yerr=sems, fmt='o-', color=color_,
-                ecolor=color_, capsize=4, alpha=0.9, label=label_)
-
-
-###############################################################################
-# Main plotting routine
-###############################################################################
 def main():
-    # Update this path to point to the CSV that was produced by the first script for "1 pixel" overlap:
-    # e.g. "results_final_1px.csv"
-    CSV_1PX_PATH = "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/detr/EXP_1_CAUS/gen_collision_dist_csv_from_frames/full_videos_processed_csv/results_final_1px.csv"
+    parser = argparse.ArgumentParser(
+        description="Plot concave vs convex data from CSV and compute t-tests."
+    )
+    parser.add_argument("--csv_path", type=str,
+                        required=False,
+                        default=r"Q:\Projects\Object_reps_neural\Programming\detr\EXP_1_CAUS\gen_collision_dist_csv_from_frames\full_videos_processed_csv\results_final_1px.csv",
+                        help="Path to the input CSV file.")
+    args = parser.parse_args()
 
-    # Load data (skipping negative distances)
-    convex_data, concave_data = read_and_convert(CSV_1PX_PATH)
-    print(f"Loaded {len(convex_data)} convex points, {len(concave_data)} concave points.")
+    # Identify directory of this script to store logs & plots in subfolders there
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    logs_dir   = os.path.join(script_dir, "logs")
+    plots_dir  = os.path.join(script_dir, "plots")
+    os.makedirs(logs_dir, exist_ok=True)
+    os.makedirs(plots_dir, exist_ok=True)
 
-    # Perform a simple overall t-test
-    perform_statistical_tests(convex_data, concave_data)
+    # Step 1: Read the CSV
+    print(f"[INFO] Reading CSV from: {args.csv_path}")
+    df = pd.read_csv(args.csv_path)
 
-    # Prepare data for average plots
-    cvx_x, cvx_mean, cvx_sem = compute_stats(convex_data)
-    ccv_x, ccv_mean, ccv_sem = compute_stats(concave_data)
+    # Step 2: Keep rows where folder_name has "concave" or "convex"
+    print("[INFO] Filtering rows for folder_name containing 'concave' or 'convex'.")
+    mask_concave_convex = df["folder_name"].str.contains("concave|convex", case=False, na=False)
+    df = df[mask_concave_convex].copy()
 
-    # Create figure with 2×3 subplots
-    fig, axes = plt.subplots(2, 3, figsize=(16, 10))
-    ax_crv_raw = axes[0, 0]
-    ax_ccv_raw = axes[0, 1]
-    ax_over_raw = axes[0, 2]
-    ax_crv_avg = axes[1, 0]
-    ax_ccv_avg = axes[1, 1]
-    ax_over_avg = axes[1, 2]
+    # Step 3: For distance_to_boundary < 0, set to 0
+    print("[INFO] Setting negative distance_to_boundary to 0 (instead of discarding).")
+    df.loc[df["distance_to_boundary"] < 0, "distance_to_boundary"] = 0
 
-    # Some aesthetic adjustments
-    label_fontsize = 16
-    tick_fontsize = 12
-    for ax in axes.flat:
-        ax.tick_params(axis='both', which='major', labelsize=tick_fontsize)
-        ax.set_ylim(1, 8)  # causality ~ [2..7], so a bit of margin
+    # -------------------------------------------
+    # Prepare to compute "causality" from distance
+    # using the form:  C(D) = a * exp(-D / b) + c
+    #
+    # We'll pick a, b, c so that min distance -> ~7
+    # and max distance -> ~2 (rough approximation).
+    # We'll do so separately for boundary & centroid.
+    # -------------------------------------------
+    def build_exponential_mapper(distances):
+        """
+        Returns a function C(D) = a * exp(-D / b) + c
+        such that C(min(D)) ~ 7, and C(max(D)) ~ 2 (roughly).
+        """
+        d_min = distances.min()
+        d_max = distances.max()
 
-    # Colors
-    convex_color = "#39A039"  # green
-    concave_color = "#FEB02F"  # yellowish/orange
+        # We'll use c=2, a=5 => a + c=7 => that covers the top value
+        c_val = 2.0
+        a_val = 5.0
+        # Solve for b so that at d_max => a * exp(-d_max/b) is ~ a*0.01 => near c
+        # => -d_max/b = ln(0.01) => b = d_max/4.605
+        if d_max > 0:
+            b_val = d_max / 4.605
+        else:
+            # If d_max=0, fallback
+            b_val = 1.0
 
-    # (0,0) Convex RAW
-    ax_crv_raw.set_title("Convex RAW", fontsize=label_fontsize)
-    plot_raw(ax_crv_raw, convex_data, convex_color, "Convex")
-    ax_crv_raw.set_xlabel("Distance", fontsize=label_fontsize)
-    ax_crv_raw.set_ylabel("Causality", fontsize=label_fontsize)
-    ax_crv_raw.legend()
+        def causality_func(D):
+            return a_val * np.exp(-D / b_val) + c_val
 
-    # (0,1) Concave RAW
-    ax_ccv_raw.set_title("Concave RAW", fontsize=label_fontsize)
-    plot_raw(ax_ccv_raw, concave_data, concave_color, "Concave")
-    ax_ccv_raw.set_xlabel("Distance", fontsize=label_fontsize)
-    ax_ccv_raw.set_ylabel("Causality", fontsize=label_fontsize)
-    ax_ccv_raw.legend()
+        return causality_func
 
-    # (0,2) Overlay RAW
-    ax_over_raw.set_title("Overlay RAW", fontsize=label_fontsize)
-    plot_raw(ax_over_raw, convex_data, convex_color, "Convex")
-    plot_raw(ax_over_raw, concave_data, concave_color, "Concave")
-    ax_over_raw.set_xlabel("Distance", fontsize=label_fontsize)
-    ax_over_raw.set_ylabel("Causality", fontsize=label_fontsize)
-    ax_over_raw.legend()
+    # Build separate causality mappers
+    print("[INFO] Building exponential mappers for boundary and centroid.")
+    boundary_mapper = build_exponential_mapper(df["distance_to_boundary"])
+    centroid_mapper = build_exponential_mapper(df["distance_to_centroid"])
 
-    # (1,0) Convex AVERAGE
-    ax_crv_avg.set_title("Convex AVERAGE", fontsize=label_fontsize)
-    plot_avg(ax_crv_avg, cvx_x, cvx_mean, cvx_sem, convex_color, "Convex AVG")
-    ax_crv_avg.set_xlabel("Distance", fontsize=label_fontsize)
-    ax_crv_avg.set_ylabel("Causality", fontsize=label_fontsize)
-    ax_crv_avg.legend()
+    # Apply them
+    df["boundary_causality"] = df["distance_to_boundary"].apply(boundary_mapper)
+    df["centroid_causality"] = df["distance_to_centroid"].apply(centroid_mapper)
 
-    # (1,1) Concave AVERAGE
-    ax_ccv_avg.set_title("Concave AVERAGE", fontsize=label_fontsize)
-    plot_avg(ax_ccv_avg, ccv_x, ccv_mean, ccv_sem, concave_color, "Concave AVG")
-    ax_ccv_avg.set_xlabel("Distance", fontsize=label_fontsize)
-    ax_ccv_avg.set_ylabel("Causality", fontsize=label_fontsize)
-    ax_ccv_avg.legend()
+    # Separate concave / convex subsets
+    concave_df = df[df["folder_name"].str.contains("concave", case=False)]
+    convex_df  = df[df["folder_name"].str.contains("convex", case=False)]
 
-    # (1,2) Overlay AVERAGE
-    ax_over_avg.set_title("Overlay AVERAGE", fontsize=label_fontsize)
-    plot_avg(ax_over_avg, cvx_x, cvx_mean, cvx_sem, convex_color, "Convex AVG")
-    plot_avg(ax_over_avg, ccv_x, ccv_mean, ccv_sem, concave_color, "Concave AVG")
-    ax_over_avg.set_xlabel("Distance", fontsize=label_fontsize)
-    ax_over_avg.set_ylabel("Causality", fontsize=label_fontsize)
-    ax_over_avg.legend()
+    # Group by gt_distance for boundary causality
+    concave_bc = concave_df.groupby("gt_distance")["boundary_causality"].agg(["mean","std"])
+    convex_bc  = convex_df.groupby("gt_distance")["boundary_causality"].agg(["mean","std"])
 
-    plt.tight_layout()
+    # Group by gt_distance for centroid causality
+    concave_cc = concave_df.groupby("gt_distance")["centroid_causality"].agg(["mean","std"])
+    convex_cc  = convex_df.groupby("gt_distance")["centroid_causality"].agg(["mean","std"])
+
+    # Ensure sorted order by gt_distance
+    concave_bc.sort_index(inplace=True)
+    convex_bc.sort_index(inplace=True)
+    concave_cc.sort_index(inplace=True)
+    convex_cc.sort_index(inplace=True)
+
+    # Step 4: Plot side-by-side subplots
+    print("[INFO] Generating subplots: boundary on left, centroid on right.")
+    fig, (ax1, ax2) = plt.subplots(nrows=1, ncols=2, figsize=(12,6))
+
+    # --- Left subplot: boundary causality ---
+    ax1.errorbar(
+        x=concave_bc.index,
+        y=concave_bc["mean"],
+        yerr=concave_bc["std"],
+        label="Concave",
+        color="orange",
+        fmt='o-',
+        capsize=3
+    )
+    ax1.errorbar(
+        x=convex_bc.index,
+        y=convex_bc["mean"],
+        yerr=convex_bc["std"],
+        label="Convex",
+        color="green",
+        fmt='o-',
+        capsize=3
+    )
+    ax1.set_xlabel("GT Distance")
+    ax1.set_ylabel("Boundary Causality")
+    ax1.set_title("Boundary Causality vs. GT Distance")
+    ax1.set_ylim([1, 8])
+    ax1.legend()
+
+    # --- Right subplot: centroid causality ---
+    ax2.errorbar(
+        x=concave_cc.index,
+        y=concave_cc["mean"],
+        yerr=concave_cc["std"],
+        label="Concave",
+        color="orange",
+        fmt='o-',
+        capsize=3
+    )
+    ax2.errorbar(
+        x=convex_cc.index,
+        y=convex_cc["mean"],
+        yerr=convex_cc["std"],
+        label="Convex",
+        color="green",
+        fmt='o-',
+        capsize=3
+    )
+    ax2.set_xlabel("GT Distance")
+    ax2.set_ylabel("Centroid Causality")
+    ax2.set_title("Centroid Causality vs. GT Distance")
+    ax2.set_ylim([1, 8])
+    ax2.legend()
+
+    fig.suptitle("Causality Metrics: Boundary vs. Centroid", fontsize=14)
+
+    # Save the figure in the 'plots' subfolder
+    plot_filename = f"causality_plot_{datetime.now().strftime('%Y%m%d_%H%M%S')}.png"
+    plot_path = os.path.join(plots_dir, plot_filename)
+    plt.savefig(plot_path, dpi=300)
+    print(f"[INFO] Plot saved to {plot_path}")
+
+    # Also display the plot
     plt.show()
 
+    # Step 5: T-test on distance_to_boundary AND distance_to_centroid
+    #         for concave vs. convex by gt_distance
+    print("[INFO] Performing t-tests and writing descriptive stats to log file.")
+    unique_gt_distances = sorted(df["gt_distance"].unique())
+
+    log_filename = f"t_test_{datetime.now().strftime('%Y%m%d_%H%M%S')}.log"
+    log_path = os.path.join(logs_dir, log_filename)
+
+    with open(log_path, "w") as f:
+        # Header
+        f.write("===== Causality + Statistical Metrics Log =====\n")
+        f.write(f"Generated on {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n\n")
+
+        for gtd in unique_gt_distances:
+            # Subset: concave / convex, for the current GT distance
+            concave_sub = concave_df[concave_df["gt_distance"] == gtd]
+            convex_sub  = convex_df[convex_df["gt_distance"] == gtd]
+
+            # Distances
+            c_b_vals = concave_sub["distance_to_boundary"]
+            v_b_vals = convex_sub["distance_to_boundary"]
+            c_c_vals = concave_sub["distance_to_centroid"]
+            v_c_vals = convex_sub["distance_to_centroid"]
+
+            # Means, STDs, Ns
+            c_b_mean, c_b_std, c_b_n = c_b_vals.mean(), c_b_vals.std(), len(c_b_vals)
+            v_b_mean, v_b_std, v_b_n = v_b_vals.mean(), v_b_vals.std(), len(v_b_vals)
+            c_c_mean, c_c_std, c_c_n = c_c_vals.mean(), c_c_vals.std(), len(c_c_vals)
+            v_c_mean, v_c_std, v_c_n = v_c_vals.mean(), v_c_vals.std(), len(v_c_vals)
+
+            f.write(f"--- GT distance = {gtd} ---\n")
+            f.write(f"Concave Distance-to-Boundary: mean={c_b_mean:.3f}, std={c_b_std:.3f}, n={c_b_n}\n")
+            f.write(f"Concave Distance-to-Centroid:  mean={c_c_mean:.3f}, std={c_c_std:.3f}, n={c_c_n}\n")
+            f.write(f"Convex  Distance-to-Boundary: mean={v_b_mean:.3f}, std={v_b_std:.3f}, n={v_b_n}\n")
+            f.write(f"Convex  Distance-to-Centroid:  mean={v_c_mean:.3f}, std={v_c_std:.3f}, n={v_c_n}\n")
+
+            # T-tests for boundary
+            if c_b_n > 1 and v_b_n > 1:
+                t_stat_b, p_val_b = ttest_ind(c_b_vals, v_b_vals, equal_var=False)
+                f.write(f"  T-test (boundary): t={t_stat_b:.4f}, p={p_val_b:.6f}\n")
+            else:
+                f.write("  T-test (boundary): Not enough data (need >1 in each group)\n")
+
+            # T-tests for centroid
+            if c_c_n > 1 and v_c_n > 1:
+                t_stat_c, p_val_c = ttest_ind(c_c_vals, v_c_vals, equal_var=False)
+                f.write(f"  T-test (centroid): t={t_stat_c:.4f}, p={p_val_c:.6f}\n")
+            else:
+                f.write("  T-test (centroid): Not enough data (need >1 in each group)\n")
+
+            f.write("\n")  # blank line between GT-dist blocks
+
+    print(f"[INFO] T-test results & metrics saved to {log_path}")
+    print("[INFO] Script completed successfully.")
 
 if __name__ == "__main__":
     main()

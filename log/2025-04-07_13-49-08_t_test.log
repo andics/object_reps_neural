@@ -1,0 +1,13 @@
+T-test results per GT distance, comparing concave vs. convex (on distance_to_boundary)
+Generated on 2025-04-07_13-49-08
+
+GT distance=0: Not enough data for t-test. n_concave=1, n_convex=8
+GT distance=1: Not enough data for t-test. n_concave=0, n_convex=8
+GT distance=2: Not enough data for t-test. n_concave=1, n_convex=8
+GT distance=3: Not enough data for t-test. n_concave=1, n_convex=8
+GT distance=4: Not enough data for t-test. n_concave=0, n_convex=8
+GT distance=5: t=0.8843, p=0.469630, n_concave=3, n_convex=8
+GT distance=6: t=-4.5212, p=0.117314, n_concave=2, n_convex=8
+GT distance=7: t=-3.4072, p=0.010162, n_concave=3, n_convex=8
+GT distance=8: t=-1.5604, p=0.179252, n_concave=6, n_convex=8
+GT distance=9: t=0.5733, p=0.584243, n_concave=8, n_convex=7
