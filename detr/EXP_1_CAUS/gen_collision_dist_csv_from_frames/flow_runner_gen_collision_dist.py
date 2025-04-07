@@ -316,7 +316,9 @@ def main(parent_full, parent_crops, output_csv_base, logger):
 
         # Step 1: find the smallest frame among the 3
         try:
-            frame_used = find_smallest_frame(crops_out_dir, logger)
+            #---MODIFICATION--
+            #Subtract 100 from the frame used in order to deal with spilling out segmentations
+            frame_used = find_smallest_frame(crops_out_dir, logger) - 100
         except ValueError as e:
             logger.error("Could not find smallest frame in %s: %s", crops_out_dir, str(e))
             continue
