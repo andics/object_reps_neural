@@ -1,0 +1,83 @@
+===== Inverse-Logarithm Causality (Min=7, Max=2): Stats & T-tests =====
+Generated on 2025-04-07 21:17:09
+
+--- GT distance = 0 ---
+Concave Dist-to-Boundary: mean=83.625, std=22.264, n=8
+Concave Dist-to-Centroid:  mean=193.008, std=12.190, n=8
+Convex  Dist-to-Boundary: mean=111.375, std=7.999, n=8
+Convex  Dist-to-Centroid:  mean=216.062, std=17.851, n=8
+  T-test (boundary): t=-3.3177, p=0.009289
+  T-test (centroid): t=-3.0166, p=0.010417
+
+--- GT distance = 1 ---
+Concave Dist-to-Boundary: mean=91.875, std=11.692, n=8
+Concave Dist-to-Centroid:  mean=199.678, std=9.634, n=8
+Convex  Dist-to-Boundary: mean=111.875, std=0.991, n=8
+Convex  Dist-to-Centroid:  mean=218.853, std=12.989, n=8
+  T-test (boundary): t=-4.8211, p=0.001844
+  T-test (centroid): t=-3.3536, p=0.005229
+
+--- GT distance = 2 ---
+Concave Dist-to-Boundary: mean=104.125, std=12.053, n=8
+Concave Dist-to-Centroid:  mean=202.267, std=12.188, n=8
+Convex  Dist-to-Boundary: mean=118.500, std=7.928, n=8
+Convex  Dist-to-Centroid:  mean=223.994, std=19.422, n=8
+  T-test (boundary): t=-2.8183, p=0.015397
+  T-test (centroid): t=-2.6800, p=0.020325
+
+--- GT distance = 3 ---
+Concave Dist-to-Boundary: mean=99.250, std=11.386, n=8
+Concave Dist-to-Centroid:  mean=205.664, std=12.005, n=8
+Convex  Dist-to-Boundary: mean=120.875, std=0.991, n=8
+Convex  Dist-to-Centroid:  mean=227.843, std=13.949, n=8
+  T-test (boundary): t=-5.3517, p=0.001011
+  T-test (centroid): t=-3.4087, p=0.004359
+
+--- GT distance = 4 ---
+Concave Dist-to-Boundary: mean=106.250, std=8.697, n=8
+Concave Dist-to-Centroid:  mean=213.237, std=9.349, n=8
+Convex  Dist-to-Boundary: mean=124.750, std=0.886, n=8
+Convex  Dist-to-Centroid:  mean=232.037, std=12.067, n=8
+  T-test (boundary): t=-5.9853, p=0.000509
+  T-test (centroid): t=-3.4836, p=0.003964
+
+--- GT distance = 5 ---
+Concave Dist-to-Boundary: mean=115.125, std=11.243, n=8
+Concave Dist-to-Centroid:  mean=216.146, std=12.212, n=8
+Convex  Dist-to-Boundary: mean=125.750, std=7.025, n=8
+Convex  Dist-to-Centroid:  mean=234.630, std=15.762, n=8
+  T-test (boundary): t=-2.2668, p=0.043137
+  T-test (centroid): t=-2.6219, p=0.020916
+
+--- GT distance = 6 ---
+Concave Dist-to-Boundary: mean=114.125, std=15.995, n=8
+Concave Dist-to-Centroid:  mean=221.202, std=9.331, n=8
+Convex  Dist-to-Boundary: mean=133.750, std=2.121, n=8
+Convex  Dist-to-Centroid:  mean=241.079, std=11.629, n=8
+  T-test (boundary): t=-3.4402, p=0.010269
+  T-test (centroid): t=-3.7707, p=0.002228
+
+--- GT distance = 7 ---
+Concave Dist-to-Boundary: mean=124.250, std=11.016, n=8
+Concave Dist-to-Centroid:  mean=229.844, std=10.200, n=8
+Convex  Dist-to-Boundary: mean=139.625, std=2.446, n=8
+Convex  Dist-to-Centroid:  mean=247.626, std=15.003, n=8
+  T-test (boundary): t=-3.8537, p=0.005233
+  T-test (centroid): t=-2.7723, p=0.016522
+
+--- GT distance = 8 ---
+Concave Dist-to-Boundary: mean=136.250, std=9.208, n=8
+Concave Dist-to-Centroid:  mean=242.629, std=10.158, n=8
+Convex  Dist-to-Boundary: mean=153.625, std=1.061, n=8
+Convex  Dist-to-Centroid:  mean=261.833, std=13.242, n=8
+  T-test (boundary): t=-5.3021, p=0.001030
+  T-test (centroid): t=-3.2547, p=0.006205
+
+--- GT distance = 9 ---
+Concave Dist-to-Boundary: mean=158.375, std=9.546, n=8
+Concave Dist-to-Centroid:  mean=258.581, std=12.454, n=8
+Convex  Dist-to-Boundary: mean=171.286, std=3.861, n=7
+Convex  Dist-to-Centroid:  mean=279.926, std=15.474, n=7
+  T-test (boundary): t=-3.5113, p=0.006101
+  T-test (centroid): t=-2.9157, p=0.013411
+
