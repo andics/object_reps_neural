@@ -28,6 +28,7 @@ not_tracked_dir/
 .vscode
 gpt/api_key.json
 !**/crops_output/**
+!**/threshold_results/**
 
 # --- Override ignore rules for images in EXPERIMENTS/generate_detection_videos_and_meshes ---
 # Allow PNG files in that folder and all its subfolders

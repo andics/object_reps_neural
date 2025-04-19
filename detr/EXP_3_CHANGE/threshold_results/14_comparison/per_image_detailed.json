@@ -1,0 +1,434 @@
+[
+  {
+    "base": "full_resolution_resnet101_shape1_concave_area1",
+    "type": "concave",
+    "before_mask": "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/detr/EXP_3_CHANGE/processed_images/full_resolution_resnet101_shape1_concave_area1_init/frames_masks_nonmem",
+    "after_mask": "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/detr/EXP_3_CHANGE/processed_images/full_resolution_resnet101_shape1_concave_area1_out/frames_masks_nonmem",
+    "area_before": 13551,
+    "area_after": 13684,
+    "area_change": 0.009814773817430449
+  },
+  {
+    "base": "full_resolution_resnet101_shape1_concave_area2",
+    "type": "concave",
+    "before_mask": "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/detr/EXP_3_CHANGE/processed_images/full_resolution_resnet101_shape1_concave_area2_init/frames_masks_nonmem",
+    "after_mask": "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/detr/EXP_3_CHANGE/processed_images/full_resolution_resnet101_shape1_concave_area2_out/frames_masks_nonmem",
+    "area_before": 13731,
+    "area_after": 13809,
+    "area_change": 0.005680576797028622
+  },
+  {
+    "base": "full_resolution_resnet101_shape1_concave_nofill_area1",
+    "type": "concave_nofill",
+    "before_mask": "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/detr/EXP_3_CHANGE/processed_images/full_resolution_resnet101_shape1_concave_nofill_area1_init/frames_masks_nonmem",
+    "after_mask": "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/detr/EXP_3_CHANGE/processed_images/full_resolution_resnet101_shape1_concave_nofill_area1_out/frames_masks_nonmem",
+    "area_before": 13516,
+    "area_after": 14045,
+    "area_change": 0.03913879846108316
+  },
+  {
+    "base": "full_resolution_resnet101_shape1_concave_nofill_area2",
+    "type": "concave_nofill",
+    "before_mask": "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/detr/EXP_3_CHANGE/processed_images/full_resolution_resnet101_shape1_concave_nofill_area2_init/frames_masks_nonmem",
+    "after_mask": "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/detr/EXP_3_CHANGE/processed_images/full_resolution_resnet101_shape1_concave_nofill_area2_out/frames_masks_nonmem",
+    "area_before": 13482,
+    "area_after": 14306,
+    "area_change": 0.06111852840824803
+  },
+  {
+    "base": "full_resolution_resnet101_shape1_convex_area1",
+    "type": "convex",
+    "before_mask": "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/detr/EXP_3_CHANGE/processed_images/full_resolution_resnet101_shape1_convex_area1_init/frames_masks_nonmem",
+    "after_mask": "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/detr/EXP_3_CHANGE/processed_images/full_resolution_resnet101_shape1_convex_area1_out/frames_masks_nonmem",
+    "area_before": 13718,
+    "area_after": 13748,
+    "area_change": 0.0021869077124945326
+  },
+  {
+    "base": "full_resolution_resnet101_shape1_convex_area2",
+    "type": "convex",
+    "before_mask": "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/detr/EXP_3_CHANGE/processed_images/full_resolution_resnet101_shape1_convex_area2_init/frames_masks_nonmem",
+    "after_mask": "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/detr/EXP_3_CHANGE/processed_images/full_resolution_resnet101_shape1_convex_area2_out/frames_masks_nonmem",
+    "area_before": 13459,
+    "area_after": 13870,
+    "area_change": 0.030537187012408054
+  },
+  {
+    "base": "full_resolution_resnet101_shape2_concave_area1",
+    "type": "concave",
+    "before_mask": "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/detr/EXP_3_CHANGE/processed_images/full_resolution_resnet101_shape2_concave_area1_init/frames_masks_nonmem",
+    "after_mask": "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/detr/EXP_3_CHANGE/processed_images/full_resolution_resnet101_shape2_concave_area1_out/frames_masks_nonmem",
+    "area_before": 8058,
+    "area_after": 7905,
+    "area_change": 0.0189873417721519
+  },
+  {
+    "base": "full_resolution_resnet101_shape2_concave_area2",
+    "type": "concave",
+    "before_mask": "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/detr/EXP_3_CHANGE/processed_images/full_resolution_resnet101_shape2_concave_area2_init/frames_masks_nonmem",
+    "after_mask": "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/detr/EXP_3_CHANGE/processed_images/full_resolution_resnet101_shape2_concave_area2_out/frames_masks_nonmem",
+    "area_before": 8038,
+    "area_after": 8055,
+    "area_change": 0.0021149539686489177
+  },
+  {
+    "base": "full_resolution_resnet101_shape2_concave_nofill_area1",
+    "type": "concave_nofill",
+    "before_mask": "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/detr/EXP_3_CHANGE/processed_images/full_resolution_resnet101_shape2_concave_nofill_area1_init/frames_masks_nonmem",
+    "after_mask": "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/detr/EXP_3_CHANGE/processed_images/full_resolution_resnet101_shape2_concave_nofill_area1_out/frames_masks_nonmem",
+    "area_before": 7788,
+    "area_after": 8006,
+    "area_change": 0.027991782229070363
+  },
+  {
+    "base": "full_resolution_resnet101_shape2_concave_nofill_area2",
+    "type": "concave_nofill",
+    "before_mask": "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/detr/EXP_3_CHANGE/processed_images/full_resolution_resnet101_shape2_concave_nofill_area2_init/frames_masks_nonmem",
+    "after_mask": "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/detr/EXP_3_CHANGE/processed_images/full_resolution_resnet101_shape2_concave_nofill_area2_out/frames_masks_nonmem",
+    "area_before": 7547,
+    "area_after": 7966,
+    "area_change": 0.05551874917185637
+  },
+  {
+    "base": "full_resolution_resnet101_shape2_convex_area1",
+    "type": "convex",
+    "before_mask": "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/detr/EXP_3_CHANGE/processed_images/full_resolution_resnet101_shape2_convex_area1_init/frames_masks_nonmem",
+    "after_mask": "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/detr/EXP_3_CHANGE/processed_images/full_resolution_resnet101_shape2_convex_area1_out/frames_masks_nonmem",
+    "area_before": 7590,
+    "area_after": 7755,
+    "area_change": 0.021739130434782608
+  },
+  {
+    "base": "full_resolution_resnet101_shape2_convex_area2",
+    "type": "convex",
+    "before_mask": "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/detr/EXP_3_CHANGE/processed_images/full_resolution_resnet101_shape2_convex_area2_init/frames_masks_nonmem",
+    "after_mask": "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/detr/EXP_3_CHANGE/processed_images/full_resolution_resnet101_shape2_convex_area2_out/frames_masks_nonmem",
+    "area_before": 7620,
+    "area_after": 7879,
+    "area_change": 0.03398950131233596
+  },
+  {
+    "base": "full_resolution_resnet101_shape3_concave_area1",
+    "type": "concave",
+    "before_mask": "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/detr/EXP_3_CHANGE/processed_images/full_resolution_resnet101_shape3_concave_area1_init/frames_masks_nonmem",
+    "after_mask": "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/detr/EXP_3_CHANGE/processed_images/full_resolution_resnet101_shape3_concave_area1_out/frames_masks_nonmem",
+    "area_before": 8295,
+    "area_after": 8271,
+    "area_change": 0.0028933092224231465
+  },
+  {
+    "base": "full_resolution_resnet101_shape3_concave_area2",
+    "type": "concave",
+    "before_mask": "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/detr/EXP_3_CHANGE/processed_images/full_resolution_resnet101_shape3_concave_area2_init/frames_masks_nonmem",
+    "after_mask": "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/detr/EXP_3_CHANGE/processed_images/full_resolution_resnet101_shape3_concave_area2_out/frames_masks_nonmem",
+    "area_before": 7949,
+    "area_after": 7666,
+    "area_change": 0.035601962511007675
+  },
+  {
+    "base": "full_resolution_resnet101_shape3_concave_nofill_area1",
+    "type": "concave_nofill",
+    "before_mask": "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/detr/EXP_3_CHANGE/processed_images/full_resolution_resnet101_shape3_concave_nofill_area1_init/frames_masks_nonmem",
+    "after_mask": "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/detr/EXP_3_CHANGE/processed_images/full_resolution_resnet101_shape3_concave_nofill_area1_out/frames_masks_nonmem",
+    "area_before": 8144,
+    "area_after": 8121,
+    "area_change": 0.0028241650294695483
+  },
+  {
+    "base": "full_resolution_resnet101_shape3_concave_nofill_area2",
+    "type": "concave_nofill",
+    "before_mask": "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/detr/EXP_3_CHANGE/processed_images/full_resolution_resnet101_shape3_concave_nofill_area2_init/frames_masks_nonmem",
+    "after_mask": "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/detr/EXP_3_CHANGE/processed_images/full_resolution_resnet101_shape3_concave_nofill_area2_out/frames_masks_nonmem",
+    "area_before": 7930,
+    "area_after": 7764,
+    "area_change": 0.020933165195460277
+  },
+  {
+    "base": "full_resolution_resnet101_shape3_convex_area1",
+    "type": "convex",
+    "before_mask": "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/detr/EXP_3_CHANGE/processed_images/full_resolution_resnet101_shape3_convex_area1_init/frames_masks_nonmem",
+    "after_mask": "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/detr/EXP_3_CHANGE/processed_images/full_resolution_resnet101_shape3_convex_area1_out/frames_masks_nonmem",
+    "area_before": 8024,
+    "area_after": 8084,
+    "area_change": 0.007477567298105683
+  },
+  {
+    "base": "full_resolution_resnet101_shape3_convex_area2",
+    "type": "convex",
+    "before_mask": "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/detr/EXP_3_CHANGE/processed_images/full_resolution_resnet101_shape3_convex_area2_init/frames_masks_nonmem",
+    "after_mask": "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/detr/EXP_3_CHANGE/processed_images/full_resolution_resnet101_shape3_convex_area2_out/frames_masks_nonmem",
+    "area_before": 7891,
+    "area_after": 8471,
+    "area_change": 0.07350145735648207
+  },
+  {
+    "base": "full_resolution_resnet101_shape4_concave_area1",
+    "type": "concave",
+    "before_mask": "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/detr/EXP_3_CHANGE/processed_images/full_resolution_resnet101_shape4_concave_area1_init/frames_masks_nonmem",
+    "after_mask": "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/detr/EXP_3_CHANGE/processed_images/full_resolution_resnet101_shape4_concave_area1_out/frames_masks_nonmem",
+    "area_before": 5033,
+    "area_after": 5066,
+    "area_change": 0.0065567256109676135
+  },
+  {
+    "base": "full_resolution_resnet101_shape4_concave_area2",
+    "type": "concave",
+    "before_mask": "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/detr/EXP_3_CHANGE/processed_images/full_resolution_resnet101_shape4_concave_area2_init/frames_masks_nonmem",
+    "after_mask": "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/detr/EXP_3_CHANGE/processed_images/full_resolution_resnet101_shape4_concave_area2_out/frames_masks_nonmem",
+    "area_before": 4981,
+    "area_after": 5119,
+    "area_change": 0.027705280064244126
+  },
+  {
+    "base": "full_resolution_resnet101_shape4_concave_nofill_area1",
+    "type": "concave_nofill",
+    "before_mask": "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/detr/EXP_3_CHANGE/processed_images/full_resolution_resnet101_shape4_concave_nofill_area1_init/frames_masks_nonmem",
+    "after_mask": "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/detr/EXP_3_CHANGE/processed_images/full_resolution_resnet101_shape4_concave_nofill_area1_out/frames_masks_nonmem",
+    "area_before": 5050,
+    "area_after": 5198,
+    "area_change": 0.029306930693069305
+  },
+  {
+    "base": "full_resolution_resnet101_shape4_concave_nofill_area2",
+    "type": "concave_nofill",
+    "before_mask": "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/detr/EXP_3_CHANGE/processed_images/full_resolution_resnet101_shape4_concave_nofill_area2_init/frames_masks_nonmem",
+    "after_mask": "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/detr/EXP_3_CHANGE/processed_images/full_resolution_resnet101_shape4_concave_nofill_area2_out/frames_masks_nonmem",
+    "area_before": 5070,
+    "area_after": 5184,
+    "area_change": 0.022485207100591716
+  },
+  {
+    "base": "full_resolution_resnet101_shape4_convex_area1",
+    "type": "convex",
+    "before_mask": "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/detr/EXP_3_CHANGE/processed_images/full_resolution_resnet101_shape4_convex_area1_init/frames_masks_nonmem",
+    "after_mask": "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/detr/EXP_3_CHANGE/processed_images/full_resolution_resnet101_shape4_convex_area1_out/frames_masks_nonmem",
+    "area_before": 5067,
+    "area_after": 5200,
+    "area_change": 0.026248273139925005
+  },
+  {
+    "base": "full_resolution_resnet101_shape4_convex_area2",
+    "type": "convex",
+    "before_mask": "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/detr/EXP_3_CHANGE/processed_images/full_resolution_resnet101_shape4_convex_area2_init/frames_masks_nonmem",
+    "after_mask": "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/detr/EXP_3_CHANGE/processed_images/full_resolution_resnet101_shape4_convex_area2_out/frames_masks_nonmem",
+    "area_before": 5123,
+    "area_after": 5374,
+    "area_change": 0.048994729650595356
+  },
+  {
+    "base": "full_resolution_resnet101_shape5_concave_area1",
+    "type": "concave",
+    "before_mask": "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/detr/EXP_3_CHANGE/processed_images/full_resolution_resnet101_shape5_concave_area1_init/frames_masks_nonmem",
+    "after_mask": "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/detr/EXP_3_CHANGE/processed_images/full_resolution_resnet101_shape5_concave_area1_out/frames_masks_nonmem",
+    "area_before": 5671,
+    "area_after": 5194,
+    "area_change": 0.08411214953271028
+  },
+  {
+    "base": "full_resolution_resnet101_shape5_concave_area2",
+    "type": "concave",
+    "before_mask": "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/detr/EXP_3_CHANGE/processed_images/full_resolution_resnet101_shape5_concave_area2_init/frames_masks_nonmem",
+    "after_mask": "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/detr/EXP_3_CHANGE/processed_images/full_resolution_resnet101_shape5_concave_area2_out/frames_masks_nonmem",
+    "area_before": 5285,
+    "area_after": 5685,
+    "area_change": 0.07568590350047304
+  },
+  {
+    "base": "full_resolution_resnet101_shape5_concave_nofill_area1",
+    "type": "concave_nofill",
+    "before_mask": "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/detr/EXP_3_CHANGE/processed_images/full_resolution_resnet101_shape5_concave_nofill_area1_init/frames_masks_nonmem",
+    "after_mask": "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/detr/EXP_3_CHANGE/processed_images/full_resolution_resnet101_shape5_concave_nofill_area1_out/frames_masks_nonmem",
+    "area_before": 5470,
+    "area_after": 5911,
+    "area_change": 0.08062157221206581
+  },
+  {
+    "base": "full_resolution_resnet101_shape5_concave_nofill_area2",
+    "type": "concave_nofill",
+    "before_mask": "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/detr/EXP_3_CHANGE/processed_images/full_resolution_resnet101_shape5_concave_nofill_area2_init/frames_masks_nonmem",
+    "after_mask": "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/detr/EXP_3_CHANGE/processed_images/full_resolution_resnet101_shape5_concave_nofill_area2_out/frames_masks_nonmem",
+    "area_before": 6004,
+    "area_after": 6156,
+    "area_change": 0.02531645569620253
+  },
+  {
+    "base": "full_resolution_resnet101_shape5_convex_area1",
+    "type": "convex",
+    "before_mask": "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/detr/EXP_3_CHANGE/processed_images/full_resolution_resnet101_shape5_convex_area1_init/frames_masks_nonmem",
+    "after_mask": "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/detr/EXP_3_CHANGE/processed_images/full_resolution_resnet101_shape5_convex_area1_out/frames_masks_nonmem",
+    "area_before": 5556,
+    "area_after": 6012,
+    "area_change": 0.08207343412526998
+  },
+  {
+    "base": "full_resolution_resnet101_shape5_convex_area2",
+    "type": "convex",
+    "before_mask": "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/detr/EXP_3_CHANGE/processed_images/full_resolution_resnet101_shape5_convex_area2_init/frames_masks_nonmem",
+    "after_mask": "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/detr/EXP_3_CHANGE/processed_images/full_resolution_resnet101_shape5_convex_area2_out/frames_masks_nonmem",
+    "area_before": 5373,
+    "area_after": 6283,
+    "area_change": 0.16936534524474223
+  },
+  {
+    "base": "full_resolution_resnet101_shape6_concave_area1",
+    "type": "concave",
+    "before_mask": "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/detr/EXP_3_CHANGE/processed_images/full_resolution_resnet101_shape6_concave_area1_init/frames_masks_nonmem",
+    "after_mask": "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/detr/EXP_3_CHANGE/processed_images/full_resolution_resnet101_shape6_concave_area1_out/frames_masks_nonmem",
+    "area_before": 5083,
+    "area_after": 5167,
+    "area_change": 0.016525673814676373
+  },
+  {
+    "base": "full_resolution_resnet101_shape6_concave_area2",
+    "type": "concave",
+    "before_mask": "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/detr/EXP_3_CHANGE/processed_images/full_resolution_resnet101_shape6_concave_area2_init/frames_masks_nonmem",
+    "after_mask": "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/detr/EXP_3_CHANGE/processed_images/full_resolution_resnet101_shape6_concave_area2_out/frames_masks_nonmem",
+    "area_before": 5228,
+    "area_after": 5157,
+    "area_change": 0.013580719204284622
+  },
+  {
+    "base": "full_resolution_resnet101_shape6_concave_nofill_area1",
+    "type": "concave_nofill",
+    "before_mask": "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/detr/EXP_3_CHANGE/processed_images/full_resolution_resnet101_shape6_concave_nofill_area1_init/frames_masks_nonmem",
+    "after_mask": "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/detr/EXP_3_CHANGE/processed_images/full_resolution_resnet101_shape6_concave_nofill_area1_out/frames_masks_nonmem",
+    "area_before": 5445,
+    "area_after": 4875,
+    "area_change": 0.1046831955922865
+  },
+  {
+    "base": "full_resolution_resnet101_shape6_concave_nofill_area2",
+    "type": "concave_nofill",
+    "before_mask": "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/detr/EXP_3_CHANGE/processed_images/full_resolution_resnet101_shape6_concave_nofill_area2_init/frames_masks_nonmem",
+    "after_mask": "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/detr/EXP_3_CHANGE/processed_images/full_resolution_resnet101_shape6_concave_nofill_area2_out/frames_masks_nonmem",
+    "area_before": 5349,
+    "area_after": 5664,
+    "area_change": 0.05888951205832866
+  },
+  {
+    "base": "full_resolution_resnet101_shape6_convex_area1",
+    "type": "convex",
+    "before_mask": "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/detr/EXP_3_CHANGE/processed_images/full_resolution_resnet101_shape6_convex_area1_init/frames_masks_nonmem",
+    "after_mask": "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/detr/EXP_3_CHANGE/processed_images/full_resolution_resnet101_shape6_convex_area1_out/frames_masks_nonmem",
+    "area_before": 5359,
+    "area_after": 6145,
+    "area_change": 0.14666915469303973
+  },
+  {
+    "base": "full_resolution_resnet101_shape6_convex_area2",
+    "type": "convex",
+    "before_mask": "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/detr/EXP_3_CHANGE/processed_images/full_resolution_resnet101_shape6_convex_area2_init/frames_masks_nonmem",
+    "after_mask": "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/detr/EXP_3_CHANGE/processed_images/full_resolution_resnet101_shape6_convex_area2_out/frames_masks_nonmem",
+    "area_before": 5031,
+    "area_after": 5797,
+    "area_change": 0.152256012721129
+  },
+  {
+    "base": "full_resolution_resnet101_shape7_concave_area1",
+    "type": "concave",
+    "before_mask": "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/detr/EXP_3_CHANGE/processed_images/full_resolution_resnet101_shape7_concave_area1_init/frames_masks_nonmem",
+    "after_mask": "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/detr/EXP_3_CHANGE/processed_images/full_resolution_resnet101_shape7_concave_area1_out/frames_masks_nonmem",
+    "area_before": 6640,
+    "area_after": 6879,
+    "area_change": 0.03599397590361446
+  },
+  {
+    "base": "full_resolution_resnet101_shape7_concave_area2",
+    "type": "concave",
+    "before_mask": "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/detr/EXP_3_CHANGE/processed_images/full_resolution_resnet101_shape7_concave_area2_init/frames_masks_nonmem",
+    "after_mask": "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/detr/EXP_3_CHANGE/processed_images/full_resolution_resnet101_shape7_concave_area2_out/frames_masks_nonmem",
+    "area_before": 6700,
+    "area_after": 7114,
+    "area_change": 0.0617910447761194
+  },
+  {
+    "base": "full_resolution_resnet101_shape7_concave_nofill_area1",
+    "type": "concave_nofill",
+    "before_mask": "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/detr/EXP_3_CHANGE/processed_images/full_resolution_resnet101_shape7_concave_nofill_area1_init/frames_masks_nonmem",
+    "after_mask": "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/detr/EXP_3_CHANGE/processed_images/full_resolution_resnet101_shape7_concave_nofill_area1_out/frames_masks_nonmem",
+    "area_before": 6622,
+    "area_after": 6703,
+    "area_change": 0.01223195409241921
+  },
+  {
+    "base": "full_resolution_resnet101_shape7_concave_nofill_area2",
+    "type": "concave_nofill",
+    "before_mask": "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/detr/EXP_3_CHANGE/processed_images/full_resolution_resnet101_shape7_concave_nofill_area2_init/frames_masks_nonmem",
+    "after_mask": "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/detr/EXP_3_CHANGE/processed_images/full_resolution_resnet101_shape7_concave_nofill_area2_out/frames_masks_nonmem",
+    "area_before": 7056,
+    "area_after": 6958,
+    "area_change": 0.013888888888888888
+  },
+  {
+    "base": "full_resolution_resnet101_shape7_convex_area1",
+    "type": "convex",
+    "before_mask": "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/detr/EXP_3_CHANGE/processed_images/full_resolution_resnet101_shape7_convex_area1_init/frames_masks_nonmem",
+    "after_mask": "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/detr/EXP_3_CHANGE/processed_images/full_resolution_resnet101_shape7_convex_area1_out/frames_masks_nonmem",
+    "area_before": 6702,
+    "area_after": 6861,
+    "area_change": 0.023724261414503133
+  },
+  {
+    "base": "full_resolution_resnet101_shape7_convex_area2",
+    "type": "convex",
+    "before_mask": "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/detr/EXP_3_CHANGE/processed_images/full_resolution_resnet101_shape7_convex_area2_init/frames_masks_nonmem",
+    "after_mask": "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/detr/EXP_3_CHANGE/processed_images/full_resolution_resnet101_shape7_convex_area2_out/frames_masks_nonmem",
+    "area_before": 6753,
+    "area_after": 7203,
+    "area_change": 0.06663705019991115
+  },
+  {
+    "base": "full_resolution_resnet101_shape8_concave_area1",
+    "type": "concave",
+    "before_mask": "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/detr/EXP_3_CHANGE/processed_images/full_resolution_resnet101_shape8_concave_area1_init/frames_masks_nonmem",
+    "after_mask": "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/detr/EXP_3_CHANGE/processed_images/full_resolution_resnet101_shape8_concave_area1_out/frames_masks_nonmem",
+    "area_before": 7388,
+    "area_after": 8184,
+    "area_change": 0.10774228478613969
+  },
+  {
+    "base": "full_resolution_resnet101_shape8_concave_area2",
+    "type": "concave",
+    "before_mask": "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/detr/EXP_3_CHANGE/processed_images/full_resolution_resnet101_shape8_concave_area2_init/frames_masks_nonmem",
+    "after_mask": "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/detr/EXP_3_CHANGE/processed_images/full_resolution_resnet101_shape8_concave_area2_out/frames_masks_nonmem",
+    "area_before": 7189,
+    "area_after": 8419,
+    "area_change": 0.17109472805675338
+  },
+  {
+    "base": "full_resolution_resnet101_shape8_concave_nofill_area1",
+    "type": "concave_nofill",
+    "before_mask": "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/detr/EXP_3_CHANGE/processed_images/full_resolution_resnet101_shape8_concave_nofill_area1_init/frames_masks_nonmem",
+    "after_mask": "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/detr/EXP_3_CHANGE/processed_images/full_resolution_resnet101_shape8_concave_nofill_area1_out/frames_masks_nonmem",
+    "area_before": 7019,
+    "area_after": 7076,
+    "area_change": 0.008120814930901837
+  },
+  {
+    "base": "full_resolution_resnet101_shape8_concave_nofill_area2",
+    "type": "concave_nofill",
+    "before_mask": "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/detr/EXP_3_CHANGE/processed_images/full_resolution_resnet101_shape8_concave_nofill_area2_init/frames_masks_nonmem",
+    "after_mask": "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/detr/EXP_3_CHANGE/processed_images/full_resolution_resnet101_shape8_concave_nofill_area2_out/frames_masks_nonmem",
+    "area_before": 7085,
+    "area_after": 7261,
+    "area_change": 0.02484121383203952
+  },
+  {
+    "base": "full_resolution_resnet101_shape8_convex_area1",
+    "type": "convex",
+    "before_mask": "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/detr/EXP_3_CHANGE/processed_images/full_resolution_resnet101_shape8_convex_area1_init/frames_masks_nonmem",
+    "after_mask": "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/detr/EXP_3_CHANGE/processed_images/full_resolution_resnet101_shape8_convex_area1_out/frames_masks_nonmem",
+    "area_before": 7589,
+    "area_after": 7889,
+    "area_change": 0.039530899986823034
+  },
+  {
+    "base": "full_resolution_resnet101_shape8_convex_area2",
+    "type": "convex",
+    "before_mask": "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/detr/EXP_3_CHANGE/processed_images/full_resolution_resnet101_shape8_convex_area2_init/frames_masks_nonmem",
+    "after_mask": "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/detr/EXP_3_CHANGE/processed_images/full_resolution_resnet101_shape8_convex_area2_out/frames_masks_nonmem",
+    "area_before": 6624,
+    "area_after": 7774,
+    "area_change": 0.1736111111111111
+  }
+]
