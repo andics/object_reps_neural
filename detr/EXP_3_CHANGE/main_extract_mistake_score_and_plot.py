@@ -4,7 +4,8 @@ threshold_analysis.py
 
 Analyze area-change thresholds across image pairs, producing per-image details,
 overall detection rates, and bar charts with diagonal hatches and downscaled SEM error bars,
-without outlier filtering, and small left margin so bars touch.
+without outlier filtering, with an increased left margin before the first bar (3× default),
+bars filling space (no gaps), and no x-axis ticks or labels.
 
 For each threshold (<pct>_comparison/):
   • per_image_detailed.json
@@ -26,6 +27,7 @@ from PIL import Image
 import numpy as np
 import matplotlib.pyplot as plt
 
+label_fontsize = 13
 
 def parse_args():
     p = argparse.ArgumentParser("Analyze area-change thresholds across image pairs")
@@ -118,6 +120,12 @@ def main():
         })
 
     types = ['concave','concave_nofill','convex','no_change']
+
+    # parameters for plotting
+    width = 1.0
+    left_margin = 1.5  # three times half-bar (0.5*3)
+    high_dpi = 200  # double resolution
+
     for thr in thresholds:
         pct = int(round(thr*100))
         dir_out = os.path.join(args.output_root, f"{pct}_comparison")
@@ -144,50 +152,48 @@ def main():
         rates = np.array([(np.mean(dets[t]) * 100 if dets[t] else 0.0) for t in types])
         sems  = np.array([compute_sem_binary(np.array(dets[t])) for t in types])
 
-        # overall plot (size 3.8x4)
-        x = np.arange(len(types))
-        width = 1.0
-        fig, ax = plt.subplots(figsize=(3.8, 4))
+        # overall plot
+        x = np.arange(len(types)) + left_margin
+        fig, ax = plt.subplots(figsize=(4.8, 4), dpi=high_dpi)
         for i, t in enumerate(types):
             ax.bar(x[i], rates[i], width,
                    color='lightgray', edgecolor='black', hatch='//',
                    yerr=sems[i], capsize=5)
-        ax.set_xticks(x)
-        ax.set_xticklabels(types)
-        ax.set_xlim(-0.8, len(types)-0.5)
+        ax.set_xticks([])
+        ax.set_yticks(ax.get_yticks())
         ax.set_ylabel('% Detection Rate')
         ax.set_ylim(0, 100)
+        ax.set_xlim(left_margin - width/2, left_margin + len(types) - width/2)
         ax.set_title(f'Threshold = {pct}%')
         plt.tight_layout()
-        fig.savefig(os.path.join(dir_out,'overall_comparison.png'))
+        fig.savefig(os.path.join(dir_out,'overall_comparison.png'), dpi=high_dpi)
         plt.close(fig)
 
-        # three- condition plot
+        # three-condition plot
         three = ['concave','concave_nofill','convex']
-        # RGB tuples normalized to [0,1]
         colors = [
             (255/255, 188/255, 78/255),
             (209/255, 168/255, 95/255),
             (79/255, 168/255, 78/255)
         ]
-        x2 = np.arange(len(three))
-        fig, ax = plt.subplots(figsize=(3.8, 4))
+        x2 = np.arange(len(three)) + left_margin
+        fig, ax = plt.subplots(figsize=(3.8, 4), dpi=high_dpi)
         for i, t in enumerate(three):
             idx = types.index(t)
             ax.bar(x2[i], rates[idx], width,
                    color=colors[i], edgecolor='black', hatch='//',
                    yerr=sems[idx], capsize=5)
-        ax.set_xticks(x2)
-        ax.set_xticklabels(three)
-        ax.set_xlim(-0.8, len(three)-0.5)
-        ax.set_ylabel('% Noticing Change')
+        ax.set_xticks([])
+        ax.set_ylabel('% Noticing Change', fontsize=label_fontsize)
         ax.set_ylim(0, 100)
+        ax.set_xlim(left_margin - width, left_margin + len(three))
         ax.set_title(f'Threshold = {pct}%')
         plt.tight_layout()
-        fig.savefig(os.path.join(dir_out,'three_comparison.png'))
+        fig.savefig(os.path.join(dir_out, 'three_comparison.png'), dpi=high_dpi)
         plt.close(fig)
 
     print(f"Completed thresholds: {[int(t*100) for t in thresholds]}%.")
+
 
 if __name__=='__main__':
     main()
