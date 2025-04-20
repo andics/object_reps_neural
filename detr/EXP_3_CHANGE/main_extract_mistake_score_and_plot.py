@@ -27,7 +27,8 @@ from PIL import Image
 import numpy as np
 import matplotlib.pyplot as plt
 
-label_fontsize = 13
+label_fontsize = 17
+ticks_fontsize = 15
 
 def parse_args():
     p = argparse.ArgumentParser("Analyze area-change thresholds across image pairs")
@@ -177,13 +178,14 @@ def main():
             (79/255, 168/255, 78/255)
         ]
         x2 = np.arange(len(three)) + left_margin
-        fig, ax = plt.subplots(figsize=(3.8, 4), dpi=high_dpi)
+        fig, ax = plt.subplots(figsize=(3.8, 6), dpi=high_dpi)
         for i, t in enumerate(three):
             idx = types.index(t)
             ax.bar(x2[i], rates[idx], width,
                    color=colors[i], edgecolor='black', hatch='//',
                    yerr=sems[idx], capsize=5)
         ax.set_xticks([])
+        ax.tick_params(axis='y', labelsize=ticks_fontsize)
         ax.set_ylabel('% Noticing Change', fontsize=label_fontsize)
         ax.set_ylim(0, 100)
         ax.set_xlim(left_margin - 0.8*width, left_margin + len(three) - 0.2*width)
@@ -195,5 +197,5 @@ def main():
     print(f"Completed thresholds: {[int(t*100) for t in thresholds]}%.")
 
 
-if __name__=='__main__':
+if __name__ == '__main__':
     main()
