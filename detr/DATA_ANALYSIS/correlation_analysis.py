@@ -71,28 +71,32 @@ detected_changes_human_ratios = [72.25/100, 89.125/100, 88/100]
 
 alpha = 0.05
 
-def report_corr(name, x, y):
+def report_corr(name, x, y, alpha=0.05):
     r, p = pearsonr(x, y)
+    sig_p = "significant" if p < alpha else "not significant"
     rho, p_s = spearmanr(x, y)
-    sig_pearson = "significant" if p < alpha else "not significant"
-    sig_spearman = "significant" if p_s < alpha else "not significant"
+    sig_s = "significant" if p_s < alpha else "not significant"
     print(f"{name}:")
-    print(f"  Pearson r = {r:.3f}, p = {p:.3f} → {sig_pearson} at α = {alpha}")
-    print(f"  Spearman ρ = {rho:.3f}, p = {p_s:.3f} → {sig_spearman} at α = {alpha}")
+    print(f"  Pearson r = {r:.3f}, p = {p:.3f} → {sig_p} at α={alpha}")
+    print(f"  Spearman ρ = {rho:.3f}, p = {p_s:.3f} → {sig_s} at α={alpha}")
     print()
 
-print("Experiment 1 Correlations:")
-report_corr("Concave model vs. human", causality_concave_model_avg, causality_concave_human_avg)
-report_corr("Convex model vs. human", causality_convex_model_avg, causality_convex_human_avg)
+# Experiment 1: compute gaps between concave and convex for model and human
+gap_model = np.array(causality_concave_model_avg) - np.array(causality_convex_model_avg)
+gap_human = np.array(causality_concave_human_avg) - np.array(causality_convex_human_avg)
 
-# Overall (combined concave+convex)
-model_all = np.concatenate([causality_concave_model_avg, causality_convex_model_avg])
-human_all = np.concatenate([causality_concave_human_avg, causality_convex_human_avg])
-report_corr("Overall model vs. human", model_all, human_all)
+print("Experiment 1: Gaps between concave and convex")
+report_corr("Gap model vs. human", gap_model, gap_human, alpha)
 
-# Experiment 3: detected changes
-detected_changes_model = np.array([11/16, 14/16, 14/16])
-detected_changes_human = np.array([72.25/100, 89.125/100, 88/100])
+# Experiment 1: overall correlation of the points (concave + convex)
+model_all = np.concatenate([
+    np.array(causality_concave_model_avg),
+    np.array(causality_convex_model_avg)
+])
+human_all = np.concatenate([
+    np.array(causality_concave_human_avg),
+    np.array(causality_convex_human_avg)
+])
 
-print("Experiment 3 Correlation:")
-report_corr("Model vs. human detected-changes", detected_changes_model, detected_changes_human)
+print("Experiment 1: Overall causality curves")
+report_corr("Overall model vs. human", model_all, human_all, alpha)
