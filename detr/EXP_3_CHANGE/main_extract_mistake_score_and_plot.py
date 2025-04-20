@@ -123,7 +123,7 @@ def main():
 
     # parameters for plotting
     width = 1.0
-    left_margin = 1.5  # three times half-bar (0.5*3)
+    left_margin = 0.5  # three times half-bar (0.5*3)
     high_dpi = 200  # double resolution
 
     for thr in thresholds:
@@ -186,7 +186,7 @@ def main():
         ax.set_xticks([])
         ax.set_ylabel('% Noticing Change', fontsize=label_fontsize)
         ax.set_ylim(0, 100)
-        ax.set_xlim(left_margin - width, left_margin + len(three))
+        ax.set_xlim(left_margin - 0.8*width, left_margin + len(three) - 0.2*width)
         ax.set_title(f'Threshold = {pct}%')
         plt.tight_layout()
         fig.savefig(os.path.join(dir_out, 'three_comparison.png'), dpi=high_dpi)
