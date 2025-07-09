@@ -22,6 +22,7 @@ experiment-*
 *.sif
 *.png
 *.json
+*.hf_token
 **/.mypy_cache/*
 .mypy_cache/*
 not_tracked_dir/

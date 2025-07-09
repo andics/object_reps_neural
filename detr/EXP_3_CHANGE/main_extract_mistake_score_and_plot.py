@@ -27,8 +27,8 @@ from PIL import Image
 import numpy as np
 import matplotlib.pyplot as plt
 
-label_fontsize = 17
-ticks_fontsize = 15
+label_fontsize = 21
+ticks_fontsize = 19
 
 def parse_args():
     p = argparse.ArgumentParser("Analyze area-change thresholds across image pairs")
@@ -122,10 +122,10 @@ def main():
 
     types = ['concave','concave_nofill','convex','no_change']
 
-    # parameters for plotting
+    # plotting parameters
     width = 1.0
-    left_margin = 0.5  # three times half-bar (0.5*3)
-    high_dpi = 200  # double resolution
+    left_margin = 0.5
+    high_dpi = 200
 
     for thr in thresholds:
         pct = int(round(thr*100))
@@ -141,10 +141,9 @@ def main():
         for d in details:
             t = d['type']
             if t in dets:
-                det = 1 if (d['area_change'] is not None and d['area_change'] > thr) else 0
-                dets[t].append(det)
+                dets[t].append(1 if (d['area_change'] is not None and d['area_change'] > thr) else 0)
 
-        # overall JSON summary
+        # overall summary
         summary = {t: {'detected': int(sum(dets[t])), 'total': len(dets[t])} for t in types}
         with open(os.path.join(dir_out,'overall_comparison.json'),'w') as f:
             json.dump(summary, f, indent=2)
@@ -161,41 +160,46 @@ def main():
                    color='lightgray', edgecolor='black', hatch='//',
                    yerr=sems[i], capsize=5)
         ax.set_xticks([])
-        ax.set_yticks(ax.get_yticks())
         ax.set_ylabel('% Detection Rate')
         ax.set_ylim(0, 100)
-        ax.set_xlim(left_margin - width/2, left_margin + len(types) - width/2)
+        ax.set_xlim(left_margin - 0.8*width, left_margin + len(types) - 0.2*width)
         ax.set_title(f'Threshold = {pct}%')
         plt.tight_layout()
         fig.savefig(os.path.join(dir_out,'overall_comparison.png'), dpi=high_dpi)
         plt.close(fig)
 
-        # three-condition plot
+        # three-condition plot with additional 10% widening
         three = ['concave','concave_nofill','convex']
         colors = [
             (255/255, 188/255, 78/255),
             (209/255, 168/255, 95/255),
             (79/255, 168/255, 78/255)
         ]
-        x2 = np.arange(len(three)) + left_margin
-        fig, ax = plt.subplots(figsize=(3.8, 6), dpi=high_dpi)
+        # base 15% + extra 10% => 1.15 * 1.10 = 1.265
+        width_three = width * 2.1
+        # maintain original data-space margin
+        margin_data = width * 0.8
+        # bar centers spaced by new width_three
+        x2 = np.arange(len(three)) * width_three + left_margin
+        fig, ax = plt.subplots(figsize=(4.5, 6), dpi=high_dpi)
         for i, t in enumerate(three):
             idx = types.index(t)
-            ax.bar(x2[i], rates[idx], width,
+            ax.bar(x2[i], rates[idx], width_three,
                    color=colors[i], edgecolor='black', hatch='//',
                    yerr=sems[idx], capsize=5)
         ax.set_xticks([])
         ax.tick_params(axis='y', labelsize=ticks_fontsize)
         ax.set_ylabel('% Noticing Change', fontsize=label_fontsize)
         ax.set_ylim(0, 100)
-        ax.set_xlim(left_margin - 0.8*width, left_margin + len(three) - 0.2*width)
+        left_lim = x2[0] - width_three/2 - margin_data
+        right_lim = x2[-1] + width_three/2 + margin_data
+        ax.set_xlim(left_lim, right_lim)
         ax.set_title(f'Threshold = {pct}%')
         plt.tight_layout()
         fig.savefig(os.path.join(dir_out, 'three_comparison.png'), dpi=high_dpi)
         plt.close(fig)
 
     print(f"Completed thresholds: {[int(t*100) for t in thresholds]}%.")
-
 
 if __name__ == '__main__':
     main()
