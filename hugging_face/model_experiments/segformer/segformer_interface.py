@@ -1,19 +1,20 @@
 """
-segformer_predictor.py
+segformer_interface.py
 
-A tiny OOP wrapper around NVIDIA’s SegFormer B5 checkpoint that
-illustrates exactly the same workflow as the original notebook but
-packs it into a reusable class.
+A model interface wrapper that provides DETR-compatible output from SegFormer models.
+This interface standardizes model loading, inference, and output formatting across experiments.
 
-Dependencies (same as before):
-  pip install transformers safetensors huggingface_hub pillow matplotlib
+Dependencies:
+  pip install transformers safetensors huggingface_hub pillow matplotlib torch torchvision
 """
 
 from pathlib import Path
-from typing import Union
+from typing import Union, Dict, Any
+import logging
 
 import numpy as np
 import torch
+import torch.nn.functional as F
 from PIL import Image
 from huggingface_hub import hf_hub_download
 from matplotlib import pyplot as plt
@@ -23,15 +24,46 @@ from transformers import (
 )
 
 
-class SegFormerPredictor:
-    """Minimal, single-file convenience wrapper for SegFormer inference."""
+class ModelInterface:
+    """
+    Abstract base interface for model inference that experiments can use.
+    All model implementations should inherit from this class.
+    """
+    
+    def load_model(self) -> None:
+        """Load the model from checkpoint or hub."""
+        raise NotImplementedError
+    
+    def infer_image(self, image: Image.Image) -> Dict[str, Any]:
+        """
+        Run inference on an image and return predictions in DETR-compatible format.
+        
+        Returns:
+            Dict with keys:
+            - 'pred_masks': torch.Tensor of shape (1, N, H, W) where N is number of queries
+            - 'pred_logits': torch.Tensor of shape (1, N, num_classes) 
+            - 'pred_boxes': torch.Tensor of shape (1, N, 4) in DETR format
+        """
+        raise NotImplementedError
+
+
+class SegFormerInterface(ModelInterface):
+    """
+    SegFormer model interface that provides DETR-compatible output format.
+    Converts semantic segmentation maps to instance-like masks for compatibility.
+    """
 
     def __init__(
         self,
         model_name: str = "nvidia/segformer-b5-finetuned-ade-640-640",
         device: Union[str, torch.device, None] = None,
+        num_queries: int = 100,
+        logger: logging.Logger = None,
     ):
         self.model_name = model_name
+        self.num_queries = num_queries
+        self.logger = logger or logging.getLogger(__name__)
+        
         self.device = (
             torch.device(device)
             if isinstance(device, str)
@@ -39,15 +71,17 @@ class SegFormerPredictor:
             if isinstance(device, torch.device)
             else torch.device("cuda" if torch.cuda.is_available() else "cpu")
         )
-        # keep the original “no resize” behaviour
+        
+        # Keep the original "no resize" behaviour for compatibility
         self.processor = SegformerImageProcessor(do_resize=False)
-        self.model: SegformerForSemanticSegmentation | None = None
+        self.model: SegformerForSemanticSegmentation = None
+        
+        self.logger.info(f"Initialized SegFormer interface with device: {self.device}")
 
-    # ------------------------------------------------------------------
-    # public API
-    # ------------------------------------------------------------------
     def load_model(self, use_safetensors: bool = True) -> None:
-        """Downloads and places the SegFormer checkpoint on the chosen device."""
+        """Downloads and loads the SegFormer model."""
+        self.logger.info(f"Loading SegFormer model: {self.model_name}")
+        
         self.model = (
             SegformerForSemanticSegmentation.from_pretrained(
                 self.model_name, use_safetensors=use_safetensors
@@ -55,26 +89,83 @@ class SegFormerPredictor:
             .to(self.device)
             .eval()
         )
+        
+        self.logger.info("SegFormer model loaded successfully")
 
-    def infer_image(self, image: Image.Image) -> np.ndarray:
+    def infer_image(self, image: Image.Image) -> Dict[str, Any]:
         """
-        Runs a forward pass and returns a (H, W) numpy array of class IDs
-        already resized to the input image’s resolution.
+        Run inference and return DETR-compatible predictions.
+        
+        The SegFormer semantic segmentation is converted to instance-like masks
+        by treating each class as a separate "object" and creating binary masks.
         """
         if self.model is None:
             raise RuntimeError("Call load_model() before infer_image().")
 
-        pixel_values = self.processor(image, return_tensors="pt").pixel_values.to(
-            self.device
-        )
+        # Get original image dimensions
+        orig_width, orig_height = image.size
+        
+        # Run SegFormer inference
+        pixel_values = self.processor(image, return_tensors="pt").pixel_values.to(self.device)
 
         with torch.no_grad():
             outputs = self.model(pixel_values)
 
+        # Get segmentation map
         seg_map = self.processor.post_process_semantic_segmentation(
-            outputs, target_sizes=[image.size[::-1]]
-        )[0]
-        return seg_map.cpu().numpy()
+            outputs, target_sizes=[(orig_height, orig_width)]
+        )[0]  # Shape: (H, W)
+        
+        # Convert to DETR-compatible format
+        pred_masks = self._convert_segmap_to_masks(seg_map, orig_height, orig_width)
+        
+        # Generate dummy logits and boxes for compatibility
+        batch_size = 1
+        pred_logits = torch.zeros(batch_size, self.num_queries, 91, device=self.device)  # ADE20K -> COCO classes
+        pred_boxes = torch.zeros(batch_size, self.num_queries, 4, device=self.device)
+        
+        # Fill in logits for actual masks (set high confidence for background class)
+        num_actual_masks = pred_masks.shape[1]
+        if num_actual_masks > 0:
+            pred_logits[0, :num_actual_masks, 0] = 10.0  # High confidence for "object" class
+        
+        return {
+            'pred_masks': pred_masks,
+            'pred_logits': pred_logits, 
+            'pred_boxes': pred_boxes
+        }
+
+    def _convert_segmap_to_masks(self, seg_map: torch.Tensor, height: int, width: int) -> torch.Tensor:
+        """
+        Convert semantic segmentation map to instance-like binary masks.
+        
+        Args:
+            seg_map: Tensor of shape (H, W) with class IDs
+            height, width: Original image dimensions
+            
+        Returns:
+            Tensor of shape (1, num_queries, H, W) with binary masks
+        """
+        seg_map_np = seg_map.cpu().numpy()
+        unique_classes = np.unique(seg_map_np)
+        
+        # Filter out background (class 0) and create masks for each class
+        object_classes = unique_classes[unique_classes > 0]
+        
+        masks = []
+        for class_id in object_classes:
+            class_mask = (seg_map_np == class_id).astype(np.float32)
+            masks.append(torch.from_numpy(class_mask))
+            
+        # Pad to num_queries
+        while len(masks) < self.num_queries:
+            masks.append(torch.zeros(height, width, dtype=torch.float32))
+            
+        # Stack and add batch dimension
+        pred_masks = torch.stack(masks[:self.num_queries], dim=0)  # (num_queries, H, W)
+        pred_masks = pred_masks.unsqueeze(0).to(self.device)  # (1, num_queries, H, W)
+        
+        return pred_masks
 
     # ------------------------------------------------------------------
     # helper (optional): fast ADE20K palette for pretty colour maps
@@ -82,7 +173,6 @@ class SegFormerPredictor:
     @staticmethod
     def ade_palette() -> list[list[int]]:
         """ADE20K palette that maps each class to RGB values."""
-        # (identical list as in the original notebook, truncated for brevity)
         return [
             [120, 120, 120], [180, 120, 120], [6, 230, 230], [80, 50, 50],
             [4, 200, 3], [120, 120, 80], [140, 140, 140], [204, 5, 255],
@@ -126,29 +216,39 @@ class SegFormerPredictor:
 
 
 # ----------------------------------------------------------------------
-# demo usage
+# demo usage and backward compatibility
 # ----------------------------------------------------------------------
-if __name__ == "__main__":
-    predictor = SegFormerPredictor()
-    predictor.load_model()  # weights are cached after the first run
+# Keep the old class name for backward compatibility
+SegFormerPredictor = SegFormerInterface
 
-    # ------------------------------------------------------------------
-    # download a sample image (ADE20K validation sample #1)
-    # ------------------------------------------------------------------
+
+if __name__ == "__main__":
+    # Demo usage
+    interface = SegFormerInterface()
+    interface.load_model()
+
+    # Download a sample image (ADE20K validation sample #1)
     repo = "hf-internal-testing/fixtures_ade20k"
     img_path = hf_hub_download(repo_id=repo, filename="ADE_val_00000001.jpg", repo_type="dataset")
     image = Image.open(img_path)
 
-    # ------------------------------------------------------------------
-    # run inference
-    # ------------------------------------------------------------------
-    seg = predictor.infer_image(image)
+    # Run inference
+    predictions = interface.infer_image(image)
+    
+    print(f"Prediction format:")
+    print(f"- pred_masks shape: {predictions['pred_masks'].shape}")
+    print(f"- pred_logits shape: {predictions['pred_logits'].shape}")
+    print(f"- pred_boxes shape: {predictions['pred_boxes'].shape}")
 
-    # ------------------------------------------------------------------
-    # colourise the prediction for visual inspection
-    # ------------------------------------------------------------------
-    palette = np.array(predictor.ade_palette(), dtype=np.uint8)
-    colour = palette[seg]  # (H, W, 3)
+    # For visualization, we can extract the semantic segmentation
+    seg_map = interface.processor.post_process_semantic_segmentation(
+        interface.model(interface.processor(image, return_tensors="pt").pixel_values.to(interface.device)),
+        target_sizes=[image.size[::-1]]
+    )[0]
+
+    # Colorize the prediction for visual inspection
+    palette = np.array(interface.ade_palette(), dtype=np.uint8)
+    colour = palette[seg_map.cpu().numpy()]  # (H, W, 3)
     blend = (0.5 * np.asarray(image) + 0.5 * colour[..., ::-1]).astype(np.uint8)
 
     plt.figure(figsize=(12, 8))
