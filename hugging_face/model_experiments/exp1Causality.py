@@ -2,35 +2,30 @@
 """
 exp1Causality.py
 
-Consolidated experiment that computes collision distances and generates causality plots.
-This integrates the functionality from exp1Causality_1_dist.py and exp1Causality_2_plots.py
-while using a configurable model interface.
+Causality Experiment that processes raw .mp4 videos and computes causality scores
+based on object distance changes over time. Completely self-contained from raw videos to final analysis.
 
 Usage:
-    python exp1Causality.py --model_interface segformer --data_dir /path/to/data --output_dir /path/to/output
+    python exp1Causality.py --model_interface segformer --videos_dir /path/to/raw_videos --output_dir /path/to/output [--resume]
 """
 
-import os
-import re
 import argparse
-import numpy as np
-import pandas as pd
-from PIL import Image
+import os
+import sys
+import json
 import logging
 import datetime
-import json
-import math
+import numpy as np
+import pandas as pd
 import matplotlib.pyplot as plt
-import scipy.stats as stats
-from scipy.optimize import curve_fit
-from typing import Dict, Any, List, Tuple
-import torch
-import torch.nn.functional as F
+from pathlib import Path
+from typing import List, Dict, Any, Tuple
+from PIL import Image
+import glob
 
 # Import model interfaces and video processor
 from segformer.segformer_interface import SegFormerInterface, ModelInterface
 from video_processor import VideoProcessor
-
 
 ##############################################################################
 # EXPERIMENT CLASS
@@ -41,10 +36,11 @@ class CausalityExperiment:
     Experiment 1: Causality Analysis
     
     This experiment:
-    1. Processes video frames using a model interface to generate object masks
-    2. Computes collision distances between objects 
-    3. Maps distances to causality scores
-    4. Generates correlation plots and statistical analysis
+    1. Takes a directory of raw .mp4 video files as input
+    2. Processes each video using VideoProcessor to extract frames and detect objects
+    3. Computes distance changes between objects over time
+    4. Calculates causality scores based on distance patterns
+    5. Generates analysis plots and saves results
     """
     
     def __init__(self, model_interface: ModelInterface, output_dir: str, logger: logging.Logger = None):
@@ -60,16 +56,16 @@ class CausalityExperiment:
         self.plots_dir = os.path.join(output_dir, "plots")
         self.logs_dir = os.path.join(output_dir, "logs")
         self.processed_videos_dir = os.path.join(output_dir, "processed_videos")
+        self.distance_data_dir = os.path.join(output_dir, "distance_data")
         
-        for dir_path in [self.results_dir, self.plots_dir, self.logs_dir, self.processed_videos_dir]:
+        for dir_path in [self.results_dir, self.plots_dir, self.logs_dir, 
+                        self.processed_videos_dir, self.distance_data_dir]:
             os.makedirs(dir_path, exist_ok=True)
             
         self.logger.info(f"Initialized Causality Experiment with output dir: {output_dir}")
 
     def _setup_logger(self) -> logging.Logger:
         """Setup logging configuration."""
-        os.makedirs(self.logs_dir, exist_ok=True)
-        
         timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
         log_file_path = os.path.join(self.logs_dir, f"causality_exp_{timestamp}.log")
 
@@ -82,596 +78,425 @@ class CausalityExperiment:
         # File handler
         fh = logging.FileHandler(log_file_path)
         fh.setLevel(logging.DEBUG)
-        f_formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
-        fh.setFormatter(f_formatter)
+        formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
+        fh.setFormatter(formatter)
         logger.addHandler(fh)
 
         # Console handler
         ch = logging.StreamHandler()
         ch.setLevel(logging.INFO)
-        c_formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
-        ch.setFormatter(c_formatter)
+        ch.setFormatter(formatter)
         logger.addHandler(ch)
 
         logger.info(f"Logger initialized. Writing detailed log to {log_file_path}")
         return logger
 
-    def process_videos(self, video_data_dir: str, resume: bool = True) -> Dict[str, pd.DataFrame]:
-        """
-        Process video frames and generate collision distance data.
-        
-        Args:
-            video_data_dir: Directory containing video files (.mp4)
-            resume: Whether to resume from previous processing
-            
-        Returns:
-            Dictionary of DataFrames for different IoU thresholds
-        """
-        self.logger.info("Starting video processing for collision distance computation")
-        
-        # Get list of video files
-        video_files = self._find_video_files(video_data_dir)
-        if not video_files:
-            self.logger.error(f"No video files found in {video_data_dir}")
-            return {}
-        
-        # Process each video using VideoProcessor
-        processed_videos = {}
-        for video_file in video_files:
-            self.logger.info(f"Processing video: {video_file}")
-            
-            # Use VideoProcessor to process the entire video
-            video_output_dirs = self.video_processor.process_video(
-                video_path=video_file,
-                output_root=self.processed_videos_dir,
-                model_prefix="segformer_model",
-                resume=resume
-            )
-            
-            video_name = os.path.splitext(os.path.basename(video_file))[0]
-            processed_videos[video_name] = video_output_dirs
-        
-        # Compute collision distances from processed mask data
-        collision_data = self._compute_collision_distances(processed_videos)
-        
-        return collision_data
-
-    def _process_video_frames(self, video_data_dir: str) -> Dict[str, Any]:
-        """Process video frames to generate object masks using the model interface."""
-        self.logger.info(f"Processing video frames from: {video_data_dir}")
-        
-        mask_data = {}
-        
-        # Get list of video directories
-        video_dirs = [d for d in os.listdir(video_data_dir) 
-                     if os.path.isdir(os.path.join(video_data_dir, d))]
-        
-        for video_dir in video_dirs:
-            video_path = os.path.join(video_data_dir, video_dir)
-            self.logger.info(f"Processing video directory: {video_dir}")
-            
-            # Create output directory for this video
-            output_video_dir = os.path.join(self.results_dir, f"processed_{video_dir}")
-            masks_dir = os.path.join(output_video_dir, "frames_masks_nonmem")
-            os.makedirs(masks_dir, exist_ok=True)
-            
-            # Process frames in the video directory
-            frame_files = [f for f in os.listdir(video_path) 
-                          if f.lower().endswith(('.png', '.jpg', '.jpeg'))]
-            frame_files.sort()
-            
-            for frame_file in frame_files:
-                frame_path = os.path.join(video_path, frame_file)
-                frame_image = Image.open(frame_path).convert('RGB')
-                
-                # Run inference using model interface
-                predictions = self.model_interface.infer_image(frame_image)
-                
-                # Extract and save masks
-                self._save_frame_masks(predictions, frame_file, masks_dir)
-            
-            mask_data[video_dir] = {
-                'masks_dir': masks_dir,
-                'frame_count': len(frame_files)
-            }
-            
-        return mask_data
-
-    def _save_frame_masks(self, predictions: Dict[str, Any], frame_file: str, masks_dir: str):
-        """Save individual object masks from model predictions."""
-        pred_masks = predictions['pred_masks']  # Shape: (1, num_queries, H, W)
-        
-        # Extract frame number from filename
-        frame_match = re.search(r'(\d+)', frame_file)
-        frame_num = frame_match.group(1) if frame_match else "000000"
-        frame_str = f"{int(frame_num):06d}"
-        
-        # Save top 2 masks as blob_0 and blob_1
-        for blob_idx in range(min(2, pred_masks.shape[1])):
-            mask = pred_masks[0, blob_idx].cpu().numpy()  # (H, W)
-            
-            # Convert to binary mask
-            binary_mask = (mask > 0.5).astype(np.uint8) * 255
-            
-            # Save mask
-            mask_filename = f"mask_blob_{blob_idx}_frame_{frame_str}.png"
-            mask_path = os.path.join(masks_dir, mask_filename)
-            Image.fromarray(binary_mask).save(mask_path)
-
-    def _find_video_files(self, video_data_dir: str) -> List[str]:
-        """Find all video files in the given directory."""
-        video_extensions = ['.mp4', '.avi', '.mov', '.mkv']
-        video_files = []
-        
-        for file in os.listdir(video_data_dir):
-            if any(file.lower().endswith(ext) for ext in video_extensions):
-                video_files.append(os.path.join(video_data_dir, file))
-        
-        video_files.sort()
-        self.logger.info(f"Found {len(video_files)} video files in {video_data_dir}")
-        return video_files
-    
-    def _compute_collision_distances(self, processed_videos: Dict[str, Dict[str, str]]) -> Dict[str, pd.DataFrame]:
-        """Compute collision distances between objects for different thresholds."""
-        self.logger.info("Computing collision distances from processed video masks")
-        
-        # Define thresholds
-        thresholds = [1]  # "touch by 1 pixel"
-        iou_list = [round(x, 2) for x in np.arange(0.05, 0.45, 0.05)]
-        thresholds.extend(iou_list)
-        
-        # Initialize result DataFrames
-        columns = ["folder_name", "gt_distance", "distance_to_boundary", "distance_to_centroid", "frame_used"]
-        results = {}
-        
-        for thr in thresholds:
-            results[thr] = pd.DataFrame(columns=columns)
-        
-        # Process each processed video
-        for video_name, video_dirs in processed_videos.items():
-            masks_dir = video_dirs['frames_masks_nonmem']
-            
-            # Parse video name to extract ground truth distance
-            short_name, gt_dist = self._parse_name_and_distance(video_name)
-            
-            # Find available frames with masks
-            mask_files = [f for f in os.listdir(masks_dir) if f.startswith("mask_blob_0") and f.endswith(".png")]
-            if not mask_files:
-                self.logger.warning(f"No mask files found for {video_name}")
-                continue
-            
-            # Find the smallest frame number (as in original logic)
-            frame_numbers = []
-            for f in mask_files:
-                match = re.search(r'frame_(\d+)', f)
-                if match:
-                    frame_numbers.append(int(match.group(1)))
-            
-            if not frame_numbers:
-                self.logger.warning(f"Could not parse frame numbers for {video_name}")
-                continue
-            
-            # Use smallest frame - 100 (as in original logic)
-            frame_used = min(frame_numbers) - 100
-            frame_used = max(0, frame_used)  # Ensure non-negative
-            
-            # Load masks for this frame
-            mask0_path = os.path.join(masks_dir, f"mask_blob_0_frame_{frame_used:06d}.png")
-            mask1_path = os.path.join(masks_dir, f"mask_blob_1_frame_{frame_used:06d}.png")
-            
-            if not (os.path.exists(mask0_path) and os.path.exists(mask1_path)):
-                self.logger.warning(f"Missing masks for frame {frame_used} in {video_name}")
-                continue
-            
-            # Load masks
-            m0 = self._load_mask(mask0_path)
-            m1 = self._load_mask(mask1_path)
-            
-            # Compute centroid distance
-            cy0, cx0 = self._get_centroid(m0)
-            cy1, cx1 = self._get_centroid(m1)
-            dist_centroids = float(np.sqrt((cx1 - cx0)**2 + (cy1 - cy0)**2))
-            
-            # For each threshold, measure distance
-            for thr in thresholds:
-                dist_boundary = self._measure_shift_needed(m0, m1, thr)
-                
-                # Create row
-                row_data = {
-                    "folder_name": short_name,
-                    "gt_distance": gt_dist,
-                    "distance_to_boundary": dist_boundary,
-                    "distance_to_centroid": dist_centroids,
-                    "frame_used": frame_used
-                }
-                
-                # Append to DataFrame
-                results[thr] = pd.concat([results[thr], pd.DataFrame([row_data])], ignore_index=True)
-                
-                self.logger.debug(f"Computed distances for {video_name}, threshold={thr}: {row_data}")
-        
-        # Save CSV files
-        for thr, df in results.items():
-            if thr == 1:
-                suffix = "_1px"
-            else:
-                suffix = f"_{thr:.2f}"
-            csv_path = os.path.join(self.results_dir, f"collision_distances{suffix}.csv")
-            df.to_csv(csv_path, index=False)
-            self.logger.info(f"Saved collision distances to {csv_path}")
-        
-        return results
-
-    def generate_causality_plots(self, collision_data: Dict[str, pd.DataFrame]) -> None:
-        """Generate causality plots and analysis from collision distance data."""
-        self.logger.info("Generating causality plots and analysis")
-        
-        # Use 1-pixel threshold data for plotting
-        df = collision_data[1].copy()
-        
-        # Filter for concave/convex data
-        df = df[df["folder_name"].str.contains("concave|convex", case=False, na=False)].copy()
-        df.loc[df["distance_to_boundary"] < 0, "distance_to_boundary"] = 0
-        
-        # Separate concave and convex
-        concave_df = df[df["folder_name"].str.contains("concave", case=False)]
-        convex_df = df[df["folder_name"].str.contains("convex", case=False)]
-        
-        # Compute statistics for boundary and centroid distances
-        self._compute_and_plot_causality_analysis(concave_df, convex_df, df)
-
-    def _compute_and_plot_causality_analysis(self, concave_df: pd.DataFrame, convex_df: pd.DataFrame, full_df: pd.DataFrame):
-        """Compute causality analysis and generate plots."""
-        
-        # Colors for plotting
-        CONVEX_COLOR = "#39A039"    # green
-        CONCAVE_COLOR = "#FEB02F"   # yellow/orange
-        
-        # Process boundary distances
-        concave_bd = self._compute_avg_and_error_metrics(concave_df, value_col="distance_to_boundary")
-        convex_bd = self._compute_avg_and_error_metrics(convex_df, value_col="distance_to_boundary")
-        
-        # Derive exponential parameters
-        a_bd, b_bd = self._derive_exp_params_from_bounds(concave_bd["avg_dist"].min(), concave_bd["avg_dist"].max())
-        
-        # Map distances to causality
-        concave_bd = self._map_distances_to_causality(concave_bd, a_bd, b_bd, dist_col="avg_dist")
-        convex_bd = self._map_distances_to_causality(convex_bd, a_bd, b_bd, dist_col="avg_dist")
-        
-        # Compute causality error metrics
-        concave_bd_caus = self._compute_causality_error_metrics(full_df, "concave", a_bd, b_bd, dist_col="distance_to_boundary")
-        convex_bd_caus = self._compute_causality_error_metrics(full_df, "convex", a_bd, b_bd, dist_col="distance_to_boundary")
-        
-        # Process centroid distances
-        concave_ct = self._compute_avg_and_error_metrics(concave_df, value_col="distance_to_centroid")
-        convex_ct = self._compute_avg_and_error_metrics(convex_df, value_col="distance_to_centroid")
-        
-        a_ct, b_ct = self._derive_exp_params_from_bounds(concave_ct["avg_dist"].min(), concave_ct["avg_dist"].max())
-        
-        concave_ct = self._map_distances_to_causality(concave_ct, a_ct, b_ct, dist_col="avg_dist")
-        convex_ct = self._map_distances_to_causality(convex_ct, a_ct, b_ct, dist_col="avg_dist")
-        
-        concave_ct_caus = self._compute_causality_error_metrics(full_df, "concave", a_ct, b_ct, dist_col="distance_to_centroid")
-        convex_ct_caus = self._compute_causality_error_metrics(full_df, "convex", a_ct, b_ct, dist_col="distance_to_centroid")
-        
-        # Save detailed JSON results
-        self._save_detailed_json_results(concave_bd_caus, convex_bd_caus, concave_ct_caus, convex_ct_caus)
-        
-        # Generate plots
-        self._generate_causality_plots(
-            concave_bd_caus, convex_bd_caus, concave_ct_caus, convex_ct_caus,
-            a_bd, b_bd, a_ct, b_ct, CONCAVE_COLOR, CONVEX_COLOR
-        )
-
-    def _save_detailed_json_results(self, concave_bd_caus, convex_bd_caus, concave_ct_caus, convex_ct_caus):
-        """Save detailed analysis results to JSON files."""
-        
-        # Boundary details
-        boundary_details = []
-        xs_bd = sorted(set(concave_bd_caus["mapped_distance"]).union(convex_bd_caus["mapped_distance"]))
-        for x in xs_bd:
-            cr = concave_bd_caus[concave_bd_caus["mapped_distance"] == x]
-            vr = convex_bd_caus[convex_bd_caus["mapped_distance"] == x]
-            boundary_details.append({
-                "x_value": x,
-                "concave_avg": float(cr["avg_causality"].iloc[0]) if not cr.empty else None,
-                "convex_avg": float(vr["avg_causality"].iloc[0]) if not vr.empty else None,
-                "concave_std": float(cr["scaled_sem"].iloc[0]) if not cr.empty else None,
-                "convex_std": float(vr["scaled_sem"].iloc[0]) if not vr.empty else None,
-            })
-        
-        with open(os.path.join(self.plots_dir, "boundary_detailed.json"), "w") as f:
-            json.dump(boundary_details, f, indent=2)
-        
-        # Centroid details
-        centroid_details = []
-        xs_ct = sorted(set(concave_ct_caus["mapped_distance"]).union(convex_ct_caus["mapped_distance"]))
-        for x in xs_ct:
-            cr = concave_ct_caus[concave_ct_caus["mapped_distance"] == x]
-            vr = convex_ct_caus[convex_ct_caus["mapped_distance"] == x]
-            centroid_details.append({
-                "x_value": x,
-                "concave_avg": float(cr["avg_causality"].iloc[0]) if not cr.empty else None,
-                "convex_avg": float(vr["avg_causality"].iloc[0]) if not vr.empty else None,
-                "concave_std": float(cr["scaled_sem"].iloc[0]) if not cr.empty else None,
-                "convex_std": float(vr["scaled_sem"].iloc[0]) if not vr.empty else None,
-            })
-        
-        with open(os.path.join(self.plots_dir, "centroid_detailed.json"), "w") as f:
-            json.dump(centroid_details, f, indent=2)
-
-    def _generate_causality_plots(self, concave_bd_caus, convex_bd_caus, concave_ct_caus, convex_ct_caus,
-                                 a_bd, b_bd, a_ct, b_ct, CONCAVE_COLOR, CONVEX_COLOR):
-        """Generate the main causality plots."""
-        
-        fig, (ax_bd, ax_ct) = plt.subplots(1, 2, figsize=(14, 6))
-        label_fs, tick_fs = 26, 23
-        
-        for ax in (ax_bd, ax_ct):
-            ax.tick_params(axis='both', which='major', labelsize=tick_fs)
-
-        # Boundary subplot
-        ax_bd.set_title("Concave & Convex (Boundary)", fontsize=16)
-        ax_bd.errorbar(concave_bd_caus["mapped_distance"], concave_bd_caus["avg_causality"],
-                       yerr=concave_bd_caus["scaled_sem"], fmt='o', color=CONCAVE_COLOR, capsize=4, alpha=0.9)
-        ax_bd.errorbar(convex_bd_caus["mapped_distance"], convex_bd_caus["avg_causality"],
-                       yerr=convex_bd_caus["scaled_sem"], fmt='o', color=CONVEX_COLOR, capsize=4, alpha=0.9)
-        
-        x_min_bd = min(concave_bd_caus["mapped_distance"].min(), convex_bd_caus["mapped_distance"].min())
-        x_max_bd = max(concave_bd_caus["mapped_distance"].max(), convex_bd_caus["mapped_distance"].max())
-        
-        self._plot_exp_with_band(ax_bd, np.linspace(x_min_bd, x_max_bd, 200), a_bd, b_bd, CONCAVE_COLOR)
-        self._plot_exp_with_band(ax_bd, np.linspace(x_min_bd, x_max_bd, 200), a_bd, b_bd, CONVEX_COLOR)
-        self._plot_best_fit_curve(ax_bd, concave_bd_caus["mapped_distance"].values, concave_bd_caus["avg_causality"].values, CONCAVE_COLOR, "Concave")
-        self._plot_best_fit_curve(ax_bd, convex_bd_caus["mapped_distance"].values, convex_bd_caus["avg_causality"].values, CONVEX_COLOR, "Convex")
-        
-        ax_bd.set_xlabel("Distance at Collision (pixel)", fontsize=label_fs)
-        ax_bd.set_ylabel("Causality", fontsize=label_fs)
-        ax_bd.set_ylim([1, 8])
-
-        # Centroid subplot
-        ax_ct.set_title("Concave & Convex (Centroid)", fontsize=16)
-        ax_ct.errorbar(concave_ct_caus["mapped_distance"], concave_ct_caus["avg_causality"],
-                       yerr=concave_ct_caus["scaled_sem"], fmt='o', color=CONCAVE_COLOR, capsize=4, alpha=0.9)
-        ax_ct.errorbar(convex_ct_caus["mapped_distance"], convex_ct_caus["avg_causality"],
-                       yerr=convex_ct_caus["scaled_sem"], fmt='o', color=CONVEX_COLOR, capsize=4, alpha=0.9)
-        
-        x_min_ct = min(concave_ct_caus["mapped_distance"].min(), convex_ct_caus["mapped_distance"].min())
-        x_max_ct = max(concave_ct_caus["mapped_distance"].max(), convex_ct_caus["mapped_distance"].max())
-        
-        self._plot_exp_with_band(ax_ct, np.linspace(x_min_ct, x_max_ct, 200), a_ct, b_ct, CONCAVE_COLOR)
-        self._plot_exp_with_band(ax_ct, np.linspace(x_min_ct, x_max_ct, 200), a_ct, b_ct, CONVEX_COLOR)
-        self._plot_best_fit_curve(ax_ct, concave_ct_caus["mapped_distance"].values, concave_ct_caus["avg_causality"].values, CONCAVE_COLOR, "Concave")
-        self._plot_best_fit_curve(ax_ct, convex_ct_caus["mapped_distance"].values, convex_ct_caus["avg_causality"].values, CONVEX_COLOR, "Convex")
-        
-        ax_ct.set_xlabel("Distance at Collision (pixel)", fontsize=label_fs)
-        ax_ct.set_ylabel("Causality", fontsize=label_fs)
-        ax_ct.set_ylim([1, 8])
-        ax_ct.legend()
-
-        plt.tight_layout()
-
-        # Save plot
-        timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
-        plot_name = f"causality_plot_{timestamp}.png"
-        save_path = os.path.join(self.plots_dir, plot_name)
-        plt.savefig(save_path, dpi=300)
-        self.logger.info(f"Saved causality plot to {save_path}")
-        plt.close()
-
-    # Helper methods (abbreviated for space - these would contain the full implementations)
-    def _parse_name_and_distance(self, folder_name: str) -> Tuple[str, int]:
-        """Extract folder name and distance from folder name."""
-        short = folder_name
-        match = re.search(r'_(-?\d+)$', short)
-        if match:
-            gt_dist = int(match.group(1))
-        else:
-            gt_dist = 0
-        return short, gt_dist
-
-    def _load_mask(self, mask_path: str) -> np.ndarray:
-        """Load a mask image as a boolean numpy array."""
-        img = Image.open(mask_path).convert('L')
-        arr = np.array(img, dtype=np.uint8)
-        return (arr > 0)
-
-    def _get_centroid(self, mask: np.ndarray) -> Tuple[float, float]:
-        """Returns the (cy, cx) centroid of a binary mask."""
-        coords = np.argwhere(mask)
-        if len(coords) == 0:
-            return (0.0, 0.0)
-        cy, cx = coords.mean(axis=0)
-        return (cy, cx)
-
-    def _measure_shift_needed(self, mask0: np.ndarray, mask1: np.ndarray, threshold: float, max_shift: int = 500) -> float:
-        """Measure horizontal shift needed for collision threshold."""
-        # Determine which blob is left vs right by centroid
-        c0y, c0x = self._get_centroid(mask0)
-        c1y, c1x = self._get_centroid(mask1)
-        
-        if c0x <= c1x:
-            mask_left, mask_right = mask0, mask1
-        else:
-            mask_left, mask_right = mask1, mask0
-        
-        def threshold_met(shift):
-            overlap, union = self._shift_and_compute_overlap(mask_left, mask_right, shift)
-            if threshold >= 1:
-                return overlap >= threshold
-            else:
-                if union == 0:
-                    return False
-                iou = overlap / union
-                return iou >= threshold
-        
-        # Check if threshold is met at shift=0
-        meets = threshold_met(0)
-        if meets:
-            # Shift outward until threshold no longer met
-            for d in range(max_shift + 1):
-                if not threshold_met(d):
-                    return float(-d)
-            return float(-(max_shift + 1))
-        else:
-            # Shift inward until threshold is met
-            for d in range(max_shift + 1):
-                test_shift = -d
-                if threshold_met(test_shift):
-                    return float(d)
-            return float(max_shift + 1)
-    
-    def _shift_and_compute_overlap(self, mask_left: np.ndarray, mask_right: np.ndarray, shift: int) -> Tuple[int, int]:
-        """Compute overlap and union when shifting mask_right by shift pixels."""
-        coords_left = np.argwhere(mask_left)
-        coords_right = np.argwhere(mask_right)
-
-        if len(coords_left) == 0 and len(coords_right) == 0:
-            return 0, 0
-        if len(coords_left) == 0:
-            return 0, len(coords_right)
-        if len(coords_right) == 0:
-            return 0, len(coords_left)
-
-        # Get bounding boxes
-        yL_min, xL_min = coords_left.min(axis=0)
-        yL_max, xL_max = coords_left.max(axis=0)
-        yR_min, xR_min = coords_right.min(axis=0)
-        yR_max, xR_max = coords_right.max(axis=0)
-
-        # Shift right mask
-        xR_min_shifted = xR_min + shift
-        xR_max_shifted = xR_max + shift
-
-        # Combined bounding box
-        x_min = min(xL_min, xR_min_shifted)
-        x_max = max(xL_max, xR_max_shifted)
-        y_min = min(yL_min, yR_min)
-        y_max = max(yL_max, yR_max)
-
-        width = x_max - x_min + 1
-        height = y_max - y_min + 1
-        
-        if width <= 0 or height <= 0:
-            return 0, mask_left.sum() + mask_right.sum()
-
-        # Create shifted arrays
-        arr_left = np.zeros((height, width), dtype=bool)
-        arr_right = np.zeros((height, width), dtype=bool)
-
-        # Place masks in arrays
-        for (y, x) in coords_left:
-            ry = y - y_min
-            rx = x - x_min
-            if 0 <= ry < height and 0 <= rx < width:
-                arr_left[ry, rx] = True
-
-        for (y, x) in coords_right:
-            ry = y - y_min
-            rx = x + shift - x_min
-            if 0 <= ry < height and 0 <= rx < width:
-                arr_right[ry, rx] = True
-
-        overlap = np.logical_and(arr_left, arr_right).sum()
-        union = np.logical_or(arr_left, arr_right).sum()
-        
-        return overlap, union
-
-    def _compute_avg_and_error_metrics(self, df: pd.DataFrame, value_col: str = "distance_to_boundary") -> pd.DataFrame:
-        """Compute average and error metrics grouped by gt_distance."""
-        # Simplified implementation
-        return df.groupby("gt_distance").agg({
-            value_col: ['mean', 'std', 'count']
-        }).reset_index()
-
-    def _derive_exp_params_from_bounds(self, xmin: float, xmax: float) -> Tuple[float, float]:
-        """Derive exponential parameters from bounds."""
-        if math.isclose(xmin, xmax, rel_tol=1e-9):
-            return (7.0, 1.0)
-        ln_2_over_7 = math.log(3.0 / 7.0)
-        b = (xmin - xmax) / ln_2_over_7
-        a = 7.0 * math.exp(xmin / b)
-        return (a, b)
-
-    def _map_distances_to_causality(self, df_group: pd.DataFrame, a: float, b: float, dist_col: str = "avg_dist") -> pd.DataFrame:
-        """Map distances to causality scores."""
-        df_group["causality"] = df_group[dist_col].apply(lambda x: a * np.exp(-x / b))
-        return df_group
-
-    def _compute_causality_error_metrics(self, df: pd.DataFrame, group_filter: str, a: float, b: float, dist_col: str = "distance_to_boundary") -> pd.DataFrame:
-        """Compute causality error metrics."""
-        # Simplified implementation
-        filtered = df[df["folder_name"].str.contains(group_filter, case=False)].copy()
-        filtered["causality"] = filtered[dist_col].apply(lambda x: a * np.exp(-x / b))
-        return filtered.groupby("gt_distance").agg({
-            "causality": ['mean', 'std', 'count']
-        }).reset_index()
-
-    def _plot_exp_with_band(self, ax, xvals_plot, a, b, color_):
-        """Plot exponential curve with confidence band."""
-        x_smooth = np.linspace(xvals_plot.min(), xvals_plot.max(), 200)
-        y_smooth = a * np.exp(-x_smooth / b)
-        ax.plot(x_smooth, y_smooth, color=color_, linewidth=2.0)
-
-    def _plot_best_fit_curve(self, ax, x_data, y_data, color_, label_):
-        """Plot best fit curve with error band."""
-        # Simplified implementation
-        ax.plot(x_data, y_data, color=color_, linewidth=2.5, label=label_ + " fit")
-
-    def run_full_experiment(self, video_data_dir: str, resume: bool = True) -> None:
-        """Run the complete causality experiment."""
+    def run_full_experiment(self, videos_dir: str, resume: bool = True) -> None:
+        """Run the complete causality experiment from raw videos to final analysis."""
         self.logger.info("Starting full causality experiment")
         
-        # Step 1: Process videos and compute collision distances
-        collision_data = self.process_videos(video_data_dir, resume=resume)
+        # Step 1: Find all .mp4 video files in the input directory
+        video_files = self._find_video_files(videos_dir)
+        if not video_files:
+            self.logger.error(f"No .mp4 video files found in {videos_dir}")
+            return
         
-        # Step 2: Generate causality plots and analysis
-        if collision_data:
-            self.generate_causality_plots(collision_data)
+        self.logger.info(f"Found {len(video_files)} video files to process")
+        
+        # Step 2: Process each video to extract frames and detect objects
+        all_distance_data = {}
+        
+        for video_file in video_files:
+            video_name = Path(video_file).stem
+            self.logger.info(f"Processing video: {video_name}")
+            
+            try:
+                # Process video using VideoProcessor
+                video_output_dirs = self.video_processor.process_video(
+                    video_path=video_file,
+                    output_root=self.processed_videos_dir,
+                    model_prefix="segformer_model",
+                    resume=resume
+                )
+                
+                # Extract distance data from processed video
+                distance_data = self._extract_distance_data_from_processed_video(
+                    video_output_dirs, video_name
+                )
+                
+                if distance_data:
+                    all_distance_data[video_name] = distance_data
+                    
+                    # Save individual distance data
+                    distance_csv_path = os.path.join(self.distance_data_dir, f"{video_name}_distances.csv")
+                    self._save_distance_data_to_csv(distance_data, distance_csv_path)
+                    
+                else:
+                    self.logger.warning(f"No distance data extracted for video: {video_name}")
+                    
+            except Exception as e:
+                self.logger.error(f"Failed to process video {video_name}: {e}")
+                continue
+        
+        # Step 3: Compute causality scores for all videos
+        if all_distance_data:
+            self._compute_and_analyze_causality_scores(all_distance_data)
         else:
-            self.logger.warning("No collision data generated - skipping plot generation")
+            self.logger.warning("No distance data available - skipping causality analysis")
         
         self.logger.info("Causality experiment completed successfully")
 
+    def _find_video_files(self, videos_dir: str) -> List[str]:
+        """Find all .mp4 video files in the specified directory."""
+        video_pattern = os.path.join(videos_dir, "*.mp4")
+        video_files = glob.glob(video_pattern)
+        return sorted(video_files)
+
+    def _extract_distance_data_from_processed_video(self, video_output_dirs: Dict[str, str], 
+                                                   video_name: str) -> List[Dict[str, Any]]:
+        """Extract distance data from processed video output directories."""
+        masks_dir = Path(video_output_dirs['frames_masks_nonmem'])
+        
+        # Find all mask files and group by frame
+        mask_files = list(masks_dir.glob("mask_blob_*_frame_*.png"))
+        
+        if not mask_files:
+            self.logger.warning(f"No mask files found in {masks_dir}")
+            return []
+        
+        # Group masks by frame number
+        frame_masks = {}
+        for mask_file in mask_files:
+            # Parse filename: mask_blob_0_frame_000013.png
+            parts = mask_file.stem.split('_')
+            blob_idx = int(parts[2])  # blob index
+            frame_num = int(parts[4])  # frame number
+            
+            if frame_num not in frame_masks:
+                frame_masks[frame_num] = {}
+            
+            # Load mask and compute centroid
+            mask_img = Image.open(mask_file).convert('L')
+            mask_array = np.array(mask_img, dtype=np.uint8)
+            binary_mask = (mask_array > 0).astype(np.float32)
+            
+            # Compute centroid
+            centroid = self._compute_mask_centroid(binary_mask)
+            frame_masks[frame_num][f"blob_{blob_idx}"] = {
+                'mask': binary_mask,
+                'centroid': centroid
+            }
+        
+        # Convert to distance data format
+        distance_data = []
+        frame_numbers = sorted(frame_masks.keys())
+        
+        for frame_num in frame_numbers:
+            frame_data = frame_masks[frame_num]
+            
+            # Need at least 2 blobs to compute distance
+            if len(frame_data) >= 2:
+                blob_0 = frame_data.get('blob_0')
+                blob_1 = frame_data.get('blob_1')
+                
+                if blob_0 and blob_1:
+                    # Compute distance between centroids
+                    distance = self._compute_distance(blob_0['centroid'], blob_1['centroid'])
+                    
+                    distance_data.append({
+                        'frame': frame_num,
+                        'distance': distance,
+                        'blob_0_centroid': blob_0['centroid'],
+                        'blob_1_centroid': blob_1['centroid']
+                    })
+        
+        self.logger.info(f"Extracted {len(distance_data)} distance measurements for {video_name}")
+        return distance_data
+
+    def _compute_mask_centroid(self, mask: np.ndarray) -> Tuple[float, float]:
+        """Compute centroid of a binary mask."""
+        if mask.sum() == 0:
+            return (0.0, 0.0)
+        
+        y_coords, x_coords = np.where(mask > 0)
+        centroid_x = float(np.mean(x_coords))
+        centroid_y = float(np.mean(y_coords))
+        return (centroid_x, centroid_y)
+
+    def _compute_distance(self, centroid1: Tuple[float, float], 
+                         centroid2: Tuple[float, float]) -> float:
+        """Compute Euclidean distance between two centroids."""
+        dx = centroid1[0] - centroid2[0]
+        dy = centroid1[1] - centroid2[1]
+        return float(np.sqrt(dx**2 + dy**2))
+
+    def _save_distance_data_to_csv(self, distance_data: List[Dict[str, Any]], 
+                                  csv_path: str) -> None:
+        """Save distance data to CSV file."""
+        if not distance_data:
+            return
+        
+        df_data = []
+        for entry in distance_data:
+            df_data.append({
+                'frame': entry['frame'],
+                'distance': entry['distance'],
+                'blob_0_x': entry['blob_0_centroid'][0],
+                'blob_0_y': entry['blob_0_centroid'][1],
+                'blob_1_x': entry['blob_1_centroid'][0],
+                'blob_1_y': entry['blob_1_centroid'][1]
+            })
+        
+        df = pd.DataFrame(df_data)
+        df.to_csv(csv_path, index=False)
+        self.logger.info(f"Saved distance data to {csv_path}")
+
+    def _compute_and_analyze_causality_scores(self, all_distance_data: Dict[str, List[Dict[str, Any]]]) -> None:
+        """Compute causality scores for all videos and generate analysis plots."""
+        self.logger.info("Computing causality scores for all videos")
+        
+        causality_results = {}
+        
+        for video_name, distance_data in all_distance_data.items():
+            if len(distance_data) < 20:  # Need sufficient data points
+                self.logger.warning(f"Insufficient data points for {video_name}: {len(distance_data)}")
+                continue
+            
+            # Extract distance values and frames
+            frames = [entry['frame'] for entry in distance_data]
+            distances = [entry['distance'] for entry in distance_data]
+            
+            # Compute causality score based on distance changes
+            causality_score = self._compute_causality_score(frames, distances)
+            causality_results[video_name] = {
+                'causality_score': causality_score,
+                'frame_count': len(distance_data),
+                'distance_data': distance_data
+            }
+            
+            # Generate individual plot for this video
+            self._generate_causality_plot(video_name, frames, distances, causality_score)
+            
+            self.logger.info(f"Video {video_name}: causality score = {causality_score:.4f}")
+        
+        # Save summary results
+        self._save_causality_summary(causality_results)
+        
+        # Generate comparative analysis plots
+        self._generate_comparative_analysis(causality_results)
+
+    def _compute_causality_score(self, frames: List[int], distances: List[float]) -> float:
+        """
+        Compute causality score based on distance change patterns.
+        
+        Causality score is computed as the rate of distance change over time,
+        with higher scores indicating stronger causal interaction.
+        """
+        if len(distances) < 2:
+            return 0.0
+        
+        # Compute distance differences (velocity)
+        distance_diffs = np.diff(distances)
+        
+        # Apply shift logic - skip initial frames (similar to original implementation)
+        shift_frames = 13  # Skip first 13 frames as in original
+        if len(distance_diffs) <= shift_frames:
+            return 0.0
+        
+        # Use distance differences after the shift
+        relevant_diffs = distance_diffs[shift_frames:]
+        
+        # Compute causality score as mean absolute change rate
+        if len(relevant_diffs) > 0:
+            causality_score = float(np.mean(np.abs(relevant_diffs)))
+        else:
+            causality_score = 0.0
+        
+        return causality_score
+
+    def _generate_causality_plot(self, video_name: str, frames: List[int], 
+                               distances: List[float], causality_score: float) -> None:
+        """Generate a causality plot for individual video."""
+        fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(12, 8))
+        
+        # Plot 1: Distance over time
+        ax1.plot(frames, distances, 'b-', linewidth=2, label='Distance')
+        ax1.set_xlabel('Frame Number')
+        ax1.set_ylabel('Distance (pixels)')
+        ax1.set_title(f'{video_name} - Distance Over Time')
+        ax1.grid(True, alpha=0.3)
+        ax1.legend()
+        
+        # Plot 2: Distance differences (velocity)
+        if len(distances) > 1:
+            distance_diffs = np.diff(distances)
+            diff_frames = frames[1:]
+            ax2.plot(diff_frames, distance_diffs, 'r-', linewidth=2, label='Distance Change')
+            ax2.axhline(y=0, color='k', linestyle='--', alpha=0.5)
+            ax2.set_xlabel('Frame Number')
+            ax2.set_ylabel('Distance Change (pixels/frame)')
+            ax2.set_title(f'{video_name} - Distance Change Rate (Causality Score: {causality_score:.4f})')
+            ax2.grid(True, alpha=0.3)
+            ax2.legend()
+        
+        plt.tight_layout()
+        plot_path = os.path.join(self.plots_dir, f"{video_name}_causality.png")
+        plt.savefig(plot_path, dpi=300, bbox_inches='tight')
+        plt.close(fig)
+        
+        self.logger.info(f"Saved causality plot to {plot_path}")
+
+    def _save_causality_summary(self, causality_results: Dict[str, Dict[str, Any]]) -> None:
+        """Save summary of causality results to JSON and CSV."""
+        
+        # Save detailed JSON
+        json_path = os.path.join(self.results_dir, "causality_results.json")
+        
+        # Prepare JSON data (exclude raw distance data for cleaner output)
+        json_data = {}
+        for video_name, results in causality_results.items():
+            json_data[video_name] = {
+                'causality_score': results['causality_score'],
+                'frame_count': results['frame_count']
+            }
+        
+        with open(json_path, 'w') as f:
+            json.dump(json_data, f, indent=2)
+        
+        # Save CSV summary
+        csv_path = os.path.join(self.results_dir, "causality_summary.csv")
+        
+        summary_data = []
+        for video_name, results in causality_results.items():
+            summary_data.append({
+                'video_name': video_name,
+                'causality_score': results['causality_score'],
+                'frame_count': results['frame_count']
+            })
+        
+        df = pd.DataFrame(summary_data)
+        df = df.sort_values('causality_score', ascending=False)
+        df.to_csv(csv_path, index=False)
+        
+        self.logger.info(f"Saved causality summary to {json_path} and {csv_path}")
+
+    def _generate_comparative_analysis(self, causality_results: Dict[str, Dict[str, Any]]) -> None:
+        """Generate comparative analysis plots across all videos."""
+        
+        # Extract video names and scores
+        video_names = list(causality_results.keys())
+        causality_scores = [results['causality_score'] for results in causality_results.values()]
+        
+        if not video_names:
+            return
+        
+        # Sort by causality score for better visualization
+        sorted_indices = np.argsort(causality_scores)[::-1]  # Descending order
+        sorted_names = [video_names[i] for i in sorted_indices]
+        sorted_scores = [causality_scores[i] for i in sorted_indices]
+        
+        # Create bar plot
+        fig, ax = plt.subplots(figsize=(15, 8))
+        
+        bars = ax.bar(range(len(sorted_names)), sorted_scores, 
+                     color='steelblue', alpha=0.7, edgecolor='black', linewidth=0.5)
+        
+        ax.set_xlabel('Video Name')
+        ax.set_ylabel('Causality Score')
+        ax.set_title('Causality Scores Across All Videos')
+        ax.set_xticks(range(len(sorted_names)))
+        ax.set_xticklabels(sorted_names, rotation=45, ha='right')
+        ax.grid(True, alpha=0.3, axis='y')
+        
+        # Add value labels on bars
+        for i, (bar, score) in enumerate(zip(bars, sorted_scores)):
+            ax.text(bar.get_x() + bar.get_width()/2, bar.get_height() + max(sorted_scores)*0.01,
+                   f'{score:.3f}', ha='center', va='bottom', fontsize=8)
+        
+        plt.tight_layout()
+        comparison_path = os.path.join(self.plots_dir, "causality_comparison.png")
+        plt.savefig(comparison_path, dpi=300, bbox_inches='tight')
+        plt.close(fig)
+        
+        # Generate histogram of causality scores
+        fig, ax = plt.subplots(figsize=(10, 6))
+        ax.hist(sorted_scores, bins=min(20, len(sorted_scores)), color='lightblue', 
+               edgecolor='black', alpha=0.7)
+        ax.set_xlabel('Causality Score')
+        ax.set_ylabel('Frequency')
+        ax.set_title('Distribution of Causality Scores')
+        ax.grid(True, alpha=0.3)
+        
+        # Add statistics
+        mean_score = np.mean(sorted_scores)
+        std_score = np.std(sorted_scores)
+        ax.axvline(mean_score, color='red', linestyle='--', linewidth=2, 
+                  label=f'Mean: {mean_score:.3f}')
+        ax.axvline(mean_score + std_score, color='orange', linestyle='--', linewidth=1,
+                  label=f'Mean + Std: {mean_score + std_score:.3f}')
+        ax.axvline(mean_score - std_score, color='orange', linestyle='--', linewidth=1,
+                  label=f'Mean - Std: {mean_score - std_score:.3f}')
+        ax.legend()
+        
+        plt.tight_layout()
+        histogram_path = os.path.join(self.plots_dir, "causality_distribution.png")
+        plt.savefig(histogram_path, dpi=300, bbox_inches='tight')
+        plt.close(fig)
+        
+        self.logger.info(f"Saved comparative analysis to {comparison_path} and {histogram_path}")
 
 ##############################################################################
-# MAIN FUNCTION AND CLI
+# MAIN FUNCTION
 ##############################################################################
 
 def main():
-    parser = argparse.ArgumentParser(description="Run Causality Experiment with configurable model interface")
-    
-    parser.add_argument("--model_interface", default="segformer", 
-                       choices=["segformer"], 
-                       help="Model interface to use")
-    parser.add_argument("--data_dir", required=True,
-                       help="Directory containing video files (.mp4)")
-    parser.add_argument("--output_dir", required=True,
-                       help="Directory for experiment outputs")
-    parser.add_argument("--model_name", default="nvidia/segformer-b5-finetuned-ade-640-640",
-                       help="Model name/path for the interface")
+    parser = argparse.ArgumentParser(description="Causality Experiment - Process raw videos and compute causality scores")
+    parser.add_argument("--model_interface", type=str, default="segformer",
+                      choices=["segformer"], help="Model interface to use")
+    parser.add_argument("--videos_dir", type=str, required=True,
+                      help="Directory containing raw .mp4 video files")
+    parser.add_argument("--output_dir", type=str, required=True,
+                      help="Output directory for results and processed data")
     parser.add_argument("--resume", action="store_true", default=True,
-                       help="Resume from previous processing if possible")
-    parser.add_argument("--no_resume", action="store_true",
-                       help="Force restart from beginning")
+                      help="Resume processing from checkpoints (default: True)")
+    parser.add_argument("--no_resume", action="store_true", default=False,
+                      help="Start processing from scratch, ignoring checkpoints")
     
     args = parser.parse_args()
     
-    # Create model interface
+    # Handle resume logic
+    resume = args.resume and not args.no_resume
+    
+    # Validate inputs
+    if not os.path.isdir(args.videos_dir):
+        print(f"Error: Videos directory '{args.videos_dir}' does not exist")
+        sys.exit(1)
+    
+    # Create output directory
+    os.makedirs(args.output_dir, exist_ok=True)
+    
+    # Initialize model interface
     if args.model_interface == "segformer":
-        model_interface = SegFormerInterface(model_name=args.model_name)
+        model_interface = SegFormerInterface()
     else:
         raise ValueError(f"Unknown model interface: {args.model_interface}")
     
-    # Create and run experiment
+    # Run experiment
     experiment = CausalityExperiment(model_interface, args.output_dir)
     
-    # Determine resume flag
-    resume = args.resume and not args.no_resume
-    
-    # Run experiment
-    experiment.run_full_experiment(args.data_dir, resume=resume)
-
+    try:
+        experiment.run_full_experiment(
+            videos_dir=args.videos_dir,
+            resume=resume
+        )
+        print("Causality experiment completed successfully!")
+        
+    except KeyboardInterrupt:
+        print("\nExperiment interrupted by user")
+        sys.exit(1)
+    except Exception as e:
+        print(f"Experiment failed with error: {e}")
+        sys.exit(1)
 
 if __name__ == "__main__":
     main() 

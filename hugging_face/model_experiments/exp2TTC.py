@@ -1,19 +1,19 @@
 #!/usr/bin/env python3
 """
-exp2TTC_new.py
+exp2TTC.py
 
-Time-to-Collision (TTC) Experiment that integrates collision detection and participant correlation analysis.
-Uses a configurable model interface for object detection and mask generation.
+Time-to-Collision (TTC) Experiment that processes raw .mp4 videos and computes collision detection
+times under varying IoU thresholds, correlating with participant response data.
+Completely self-contained from raw videos to final analysis.
 
 Usage:
-    python exp2TTC_new.py --model_interface segformer --zip_path /path/to/videos.zip --csv_path /path/to/participants.csv --output_dir /path/to/output
+    python exp2TTC.py --model_interface segformer --videos_dir /path/to/raw_videos --csv_path /path/to/participants.csv --output_dir /path/to/output [--resume]
 """
 
 import argparse
 import os
 import sys
 import json
-import zipfile
 import logging
 import datetime
 import numpy as np
@@ -22,11 +22,11 @@ import matplotlib.pyplot as plt
 from pathlib import Path
 from typing import List, Dict, Any, Tuple
 from PIL import Image
+import glob
 
 # Import model interfaces and video processor
 from segformer.segformer_interface import SegFormerInterface, ModelInterface
 from video_processor import VideoProcessor
-
 
 ##############################################################################
 # EXPERIMENT CLASS
@@ -37,10 +37,11 @@ class TTCExperiment:
     Experiment 2: Time-to-Collision Analysis
     
     This experiment:
-    1. Processes video frames using a model interface to detect objects
-    2. Computes collision times under varying IoU thresholds
-    3. Correlates model predictions with participant response times
-    4. Generates analysis plots and statistics
+    1. Takes a directory of raw .mp4 video files as input
+    2. Processes each video using VideoProcessor to extract frames and detect objects
+    3. Computes collision times under varying IoU thresholds
+    4. Correlates model predictions with participant response times
+    5. Generates analysis plots and statistics
     """
     
     def __init__(self, model_interface: ModelInterface, output_dir: str, logger: logging.Logger = None):
@@ -55,10 +56,9 @@ class TTCExperiment:
         self.results_dir = os.path.join(output_dir, "results")
         self.plots_dir = os.path.join(output_dir, "plots")
         self.logs_dir = os.path.join(output_dir, "logs")
-        self.temp_dir = os.path.join(output_dir, "temp_extraction")
         self.processed_videos_dir = os.path.join(output_dir, "processed_videos")
         
-        for dir_path in [self.results_dir, self.plots_dir, self.logs_dir, self.temp_dir, self.processed_videos_dir]:
+        for dir_path in [self.results_dir, self.plots_dir, self.logs_dir, self.processed_videos_dir]:
             os.makedirs(dir_path, exist_ok=True)
             
         self.logger.info(f"Initialized TTC Experiment with output dir: {output_dir}")
@@ -90,51 +90,42 @@ class TTCExperiment:
         logger.info(f"Logger initialized. Writing detailed log to {log_file_path}")
         return logger
 
-    def run_full_experiment(self, zip_path: str, name_mapping_path: str, csv_path: str, 
+    def run_full_experiment(self, videos_dir: str, csv_path: str, 
                           iou_start: float = 0.05, iou_end: float = 0.95, iou_step: float = 0.05,
                           resume: bool = True) -> None:
-        """Run the complete TTC experiment."""
+        """Run the complete TTC experiment from raw videos to final analysis."""
         self.logger.info("Starting full TTC experiment")
         
-        # Step 1: Extract video data
-        self._extract_zip_if_needed(zip_path)
+        # Step 1: Find all .mp4 video files in the input directory
+        video_files = self._find_video_files(videos_dir)
+        if not video_files:
+            self.logger.error(f"No .mp4 video files found in {videos_dir}")
+            return
         
-        # Step 2: Load mapping and participant data
-        name_mapping = self._read_name_mapping(name_mapping_path)
+        self.logger.info(f"Found {len(video_files)} video files to process")
+        
+        # Step 2: Load participant data
         participant_df = self._read_participant_csv(csv_path)
         
         # Step 3: Generate collision detection data  
         iou_values = np.arange(iou_start, iou_end + iou_step, iou_step)
         iou_values = np.round(iou_values, decimals=3)
         
-        collision_data = self._process_videos_for_collision_detection(iou_values, resume=resume)
+        collision_data = self._process_videos_for_collision_detection(video_files, iou_values, resume=resume)
         
         # Step 4: Analyze correlations with participant data
         if collision_data:
-            self._analyze_participant_correlations(collision_data, name_mapping, participant_df, iou_values)
+            self._analyze_participant_correlations(collision_data, participant_df, iou_values)
         else:
             self.logger.warning("No collision data generated - skipping correlation analysis")
         
         self.logger.info("TTC experiment completed successfully")
 
-    def _extract_zip_if_needed(self, zip_path: str) -> None:
-        """Extract zip file if not already extracted."""
-        extract_dir = Path(self.temp_dir) / "videos_processed_copy"
-        if not extract_dir.exists():
-            self.logger.info(f"Extracting {zip_path} into {extract_dir}...")
-            with zipfile.ZipFile(zip_path, 'r') as zip_ref:
-                zip_ref.extractall(self.temp_dir)
-            self.logger.info("Extraction complete.")
-        else:
-            self.logger.info("Extraction directory already exists; skipping extraction.")
-
-    def _read_name_mapping(self, name_mapping_path: str) -> Dict[str, str]:
-        """Read the JSON name mapping."""
-        self.logger.info(f"Reading name mapping from {name_mapping_path}...")
-        with open(name_mapping_path, 'r') as f:
-            mapping = json.load(f)
-        self.logger.info(f"Loaded name mapping with {len(mapping)} entries.")
-        return mapping
+    def _find_video_files(self, videos_dir: str) -> List[str]:
+        """Find all .mp4 video files in the specified directory."""
+        video_pattern = os.path.join(videos_dir, "*.mp4")
+        video_files = glob.glob(video_pattern)
+        return sorted(video_files)
 
     def _read_participant_csv(self, csv_path: str) -> pd.DataFrame:
         """Read the participant CSV."""
@@ -143,28 +134,21 @@ class TTCExperiment:
         self.logger.info(f"CSV loaded with {len(df)} rows and {len(df.columns)} columns.")
         return df
 
-    def _process_videos_for_collision_detection(self, iou_values: np.ndarray, resume: bool = True) -> Dict[Tuple[str, float], float]:
+    def _process_videos_for_collision_detection(self, video_files: List[str], 
+                                              iou_values: np.ndarray, resume: bool = True) -> Dict[Tuple[str, float], float]:
         """Process all videos to detect collision times for different IoU thresholds."""
         self.logger.info("Starting collision detection across videos and IoU thresholds...")
-        
-        # Find video files in the extracted directory
-        videos_dir = Path(self.temp_dir) / "videos_processed_copy"
-        video_files = self._find_all_video_files(videos_dir)
-        
-        if not video_files:
-            self.logger.error(f"No video files found in {videos_dir}")
-            return {}
         
         collision_times = {}
         
         for video_file in video_files:
-            video_name = self._get_video_name_from_path(video_file)
+            video_name = Path(video_file).stem
             self.logger.info(f"Processing video: {video_name}")
             
             # Use VideoProcessor to process the entire video
             try:
                 video_output_dirs = self.video_processor.process_video(
-                    video_path=str(video_file),
+                    video_path=video_file,
                     output_root=self.processed_videos_dir,
                     model_prefix="segformer_model",
                     resume=resume
@@ -192,63 +176,6 @@ class TTCExperiment:
                 continue
         
         return collision_times
-
-    def _generate_masks_for_video(self, subfolder: Path, frames_dir: Path) -> Dict[int, Dict[str, np.ndarray]]:
-        """Generate object masks for all frames in a video using the model interface."""
-        self.logger.info(f"Generating masks for video: {subfolder.name}")
-        
-        # Create output directory for masks
-        masks_output_dir = subfolder / "frames_masks"
-        masks_output_dir.mkdir(exist_ok=True)
-        
-        # Get all frame files
-        frame_files = sorted([f for f in frames_dir.iterdir() 
-                            if f.suffix.lower() in ['.png', '.jpg', '.jpeg']])
-        
-        mask_data = {}
-        
-        for frame_file in frame_files:
-            # Extract frame number
-            frame_num = self._extract_frame_number(frame_file.name)
-            
-            # Load and process frame
-            frame_image = Image.open(frame_file).convert('RGB')
-            
-            # Run inference
-            predictions = self.model_interface.infer_image(frame_image)
-            
-            # Extract top 2 masks as blob_0 and blob_1
-            pred_masks = predictions['pred_masks']  # Shape: (1, num_queries, H, W)
-            
-            frame_masks = {}
-            for blob_idx in range(min(2, pred_masks.shape[1])):
-                mask = pred_masks[0, blob_idx].cpu().numpy()  # (H, W)
-                binary_mask = (mask > 0.5).astype(np.float32)
-                
-                # Save mask
-                mask_filename = f"mask_memory_blob_{blob_idx}_frame_{frame_num:06d}.png"
-                mask_path = masks_output_dir / mask_filename
-                Image.fromarray((binary_mask * 255).astype(np.uint8)).save(mask_path)
-                
-                frame_masks[f"blob_{blob_idx}"] = binary_mask
-            
-            mask_data[frame_num] = frame_masks
-        
-        return mask_data
-
-    def _find_all_video_files(self, videos_dir: Path) -> List[Path]:
-        """Find all video files recursively in the directory."""
-        video_extensions = ['.mp4', '.avi', '.mov', '.mkv']
-        video_files = []
-        
-        for ext in video_extensions:
-            video_files.extend(videos_dir.rglob(f"*{ext}"))
-        
-        return sorted(video_files)
-    
-    def _get_video_name_from_path(self, video_path: Path) -> str:
-        """Extract video name from file path."""
-        return video_path.stem.replace(" ", "+")
     
     def _extract_mask_data_from_processed_video(self, video_output_dirs: Dict[str, str]) -> Dict[int, Dict[str, np.ndarray]]:
         """Extract mask data from processed video output directories."""
@@ -277,13 +204,6 @@ class TTCExperiment:
             frame_masks[frame_num][f"blob_{blob_idx}"] = binary_mask
         
         return frame_masks
-    
-    def _extract_frame_number(self, filename: str) -> int:
-        """Extract frame number from filename."""
-        # Look for patterns like frame_000013.png or 000013.png
-        import re
-        match = re.search(r'(\d+)', filename)
-        return int(match.group(1)) if match else 0
 
     def _find_first_collision_time(self, mask_data: Dict[int, Dict[str, np.ndarray]], 
                                   iou_threshold: float, fps: int = 60) -> float:
@@ -317,74 +237,51 @@ class TTCExperiment:
         return intersection / union
 
     def _analyze_participant_correlations(self, collision_data: Dict[Tuple[str, float], float], 
-                                        name_mapping: Dict[str, str], participant_df: pd.DataFrame, 
+                                        participant_df: pd.DataFrame, 
                                         iou_values: np.ndarray) -> None:
         """Analyze correlations between model predictions and participant data."""
         self.logger.info("Analyzing participant correlations...")
         
-        # Group subfolders by model name
-        model_to_subfolders = self._group_subfolders_by_model(collision_data)
+        # Get list of video names
+        video_names = list(set([video_name for (video_name, _) in collision_data.keys()]))
         
-        for model_name, subfolder_names in model_to_subfolders.items():
-            for iou_thr in iou_values:
-                self._analyze_model_iou_combination(
-                    model_name, iou_thr, subfolder_names, collision_data, 
-                    name_mapping, participant_df
-                )
+        # For this analysis, we'll create a simple correlation between video names and participant stimuli
+        # This assumes video file names can be mapped to participant stimulus names
+        for iou_thr in iou_values:
+            self._analyze_iou_threshold(iou_thr, video_names, collision_data, participant_df)
 
-    def _group_subfolders_by_model(self, collision_data: Dict[Tuple[str, float], float]) -> Dict[str, List[str]]:
-        """Group subfolders by model name."""
-        model_to_subfolders = {}
-        
-        for (subfolder_name, _), _ in collision_data.items():
-            model_name = self._parse_model_name_from_subfolder(subfolder_name)
-            model_to_subfolders.setdefault(model_name, []).append(subfolder_name)
-        
-        # Remove duplicates
-        for model_name in model_to_subfolders:
-            model_to_subfolders[model_name] = list(set(model_to_subfolders[model_name]))
-        
-        return model_to_subfolders
-
-    def _parse_model_name_from_subfolder(self, subfolder_name: str) -> str:
-        """Extract model name from subfolder name."""
-        # Example: "variable_pretrained_resnet101-BConcave+AConcave+3500" -> "variable_pretrained_resnet101"
-        if '-' in subfolder_name:
-            return subfolder_name.split('-', 1)[0]
-        return "unknown_model"
-
-    def _analyze_model_iou_combination(self, model_name: str, iou_thr: float, subfolder_names: List[str],
-                                     collision_data: Dict[Tuple[str, float], float], name_mapping: Dict[str, str],
-                                     participant_df: pd.DataFrame) -> None:
-        """Analyze a specific model-IoU combination."""
+    def _analyze_iou_threshold(self, iou_thr: float, video_names: List[str],
+                              collision_data: Dict[Tuple[str, float], float], 
+                              participant_df: pd.DataFrame) -> None:
+        """Analyze a specific IoU threshold."""
         
         # Create output directory
-        out_dir_name = f"{model_name}_IoU_{iou_thr}"
+        out_dir_name = f"IoU_{iou_thr}"
         out_dir = Path(self.results_dir) / out_dir_name
         out_dir.mkdir(exist_ok=True)
         
         # Create subdirectories
         (out_dir / "ID").mkdir(exist_ok=True)
         (out_dir / "Average_person").mkdir(exist_ok=True)
-        (out_dir / "concave_vs_convex").mkdir(exist_ok=True)
+        (out_dir / "summary").mkdir(exist_ok=True)
         
         # Individual participant analysis
         self._analyze_individual_participants(
-            out_dir / "ID", iou_thr, subfolder_names, collision_data, name_mapping, participant_df
+            out_dir / "ID", iou_thr, video_names, collision_data, participant_df
         )
         
         # Average participant analysis
         self._analyze_average_participant(
-            out_dir / "Average_person", iou_thr, subfolder_names, collision_data, name_mapping, participant_df
+            out_dir / "Average_person", iou_thr, video_names, collision_data, participant_df
         )
         
-        # Concave vs convex analysis
-        self._analyze_concave_vs_convex(
-            out_dir / "concave_vs_convex", iou_thr, subfolder_names, collision_data, name_mapping, participant_df
+        # Summary analysis
+        self._generate_summary_analysis(
+            out_dir / "summary", iou_thr, video_names, collision_data, participant_df
         )
 
-    def _analyze_individual_participants(self, output_dir: Path, iou_thr: float, subfolder_names: List[str],
-                                       collision_data: Dict[Tuple[str, float], float], name_mapping: Dict[str, str],
+    def _analyze_individual_participants(self, output_dir: Path, iou_thr: float, video_names: List[str],
+                                       collision_data: Dict[Tuple[str, float], float], 
                                        participant_df: pd.DataFrame) -> None:
         """Analyze individual participant correlations."""
         
@@ -396,22 +293,24 @@ class TTCExperiment:
             used_videos = []
             
             for _, row in group.iterrows():
-                stimulus = row["stimulus"]
-                subfolder = self._get_subfolder_for_stimulus(stimulus, name_mapping, subfolder_names)
+                stimulus = row.get("stimulus", "")
+                # Try to match stimulus to video name (simple matching)
+                video_match = self._match_stimulus_to_video(stimulus, video_names)
                 
-                if subfolder:
-                    collision_time = collision_data.get((subfolder, iou_thr), float('nan'))
+                if video_match:
+                    collision_time = collision_data.get((video_match, iou_thr), float('nan'))
                     if not np.isnan(collision_time):
                         predicted_times.append(collision_time)
                         human_times.append(row["rt"])
-                        used_videos.append(subfolder)
+                        used_videos.append(video_match)
             
             # Compute correlation
             r_val = self._compute_correlation(predicted_times, human_times) if len(predicted_times) > 1 else float('nan')
             
             # Create scatter plot
             fig, ax = plt.subplots()
-            ax.scatter(human_times, predicted_times, c='blue', alpha=0.6)
+            if predicted_times and human_times:
+                ax.scatter(human_times, predicted_times, c='blue', alpha=0.6)
             ax.set_xlabel("Human RT (ms)")
             ax.set_ylabel("Model Collision Time (ms)")
             ax.set_title(f"Participant {pid}, IoU={iou_thr}, r={r_val:.3f}")
@@ -427,41 +326,42 @@ class TTCExperiment:
                     "data_points": len(predicted_times)
                 }, f, indent=2)
 
-    def _analyze_average_participant(self, output_dir: Path, iou_thr: float, subfolder_names: List[str],
-                                   collision_data: Dict[Tuple[str, float], float], name_mapping: Dict[str, str],
+    def _analyze_average_participant(self, output_dir: Path, iou_thr: float, video_names: List[str],
+                                   collision_data: Dict[Tuple[str, float], float], 
                                    participant_df: pd.DataFrame) -> None:
         """Analyze average participant correlations."""
         
-        # Map subfolders to average RTs
-        subfolder_rts = {name: [] for name in subfolder_names}
+        # Map video names to average RTs
+        video_rts = {name: [] for name in video_names}
         
         for _, row in participant_df.iterrows():
-            stimulus = row["stimulus"]
-            subfolder = self._get_subfolder_for_stimulus(stimulus, name_mapping, subfolder_names)
-            if subfolder and subfolder in subfolder_rts:
-                subfolder_rts[subfolder].append(row["rt"])
+            stimulus = row.get("stimulus", "")
+            video_match = self._match_stimulus_to_video(stimulus, video_names)
+            if video_match and video_match in video_rts:
+                video_rts[video_match].append(row["rt"])
         
         # Compute averages and correlations
         avg_human_times = []
         model_times = []
-        used_subfolders = []
+        used_videos = []
         
-        for subfolder_name in subfolder_names:
-            rts = subfolder_rts[subfolder_name]
+        for video_name in video_names:
+            rts = video_rts[video_name]
             if len(rts) > 0:
                 avg_rt = np.mean(rts)
-                collision_time = collision_data.get((subfolder_name, iou_thr), float('nan'))
+                collision_time = collision_data.get((video_name, iou_thr), float('nan'))
                 if not np.isnan(collision_time):
                     avg_human_times.append(avg_rt)
                     model_times.append(collision_time)
-                    used_subfolders.append(subfolder_name)
+                    used_videos.append(video_name)
         
         # Compute correlation
         r_val = self._compute_correlation(avg_human_times, model_times) if len(avg_human_times) > 1 else float('nan')
         
         # Create plot
         fig, ax = plt.subplots()
-        ax.scatter(avg_human_times, model_times, c='red', alpha=0.7)
+        if avg_human_times and model_times:
+            ax.scatter(avg_human_times, model_times, c='red', alpha=0.7)
         ax.set_xlabel("Average Human RT (ms)")
         ax.set_ylabel("Model Collision Time (ms)")
         ax.set_title(f"Average Person, IoU={iou_thr}, r={r_val:.3f}")
@@ -472,182 +372,153 @@ class TTCExperiment:
         with open(output_dir / "average_person.json", 'w') as f:
             json.dump({
                 "correlation": r_val,
-                "videos_used": used_subfolders,
+                "videos_used": used_videos,
                 "data_points": len(avg_human_times)
             }, f, indent=2)
 
-    def _analyze_concave_vs_convex(self, output_dir: Path, iou_thr: float, subfolder_names: List[str],
-                                 collision_data: Dict[Tuple[str, float], float], name_mapping: Dict[str, str],
+    def _generate_summary_analysis(self, output_dir: Path, iou_thr: float, video_names: List[str],
+                                 collision_data: Dict[Tuple[str, float], float], 
                                  participant_df: pd.DataFrame) -> None:
-        """Analyze concave vs convex differences."""
+        """Generate summary analysis for this IoU threshold."""
         
-        # Parse subfolders to determine concave/convex and ground truth
-        gt_to_concave_vals = {}
-        gt_to_convex_vals = {}
+        # Collect collision times for all videos at this IoU threshold
+        video_collision_times = {}
+        for video_name in video_names:
+            collision_time = collision_data.get((video_name, iou_thr), float('nan'))
+            if not np.isnan(collision_time):
+                video_collision_times[video_name] = collision_time
         
-        for subfolder_name in subfolder_names:
-            parsed_info = self._parse_subfolder_name(subfolder_name)
-            gt = parsed_info.get("ground_truth")
-            tokens = parsed_info.get("tokens", [])
+        # Create summary plot
+        if video_collision_times:
+            names = list(video_collision_times.keys())
+            times = list(video_collision_times.values())
             
-            if gt is not None and len(tokens) >= 2:
-                shape_token = tokens[1] if len(tokens) >= 2 else tokens[0]
-                collision_time = collision_data.get((subfolder_name, iou_thr), float('nan'))
-                
-                if not np.isnan(collision_time):
-                    if self._is_concave_token(shape_token):
-                        gt_to_concave_vals.setdefault(gt, []).append(collision_time)
-                    else:
-                        gt_to_convex_vals.setdefault(gt, []).append(collision_time)
-        
-        # Compute differences for model
-        gt_sorted = sorted(set(list(gt_to_concave_vals.keys()) + list(gt_to_convex_vals.keys())))
-        model_diffs = []
-        
-        for gt in gt_sorted:
-            concave_vals = gt_to_concave_vals.get(gt, [])
-            convex_vals = gt_to_convex_vals.get(gt, [])
+            fig, ax = plt.subplots(figsize=(15, 6))
+            bars = ax.bar(range(len(names)), times, color='steelblue', alpha=0.7)
+            ax.set_xlabel('Video Name')
+            ax.set_ylabel('Collision Time (ms)')
+            ax.set_title(f'Collision Times for IoU Threshold {iou_thr}')
+            ax.set_xticks(range(len(names)))
+            ax.set_xticklabels(names, rotation=45, ha='right')
             
-            mean_concave = np.mean(concave_vals) if concave_vals else float('nan')
-            mean_convex = np.mean(convex_vals) if convex_vals else float('nan')
-            diff = abs(mean_concave - mean_convex) if not (np.isnan(mean_concave) or np.isnan(mean_convex)) else float('nan')
-            model_diffs.append(diff)
+            # Add value labels on bars
+            for bar, time in zip(bars, times):
+                ax.text(bar.get_x() + bar.get_width()/2, bar.get_height() + max(times)*0.01,
+                       f'{time:.1f}', ha='center', va='bottom', fontsize=8)
+            
+            plt.tight_layout()
+            plt.savefig(output_dir / f"collision_times_iou_{iou_thr}.png")
+            plt.close(fig)
         
-        # Compute differences for human data
-        human_diffs = []
-        df_grouped = participant_df.groupby("groundTruth")
+        # Save summary data
+        summary_data = {
+            "iou_threshold": iou_thr,
+            "video_collision_times": video_collision_times,
+            "total_videos": len(video_names),
+            "videos_with_collisions": len(video_collision_times)
+        }
         
-        for gt in gt_sorted:
-            if gt in df_grouped.groups:
-                subdf = df_grouped.get_group(gt)
-                concave_df = subdf[subdf["is_concave"] == 1]
-                convex_df = subdf[subdf["is_concave"] == 0]
-                
-                mean_concave = concave_df["rt"].mean() if len(concave_df) > 0 else float('nan')
-                mean_convex = convex_df["rt"].mean() if len(convex_df) > 0 else float('nan')
-                diff = abs(mean_concave - mean_convex) if not (np.isnan(mean_concave) or np.isnan(mean_convex)) else float('nan')
-            else:
-                diff = float('nan')
-            human_diffs.append(diff)
-        
-        # Create comparison plot
-        x_indices = np.arange(len(gt_sorted))
-        width = 0.3
-        
-        fig, ax = plt.subplots(figsize=(8, 5))
-        ax.bar(x_indices - width/2, model_diffs, width, label='Model', alpha=0.7)
-        ax.bar(x_indices + width/2, human_diffs, width, label='Human', alpha=0.7)
-        
-        ax.set_xticks(x_indices)
-        ax.set_xticklabels([str(g) for g in gt_sorted])
-        ax.set_ylabel("Concave vs Convex (Absolute Difference in ms)")
-        ax.set_title(f"Concave vs Convex Differences, IoU={iou_thr}")
-        ax.legend()
-        
-        plt.tight_layout()
-        plt.savefig(output_dir / "concave_vs_convex.png")
-        plt.close(fig)
+        with open(output_dir / f"summary_iou_{iou_thr}.json", 'w') as f:
+            json.dump(summary_data, f, indent=2)
 
-    # Helper methods
-    def _get_subfolder_for_stimulus(self, stimulus: str, name_mapping: Dict[str, str], subfolder_names: List[str]) -> str:
-        """Map stimulus to subfolder name."""
-        base_stim = os.path.basename(stimulus)
-        stim_id = os.path.splitext(base_stim)[0]
-        
-        if stim_id not in name_mapping:
+    def _match_stimulus_to_video(self, stimulus: str, video_names: List[str]) -> str:
+        """
+        Match participant stimulus name to video file name.
+        This is a simple matching function that can be customized based on naming conventions.
+        """
+        if not stimulus:
             return None
         
-        raw_folder_name = name_mapping[stim_id]
-        folder_key = os.path.splitext(raw_folder_name)[0]
+        # Simple matching: look for video names that contain the stimulus or vice versa
+        stimulus_clean = stimulus.lower().replace('stimulus/', '').replace('.mp4', '')
         
-        for subfolder_name in subfolder_names:
-            if folder_key in subfolder_name:
-                return subfolder_name
+        for video_name in video_names:
+            video_clean = video_name.lower()
+            if stimulus_clean in video_clean or video_clean in stimulus_clean:
+                return video_name
+        
         return None
 
-    def _parse_subfolder_name(self, subfolder_name: str) -> Dict[str, Any]:
-        """Parse subfolder name to extract components."""
-        parts = subfolder_name.split('-', 1)
-        model_name = parts[0]
-        remainder = parts[1] if len(parts) > 1 else ""
-        
-        tokens = remainder.split('+')
-        last_token = tokens[-1].replace("_flipped", "")
-        
-        try:
-            ground_truth = int(last_token)
-        except ValueError:
-            ground_truth = None
-        
-        tokens = tokens[:-1]
-        
-        return {
-            "model_name": model_name,
-            "tokens": tokens,
-            "ground_truth": ground_truth
-        }
-
-    def _is_concave_token(self, token: str) -> bool:
-        """Check if token represents concave shape."""
-        return "Concave" in token
-
     def _compute_correlation(self, xvals: List[float], yvals: List[float]) -> float:
-        """Compute Pearson correlation."""
-        if len(xvals) < 2:
+        """
+        Return Pearson correlation. If insufficient data, return NaN.
+        """
+        if len(xvals) < 2 or len(yvals) < 2:
             return float('nan')
-        return np.corrcoef(xvals, yvals)[0, 1]
-
+        try:
+            r = np.corrcoef(xvals, yvals)[0, 1]
+            return float(r) if not np.isnan(r) else float('nan')
+        except:
+            return float('nan')
 
 ##############################################################################
 # MAIN FUNCTION
 ##############################################################################
 
 def main():
-    parser = argparse.ArgumentParser(description="Run TTC Experiment with configurable model interface")
-    
-    parser.add_argument("--model_interface", default="segformer", 
-                       choices=["segformer"], 
-                       help="Model interface to use")
-    parser.add_argument("--zip_path", required=True,
-                       help="Path to the input .zip file containing the extracted frames")
-    parser.add_argument("--name_mapping", required=True,
-                       help="Path to the name_mapping.json file")
-    parser.add_argument("--csv_path", required=True,
-                       help="Path to the CSV file containing participant data")
-    parser.add_argument("--output_dir", required=True,
-                       help="Directory for experiment outputs")
+    parser = argparse.ArgumentParser(description="TTC Experiment - Process raw videos and analyze collision times")
+    parser.add_argument("--model_interface", type=str, default="segformer",
+                      choices=["segformer"], help="Model interface to use")
+    parser.add_argument("--videos_dir", type=str, required=True,
+                      help="Directory containing raw .mp4 video files")
+    parser.add_argument("--csv_path", type=str, required=True,
+                      help="Path to participant CSV file")
+    parser.add_argument("--output_dir", type=str, required=True,
+                      help="Output directory for results and processed data")
     parser.add_argument("--iou_start", type=float, default=0.05,
-                       help="Starting IoU threshold")
+                      help="Starting IoU threshold (default: 0.05)")
     parser.add_argument("--iou_end", type=float, default=0.95,
-                       help="Ending IoU threshold")
+                      help="Ending IoU threshold (default: 0.95)")
     parser.add_argument("--iou_step", type=float, default=0.05,
-                       help="IoU increment")
-    parser.add_argument("--model_name", default="nvidia/segformer-b5-finetuned-ade-640-640",
-                       help="Model name/path for the interface")
+                      help="IoU step size (default: 0.05)")
     parser.add_argument("--resume", action="store_true", default=True,
-                       help="Resume from previous processing if possible")
-    parser.add_argument("--no_resume", action="store_true",
-                       help="Force restart from beginning")
+                      help="Resume processing from checkpoints (default: True)")
+    parser.add_argument("--no_resume", action="store_true", default=False,
+                      help="Start processing from scratch, ignoring checkpoints")
     
     args = parser.parse_args()
     
-    # Create model interface
+    # Handle resume logic
+    resume = args.resume and not args.no_resume
+    
+    # Validate inputs
+    if not os.path.isdir(args.videos_dir):
+        print(f"Error: Videos directory '{args.videos_dir}' does not exist")
+        sys.exit(1)
+    
+    if not os.path.isfile(args.csv_path):
+        print(f"Error: Participant CSV file '{args.csv_path}' does not exist")
+        sys.exit(1)
+    
+    # Create output directory
+    os.makedirs(args.output_dir, exist_ok=True)
+    
+    # Initialize model interface
     if args.model_interface == "segformer":
-        model_interface = SegFormerInterface(model_name=args.model_name)
+        model_interface = SegFormerInterface()
     else:
         raise ValueError(f"Unknown model interface: {args.model_interface}")
     
-    # Create and run experiment
+    # Run experiment
     experiment = TTCExperiment(model_interface, args.output_dir)
     
-    # Determine resume flag
-    resume = args.resume and not args.no_resume
-    
-    experiment.run_full_experiment(
-        args.zip_path, args.name_mapping, args.csv_path,
-        args.iou_start, args.iou_end, args.iou_step, resume=resume
-    )
-
+    try:
+        experiment.run_full_experiment(
+            videos_dir=args.videos_dir,
+            csv_path=args.csv_path,
+            iou_start=args.iou_start,
+            iou_end=args.iou_end,
+            iou_step=args.iou_step,
+            resume=resume
+        )
+        print("TTC experiment completed successfully!")
+        
+    except KeyboardInterrupt:
+        print("\nExperiment interrupted by user")
+        sys.exit(1)
+    except Exception as e:
+        print(f"Experiment failed with error: {e}")
+        sys.exit(1)
 
 if __name__ == "__main__":
     main() 

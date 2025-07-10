@@ -1,15 +1,205 @@
- # Model Experiments Framework
+# Hugging Face Model Experiments
 
-This directory contains a refactored experiment framework that uses configurable model interfaces for object detection and segmentation tasks. The framework supports multiple experiments with a consistent interface pattern and includes comprehensive video processing capabilities.
+This directory contains self-contained experimental pipelines for analyzing object detection and segmentation using different model interfaces. Each experiment processes raw input data (videos or images) from scratch to final analysis.
 
 ## Overview
 
-The framework consists of:
-1. **Model Interface Classes** - Standardized interfaces for different models
-2. **Video Processor** - Complete video processing pipeline with frame extraction, model inference, and mask generation
-3. **Consolidated Experiment Files** - Self-contained experiments that handle everything from raw videos/images to final analysis
-4. **Rich Logging and Output Structure** - Comprehensive logging and organized output directories
-5. **Checkpoint/Resume System** - Intelligent resumption of processing to avoid starting from zero
+The experimental framework consists of:
+
+- **Model Interfaces**: Configurable interfaces for different vision models (currently SegFormer)
+- **VideoProcessor**: Comprehensive video processing pipeline with blob detection and tracking
+- **Three Main Experiments**: Complete pipelines from raw data to analysis results
+
+## Experiments
+
+### Experiment 1: Causality Analysis (`exp1Causality.py`)
+
+**Purpose**: Analyze causal relationships between objects based on distance changes over time.
+
+**Input**: Directory of raw `.mp4` video files
+
+**Process**:
+1. **Video Processing**: Extract frames from each video using VideoProcessor
+2. **Object Detection**: Detect and track objects (blobs) across frames
+3. **Distance Computation**: Calculate distance changes between object centroids
+4. **Causality Scoring**: Compute causality scores based on distance change patterns
+5. **Analysis**: Generate plots and statistical analysis of causality scores
+
+**Key Features**:
+- Memory-based object tracking with exponential decay (alpha=0.7)
+- Skip initial frames (13 frames) for stabilization
+- Distance change rate analysis for causality scoring
+- Comparative analysis across all input videos
+
+**Output Structure**:
+```
+output_dir/
+├── processed_videos/          # VideoProcessor output for each video
+├── distance_data/            # CSV files with distance measurements
+├── results/                  # JSON and CSV summary files
+├── plots/                   # Individual and comparative plots
+└── logs/                    # Processing logs
+```
+
+**Usage**:
+```bash
+python exp1Causality.py --model_interface segformer \
+                        --videos_dir /path/to/raw_videos \
+                        --output_dir /path/to/output \
+                        [--resume]
+```
+
+### Experiment 2: Time-to-Collision (TTC) Analysis (`exp2TTC.py`)
+
+**Purpose**: Detect collision times at various IoU thresholds and correlate with human response data.
+
+**Input**: 
+- Directory of raw `.mp4` video files
+- CSV file with participant response data
+
+**Process**:
+1. **Video Processing**: Extract frames and detect objects using VideoProcessor
+2. **Collision Detection**: Find first collision time for each IoU threshold (0.05 to 0.95)
+3. **Correlation Analysis**: Compare model collision times with participant response times
+4. **Statistical Analysis**: Individual participant and average correlations
+
+**Key Features**:
+- IoU-based collision detection across multiple thresholds
+- Participant correlation analysis (individual and average)
+- Resume functionality for long processing runs
+- Comprehensive statistical summaries
+
+**Output Structure**:
+```
+output_dir/
+├── processed_videos/          # VideoProcessor output for each video
+├── results/                  # Results organized by IoU threshold
+│   └── IoU_0.05/
+│       ├── ID/              # Individual participant analyses
+│       ├── Average_person/  # Average participant analysis
+│       └── summary/         # Summary statistics
+├── plots/                   # Correlation plots and summaries
+└── logs/                    # Processing logs
+```
+
+**Usage**:
+```bash
+python exp2TTC.py --model_interface segformer \
+                  --videos_dir /path/to/raw_videos \
+                  --csv_path /path/to/participant_data.csv \
+                  --output_dir /path/to/output \
+                  [--iou_start 0.05] [--iou_end 0.95] [--iou_step 0.05] \
+                  [--resume]
+```
+
+### Experiment 3: Change Detection (`exp3Change.py`)
+
+**Purpose**: Segment blobs in individual images and analyze change detection across different thresholds.
+
+**Input**: Directory of raw image files (PNG, JPG, etc.)
+
+**Process**:
+1. **Image Processing**: Process each image individually for blob detection
+2. **Blob Segmentation**: Use model interface to segment detected blobs
+3. **Threshold Analysis**: Analyze segmentation quality across different thresholds
+4. **Mistake Scoring**: Compute mistake scores based on threshold comparisons
+
+**Key Features**:
+- Individual image processing (no temporal dependencies)
+- Multi-threshold analysis for segmentation quality
+- Blob detection using intensity thresholding
+- Comprehensive mistake score analysis
+
+**Output Structure**:
+```
+output_dir/
+├── processed_images/         # Processed output for each image
+│   └── segformer_model_image1/
+│       ├── frames_blobs/    # Blob visualizations
+│       ├── frames_masks_nonmem/  # Binary masks
+│       ├── frames_collage/  # Top candidate comparisons
+│       └── frames_processed/ # Final overlays
+├── threshold_results/       # Results for each threshold
+│   └── 1_comparison/
+│       ├── results.json
+│       ├── mistake_scores.png
+│       └── mistake_distribution.png
+├── results/                 # Summary analyses
+├── plots/                   # Comparative threshold plots
+└── logs/                    # Processing logs
+```
+
+**Usage**:
+```bash
+python exp3Change.py --model_interface segformer \
+                     --images_dir /path/to/raw_images \
+                     --output_dir /path/to/output \
+                     [--thresholds 1 2 3 4 5 6 8 10 12 14 16 18 20] \
+                     [--resume]
+```
+
+## VideoProcessor Class
+
+The `VideoProcessor` class (`video_processor.py`) provides the core video processing functionality used by experiments 1 and 2.
+
+### Key Features
+
+**Video Processing Pipeline**:
+- Frame extraction using imageio
+- Blob detection with intensity thresholding (black_thresh=30)
+- Model inference using configurable interfaces
+- Bipartite assignment for mask-to-blob matching using IoU optimization
+
+**Memory-Based Tracking**:
+- Exponential decay memory system (alpha=0.7)
+- Cross-frame object consistency
+- Temporal smoothing of object masks
+
+**Output Generation**:
+- Multiple mask formats (memory and non-memory)
+- Visualization overlays with polygons
+- Final processed video creation
+- Organized directory structure
+
+**Resume Functionality**:
+- Automatic checkpoint detection
+- Resume from last processed frame
+- Metadata preservation
+
+### VideoProcessor Usage
+
+```python
+from video_processor import VideoProcessor
+from segformer.segformer_interface import SegFormerInterface
+
+# Initialize
+model_interface = SegFormerInterface()
+processor = VideoProcessor(model_interface, logger)
+
+# Process video
+output_dirs = processor.process_video(
+    video_path="/path/to/video.mp4",
+    output_root="/path/to/output",
+    model_prefix="segformer_model",
+    resume=True
+)
+```
+
+### Output Directory Structure
+
+VideoProcessor creates a comprehensive directory structure:
+
+```
+output_root/
+└── segformer_model-video_name/
+    ├── frames_blobs/            # Blob detection visualizations
+    ├── frames_masks/            # Memory-based masks
+    ├── frames_masks_nonmem/     # Non-memory masks
+    ├── frames_processed/        # Final overlay frames
+    ├── frames_collage/          # Candidate mask comparisons
+    ├── videos_processed/        # Final output video
+    └── metadata/               # Processing metadata and status
+```
 
 ## Model Interfaces
 
@@ -17,216 +207,172 @@ The framework consists of:
 
 Located in `segformer/segformer_interface.py`, this interface provides:
 
-- **DETR-compatible output format** for experiments originally designed for DETR models
-- **Semantic-to-instance mask conversion** for compatibility with object detection workflows
-- **Configurable model loading** from HuggingFace Hub
-- **Standard inference API** that all experiments can use
+- **DETR-compatible Output**: Standardized prediction format
+- **Automatic Model Loading**: Lazy loading with device management
+- **Batch Processing**: Efficient inference on image batches
+- **Memory Management**: Automatic GPU/CPU handling
 
-**Key Methods:**
-- `load_model()` - Load the SegFormer model
-- `infer_image(image)` - Run inference and return DETR-format predictions
-- Returns: `{'pred_masks': tensor, 'pred_logits': tensor, 'pred_boxes': tensor}`
-
-## Video Processor
-
-Located in `video_processor.py`, this class provides comprehensive video processing capabilities:
-
-**Key Features:**
-- **Complete Video Pipeline** - Handles video reading, frame extraction, model inference, and output generation
-- **Blob Detection and Tracking** - Detects colored blobs and tracks them across frames using memory-based masks
-- **Bipartite Assignment** - Intelligently matches predicted masks to detected blobs using IoU optimization
-- **Checkpoint/Resume** - Saves processing state and can resume from interruption
-- **Organized Output Structure** - Creates comprehensive directory structure with masks, visualizations, and metadata
-
-**Key Methods:**
-- `process_video(video_path, output_root, model_prefix, resume=True)` - Process complete video through pipeline
-- `setup_output_directories()` - Create organized output directory structure
-- `check_processing_status()` - Determine what processing has been completed
-
-**Output Structure:**
-```
-{model_prefix}-{video_name}/
-├── frames_blobs/          # Blob detection visualizations
-├── frames_masks/          # Memory-based masks
-├── frames_masks_nonmem/   # Immediate assignment masks  
-├── frames_processed/      # Final overlay frames
-├── videos_processed/      # Final processed video
-└── metadata/             # Processing status and metadata
-```
-
-## Experiments
-
-### Experiment 1: Causality Analysis (`exp1Causality.py`)
-
-**Self-contained workflow** that processes video files, computes collision distances between objects, and generates causality plots.
-
-**Process:**
-1. Processes .mp4 video files using VideoProcessor
-2. Extracts frames and generates object masks
-3. Computes collision distances for multiple IoU thresholds  
-4. Generates causality correlation plots and statistical analysis
-
-**Usage:**
-```bash
-python exp1Causality.py \
-    --model_interface segformer \
-    --data_dir /path/to/videos \
-    --output_dir /path/to/output \
-    --resume  # Resume from previous processing (default)
-```
-
-**Outputs:**
-- `processed_videos/` - Complete video processing outputs for each input video
-- `results/collision_distances_*.csv` - Distance measurements for different thresholds
-- `plots/causality_plot_*.png` - Causality correlation plots
-- `plots/boundary_detailed.json` - Detailed boundary analysis results
-- `plots/centroid_detailed.json` - Detailed centroid analysis results
-- `logs/causality_exp_*.log` - Detailed execution logs
-
-### Experiment 2: Time-to-Collision (`exp2TTC.py`)
-
-**Self-contained workflow** that processes videos, analyzes collision detection timing, and correlates with participant response data.
-
-**Process:**
-1. Extracts video files from ZIP archive
-2. Processes each video using VideoProcessor to generate masks
-3. Computes collision times across multiple IoU thresholds
-4. Correlates model predictions with human participant data
-5. Generates correlation plots and statistical analysis
-
-**Usage:**
-```bash
-python exp2TTC.py \
-    --model_interface segformer \
-    --zip_path /path/to/videos.zip \
-    --name_mapping /path/to/mapping.json \
-    --csv_path /path/to/participants.csv \
-    --output_dir /path/to/output \
-    --resume  # Resume from previous processing (default)
-```
-
-**Outputs:**
-- `processed_videos/` - Complete video processing outputs for each input video
-- `results/{model}_IoU_{threshold}/ID/` - Individual participant correlations
-- `results/{model}_IoU_{threshold}/Average_person/` - Average participant analysis
-- `results/{model}_IoU_{threshold}/concave_vs_convex/` - Shape comparison analysis
-- `logs/ttc_exp_*.log` - Detailed execution logs
-
-### Experiment 3: Change Detection (`exp3Change.py`)
-
-**Self-contained workflow** that processes individual images, segments blobs, and analyzes change detection across different thresholds.
-
-**Process:**
-1. Processes individual image files using model interface
-2. Detects blobs using intensity thresholding
-3. Generates candidate masks using model inference
-4. Selects best masks based on IoU with detected blobs
-5. Analyzes before/after image pairs for area changes
-6. Computes detection rates across multiple thresholds
-
-**Usage:**
-```bash
-python exp3Change.py \
-    --model_interface segformer \
-    --images_folder /path/to/images \
-    --output_dir /path/to/output \
-    --resume  # Resume from previous processing (default)
-```
-
-**Outputs:**
-- `processed_images/` - Segmented images with masks and visualizations
-- `threshold_results/{threshold}_comparison/` - Analysis for each detection threshold
-- `plots/` - Summary plots and visualizations
-- `logs/change_exp_*.log` - Detailed execution logs
-
-## Key Features
-
-### 1. **Complete Self-Contained Workflow**
-- Each experiment handles everything from raw videos/images to final analysis
-- Integrated video processing using VideoProcessor class
-- No need to run separate preprocessing scripts
-- Automatic model loading and inference management
-
-### 2. **Intelligent Checkpoint/Resume System**
-- Automatically saves processing progress and metadata
-- Can resume from any interruption point
-- Avoids reprocessing already completed frames/videos
-- Smart detection of existing outputs
-
-### 3. **Model Interface Abstraction**
-- Experiments are decoupled from specific model implementations
-- Easy to add new model interfaces (YOLO, SAM, etc.)
-- Consistent API across all experiments
-- DETR-compatible output format
-
-### 4. **Comprehensive Video Processing**
-- Complete video pipeline from .mp4 files to analysis-ready data
-- Blob detection and memory-based tracking across frames
-- Bipartite mask assignment using IoU optimization
-- Multiple output formats (masks, visualizations, processed videos)
-
-### 5. **Rich Logging and Progress Tracking**
-- Comprehensive logging at DEBUG and INFO levels
-- Timestamped log files for reproducibility
-- Real-time progress tracking with frame/video counts
-- Detailed error reporting and recovery information
-
-### 6. **Organized Output Structure**
-- Consistent directory structure across experiments
-- Separate subdirectories for different output types
-- JSON metadata for programmatic access to results
-- Automatic cleanup and organization
-
-## Adding New Model Interfaces
-
-To add a new model interface:
-
-1. **Create interface class** inheriting from `ModelInterface`:
+**Interface Contract**:
 ```python
-class YourModelInterface(ModelInterface):
-    def load_model(self):
-        # Load your model
-        pass
-    
-    def infer_image(self, image):
-        # Return DETR-compatible format
-        return {
-            'pred_masks': masks_tensor,
-            'pred_logits': logits_tensor, 
-            'pred_boxes': boxes_tensor
-        }
+def infer_image(self, image: PIL.Image) -> Dict[str, torch.Tensor]:
+    # Returns: {'pred_masks': tensor of shape (1, num_queries, H, W)}
 ```
 
-2. **Update experiment files** to support the new interface:
-```python
-if args.model_interface == "your_model":
-    model_interface = YourModelInterface(model_name=args.model_name)
-```
+## Installation and Setup
 
-## Original vs. New Files
+### Requirements
 
-### Original Files (preserved):
-- `exp1Causality_1_dist.py` - Distance computation only
-- `exp1Causality_2_plots.py` - Plotting only  
-- `exp2TTC.py` - Original TTC implementation
-- `exp3Change_1_segment_blobs.py` - Blob segmentation only
-- `exp3Change_2_extract_mistake_score.py` - Mistake scoring only
+- Python 3.8+
+- PyTorch with CUDA support (recommended)
+- Transformers library
+- Additional dependencies: see requirements.txt
 
-### New Consolidated Files:
-- `exp1Causality.py` - Complete causality analysis workflow
-- `exp2TTC_new.py` - Complete TTC analysis workflow
-- `exp3Change.py` - Complete change detection workflow
-- `segformer/segformer_interface.py` - Updated model interface
+### Model Setup
 
-## Dependencies
+1. **SegFormer Model**: Automatically downloaded via Hugging Face transformers
+2. **Custom Models**: Place checkpoint files in appropriate directories
+3. **GPU Support**: CUDA-enabled PyTorch recommended for faster processing
+
+## Common Usage Patterns
+
+### Basic Experiment Run
 
 ```bash
-pip install transformers safetensors huggingface_hub pillow matplotlib torch torchvision numpy pandas scipy scikit-image
+# Experiment 1: Causality Analysis
+python exp1Causality.py --model_interface segformer \
+                        --videos_dir /data/raw_videos \
+                        --output_dir /output/exp1_results
+
+# Experiment 2: TTC Analysis  
+python exp2TTC.py --model_interface segformer \
+                  --videos_dir /data/raw_videos \
+                  --csv_path /data/participants.csv \
+                  --output_dir /output/exp2_results
+
+# Experiment 3: Change Detection
+python exp3Change.py --model_interface segformer \
+                     --images_dir /data/raw_images \
+                     --output_dir /output/exp3_results
 ```
 
-## Notes
+### Resume from Interruption
 
-- The framework is designed to be immediately runnable out of the box
-- All experiments include proper error handling and recovery
-- Log files provide detailed information for debugging and reproducibility
-- Output formats are designed to be compatible with existing analysis pipelines
+All experiments support automatic resume functionality:
+
+```bash
+# Resume automatically (default)
+python exp1Causality.py --resume [other args...]
+
+# Force restart from scratch
+python exp1Causality.py --no_resume [other args...]
+```
+
+### Batch Processing
+
+For large datasets, experiments can be run in sequence or parallel:
+
+```bash
+# Sequential processing
+for exp in exp1Causality.py exp2TTC.py exp3Change.py; do
+    python $exp --model_interface segformer [args...]
+done
+
+# Parallel processing (if sufficient resources)
+python exp1Causality.py [args...] &
+python exp2TTC.py [args...] &
+python exp3Change.py [args...] &
+wait
+```
+
+## Performance Considerations
+
+### Memory Usage
+
+- **GPU Memory**: ~4-8GB for SegFormer inference
+- **RAM**: ~2-4GB per video being processed
+- **Storage**: Processed videos require ~5-10x original size
+
+### Processing Time
+
+- **Video Processing**: ~1-2 minutes per minute of video (GPU)
+- **Image Processing**: ~1-5 seconds per image (GPU)
+- **Analysis**: Generally < 1 minute for typical datasets
+
+### Optimization Tips
+
+1. **Use GPU**: Significantly faster than CPU-only processing
+2. **Enable Resume**: Prevents loss of progress on interruptions
+3. **Batch Size**: Adjust based on available GPU memory
+4. **Storage**: Use SSD for faster I/O during processing
+
+## Troubleshooting
+
+### Common Issues
+
+1. **Out of Memory**: Reduce batch size or use smaller models
+2. **Missing Dependencies**: Check requirements.txt installation
+3. **File Path Issues**: Use absolute paths when possible
+4. **Model Loading**: Ensure internet connection for Hugging Face models
+
+### Debug Logging
+
+All experiments provide detailed logging:
+
+```bash
+# Check log files in output_dir/logs/
+tail -f /path/to/output/logs/experiment_TIMESTAMP.log
+```
+
+### Resume Issues
+
+If resume functionality fails:
+
+```bash
+# Force clean restart
+python experiment.py --no_resume [other args...]
+```
+
+## Input Data Requirements
+
+### Video Files (Experiments 1 & 2)
+
+- **Format**: .mp4 (recommended), other formats supported by imageio
+- **Resolution**: Any resolution, automatically handled
+- **Frame Rate**: Preserved in output, 30fps default for metadata
+- **Content**: Videos should contain detectable objects/blobs
+
+### Image Files (Experiment 3)
+
+- **Formats**: PNG, JPG, JPEG, BMP, TIF, TIFF
+- **Resolution**: Any resolution, automatically handled  
+- **Content**: Images should contain detectable blobs/objects
+
+### Participant Data (Experiment 2)
+
+CSV file with columns:
+- `ID`: Participant identifier
+- `stimulus`: Stimulus identifier (for matching with videos)
+- `rt`: Response time in milliseconds
+- Additional columns preserved but not used
+
+## Expected Output Formats
+
+### Analysis Results
+
+- **JSON**: Structured results with metadata
+- **CSV**: Tabular data for further analysis
+- **PNG**: High-resolution plots and visualizations
+
+### Processed Data
+
+- **Videos**: Processed videos with object overlays
+- **Masks**: Binary masks in PNG format
+- **Visualizations**: Debug and analysis plots
+
+### Summary Statistics
+
+- **Correlations**: Participant correlation analyses
+- **Distributions**: Score and timing distributions  
+- **Comparisons**: Threshold and model comparisons
+
+This comprehensive framework provides a complete solution for object detection and analysis experiments, from raw data input to final statistical analysis and visualization.
