@@ -24,8 +24,9 @@ from PIL import Image, ImageDraw
 import matplotlib.pyplot as plt
 from skimage.measure import label, regionprops, find_contours
 
-# Import model interfaces
+# Import model interfaces and video processor
 from segformer.segformer_interface import SegFormerInterface, ModelInterface
+from video_processor import VideoProcessor
 
 
 ##############################################################################
@@ -48,13 +49,17 @@ class ChangeDetectionExperiment:
         self.output_dir = output_dir
         self.logger = logger or self._setup_logger()
         
+        # Initialize video processor (though Change experiment primarily processes images)
+        self.video_processor = VideoProcessor(model_interface, self.logger)
+        
         # Create output subdirectories
         self.processed_dir = os.path.join(output_dir, "processed_images")
         self.results_dir = os.path.join(output_dir, "threshold_results")
         self.plots_dir = os.path.join(output_dir, "plots")
         self.logs_dir = os.path.join(output_dir, "logs")
+        self.processed_videos_dir = os.path.join(output_dir, "processed_videos")
         
-        for dir_path in [self.processed_dir, self.results_dir, self.plots_dir, self.logs_dir]:
+        for dir_path in [self.processed_dir, self.results_dir, self.plots_dir, self.logs_dir, self.processed_videos_dir]:
             os.makedirs(dir_path, exist_ok=True)
             
         self.logger.info(f"Initialized Change Detection Experiment with output dir: {output_dir}")
@@ -86,22 +91,26 @@ class ChangeDetectionExperiment:
         logger.info(f"Logger initialized. Writing detailed log to {log_file_path}")
         return logger
 
-    def run_full_experiment(self, images_folder: str) -> None:
+    def run_full_experiment(self, images_folder: str, resume: bool = True) -> None:
         """Run the complete change detection experiment."""
         self.logger.info("Starting full change detection experiment")
         
-        # Step 1: Load model and process images to generate segmentation masks
-        self.model_interface.load_model()
-        self._segment_images(images_folder)
+        # Step 1: Process images to generate segmentation masks
+        self._segment_images(images_folder, resume=resume)
         
         # Step 2: Analyze threshold-based change detection
         self._analyze_change_thresholds()
         
         self.logger.info("Change detection experiment completed successfully")
 
-    def _segment_images(self, images_folder: str) -> None:
+    def _segment_images(self, images_folder: str, resume: bool = True) -> None:
         """Process all images to generate segmentation masks and visualizations."""
         self.logger.info(f"Starting image segmentation from: {images_folder}")
+        
+        # Load model if not already loaded
+        if not hasattr(self.model_interface, 'model') or self.model_interface.model is None:
+            self.logger.info("Loading model...")
+            self.model_interface.load_model()
         
         # Get list of image files
         exts = {'.png', '.jpg', '.jpeg', '.bmp', '.tif', '.tiff'}
@@ -118,6 +127,11 @@ class ChangeDetectionExperiment:
         
         for img_path in image_files:
             try:
+                # Check if already processed when resume=True
+                if resume and self._is_image_already_processed(img_path):
+                    self.logger.info(f"Skipping already processed image: {os.path.basename(img_path)}")
+                    continue
+                    
                 self._process_single_image(img_path)
             except Exception as e:
                 self.logger.error(f"Error processing {img_path}: {e}")
@@ -527,6 +541,28 @@ class ChangeDetectionExperiment:
         fig.savefig(three_plot, dpi=high_dpi)
         plt.close(fig)
 
+    def _is_image_already_processed(self, img_path: str) -> bool:
+        """Check if an image has already been processed."""
+        name = os.path.splitext(os.path.basename(img_path))[0]
+        model_prefix = "segformer_model"
+        base_output = os.path.join(self.processed_dir, f"{model_prefix}_{name}")
+        
+        # Check if the key output directories and files exist
+        mask_dir = os.path.join(base_output, "frames_masks_nonmem")
+        proc_dir = os.path.join(base_output, "frames_processed")
+        
+        if not (os.path.exists(mask_dir) and os.path.exists(proc_dir)):
+            return False
+        
+        # Check if mask file exists
+        mask_file = os.path.join(mask_dir, f"mask_{name}.png")
+        if not os.path.exists(mask_file):
+            return False
+        
+        # Check if overlay file exists
+        overlay_file = os.path.join(proc_dir, f"{name}_overlay.png")
+        return os.path.exists(overlay_file)
+
     def _compute_sem_binary(self, stats_dict: Dict[str, Any]) -> float:
         """Compute standard error of the mean for binary detection data."""
         total = stats_dict['total']
@@ -554,6 +590,10 @@ def main():
                        help="Directory for experiment outputs")
     parser.add_argument("--model_name", default="nvidia/segformer-b5-finetuned-ade-640-640",
                        help="Model name/path for the interface")
+    parser.add_argument("--resume", action="store_true", default=True,
+                       help="Resume from previous processing if possible")
+    parser.add_argument("--no_resume", action="store_true",
+                       help="Force restart from beginning")
     
     args = parser.parse_args()
     
@@ -565,7 +605,11 @@ def main():
     
     # Create and run experiment
     experiment = ChangeDetectionExperiment(model_interface, args.output_dir)
-    experiment.run_full_experiment(args.images_folder)
+    
+    # Determine resume flag
+    resume = args.resume and not args.no_resume
+    
+    experiment.run_full_experiment(args.images_folder, resume=resume)
 
 
 if __name__ == "__main__":

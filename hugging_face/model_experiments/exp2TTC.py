@@ -23,8 +23,9 @@ from pathlib import Path
 from typing import List, Dict, Any, Tuple
 from PIL import Image
 
-# Import model interfaces
+# Import model interfaces and video processor
 from segformer.segformer_interface import SegFormerInterface, ModelInterface
+from video_processor import VideoProcessor
 
 
 ##############################################################################
@@ -47,13 +48,17 @@ class TTCExperiment:
         self.output_dir = output_dir
         self.logger = logger or self._setup_logger()
         
+        # Initialize video processor
+        self.video_processor = VideoProcessor(model_interface, self.logger)
+        
         # Create output subdirectories
         self.results_dir = os.path.join(output_dir, "results")
         self.plots_dir = os.path.join(output_dir, "plots")
         self.logs_dir = os.path.join(output_dir, "logs")
         self.temp_dir = os.path.join(output_dir, "temp_extraction")
+        self.processed_videos_dir = os.path.join(output_dir, "processed_videos")
         
-        for dir_path in [self.results_dir, self.plots_dir, self.logs_dir, self.temp_dir]:
+        for dir_path in [self.results_dir, self.plots_dir, self.logs_dir, self.temp_dir, self.processed_videos_dir]:
             os.makedirs(dir_path, exist_ok=True)
             
         self.logger.info(f"Initialized TTC Experiment with output dir: {output_dir}")
@@ -86,7 +91,8 @@ class TTCExperiment:
         return logger
 
     def run_full_experiment(self, zip_path: str, name_mapping_path: str, csv_path: str, 
-                          iou_start: float = 0.05, iou_end: float = 0.95, iou_step: float = 0.05) -> None:
+                          iou_start: float = 0.05, iou_end: float = 0.95, iou_step: float = 0.05,
+                          resume: bool = True) -> None:
         """Run the complete TTC experiment."""
         self.logger.info("Starting full TTC experiment")
         
@@ -97,17 +103,17 @@ class TTCExperiment:
         name_mapping = self._read_name_mapping(name_mapping_path)
         participant_df = self._read_participant_csv(csv_path)
         
-        # Step 3: Load model and process videos
-        self.model_interface.load_model()
-        
-        # Step 4: Generate collision detection data
+        # Step 3: Generate collision detection data  
         iou_values = np.arange(iou_start, iou_end + iou_step, iou_step)
         iou_values = np.round(iou_values, decimals=3)
         
-        collision_data = self._process_videos_for_collision_detection(iou_values)
+        collision_data = self._process_videos_for_collision_detection(iou_values, resume=resume)
         
-        # Step 5: Analyze correlations with participant data
-        self._analyze_participant_correlations(collision_data, name_mapping, participant_df, iou_values)
+        # Step 4: Analyze correlations with participant data
+        if collision_data:
+            self._analyze_participant_correlations(collision_data, name_mapping, participant_df, iou_values)
+        else:
+            self.logger.warning("No collision data generated - skipping correlation analysis")
         
         self.logger.info("TTC experiment completed successfully")
 
@@ -137,38 +143,53 @@ class TTCExperiment:
         self.logger.info(f"CSV loaded with {len(df)} rows and {len(df.columns)} columns.")
         return df
 
-    def _process_videos_for_collision_detection(self, iou_values: np.ndarray) -> Dict[Tuple[str, float], float]:
+    def _process_videos_for_collision_detection(self, iou_values: np.ndarray, resume: bool = True) -> Dict[Tuple[str, float], float]:
         """Process all videos to detect collision times for different IoU thresholds."""
         self.logger.info("Starting collision detection across videos and IoU thresholds...")
         
+        # Find video files in the extracted directory
         videos_dir = Path(self.temp_dir) / "videos_processed_copy"
-        subfolders = [f for f in videos_dir.iterdir() if f.is_dir()]
+        video_files = self._find_all_video_files(videos_dir)
+        
+        if not video_files:
+            self.logger.error(f"No video files found in {videos_dir}")
+            return {}
         
         collision_times = {}
         
-        for subfolder in subfolders:
-            self.logger.info(f"Processing subfolder: {subfolder.name}")
+        for video_file in video_files:
+            video_name = self._get_video_name_from_path(video_file)
+            self.logger.info(f"Processing video: {video_name}")
             
-            # Process frames in this subfolder
-            frames_dir = subfolder / "frames"  # Assuming frames are in a 'frames' subdirectory
-            if not frames_dir.exists():
-                self.logger.warning(f"No frames directory found in {subfolder}")
+            # Use VideoProcessor to process the entire video
+            try:
+                video_output_dirs = self.video_processor.process_video(
+                    video_path=str(video_file),
+                    output_root=self.processed_videos_dir,
+                    model_prefix="segformer_model",
+                    resume=resume
+                )
+                
+                # Extract mask data from processed video
+                mask_data = self._extract_mask_data_from_processed_video(video_output_dirs)
+                
+                # For each IoU threshold, find collision time
+                for iou_threshold in iou_values:
+                    collision_time = self._find_first_collision_time(mask_data, iou_threshold, fps=60)
+                    collision_times[(video_name, iou_threshold)] = collision_time
+                    
+                    # Save individual result
+                    results_dir = Path(video_output_dirs['root']) / "collision_results"
+                    results_dir.mkdir(exist_ok=True)
+                    output_json_path = results_dir / f"iou_{iou_threshold}.json"
+                    with open(output_json_path, 'w') as f:
+                        json.dump({"collision_time": collision_time}, f, indent=2)
+                    
+                    self.logger.debug(f"Collision time for {video_name} at IoU {iou_threshold}: {collision_time}")
+                    
+            except Exception as e:
+                self.logger.error(f"Failed to process video {video_name}: {e}")
                 continue
-            
-            # Generate masks for all frames
-            mask_data = self._generate_masks_for_video(subfolder, frames_dir)
-            
-            # For each IoU threshold, find collision time
-            for iou_threshold in iou_values:
-                collision_time = self._find_first_collision_time(mask_data, iou_threshold, fps=60)
-                collision_times[(subfolder.name, iou_threshold)] = collision_time
-                
-                # Save individual result
-                output_json_path = subfolder / f"iou_{iou_threshold}.json"
-                with open(output_json_path, 'w') as f:
-                    json.dump({"collision_time": collision_time}, f, indent=2)
-                
-                self.logger.debug(f"Collision time for {subfolder.name} at IoU {iou_threshold}: {collision_time}")
         
         return collision_times
 
@@ -215,6 +236,48 @@ class TTCExperiment:
         
         return mask_data
 
+    def _find_all_video_files(self, videos_dir: Path) -> List[Path]:
+        """Find all video files recursively in the directory."""
+        video_extensions = ['.mp4', '.avi', '.mov', '.mkv']
+        video_files = []
+        
+        for ext in video_extensions:
+            video_files.extend(videos_dir.rglob(f"*{ext}"))
+        
+        return sorted(video_files)
+    
+    def _get_video_name_from_path(self, video_path: Path) -> str:
+        """Extract video name from file path."""
+        return video_path.stem.replace(" ", "+")
+    
+    def _extract_mask_data_from_processed_video(self, video_output_dirs: Dict[str, str]) -> Dict[int, Dict[str, np.ndarray]]:
+        """Extract mask data from processed video output directories."""
+        masks_dir = Path(video_output_dirs['frames_masks_nonmem'])
+        mask_data = {}
+        
+        # Find all mask files
+        mask_files = list(masks_dir.glob("mask_blob_*_frame_*.png"))
+        
+        # Group by frame number
+        frame_masks = {}
+        for mask_file in mask_files:
+            # Parse filename: mask_blob_0_frame_000013.png
+            parts = mask_file.stem.split('_')
+            blob_idx = int(parts[2])  # blob index
+            frame_num = int(parts[4])  # frame number
+            
+            if frame_num not in frame_masks:
+                frame_masks[frame_num] = {}
+            
+            # Load mask
+            mask_img = Image.open(mask_file).convert('L')
+            mask_array = np.array(mask_img, dtype=np.uint8)
+            binary_mask = (mask_array > 0).astype(np.float32)
+            
+            frame_masks[frame_num][f"blob_{blob_idx}"] = binary_mask
+        
+        return frame_masks
+    
     def _extract_frame_number(self, filename: str) -> int:
         """Extract frame number from filename."""
         # Look for patterns like frame_000013.png or 000013.png
@@ -561,6 +624,10 @@ def main():
                        help="IoU increment")
     parser.add_argument("--model_name", default="nvidia/segformer-b5-finetuned-ade-640-640",
                        help="Model name/path for the interface")
+    parser.add_argument("--resume", action="store_true", default=True,
+                       help="Resume from previous processing if possible")
+    parser.add_argument("--no_resume", action="store_true",
+                       help="Force restart from beginning")
     
     args = parser.parse_args()
     
@@ -572,9 +639,13 @@ def main():
     
     # Create and run experiment
     experiment = TTCExperiment(model_interface, args.output_dir)
+    
+    # Determine resume flag
+    resume = args.resume and not args.no_resume
+    
     experiment.run_full_experiment(
         args.zip_path, args.name_mapping, args.csv_path,
-        args.iou_start, args.iou_end, args.iou_step
+        args.iou_start, args.iou_end, args.iou_step, resume=resume
     )
 
 

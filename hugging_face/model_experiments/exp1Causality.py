@@ -27,8 +27,9 @@ from typing import Dict, Any, List, Tuple
 import torch
 import torch.nn.functional as F
 
-# Import model interfaces
+# Import model interfaces and video processor
 from segformer.segformer_interface import SegFormerInterface, ModelInterface
+from video_processor import VideoProcessor
 
 
 ##############################################################################
@@ -51,12 +52,16 @@ class CausalityExperiment:
         self.output_dir = output_dir
         self.logger = logger or self._setup_logger()
         
+        # Initialize video processor
+        self.video_processor = VideoProcessor(model_interface, self.logger)
+        
         # Create output subdirectories
         self.results_dir = os.path.join(output_dir, "results")
         self.plots_dir = os.path.join(output_dir, "plots")
         self.logs_dir = os.path.join(output_dir, "logs")
+        self.processed_videos_dir = os.path.join(output_dir, "processed_videos")
         
-        for dir_path in [self.results_dir, self.plots_dir, self.logs_dir]:
+        for dir_path in [self.results_dir, self.plots_dir, self.logs_dir, self.processed_videos_dir]:
             os.makedirs(dir_path, exist_ok=True)
             
         self.logger.info(f"Initialized Causality Experiment with output dir: {output_dir}")
@@ -91,26 +96,43 @@ class CausalityExperiment:
         logger.info(f"Logger initialized. Writing detailed log to {log_file_path}")
         return logger
 
-    def process_videos(self, video_data_dir: str) -> Dict[str, pd.DataFrame]:
+    def process_videos(self, video_data_dir: str, resume: bool = True) -> Dict[str, pd.DataFrame]:
         """
         Process video frames and generate collision distance data.
         
         Args:
-            video_data_dir: Directory containing video frame data
+            video_data_dir: Directory containing video files (.mp4)
+            resume: Whether to resume from previous processing
             
         Returns:
             Dictionary of DataFrames for different IoU thresholds
         """
         self.logger.info("Starting video processing for collision distance computation")
         
-        # Load model
-        self.model_interface.load_model()
+        # Get list of video files
+        video_files = self._find_video_files(video_data_dir)
+        if not video_files:
+            self.logger.error(f"No video files found in {video_data_dir}")
+            return {}
         
-        # Process frames and generate masks
-        mask_data = self._process_video_frames(video_data_dir)
+        # Process each video using VideoProcessor
+        processed_videos = {}
+        for video_file in video_files:
+            self.logger.info(f"Processing video: {video_file}")
+            
+            # Use VideoProcessor to process the entire video
+            video_output_dirs = self.video_processor.process_video(
+                video_path=video_file,
+                output_root=self.processed_videos_dir,
+                model_prefix="segformer_model",
+                resume=resume
+            )
+            
+            video_name = os.path.splitext(os.path.basename(video_file))[0]
+            processed_videos[video_name] = video_output_dirs
         
-        # Compute collision distances
-        collision_data = self._compute_collision_distances(mask_data)
+        # Compute collision distances from processed mask data
+        collision_data = self._compute_collision_distances(processed_videos)
         
         return collision_data
 
@@ -176,9 +198,22 @@ class CausalityExperiment:
             mask_path = os.path.join(masks_dir, mask_filename)
             Image.fromarray(binary_mask).save(mask_path)
 
-    def _compute_collision_distances(self, mask_data: Dict[str, Any]) -> Dict[str, pd.DataFrame]:
+    def _find_video_files(self, video_data_dir: str) -> List[str]:
+        """Find all video files in the given directory."""
+        video_extensions = ['.mp4', '.avi', '.mov', '.mkv']
+        video_files = []
+        
+        for file in os.listdir(video_data_dir):
+            if any(file.lower().endswith(ext) for ext in video_extensions):
+                video_files.append(os.path.join(video_data_dir, file))
+        
+        video_files.sort()
+        self.logger.info(f"Found {len(video_files)} video files in {video_data_dir}")
+        return video_files
+    
+    def _compute_collision_distances(self, processed_videos: Dict[str, Dict[str, str]]) -> Dict[str, pd.DataFrame]:
         """Compute collision distances between objects for different thresholds."""
-        self.logger.info("Computing collision distances")
+        self.logger.info("Computing collision distances from processed video masks")
         
         # Define thresholds
         thresholds = [1]  # "touch by 1 pixel"
@@ -192,22 +227,33 @@ class CausalityExperiment:
         for thr in thresholds:
             results[thr] = pd.DataFrame(columns=columns)
         
-        # Process each video
-        for video_name, video_info in mask_data.items():
-            masks_dir = video_info['masks_dir']
+        # Process each processed video
+        for video_name, video_dirs in processed_videos.items():
+            masks_dir = video_dirs['frames_masks_nonmem']
             
             # Parse video name to extract ground truth distance
             short_name, gt_dist = self._parse_name_and_distance(video_name)
             
-            # Find available frames
-            mask_files = [f for f in os.listdir(masks_dir) if f.startswith("mask_blob_0")]
+            # Find available frames with masks
+            mask_files = [f for f in os.listdir(masks_dir) if f.startswith("mask_blob_0") and f.endswith(".png")]
             if not mask_files:
                 self.logger.warning(f"No mask files found for {video_name}")
                 continue
-                
-            # Use the first available frame (can be modified to use specific frame selection)
-            frame_match = re.search(r'frame_(\d+)', mask_files[0])
-            frame_used = int(frame_match.group(1)) if frame_match else 0
+            
+            # Find the smallest frame number (as in original logic)
+            frame_numbers = []
+            for f in mask_files:
+                match = re.search(r'frame_(\d+)', f)
+                if match:
+                    frame_numbers.append(int(match.group(1)))
+            
+            if not frame_numbers:
+                self.logger.warning(f"Could not parse frame numbers for {video_name}")
+                continue
+            
+            # Use smallest frame - 100 (as in original logic)
+            frame_used = min(frame_numbers) - 100
+            frame_used = max(0, frame_used)  # Ensure non-negative
             
             # Load masks for this frame
             mask0_path = os.path.join(masks_dir, f"mask_blob_0_frame_{frame_used:06d}.png")
@@ -440,8 +486,96 @@ class CausalityExperiment:
 
     def _measure_shift_needed(self, mask0: np.ndarray, mask1: np.ndarray, threshold: float, max_shift: int = 500) -> float:
         """Measure horizontal shift needed for collision threshold."""
-        # Simplified implementation - full implementation would include the complex shift logic
-        return float(max_shift + 1)  # Placeholder
+        # Determine which blob is left vs right by centroid
+        c0y, c0x = self._get_centroid(mask0)
+        c1y, c1x = self._get_centroid(mask1)
+        
+        if c0x <= c1x:
+            mask_left, mask_right = mask0, mask1
+        else:
+            mask_left, mask_right = mask1, mask0
+        
+        def threshold_met(shift):
+            overlap, union = self._shift_and_compute_overlap(mask_left, mask_right, shift)
+            if threshold >= 1:
+                return overlap >= threshold
+            else:
+                if union == 0:
+                    return False
+                iou = overlap / union
+                return iou >= threshold
+        
+        # Check if threshold is met at shift=0
+        meets = threshold_met(0)
+        if meets:
+            # Shift outward until threshold no longer met
+            for d in range(max_shift + 1):
+                if not threshold_met(d):
+                    return float(-d)
+            return float(-(max_shift + 1))
+        else:
+            # Shift inward until threshold is met
+            for d in range(max_shift + 1):
+                test_shift = -d
+                if threshold_met(test_shift):
+                    return float(d)
+            return float(max_shift + 1)
+    
+    def _shift_and_compute_overlap(self, mask_left: np.ndarray, mask_right: np.ndarray, shift: int) -> Tuple[int, int]:
+        """Compute overlap and union when shifting mask_right by shift pixels."""
+        coords_left = np.argwhere(mask_left)
+        coords_right = np.argwhere(mask_right)
+
+        if len(coords_left) == 0 and len(coords_right) == 0:
+            return 0, 0
+        if len(coords_left) == 0:
+            return 0, len(coords_right)
+        if len(coords_right) == 0:
+            return 0, len(coords_left)
+
+        # Get bounding boxes
+        yL_min, xL_min = coords_left.min(axis=0)
+        yL_max, xL_max = coords_left.max(axis=0)
+        yR_min, xR_min = coords_right.min(axis=0)
+        yR_max, xR_max = coords_right.max(axis=0)
+
+        # Shift right mask
+        xR_min_shifted = xR_min + shift
+        xR_max_shifted = xR_max + shift
+
+        # Combined bounding box
+        x_min = min(xL_min, xR_min_shifted)
+        x_max = max(xL_max, xR_max_shifted)
+        y_min = min(yL_min, yR_min)
+        y_max = max(yL_max, yR_max)
+
+        width = x_max - x_min + 1
+        height = y_max - y_min + 1
+        
+        if width <= 0 or height <= 0:
+            return 0, mask_left.sum() + mask_right.sum()
+
+        # Create shifted arrays
+        arr_left = np.zeros((height, width), dtype=bool)
+        arr_right = np.zeros((height, width), dtype=bool)
+
+        # Place masks in arrays
+        for (y, x) in coords_left:
+            ry = y - y_min
+            rx = x - x_min
+            if 0 <= ry < height and 0 <= rx < width:
+                arr_left[ry, rx] = True
+
+        for (y, x) in coords_right:
+            ry = y - y_min
+            rx = x + shift - x_min
+            if 0 <= ry < height and 0 <= rx < width:
+                arr_right[ry, rx] = True
+
+        overlap = np.logical_and(arr_left, arr_right).sum()
+        union = np.logical_or(arr_left, arr_right).sum()
+        
+        return overlap, union
 
     def _compute_avg_and_error_metrics(self, df: pd.DataFrame, value_col: str = "distance_to_boundary") -> pd.DataFrame:
         """Compute average and error metrics grouped by gt_distance."""
@@ -484,15 +618,18 @@ class CausalityExperiment:
         # Simplified implementation
         ax.plot(x_data, y_data, color=color_, linewidth=2.5, label=label_ + " fit")
 
-    def run_full_experiment(self, video_data_dir: str) -> None:
+    def run_full_experiment(self, video_data_dir: str, resume: bool = True) -> None:
         """Run the complete causality experiment."""
         self.logger.info("Starting full causality experiment")
         
         # Step 1: Process videos and compute collision distances
-        collision_data = self.process_videos(video_data_dir)
+        collision_data = self.process_videos(video_data_dir, resume=resume)
         
         # Step 2: Generate causality plots and analysis
-        self.generate_causality_plots(collision_data)
+        if collision_data:
+            self.generate_causality_plots(collision_data)
+        else:
+            self.logger.warning("No collision data generated - skipping plot generation")
         
         self.logger.info("Causality experiment completed successfully")
 
@@ -508,11 +645,15 @@ def main():
                        choices=["segformer"], 
                        help="Model interface to use")
     parser.add_argument("--data_dir", required=True,
-                       help="Directory containing video frame data")
+                       help="Directory containing video files (.mp4)")
     parser.add_argument("--output_dir", required=True,
                        help="Directory for experiment outputs")
     parser.add_argument("--model_name", default="nvidia/segformer-b5-finetuned-ade-640-640",
                        help="Model name/path for the interface")
+    parser.add_argument("--resume", action="store_true", default=True,
+                       help="Resume from previous processing if possible")
+    parser.add_argument("--no_resume", action="store_true",
+                       help="Force restart from beginning")
     
     args = parser.parse_args()
     
@@ -524,7 +665,12 @@ def main():
     
     # Create and run experiment
     experiment = CausalityExperiment(model_interface, args.output_dir)
-    experiment.run_full_experiment(args.data_dir)
+    
+    # Determine resume flag
+    resume = args.resume and not args.no_resume
+    
+    # Run experiment
+    experiment.run_full_experiment(args.data_dir, resume=resume)
 
 
 if __name__ == "__main__":
