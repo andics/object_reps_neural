@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 """
-test_interface.py
+demo_interface.py
 
 Test script for the SegFormer interface that downloads a random image from the web
 and demonstrates the model inference capabilities.
 
 Usage:
-    python test_interface.py [--save_output] [--image_url URL]
+    python demo_interface.py [--save_output] [--image_url URL]
 """
 
 import argparse
@@ -168,7 +168,6 @@ def analyze_predictions(predictions: dict, logger: logging.Logger) -> None:
     max_confidences = pred_logits.max(dim=-1)[0][0]  # (num_queries,)
     active_queries = (max_confidences > 5.0).sum().item()
     logger.info(f"Active queries (confidence > 5.0): {active_queries}")
-
 
 def main():
     parser = argparse.ArgumentParser(description="Test SegFormer interface with random web image")
