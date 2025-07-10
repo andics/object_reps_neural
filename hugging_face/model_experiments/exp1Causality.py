@@ -43,13 +43,13 @@ class CausalityExperiment:
     5. Generates analysis plots and saves results
     """
     
-    def __init__(self, model_interface: ModelInterface, output_dir: str, logger: logging.Logger = None):
+    def __init__(self, model_interface: ModelInterface, output_dir: str, n_blobs: int = 2, logger: logging.Logger = None):
         self.model_interface = model_interface
         self.output_dir = output_dir
         self.logger = logger or self._setup_logger()
         
         # Initialize video processor
-        self.video_processor = VideoProcessor(model_interface, self.logger)
+        self.video_processor = VideoProcessor(model_interface, n_blobs, self.logger)
         
         # Create output subdirectories
         self.results_dir = os.path.join(output_dir, "results")
@@ -457,6 +457,8 @@ def main():
                       help="Directory containing raw .mp4 video files")
     parser.add_argument("--output_dir", type=str, required=True,
                       help="Output directory for results and processed data")
+    parser.add_argument("--n_blobs", type=int, default=2,
+                      help="Number of blobs to detect and track (default: 2)")
     parser.add_argument("--resume", action="store_true", default=True,
                       help="Resume processing from checkpoints (default: True)")
     parser.add_argument("--no_resume", action="store_true", default=False,
@@ -482,7 +484,7 @@ def main():
         raise ValueError(f"Unknown model interface: {args.model_interface}")
     
     # Run experiment
-    experiment = CausalityExperiment(model_interface, args.output_dir)
+    experiment = CausalityExperiment(model_interface, args.output_dir, args.n_blobs)
     
     try:
         experiment.run_full_experiment(

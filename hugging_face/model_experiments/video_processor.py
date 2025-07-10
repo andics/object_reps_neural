@@ -35,14 +35,19 @@ class VideoProcessor:
     - Blob detection and mask assignment
     - Memory-based mask tracking
     - Output generation (masks, visualizations, videos)
+    
+    Args:
+        model_interface: The model interface to use for inference
+        n_blobs: Number of blobs to detect and track (default: 2)
+        logger: Optional logger instance for logging messages
     """
     
-    def __init__(self, model_interface: ModelInterface, logger: logging.Logger = None):
+    def __init__(self, model_interface: ModelInterface, n_blobs: int = 2, logger: logging.Logger = None):
         self.model_interface = model_interface
         self.logger = logger or logging.getLogger(__name__)
         
         # Processing parameters
-        self.n_blobs = 2
+        self.n_blobs = n_blobs
         self.initial_skip_frames = 13
         self.alpha = 0.7  # Memory decay factor
         self.black_thresh = 30  # Threshold for blob detection
@@ -50,6 +55,8 @@ class VideoProcessor:
         # Memory for tracking masks across frames
         self.mem_floats = None
         self.current_video_shape = None
+        
+        self.logger.info(f"VideoProcessor initialized with {self.n_blobs} blobs to detect")
         
     def setup_output_directories(self, video_path: str, output_root: str, model_prefix: str = None) -> Dict[str, str]:
         """Setup organized output directory structure for video processing."""

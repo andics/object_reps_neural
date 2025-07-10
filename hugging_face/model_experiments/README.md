@@ -46,6 +46,7 @@ output_dir/
 python exp1Causality.py --model_interface segformer \
                         --videos_dir /path/to/raw_videos \
                         --output_dir /path/to/output \
+                        [--n_blobs 2] \
                         [--resume]
 ```
 
@@ -88,6 +89,7 @@ python exp2TTC.py --model_interface segformer \
                   --videos_dir /path/to/raw_videos \
                   --csv_path /path/to/participant_data.csv \
                   --output_dir /path/to/output \
+                  [--n_blobs 2] \
                   [--iou_start 0.05] [--iou_end 0.95] [--iou_step 0.05] \
                   [--resume]
 ```
@@ -166,15 +168,21 @@ The `VideoProcessor` class (`video_processor.py`) provides the core video proces
 - Resume from last processed frame
 - Metadata preservation
 
+**Configurable Blob Detection**:
+- Number of blobs to detect and track can be specified via `n_blobs` parameter
+- Default value is 2 blobs (suitable for most collision/interaction scenarios)
+- Supports any number of blobs based on experimental requirements
+- Memory arrays and tracking automatically adjust to specified blob count
+
 ### VideoProcessor Usage
 
 ```python
 from video_processor import VideoProcessor
 from segformer.segformer_interface import SegFormerInterface
 
-# Initialize
+# Initialize with custom number of blobs
 model_interface = SegFormerInterface()
-processor = VideoProcessor(model_interface, logger)
+processor = VideoProcessor(model_interface, n_blobs=3, logger)
 
 # Process video
 output_dirs = processor.process_video(
@@ -241,13 +249,15 @@ def infer_image(self, image: PIL.Image) -> Dict[str, torch.Tensor]:
 # Experiment 1: Causality Analysis
 python exp1Causality.py --model_interface segformer \
                         --videos_dir /data/raw_videos \
-                        --output_dir /output/exp1_results
+                        --output_dir /output/exp1_results \
+                        --n_blobs 2
 
 # Experiment 2: TTC Analysis  
 python exp2TTC.py --model_interface segformer \
                   --videos_dir /data/raw_videos \
                   --csv_path /data/participants.csv \
-                  --output_dir /output/exp2_results
+                  --output_dir /output/exp2_results \
+                  --n_blobs 2
 
 # Experiment 3: Change Detection
 python exp3Change.py --model_interface segformer \
@@ -283,6 +293,29 @@ python exp2TTC.py [args...] &
 python exp3Change.py [args...] &
 wait
 ```
+
+### Configuring Blob Detection
+
+The number of blobs to detect can be customized based on experimental scenarios:
+
+```bash
+# Two-object interaction (default)
+python exp1Causality.py --n_blobs 2 [other args...]
+
+# Multi-object scenarios (3+ objects)
+python exp1Causality.py --n_blobs 4 [other args...]
+
+# Single object tracking
+python exp2TTC.py --n_blobs 1 [other args...]
+
+# Complex scenes with many objects
+python exp1Causality.py --n_blobs 6 [other args...]
+```
+
+Note: The number of blobs detected affects:
+- Memory requirements (scales linearly with blob count)
+- Processing time (slightly increases with more blobs)
+- Analysis complexity (distance calculations scale with blob pairs)
 
 ## Performance Considerations
 

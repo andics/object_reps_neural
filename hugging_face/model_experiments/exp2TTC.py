@@ -44,13 +44,13 @@ class TTCExperiment:
     5. Generates analysis plots and statistics
     """
     
-    def __init__(self, model_interface: ModelInterface, output_dir: str, logger: logging.Logger = None):
+    def __init__(self, model_interface: ModelInterface, output_dir: str, n_blobs: int = 2, logger: logging.Logger = None):
         self.model_interface = model_interface
         self.output_dir = output_dir
         self.logger = logger or self._setup_logger()
         
         # Initialize video processor
-        self.video_processor = VideoProcessor(model_interface, self.logger)
+        self.video_processor = VideoProcessor(model_interface, n_blobs, self.logger)
         
         # Create output subdirectories
         self.results_dir = os.path.join(output_dir, "results")
@@ -456,21 +456,17 @@ class TTCExperiment:
 ##############################################################################
 
 def main():
-    parser = argparse.ArgumentParser(description="TTC Experiment - Process raw videos and analyze collision times")
+    parser = argparse.ArgumentParser(description="Time-to-Collision (TTC) Experiment - Process raw videos and correlate with human response times")
     parser.add_argument("--model_interface", type=str, default="segformer",
                       choices=["segformer"], help="Model interface to use")
     parser.add_argument("--videos_dir", type=str, required=True,
                       help="Directory containing raw .mp4 video files")
     parser.add_argument("--csv_path", type=str, required=True,
-                      help="Path to participant CSV file")
+                      help="Path to CSV file with participant data")
     parser.add_argument("--output_dir", type=str, required=True,
                       help="Output directory for results and processed data")
-    parser.add_argument("--iou_start", type=float, default=0.05,
-                      help="Starting IoU threshold (default: 0.05)")
-    parser.add_argument("--iou_end", type=float, default=0.95,
-                      help="Ending IoU threshold (default: 0.95)")
-    parser.add_argument("--iou_step", type=float, default=0.05,
-                      help="IoU step size (default: 0.05)")
+    parser.add_argument("--n_blobs", type=int, default=2,
+                      help="Number of blobs to detect and track (default: 2)")
     parser.add_argument("--resume", action="store_true", default=True,
                       help="Resume processing from checkpoints (default: True)")
     parser.add_argument("--no_resume", action="store_true", default=False,
@@ -487,7 +483,7 @@ def main():
         sys.exit(1)
     
     if not os.path.isfile(args.csv_path):
-        print(f"Error: Participant CSV file '{args.csv_path}' does not exist")
+        print(f"Error: CSV file '{args.csv_path}' does not exist")
         sys.exit(1)
     
     # Create output directory
@@ -500,15 +496,12 @@ def main():
         raise ValueError(f"Unknown model interface: {args.model_interface}")
     
     # Run experiment
-    experiment = TTCExperiment(model_interface, args.output_dir)
+    experiment = TTCExperiment(model_interface, args.output_dir, args.n_blobs)
     
     try:
         experiment.run_full_experiment(
             videos_dir=args.videos_dir,
             csv_path=args.csv_path,
-            iou_start=args.iou_start,
-            iou_end=args.iou_end,
-            iou_step=args.iou_step,
             resume=resume
         )
         print("TTC experiment completed successfully!")
