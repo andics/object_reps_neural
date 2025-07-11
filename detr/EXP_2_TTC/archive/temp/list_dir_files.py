@@ -10,6 +10,6 @@ def list_files_alphabetically(folder_path):
         return []
 
 # Example usage
-folder = '/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/detr/EXP_2_TTC/generate_detection_videos_and_meshes/exp_2_videos_org'
+folder = '/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/detr/EXP_2_TTC/generate_detection_videos_and_meshes/exp2TTC_files'
 sorted_files = list_files_alphabetically(folder)
 print(sorted_files)

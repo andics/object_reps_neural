@@ -36,7 +36,7 @@ def main():
             "Object_reps_neural/Programming/detr/VIDEO_PROCESSING_TOOLS/"
             "generate_detection_videos_and_meshes/exp_1_videos_org"
         ),
-        help="Path to the directory containing .mp4 files (default points to exp_2_videos_org).",
+        help="Path to the directory containing .mp4 files (default points to exp2TTC_files).",
         required=False
     )
     parser.add_argument(

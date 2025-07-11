@@ -40,7 +40,7 @@ def parse_args():
     )
     parser.add_argument(
         "--video_path",
-        default="exp_2_videos_org/BConcave+AConcave 3500.mp4",
+        default="exp2TTC_files/BConcave+AConcave 3500.mp4",
         help="Path to input .mp4."
     )
     parser.add_argument(

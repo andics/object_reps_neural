@@ -43,24 +43,27 @@ class TTCExperiment:
     4. Correlates model predictions with participant response times
     5. Generates analysis plots and statistics
     """
-    
-    def __init__(self, model_interface: ModelInterface, output_dir: str, n_blobs: int = 2, logger: logging.Logger = None):
+
+    def __init__(self, model_interface: ModelInterface, output_dir: str, n_blobs: int = 2,
+                 logger: logging.Logger = None):
         self.model_interface = model_interface
         self.output_dir = output_dir
-        self.logger = logger or self._setup_logger()
-        
-        # Initialize video processor
-        self.video_processor = VideoProcessor(model_interface, n_blobs, self.logger)
-        
-        # Create output subdirectories
+
+        # Create output subdirectories FIRST (before logger is set up)
         self.results_dir = os.path.join(output_dir, "results")
         self.plots_dir = os.path.join(output_dir, "plots")
         self.logs_dir = os.path.join(output_dir, "logs")
         self.processed_videos_dir = os.path.join(output_dir, "processed_videos")
-        
+
         for dir_path in [self.results_dir, self.plots_dir, self.logs_dir, self.processed_videos_dir]:
             os.makedirs(dir_path, exist_ok=True)
-            
+
+        # Now setup logger after logs_dir exists
+        self.logger = logger or self._setup_logger()
+
+        # Initialize video processor
+        self.video_processor = VideoProcessor(model_interface, n_blobs, self.logger)
+
         self.logger.info(f"Initialized TTC Experiment with output dir: {output_dir}")
 
     def _setup_logger(self) -> logging.Logger:
@@ -459,15 +462,18 @@ def main():
     parser = argparse.ArgumentParser(description="Time-to-Collision (TTC) Experiment - Process raw videos and correlate with human response times")
     parser.add_argument("--model_interface", type=str, default="segformer",
                       choices=["segformer"], help="Model interface to use")
-    parser.add_argument("--videos_dir", type=str, required=True,
+    parser.add_argument("--videos_dir", type=str, required=False,
+                      default="/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/exp2TTC_files",
                       help="Directory containing raw .mp4 video files")
-    parser.add_argument("--csv_path", type=str, required=True,
+    parser.add_argument("--csv_path", type=str, required=False,
+                      default="/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/exp2TTC_files/experiment2-CollisionDetection-Data.csv",
                       help="Path to CSV file with participant data")
-    parser.add_argument("--output_dir", type=str, required=True,
+    parser.add_argument("--output_dir", type=str, required=False,
+                      default="/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC",
                       help="Output directory for results and processed data")
     parser.add_argument("--n_blobs", type=int, default=2,
                       help="Number of blobs to detect and track (default: 2)")
-    parser.add_argument("--resume", action="store_true", default=True,
+    parser.add_argument("--resume", action="store_true", default=False,
                       help="Resume processing from checkpoints (default: True)")
     parser.add_argument("--no_resume", action="store_true", default=False,
                       help="Start processing from scratch, ignoring checkpoints")
