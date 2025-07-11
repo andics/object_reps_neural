@@ -98,7 +98,8 @@ class VideoProcessor:
             'video_created': False,
             'last_processed_frame': -1,
             'total_frames': total_frames,
-            'can_resume': False
+            'can_resume': False,
+            'processing_complete': False
         }
         
         # Check if metadata exists
@@ -120,11 +121,31 @@ class VideoProcessor:
         video_files = list(Path(directories['videos_processed']).glob("*.mp4"))
         status['video_created'] = len(video_files) > 0
         
-        # Can resume if we have some processed frames but not complete
+        # Fix resume logic
         if total_frames:
-            status['can_resume'] = 0 < processed_frames < total_frames
+            if processed_frames == 0:
+                # No processing done yet
+                status['can_resume'] = False
+                status['processing_complete'] = False
+            elif processed_frames >= total_frames:
+                # Processing is complete
+                status['can_resume'] = False
+                status['processing_complete'] = True
+            else:
+                # Partial processing - can resume
+                status['can_resume'] = True
+                status['processing_complete'] = False
         
         return status
+    
+    def _save_processing_status(self, directories: Dict[str, str], status: Dict[str, Any]) -> None:
+        """Save current processing status to JSON file."""
+        try:
+            metadata_file = os.path.join(directories['metadata'], 'processing_status.json')
+            with open(metadata_file, 'w') as f:
+                json.dump(status, f, indent=2)
+        except Exception as e:
+            self.logger.warning(f"Could not save processing status: {e}")
     
     def process_video(self, video_path: str, output_root: str, model_prefix: str = None, 
                      resume: bool = True) -> Dict[str, str]:
@@ -146,9 +167,22 @@ class VideoProcessor:
         # Check processing status
         status = self.check_processing_status(directories, video_metadata['total_frames'])
         
-        if resume and status['can_resume']:
+        # Handle different processing scenarios
+        if status['processing_complete'] and not resume:
+            self.logger.info("Processing already complete, but not resuming. Starting from beginning.")
+            start_frame = 0
+            self._initialize_memory(video_metadata['height'], video_metadata['width'])
+        elif status['processing_complete'] and resume:
+            self.logger.info("Processing already complete. Skipping to video creation if needed.")
+            if not status['video_created']:
+                self._create_final_video(directories, video_metadata)
+            self.logger.info(f"Video processing already completed: {directories['root']}")
+            return directories
+        elif resume and status['can_resume']:
             self.logger.info(f"Resuming processing from frame {status['last_processed_frame'] + 1}")
             start_frame = status['last_processed_frame'] + 1
+            # Note: Memory state is lost on resume, but this is acceptable for most use cases
+            self._initialize_memory(video_metadata['height'], video_metadata['width'])
         else:
             self.logger.info("Starting processing from beginning")
             start_frame = 0
@@ -160,9 +194,18 @@ class VideoProcessor:
             video_path, directories, video_metadata, start_frame
         )
         
+        # Update status after frame processing
+        status = self.check_processing_status(directories, video_metadata['total_frames'])
+        status['frames_extracted'] = True
+        status['masks_generated'] = True
+        self._save_processing_status(directories, status)
+        
         # Create final video if not exists
         if not status['video_created']:
             self._create_final_video(directories, video_metadata)
+            status['video_created'] = True
+            status['processing_complete'] = True
+            self._save_processing_status(directories, status)
         
         self.logger.info(f"Video processing completed: {directories['root']}")
         return directories
@@ -222,9 +265,10 @@ class VideoProcessor:
         flip_blobs = self._video_is_flipped(video_path)
         
         H, W = video_metadata['height'], video_metadata['width']
+        total_frames = video_metadata['total_frames']
         
         try:
-            for frame_idx in range(start_frame, video_metadata['total_frames']):
+            for frame_idx in range(start_frame, total_frames):
                 try:
                     frame = reader.get_data(frame_idx)
                 except IndexError:
@@ -238,9 +282,23 @@ class VideoProcessor:
                     frame, frame_idx, directories, flip_blobs, H, W
                 )
                 
+                # Save progress periodically (every 50 frames) and update status
+                if frame_idx % 50 == 0 or frame_idx == total_frames - 1:
+                    processed_frames = frame_idx + 1
+                    status = {
+                        'frames_extracted': True,
+                        'masks_generated': processed_frames > start_frame,
+                        'video_created': False,
+                        'last_processed_frame': frame_idx,
+                        'total_frames': total_frames,
+                        'can_resume': processed_frames < total_frames,
+                        'processing_complete': processed_frames >= total_frames
+                    }
+                    self._save_processing_status(directories, status)
+                
                 # Log progress
                 if frame_idx % 10 == 0:
-                    self.logger.info(f"Processed frame {frame_idx}/{video_metadata['total_frames']}")
+                    self.logger.info(f"Processed frame {frame_idx}/{total_frames}")
         
         finally:
             reader.close()
