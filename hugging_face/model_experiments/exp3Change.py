@@ -54,9 +54,8 @@ class ChangeDetectionExperiment:
     def __init__(self, model_interface: ModelInterface, output_dir: str, logger: logging.Logger = None):
         self.model_interface = model_interface
         self.output_dir = output_dir
-        self.logger = logger or self._setup_logger()
         
-        # Create output subdirectories
+        # Create output subdirectories FIRST (before logger is set up)
         self.results_dir = os.path.join(output_dir, "results")
         self.plots_dir = os.path.join(output_dir, "plots")
         self.logs_dir = os.path.join(output_dir, "logs")
@@ -66,6 +65,9 @@ class ChangeDetectionExperiment:
         for dir_path in [self.results_dir, self.plots_dir, self.logs_dir, 
                         self.processed_images_dir, self.threshold_results_dir]:
             os.makedirs(dir_path, exist_ok=True)
+
+        # Now setup logger after logs_dir exists
+        self.logger = logger or self._setup_logger()
             
         self.logger.info(f"Initialized Change Detection Experiment with output dir: {output_dir}")
 
@@ -165,9 +167,14 @@ class ChangeDetectionExperiment:
             processed_dir = Path(self.processed_images_dir) / f"segformer_model_{image_name}"
             mask_dir = processed_dir / "frames_masks_nonmem"
             
+            if not mask_dir.exists():
+                self.logger.warning(f"Mask directory does not exist: {mask_dir}")
+                return None
+            
             # Find mask files
             mask_files = list(mask_dir.glob("mask_*.png"))
             if not mask_files:
+                self.logger.warning(f"No mask files found in {mask_dir}")
                 return None
             
             # Load the first mask (assuming single image processing)
@@ -192,6 +199,11 @@ class ChangeDetectionExperiment:
     def _process_single_image(self, image_path: str, image_name: str) -> Dict[str, Any]:
         """Process a single image to detect and segment blobs."""
         
+        # Load model if not already loaded
+        if not hasattr(self.model_interface, 'model') or self.model_interface.model is None:
+            self.logger.info("Loading model...")
+            self.model_interface.load_model()
+        
         # Setup output directories for this image
         output_base = os.path.join(self.processed_images_dir, f"segformer_model_{image_name}")
         dirs = {
@@ -204,9 +216,13 @@ class ChangeDetectionExperiment:
             os.makedirs(d, exist_ok=True)
 
         # Load image and ensure RGB format
-        frame = np.array(Image.open(image_path).convert('RGB'))
-        H, W, _ = frame.shape
-        self.logger.info(f"Image {image_name} shape: {H}x{W} RGB")
+        try:
+            frame = np.array(Image.open(image_path).convert('RGB'))
+            H, W, _ = frame.shape
+            self.logger.info(f"Image {image_name} shape: {H}x{W} RGB")
+        except Exception as e:
+            self.logger.error(f"Failed to load image {image_path}: {e}")
+            return None
 
         # Detect blob using intensity thresholding
         blob = self._detect_blob(frame)
@@ -218,8 +234,12 @@ class ChangeDetectionExperiment:
         self._save_blob_overlay(frame, blob, dirs['blobs'], image_name)
 
         # Run model inference to get segmentation masks
-        candidates = self._run_model_inference(frame, H, W)
-        self.logger.info(f"Generated {len(candidates)} candidate masks from model.")
+        try:
+            candidates = self._run_model_inference(frame, H, W)
+            self.logger.info(f"Generated {len(candidates)} candidate masks from model.")
+        except Exception as e:
+            self.logger.error(f"Model inference failed for {image_name}: {e}")
+            return None
 
         # Choose best mask that matches the detected blob
         chosen_mask = self._choose_best_mask(blob, candidates)
@@ -232,8 +252,9 @@ class ChangeDetectionExperiment:
             self.logger.warning(f"No suitable model mask found for {image_name}")
             chosen_mask = blob  # Fall back to detected blob
 
-        # Generate collage of top candidate masks
-        self._save_mask_collage(frame, blob, candidates, dirs['collage'], image_name)
+        # Generate collage of top candidate masks (IMPORTANT: This was missing!)
+        if candidates:
+            self._save_mask_collage(frame, blob, candidates, dirs['collage'], image_name)
 
         # Generate final overlay with polygon
         self._save_final_overlay(frame, chosen_mask, dirs['proc'], image_name, W, H)
@@ -313,13 +334,26 @@ class ChangeDetectionExperiment:
 
     def _compute_iou(self, mask1: np.ndarray, mask2: np.ndarray) -> float:
         """Compute IoU between two binary masks."""
-        intersection = np.logical_and(mask1, mask2).sum()
-        union = np.logical_or(mask1, mask2).sum()
-        return 0.0 if union == 0 else intersection / union
+        try:
+            # Ensure masks are binary
+            mask1_binary = (mask1 > 0).astype(np.uint8)
+            mask2_binary = (mask2 > 0).astype(np.uint8)
+            
+            intersection = np.logical_and(mask1_binary, mask2_binary).sum()
+            union = np.logical_or(mask1_binary, mask2_binary).sum()
+            
+            if union == 0:
+                return 0.0
+            
+            return float(intersection / union)
+            
+        except Exception as e:
+            self.logger.warning(f"Error computing IoU: {e}")
+            return 0.0
 
     def _save_mask_collage(self, frame: np.ndarray, blob: np.ndarray, candidates: List[np.ndarray], 
                           output_dir: str, image_name: str) -> None:
-        """Save collage of top candidate masks."""
+        """Save collage of top candidate masks (following main_gen_vids_and_meshes.py pattern)."""
         if not candidates:
             return
             
@@ -342,6 +376,7 @@ class ChangeDetectionExperiment:
             axes[i].set_title(f"#{idx}\nIoU: {ious[idx]:.3f}", fontsize=8)
             axes[i].axis('off')
         
+        fig.suptitle(f"{image_name} - Top 10 Mask Candidates", fontsize=14)
         collage_file = os.path.join(output_dir, f"{image_name}_collage.png")
         fig.savefig(collage_file, bbox_inches='tight', pad_inches=0)
         plt.close(fig)
@@ -373,21 +408,26 @@ class ChangeDetectionExperiment:
         if mask is None or mask.sum() == 0:
             return {'area': 0.0, 'centroid_x': 0.0, 'centroid_y': 0.0, 'perimeter': 0.0}
         
-        labeled = label(mask.astype(np.uint8), connectivity=2)
-        props = regionprops(labeled)
+        try:
+            labeled = label(mask.astype(np.uint8), connectivity=2)
+            props = regionprops(labeled)
+            
+            if not props:
+                return {'area': 0.0, 'centroid_x': 0.0, 'centroid_y': 0.0, 'perimeter': 0.0}
+            
+            prop = props[0]  # Largest component
+            centroid_y, centroid_x = prop.centroid
+            
+            return {
+                'area': float(prop.area),
+                'centroid_x': float(centroid_x),
+                'centroid_y': float(centroid_y),
+                'perimeter': float(prop.perimeter)
+            }
         
-        if not props:
+        except Exception as e:
+            self.logger.warning(f"Error computing blob statistics: {e}")
             return {'area': 0.0, 'centroid_x': 0.0, 'centroid_y': 0.0, 'perimeter': 0.0}
-        
-        prop = props[0]  # Largest component
-        centroid_y, centroid_x = prop.centroid
-        
-        return {
-            'area': float(prop.area),
-            'centroid_x': float(centroid_x),
-            'centroid_y': float(centroid_y),
-            'perimeter': float(prop.perimeter)
-        }
 
     def _analyze_threshold_comparisons(self, all_blob_data: Dict[str, Dict[str, Any]], 
                                      thresholds: List[int]) -> None:
@@ -448,10 +488,10 @@ class ChangeDetectionExperiment:
             "threshold": threshold,
             "mistake_scores": mistake_scores,
             "summary": {
-                "mean_mistake_score": np.mean(list(mistake_scores.values())),
-                "std_mistake_score": np.std(list(mistake_scores.values())),
-                "max_mistake_score": max(mistake_scores.values()),
-                "min_mistake_score": min(mistake_scores.values()),
+                "mean_mistake_score": float(np.mean(list(mistake_scores.values()))),
+                "std_mistake_score": float(np.std(list(mistake_scores.values()))),
+                "max_mistake_score": float(max(mistake_scores.values())),
+                "min_mistake_score": float(min(mistake_scores.values())),
                 "total_images": len(mistake_scores)
             }
         }

@@ -46,12 +46,8 @@ class CausalityExperiment:
     def __init__(self, model_interface: ModelInterface, output_dir: str, n_blobs: int = 2, logger: logging.Logger = None):
         self.model_interface = model_interface
         self.output_dir = output_dir
-        self.logger = logger or self._setup_logger()
         
-        # Initialize video processor
-        self.video_processor = VideoProcessor(model_interface, n_blobs, self.logger)
-        
-        # Create output subdirectories
+        # Create output subdirectories FIRST (before logger is set up)
         self.results_dir = os.path.join(output_dir, "results")
         self.plots_dir = os.path.join(output_dir, "plots")
         self.logs_dir = os.path.join(output_dir, "logs")
@@ -61,6 +57,12 @@ class CausalityExperiment:
         for dir_path in [self.results_dir, self.plots_dir, self.logs_dir, 
                         self.processed_videos_dir, self.distance_data_dir]:
             os.makedirs(dir_path, exist_ok=True)
+
+        # Now setup logger after logs_dir exists
+        self.logger = logger or self._setup_logger()
+        
+        # Initialize video processor
+        self.video_processor = VideoProcessor(model_interface, n_blobs, self.logger)
             
         self.logger.info(f"Initialized Causality Experiment with output dir: {output_dir}")
 
@@ -157,6 +159,10 @@ class CausalityExperiment:
         """Extract distance data from processed video output directories."""
         masks_dir = Path(video_output_dirs['frames_masks_nonmem'])
         
+        if not masks_dir.exists():
+            self.logger.warning(f"Masks directory does not exist: {masks_dir}")
+            return []
+        
         # Find all mask files and group by frame
         mask_files = list(masks_dir.glob("mask_blob_*_frame_*.png"))
         
@@ -164,33 +170,47 @@ class CausalityExperiment:
             self.logger.warning(f"No mask files found in {masks_dir}")
             return []
         
+        self.logger.info(f"Found {len(mask_files)} mask files for video {video_name}")
+        
         # Group masks by frame number
         frame_masks = {}
         for mask_file in mask_files:
-            # Parse filename: mask_blob_0_frame_000013.png
-            parts = mask_file.stem.split('_')
-            blob_idx = int(parts[2])  # blob index
-            frame_num = int(parts[4])  # frame number
-            
-            if frame_num not in frame_masks:
-                frame_masks[frame_num] = {}
-            
-            # Load mask and compute centroid
-            mask_img = Image.open(mask_file).convert('L')
-            mask_array = np.array(mask_img, dtype=np.uint8)
-            binary_mask = (mask_array > 0).astype(np.float32)
-            
-            # Compute centroid
-            centroid = self._compute_mask_centroid(binary_mask)
-            frame_masks[frame_num][f"blob_{blob_idx}"] = {
-                'mask': binary_mask,
-                'centroid': centroid
-            }
+            try:
+                # Parse filename: mask_blob_0_frame_000013.png
+                parts = mask_file.stem.split('_')
+                if len(parts) < 5:
+                    self.logger.warning(f"Unexpected mask filename format: {mask_file}")
+                    continue
+                    
+                blob_idx = int(parts[2])  # blob index
+                frame_num = int(parts[4])  # frame number
+                
+                if frame_num not in frame_masks:
+                    frame_masks[frame_num] = {}
+                
+                # Load mask and compute centroid
+                mask_img = Image.open(mask_file).convert('L')
+                mask_array = np.array(mask_img, dtype=np.uint8)
+                binary_mask = (mask_array > 0).astype(np.float32)
+                
+                # Only process masks with some content
+                if binary_mask.sum() > 0:
+                    # Compute centroid
+                    centroid = self._compute_mask_centroid(binary_mask)
+                    frame_masks[frame_num][f"blob_{blob_idx}"] = {
+                        'mask': binary_mask,
+                        'centroid': centroid
+                    }
+                    
+            except Exception as e:
+                self.logger.warning(f"Error processing mask file {mask_file}: {e}")
+                continue
         
         # Convert to distance data format
         distance_data = []
         frame_numbers = sorted(frame_masks.keys())
         
+        valid_frame_count = 0
         for frame_num in frame_numbers:
             frame_data = frame_masks[frame_num]
             
@@ -209,8 +229,9 @@ class CausalityExperiment:
                         'blob_0_centroid': blob_0['centroid'],
                         'blob_1_centroid': blob_1['centroid']
                     })
+                    valid_frame_count += 1
         
-        self.logger.info(f"Extracted {len(distance_data)} distance measurements for {video_name}")
+        self.logger.info(f"Extracted {len(distance_data)} distance measurements from {valid_frame_count} valid frames for {video_name}")
         return distance_data
 
     def _compute_mask_centroid(self, mask: np.ndarray) -> Tuple[float, float]:
@@ -356,8 +377,8 @@ class CausalityExperiment:
         json_data = {}
         for video_name, results in causality_results.items():
             json_data[video_name] = {
-                'causality_score': results['causality_score'],
-                'frame_count': results['frame_count']
+                'causality_score': float(results['causality_score']),
+                'frame_count': int(results['frame_count'])
             }
         
         with open(json_path, 'w') as f:

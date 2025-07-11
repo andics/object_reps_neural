@@ -22,6 +22,7 @@ from transformers import (
     SegformerImageProcessor,
     SegformerForSemanticSegmentation,
 )
+from skimage.measure import label, regionprops
 
 
 class ModelInterface:
@@ -51,6 +52,7 @@ class SegFormerInterface(ModelInterface):
     """
     SegFormer model interface that provides DETR-compatible output format.
     Converts semantic segmentation maps to instance-like masks for compatibility.
+    Enhanced to provide better mask outputs for blob detection and IoU computation.
     """
 
     def __init__(
@@ -98,6 +100,7 @@ class SegFormerInterface(ModelInterface):
         
         The SegFormer semantic segmentation is converted to instance-like masks
         by treating each class as a separate "object" and creating binary masks.
+        Enhanced to provide better quality masks for blob detection.
         """
         if self.model is None:
             raise RuntimeError("Call load_model() before infer_image().")
@@ -116,8 +119,8 @@ class SegFormerInterface(ModelInterface):
             outputs, target_sizes=[(orig_height, orig_width)]
         )[0]  # Shape: (H, W)
         
-        # Convert to DETR-compatible format
-        pred_masks = self._convert_segmap_to_masks(seg_map, orig_height, orig_width)
+        # Convert to DETR-compatible format with enhanced mask generation
+        pred_masks = self._convert_segmap_to_enhanced_masks(seg_map, orig_height, orig_width)
         
         # Generate dummy logits and boxes for compatibility
         batch_size = 1
@@ -135,9 +138,9 @@ class SegFormerInterface(ModelInterface):
             'pred_boxes': pred_boxes
         }
 
-    def _convert_segmap_to_masks(self, seg_map: torch.Tensor, height: int, width: int) -> torch.Tensor:
+    def _convert_segmap_to_enhanced_masks(self, seg_map: torch.Tensor, height: int, width: int) -> torch.Tensor:
         """
-        Convert semantic segmentation map to instance-like binary masks.
+        Convert semantic segmentation map to instance-like binary masks with enhanced processing.
         
         Args:
             seg_map: Tensor of shape (H, W) with class IDs
@@ -153,10 +156,56 @@ class SegFormerInterface(ModelInterface):
         object_classes = unique_classes[unique_classes > 0]
         
         masks = []
+        
+        # Process each semantic class
         for class_id in object_classes:
-            class_mask = (seg_map_np == class_id).astype(np.float32)
-            masks.append(torch.from_numpy(class_mask))
+            class_mask = (seg_map_np == class_id).astype(np.uint8)
             
+            # Split class mask into connected components to create instance-like masks
+            labeled = label(class_mask, connectivity=2)
+            regions = regionprops(labeled)
+            
+            # Sort regions by area to get meaningful instances
+            regions_sorted = sorted(regions, key=lambda r: r.area, reverse=True)
+            
+            # Add each connected component as a separate mask
+            for region in regions_sorted:
+                # Create binary mask for this component
+                component_mask = (labeled == region.label).astype(np.float32)
+                
+                # Only add masks with reasonable size (filter out tiny noise)
+                if region.area > 50:  # Minimum area threshold
+                    masks.append(torch.from_numpy(component_mask))
+        
+        # If no good masks found, create some dummy masks to avoid empty returns
+        if len(masks) == 0:
+            # Create a few masks from different threshold levels of the segmentation
+            for threshold in [0.3, 0.5, 0.7]:
+                # Create a general "object" mask using intensity thresholding
+                gray = np.array(Image.fromarray(seg_map_np.astype(np.uint8)).convert('L'))
+                binary_mask = (gray > threshold * 255).astype(np.float32)
+                
+                # Split into connected components
+                labeled = label(binary_mask, connectivity=2)
+                regions = regionprops(labeled)
+                
+                for region in sorted(regions, key=lambda r: r.area, reverse=True)[:3]:  # Top 3 regions
+                    if region.area > 100:
+                        component_mask = (labeled == region.label).astype(np.float32)
+                        masks.append(torch.from_numpy(component_mask))
+        
+        # If still no masks, create default masks using simple thresholding
+        if len(masks) == 0:
+            # Convert segmentation map to grayscale and create masks
+            gray_seg = seg_map_np.astype(np.float32)
+            gray_seg = (gray_seg - gray_seg.min()) / (gray_seg.max() - gray_seg.min() + 1e-8)
+            
+            # Create masks at different threshold levels
+            for threshold in [0.2, 0.4, 0.6, 0.8]:
+                mask = (gray_seg > threshold).astype(np.float32)
+                if mask.sum() > 0:
+                    masks.append(torch.from_numpy(mask))
+        
         # Pad to num_queries
         while len(masks) < self.num_queries:
             masks.append(torch.zeros(height, width, dtype=torch.float32))

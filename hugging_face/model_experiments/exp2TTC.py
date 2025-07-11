@@ -160,6 +160,10 @@ class TTCExperiment:
                 # Extract mask data from processed video
                 mask_data = self._extract_mask_data_from_processed_video(video_output_dirs)
                 
+                if not mask_data:
+                    self.logger.warning(f"No mask data extracted for video {video_name}")
+                    continue
+                
                 # For each IoU threshold, find collision time
                 for iou_threshold in iou_values:
                     collision_time = self._find_first_collision_time(mask_data, iou_threshold, fps=60)
@@ -170,9 +174,16 @@ class TTCExperiment:
                     results_dir.mkdir(exist_ok=True)
                     output_json_path = results_dir / f"iou_{iou_threshold}.json"
                     with open(output_json_path, 'w') as f:
-                        json.dump({"collision_time": collision_time}, f, indent=2)
+                        json.dump({
+                            "collision_time": float(collision_time),
+                            "is_collision_detected": not np.isnan(collision_time),
+                            "iou_threshold": float(iou_threshold)
+                        }, f, indent=2)
                     
-                    self.logger.debug(f"Collision time for {video_name} at IoU {iou_threshold}: {collision_time}")
+                    if not np.isnan(collision_time):
+                        self.logger.debug(f"Collision time for {video_name} at IoU {iou_threshold}: {collision_time:.2f}ms")
+                    else:
+                        self.logger.debug(f"No collision detected for {video_name} at IoU {iou_threshold}")
                     
             except Exception as e:
                 self.logger.error(f"Failed to process video {video_name}: {e}")
@@ -185,59 +196,120 @@ class TTCExperiment:
         masks_dir = Path(video_output_dirs['frames_masks_nonmem'])
         mask_data = {}
         
+        if not masks_dir.exists():
+            self.logger.warning(f"Masks directory does not exist: {masks_dir}")
+            return mask_data
+        
         # Find all mask files
         mask_files = list(masks_dir.glob("mask_blob_*_frame_*.png"))
+        
+        if not mask_files:
+            self.logger.warning(f"No mask files found in {masks_dir}")
+            return mask_data
+        
+        self.logger.info(f"Found {len(mask_files)} mask files")
         
         # Group by frame number
         frame_masks = {}
         for mask_file in mask_files:
-            # Parse filename: mask_blob_0_frame_000013.png
-            parts = mask_file.stem.split('_')
-            blob_idx = int(parts[2])  # blob index
-            frame_num = int(parts[4])  # frame number
-            
-            if frame_num not in frame_masks:
-                frame_masks[frame_num] = {}
-            
-            # Load mask
-            mask_img = Image.open(mask_file).convert('L')
-            mask_array = np.array(mask_img, dtype=np.uint8)
-            binary_mask = (mask_array > 0).astype(np.float32)
-            
-            frame_masks[frame_num][f"blob_{blob_idx}"] = binary_mask
+            try:
+                # Parse filename: mask_blob_0_frame_000013.png
+                parts = mask_file.stem.split('_')
+                if len(parts) < 5:
+                    self.logger.warning(f"Unexpected mask filename format: {mask_file}")
+                    continue
+                    
+                blob_idx = int(parts[2])  # blob index
+                frame_num = int(parts[4])  # frame number
+                
+                if frame_num not in frame_masks:
+                    frame_masks[frame_num] = {}
+                
+                # Load mask
+                mask_img = Image.open(mask_file).convert('L')
+                mask_array = np.array(mask_img, dtype=np.uint8)
+                binary_mask = (mask_array > 0).astype(np.float32)
+                
+                # Only store masks that have some content
+                if binary_mask.sum() > 0:
+                    frame_masks[frame_num][f"blob_{blob_idx}"] = binary_mask
+                
+            except Exception as e:
+                self.logger.warning(f"Error processing mask file {mask_file}: {e}")
+                continue
         
-        return frame_masks
+        # Filter to only include frames with both blobs
+        valid_frame_masks = {}
+        for frame_num, masks in frame_masks.items():
+            if "blob_0" in masks and "blob_1" in masks:
+                valid_frame_masks[frame_num] = masks
+        
+        self.logger.info(f"Found {len(valid_frame_masks)} frames with valid blob pairs")
+        return valid_frame_masks
 
     def _find_first_collision_time(self, mask_data: Dict[int, Dict[str, np.ndarray]], 
                                   iou_threshold: float, fps: int = 60) -> float:
         """Find the first frame where collision occurs based on IoU threshold."""
         
         frame_numbers = sorted(mask_data.keys())
+        
+        if not frame_numbers:
+            self.logger.warning("No frames with mask data available")
+            return float('nan')
+        
+        # Start checking from frame 13 (as in original code)
         start_frame = max(13, min(frame_numbers)) if frame_numbers else 13
+        
+        collision_found = False
+        collision_frame = None
         
         for frame_num in frame_numbers:
             if frame_num < start_frame:
                 continue
                 
             frame_masks = mask_data[frame_num]
+            
+            # Check if we have both blobs
             if "blob_0" in frame_masks and "blob_1" in frame_masks:
                 mask0 = frame_masks["blob_0"]
                 mask1 = frame_masks["blob_1"]
                 
-                iou_val = self._compute_iou(mask0, mask1)
-                if iou_val >= iou_threshold:
-                    collision_time_ms = (frame_num / fps) * 1000
-                    return collision_time_ms
+                # Compute IoU
+                iou_val = self._compute_iou_safe(mask0, mask1)
+                
+                # Check if collision threshold is met
+                if not np.isnan(iou_val) and iou_val >= iou_threshold:
+                    collision_frame = frame_num
+                    collision_found = True
+                    break
         
-        return float('nan')  # No collision found
+        if collision_found:
+            collision_time_ms = (collision_frame / fps) * 1000
+            return collision_time_ms
+        else:
+            return float('nan')  # No collision found
 
-    def _compute_iou(self, mask1: np.ndarray, mask2: np.ndarray) -> float:
-        """Compute IoU of two binary masks."""
-        intersection = np.logical_and(mask1, mask2).sum()
-        union = np.logical_or(mask1, mask2).sum()
-        if union == 0:
-            return 0.0
-        return intersection / union
+    def _compute_iou_safe(self, mask1: np.ndarray, mask2: np.ndarray) -> float:
+        """Compute IoU of two binary masks with safety checks."""
+        try:
+            # Ensure masks are binary
+            mask1_binary = (mask1 > 0).astype(np.uint8)
+            mask2_binary = (mask2 > 0).astype(np.uint8)
+            
+            # Compute intersection and union
+            intersection = np.logical_and(mask1_binary, mask2_binary).sum()
+            union = np.logical_or(mask1_binary, mask2_binary).sum()
+            
+            if union == 0:
+                # Both masks are empty
+                return 0.0
+            
+            iou = intersection / union
+            return float(iou)
+            
+        except Exception as e:
+            self.logger.warning(f"Error computing IoU: {e}")
+            return float('nan')
 
     def _analyze_participant_correlations(self, collision_data: Dict[Tuple[str, float], float], 
                                         participant_df: pd.DataFrame, 
@@ -324,7 +396,7 @@ class TTCExperiment:
             
             with open(output_dir / f"{pid}.json", 'w') as f:
                 json.dump({
-                    "correlation": r_val,
+                    "correlation": float(r_val) if not np.isnan(r_val) else None,
                     "videos_used": used_videos,
                     "data_points": len(predicted_times)
                 }, f, indent=2)
@@ -374,7 +446,7 @@ class TTCExperiment:
         
         with open(output_dir / "average_person.json", 'w') as f:
             json.dump({
-                "correlation": r_val,
+                "correlation": float(r_val) if not np.isnan(r_val) else None,
                 "videos_used": used_videos,
                 "data_points": len(avg_human_times)
             }, f, indent=2)
@@ -386,39 +458,49 @@ class TTCExperiment:
         
         # Collect collision times for all videos at this IoU threshold
         video_collision_times = {}
+        collision_count = 0
+        
         for video_name in video_names:
             collision_time = collision_data.get((video_name, iou_thr), float('nan'))
+            video_collision_times[video_name] = collision_time
             if not np.isnan(collision_time):
-                video_collision_times[video_name] = collision_time
+                collision_count += 1
         
         # Create summary plot
         if video_collision_times:
             names = list(video_collision_times.keys())
             times = list(video_collision_times.values())
             
-            fig, ax = plt.subplots(figsize=(15, 6))
-            bars = ax.bar(range(len(names)), times, color='steelblue', alpha=0.7)
-            ax.set_xlabel('Video Name')
-            ax.set_ylabel('Collision Time (ms)')
-            ax.set_title(f'Collision Times for IoU Threshold {iou_thr}')
-            ax.set_xticks(range(len(names)))
-            ax.set_xticklabels(names, rotation=45, ha='right')
+            # Filter out NaN values for plotting
+            valid_indices = [i for i, t in enumerate(times) if not np.isnan(t)]
+            valid_names = [names[i] for i in valid_indices]
+            valid_times = [times[i] for i in valid_indices]
             
-            # Add value labels on bars
-            for bar, time in zip(bars, times):
-                ax.text(bar.get_x() + bar.get_width()/2, bar.get_height() + max(times)*0.01,
-                       f'{time:.1f}', ha='center', va='bottom', fontsize=8)
-            
-            plt.tight_layout()
-            plt.savefig(output_dir / f"collision_times_iou_{iou_thr}.png")
-            plt.close(fig)
+            if valid_times:
+                fig, ax = plt.subplots(figsize=(15, 6))
+                bars = ax.bar(range(len(valid_names)), valid_times, color='steelblue', alpha=0.7)
+                ax.set_xlabel('Video Name')
+                ax.set_ylabel('Collision Time (ms)')
+                ax.set_title(f'Collision Times for IoU Threshold {iou_thr} ({collision_count}/{len(names)} collisions detected)')
+                ax.set_xticks(range(len(valid_names)))
+                ax.set_xticklabels(valid_names, rotation=45, ha='right')
+                
+                # Add value labels on bars
+                for bar, time in zip(bars, valid_times):
+                    ax.text(bar.get_x() + bar.get_width()/2, bar.get_height() + max(valid_times)*0.01,
+                           f'{time:.1f}', ha='center', va='bottom', fontsize=8)
+                
+                plt.tight_layout()
+                plt.savefig(output_dir / f"collision_times_iou_{iou_thr}.png", dpi=300)
+                plt.close(fig)
         
         # Save summary data
         summary_data = {
-            "iou_threshold": iou_thr,
-            "video_collision_times": video_collision_times,
+            "iou_threshold": float(iou_thr),
+            "video_collision_times": {k: float(v) if not np.isnan(v) else None for k, v in video_collision_times.items()},
             "total_videos": len(video_names),
-            "videos_with_collisions": len(video_collision_times)
+            "videos_with_collisions": collision_count,
+            "collision_rate": collision_count / len(video_names) if video_names else 0.0
         }
         
         with open(output_dir / f"summary_iou_{iou_thr}.json", 'w') as f:
