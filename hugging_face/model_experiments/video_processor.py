@@ -33,7 +33,7 @@ class VideoProcessor:
     Comprehensive video processor that handles:
     - Video frame extraction and processing
     - Model inference using configurable interfaces
-    - Blob detection and mask assignment
+    - Blob detection and mask assignment with state tracking
     - Memory-based mask tracking
     - Collage generation showing mask fitting quality
     - Output generation (masks, visualizations, videos)
@@ -57,6 +57,12 @@ class VideoProcessor:
         # Memory for tracking masks across frames
         self.mem_floats = None
         self.current_video_shape = None
+        
+        # Blob state tracking to prevent false detections
+        self.blob_1_disappeared = False
+        self.blob_1_disappeared_frame = None
+        self.blob_1_missing_count = 0
+        self.blob_1_missing_threshold = 5  # Frames of absence before considering disappeared
         
         self.logger.info(f"VideoProcessor initialized with {self.n_blobs} blobs to detect")
         
@@ -152,6 +158,9 @@ class VideoProcessor:
         """Process a complete video through the full pipeline."""
         self.logger.info(f"Starting video processing: {video_path}")
         
+        # Reset blob state tracking for new video
+        self._reset_blob_state()
+        
         # Setup directories
         directories = self.setup_output_directories(video_path, output_root, model_prefix)
         
@@ -209,6 +218,13 @@ class VideoProcessor:
         
         self.logger.info(f"Video processing completed: {directories['root']}")
         return directories
+    
+    def _reset_blob_state(self) -> None:
+        """Reset blob state tracking for new video processing."""
+        self.blob_1_disappeared = False
+        self.blob_1_disappeared_frame = None
+        self.blob_1_missing_count = 0
+        self.logger.info("Reset blob state tracking for new video")
     
     def _get_video_metadata(self, video_path: str) -> Dict[str, Any]:
         """Extract metadata from video file."""
@@ -312,8 +328,8 @@ class VideoProcessor:
             self._save_skipped_frame(frame, frame_idx, directories)
             return
         
-        # 1. Detect color blobs (ground truth)
-        blob_masks = self._find_color_blobs(frame, flip_blobs)
+        # 1. Detect color blobs (ground truth) with state tracking
+        blob_masks = self._find_color_blobs(frame, flip_blobs, frame_idx)
         
         if len(blob_masks) == 0:
             self._save_skipped_frame(frame, frame_idx, directories)
@@ -359,32 +375,83 @@ class VideoProcessor:
         # 11. Create final overlay and save
         self._create_and_save_final_overlay(frame, memory_masks, frame_idx, directories, flip_blobs, H, W)
     
-    def _find_color_blobs(self, frame: np.ndarray, flip_blobs: bool = False) -> List[np.ndarray]:
-        """Find colored blobs in the frame (following main_gen_vids_and_meshes.py logic)."""
+    def _find_color_blobs(self, frame: np.ndarray, flip_blobs: bool = False, frame_idx: int = 0) -> List[np.ndarray]:
+        """
+        Find colored blobs in the frame with state tracking to prevent false detections.
+        
+        Args:
+            frame: Input frame
+            flip_blobs: Whether to flip blob ordering
+            frame_idx: Current frame index for logging
+            
+        Returns:
+            List of blob masks
+        """
         gray = frame.sum(axis=2)
         non_black = (gray > self.black_thresh)
         labeled = label(non_black, connectivity=2)
         regions = regionprops(labeled)
         
-        # Sort by area and take top n_blobs
+        # Sort by area and get all significant regions
         regions_sorted = sorted(regions, key=lambda r: r.area, reverse=True)
-        top_regions = regions_sorted[:self.n_blobs]
         
-        # Sort by horizontal position
-        reg_info = []
-        for r in top_regions:
-            coords = r.coords
-            mean_col = coords[:, 1].mean()
-            reg_info.append((r, mean_col))
+        # Filter regions by minimum area to avoid noise
+        min_area = 50  # Minimum blob area
+        significant_regions = [r for r in regions_sorted if r.area > min_area]
         
-        # Sort left-to-right or right-to-left based on flip_blobs
-        reg_info.sort(key=lambda x: x[1], reverse=flip_blobs)
+        # Apply state-based blob detection logic
+        if not self.blob_1_disappeared:
+            # Normal case: can detect up to n_blobs
+            if len(significant_regions) >= self.n_blobs:
+                # We have enough blobs - take top n_blobs
+                top_regions = significant_regions[:self.n_blobs]
+                self.blob_1_missing_count = 0  # Reset missing count
+            else:
+                # Not enough blobs detected
+                self.blob_1_missing_count += 1
+                self.logger.debug(f"Frame {frame_idx}: Only {len(significant_regions)} blobs detected, missing count: {self.blob_1_missing_count}")
+                
+                if self.blob_1_missing_count >= self.blob_1_missing_threshold:
+                    # Mark blob 1 as disappeared
+                    self.blob_1_disappeared = True
+                    self.blob_1_disappeared_frame = frame_idx
+                    self.logger.info(f"Frame {frame_idx}: Blob 1 marked as disappeared after {self.blob_1_missing_count} missing frames")
+                
+                # Use whatever regions we have
+                top_regions = significant_regions[:self.n_blobs]
+        else:
+            # Blob 1 has disappeared - only allow detection of one blob
+            if len(significant_regions) >= 2:
+                # Multiple blobs detected but blob 1 should be gone
+                # Take only the largest blob
+                top_regions = [significant_regions[0]]
+                self.logger.debug(f"Frame {frame_idx}: Multiple blobs detected after blob 1 disappeared, taking only the largest")
+            else:
+                # One or no blobs - normal case
+                top_regions = significant_regions[:1]
         
-        # Extract masks
-        masks = []
-        for (r, _) in reg_info:
-            mask = (labeled == r.label)
-            masks.append(mask)
+        # Sort by horizontal position if we have multiple regions
+        if len(top_regions) > 1:
+            reg_info = []
+            for r in top_regions:
+                coords = r.coords
+                mean_col = coords[:, 1].mean()
+                reg_info.append((r, mean_col))
+            
+            # Sort left-to-right or right-to-left based on flip_blobs
+            reg_info.sort(key=lambda x: x[1], reverse=flip_blobs)
+            
+            # Extract masks
+            masks = []
+            for (r, _) in reg_info:
+                mask = (labeled == r.label)
+                masks.append(mask)
+        else:
+            # Single region or no regions
+            masks = []
+            for r in top_regions:
+                mask = (labeled == r.label)
+                masks.append(mask)
         
         return masks
     

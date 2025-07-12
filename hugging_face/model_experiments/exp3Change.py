@@ -159,13 +159,13 @@ class ChangeDetectionExperiment:
     def _is_image_already_processed(self, image_name: str) -> bool:
         """Check if an image has already been processed."""
         processed_dir = Path(self.processed_images_dir) / f"segformer_model_{image_name}"
-        return processed_dir.exists() and (processed_dir / "frames_masks_nonmem").exists()
+        return processed_dir.exists() and (processed_dir / "mask").exists()
 
     def _load_existing_blob_data(self, image_name: str) -> Dict[str, Any]:
         """Load existing blob data from processed image directory."""
         try:
             processed_dir = Path(self.processed_images_dir) / f"segformer_model_{image_name}"
-            mask_dir = processed_dir / "frames_masks_nonmem"
+            mask_dir = processed_dir / "mask"
             
             if not mask_dir.exists():
                 self.logger.warning(f"Mask directory does not exist: {mask_dir}")
@@ -207,10 +207,10 @@ class ChangeDetectionExperiment:
         # Setup output directories for this image
         output_base = os.path.join(self.processed_images_dir, f"segformer_model_{image_name}")
         dirs = {
-            "blobs": os.path.join(output_base, "frames_blobs"),
-            "collage": os.path.join(output_base, "frames_collage"),
-            "mask": os.path.join(output_base, "frames_masks_nonmem"),
-            "proc": os.path.join(output_base, "frames_processed"),
+            "blobs": os.path.join(output_base, "blobs"),
+            "collage": os.path.join(output_base, "collage"),
+            "mask": os.path.join(output_base, "mask"),
+            "proc": os.path.join(output_base, "processed"),
         }
         for d in dirs.values():
             os.makedirs(d, exist_ok=True)
@@ -252,7 +252,7 @@ class ChangeDetectionExperiment:
             self.logger.warning(f"No suitable model mask found for {image_name}")
             chosen_mask = blob  # Fall back to detected blob
 
-        # Generate collage of top candidate masks (IMPORTANT: This was missing!)
+        # Generate collage of top candidate masks
         if candidates:
             self._save_mask_collage(frame, blob, candidates, dirs['collage'], image_name)
 
@@ -353,7 +353,7 @@ class ChangeDetectionExperiment:
 
     def _save_mask_collage(self, frame: np.ndarray, blob: np.ndarray, candidates: List[np.ndarray], 
                           output_dir: str, image_name: str) -> None:
-        """Save collage of top candidate masks (following main_gen_vids_and_meshes.py pattern)."""
+        """Save collage of top candidate masks."""
         if not candidates:
             return
             

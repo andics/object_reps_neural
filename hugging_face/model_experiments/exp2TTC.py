@@ -157,6 +157,9 @@ class TTCExperiment:
                     resume=resume
                 )
                 
+                # Log blob state information
+                self._log_blob_state_info(video_name, video_output_dirs)
+                
                 # Extract mask data from processed video
                 mask_data = self._extract_mask_data_from_processed_video(video_output_dirs)
                 
@@ -169,16 +172,21 @@ class TTCExperiment:
                     collision_time = self._find_first_collision_time(mask_data, iou_threshold, fps=60)
                     collision_times[(video_name, iou_threshold)] = collision_time
                     
-                    # Save individual result
+                    # Save individual result with blob state info
                     results_dir = Path(video_output_dirs['root']) / "collision_results"
                     results_dir.mkdir(exist_ok=True)
                     output_json_path = results_dir / f"iou_{iou_threshold}.json"
+                    
+                    result_data = {
+                        "collision_time": float(collision_time),
+                        "is_collision_detected": not np.isnan(collision_time),
+                        "iou_threshold": float(iou_threshold),
+                        "blob_1_disappeared": self.video_processor.blob_1_disappeared,
+                        "blob_1_disappeared_frame": self.video_processor.blob_1_disappeared_frame
+                    }
+                    
                     with open(output_json_path, 'w') as f:
-                        json.dump({
-                            "collision_time": float(collision_time),
-                            "is_collision_detected": not np.isnan(collision_time),
-                            "iou_threshold": float(iou_threshold)
-                        }, f, indent=2)
+                        json.dump(result_data, f, indent=2)
                     
                     if not np.isnan(collision_time):
                         self.logger.debug(f"Collision time for {video_name} at IoU {iou_threshold}: {collision_time:.2f}ms")
@@ -190,6 +198,25 @@ class TTCExperiment:
                 continue
         
         return collision_times
+
+    def _log_blob_state_info(self, video_name: str, video_output_dirs: Dict[str, str]) -> None:
+        """Log blob state information for analysis."""
+        blob_state_info = {
+            "video_name": video_name,
+            "blob_1_disappeared": self.video_processor.blob_1_disappeared,
+            "blob_1_disappeared_frame": self.video_processor.blob_1_disappeared_frame,
+            "blob_1_missing_threshold": self.video_processor.blob_1_missing_threshold
+        }
+        
+        if self.video_processor.blob_1_disappeared:
+            self.logger.info(f"Video {video_name}: Blob 1 disappeared at frame {self.video_processor.blob_1_disappeared_frame}")
+        else:
+            self.logger.info(f"Video {video_name}: Both blobs remained visible throughout")
+        
+        # Save blob state info
+        blob_state_path = Path(video_output_dirs['root']) / "blob_state_info.json"
+        with open(blob_state_path, 'w') as f:
+            json.dump(blob_state_info, f, indent=2)
     
     def _extract_mask_data_from_processed_video(self, video_output_dirs: Dict[str, str]) -> Dict[int, Dict[str, np.ndarray]]:
         """Extract mask data from processed video output directories."""
@@ -213,9 +240,9 @@ class TTCExperiment:
         frame_masks = {}
         for mask_file in mask_files:
             try:
-                # Parse filename: mask_blob_0_frame_000013.png
+                # Parse filename: mask_memory_blob_0_frame_000013.png
                 parts = mask_file.stem.split('_')
-                if len(parts) < 5:
+                if len(parts) < 6:
                     self.logger.warning(f"Unexpected mask filename format: {mask_file}")
                     continue
                     
@@ -238,13 +265,25 @@ class TTCExperiment:
                 self.logger.warning(f"Error processing mask file {mask_file}: {e}")
                 continue
         
-        # Filter to only include frames with both blobs
+        # Filter to only include frames with valid blob data
+        # After blob 1 disappears, we only need blob 0
         valid_frame_masks = {}
         for frame_num, masks in frame_masks.items():
-            if "blob_0" in masks and "blob_1" in masks:
-                valid_frame_masks[frame_num] = masks
+            if self.video_processor.blob_1_disappeared and self.video_processor.blob_1_disappeared_frame:
+                # If blob 1 has disappeared, only require blob 0
+                if frame_num >= self.video_processor.blob_1_disappeared_frame:
+                    if "blob_0" in masks:
+                        valid_frame_masks[frame_num] = masks
+                else:
+                    # Before blob 1 disappeared, require both blobs
+                    if "blob_0" in masks and "blob_1" in masks:
+                        valid_frame_masks[frame_num] = masks
+            else:
+                # Normal case - require both blobs
+                if "blob_0" in masks and "blob_1" in masks:
+                    valid_frame_masks[frame_num] = masks
         
-        self.logger.info(f"Found {len(valid_frame_masks)} frames with valid blob pairs")
+        self.logger.info(f"Found {len(valid_frame_masks)} frames with valid blob data")
         return valid_frame_masks
 
     def _find_first_collision_time(self, mask_data: Dict[int, Dict[str, np.ndarray]], 
@@ -269,7 +308,7 @@ class TTCExperiment:
                 
             frame_masks = mask_data[frame_num]
             
-            # Check if we have both blobs
+            # Check if we have both blobs for collision detection
             if "blob_0" in frame_masks and "blob_1" in frame_masks:
                 mask0 = frame_masks["blob_0"]
                 mask1 = frame_masks["blob_1"]
@@ -281,6 +320,10 @@ class TTCExperiment:
                 if not np.isnan(iou_val) and iou_val >= iou_threshold:
                     collision_frame = frame_num
                     collision_found = True
+                    break
+            else:
+                # If blob 1 has disappeared, no collision is possible
+                if self.video_processor.blob_1_disappeared and frame_num >= self.video_processor.blob_1_disappeared_frame:
                     break
         
         if collision_found:

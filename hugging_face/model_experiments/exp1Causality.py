@@ -121,6 +121,9 @@ class CausalityExperiment:
                     resume=resume
                 )
                 
+                # Log blob state information
+                self._log_blob_state_info(video_name, video_output_dirs)
+                
                 # Extract distance data from processed video
                 distance_data = self._extract_distance_data_from_processed_video(
                     video_output_dirs, video_name
@@ -129,7 +132,7 @@ class CausalityExperiment:
                 if distance_data:
                     all_distance_data[video_name] = distance_data
                     
-                    # Save individual distance data
+                    # Save individual distance data with blob state info
                     distance_csv_path = os.path.join(self.distance_data_dir, f"{video_name}_distances.csv")
                     self._save_distance_data_to_csv(distance_data, distance_csv_path)
                     
@@ -153,6 +156,25 @@ class CausalityExperiment:
         video_pattern = os.path.join(videos_dir, "*.mp4")
         video_files = glob.glob(video_pattern)
         return sorted(video_files)
+
+    def _log_blob_state_info(self, video_name: str, video_output_dirs: Dict[str, str]) -> None:
+        """Log blob state information for analysis."""
+        blob_state_info = {
+            "video_name": video_name,
+            "blob_1_disappeared": self.video_processor.blob_1_disappeared,
+            "blob_1_disappeared_frame": self.video_processor.blob_1_disappeared_frame,
+            "blob_1_missing_threshold": self.video_processor.blob_1_missing_threshold
+        }
+        
+        if self.video_processor.blob_1_disappeared:
+            self.logger.info(f"Video {video_name}: Blob 1 disappeared at frame {self.video_processor.blob_1_disappeared_frame}")
+        else:
+            self.logger.info(f"Video {video_name}: Both blobs remained visible throughout")
+        
+        # Save blob state info
+        blob_state_path = Path(video_output_dirs['root']) / "blob_state_info.json"
+        with open(blob_state_path, 'w') as f:
+            json.dump(blob_state_info, f, indent=2)
 
     def _extract_distance_data_from_processed_video(self, video_output_dirs: Dict[str, str], 
                                                    video_name: str) -> List[Dict[str, Any]]:
@@ -206,13 +228,19 @@ class CausalityExperiment:
                 self.logger.warning(f"Error processing mask file {mask_file}: {e}")
                 continue
         
-        # Convert to distance data format
+        # Convert to distance data format, considering blob state
         distance_data = []
         frame_numbers = sorted(frame_masks.keys())
         
         valid_frame_count = 0
         for frame_num in frame_numbers:
             frame_data = frame_masks[frame_num]
+            
+            # Check if we should compute distances based on blob state
+            if self.video_processor.blob_1_disappeared and self.video_processor.blob_1_disappeared_frame:
+                # If blob 1 has disappeared, only process frames before disappearance
+                if frame_num >= self.video_processor.blob_1_disappeared_frame:
+                    break
             
             # Need at least 2 blobs to compute distance
             if len(frame_data) >= 2:
@@ -289,10 +317,14 @@ class CausalityExperiment:
             
             # Compute causality score based on distance changes
             causality_score = self._compute_causality_score(frames, distances)
+            
+            # Add blob state information to results
             causality_results[video_name] = {
                 'causality_score': causality_score,
                 'frame_count': len(distance_data),
-                'distance_data': distance_data
+                'distance_data': distance_data,
+                'blob_1_disappeared': self.video_processor.blob_1_disappeared,
+                'blob_1_disappeared_frame': self.video_processor.blob_1_disappeared_frame
             }
             
             # Generate individual plot for this video
@@ -348,6 +380,12 @@ class CausalityExperiment:
         ax1.grid(True, alpha=0.3)
         ax1.legend()
         
+        # Add marker for blob 1 disappearance if applicable
+        if self.video_processor.blob_1_disappeared and self.video_processor.blob_1_disappeared_frame:
+            ax1.axvline(x=self.video_processor.blob_1_disappeared_frame, color='red', 
+                       linestyle='--', alpha=0.7, label=f'Blob 1 disappeared (frame {self.video_processor.blob_1_disappeared_frame})')
+            ax1.legend()
+        
         # Plot 2: Distance differences (velocity)
         if len(distances) > 1:
             distance_diffs = np.diff(distances)
@@ -359,6 +397,11 @@ class CausalityExperiment:
             ax2.set_title(f'{video_name} - Distance Change Rate (Causality Score: {causality_score:.4f})')
             ax2.grid(True, alpha=0.3)
             ax2.legend()
+            
+            # Add marker for blob 1 disappearance if applicable
+            if self.video_processor.blob_1_disappeared and self.video_processor.blob_1_disappeared_frame:
+                ax2.axvline(x=self.video_processor.blob_1_disappeared_frame, color='red', 
+                           linestyle='--', alpha=0.7)
         
         plt.tight_layout()
         plot_path = os.path.join(self.plots_dir, f"{video_name}_causality.png")
@@ -378,7 +421,9 @@ class CausalityExperiment:
         for video_name, results in causality_results.items():
             json_data[video_name] = {
                 'causality_score': float(results['causality_score']),
-                'frame_count': int(results['frame_count'])
+                'frame_count': int(results['frame_count']),
+                'blob_1_disappeared': results.get('blob_1_disappeared', False),
+                'blob_1_disappeared_frame': results.get('blob_1_disappeared_frame', None)
             }
         
         with open(json_path, 'w') as f:
@@ -392,7 +437,9 @@ class CausalityExperiment:
             summary_data.append({
                 'video_name': video_name,
                 'causality_score': results['causality_score'],
-                'frame_count': results['frame_count']
+                'frame_count': results['frame_count'],
+                'blob_1_disappeared': results.get('blob_1_disappeared', False),
+                'blob_1_disappeared_frame': results.get('blob_1_disappeared_frame', None)
             })
         
         df = pd.DataFrame(summary_data)
@@ -407,6 +454,7 @@ class CausalityExperiment:
         # Extract video names and scores
         video_names = list(causality_results.keys())
         causality_scores = [results['causality_score'] for results in causality_results.values()]
+        blob_1_disappeared = [results.get('blob_1_disappeared', False) for results in causality_results.values()]
         
         if not video_names:
             return
@@ -415,16 +463,18 @@ class CausalityExperiment:
         sorted_indices = np.argsort(causality_scores)[::-1]  # Descending order
         sorted_names = [video_names[i] for i in sorted_indices]
         sorted_scores = [causality_scores[i] for i in sorted_indices]
+        sorted_blob_disappeared = [blob_1_disappeared[i] for i in sorted_indices]
         
-        # Create bar plot
+        # Create bar plot with color coding for blob disappearance
         fig, ax = plt.subplots(figsize=(15, 8))
         
+        colors = ['red' if disappeared else 'steelblue' for disappeared in sorted_blob_disappeared]
         bars = ax.bar(range(len(sorted_names)), sorted_scores, 
-                     color='steelblue', alpha=0.7, edgecolor='black', linewidth=0.5)
+                     color=colors, alpha=0.7, edgecolor='black', linewidth=0.5)
         
         ax.set_xlabel('Video Name')
         ax.set_ylabel('Causality Score')
-        ax.set_title('Causality Scores Across All Videos')
+        ax.set_title('Causality Scores Across All Videos\n(Red: Blob 1 Disappeared, Blue: Both Blobs Visible)')
         ax.set_xticks(range(len(sorted_names)))
         ax.set_xticklabels(sorted_names, rotation=45, ha='right')
         ax.grid(True, alpha=0.3, axis='y')
