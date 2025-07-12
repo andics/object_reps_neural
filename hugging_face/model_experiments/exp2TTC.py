@@ -42,6 +42,10 @@ class TTCExperiment:
     3. Computes collision times under varying IoU thresholds
     4. Correlates model predictions with participant response times
     5. Generates analysis plots and statistics
+    
+    Special configuration for TTC experiment:
+    - Blob 1 memory uses running average of past 10 frames
+    - Blob 1 memory updates stop after frame 80
     """
 
     def __init__(self, model_interface: ModelInterface, output_dir: str, n_blobs: int = 2,
@@ -61,10 +65,22 @@ class TTCExperiment:
         # Now setup logger after logs_dir exists
         self.logger = logger or self._setup_logger()
 
-        # Initialize video processor
-        self.video_processor = VideoProcessor(model_interface, n_blobs, self.logger)
+        # Initialize video processor with TTC-specific memory strategy
+        # - Blob 1 uses running average of past 10 frames
+        # - Blob 1 memory updates stop after frame 80
+        self.video_processor = VideoProcessor(
+            model_interface=model_interface, 
+            n_blobs=n_blobs, 
+            logger=self.logger,
+            blob_1_memory_strategy='running_average',
+            blob_1_running_avg_window=10,
+            blob_1_memory_freeze_frame=80
+        )
 
         self.logger.info(f"Initialized TTC Experiment with output dir: {output_dir}")
+        self.logger.info("TTC-specific configuration:")
+        self.logger.info("  - Blob 1 memory: running average of past 10 frames")
+        self.logger.info("  - Blob 1 memory updates stop after frame 80")
 
     def _setup_logger(self) -> logging.Logger:
         """Setup logging configuration."""
@@ -182,7 +198,9 @@ class TTCExperiment:
                         "is_collision_detected": not np.isnan(collision_time),
                         "iou_threshold": float(iou_threshold),
                         "blob_1_disappeared": self.video_processor.blob_1_disappeared,
-                        "blob_1_disappeared_frame": self.video_processor.blob_1_disappeared_frame
+                        "blob_1_disappeared_frame": self.video_processor.blob_1_disappeared_frame,
+                        "blob_1_memory_strategy": self.video_processor.blob_1_memory_strategy,
+                        "blob_1_memory_freeze_frame": self.video_processor.blob_1_memory_freeze_frame
                     }
                     
                     with open(output_json_path, 'w') as f:
@@ -205,13 +223,21 @@ class TTCExperiment:
             "video_name": video_name,
             "blob_1_disappeared": self.video_processor.blob_1_disappeared,
             "blob_1_disappeared_frame": self.video_processor.blob_1_disappeared_frame,
-            "blob_1_missing_threshold": self.video_processor.blob_1_missing_threshold
+            "blob_1_missing_threshold": self.video_processor.blob_1_missing_threshold,
+            "blob_1_memory_strategy": self.video_processor.blob_1_memory_strategy,
+            "blob_1_running_avg_window": self.video_processor.blob_1_running_avg_window,
+            "blob_1_memory_freeze_frame": self.video_processor.blob_1_memory_freeze_frame
         }
         
         if self.video_processor.blob_1_disappeared:
             self.logger.info(f"Video {video_name}: Blob 1 disappeared at frame {self.video_processor.blob_1_disappeared_frame}")
         else:
             self.logger.info(f"Video {video_name}: Both blobs remained visible throughout")
+        
+        # Log memory strategy info
+        self.logger.info(f"Video {video_name}: Blob 1 memory strategy = {self.video_processor.blob_1_memory_strategy}")
+        if self.video_processor.blob_1_memory_freeze_frame:
+            self.logger.info(f"Video {video_name}: Blob 1 memory frozen after frame {self.video_processor.blob_1_memory_freeze_frame}")
         
         # Save blob state info
         blob_state_path = Path(video_output_dirs['root']) / "blob_state_info.json"

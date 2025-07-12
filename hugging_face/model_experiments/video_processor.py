@@ -13,6 +13,7 @@ import json
 import logging
 from pathlib import Path
 from typing import Dict, List, Any, Tuple, Optional
+from collections import deque
 
 import numpy as np
 import torch
@@ -34,7 +35,7 @@ class VideoProcessor:
     - Video frame extraction and processing
     - Model inference using configurable interfaces
     - Blob detection and mask assignment with state tracking
-    - Memory-based mask tracking
+    - Memory-based mask tracking with configurable strategies
     - Collage generation showing mask fitting quality
     - Output generation (masks, visualizations, videos)
     
@@ -42,21 +43,34 @@ class VideoProcessor:
         model_interface: The model interface to use for inference
         n_blobs: Number of blobs to detect and track (default: 2)
         logger: Optional logger instance for logging messages
+        blob_1_memory_strategy: Strategy for blob 1 memory updates ('exponential' or 'running_average')
+        blob_1_running_avg_window: Window size for running average (default: 10)
+        blob_1_memory_freeze_frame: Frame after which blob 1 memory stops updating (default: None)
     """
     
-    def __init__(self, model_interface: ModelInterface, n_blobs: int = 2, logger: logging.Logger = None):
+    def __init__(self, model_interface: ModelInterface, n_blobs: int = 2, logger: logging.Logger = None,
+                 blob_1_memory_strategy: str = 'exponential', blob_1_running_avg_window: int = 10,
+                 blob_1_memory_freeze_frame: Optional[int] = None):
         self.model_interface = model_interface
         self.logger = logger or logging.getLogger(__name__)
         
         # Processing parameters
         self.n_blobs = n_blobs
         self.initial_skip_frames = 13
-        self.alpha = 0.7  # Memory decay factor
+        self.alpha = 0.7  # Memory decay factor for exponential averaging
         self.black_thresh = 30  # Threshold for blob detection
+        
+        # Memory update strategy parameters
+        self.blob_1_memory_strategy = blob_1_memory_strategy
+        self.blob_1_running_avg_window = blob_1_running_avg_window
+        self.blob_1_memory_freeze_frame = blob_1_memory_freeze_frame
         
         # Memory for tracking masks across frames
         self.mem_floats = None
         self.current_video_shape = None
+        
+        # Running average storage for blob 1
+        self.blob_1_mask_history = deque(maxlen=blob_1_running_avg_window)
         
         # Blob state tracking to prevent false detections
         self.blob_1_disappeared = False
@@ -65,6 +79,11 @@ class VideoProcessor:
         self.blob_1_missing_threshold = 5  # Frames of absence before considering disappeared
         
         self.logger.info(f"VideoProcessor initialized with {self.n_blobs} blobs to detect")
+        self.logger.info(f"Blob 1 memory strategy: {self.blob_1_memory_strategy}")
+        if self.blob_1_memory_strategy == 'running_average':
+            self.logger.info(f"Blob 1 running average window: {self.blob_1_running_avg_window}")
+        if self.blob_1_memory_freeze_frame is not None:
+            self.logger.info(f"Blob 1 memory will freeze after frame: {self.blob_1_memory_freeze_frame}")
         
     def setup_output_directories(self, video_path: str, output_root: str, model_prefix: str = None) -> Dict[str, str]:
         """Setup organized output directory structure for video processing."""
@@ -224,6 +243,7 @@ class VideoProcessor:
         self.blob_1_disappeared = False
         self.blob_1_disappeared_frame = None
         self.blob_1_missing_count = 0
+        self.blob_1_mask_history.clear()
         self.logger.info("Reset blob state tracking for new video")
     
     def _get_video_metadata(self, video_path: str) -> Dict[str, Any]:
@@ -360,8 +380,8 @@ class VideoProcessor:
         # 6. Save non-memory masks
         self._save_nonmemory_masks(assigned_masks, frame_idx, directories)
         
-        # 7. Update memory
-        self._update_memory_masks(assigned_masks)
+        # 7. Update memory with custom strategy
+        self._update_memory_masks_with_strategy(assigned_masks, frame_idx)
         
         # 8. Get memory masks
         memory_masks = self._get_memory_masks()
@@ -610,12 +630,39 @@ class VideoProcessor:
         fig.savefig(memcoll_path, bbox_inches='tight', pad_inches=0)
         plt.close(fig)
     
-    def _update_memory_masks(self, assigned_masks: List[np.ndarray]) -> None:
-        """Update memory masks with exponential decay."""
+    def _update_memory_masks_with_strategy(self, assigned_masks: List[np.ndarray], frame_idx: int) -> None:
+        """Update memory masks using different strategies for different blobs."""
         for i in range(self.n_blobs):
             if i < len(assigned_masks) and assigned_masks[i] is not None:
                 new_mask = assigned_masks[i].astype(np.float32)
-                self.mem_floats[i] = self.alpha * self.mem_floats[i] + (1 - self.alpha) * new_mask
+                
+                if i == 1 and self.blob_1_memory_strategy == 'running_average':
+                    # Special handling for blob 1 with running average strategy
+                    self._update_blob_1_running_average(new_mask, frame_idx)
+                elif i == 1 and self.blob_1_memory_freeze_frame is not None and frame_idx >= self.blob_1_memory_freeze_frame:
+                    # Blob 1 memory is frozen - don't update
+                    self.logger.debug(f"Frame {frame_idx}: Blob 1 memory frozen, not updating")
+                    pass  # Keep existing memory
+                else:
+                    # Standard exponential averaging for other blobs or blob 1 before freeze
+                    self.mem_floats[i] = self.alpha * self.mem_floats[i] + (1 - self.alpha) * new_mask
+    
+    def _update_blob_1_running_average(self, new_mask: np.ndarray, frame_idx: int) -> None:
+        """Update blob 1 memory using running average strategy."""
+        # Check if memory should be frozen
+        if self.blob_1_memory_freeze_frame is not None and frame_idx >= self.blob_1_memory_freeze_frame:
+            self.logger.debug(f"Frame {frame_idx}: Blob 1 memory frozen, not updating running average")
+            return
+        
+        # Add new mask to history
+        self.blob_1_mask_history.append(new_mask.copy())
+        
+        # Compute running average
+        if len(self.blob_1_mask_history) > 0:
+            running_avg = np.mean(np.stack(list(self.blob_1_mask_history)), axis=0)
+            self.mem_floats[1] = running_avg.astype(np.float32)
+            
+            self.logger.debug(f"Frame {frame_idx}: Updated blob 1 memory with running average of {len(self.blob_1_mask_history)} masks")
     
     def _get_memory_masks(self) -> List[np.ndarray]:
         """Get current memory masks as binary arrays."""
