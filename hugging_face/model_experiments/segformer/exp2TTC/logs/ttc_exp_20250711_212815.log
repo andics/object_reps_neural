@@ -1,0 +1,104 @@
+2025-07-11 21:28:15,543 - INFO - Logger initialized. Writing detailed log to /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/logs/ttc_exp_20250711_212815.log
+2025-07-11 21:28:15,543 - INFO - VideoProcessor initialized with 2 blobs to detect
+2025-07-11 21:28:15,543 - INFO - Initialized TTC Experiment with output dir: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC
+2025-07-11 21:28:15,543 - INFO - Starting full TTC experiment
+2025-07-11 21:28:15,546 - INFO - Found 99 video files to process
+2025-07-11 21:28:15,546 - INFO - Reading participant CSV from /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/exp2TTC_files/experiment2-CollisionDetection-Data.csv...
+2025-07-11 21:28:15,567 - INFO - CSV loaded with 13974 rows and 10 columns.
+2025-07-11 21:28:15,567 - INFO - Starting collision detection across videos and IoU thresholds...
+2025-07-11 21:28:15,567 - INFO - Processing video: AConcave_FConcave
+2025-07-11 21:28:15,567 - INFO - Starting video processing: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/exp2TTC_files/AConcave_FConcave.mp4
+2025-07-11 21:28:15,573 - INFO - Loading model...
+2025-07-11 21:28:19,466 - INFO - Video metadata: {'width': 1500, 'height': 400, 'fps': 60.0, 'total_frames': 269, 'duration': 4.483333333333333}
+2025-07-11 21:28:33,744 - INFO - Processing already complete, but not resuming. Starting from beginning.
+2025-07-11 21:28:33,835 - INFO - Processed frame 0/269
+2025-07-11 21:28:34,044 - INFO - Processed frame 10/269
+2025-07-11 21:29:01,115 - INFO - Processed frame 20/269
+2025-07-11 21:29:16,457 - INFO - Processed frame 30/269
+2025-07-11 21:29:51,136 - INFO - Processed frame 40/269
+2025-07-11 21:30:25,902 - INFO - Processed frame 50/269
+2025-07-11 21:31:00,450 - INFO - Processed frame 60/269
+2025-07-11 21:31:34,965 - INFO - Processed frame 70/269
+2025-07-11 21:32:09,864 - INFO - Processed frame 80/269
+2025-07-11 21:32:44,329 - INFO - Processed frame 90/269
+2025-07-11 21:33:18,757 - INFO - Processed frame 100/269
+2025-07-11 21:33:55,363 - INFO - Processed frame 110/269
+2025-07-11 21:34:29,641 - INFO - Processed frame 120/269
+2025-07-11 21:35:03,701 - INFO - Processed frame 130/269
+2025-07-11 21:35:37,739 - INFO - Processed frame 140/269
+2025-07-11 21:36:12,105 - INFO - Processed frame 150/269
+2025-07-11 21:36:46,747 - INFO - Processed frame 160/269
+2025-07-11 21:37:21,500 - INFO - Processed frame 170/269
+2025-07-11 21:37:55,953 - INFO - Processed frame 180/269
+2025-07-11 21:38:30,159 - INFO - Processed frame 190/269
+2025-07-11 21:39:04,819 - INFO - Processed frame 200/269
+2025-07-11 21:39:39,052 - INFO - Processed frame 210/269
+2025-07-11 21:40:13,259 - INFO - Processed frame 220/269
+2025-07-11 21:40:47,455 - INFO - Processed frame 230/269
+2025-07-11 21:41:22,809 - INFO - Processed frame 240/269
+2025-07-11 21:41:56,776 - INFO - Processed frame 250/269
+2025-07-11 21:42:31,207 - INFO - Processed frame 260/269
+2025-07-11 21:42:58,547 - INFO - Video processing completed: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_videos/segformer_model-AConcave_FConcave
+2025-07-11 21:42:58,558 - INFO - Found 512 mask files
+2025-07-11 21:43:00,709 - INFO - Found 256 frames with valid blob pairs
+2025-07-11 21:59:41,146 - DEBUG - No collision detected for AConcave_FConcave at IoU 0.05
+2025-07-11 21:59:41,487 - DEBUG - No collision detected for AConcave_FConcave at IoU 0.1
+2025-07-11 21:59:41,834 - DEBUG - No collision detected for AConcave_FConcave at IoU 0.15
+2025-07-11 21:59:42,175 - DEBUG - No collision detected for AConcave_FConcave at IoU 0.2
+2025-07-11 21:59:42,518 - DEBUG - No collision detected for AConcave_FConcave at IoU 0.25
+2025-07-11 21:59:42,857 - DEBUG - No collision detected for AConcave_FConcave at IoU 0.3
+2025-07-11 21:59:43,202 - DEBUG - No collision detected for AConcave_FConcave at IoU 0.35
+2025-07-11 21:59:43,547 - DEBUG - No collision detected for AConcave_FConcave at IoU 0.4
+2025-07-11 21:59:43,889 - DEBUG - No collision detected for AConcave_FConcave at IoU 0.45
+2025-07-11 21:59:44,227 - DEBUG - No collision detected for AConcave_FConcave at IoU 0.5
+2025-07-11 21:59:44,566 - DEBUG - No collision detected for AConcave_FConcave at IoU 0.55
+2025-07-11 21:59:44,905 - DEBUG - No collision detected for AConcave_FConcave at IoU 0.6
+2025-07-11 21:59:45,246 - DEBUG - No collision detected for AConcave_FConcave at IoU 0.65
+2025-07-11 21:59:45,596 - DEBUG - No collision detected for AConcave_FConcave at IoU 0.7
+2025-07-11 21:59:51,993 - DEBUG - No collision detected for AConcave_FConcave at IoU 0.75
+2025-07-11 21:59:52,328 - DEBUG - No collision detected for AConcave_FConcave at IoU 0.8
+2025-07-11 21:59:52,665 - DEBUG - No collision detected for AConcave_FConcave at IoU 0.85
+2025-07-11 21:59:53,001 - DEBUG - No collision detected for AConcave_FConcave at IoU 0.9
+2025-07-11 21:59:53,348 - DEBUG - No collision detected for AConcave_FConcave at IoU 0.95
+2025-07-11 21:59:53,348 - INFO - Processing video: BConcave+AConcave+3500
+2025-07-11 21:59:53,348 - INFO - Starting video processing: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/exp2TTC_files/BConcave+AConcave+3500.mp4
+2025-07-11 21:59:53,531 - INFO - Video metadata: {'width': 1500, 'height': 400, 'fps': 60.0, 'total_frames': 329, 'duration': 5.483333333333333}
+2025-07-11 21:59:53,533 - INFO - Processing already complete, but not resuming. Starting from beginning.
+2025-07-11 21:59:53,667 - INFO - Processed frame 0/329
+2025-07-11 21:59:53,877 - INFO - Processed frame 10/329
+2025-07-11 22:00:03,973 - INFO - Processed frame 20/329
+2025-07-11 22:00:19,287 - INFO - Processed frame 30/329
+2025-07-11 22:00:55,291 - INFO - Processed frame 40/329
+2025-07-11 22:01:31,510 - INFO - Processed frame 50/329
+2025-07-11 22:02:08,159 - INFO - Processed frame 60/329
+2025-07-11 22:02:44,299 - INFO - Processed frame 70/329
+2025-07-11 22:03:54,889 - INFO - Processed frame 80/329
+2025-07-11 22:04:30,662 - INFO - Processed frame 90/329
+2025-07-11 22:04:57,121 - INFO - Processed frame 100/329
+2025-07-11 22:05:19,574 - INFO - Processed frame 110/329
+2025-07-11 22:05:41,716 - INFO - Processed frame 120/329
+2025-07-11 22:06:03,725 - INFO - Processed frame 130/329
+2025-07-11 22:06:25,839 - INFO - Processed frame 140/329
+2025-07-11 22:06:48,191 - INFO - Processed frame 150/329
+2025-07-11 22:07:10,288 - INFO - Processed frame 160/329
+2025-07-11 22:07:33,194 - INFO - Processed frame 170/329
+2025-07-11 22:07:54,941 - INFO - Processed frame 180/329
+2025-07-11 22:08:16,969 - INFO - Processed frame 190/329
+2025-07-11 22:08:39,085 - INFO - Processed frame 200/329
+2025-07-11 22:09:00,926 - INFO - Processed frame 210/329
+2025-07-11 22:09:23,117 - INFO - Processed frame 220/329
+2025-07-11 22:09:45,531 - INFO - Processed frame 230/329
+2025-07-11 22:10:07,198 - INFO - Processed frame 240/329
+2025-07-11 22:10:29,210 - INFO - Processed frame 250/329
+2025-07-11 22:10:51,026 - INFO - Processed frame 260/329
+2025-07-11 22:11:13,246 - INFO - Processed frame 270/329
+2025-07-11 22:11:35,166 - INFO - Processed frame 280/329
+2025-07-11 22:11:57,092 - INFO - Processed frame 290/329
+2025-07-11 22:12:19,177 - INFO - Processed frame 300/329
+2025-07-11 22:12:41,074 - INFO - Processed frame 310/329
+2025-07-11 22:13:03,313 - INFO - Processed frame 320/329
+2025-07-11 22:13:20,635 - INFO - Video processing completed: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_videos/segformer_model-BConcave+AConcave+3500
+2025-07-11 22:13:20,643 - INFO - Found 398 mask files
+2025-07-11 22:13:22,340 - INFO - Found 82 frames with valid blob pairs
+2025-07-12 00:24:20,827 - DEBUG - No collision detected for BConcave+AConcave+3500 at IoU 0.05
+2025-07-12 00:28:11,422 - DEBUG - No collision detected for BConcave+AConcave+3500 at IoU 0.1

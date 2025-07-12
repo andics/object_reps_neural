@@ -193,7 +193,7 @@ class TTCExperiment:
     
     def _extract_mask_data_from_processed_video(self, video_output_dirs: Dict[str, str]) -> Dict[int, Dict[str, np.ndarray]]:
         """Extract mask data from processed video output directories."""
-        masks_dir = Path(video_output_dirs['frames_masks_nonmem'])
+        masks_dir = Path(video_output_dirs['frames_masks'])
         mask_data = {}
         
         if not masks_dir.exists():
@@ -201,7 +201,7 @@ class TTCExperiment:
             return mask_data
         
         # Find all mask files
-        mask_files = list(masks_dir.glob("mask_blob_*_frame_*.png"))
+        mask_files = list(masks_dir.glob("mask_memory_blob_*_frame_*.png"))
         
         if not mask_files:
             self.logger.warning(f"No mask files found in {masks_dir}")
@@ -219,8 +219,8 @@ class TTCExperiment:
                     self.logger.warning(f"Unexpected mask filename format: {mask_file}")
                     continue
                     
-                blob_idx = int(parts[2])  # blob index
-                frame_num = int(parts[4])  # frame number
+                blob_idx = int(parts[3])  # blob index
+                frame_num = int(parts[5])  # frame number
                 
                 if frame_num not in frame_masks:
                     frame_masks[frame_num] = {}
@@ -555,7 +555,7 @@ def main():
                       help="Output directory for results and processed data")
     parser.add_argument("--n_blobs", type=int, default=2,
                       help="Number of blobs to detect and track (default: 2)")
-    parser.add_argument("--resume", action="store_true", default=False,
+    parser.add_argument("--resume", action="store_true", default=True,
                       help="Resume processing from checkpoints (default: True)")
     parser.add_argument("--no_resume", action="store_true", default=False,
                       help="Start processing from scratch, ignoring checkpoints")

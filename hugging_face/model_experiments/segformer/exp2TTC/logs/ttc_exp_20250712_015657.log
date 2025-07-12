@@ -1,0 +1,17 @@
+2025-07-12 01:56:57,343 - INFO - Logger initialized. Writing detailed log to /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/logs/ttc_exp_20250712_015657.log
+2025-07-12 01:56:57,343 - INFO - VideoProcessor initialized with 2 blobs to detect
+2025-07-12 01:56:57,343 - INFO - Initialized TTC Experiment with output dir: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC
+2025-07-12 01:56:57,344 - INFO - Starting full TTC experiment
+2025-07-12 01:56:57,346 - INFO - Found 99 video files to process
+2025-07-12 01:56:57,346 - INFO - Reading participant CSV from /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/exp2TTC_files/experiment2-CollisionDetection-Data.csv...
+2025-07-12 01:56:57,365 - INFO - CSV loaded with 13974 rows and 10 columns.
+2025-07-12 01:56:57,366 - INFO - Starting collision detection across videos and IoU thresholds...
+2025-07-12 01:56:57,366 - INFO - Processing video: AConcave_FConcave
+2025-07-12 01:56:57,366 - INFO - Starting video processing: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/exp2TTC_files/AConcave_FConcave.mp4
+2025-07-12 01:56:57,372 - INFO - Loading model...
+2025-07-12 01:57:01,311 - INFO - Video metadata: {'width': 1500, 'height': 400, 'fps': 60.0, 'total_frames': 269, 'duration': 4.483333333333333}
+2025-07-12 01:57:01,313 - INFO - Processing already complete. Skipping to video creation if needed.
+2025-07-12 01:57:01,313 - INFO - Video processing already completed: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_videos/segformer_model-AConcave_FConcave
+2025-07-12 01:57:01,325 - INFO - Found 507 mask files
+2025-07-12 01:58:01,999 - WARNING - Error processing mask file /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_videos/segformer_model-AConcave_FConcave/frames_masks/mask_memory_blob_0_frame_000091.png: invalid literal for int() with base 10: 'blob'
+2025-07-12 01:58:16,791 - WARNING - Error processing mask file /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_videos/segformer_model-AConcave_FConcave/frames_masks/mask_memory_blob_0_frame_000186.png: invalid literal for int() with base 10: 'blob'
