@@ -14,6 +14,7 @@ import logging
 from pathlib import Path
 from typing import Dict, List, Any, Tuple, Optional
 from collections import deque
+import shutil
 
 import numpy as np
 import torch
@@ -77,6 +78,9 @@ class VideoProcessor:
         self.blob_1_disappeared_frame = None
         self.blob_1_missing_count = 0
         self.blob_1_missing_threshold = 5  # Frames of absence before considering disappeared
+        
+        # Track frozen memory masks for reuse
+        self.frozen_memory_masks = {}  # blob_idx -> frozen mask file path
         
         self.logger.info(f"VideoProcessor initialized with {self.n_blobs} blobs to detect")
         self.logger.info(f"Blob 1 memory strategy: {self.blob_1_memory_strategy}")
@@ -244,6 +248,7 @@ class VideoProcessor:
         self.blob_1_disappeared_frame = None
         self.blob_1_missing_count = 0
         self.blob_1_mask_history.clear()
+        self.frozen_memory_masks.clear()
         self.logger.info("Reset blob state tracking for new video")
     
     def _get_video_metadata(self, video_path: str) -> Dict[str, Any]:
@@ -386,8 +391,8 @@ class VideoProcessor:
         # 8. Get memory masks
         memory_masks = self._get_memory_masks()
         
-        # 9. Save memory masks
-        self._save_memory_masks(memory_masks, frame_idx, directories)
+        # 9. Save memory masks (with freeze frame logic)
+        self._save_memory_masks_with_freeze_logic(memory_masks, frame_idx, directories)
         
         # 10. Create memory collage 
         self._create_memory_collage(frame, assigned_masks, memory_masks, frame_idx, directories)
@@ -680,17 +685,56 @@ class VideoProcessor:
                 )
                 Image.fromarray(mask_255).save(mask_path)
     
-    def _save_memory_masks(self, memory_masks: List[np.ndarray], frame_idx: int,
-                         directories: Dict[str, str]) -> None:
-        """Save memory masks as PNG files."""
+    def _save_memory_masks_with_freeze_logic(self, memory_masks: List[np.ndarray], frame_idx: int,
+                                           directories: Dict[str, str]) -> None:
+        """Save memory masks with freeze frame logic - after freeze frame, reuse frozen masks."""
+        
         for blob_idx, mask in enumerate(memory_masks):
             if mask.sum() > 0:
-                mask_255 = (mask.astype(np.uint8)) * 255
                 mask_path = os.path.join(
                     directories['frames_masks'],
                     f"mask_memory_blob_{blob_idx}_frame_{frame_idx:06d}.png"
                 )
-                Image.fromarray(mask_255).save(mask_path)
+                
+                # Check if this blob should be frozen
+                if (blob_idx == 1 and 
+                    self.blob_1_memory_freeze_frame is not None and 
+                    frame_idx >= self.blob_1_memory_freeze_frame):
+                    
+                    # This is blob 1 and we're past the freeze frame
+                    if blob_idx in self.frozen_memory_masks:
+                        # Copy the frozen mask file
+                        frozen_mask_path = self.frozen_memory_masks[blob_idx]
+                        if os.path.exists(frozen_mask_path):
+                            shutil.copy2(frozen_mask_path, mask_path)
+                            self.logger.debug(f"Frame {frame_idx}: Reused frozen blob 1 memory mask")
+                        else:
+                            self.logger.warning(f"Frame {frame_idx}: Frozen mask file not found: {frozen_mask_path}")
+                            # Fall back to saving current mask
+                            mask_255 = (mask.astype(np.uint8)) * 255
+                            Image.fromarray(mask_255).save(mask_path)
+                    else:
+                        # This shouldn't happen if logic is correct, but save current mask as fallback
+                        self.logger.warning(f"Frame {frame_idx}: No frozen mask stored for blob 1")
+                        mask_255 = (mask.astype(np.uint8)) * 255
+                        Image.fromarray(mask_255).save(mask_path)
+                
+                elif (blob_idx == 1 and 
+                      self.blob_1_memory_freeze_frame is not None and 
+                      frame_idx == self.blob_1_memory_freeze_frame - 1):
+                    
+                    # This is the last frame before freezing - save as the frozen mask
+                    mask_255 = (mask.astype(np.uint8)) * 255
+                    Image.fromarray(mask_255).save(mask_path)
+                    
+                    # Store this as the frozen mask to reuse
+                    self.frozen_memory_masks[blob_idx] = mask_path
+                    self.logger.info(f"Frame {frame_idx}: Saved blob 1 memory mask to be frozen at {mask_path}")
+                
+                else:
+                    # Normal case - save the current mask
+                    mask_255 = (mask.astype(np.uint8)) * 255
+                    Image.fromarray(mask_255).save(mask_path)
     
     def _save_blob_visualization(self, frame: np.ndarray, blob_masks: List[np.ndarray],
                                frame_idx: int, directories: Dict[str, str]) -> None:

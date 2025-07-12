@@ -7,7 +7,7 @@ times under varying IoU thresholds, correlating with participant response data.
 Completely self-contained from raw videos to final analysis.
 
 Usage:
-    python exp2TTC.py --model_interface segformer --videos_dir /path/to/raw_videos --csv_path /path/to/participants.csv --output_dir /path/to/output [--resume]
+    python exp2TTC.py --model_interface segformer --videos_dir /path/to/raw_videos --csv_path /path/to/participants.csv --output_dir /path/to/output [--resume] [--blob_1_memory_freeze_frame 80]
 """
 
 import argparse
@@ -45,13 +45,14 @@ class TTCExperiment:
     
     Special configuration for TTC experiment:
     - Blob 1 memory uses running average of past 10 frames
-    - Blob 1 memory updates stop after frame 80
+    - Blob 1 memory updates stop after specified freeze frame (default: 80)
     """
 
     def __init__(self, model_interface: ModelInterface, output_dir: str, n_blobs: int = 2,
-                 logger: logging.Logger = None):
+                 blob_1_memory_freeze_frame: int = 80, logger: logging.Logger = None):
         self.model_interface = model_interface
         self.output_dir = output_dir
+        self.blob_1_memory_freeze_frame = blob_1_memory_freeze_frame
 
         # Create output subdirectories FIRST (before logger is set up)
         self.results_dir = os.path.join(output_dir, "results")
@@ -67,20 +68,20 @@ class TTCExperiment:
 
         # Initialize video processor with TTC-specific memory strategy
         # - Blob 1 uses running average of past 10 frames
-        # - Blob 1 memory updates stop after frame 80
+        # - Blob 1 memory updates stop after specified freeze frame
         self.video_processor = VideoProcessor(
             model_interface=model_interface, 
             n_blobs=n_blobs, 
             logger=self.logger,
             blob_1_memory_strategy='running_average',
             blob_1_running_avg_window=10,
-            blob_1_memory_freeze_frame=80
+            blob_1_memory_freeze_frame=self.blob_1_memory_freeze_frame
         )
 
         self.logger.info(f"Initialized TTC Experiment with output dir: {output_dir}")
         self.logger.info("TTC-specific configuration:")
         self.logger.info("  - Blob 1 memory: running average of past 10 frames")
-        self.logger.info("  - Blob 1 memory updates stop after frame 80")
+        self.logger.info(f"  - Blob 1 memory updates stop after frame {self.blob_1_memory_freeze_frame}")
 
     def _setup_logger(self) -> logging.Logger:
         """Setup logging configuration."""
@@ -624,6 +625,8 @@ def main():
                       help="Output directory for results and processed data")
     parser.add_argument("--n_blobs", type=int, default=2,
                       help="Number of blobs to detect and track (default: 2)")
+    parser.add_argument("--blob_1_memory_freeze_frame", type=int, default=80,
+                      help="Frame after which blob 1 memory stops updating (default: 80)")
     parser.add_argument("--resume", action="store_true", default=True,
                       help="Resume processing from checkpoints (default: True)")
     parser.add_argument("--no_resume", action="store_true", default=False,
@@ -653,7 +656,12 @@ def main():
         raise ValueError(f"Unknown model interface: {args.model_interface}")
     
     # Run experiment
-    experiment = TTCExperiment(model_interface, args.output_dir, args.n_blobs)
+    experiment = TTCExperiment(
+        model_interface, 
+        args.output_dir, 
+        args.n_blobs,
+        blob_1_memory_freeze_frame=args.blob_1_memory_freeze_frame
+    )
     
     try:
         experiment.run_full_experiment(
