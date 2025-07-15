@@ -1,0 +1,1387 @@
+2025-07-12 07:07:53,363 - INFO - Logger initialized. Writing detailed log to /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/logs/ttc_exp_20250712_070753.log
+2025-07-12 07:07:53,363 - INFO - VideoProcessor initialized with 2 blobs to detect
+2025-07-12 07:07:53,363 - INFO - Blob 1 memory strategy: running_average
+2025-07-12 07:07:53,363 - INFO - Blob 1 running average window: 10
+2025-07-12 07:07:53,363 - INFO - Blob 1 memory will freeze after frame: 80
+2025-07-12 07:07:53,364 - INFO - Initialized TTC Experiment with output dir: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC
+2025-07-12 07:07:53,364 - INFO - TTC-specific configuration:
+2025-07-12 07:07:53,364 - INFO -   - Blob 1 memory: running average of past 10 frames
+2025-07-12 07:07:53,364 - INFO -   - Blob 1 memory updates stop after frame 80
+2025-07-12 07:07:53,364 - INFO - Starting full TTC experiment
+2025-07-12 07:07:53,364 - INFO - Found 99 video files to process
+2025-07-12 07:07:53,364 - INFO - Reading participant CSV from /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/exp2TTC_files/experiment2-CollisionDetection-Data.csv...
+2025-07-12 07:07:53,381 - INFO - CSV loaded with 13974 rows and 10 columns.
+2025-07-12 07:07:53,381 - INFO - Starting collision detection across videos and IoU thresholds...
+2025-07-12 07:07:53,381 - INFO - Processing video: AConcave_FConcave
+2025-07-12 07:07:53,381 - INFO - Starting video processing: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/exp2TTC_files/AConcave_FConcave.mp4
+2025-07-12 07:07:53,381 - INFO - Reset blob state tracking for new video
+2025-07-12 07:07:53,387 - INFO - Loading model...
+2025-07-12 07:07:57,583 - INFO - Video metadata: {'width': 1500, 'height': 400, 'fps': 60.0, 'total_frames': 269, 'duration': 4.483333333333333}
+2025-07-12 07:07:57,585 - INFO - Processing already complete. Skipping to video creation if needed.
+2025-07-12 07:07:57,585 - INFO - Video processing already completed: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_videos/segformer_model-AConcave_FConcave
+2025-07-12 07:07:57,585 - INFO - Video AConcave_FConcave: Both blobs remained visible throughout
+2025-07-12 07:07:57,586 - INFO - Video AConcave_FConcave: Blob 1 memory strategy = running_average
+2025-07-12 07:07:57,586 - INFO - Video AConcave_FConcave: Blob 1 memory frozen after frame 80
+2025-07-12 07:07:57,591 - INFO - Found 507 mask files
+2025-07-12 07:07:59,715 - INFO - Found 252 frames with valid blob data
+2025-07-12 07:08:00,051 - DEBUG - No collision detected for AConcave_FConcave at IoU 0.05
+2025-07-12 07:08:00,391 - DEBUG - No collision detected for AConcave_FConcave at IoU 0.1
+2025-07-12 07:08:00,736 - DEBUG - No collision detected for AConcave_FConcave at IoU 0.15
+2025-07-12 07:08:01,070 - DEBUG - No collision detected for AConcave_FConcave at IoU 0.2
+2025-07-12 07:08:01,410 - DEBUG - No collision detected for AConcave_FConcave at IoU 0.25
+2025-07-12 07:08:01,762 - DEBUG - No collision detected for AConcave_FConcave at IoU 0.3
+2025-07-12 07:08:02,100 - DEBUG - No collision detected for AConcave_FConcave at IoU 0.35
+2025-07-12 07:08:02,441 - DEBUG - No collision detected for AConcave_FConcave at IoU 0.4
+2025-07-12 07:08:02,777 - DEBUG - No collision detected for AConcave_FConcave at IoU 0.45
+2025-07-12 07:08:03,111 - DEBUG - No collision detected for AConcave_FConcave at IoU 0.5
+2025-07-12 07:08:03,446 - DEBUG - No collision detected for AConcave_FConcave at IoU 0.55
+2025-07-12 07:08:03,785 - DEBUG - No collision detected for AConcave_FConcave at IoU 0.6
+2025-07-12 07:08:04,128 - DEBUG - No collision detected for AConcave_FConcave at IoU 0.65
+2025-07-12 07:08:04,511 - DEBUG - No collision detected for AConcave_FConcave at IoU 0.7
+2025-07-12 07:08:04,845 - DEBUG - No collision detected for AConcave_FConcave at IoU 0.75
+2025-07-12 07:08:05,179 - DEBUG - No collision detected for AConcave_FConcave at IoU 0.8
+2025-07-12 07:08:05,516 - DEBUG - No collision detected for AConcave_FConcave at IoU 0.85
+2025-07-12 07:08:05,854 - DEBUG - No collision detected for AConcave_FConcave at IoU 0.9
+2025-07-12 07:08:06,188 - DEBUG - No collision detected for AConcave_FConcave at IoU 0.95
+2025-07-12 07:08:06,188 - INFO - Processing video: BConcave+AConcave+3500
+2025-07-12 07:08:06,188 - INFO - Starting video processing: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/exp2TTC_files/BConcave+AConcave+3500.mp4
+2025-07-12 07:08:06,189 - INFO - Reset blob state tracking for new video
+2025-07-12 07:08:06,353 - INFO - Video metadata: {'width': 1500, 'height': 400, 'fps': 60.0, 'total_frames': 329, 'duration': 5.483333333333333}
+2025-07-12 07:08:06,355 - INFO - Processing already complete. Skipping to video creation if needed.
+2025-07-12 07:08:06,355 - INFO - Video processing already completed: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_videos/segformer_model-BConcave+AConcave+3500
+2025-07-12 07:08:06,355 - INFO - Video BConcave+AConcave+3500: Both blobs remained visible throughout
+2025-07-12 07:08:06,355 - INFO - Video BConcave+AConcave+3500: Blob 1 memory strategy = running_average
+2025-07-12 07:08:06,355 - INFO - Video BConcave+AConcave+3500: Blob 1 memory frozen after frame 80
+2025-07-12 07:08:06,532 - INFO - Found 630 mask files
+2025-07-12 07:08:09,134 - INFO - Found 315 frames with valid blob data
+2025-07-12 07:08:09,416 - DEBUG - Collision time for BConcave+AConcave+3500 at IoU 0.05: 3716.67ms
+2025-07-12 07:08:09,708 - DEBUG - Collision time for BConcave+AConcave+3500 at IoU 0.1: 3783.33ms
+2025-07-12 07:08:10,002 - DEBUG - Collision time for BConcave+AConcave+3500 at IoU 0.15: 3833.33ms
+2025-07-12 07:08:10,308 - DEBUG - Collision time for BConcave+AConcave+3500 at IoU 0.2: 3900.00ms
+2025-07-12 07:08:10,626 - DEBUG - Collision time for BConcave+AConcave+3500 at IoU 0.25: 3933.33ms
+2025-07-12 07:08:10,933 - DEBUG - Collision time for BConcave+AConcave+3500 at IoU 0.3: 4016.67ms
+2025-07-12 07:08:11,353 - DEBUG - No collision detected for BConcave+AConcave+3500 at IoU 0.35
+2025-07-12 07:08:11,779 - DEBUG - No collision detected for BConcave+AConcave+3500 at IoU 0.4
+2025-07-12 07:08:12,201 - DEBUG - No collision detected for BConcave+AConcave+3500 at IoU 0.45
+2025-07-12 07:08:12,624 - DEBUG - No collision detected for BConcave+AConcave+3500 at IoU 0.5
+2025-07-12 07:08:13,045 - DEBUG - No collision detected for BConcave+AConcave+3500 at IoU 0.55
+2025-07-12 07:08:13,470 - DEBUG - No collision detected for BConcave+AConcave+3500 at IoU 0.6
+2025-07-12 07:08:13,898 - DEBUG - No collision detected for BConcave+AConcave+3500 at IoU 0.65
+2025-07-12 07:08:14,319 - DEBUG - No collision detected for BConcave+AConcave+3500 at IoU 0.7
+2025-07-12 07:08:14,743 - DEBUG - No collision detected for BConcave+AConcave+3500 at IoU 0.75
+2025-07-12 07:08:15,168 - DEBUG - No collision detected for BConcave+AConcave+3500 at IoU 0.8
+2025-07-12 07:08:15,593 - DEBUG - No collision detected for BConcave+AConcave+3500 at IoU 0.85
+2025-07-12 07:08:16,012 - DEBUG - No collision detected for BConcave+AConcave+3500 at IoU 0.9
+2025-07-12 07:08:16,469 - DEBUG - No collision detected for BConcave+AConcave+3500 at IoU 0.95
+2025-07-12 07:08:16,469 - INFO - Processing video: BConcave+AConcave+3700_flipped
+2025-07-12 07:08:16,469 - INFO - Starting video processing: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/exp2TTC_files/BConcave+AConcave+3700_flipped.mp4
+2025-07-12 07:08:16,469 - INFO - Reset blob state tracking for new video
+2025-07-12 07:08:16,713 - INFO - Video metadata: {'width': 1500, 'height': 400, 'fps': 60.0, 'total_frames': 329, 'duration': 5.483333333333333}
+2025-07-12 07:08:16,716 - INFO - Processing already complete. Skipping to video creation if needed.
+2025-07-12 07:08:16,716 - INFO - Video processing already completed: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_videos/segformer_model-BConcave+AConcave+3700_flipped
+2025-07-12 07:08:16,716 - INFO - Video BConcave+AConcave+3700_flipped: Both blobs remained visible throughout
+2025-07-12 07:08:16,716 - INFO - Video BConcave+AConcave+3700_flipped: Blob 1 memory strategy = running_average
+2025-07-12 07:08:16,716 - INFO - Video BConcave+AConcave+3700_flipped: Blob 1 memory frozen after frame 80
+2025-07-12 07:08:16,723 - INFO - Found 627 mask files
+2025-07-12 07:08:19,179 - INFO - Found 312 frames with valid blob data
+2025-07-12 07:08:19,589 - DEBUG - No collision detected for BConcave+AConcave+3700_flipped at IoU 0.05
+2025-07-12 07:08:19,999 - DEBUG - No collision detected for BConcave+AConcave+3700_flipped at IoU 0.1
+2025-07-12 07:08:20,410 - DEBUG - No collision detected for BConcave+AConcave+3700_flipped at IoU 0.15
+2025-07-12 07:08:20,826 - DEBUG - No collision detected for BConcave+AConcave+3700_flipped at IoU 0.2
+2025-07-12 07:08:21,231 - DEBUG - No collision detected for BConcave+AConcave+3700_flipped at IoU 0.25
+2025-07-12 07:08:21,642 - DEBUG - No collision detected for BConcave+AConcave+3700_flipped at IoU 0.3
+2025-07-12 07:08:22,046 - DEBUG - No collision detected for BConcave+AConcave+3700_flipped at IoU 0.35
+2025-07-12 07:08:22,456 - DEBUG - No collision detected for BConcave+AConcave+3700_flipped at IoU 0.4
+2025-07-12 07:08:22,868 - DEBUG - No collision detected for BConcave+AConcave+3700_flipped at IoU 0.45
+2025-07-12 07:08:23,277 - DEBUG - No collision detected for BConcave+AConcave+3700_flipped at IoU 0.5
+2025-07-12 07:08:23,687 - DEBUG - No collision detected for BConcave+AConcave+3700_flipped at IoU 0.55
+2025-07-12 07:08:24,091 - DEBUG - No collision detected for BConcave+AConcave+3700_flipped at IoU 0.6
+2025-07-12 07:08:24,498 - DEBUG - No collision detected for BConcave+AConcave+3700_flipped at IoU 0.65
+2025-07-12 07:08:24,903 - DEBUG - No collision detected for BConcave+AConcave+3700_flipped at IoU 0.7
+2025-07-12 07:08:25,308 - DEBUG - No collision detected for BConcave+AConcave+3700_flipped at IoU 0.75
+2025-07-12 07:08:25,724 - DEBUG - No collision detected for BConcave+AConcave+3700_flipped at IoU 0.8
+2025-07-12 07:08:26,129 - DEBUG - No collision detected for BConcave+AConcave+3700_flipped at IoU 0.85
+2025-07-12 07:08:26,536 - DEBUG - No collision detected for BConcave+AConcave+3700_flipped at IoU 0.9
+2025-07-12 07:08:26,940 - DEBUG - No collision detected for BConcave+AConcave+3700_flipped at IoU 0.95
+2025-07-12 07:08:26,941 - INFO - Processing video: BConcave+AConcave+3900
+2025-07-12 07:08:26,941 - INFO - Starting video processing: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/exp2TTC_files/BConcave+AConcave+3900.mp4
+2025-07-12 07:08:26,941 - INFO - Reset blob state tracking for new video
+2025-07-12 07:08:27,156 - INFO - Video metadata: {'width': 1500, 'height': 400, 'fps': 60.0, 'total_frames': 329, 'duration': 5.483333333333333}
+2025-07-12 07:08:27,159 - INFO - Processing already complete. Skipping to video creation if needed.
+2025-07-12 07:08:27,159 - INFO - Video processing already completed: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_videos/segformer_model-BConcave+AConcave+3900
+2025-07-12 07:08:27,159 - INFO - Video BConcave+AConcave+3900: Both blobs remained visible throughout
+2025-07-12 07:08:27,159 - INFO - Video BConcave+AConcave+3900: Blob 1 memory strategy = running_average
+2025-07-12 07:08:27,159 - INFO - Video BConcave+AConcave+3900: Blob 1 memory frozen after frame 80
+2025-07-12 07:08:27,165 - INFO - Found 630 mask files
+2025-07-12 07:08:29,638 - INFO - Found 315 frames with valid blob data
+2025-07-12 07:08:29,923 - DEBUG - Collision time for BConcave+AConcave+3900 at IoU 0.05: 3666.67ms
+2025-07-12 07:08:30,208 - DEBUG - Collision time for BConcave+AConcave+3900 at IoU 0.1: 3816.67ms
+2025-07-12 07:08:30,515 - DEBUG - Collision time for BConcave+AConcave+3900 at IoU 0.15: 3950.00ms
+2025-07-12 07:08:30,822 - DEBUG - Collision time for BConcave+AConcave+3900 at IoU 0.2: 4116.67ms
+2025-07-12 07:08:31,145 - DEBUG - Collision time for BConcave+AConcave+3900 at IoU 0.25: 4266.67ms
+2025-07-12 07:08:31,557 - DEBUG - No collision detected for BConcave+AConcave+3900 at IoU 0.3
+2025-07-12 07:08:31,989 - DEBUG - No collision detected for BConcave+AConcave+3900 at IoU 0.35
+2025-07-12 07:08:32,415 - DEBUG - No collision detected for BConcave+AConcave+3900 at IoU 0.4
+2025-07-12 07:08:32,824 - DEBUG - No collision detected for BConcave+AConcave+3900 at IoU 0.45
+2025-07-12 07:08:33,233 - DEBUG - No collision detected for BConcave+AConcave+3900 at IoU 0.5
+2025-07-12 07:08:33,649 - DEBUG - No collision detected for BConcave+AConcave+3900 at IoU 0.55
+2025-07-12 07:08:34,059 - DEBUG - No collision detected for BConcave+AConcave+3900 at IoU 0.6
+2025-07-12 07:08:34,473 - DEBUG - No collision detected for BConcave+AConcave+3900 at IoU 0.65
+2025-07-12 07:08:34,886 - DEBUG - No collision detected for BConcave+AConcave+3900 at IoU 0.7
+2025-07-12 07:08:35,297 - DEBUG - No collision detected for BConcave+AConcave+3900 at IoU 0.75
+2025-07-12 07:08:35,711 - DEBUG - No collision detected for BConcave+AConcave+3900 at IoU 0.8
+2025-07-12 07:08:36,121 - DEBUG - No collision detected for BConcave+AConcave+3900 at IoU 0.85
+2025-07-12 07:08:36,530 - DEBUG - No collision detected for BConcave+AConcave+3900 at IoU 0.9
+2025-07-12 07:08:36,939 - DEBUG - No collision detected for BConcave+AConcave+3900 at IoU 0.95
+2025-07-12 07:08:36,939 - INFO - Processing video: BConcave+AConcave+4100_flipped
+2025-07-12 07:08:36,939 - INFO - Starting video processing: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/exp2TTC_files/BConcave+AConcave+4100_flipped.mp4
+2025-07-12 07:08:36,939 - INFO - Reset blob state tracking for new video
+2025-07-12 07:08:37,174 - INFO - Video metadata: {'width': 1500, 'height': 400, 'fps': 60.0, 'total_frames': 329, 'duration': 5.483333333333333}
+2025-07-12 07:08:37,177 - INFO - Processing already complete. Skipping to video creation if needed.
+2025-07-12 07:08:37,177 - INFO - Video processing already completed: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_videos/segformer_model-BConcave+AConcave+4100_flipped
+2025-07-12 07:08:37,177 - INFO - Video BConcave+AConcave+4100_flipped: Both blobs remained visible throughout
+2025-07-12 07:08:37,177 - INFO - Video BConcave+AConcave+4100_flipped: Blob 1 memory strategy = running_average
+2025-07-12 07:08:37,177 - INFO - Video BConcave+AConcave+4100_flipped: Blob 1 memory frozen after frame 80
+2025-07-12 07:08:37,184 - INFO - Found 629 mask files
+2025-07-12 07:08:39,572 - INFO - Found 314 frames with valid blob data
+2025-07-12 07:08:39,979 - DEBUG - No collision detected for BConcave+AConcave+4100_flipped at IoU 0.05
+2025-07-12 07:08:40,390 - DEBUG - No collision detected for BConcave+AConcave+4100_flipped at IoU 0.1
+2025-07-12 07:08:40,804 - DEBUG - No collision detected for BConcave+AConcave+4100_flipped at IoU 0.15
+2025-07-12 07:08:41,211 - DEBUG - No collision detected for BConcave+AConcave+4100_flipped at IoU 0.2
+2025-07-12 07:08:41,627 - DEBUG - No collision detected for BConcave+AConcave+4100_flipped at IoU 0.25
+2025-07-12 07:08:42,044 - DEBUG - No collision detected for BConcave+AConcave+4100_flipped at IoU 0.3
+2025-07-12 07:08:42,450 - DEBUG - No collision detected for BConcave+AConcave+4100_flipped at IoU 0.35
+2025-07-12 07:08:42,858 - DEBUG - No collision detected for BConcave+AConcave+4100_flipped at IoU 0.4
+2025-07-12 07:08:43,262 - DEBUG - No collision detected for BConcave+AConcave+4100_flipped at IoU 0.45
+2025-07-12 07:08:43,672 - DEBUG - No collision detected for BConcave+AConcave+4100_flipped at IoU 0.5
+2025-07-12 07:08:44,076 - DEBUG - No collision detected for BConcave+AConcave+4100_flipped at IoU 0.55
+2025-07-12 07:08:44,483 - DEBUG - No collision detected for BConcave+AConcave+4100_flipped at IoU 0.6
+2025-07-12 07:08:44,886 - DEBUG - No collision detected for BConcave+AConcave+4100_flipped at IoU 0.65
+2025-07-12 07:08:45,309 - DEBUG - No collision detected for BConcave+AConcave+4100_flipped at IoU 0.7
+2025-07-12 07:08:45,745 - DEBUG - No collision detected for BConcave+AConcave+4100_flipped at IoU 0.75
+2025-07-12 07:08:46,152 - DEBUG - No collision detected for BConcave+AConcave+4100_flipped at IoU 0.8
+2025-07-12 07:08:46,558 - DEBUG - No collision detected for BConcave+AConcave+4100_flipped at IoU 0.85
+2025-07-12 07:08:46,964 - DEBUG - No collision detected for BConcave+AConcave+4100_flipped at IoU 0.9
+2025-07-12 07:08:47,373 - DEBUG - No collision detected for BConcave+AConcave+4100_flipped at IoU 0.95
+2025-07-12 07:08:47,373 - INFO - Processing video: BConcave+AConcave+4300
+2025-07-12 07:08:47,373 - INFO - Starting video processing: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/exp2TTC_files/BConcave+AConcave+4300.mp4
+2025-07-12 07:08:47,373 - INFO - Reset blob state tracking for new video
+2025-07-12 07:08:47,591 - INFO - Video metadata: {'width': 1500, 'height': 400, 'fps': 60.0, 'total_frames': 329, 'duration': 5.483333333333333}
+2025-07-12 07:08:47,594 - INFO - Processing already complete. Skipping to video creation if needed.
+2025-07-12 07:08:47,594 - INFO - Video processing already completed: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_videos/segformer_model-BConcave+AConcave+4300
+2025-07-12 07:08:47,594 - INFO - Video BConcave+AConcave+4300: Both blobs remained visible throughout
+2025-07-12 07:08:47,594 - INFO - Video BConcave+AConcave+4300: Blob 1 memory strategy = running_average
+2025-07-12 07:08:47,594 - INFO - Video BConcave+AConcave+4300: Blob 1 memory frozen after frame 80
+2025-07-12 07:08:47,600 - INFO - Found 630 mask files
+2025-07-12 07:08:49,976 - INFO - Found 315 frames with valid blob data
+2025-07-12 07:08:50,329 - DEBUG - Collision time for BConcave+AConcave+4300 at IoU 0.05: 4500.00ms
+2025-07-12 07:08:50,683 - DEBUG - Collision time for BConcave+AConcave+4300 at IoU 0.1: 4550.00ms
+2025-07-12 07:08:51,025 - DEBUG - Collision time for BConcave+AConcave+4300 at IoU 0.15: 4600.00ms
+2025-07-12 07:08:51,373 - DEBUG - Collision time for BConcave+AConcave+4300 at IoU 0.2: 4650.00ms
+2025-07-12 07:08:51,729 - DEBUG - Collision time for BConcave+AConcave+4300 at IoU 0.25: 4683.33ms
+2025-07-12 07:08:52,083 - DEBUG - Collision time for BConcave+AConcave+4300 at IoU 0.3: 4733.33ms
+2025-07-12 07:08:52,447 - DEBUG - Collision time for BConcave+AConcave+4300 at IoU 0.35: 4800.00ms
+2025-07-12 07:08:52,859 - DEBUG - No collision detected for BConcave+AConcave+4300 at IoU 0.4
+2025-07-12 07:08:53,276 - DEBUG - No collision detected for BConcave+AConcave+4300 at IoU 0.45
+2025-07-12 07:08:53,695 - DEBUG - No collision detected for BConcave+AConcave+4300 at IoU 0.5
+2025-07-12 07:08:54,105 - DEBUG - No collision detected for BConcave+AConcave+4300 at IoU 0.55
+2025-07-12 07:08:54,521 - DEBUG - No collision detected for BConcave+AConcave+4300 at IoU 0.6
+2025-07-12 07:08:54,930 - DEBUG - No collision detected for BConcave+AConcave+4300 at IoU 0.65
+2025-07-12 07:08:55,343 - DEBUG - No collision detected for BConcave+AConcave+4300 at IoU 0.7
+2025-07-12 07:08:55,757 - DEBUG - No collision detected for BConcave+AConcave+4300 at IoU 0.75
+2025-07-12 07:08:56,167 - DEBUG - No collision detected for BConcave+AConcave+4300 at IoU 0.8
+2025-07-12 07:08:56,594 - DEBUG - No collision detected for BConcave+AConcave+4300 at IoU 0.85
+2025-07-12 07:08:57,011 - DEBUG - No collision detected for BConcave+AConcave+4300 at IoU 0.9
+2025-07-12 07:08:57,424 - DEBUG - No collision detected for BConcave+AConcave+4300 at IoU 0.95
+2025-07-12 07:08:57,424 - INFO - Processing video: BConcave+AConcave+4500_flipped
+2025-07-12 07:08:57,424 - INFO - Starting video processing: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/exp2TTC_files/BConcave+AConcave+4500_flipped.mp4
+2025-07-12 07:08:57,424 - INFO - Reset blob state tracking for new video
+2025-07-12 07:08:57,664 - INFO - Video metadata: {'width': 1500, 'height': 400, 'fps': 60.0, 'total_frames': 329, 'duration': 5.483333333333333}
+2025-07-12 07:08:57,666 - INFO - Processing already complete. Skipping to video creation if needed.
+2025-07-12 07:08:57,666 - INFO - Video processing already completed: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_videos/segformer_model-BConcave+AConcave+4500_flipped
+2025-07-12 07:08:57,666 - INFO - Video BConcave+AConcave+4500_flipped: Both blobs remained visible throughout
+2025-07-12 07:08:57,666 - INFO - Video BConcave+AConcave+4500_flipped: Blob 1 memory strategy = running_average
+2025-07-12 07:08:57,667 - INFO - Video BConcave+AConcave+4500_flipped: Blob 1 memory frozen after frame 80
+2025-07-12 07:08:57,672 - INFO - Found 626 mask files
+2025-07-12 07:09:00,147 - INFO - Found 311 frames with valid blob data
+2025-07-12 07:09:00,562 - DEBUG - No collision detected for BConcave+AConcave+4500_flipped at IoU 0.05
+2025-07-12 07:09:00,969 - DEBUG - No collision detected for BConcave+AConcave+4500_flipped at IoU 0.1
+2025-07-12 07:09:01,380 - DEBUG - No collision detected for BConcave+AConcave+4500_flipped at IoU 0.15
+2025-07-12 07:09:01,795 - DEBUG - No collision detected for BConcave+AConcave+4500_flipped at IoU 0.2
+2025-07-12 07:09:02,196 - DEBUG - No collision detected for BConcave+AConcave+4500_flipped at IoU 0.25
+2025-07-12 07:09:02,596 - DEBUG - No collision detected for BConcave+AConcave+4500_flipped at IoU 0.3
+2025-07-12 07:09:02,996 - DEBUG - No collision detected for BConcave+AConcave+4500_flipped at IoU 0.35
+2025-07-12 07:09:03,398 - DEBUG - No collision detected for BConcave+AConcave+4500_flipped at IoU 0.4
+2025-07-12 07:09:03,807 - DEBUG - No collision detected for BConcave+AConcave+4500_flipped at IoU 0.45
+2025-07-12 07:09:04,213 - DEBUG - No collision detected for BConcave+AConcave+4500_flipped at IoU 0.5
+2025-07-12 07:09:04,619 - DEBUG - No collision detected for BConcave+AConcave+4500_flipped at IoU 0.55
+2025-07-12 07:09:05,025 - DEBUG - No collision detected for BConcave+AConcave+4500_flipped at IoU 0.6
+2025-07-12 07:09:05,428 - DEBUG - No collision detected for BConcave+AConcave+4500_flipped at IoU 0.65
+2025-07-12 07:09:05,834 - DEBUG - No collision detected for BConcave+AConcave+4500_flipped at IoU 0.7
+2025-07-12 07:09:06,235 - DEBUG - No collision detected for BConcave+AConcave+4500_flipped at IoU 0.75
+2025-07-12 07:09:06,636 - DEBUG - No collision detected for BConcave+AConcave+4500_flipped at IoU 0.8
+2025-07-12 07:09:07,040 - DEBUG - No collision detected for BConcave+AConcave+4500_flipped at IoU 0.85
+2025-07-12 07:09:07,441 - DEBUG - No collision detected for BConcave+AConcave+4500_flipped at IoU 0.9
+2025-07-12 07:09:07,847 - DEBUG - No collision detected for BConcave+AConcave+4500_flipped at IoU 0.95
+2025-07-12 07:09:07,847 - INFO - Processing video: BConcave+AConvex+3500_flipped
+2025-07-12 07:09:07,847 - INFO - Starting video processing: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/exp2TTC_files/BConcave+AConvex+3500_flipped.mp4
+2025-07-12 07:09:07,847 - INFO - Reset blob state tracking for new video
+2025-07-12 07:09:08,089 - INFO - Video metadata: {'width': 1500, 'height': 400, 'fps': 60.0, 'total_frames': 329, 'duration': 5.483333333333333}
+2025-07-12 07:09:08,092 - INFO - Processing already complete. Skipping to video creation if needed.
+2025-07-12 07:09:08,092 - INFO - Video processing already completed: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_videos/segformer_model-BConcave+AConvex+3500_flipped
+2025-07-12 07:09:08,092 - INFO - Video BConcave+AConvex+3500_flipped: Both blobs remained visible throughout
+2025-07-12 07:09:08,092 - INFO - Video BConcave+AConvex+3500_flipped: Blob 1 memory strategy = running_average
+2025-07-12 07:09:08,092 - INFO - Video BConcave+AConvex+3500_flipped: Blob 1 memory frozen after frame 80
+2025-07-12 07:09:08,098 - INFO - Found 614 mask files
+2025-07-12 07:09:10,515 - INFO - Found 299 frames with valid blob data
+2025-07-12 07:09:10,808 - DEBUG - Collision time for BConcave+AConvex+3500_flipped at IoU 0.05: 3766.67ms
+2025-07-12 07:09:11,095 - DEBUG - Collision time for BConcave+AConvex+3500_flipped at IoU 0.1: 3900.00ms
+2025-07-12 07:09:11,394 - DEBUG - Collision time for BConcave+AConvex+3500_flipped at IoU 0.15: 4016.67ms
+2025-07-12 07:09:11,721 - DEBUG - Collision time for BConcave+AConvex+3500_flipped at IoU 0.2: 4366.67ms
+2025-07-12 07:09:12,068 - DEBUG - Collision time for BConcave+AConvex+3500_flipped at IoU 0.25: 4666.67ms
+2025-07-12 07:09:12,414 - DEBUG - Collision time for BConcave+AConvex+3500_flipped at IoU 0.3: 4666.67ms
+2025-07-12 07:09:12,762 - DEBUG - Collision time for BConcave+AConvex+3500_flipped at IoU 0.35: 4666.67ms
+2025-07-12 07:09:13,132 - DEBUG - Collision time for BConcave+AConvex+3500_flipped at IoU 0.4: 4666.67ms
+2025-07-12 07:09:13,492 - DEBUG - Collision time for BConcave+AConvex+3500_flipped at IoU 0.45: 4666.67ms
+2025-07-12 07:09:13,842 - DEBUG - Collision time for BConcave+AConvex+3500_flipped at IoU 0.5: 4666.67ms
+2025-07-12 07:09:14,235 - DEBUG - No collision detected for BConcave+AConvex+3500_flipped at IoU 0.55
+2025-07-12 07:09:14,623 - DEBUG - No collision detected for BConcave+AConvex+3500_flipped at IoU 0.6
+2025-07-12 07:09:15,010 - DEBUG - No collision detected for BConcave+AConvex+3500_flipped at IoU 0.65
+2025-07-12 07:09:15,397 - DEBUG - No collision detected for BConcave+AConvex+3500_flipped at IoU 0.7
+2025-07-12 07:09:15,792 - DEBUG - No collision detected for BConcave+AConvex+3500_flipped at IoU 0.75
+2025-07-12 07:09:16,185 - DEBUG - No collision detected for BConcave+AConvex+3500_flipped at IoU 0.8
+2025-07-12 07:09:16,592 - DEBUG - No collision detected for BConcave+AConvex+3500_flipped at IoU 0.85
+2025-07-12 07:09:17,006 - DEBUG - No collision detected for BConcave+AConvex+3500_flipped at IoU 0.9
+2025-07-12 07:09:17,397 - DEBUG - No collision detected for BConcave+AConvex+3500_flipped at IoU 0.95
+2025-07-12 07:09:17,397 - INFO - Processing video: BConcave+AConvex+3700
+2025-07-12 07:09:17,397 - INFO - Starting video processing: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/exp2TTC_files/BConcave+AConvex+3700.mp4
+2025-07-12 07:09:17,397 - INFO - Reset blob state tracking for new video
+2025-07-12 07:09:17,607 - INFO - Video metadata: {'width': 1500, 'height': 400, 'fps': 60.0, 'total_frames': 329, 'duration': 5.483333333333333}
+2025-07-12 07:09:17,610 - INFO - Processing already complete. Skipping to video creation if needed.
+2025-07-12 07:09:17,610 - INFO - Video processing already completed: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_videos/segformer_model-BConcave+AConvex+3700
+2025-07-12 07:09:17,610 - INFO - Video BConcave+AConvex+3700: Both blobs remained visible throughout
+2025-07-12 07:09:17,610 - INFO - Video BConcave+AConvex+3700: Blob 1 memory strategy = running_average
+2025-07-12 07:09:17,610 - INFO - Video BConcave+AConvex+3700: Blob 1 memory frozen after frame 80
+2025-07-12 07:09:17,616 - INFO - Found 630 mask files
+2025-07-12 07:09:19,975 - INFO - Found 315 frames with valid blob data
+2025-07-12 07:09:20,289 - DEBUG - Collision time for BConcave+AConvex+3700 at IoU 0.05: 4150.00ms
+2025-07-12 07:09:20,714 - DEBUG - No collision detected for BConcave+AConvex+3700 at IoU 0.1
+2025-07-12 07:09:21,139 - DEBUG - No collision detected for BConcave+AConvex+3700 at IoU 0.15
+2025-07-12 07:09:21,565 - DEBUG - No collision detected for BConcave+AConvex+3700 at IoU 0.2
+2025-07-12 07:09:21,977 - DEBUG - No collision detected for BConcave+AConvex+3700 at IoU 0.25
+2025-07-12 07:09:22,397 - DEBUG - No collision detected for BConcave+AConvex+3700 at IoU 0.3
+2025-07-12 07:09:22,810 - DEBUG - No collision detected for BConcave+AConvex+3700 at IoU 0.35
+2025-07-12 07:09:23,222 - DEBUG - No collision detected for BConcave+AConvex+3700 at IoU 0.4
+2025-07-12 07:09:23,641 - DEBUG - No collision detected for BConcave+AConvex+3700 at IoU 0.45
+2025-07-12 07:09:24,052 - DEBUG - No collision detected for BConcave+AConvex+3700 at IoU 0.5
+2025-07-12 07:09:24,465 - DEBUG - No collision detected for BConcave+AConvex+3700 at IoU 0.55
+2025-07-12 07:09:24,902 - DEBUG - No collision detected for BConcave+AConvex+3700 at IoU 0.6
+2025-07-12 07:09:25,318 - DEBUG - No collision detected for BConcave+AConvex+3700 at IoU 0.65
+2025-07-12 07:09:25,737 - DEBUG - No collision detected for BConcave+AConvex+3700 at IoU 0.7
+2025-07-12 07:09:26,148 - DEBUG - No collision detected for BConcave+AConvex+3700 at IoU 0.75
+2025-07-12 07:09:26,561 - DEBUG - No collision detected for BConcave+AConvex+3700 at IoU 0.8
+2025-07-12 07:09:26,971 - DEBUG - No collision detected for BConcave+AConvex+3700 at IoU 0.85
+2025-07-12 07:09:27,384 - DEBUG - No collision detected for BConcave+AConvex+3700 at IoU 0.9
+2025-07-12 07:09:27,807 - DEBUG - No collision detected for BConcave+AConvex+3700 at IoU 0.95
+2025-07-12 07:09:27,808 - INFO - Processing video: BConcave+AConvex+3900_flipped
+2025-07-12 07:09:27,808 - INFO - Starting video processing: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/exp2TTC_files/BConcave+AConvex+3900_flipped.mp4
+2025-07-12 07:09:27,808 - INFO - Reset blob state tracking for new video
+2025-07-12 07:09:28,053 - INFO - Video metadata: {'width': 1500, 'height': 400, 'fps': 60.0, 'total_frames': 329, 'duration': 5.483333333333333}
+2025-07-12 07:09:28,056 - INFO - Processing already complete. Skipping to video creation if needed.
+2025-07-12 07:09:28,056 - INFO - Video processing already completed: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_videos/segformer_model-BConcave+AConvex+3900_flipped
+2025-07-12 07:09:28,056 - INFO - Video BConcave+AConvex+3900_flipped: Both blobs remained visible throughout
+2025-07-12 07:09:28,056 - INFO - Video BConcave+AConvex+3900_flipped: Blob 1 memory strategy = running_average
+2025-07-12 07:09:28,056 - INFO - Video BConcave+AConvex+3900_flipped: Blob 1 memory frozen after frame 80
+2025-07-12 07:09:28,062 - INFO - Found 626 mask files
+2025-07-12 07:09:30,432 - INFO - Found 311 frames with valid blob data
+2025-07-12 07:09:30,851 - DEBUG - No collision detected for BConcave+AConvex+3900_flipped at IoU 0.05
+2025-07-12 07:09:31,257 - DEBUG - No collision detected for BConcave+AConvex+3900_flipped at IoU 0.1
+2025-07-12 07:09:31,672 - DEBUG - No collision detected for BConcave+AConvex+3900_flipped at IoU 0.15
+2025-07-12 07:09:32,078 - DEBUG - No collision detected for BConcave+AConvex+3900_flipped at IoU 0.2
+2025-07-12 07:09:32,486 - DEBUG - No collision detected for BConcave+AConvex+3900_flipped at IoU 0.25
+2025-07-12 07:09:32,892 - DEBUG - No collision detected for BConcave+AConvex+3900_flipped at IoU 0.3
+2025-07-12 07:09:33,301 - DEBUG - No collision detected for BConcave+AConvex+3900_flipped at IoU 0.35
+2025-07-12 07:09:33,714 - DEBUG - No collision detected for BConcave+AConvex+3900_flipped at IoU 0.4
+2025-07-12 07:09:34,121 - DEBUG - No collision detected for BConcave+AConvex+3900_flipped at IoU 0.45
+2025-07-12 07:09:34,532 - DEBUG - No collision detected for BConcave+AConvex+3900_flipped at IoU 0.5
+2025-07-12 07:09:34,937 - DEBUG - No collision detected for BConcave+AConvex+3900_flipped at IoU 0.55
+2025-07-12 07:09:35,348 - DEBUG - No collision detected for BConcave+AConvex+3900_flipped at IoU 0.6
+2025-07-12 07:09:35,759 - DEBUG - No collision detected for BConcave+AConvex+3900_flipped at IoU 0.65
+2025-07-12 07:09:36,164 - DEBUG - No collision detected for BConcave+AConvex+3900_flipped at IoU 0.7
+2025-07-12 07:09:36,573 - DEBUG - No collision detected for BConcave+AConvex+3900_flipped at IoU 0.75
+2025-07-12 07:09:36,978 - DEBUG - No collision detected for BConcave+AConvex+3900_flipped at IoU 0.8
+2025-07-12 07:09:37,390 - DEBUG - No collision detected for BConcave+AConvex+3900_flipped at IoU 0.85
+2025-07-12 07:09:37,804 - DEBUG - No collision detected for BConcave+AConvex+3900_flipped at IoU 0.9
+2025-07-12 07:09:38,212 - DEBUG - No collision detected for BConcave+AConvex+3900_flipped at IoU 0.95
+2025-07-12 07:09:38,212 - INFO - Processing video: BConcave+AConvex+4100
+2025-07-12 07:09:38,212 - INFO - Starting video processing: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/exp2TTC_files/BConcave+AConvex+4100.mp4
+2025-07-12 07:09:38,212 - INFO - Reset blob state tracking for new video
+2025-07-12 07:09:38,430 - INFO - Video metadata: {'width': 1500, 'height': 400, 'fps': 60.0, 'total_frames': 329, 'duration': 5.483333333333333}
+2025-07-12 07:09:38,433 - INFO - Processing already complete. Skipping to video creation if needed.
+2025-07-12 07:09:38,433 - INFO - Video processing already completed: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_videos/segformer_model-BConcave+AConvex+4100
+2025-07-12 07:09:38,433 - INFO - Video BConcave+AConvex+4100: Both blobs remained visible throughout
+2025-07-12 07:09:38,433 - INFO - Video BConcave+AConvex+4100: Blob 1 memory strategy = running_average
+2025-07-12 07:09:38,433 - INFO - Video BConcave+AConvex+4100: Blob 1 memory frozen after frame 80
+2025-07-12 07:09:38,439 - INFO - Found 630 mask files
+2025-07-12 07:09:40,847 - INFO - Found 315 frames with valid blob data
+2025-07-12 07:09:41,205 - DEBUG - Collision time for BConcave+AConvex+4100 at IoU 0.05: 4683.33ms
+2025-07-12 07:09:41,578 - DEBUG - Collision time for BConcave+AConvex+4100 at IoU 0.1: 4866.67ms
+2025-07-12 07:09:41,961 - DEBUG - Collision time for BConcave+AConvex+4100 at IoU 0.15: 5050.00ms
+2025-07-12 07:09:42,397 - DEBUG - No collision detected for BConcave+AConvex+4100 at IoU 0.2
+2025-07-12 07:09:42,837 - DEBUG - No collision detected for BConcave+AConvex+4100 at IoU 0.25
+2025-07-12 07:09:43,255 - DEBUG - No collision detected for BConcave+AConvex+4100 at IoU 0.3
+2025-07-12 07:09:43,676 - DEBUG - No collision detected for BConcave+AConvex+4100 at IoU 0.35
+2025-07-12 07:09:44,091 - DEBUG - No collision detected for BConcave+AConvex+4100 at IoU 0.4
+2025-07-12 07:09:44,509 - DEBUG - No collision detected for BConcave+AConvex+4100 at IoU 0.45
+2025-07-12 07:09:44,923 - DEBUG - No collision detected for BConcave+AConvex+4100 at IoU 0.5
+2025-07-12 07:09:45,337 - DEBUG - No collision detected for BConcave+AConvex+4100 at IoU 0.55
+2025-07-12 07:09:45,756 - DEBUG - No collision detected for BConcave+AConvex+4100 at IoU 0.6
+2025-07-12 07:09:46,177 - DEBUG - No collision detected for BConcave+AConvex+4100 at IoU 0.65
+2025-07-12 07:09:46,617 - DEBUG - No collision detected for BConcave+AConvex+4100 at IoU 0.7
+2025-07-12 07:09:47,049 - DEBUG - No collision detected for BConcave+AConvex+4100 at IoU 0.75
+2025-07-12 07:09:47,464 - DEBUG - No collision detected for BConcave+AConvex+4100 at IoU 0.8
+2025-07-12 07:09:47,883 - DEBUG - No collision detected for BConcave+AConvex+4100 at IoU 0.85
+2025-07-12 07:09:48,304 - DEBUG - No collision detected for BConcave+AConvex+4100 at IoU 0.9
+2025-07-12 07:09:48,721 - DEBUG - No collision detected for BConcave+AConvex+4100 at IoU 0.95
+2025-07-12 07:09:48,721 - INFO - Processing video: BConcave+AConvex+4300_flipped
+2025-07-12 07:09:48,721 - INFO - Starting video processing: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/exp2TTC_files/BConcave+AConvex+4300_flipped.mp4
+2025-07-12 07:09:48,721 - INFO - Reset blob state tracking for new video
+2025-07-12 07:09:48,970 - INFO - Video metadata: {'width': 1500, 'height': 400, 'fps': 60.0, 'total_frames': 329, 'duration': 5.483333333333333}
+2025-07-12 07:09:48,973 - INFO - Processing already complete. Skipping to video creation if needed.
+2025-07-12 07:09:48,973 - INFO - Video processing already completed: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_videos/segformer_model-BConcave+AConvex+4300_flipped
+2025-07-12 07:09:48,973 - INFO - Video BConcave+AConvex+4300_flipped: Both blobs remained visible throughout
+2025-07-12 07:09:48,973 - INFO - Video BConcave+AConvex+4300_flipped: Blob 1 memory strategy = running_average
+2025-07-12 07:09:48,973 - INFO - Video BConcave+AConvex+4300_flipped: Blob 1 memory frozen after frame 80
+2025-07-12 07:09:48,979 - INFO - Found 628 mask files
+2025-07-12 07:09:51,359 - INFO - Found 314 frames with valid blob data
+2025-07-12 07:09:51,788 - DEBUG - No collision detected for BConcave+AConvex+4300_flipped at IoU 0.05
+2025-07-12 07:09:52,210 - DEBUG - No collision detected for BConcave+AConvex+4300_flipped at IoU 0.1
+2025-07-12 07:09:52,630 - DEBUG - No collision detected for BConcave+AConvex+4300_flipped at IoU 0.15
+2025-07-12 07:09:53,049 - DEBUG - No collision detected for BConcave+AConvex+4300_flipped at IoU 0.2
+2025-07-12 07:09:53,473 - DEBUG - No collision detected for BConcave+AConvex+4300_flipped at IoU 0.25
+2025-07-12 07:09:53,897 - DEBUG - No collision detected for BConcave+AConvex+4300_flipped at IoU 0.3
+2025-07-12 07:09:54,314 - DEBUG - No collision detected for BConcave+AConvex+4300_flipped at IoU 0.35
+2025-07-12 07:09:54,732 - DEBUG - No collision detected for BConcave+AConvex+4300_flipped at IoU 0.4
+2025-07-12 07:09:55,154 - DEBUG - No collision detected for BConcave+AConvex+4300_flipped at IoU 0.45
+2025-07-12 07:09:55,580 - DEBUG - No collision detected for BConcave+AConvex+4300_flipped at IoU 0.5
+2025-07-12 07:09:56,019 - DEBUG - No collision detected for BConcave+AConvex+4300_flipped at IoU 0.55
+2025-07-12 07:09:56,448 - DEBUG - No collision detected for BConcave+AConvex+4300_flipped at IoU 0.6
+2025-07-12 07:09:56,867 - DEBUG - No collision detected for BConcave+AConvex+4300_flipped at IoU 0.65
+2025-07-12 07:09:57,303 - DEBUG - No collision detected for BConcave+AConvex+4300_flipped at IoU 0.7
+2025-07-12 07:09:57,727 - DEBUG - No collision detected for BConcave+AConvex+4300_flipped at IoU 0.75
+2025-07-12 07:09:58,146 - DEBUG - No collision detected for BConcave+AConvex+4300_flipped at IoU 0.8
+2025-07-12 07:09:58,569 - DEBUG - No collision detected for BConcave+AConvex+4300_flipped at IoU 0.85
+2025-07-12 07:09:58,988 - DEBUG - No collision detected for BConcave+AConvex+4300_flipped at IoU 0.9
+2025-07-12 07:09:59,408 - DEBUG - No collision detected for BConcave+AConvex+4300_flipped at IoU 0.95
+2025-07-12 07:09:59,408 - INFO - Processing video: BConcave+AConvex+4500
+2025-07-12 07:09:59,409 - INFO - Starting video processing: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/exp2TTC_files/BConcave+AConvex+4500.mp4
+2025-07-12 07:09:59,409 - INFO - Reset blob state tracking for new video
+2025-07-12 07:09:59,626 - INFO - Video metadata: {'width': 1500, 'height': 400, 'fps': 60.0, 'total_frames': 329, 'duration': 5.483333333333333}
+2025-07-12 07:09:59,628 - INFO - Processing already complete. Skipping to video creation if needed.
+2025-07-12 07:09:59,628 - INFO - Video processing already completed: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_videos/segformer_model-BConcave+AConvex+4500
+2025-07-12 07:09:59,628 - INFO - Video BConcave+AConvex+4500: Both blobs remained visible throughout
+2025-07-12 07:09:59,628 - INFO - Video BConcave+AConvex+4500: Blob 1 memory strategy = running_average
+2025-07-12 07:09:59,628 - INFO - Video BConcave+AConvex+4500: Blob 1 memory frozen after frame 80
+2025-07-12 07:09:59,634 - INFO - Found 630 mask files
+2025-07-12 07:10:02,104 - INFO - Found 315 frames with valid blob data
+2025-07-12 07:10:02,476 - DEBUG - Collision time for BConcave+AConvex+4500 at IoU 0.05: 4766.67ms
+2025-07-12 07:10:02,846 - DEBUG - Collision time for BConcave+AConvex+4500 at IoU 0.1: 4900.00ms
+2025-07-12 07:10:03,227 - DEBUG - Collision time for BConcave+AConvex+4500 at IoU 0.15: 5033.33ms
+2025-07-12 07:10:03,649 - DEBUG - No collision detected for BConcave+AConvex+4500 at IoU 0.2
+2025-07-12 07:10:04,065 - DEBUG - No collision detected for BConcave+AConvex+4500 at IoU 0.25
+2025-07-12 07:10:04,487 - DEBUG - No collision detected for BConcave+AConvex+4500 at IoU 0.3
+2025-07-12 07:10:04,907 - DEBUG - No collision detected for BConcave+AConvex+4500 at IoU 0.35
+2025-07-12 07:10:05,326 - DEBUG - No collision detected for BConcave+AConvex+4500 at IoU 0.4
+2025-07-12 07:10:05,750 - DEBUG - No collision detected for BConcave+AConvex+4500 at IoU 0.45
+2025-07-12 07:10:06,165 - DEBUG - No collision detected for BConcave+AConvex+4500 at IoU 0.5
+2025-07-12 07:10:06,579 - DEBUG - No collision detected for BConcave+AConvex+4500 at IoU 0.55
+2025-07-12 07:10:06,994 - DEBUG - No collision detected for BConcave+AConvex+4500 at IoU 0.6
+2025-07-12 07:10:07,416 - DEBUG - No collision detected for BConcave+AConvex+4500 at IoU 0.65
+2025-07-12 07:10:07,836 - DEBUG - No collision detected for BConcave+AConvex+4500 at IoU 0.7
+2025-07-12 07:10:08,251 - DEBUG - No collision detected for BConcave+AConvex+4500 at IoU 0.75
+2025-07-12 07:10:08,668 - DEBUG - No collision detected for BConcave+AConvex+4500 at IoU 0.8
+2025-07-12 07:10:09,082 - DEBUG - No collision detected for BConcave+AConvex+4500 at IoU 0.85
+2025-07-12 07:10:09,503 - DEBUG - No collision detected for BConcave+AConvex+4500 at IoU 0.9
+2025-07-12 07:10:09,926 - DEBUG - No collision detected for BConcave+AConvex+4500 at IoU 0.95
+2025-07-12 07:10:09,926 - INFO - Processing video: BConcave+BConcavePatient+3500
+2025-07-12 07:10:09,926 - INFO - Starting video processing: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/exp2TTC_files/BConcave+BConcavePatient+3500.mp4
+2025-07-12 07:10:09,926 - INFO - Reset blob state tracking for new video
+2025-07-12 07:10:10,154 - INFO - Video metadata: {'width': 1500, 'height': 400, 'fps': 60.0, 'total_frames': 329, 'duration': 5.483333333333333}
+2025-07-12 07:10:10,156 - INFO - Processing already complete. Skipping to video creation if needed.
+2025-07-12 07:10:10,157 - INFO - Video processing already completed: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_videos/segformer_model-BConcave+BConcavePatient+3500
+2025-07-12 07:10:10,157 - INFO - Video BConcave+BConcavePatient+3500: Both blobs remained visible throughout
+2025-07-12 07:10:10,157 - INFO - Video BConcave+BConcavePatient+3500: Blob 1 memory strategy = running_average
+2025-07-12 07:10:10,157 - INFO - Video BConcave+BConcavePatient+3500: Blob 1 memory frozen after frame 80
+2025-07-12 07:10:10,163 - INFO - Found 396 mask files
+2025-07-12 07:10:11,725 - INFO - Found 81 frames with valid blob data
+2025-07-12 07:10:11,845 - DEBUG - No collision detected for BConcave+BConcavePatient+3500 at IoU 0.05
+2025-07-12 07:10:11,956 - DEBUG - No collision detected for BConcave+BConcavePatient+3500 at IoU 0.1
+2025-07-12 07:10:12,068 - DEBUG - No collision detected for BConcave+BConcavePatient+3500 at IoU 0.15
+2025-07-12 07:10:12,178 - DEBUG - No collision detected for BConcave+BConcavePatient+3500 at IoU 0.2
+2025-07-12 07:10:12,289 - DEBUG - No collision detected for BConcave+BConcavePatient+3500 at IoU 0.25
+2025-07-12 07:10:12,400 - DEBUG - No collision detected for BConcave+BConcavePatient+3500 at IoU 0.3
+2025-07-12 07:10:12,510 - DEBUG - No collision detected for BConcave+BConcavePatient+3500 at IoU 0.35
+2025-07-12 07:10:12,619 - DEBUG - No collision detected for BConcave+BConcavePatient+3500 at IoU 0.4
+2025-07-12 07:10:12,730 - DEBUG - No collision detected for BConcave+BConcavePatient+3500 at IoU 0.45
+2025-07-12 07:10:12,840 - DEBUG - No collision detected for BConcave+BConcavePatient+3500 at IoU 0.5
+2025-07-12 07:10:12,950 - DEBUG - No collision detected for BConcave+BConcavePatient+3500 at IoU 0.55
+2025-07-12 07:10:13,060 - DEBUG - No collision detected for BConcave+BConcavePatient+3500 at IoU 0.6
+2025-07-12 07:10:13,170 - DEBUG - No collision detected for BConcave+BConcavePatient+3500 at IoU 0.65
+2025-07-12 07:10:13,281 - DEBUG - No collision detected for BConcave+BConcavePatient+3500 at IoU 0.7
+2025-07-12 07:10:13,392 - DEBUG - No collision detected for BConcave+BConcavePatient+3500 at IoU 0.75
+2025-07-12 07:10:13,503 - DEBUG - No collision detected for BConcave+BConcavePatient+3500 at IoU 0.8
+2025-07-12 07:10:13,617 - DEBUG - No collision detected for BConcave+BConcavePatient+3500 at IoU 0.85
+2025-07-12 07:10:13,727 - DEBUG - No collision detected for BConcave+BConcavePatient+3500 at IoU 0.9
+2025-07-12 07:10:13,836 - DEBUG - No collision detected for BConcave+BConcavePatient+3500 at IoU 0.95
+2025-07-12 07:10:13,837 - INFO - Processing video: BConcave+BConcavePatient+3700_flipped
+2025-07-12 07:10:13,837 - INFO - Starting video processing: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/exp2TTC_files/BConcave+BConcavePatient+3700_flipped.mp4
+2025-07-12 07:10:13,837 - INFO - Reset blob state tracking for new video
+2025-07-12 07:10:14,081 - INFO - Video metadata: {'width': 1500, 'height': 400, 'fps': 60.0, 'total_frames': 329, 'duration': 5.483333333333333}
+2025-07-12 07:10:14,083 - INFO - Processing already complete. Skipping to video creation if needed.
+2025-07-12 07:10:14,083 - INFO - Video processing already completed: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_videos/segformer_model-BConcave+BConcavePatient+3700_flipped
+2025-07-12 07:10:14,083 - INFO - Video BConcave+BConcavePatient+3700_flipped: Both blobs remained visible throughout
+2025-07-12 07:10:14,083 - INFO - Video BConcave+BConcavePatient+3700_flipped: Blob 1 memory strategy = running_average
+2025-07-12 07:10:14,083 - INFO - Video BConcave+BConcavePatient+3700_flipped: Blob 1 memory frozen after frame 80
+2025-07-12 07:10:14,089 - INFO - Found 602 mask files
+2025-07-12 07:10:16,426 - INFO - Found 287 frames with valid blob data
+2025-07-12 07:10:16,802 - DEBUG - No collision detected for BConcave+BConcavePatient+3700_flipped at IoU 0.05
+2025-07-12 07:10:17,173 - DEBUG - No collision detected for BConcave+BConcavePatient+3700_flipped at IoU 0.1
+2025-07-12 07:10:17,545 - DEBUG - No collision detected for BConcave+BConcavePatient+3700_flipped at IoU 0.15
+2025-07-12 07:10:17,917 - DEBUG - No collision detected for BConcave+BConcavePatient+3700_flipped at IoU 0.2
+2025-07-12 07:10:18,294 - DEBUG - No collision detected for BConcave+BConcavePatient+3700_flipped at IoU 0.25
+2025-07-12 07:10:18,666 - DEBUG - No collision detected for BConcave+BConcavePatient+3700_flipped at IoU 0.3
+2025-07-12 07:10:19,036 - DEBUG - No collision detected for BConcave+BConcavePatient+3700_flipped at IoU 0.35
+2025-07-12 07:10:19,411 - DEBUG - No collision detected for BConcave+BConcavePatient+3700_flipped at IoU 0.4
+2025-07-12 07:10:19,811 - DEBUG - No collision detected for BConcave+BConcavePatient+3700_flipped at IoU 0.45
+2025-07-12 07:10:20,182 - DEBUG - No collision detected for BConcave+BConcavePatient+3700_flipped at IoU 0.5
+2025-07-12 07:10:20,568 - DEBUG - No collision detected for BConcave+BConcavePatient+3700_flipped at IoU 0.55
+2025-07-12 07:10:20,937 - DEBUG - No collision detected for BConcave+BConcavePatient+3700_flipped at IoU 0.6
+2025-07-12 07:10:21,306 - DEBUG - No collision detected for BConcave+BConcavePatient+3700_flipped at IoU 0.65
+2025-07-12 07:10:21,680 - DEBUG - No collision detected for BConcave+BConcavePatient+3700_flipped at IoU 0.7
+2025-07-12 07:10:22,051 - DEBUG - No collision detected for BConcave+BConcavePatient+3700_flipped at IoU 0.75
+2025-07-12 07:10:22,429 - DEBUG - No collision detected for BConcave+BConcavePatient+3700_flipped at IoU 0.8
+2025-07-12 07:10:22,799 - DEBUG - No collision detected for BConcave+BConcavePatient+3700_flipped at IoU 0.85
+2025-07-12 07:10:23,173 - DEBUG - No collision detected for BConcave+BConcavePatient+3700_flipped at IoU 0.9
+2025-07-12 07:10:23,545 - DEBUG - No collision detected for BConcave+BConcavePatient+3700_flipped at IoU 0.95
+2025-07-12 07:10:23,545 - INFO - Processing video: BConcave+BConcavePatient+3900
+2025-07-12 07:10:23,545 - INFO - Starting video processing: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/exp2TTC_files/BConcave+BConcavePatient+3900.mp4
+2025-07-12 07:10:23,545 - INFO - Reset blob state tracking for new video
+2025-07-12 07:10:23,756 - INFO - Video metadata: {'width': 1500, 'height': 400, 'fps': 60.0, 'total_frames': 329, 'duration': 5.483333333333333}
+2025-07-12 07:10:23,759 - INFO - Resuming processing from frame 256
+2025-07-12 07:10:24,262 - DEBUG - Frame 256: Only 1 blobs detected, missing count: 1
+2025-07-12 07:10:25,983 - DEBUG - Frame 257: Only 1 blobs detected, missing count: 2
+2025-07-12 07:10:27,385 - DEBUG - Frame 258: Only 1 blobs detected, missing count: 3
+2025-07-12 07:10:28,786 - DEBUG - Frame 259: Only 1 blobs detected, missing count: 4
+2025-07-12 07:10:30,181 - DEBUG - Frame 260: Only 1 blobs detected, missing count: 5
+2025-07-12 07:10:30,181 - INFO - Frame 260: Blob 1 marked as disappeared after 5 missing frames
+2025-07-12 07:10:31,802 - INFO - Processed frame 260/329
+2025-07-12 07:10:46,093 - INFO - Processed frame 270/329
+2025-07-12 07:11:00,505 - INFO - Processed frame 280/329
+2025-07-12 07:11:15,009 - INFO - Processed frame 290/329
+2025-07-12 07:11:29,466 - INFO - Processed frame 300/329
+2025-07-12 07:11:43,800 - INFO - Processed frame 310/329
+2025-07-12 07:11:58,149 - INFO - Processed frame 320/329
+2025-07-12 07:12:09,704 - INFO - Creating final video: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_videos/segformer_model-BConcave+BConcavePatient+3900/videos_processed/segformer_model-BConcave+BConcavePatient+3900.mp4
+2025-07-12 07:12:12,486 - INFO - Final video created successfully
+2025-07-12 07:12:12,490 - INFO - Video processing completed: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_videos/segformer_model-BConcave+BConcavePatient+3900
+2025-07-12 07:12:12,490 - INFO - Video BConcave+BConcavePatient+3900: Blob 1 disappeared at frame 260
+2025-07-12 07:12:12,490 - INFO - Video BConcave+BConcavePatient+3900: Blob 1 memory strategy = running_average
+2025-07-12 07:12:12,490 - INFO - Video BConcave+BConcavePatient+3900: Blob 1 memory frozen after frame 80
+2025-07-12 07:12:12,520 - INFO - Found 556 mask files
+2025-07-12 07:12:14,418 - INFO - Found 311 frames with valid blob data
+2025-07-12 07:12:14,735 - DEBUG - No collision detected for BConcave+BConcavePatient+3900 at IoU 0.05
+2025-07-12 07:12:15,048 - DEBUG - No collision detected for BConcave+BConcavePatient+3900 at IoU 0.1
+2025-07-12 07:12:15,364 - DEBUG - No collision detected for BConcave+BConcavePatient+3900 at IoU 0.15
+2025-07-12 07:12:15,681 - DEBUG - No collision detected for BConcave+BConcavePatient+3900 at IoU 0.2
+2025-07-12 07:12:15,995 - DEBUG - No collision detected for BConcave+BConcavePatient+3900 at IoU 0.25
+2025-07-12 07:12:16,316 - DEBUG - No collision detected for BConcave+BConcavePatient+3900 at IoU 0.3
+2025-07-12 07:12:16,630 - DEBUG - No collision detected for BConcave+BConcavePatient+3900 at IoU 0.35
+2025-07-12 07:12:16,943 - DEBUG - No collision detected for BConcave+BConcavePatient+3900 at IoU 0.4
+2025-07-12 07:12:17,262 - DEBUG - No collision detected for BConcave+BConcavePatient+3900 at IoU 0.45
+2025-07-12 07:12:17,580 - DEBUG - No collision detected for BConcave+BConcavePatient+3900 at IoU 0.5
+2025-07-12 07:12:17,894 - DEBUG - No collision detected for BConcave+BConcavePatient+3900 at IoU 0.55
+2025-07-12 07:12:18,208 - DEBUG - No collision detected for BConcave+BConcavePatient+3900 at IoU 0.6
+2025-07-12 07:12:18,523 - DEBUG - No collision detected for BConcave+BConcavePatient+3900 at IoU 0.65
+2025-07-12 07:12:18,837 - DEBUG - No collision detected for BConcave+BConcavePatient+3900 at IoU 0.7
+2025-07-12 07:12:19,150 - DEBUG - No collision detected for BConcave+BConcavePatient+3900 at IoU 0.75
+2025-07-12 07:12:19,464 - DEBUG - No collision detected for BConcave+BConcavePatient+3900 at IoU 0.8
+2025-07-12 07:12:19,780 - DEBUG - No collision detected for BConcave+BConcavePatient+3900 at IoU 0.85
+2025-07-12 07:12:20,093 - DEBUG - No collision detected for BConcave+BConcavePatient+3900 at IoU 0.9
+2025-07-12 07:12:20,409 - DEBUG - No collision detected for BConcave+BConcavePatient+3900 at IoU 0.95
+2025-07-12 07:12:20,409 - INFO - Processing video: BConcave+BConcavePatient+4100_flipped
+2025-07-12 07:12:20,410 - INFO - Starting video processing: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/exp2TTC_files/BConcave+BConcavePatient+4100_flipped.mp4
+2025-07-12 07:12:20,410 - INFO - Reset blob state tracking for new video
+2025-07-12 07:12:20,669 - INFO - Video metadata: {'width': 1500, 'height': 400, 'fps': 60.0, 'total_frames': 329, 'duration': 5.483333333333333}
+2025-07-12 07:12:20,673 - INFO - Starting processing from beginning
+2025-07-12 07:12:20,851 - INFO - Processed frame 0/329
+2025-07-12 07:12:21,083 - INFO - Processed frame 10/329
+2025-07-12 07:12:21,846 - DEBUG - Frame 13: Updated blob 1 memory with running average of 1 masks
+2025-07-12 07:12:22,854 - DEBUG - Frame 14: Updated blob 1 memory with running average of 2 masks
+2025-07-12 07:12:23,831 - DEBUG - Frame 15: Updated blob 1 memory with running average of 3 masks
+2025-07-12 07:12:24,799 - DEBUG - Frame 16: Updated blob 1 memory with running average of 4 masks
+2025-07-12 07:12:25,784 - DEBUG - Frame 17: Updated blob 1 memory with running average of 5 masks
+2025-07-12 07:12:26,765 - DEBUG - Frame 18: Updated blob 1 memory with running average of 6 masks
+2025-07-12 07:12:27,750 - DEBUG - Frame 19: Updated blob 1 memory with running average of 7 masks
+2025-07-12 07:12:28,726 - DEBUG - Frame 20: Updated blob 1 memory with running average of 8 masks
+2025-07-12 07:12:29,236 - INFO - Processed frame 20/329
+2025-07-12 07:12:29,927 - DEBUG - Frame 21: Updated blob 1 memory with running average of 9 masks
+2025-07-12 07:12:30,911 - DEBUG - Frame 22: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:12:31,893 - DEBUG - Frame 23: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:12:32,868 - DEBUG - Frame 24: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:12:33,841 - DEBUG - Frame 25: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:12:34,825 - DEBUG - Frame 26: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:12:35,804 - DEBUG - Frame 27: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:12:36,777 - DEBUG - Frame 28: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:12:37,756 - DEBUG - Frame 29: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:12:39,991 - DEBUG - Frame 30: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:12:40,294 - INFO - Processed frame 30/329
+2025-07-12 07:12:42,039 - DEBUG - Frame 31: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:12:44,255 - DEBUG - Frame 32: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:12:46,270 - DEBUG - Frame 33: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:12:48,499 - DEBUG - Frame 34: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:12:50,531 - DEBUG - Frame 35: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:12:52,548 - DEBUG - Frame 36: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:12:54,810 - DEBUG - Frame 37: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:12:56,856 - DEBUG - Frame 38: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:12:59,075 - DEBUG - Frame 39: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:13:01,100 - DEBUG - Frame 40: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:13:01,608 - INFO - Processed frame 40/329
+2025-07-12 07:13:03,324 - DEBUG - Frame 41: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:13:05,344 - DEBUG - Frame 42: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:13:07,564 - DEBUG - Frame 43: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:13:09,573 - DEBUG - Frame 44: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:13:11,812 - DEBUG - Frame 45: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:13:13,828 - DEBUG - Frame 46: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:13:16,043 - DEBUG - Frame 47: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:13:18,070 - DEBUG - Frame 48: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:13:20,288 - DEBUG - Frame 49: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:13:22,314 - DEBUG - Frame 50: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:13:22,814 - INFO - Processed frame 50/329
+2025-07-12 07:13:24,534 - DEBUG - Frame 51: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:13:26,548 - DEBUG - Frame 52: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:13:28,776 - DEBUG - Frame 53: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:13:30,812 - DEBUG - Frame 54: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:13:33,019 - DEBUG - Frame 55: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:13:35,029 - DEBUG - Frame 56: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:13:37,245 - DEBUG - Frame 57: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:13:39,262 - DEBUG - Frame 58: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:13:41,513 - DEBUG - Frame 59: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:13:43,531 - DEBUG - Frame 60: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:13:44,027 - INFO - Processed frame 60/329
+2025-07-12 07:13:45,744 - DEBUG - Frame 61: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:13:47,780 - DEBUG - Frame 62: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:13:50,011 - DEBUG - Frame 63: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:13:52,037 - DEBUG - Frame 64: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:13:54,265 - DEBUG - Frame 65: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:13:56,277 - DEBUG - Frame 66: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:13:58,538 - DEBUG - Frame 67: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:14:00,567 - DEBUG - Frame 68: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:14:02,783 - DEBUG - Frame 69: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:14:04,811 - DEBUG - Frame 70: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:14:05,301 - INFO - Processed frame 70/329
+2025-07-12 07:14:07,029 - DEBUG - Frame 71: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:14:09,038 - DEBUG - Frame 72: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:14:11,297 - DEBUG - Frame 73: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:14:13,334 - DEBUG - Frame 74: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:14:15,576 - DEBUG - Frame 75: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:14:17,701 - DEBUG - Frame 76: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:14:19,960 - DEBUG - Frame 77: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:14:21,958 - DEBUG - Frame 78: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:14:24,229 - DEBUG - Frame 79: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:14:26,238 - DEBUG - Frame 80: Blob 1 memory frozen, not updating running average
+2025-07-12 07:14:26,761 - INFO - Processed frame 80/329
+2025-07-12 07:14:28,485 - DEBUG - Frame 81: Blob 1 memory frozen, not updating running average
+2025-07-12 07:14:30,549 - DEBUG - Frame 82: Blob 1 memory frozen, not updating running average
+2025-07-12 07:14:32,801 - DEBUG - Frame 83: Blob 1 memory frozen, not updating running average
+2025-07-12 07:14:34,799 - DEBUG - Frame 84: Blob 1 memory frozen, not updating running average
+2025-07-12 07:14:36,991 - DEBUG - Frame 85: Blob 1 memory frozen, not updating running average
+2025-07-12 07:14:38,962 - DEBUG - Frame 86: Blob 1 memory frozen, not updating running average
+2025-07-12 07:14:41,170 - DEBUG - Frame 87: Blob 1 memory frozen, not updating running average
+2025-07-12 07:14:43,320 - DEBUG - Frame 88: Blob 1 memory frozen, not updating running average
+2025-07-12 07:14:45,387 - DEBUG - Frame 89: Blob 1 memory frozen, not updating running average
+2025-07-12 07:14:47,481 - DEBUG - Frame 90: Blob 1 memory frozen, not updating running average
+2025-07-12 07:14:47,769 - INFO - Processed frame 90/329
+2025-07-12 07:14:49,748 - DEBUG - Frame 91: Blob 1 memory frozen, not updating running average
+2025-07-12 07:14:51,789 - DEBUG - Frame 92: Blob 1 memory frozen, not updating running average
+2025-07-12 07:14:53,999 - DEBUG - Frame 93: Blob 1 memory frozen, not updating running average
+2025-07-12 07:14:56,100 - DEBUG - Frame 94: Blob 1 memory frozen, not updating running average
+2025-07-12 07:14:56,416 - DEBUG - Frame 95: Only 1 blobs detected, missing count: 1
+2025-07-12 07:14:58,022 - DEBUG - Frame 96: Only 1 blobs detected, missing count: 2
+2025-07-12 07:14:59,374 - DEBUG - Frame 97: Only 1 blobs detected, missing count: 3
+2025-07-12 07:15:00,765 - DEBUG - Frame 98: Only 1 blobs detected, missing count: 4
+2025-07-12 07:15:02,127 - DEBUG - Frame 99: Only 1 blobs detected, missing count: 5
+2025-07-12 07:15:02,127 - INFO - Frame 99: Blob 1 marked as disappeared after 5 missing frames
+2025-07-12 07:15:04,991 - INFO - Processed frame 100/329
+2025-07-12 07:15:19,093 - INFO - Processed frame 110/329
+2025-07-12 07:15:33,270 - INFO - Processed frame 120/329
+2025-07-12 07:15:47,243 - INFO - Processed frame 130/329
+2025-07-12 07:16:01,327 - INFO - Processed frame 140/329
+2025-07-12 07:16:15,377 - INFO - Processed frame 150/329
+2025-07-12 07:16:29,294 - INFO - Processed frame 160/329
+2025-07-12 07:16:44,004 - INFO - Processed frame 170/329
+2025-07-12 07:16:58,259 - INFO - Processed frame 180/329
+2025-07-12 07:17:12,932 - INFO - Processed frame 190/329
+2025-07-12 07:17:27,186 - INFO - Processed frame 200/329
+2025-07-12 07:17:41,542 - INFO - Processed frame 210/329
+2025-07-12 07:17:56,567 - INFO - Processed frame 220/329
+2025-07-12 07:18:10,469 - INFO - Processed frame 230/329
+2025-07-12 07:18:24,459 - INFO - Processed frame 240/329
+2025-07-12 07:18:38,331 - INFO - Processed frame 250/329
+2025-07-12 07:18:52,704 - INFO - Processed frame 260/329
+2025-07-12 07:19:07,290 - INFO - Processed frame 270/329
+2025-07-12 07:19:21,865 - INFO - Processed frame 280/329
+2025-07-12 07:19:36,333 - INFO - Processed frame 290/329
+2025-07-12 07:19:50,512 - INFO - Processed frame 300/329
+2025-07-12 07:20:04,711 - INFO - Processed frame 310/329
+2025-07-12 07:20:18,898 - INFO - Processed frame 320/329
+2025-07-12 07:20:30,178 - INFO - Creating final video: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_videos/segformer_model-BConcave+BConcavePatient+4100_flipped/videos_processed/segformer_model-BConcave+BConcavePatient+4100_flipped.mp4
+2025-07-12 07:20:32,857 - INFO - Final video created successfully
+2025-07-12 07:20:32,861 - INFO - Video processing completed: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_videos/segformer_model-BConcave+BConcavePatient+4100_flipped
+2025-07-12 07:20:32,861 - INFO - Video BConcave+BConcavePatient+4100_flipped: Blob 1 disappeared at frame 99
+2025-07-12 07:20:32,861 - INFO - Video BConcave+BConcavePatient+4100_flipped: Blob 1 memory strategy = running_average
+2025-07-12 07:20:32,861 - INFO - Video BConcave+BConcavePatient+4100_flipped: Blob 1 memory frozen after frame 80
+2025-07-12 07:20:32,876 - INFO - Found 630 mask files
+2025-07-12 07:20:35,039 - INFO - Found 314 frames with valid blob data
+2025-07-12 07:20:35,446 - DEBUG - No collision detected for BConcave+BConcavePatient+4100_flipped at IoU 0.05
+2025-07-12 07:20:35,852 - DEBUG - No collision detected for BConcave+BConcavePatient+4100_flipped at IoU 0.1
+2025-07-12 07:20:36,255 - DEBUG - No collision detected for BConcave+BConcavePatient+4100_flipped at IoU 0.15
+2025-07-12 07:20:36,658 - DEBUG - No collision detected for BConcave+BConcavePatient+4100_flipped at IoU 0.2
+2025-07-12 07:20:37,062 - DEBUG - No collision detected for BConcave+BConcavePatient+4100_flipped at IoU 0.25
+2025-07-12 07:20:37,469 - DEBUG - No collision detected for BConcave+BConcavePatient+4100_flipped at IoU 0.3
+2025-07-12 07:20:37,877 - DEBUG - No collision detected for BConcave+BConcavePatient+4100_flipped at IoU 0.35
+2025-07-12 07:20:38,280 - DEBUG - No collision detected for BConcave+BConcavePatient+4100_flipped at IoU 0.4
+2025-07-12 07:20:38,684 - DEBUG - No collision detected for BConcave+BConcavePatient+4100_flipped at IoU 0.45
+2025-07-12 07:20:39,089 - DEBUG - No collision detected for BConcave+BConcavePatient+4100_flipped at IoU 0.5
+2025-07-12 07:20:39,502 - DEBUG - No collision detected for BConcave+BConcavePatient+4100_flipped at IoU 0.55
+2025-07-12 07:20:39,914 - DEBUG - No collision detected for BConcave+BConcavePatient+4100_flipped at IoU 0.6
+2025-07-12 07:20:40,320 - DEBUG - No collision detected for BConcave+BConcavePatient+4100_flipped at IoU 0.65
+2025-07-12 07:20:40,739 - DEBUG - No collision detected for BConcave+BConcavePatient+4100_flipped at IoU 0.7
+2025-07-12 07:20:41,141 - DEBUG - No collision detected for BConcave+BConcavePatient+4100_flipped at IoU 0.75
+2025-07-12 07:20:41,550 - DEBUG - No collision detected for BConcave+BConcavePatient+4100_flipped at IoU 0.8
+2025-07-12 07:20:41,953 - DEBUG - No collision detected for BConcave+BConcavePatient+4100_flipped at IoU 0.85
+2025-07-12 07:20:42,362 - DEBUG - No collision detected for BConcave+BConcavePatient+4100_flipped at IoU 0.9
+2025-07-12 07:20:42,773 - DEBUG - No collision detected for BConcave+BConcavePatient+4100_flipped at IoU 0.95
+2025-07-12 07:20:42,773 - INFO - Processing video: BConcave+BConcavePatient+4300
+2025-07-12 07:20:42,774 - INFO - Starting video processing: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/exp2TTC_files/BConcave+BConcavePatient+4300.mp4
+2025-07-12 07:20:42,774 - INFO - Reset blob state tracking for new video
+2025-07-12 07:20:43,018 - INFO - Video metadata: {'width': 1500, 'height': 400, 'fps': 60.0, 'total_frames': 329, 'duration': 5.483333333333333}
+2025-07-12 07:20:43,023 - INFO - Starting processing from beginning
+2025-07-12 07:20:43,208 - INFO - Processed frame 0/329
+2025-07-12 07:20:43,424 - INFO - Processed frame 10/329
+2025-07-12 07:20:44,146 - DEBUG - Frame 13: Updated blob 1 memory with running average of 1 masks
+2025-07-12 07:20:45,080 - DEBUG - Frame 14: Updated blob 1 memory with running average of 2 masks
+2025-07-12 07:20:46,017 - DEBUG - Frame 15: Updated blob 1 memory with running average of 3 masks
+2025-07-12 07:20:46,972 - DEBUG - Frame 16: Updated blob 1 memory with running average of 4 masks
+2025-07-12 07:20:47,925 - DEBUG - Frame 17: Updated blob 1 memory with running average of 5 masks
+2025-07-12 07:20:48,861 - DEBUG - Frame 18: Updated blob 1 memory with running average of 6 masks
+2025-07-12 07:20:49,798 - DEBUG - Frame 19: Updated blob 1 memory with running average of 7 masks
+2025-07-12 07:20:50,764 - DEBUG - Frame 20: Updated blob 1 memory with running average of 8 masks
+2025-07-12 07:20:51,060 - INFO - Processed frame 20/329
+2025-07-12 07:20:51,711 - DEBUG - Frame 21: Updated blob 1 memory with running average of 9 masks
+2025-07-12 07:20:52,647 - DEBUG - Frame 22: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:20:53,847 - DEBUG - Frame 23: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:20:54,796 - DEBUG - Frame 24: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:20:55,782 - DEBUG - Frame 25: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:20:56,744 - DEBUG - Frame 26: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:20:57,691 - DEBUG - Frame 27: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:20:58,639 - DEBUG - Frame 28: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:20:59,585 - DEBUG - Frame 29: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:21:01,618 - DEBUG - Frame 30: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:21:02,130 - INFO - Processed frame 30/329
+2025-07-12 07:21:04,046 - DEBUG - Frame 31: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:21:06,067 - DEBUG - Frame 32: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:21:08,311 - DEBUG - Frame 33: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:21:10,340 - DEBUG - Frame 34: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:21:12,574 - DEBUG - Frame 35: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:21:14,605 - DEBUG - Frame 36: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:21:16,822 - DEBUG - Frame 37: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:21:18,844 - DEBUG - Frame 38: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:21:21,078 - DEBUG - Frame 39: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:21:23,096 - DEBUG - Frame 40: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:21:23,393 - INFO - Processed frame 40/329
+2025-07-12 07:21:25,326 - DEBUG - Frame 41: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:21:27,347 - DEBUG - Frame 42: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:21:29,577 - DEBUG - Frame 43: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:21:31,614 - DEBUG - Frame 44: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:21:33,834 - DEBUG - Frame 45: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:21:35,845 - DEBUG - Frame 46: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:21:38,062 - DEBUG - Frame 47: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:21:40,078 - DEBUG - Frame 48: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:21:42,572 - DEBUG - Frame 49: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:21:44,586 - DEBUG - Frame 50: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:21:44,886 - INFO - Processed frame 50/329
+2025-07-12 07:21:46,820 - DEBUG - Frame 51: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:21:48,834 - DEBUG - Frame 52: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:21:51,110 - DEBUG - Frame 53: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:21:53,139 - DEBUG - Frame 54: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:21:55,376 - DEBUG - Frame 55: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:21:57,413 - DEBUG - Frame 56: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:21:59,445 - DEBUG - Frame 57: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:22:01,701 - DEBUG - Frame 58: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:22:03,718 - DEBUG - Frame 59: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:22:05,959 - DEBUG - Frame 60: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:22:06,256 - INFO - Processed frame 60/329
+2025-07-12 07:22:07,991 - DEBUG - Frame 61: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:22:10,220 - DEBUG - Frame 62: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:22:12,246 - DEBUG - Frame 63: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:22:14,460 - DEBUG - Frame 64: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:22:16,471 - DEBUG - Frame 65: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:22:18,677 - DEBUG - Frame 66: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:22:20,699 - DEBUG - Frame 67: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:22:22,914 - DEBUG - Frame 68: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:22:24,923 - DEBUG - Frame 69: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:22:27,130 - DEBUG - Frame 70: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:22:27,426 - INFO - Processed frame 70/329
+2025-07-12 07:22:29,149 - DEBUG - Frame 71: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:22:31,375 - DEBUG - Frame 72: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:22:33,384 - DEBUG - Frame 73: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:22:35,605 - DEBUG - Frame 74: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:22:37,608 - DEBUG - Frame 75: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:22:39,826 - DEBUG - Frame 76: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:22:41,824 - DEBUG - Frame 77: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:22:44,013 - DEBUG - Frame 78: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:22:45,993 - DEBUG - Frame 79: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:22:48,181 - DEBUG - Frame 80: Blob 1 memory frozen, not updating running average
+2025-07-12 07:22:48,477 - INFO - Processed frame 80/329
+2025-07-12 07:22:50,156 - DEBUG - Frame 81: Blob 1 memory frozen, not updating running average
+2025-07-12 07:22:52,354 - DEBUG - Frame 82: Blob 1 memory frozen, not updating running average
+2025-07-12 07:22:54,334 - DEBUG - Frame 83: Blob 1 memory frozen, not updating running average
+2025-07-12 07:22:56,545 - DEBUG - Frame 84: Blob 1 memory frozen, not updating running average
+2025-07-12 07:22:58,529 - DEBUG - Frame 85: Blob 1 memory frozen, not updating running average
+2025-07-12 07:23:00,721 - DEBUG - Frame 86: Blob 1 memory frozen, not updating running average
+2025-07-12 07:23:02,736 - DEBUG - Frame 87: Blob 1 memory frozen, not updating running average
+2025-07-12 07:23:04,930 - DEBUG - Frame 88: Blob 1 memory frozen, not updating running average
+2025-07-12 07:23:06,890 - DEBUG - Frame 89: Blob 1 memory frozen, not updating running average
+2025-07-12 07:23:09,066 - DEBUG - Frame 90: Blob 1 memory frozen, not updating running average
+2025-07-12 07:23:09,364 - INFO - Processed frame 90/329
+2025-07-12 07:23:11,078 - DEBUG - Frame 91: Blob 1 memory frozen, not updating running average
+2025-07-12 07:23:13,285 - DEBUG - Frame 92: Blob 1 memory frozen, not updating running average
+2025-07-12 07:23:15,249 - DEBUG - Frame 93: Blob 1 memory frozen, not updating running average
+2025-07-12 07:23:17,376 - DEBUG - Frame 94: Blob 1 memory frozen, not updating running average
+2025-07-12 07:23:17,696 - DEBUG - Frame 95: Only 1 blobs detected, missing count: 1
+2025-07-12 07:23:18,988 - DEBUG - Frame 96: Only 1 blobs detected, missing count: 2
+2025-07-12 07:23:20,279 - DEBUG - Frame 97: Only 1 blobs detected, missing count: 3
+2025-07-12 07:23:21,570 - DEBUG - Frame 98: Only 1 blobs detected, missing count: 4
+2025-07-12 07:23:23,089 - DEBUG - Frame 99: Only 1 blobs detected, missing count: 5
+2025-07-12 07:23:23,089 - INFO - Frame 99: Blob 1 marked as disappeared after 5 missing frames
+2025-07-12 07:23:25,673 - INFO - Processed frame 100/329
+2025-07-12 07:23:39,168 - INFO - Processed frame 110/329
+2025-07-12 07:23:52,974 - INFO - Processed frame 120/329
+2025-07-12 07:24:06,536 - INFO - Processed frame 130/329
+2025-07-12 07:24:20,431 - INFO - Processed frame 140/329
+2025-07-12 07:24:34,208 - INFO - Processed frame 150/329
+2025-07-12 07:24:47,849 - INFO - Processed frame 160/329
+2025-07-12 07:25:01,597 - INFO - Processed frame 170/329
+2025-07-12 07:25:15,347 - INFO - Processed frame 180/329
+2025-07-12 07:25:29,428 - INFO - Processed frame 190/329
+2025-07-12 07:25:43,201 - INFO - Processed frame 200/329
+2025-07-12 07:25:57,032 - INFO - Processed frame 210/329
+2025-07-12 07:26:10,940 - INFO - Processed frame 220/329
+2025-07-12 07:26:24,661 - INFO - Processed frame 230/329
+2025-07-12 07:26:38,489 - INFO - Processed frame 240/329
+2025-07-12 07:26:52,581 - INFO - Processed frame 250/329
+2025-07-12 07:27:06,379 - INFO - Processed frame 260/329
+2025-07-12 07:27:20,319 - INFO - Processed frame 270/329
+2025-07-12 07:27:34,047 - INFO - Processed frame 280/329
+2025-07-12 07:27:47,996 - INFO - Processed frame 290/329
+2025-07-12 07:28:01,741 - INFO - Processed frame 300/329
+2025-07-12 07:28:15,456 - INFO - Processed frame 310/329
+2025-07-12 07:28:29,235 - INFO - Processed frame 320/329
+2025-07-12 07:28:40,445 - INFO - Creating final video: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_videos/segformer_model-BConcave+BConcavePatient+4300/videos_processed/segformer_model-BConcave+BConcavePatient+4300.mp4
+2025-07-12 07:28:43,120 - INFO - Final video created successfully
+2025-07-12 07:28:43,124 - INFO - Video processing completed: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_videos/segformer_model-BConcave+BConcavePatient+4300
+2025-07-12 07:28:43,124 - INFO - Video BConcave+BConcavePatient+4300: Blob 1 disappeared at frame 99
+2025-07-12 07:28:43,124 - INFO - Video BConcave+BConcavePatient+4300: Blob 1 memory strategy = running_average
+2025-07-12 07:28:43,124 - INFO - Video BConcave+BConcavePatient+4300: Blob 1 memory frozen after frame 80
+2025-07-12 07:28:43,139 - INFO - Found 631 mask files
+2025-07-12 07:28:45,272 - INFO - Found 315 frames with valid blob data
+2025-07-12 07:28:45,599 - DEBUG - Collision time for BConcave+BConcavePatient+4300 at IoU 0.05: 4316.67ms
+2025-07-12 07:28:45,922 - DEBUG - Collision time for BConcave+BConcavePatient+4300 at IoU 0.1: 4400.00ms
+2025-07-12 07:28:46,257 - DEBUG - Collision time for BConcave+BConcavePatient+4300 at IoU 0.15: 4466.67ms
+2025-07-12 07:28:46,591 - DEBUG - Collision time for BConcave+BConcavePatient+4300 at IoU 0.2: 4533.33ms
+2025-07-12 07:28:46,929 - DEBUG - Collision time for BConcave+BConcavePatient+4300 at IoU 0.25: 4583.33ms
+2025-07-12 07:28:47,272 - DEBUG - Collision time for BConcave+BConcavePatient+4300 at IoU 0.3: 4650.00ms
+2025-07-12 07:28:47,622 - DEBUG - Collision time for BConcave+BConcavePatient+4300 at IoU 0.35: 4716.67ms
+2025-07-12 07:28:47,977 - DEBUG - Collision time for BConcave+BConcavePatient+4300 at IoU 0.4: 4766.67ms
+2025-07-12 07:28:48,388 - DEBUG - No collision detected for BConcave+BConcavePatient+4300 at IoU 0.45
+2025-07-12 07:28:48,792 - DEBUG - No collision detected for BConcave+BConcavePatient+4300 at IoU 0.5
+2025-07-12 07:28:49,196 - DEBUG - No collision detected for BConcave+BConcavePatient+4300 at IoU 0.55
+2025-07-12 07:28:49,606 - DEBUG - No collision detected for BConcave+BConcavePatient+4300 at IoU 0.6
+2025-07-12 07:28:50,009 - DEBUG - No collision detected for BConcave+BConcavePatient+4300 at IoU 0.65
+2025-07-12 07:28:50,415 - DEBUG - No collision detected for BConcave+BConcavePatient+4300 at IoU 0.7
+2025-07-12 07:28:50,834 - DEBUG - No collision detected for BConcave+BConcavePatient+4300 at IoU 0.75
+2025-07-12 07:28:51,237 - DEBUG - No collision detected for BConcave+BConcavePatient+4300 at IoU 0.8
+2025-07-12 07:28:51,645 - DEBUG - No collision detected for BConcave+BConcavePatient+4300 at IoU 0.85
+2025-07-12 07:28:52,049 - DEBUG - No collision detected for BConcave+BConcavePatient+4300 at IoU 0.9
+2025-07-12 07:28:52,458 - DEBUG - No collision detected for BConcave+BConcavePatient+4300 at IoU 0.95
+2025-07-12 07:28:52,458 - INFO - Processing video: BConcave+BConcavePatient+4500_flipped
+2025-07-12 07:28:52,458 - INFO - Starting video processing: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/exp2TTC_files/BConcave+BConcavePatient+4500_flipped.mp4
+2025-07-12 07:28:52,458 - INFO - Reset blob state tracking for new video
+2025-07-12 07:28:52,726 - INFO - Video metadata: {'width': 1500, 'height': 400, 'fps': 60.0, 'total_frames': 329, 'duration': 5.483333333333333}
+2025-07-12 07:28:52,731 - INFO - Starting processing from beginning
+2025-07-12 07:28:52,920 - INFO - Processed frame 0/329
+2025-07-12 07:28:53,150 - INFO - Processed frame 10/329
+2025-07-12 07:28:53,916 - DEBUG - Frame 13: Updated blob 1 memory with running average of 1 masks
+2025-07-12 07:28:54,892 - DEBUG - Frame 14: Updated blob 1 memory with running average of 2 masks
+2025-07-12 07:28:56,110 - DEBUG - Frame 15: Updated blob 1 memory with running average of 3 masks
+2025-07-12 07:28:57,101 - DEBUG - Frame 16: Updated blob 1 memory with running average of 4 masks
+2025-07-12 07:28:58,083 - DEBUG - Frame 17: Updated blob 1 memory with running average of 5 masks
+2025-07-12 07:28:59,068 - DEBUG - Frame 18: Updated blob 1 memory with running average of 6 masks
+2025-07-12 07:29:00,051 - DEBUG - Frame 19: Updated blob 1 memory with running average of 7 masks
+2025-07-12 07:29:01,043 - DEBUG - Frame 20: Updated blob 1 memory with running average of 8 masks
+2025-07-12 07:29:01,342 - INFO - Processed frame 20/329
+2025-07-12 07:29:02,047 - DEBUG - Frame 21: Updated blob 1 memory with running average of 9 masks
+2025-07-12 07:29:03,033 - DEBUG - Frame 22: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:29:04,022 - DEBUG - Frame 23: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:29:05,014 - DEBUG - Frame 24: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:29:05,999 - DEBUG - Frame 25: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:29:06,985 - DEBUG - Frame 26: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:29:07,963 - DEBUG - Frame 27: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:29:09,152 - DEBUG - Frame 28: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:29:10,135 - DEBUG - Frame 29: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:29:12,225 - DEBUG - Frame 30: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:29:12,530 - INFO - Processed frame 30/329
+2025-07-12 07:29:14,507 - DEBUG - Frame 31: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:29:16,602 - DEBUG - Frame 32: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:29:18,706 - DEBUG - Frame 33: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:29:21,045 - DEBUG - Frame 34: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:29:23,127 - DEBUG - Frame 35: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:29:25,395 - DEBUG - Frame 36: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:29:27,500 - DEBUG - Frame 37: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:29:29,852 - DEBUG - Frame 38: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:29:31,998 - DEBUG - Frame 39: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:29:34,352 - DEBUG - Frame 40: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:29:34,659 - INFO - Processed frame 40/329
+2025-07-12 07:29:36,460 - DEBUG - Frame 41: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:29:38,738 - DEBUG - Frame 42: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:29:40,844 - DEBUG - Frame 43: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:29:43,128 - DEBUG - Frame 44: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:29:45,228 - DEBUG - Frame 45: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:29:47,525 - DEBUG - Frame 46: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:29:49,610 - DEBUG - Frame 47: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:29:51,702 - DEBUG - Frame 48: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:29:54,059 - DEBUG - Frame 49: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:29:56,143 - DEBUG - Frame 50: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:29:56,466 - INFO - Processed frame 50/329
+2025-07-12 07:29:58,473 - DEBUG - Frame 51: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:30:00,581 - DEBUG - Frame 52: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:30:02,941 - DEBUG - Frame 53: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:30:05,080 - DEBUG - Frame 54: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:30:07,389 - DEBUG - Frame 55: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:30:09,480 - DEBUG - Frame 56: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:30:11,825 - DEBUG - Frame 57: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:30:13,923 - DEBUG - Frame 58: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:30:16,233 - DEBUG - Frame 59: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:30:18,334 - DEBUG - Frame 60: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:30:18,637 - INFO - Processed frame 60/329
+2025-07-12 07:30:20,458 - DEBUG - Frame 61: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:30:22,856 - DEBUG - Frame 62: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:30:24,998 - DEBUG - Frame 63: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:30:27,339 - DEBUG - Frame 64: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:30:29,513 - DEBUG - Frame 65: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:30:31,858 - DEBUG - Frame 66: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:30:34,611 - DEBUG - Frame 67: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:30:36,897 - DEBUG - Frame 68: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:30:39,015 - DEBUG - Frame 69: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:30:41,331 - DEBUG - Frame 70: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:30:41,639 - INFO - Processed frame 70/329
+2025-07-12 07:30:43,424 - DEBUG - Frame 71: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:30:45,729 - DEBUG - Frame 72: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:30:47,842 - DEBUG - Frame 73: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:30:50,141 - DEBUG - Frame 74: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:30:52,266 - DEBUG - Frame 75: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:30:54,434 - DEBUG - Frame 76: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:30:56,825 - DEBUG - Frame 77: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:30:58,935 - DEBUG - Frame 78: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:31:01,242 - DEBUG - Frame 79: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:31:03,451 - DEBUG - Frame 80: Blob 1 memory frozen, not updating running average
+2025-07-12 07:31:03,752 - INFO - Processed frame 80/329
+2025-07-12 07:31:05,804 - DEBUG - Frame 81: Blob 1 memory frozen, not updating running average
+2025-07-12 07:31:07,874 - DEBUG - Frame 82: Blob 1 memory frozen, not updating running average
+2025-07-12 07:31:10,208 - DEBUG - Frame 83: Blob 1 memory frozen, not updating running average
+2025-07-12 07:31:12,262 - DEBUG - Frame 84: Blob 1 memory frozen, not updating running average
+2025-07-12 07:31:14,527 - DEBUG - Frame 85: Blob 1 memory frozen, not updating running average
+2025-07-12 07:31:16,543 - DEBUG - Frame 86: Blob 1 memory frozen, not updating running average
+2025-07-12 07:31:18,822 - DEBUG - Frame 87: Blob 1 memory frozen, not updating running average
+2025-07-12 07:31:20,907 - DEBUG - Frame 88: Blob 1 memory frozen, not updating running average
+2025-07-12 07:31:23,192 - DEBUG - Frame 89: Blob 1 memory frozen, not updating running average
+2025-07-12 07:31:25,237 - DEBUG - Frame 90: Blob 1 memory frozen, not updating running average
+2025-07-12 07:31:25,543 - INFO - Processed frame 90/329
+2025-07-12 07:31:27,299 - DEBUG - Frame 91: Blob 1 memory frozen, not updating running average
+2025-07-12 07:31:29,593 - DEBUG - Frame 92: Blob 1 memory frozen, not updating running average
+2025-07-12 07:31:31,661 - DEBUG - Frame 93: Blob 1 memory frozen, not updating running average
+2025-07-12 07:31:33,864 - DEBUG - Frame 94: Blob 1 memory frozen, not updating running average
+2025-07-12 07:31:34,185 - DEBUG - Frame 95: Only 1 blobs detected, missing count: 1
+2025-07-12 07:31:35,555 - DEBUG - Frame 96: Only 1 blobs detected, missing count: 2
+2025-07-12 07:31:36,959 - DEBUG - Frame 97: Only 1 blobs detected, missing count: 3
+2025-07-12 07:31:38,554 - DEBUG - Frame 98: Only 1 blobs detected, missing count: 4
+2025-07-12 07:31:39,996 - DEBUG - Frame 99: Only 1 blobs detected, missing count: 5
+2025-07-12 07:31:39,996 - INFO - Frame 99: Blob 1 marked as disappeared after 5 missing frames
+2025-07-12 07:31:43,635 - INFO - Processed frame 100/329
+2025-07-12 07:31:58,384 - INFO - Processed frame 110/329
+2025-07-12 07:32:12,845 - INFO - Processed frame 120/329
+2025-07-12 07:32:27,227 - INFO - Processed frame 130/329
+2025-07-12 07:32:41,745 - INFO - Processed frame 140/329
+2025-07-12 07:32:55,970 - INFO - Processed frame 150/329
+2025-07-12 07:33:10,265 - INFO - Processed frame 160/329
+2025-07-12 07:33:24,579 - INFO - Processed frame 170/329
+2025-07-12 07:33:38,680 - INFO - Processed frame 180/329
+2025-07-12 07:33:52,834 - INFO - Processed frame 190/329
+2025-07-12 07:34:07,053 - INFO - Processed frame 200/329
+2025-07-12 07:34:21,333 - INFO - Processed frame 210/329
+2025-07-12 07:34:35,405 - INFO - Processed frame 220/329
+2025-07-12 07:34:49,637 - INFO - Processed frame 230/329
+2025-07-12 07:35:03,841 - INFO - Processed frame 240/329
+2025-07-12 07:35:18,048 - INFO - Processed frame 250/329
+2025-07-12 07:35:32,785 - INFO - Processed frame 260/329
+2025-07-12 07:35:47,205 - INFO - Processed frame 270/329
+2025-07-12 07:36:01,616 - INFO - Processed frame 280/329
+2025-07-12 07:36:16,033 - INFO - Processed frame 290/329
+2025-07-12 07:36:30,567 - INFO - Processed frame 300/329
+2025-07-12 07:36:45,010 - INFO - Processed frame 310/329
+2025-07-12 07:36:59,359 - INFO - Processed frame 320/329
+2025-07-12 07:37:10,971 - INFO - Creating final video: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_videos/segformer_model-BConcave+BConcavePatient+4500_flipped/videos_processed/segformer_model-BConcave+BConcavePatient+4500_flipped.mp4
+2025-07-12 07:37:13,672 - INFO - Final video created successfully
+2025-07-12 07:37:13,675 - INFO - Video processing completed: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_videos/segformer_model-BConcave+BConcavePatient+4500_flipped
+2025-07-12 07:37:13,675 - INFO - Video BConcave+BConcavePatient+4500_flipped: Blob 1 disappeared at frame 99
+2025-07-12 07:37:13,675 - INFO - Video BConcave+BConcavePatient+4500_flipped: Blob 1 memory strategy = running_average
+2025-07-12 07:37:13,675 - INFO - Video BConcave+BConcavePatient+4500_flipped: Blob 1 memory frozen after frame 80
+2025-07-12 07:37:13,692 - INFO - Found 631 mask files
+2025-07-12 07:37:15,833 - INFO - Found 315 frames with valid blob data
+2025-07-12 07:37:16,177 - DEBUG - Collision time for BConcave+BConcavePatient+4500_flipped at IoU 0.05: 4433.33ms
+2025-07-12 07:37:16,508 - DEBUG - Collision time for BConcave+BConcavePatient+4500_flipped at IoU 0.1: 4550.00ms
+2025-07-12 07:37:16,862 - DEBUG - Collision time for BConcave+BConcavePatient+4500_flipped at IoU 0.15: 4616.67ms
+2025-07-12 07:37:17,208 - DEBUG - Collision time for BConcave+BConcavePatient+4500_flipped at IoU 0.2: 4683.33ms
+2025-07-12 07:37:17,560 - DEBUG - Collision time for BConcave+BConcavePatient+4500_flipped at IoU 0.25: 4750.00ms
+2025-07-12 07:37:17,910 - DEBUG - Collision time for BConcave+BConcavePatient+4500_flipped at IoU 0.3: 4783.33ms
+2025-07-12 07:37:18,261 - DEBUG - Collision time for BConcave+BConcavePatient+4500_flipped at IoU 0.35: 4833.33ms
+2025-07-12 07:37:18,618 - DEBUG - Collision time for BConcave+BConcavePatient+4500_flipped at IoU 0.4: 4883.33ms
+2025-07-12 07:37:18,976 - DEBUG - Collision time for BConcave+BConcavePatient+4500_flipped at IoU 0.45: 4916.67ms
+2025-07-12 07:37:19,337 - DEBUG - Collision time for BConcave+BConcavePatient+4500_flipped at IoU 0.5: 4950.00ms
+2025-07-12 07:37:19,703 - DEBUG - Collision time for BConcave+BConcavePatient+4500_flipped at IoU 0.55: 4983.33ms
+2025-07-12 07:37:20,070 - DEBUG - Collision time for BConcave+BConcavePatient+4500_flipped at IoU 0.6: 5033.33ms
+2025-07-12 07:37:20,455 - DEBUG - Collision time for BConcave+BConcavePatient+4500_flipped at IoU 0.65: 5066.67ms
+2025-07-12 07:37:20,844 - DEBUG - Collision time for BConcave+BConcavePatient+4500_flipped at IoU 0.7: 5116.67ms
+2025-07-12 07:37:21,247 - DEBUG - No collision detected for BConcave+BConcavePatient+4500_flipped at IoU 0.75
+2025-07-12 07:37:21,651 - DEBUG - No collision detected for BConcave+BConcavePatient+4500_flipped at IoU 0.8
+2025-07-12 07:37:22,049 - DEBUG - No collision detected for BConcave+BConcavePatient+4500_flipped at IoU 0.85
+2025-07-12 07:37:22,455 - DEBUG - No collision detected for BConcave+BConcavePatient+4500_flipped at IoU 0.9
+2025-07-12 07:37:22,854 - DEBUG - No collision detected for BConcave+BConcavePatient+4500_flipped at IoU 0.95
+2025-07-12 07:37:22,854 - INFO - Processing video: BConcave+BConvex+3500_flipped
+2025-07-12 07:37:22,854 - INFO - Starting video processing: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/exp2TTC_files/BConcave+BConvex+3500_flipped.mp4
+2025-07-12 07:37:22,854 - INFO - Reset blob state tracking for new video
+2025-07-12 07:37:23,114 - INFO - Video metadata: {'width': 1500, 'height': 400, 'fps': 60.0, 'total_frames': 329, 'duration': 5.483333333333333}
+2025-07-12 07:37:23,118 - INFO - Starting processing from beginning
+2025-07-12 07:37:23,303 - INFO - Processed frame 0/329
+2025-07-12 07:37:23,541 - INFO - Processed frame 10/329
+2025-07-12 07:37:24,308 - DEBUG - Frame 13: Updated blob 1 memory with running average of 1 masks
+2025-07-12 07:37:25,277 - DEBUG - Frame 14: Updated blob 1 memory with running average of 2 masks
+2025-07-12 07:37:26,253 - DEBUG - Frame 15: Updated blob 1 memory with running average of 3 masks
+2025-07-12 07:37:27,227 - DEBUG - Frame 16: Updated blob 1 memory with running average of 4 masks
+2025-07-12 07:37:28,220 - DEBUG - Frame 17: Updated blob 1 memory with running average of 5 masks
+2025-07-12 07:37:29,424 - DEBUG - Frame 18: Updated blob 1 memory with running average of 6 masks
+2025-07-12 07:37:30,408 - DEBUG - Frame 19: Updated blob 1 memory with running average of 7 masks
+2025-07-12 07:37:31,397 - DEBUG - Frame 20: Updated blob 1 memory with running average of 8 masks
+2025-07-12 07:37:31,704 - INFO - Processed frame 20/329
+2025-07-12 07:37:32,382 - DEBUG - Frame 21: Updated blob 1 memory with running average of 9 masks
+2025-07-12 07:37:33,362 - DEBUG - Frame 22: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:37:34,351 - DEBUG - Frame 23: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:37:35,327 - DEBUG - Frame 24: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:37:36,334 - DEBUG - Frame 25: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:37:37,316 - DEBUG - Frame 26: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:37:38,296 - DEBUG - Frame 27: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:37:39,273 - DEBUG - Frame 28: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:37:40,261 - DEBUG - Frame 29: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:37:42,610 - DEBUG - Frame 30: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:37:42,915 - INFO - Processed frame 30/329
+2025-07-12 07:37:44,741 - DEBUG - Frame 31: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:37:47,075 - DEBUG - Frame 32: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:37:49,212 - DEBUG - Frame 33: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:37:51,586 - DEBUG - Frame 34: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:37:53,725 - DEBUG - Frame 35: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:37:56,085 - DEBUG - Frame 36: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:37:58,224 - DEBUG - Frame 37: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:38:00,633 - DEBUG - Frame 38: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:38:03,894 - DEBUG - Frame 39: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:38:06,349 - DEBUG - Frame 40: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:38:06,660 - INFO - Processed frame 40/329
+2025-07-12 07:38:08,893 - DEBUG - Frame 41: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:38:11,112 - DEBUG - Frame 42: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:38:14,622 - DEBUG - Frame 43: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:38:17,418 - DEBUG - Frame 44: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:38:20,313 - DEBUG - Frame 45: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:38:23,286 - DEBUG - Frame 46: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:38:27,177 - DEBUG - Frame 47: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:38:30,417 - DEBUG - Frame 48: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:38:33,113 - DEBUG - Frame 49: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:38:35,480 - DEBUG - Frame 50: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:38:35,793 - INFO - Processed frame 50/329
+2025-07-12 07:38:37,629 - DEBUG - Frame 51: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:38:39,968 - DEBUG - Frame 52: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:38:42,125 - DEBUG - Frame 53: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:38:44,465 - DEBUG - Frame 54: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:38:46,648 - DEBUG - Frame 55: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:38:49,009 - DEBUG - Frame 56: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:38:51,245 - DEBUG - Frame 57: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:38:53,396 - DEBUG - Frame 58: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:38:55,795 - DEBUG - Frame 59: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:38:57,944 - DEBUG - Frame 60: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:38:58,257 - INFO - Processed frame 60/329
+2025-07-12 07:39:00,296 - DEBUG - Frame 61: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:39:02,457 - DEBUG - Frame 62: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:39:04,813 - DEBUG - Frame 63: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:39:06,951 - DEBUG - Frame 64: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:39:09,322 - DEBUG - Frame 65: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:39:11,477 - DEBUG - Frame 66: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:39:13,617 - DEBUG - Frame 67: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:39:15,972 - DEBUG - Frame 68: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:39:18,122 - DEBUG - Frame 69: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:39:20,463 - DEBUG - Frame 70: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:39:20,774 - INFO - Processed frame 70/329
+2025-07-12 07:39:22,619 - DEBUG - Frame 71: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:39:24,979 - DEBUG - Frame 72: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:39:27,112 - DEBUG - Frame 73: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:39:29,479 - DEBUG - Frame 74: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:39:31,648 - DEBUG - Frame 75: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:39:33,778 - DEBUG - Frame 76: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:39:36,151 - DEBUG - Frame 77: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:39:38,294 - DEBUG - Frame 78: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:39:40,686 - DEBUG - Frame 79: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:39:42,808 - DEBUG - Frame 80: Blob 1 memory frozen, not updating running average
+2025-07-12 07:39:43,108 - INFO - Processed frame 80/329
+2025-07-12 07:39:45,118 - DEBUG - Frame 81: Blob 1 memory frozen, not updating running average
+2025-07-12 07:39:47,246 - DEBUG - Frame 82: Blob 1 memory frozen, not updating running average
+2025-07-12 07:39:49,584 - DEBUG - Frame 83: Blob 1 memory frozen, not updating running average
+2025-07-12 07:39:51,752 - DEBUG - Frame 84: Blob 1 memory frozen, not updating running average
+2025-07-12 07:39:53,878 - DEBUG - Frame 85: Blob 1 memory frozen, not updating running average
+2025-07-12 07:39:56,230 - DEBUG - Frame 86: Blob 1 memory frozen, not updating running average
+2025-07-12 07:39:58,374 - DEBUG - Frame 87: Blob 1 memory frozen, not updating running average
+2025-07-12 07:40:00,707 - DEBUG - Frame 88: Blob 1 memory frozen, not updating running average
+2025-07-12 07:40:02,839 - DEBUG - Frame 89: Blob 1 memory frozen, not updating running average
+2025-07-12 07:40:05,179 - DEBUG - Frame 90: Blob 1 memory frozen, not updating running average
+2025-07-12 07:40:05,485 - INFO - Processed frame 90/329
+2025-07-12 07:40:07,316 - DEBUG - Frame 91: Blob 1 memory frozen, not updating running average
+2025-07-12 07:40:09,642 - DEBUG - Frame 92: Blob 1 memory frozen, not updating running average
+2025-07-12 07:40:11,796 - DEBUG - Frame 93: Blob 1 memory frozen, not updating running average
+2025-07-12 07:40:14,135 - DEBUG - Frame 94: Blob 1 memory frozen, not updating running average
+2025-07-12 07:40:16,260 - DEBUG - Frame 95: Blob 1 memory frozen, not updating running average
+2025-07-12 07:40:16,576 - DEBUG - Frame 96: Only 1 blobs detected, missing count: 1
+2025-07-12 07:40:17,977 - DEBUG - Frame 97: Only 1 blobs detected, missing count: 2
+2025-07-12 07:40:19,307 - DEBUG - Frame 98: Only 1 blobs detected, missing count: 3
+2025-07-12 07:40:20,883 - DEBUG - Frame 99: Only 1 blobs detected, missing count: 4
+2025-07-12 07:40:22,294 - DEBUG - Frame 100: Only 1 blobs detected, missing count: 5
+2025-07-12 07:40:22,294 - INFO - Frame 100: Blob 1 marked as disappeared after 5 missing frames
+2025-07-12 07:40:23,661 - INFO - Processed frame 100/329
+2025-07-12 07:40:37,680 - INFO - Processed frame 110/329
+2025-07-12 07:40:51,981 - INFO - Processed frame 120/329
+2025-07-12 07:41:06,382 - INFO - Processed frame 130/329
+2025-07-12 07:41:20,430 - INFO - Processed frame 140/329
+2025-07-12 07:41:34,725 - INFO - Processed frame 150/329
+2025-07-12 07:41:49,497 - INFO - Processed frame 160/329
+2025-07-12 07:42:03,778 - INFO - Processed frame 170/329
+2025-07-12 07:42:17,959 - INFO - Processed frame 180/329
+2025-07-12 07:42:32,179 - INFO - Processed frame 190/329
+2025-07-12 07:42:46,740 - INFO - Processed frame 200/329
+2025-07-12 07:43:00,994 - INFO - Processed frame 210/329
+2025-07-12 07:43:15,071 - INFO - Processed frame 220/329
+2025-07-12 07:43:29,217 - INFO - Processed frame 230/329
+2025-07-12 07:43:43,332 - INFO - Processed frame 240/329
+2025-07-12 07:43:57,676 - INFO - Processed frame 250/329
+2025-07-12 07:44:12,170 - INFO - Processed frame 260/329
+2025-07-12 07:44:26,673 - INFO - Processed frame 270/329
+2025-07-12 07:44:41,225 - INFO - Processed frame 280/329
+2025-07-12 07:44:55,660 - INFO - Processed frame 290/329
+2025-07-12 07:45:10,238 - INFO - Processed frame 300/329
+2025-07-12 07:45:28,300 - INFO - Processed frame 310/329
+2025-07-12 07:45:42,946 - INFO - Processed frame 320/329
+2025-07-12 07:45:54,778 - INFO - Creating final video: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_videos/segformer_model-BConcave+BConvex+3500_flipped/videos_processed/segformer_model-BConcave+BConvex+3500_flipped.mp4
+2025-07-12 07:45:57,471 - INFO - Final video created successfully
+2025-07-12 07:45:57,475 - INFO - Video processing completed: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_videos/segformer_model-BConcave+BConvex+3500_flipped
+2025-07-12 07:45:57,475 - INFO - Video BConcave+BConvex+3500_flipped: Blob 1 disappeared at frame 100
+2025-07-12 07:45:57,475 - INFO - Video BConcave+BConvex+3500_flipped: Blob 1 memory strategy = running_average
+2025-07-12 07:45:57,476 - INFO - Video BConcave+BConvex+3500_flipped: Blob 1 memory frozen after frame 80
+2025-07-12 07:45:57,490 - INFO - Found 631 mask files
+2025-07-12 07:45:59,610 - INFO - Found 315 frames with valid blob data
+2025-07-12 07:45:59,899 - DEBUG - Collision time for BConcave+BConvex+3500_flipped at IoU 0.05: 3800.00ms
+2025-07-12 07:46:00,193 - DEBUG - Collision time for BConcave+BConvex+3500_flipped at IoU 0.1: 3966.67ms
+2025-07-12 07:46:00,507 - DEBUG - Collision time for BConcave+BConvex+3500_flipped at IoU 0.15: 4100.00ms
+2025-07-12 07:46:00,822 - DEBUG - Collision time for BConcave+BConvex+3500_flipped at IoU 0.2: 4200.00ms
+2025-07-12 07:46:01,142 - DEBUG - Collision time for BConcave+BConvex+3500_flipped at IoU 0.25: 4300.00ms
+2025-07-12 07:46:01,468 - DEBUG - Collision time for BConcave+BConvex+3500_flipped at IoU 0.3: 4416.67ms
+2025-07-12 07:46:01,806 - DEBUG - Collision time for BConcave+BConvex+3500_flipped at IoU 0.35: 4500.00ms
+2025-07-12 07:46:02,149 - DEBUG - Collision time for BConcave+BConvex+3500_flipped at IoU 0.4: 4616.67ms
+2025-07-12 07:46:02,557 - DEBUG - No collision detected for BConcave+BConvex+3500_flipped at IoU 0.45
+2025-07-12 07:46:02,971 - DEBUG - No collision detected for BConcave+BConvex+3500_flipped at IoU 0.5
+2025-07-12 07:46:03,382 - DEBUG - No collision detected for BConcave+BConvex+3500_flipped at IoU 0.55
+2025-07-12 07:46:03,822 - DEBUG - No collision detected for BConcave+BConvex+3500_flipped at IoU 0.6
+2025-07-12 07:46:04,244 - DEBUG - No collision detected for BConcave+BConvex+3500_flipped at IoU 0.65
+2025-07-12 07:46:04,654 - DEBUG - No collision detected for BConcave+BConvex+3500_flipped at IoU 0.7
+2025-07-12 07:46:05,063 - DEBUG - No collision detected for BConcave+BConvex+3500_flipped at IoU 0.75
+2025-07-12 07:46:05,469 - DEBUG - No collision detected for BConcave+BConvex+3500_flipped at IoU 0.8
+2025-07-12 07:46:05,879 - DEBUG - No collision detected for BConcave+BConvex+3500_flipped at IoU 0.85
+2025-07-12 07:46:06,289 - DEBUG - No collision detected for BConcave+BConvex+3500_flipped at IoU 0.9
+2025-07-12 07:46:06,701 - DEBUG - No collision detected for BConcave+BConvex+3500_flipped at IoU 0.95
+2025-07-12 07:46:06,702 - INFO - Processing video: BConcave+BConvex+3700
+2025-07-12 07:46:06,702 - INFO - Starting video processing: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/exp2TTC_files/BConcave+BConvex+3700.mp4
+2025-07-12 07:46:06,702 - INFO - Reset blob state tracking for new video
+2025-07-12 07:46:06,948 - INFO - Video metadata: {'width': 1500, 'height': 400, 'fps': 60.0, 'total_frames': 329, 'duration': 5.483333333333333}
+2025-07-12 07:46:06,952 - INFO - Starting processing from beginning
+2025-07-12 07:46:07,140 - INFO - Processed frame 0/329
+2025-07-12 07:46:07,347 - INFO - Processed frame 10/329
+2025-07-12 07:46:08,140 - DEBUG - Frame 13: Updated blob 1 memory with running average of 1 masks
+2025-07-12 07:46:09,134 - DEBUG - Frame 14: Updated blob 1 memory with running average of 2 masks
+2025-07-12 07:46:10,135 - DEBUG - Frame 15: Updated blob 1 memory with running average of 3 masks
+2025-07-12 07:46:11,154 - DEBUG - Frame 16: Updated blob 1 memory with running average of 4 masks
+2025-07-12 07:46:12,158 - DEBUG - Frame 17: Updated blob 1 memory with running average of 5 masks
+2025-07-12 07:46:13,155 - DEBUG - Frame 18: Updated blob 1 memory with running average of 6 masks
+2025-07-12 07:46:14,159 - DEBUG - Frame 19: Updated blob 1 memory with running average of 7 masks
+2025-07-12 07:46:15,169 - DEBUG - Frame 20: Updated blob 1 memory with running average of 8 masks
+2025-07-12 07:46:15,466 - INFO - Processed frame 20/329
+2025-07-12 07:46:16,190 - DEBUG - Frame 21: Updated blob 1 memory with running average of 9 masks
+2025-07-12 07:46:17,412 - DEBUG - Frame 22: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:46:18,561 - DEBUG - Frame 23: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:46:19,570 - DEBUG - Frame 24: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:46:20,581 - DEBUG - Frame 25: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:46:21,585 - DEBUG - Frame 26: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:46:22,617 - DEBUG - Frame 27: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:46:23,620 - DEBUG - Frame 28: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:46:24,624 - DEBUG - Frame 29: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:46:26,990 - DEBUG - Frame 30: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:46:27,285 - INFO - Processed frame 30/329
+2025-07-12 07:46:29,146 - DEBUG - Frame 31: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:46:31,293 - DEBUG - Frame 32: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:46:33,678 - DEBUG - Frame 33: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:46:35,834 - DEBUG - Frame 34: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:46:38,178 - DEBUG - Frame 35: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:46:40,326 - DEBUG - Frame 36: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:46:42,680 - DEBUG - Frame 37: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:46:44,842 - DEBUG - Frame 38: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:46:47,197 - DEBUG - Frame 39: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:46:49,359 - DEBUG - Frame 40: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:46:49,658 - INFO - Processed frame 40/329
+2025-07-12 07:46:51,532 - DEBUG - Frame 41: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:46:53,925 - DEBUG - Frame 42: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:46:56,072 - DEBUG - Frame 43: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:46:58,439 - DEBUG - Frame 44: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:47:00,606 - DEBUG - Frame 45: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:47:02,957 - DEBUG - Frame 46: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:47:05,106 - DEBUG - Frame 47: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:47:07,452 - DEBUG - Frame 48: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:47:09,599 - DEBUG - Frame 49: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:47:11,984 - DEBUG - Frame 50: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:47:12,282 - INFO - Processed frame 50/329
+2025-07-12 07:47:14,162 - DEBUG - Frame 51: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:47:16,544 - DEBUG - Frame 52: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:47:18,709 - DEBUG - Frame 53: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:47:20,883 - DEBUG - Frame 54: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:47:23,315 - DEBUG - Frame 55: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:47:25,491 - DEBUG - Frame 56: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:47:27,837 - DEBUG - Frame 57: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:47:30,000 - DEBUG - Frame 58: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:47:32,361 - DEBUG - Frame 59: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:47:34,519 - DEBUG - Frame 60: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:47:34,811 - INFO - Processed frame 60/329
+2025-07-12 07:47:36,868 - DEBUG - Frame 61: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:47:39,013 - DEBUG - Frame 62: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:47:41,172 - DEBUG - Frame 63: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:47:43,540 - DEBUG - Frame 64: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:47:45,685 - DEBUG - Frame 65: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:47:48,049 - DEBUG - Frame 66: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:47:50,188 - DEBUG - Frame 67: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:47:52,536 - DEBUG - Frame 68: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:47:54,685 - DEBUG - Frame 69: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:47:57,046 - DEBUG - Frame 70: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:47:57,339 - INFO - Processed frame 70/329
+2025-07-12 07:47:59,195 - DEBUG - Frame 71: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:48:01,566 - DEBUG - Frame 72: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:48:03,712 - DEBUG - Frame 73: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:48:05,913 - DEBUG - Frame 74: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:48:08,354 - DEBUG - Frame 75: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:48:10,521 - DEBUG - Frame 76: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:48:12,883 - DEBUG - Frame 77: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:48:15,026 - DEBUG - Frame 78: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:48:17,373 - DEBUG - Frame 79: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:48:19,519 - DEBUG - Frame 80: Blob 1 memory frozen, not updating running average
+2025-07-12 07:48:19,820 - INFO - Processed frame 80/329
+2025-07-12 07:48:21,883 - DEBUG - Frame 81: Blob 1 memory frozen, not updating running average
+2025-07-12 07:48:24,039 - DEBUG - Frame 82: Blob 1 memory frozen, not updating running average
+2025-07-12 07:48:26,392 - DEBUG - Frame 83: Blob 1 memory frozen, not updating running average
+2025-07-12 07:48:28,547 - DEBUG - Frame 84: Blob 1 memory frozen, not updating running average
+2025-07-12 07:48:30,920 - DEBUG - Frame 85: Blob 1 memory frozen, not updating running average
+2025-07-12 07:48:33,070 - DEBUG - Frame 86: Blob 1 memory frozen, not updating running average
+2025-07-12 07:48:35,214 - DEBUG - Frame 87: Blob 1 memory frozen, not updating running average
+2025-07-12 07:48:37,589 - DEBUG - Frame 88: Blob 1 memory frozen, not updating running average
+2025-07-12 07:48:39,742 - DEBUG - Frame 89: Blob 1 memory frozen, not updating running average
+2025-07-12 07:48:42,087 - DEBUG - Frame 90: Blob 1 memory frozen, not updating running average
+2025-07-12 07:48:42,380 - INFO - Processed frame 90/329
+2025-07-12 07:48:44,215 - DEBUG - Frame 91: Blob 1 memory frozen, not updating running average
+2025-07-12 07:48:46,576 - DEBUG - Frame 92: Blob 1 memory frozen, not updating running average
+2025-07-12 07:48:48,729 - DEBUG - Frame 93: Blob 1 memory frozen, not updating running average
+2025-07-12 07:48:51,078 - DEBUG - Frame 94: Blob 1 memory frozen, not updating running average
+2025-07-12 07:48:51,387 - DEBUG - Frame 95: Only 1 blobs detected, missing count: 1
+2025-07-12 07:48:52,808 - DEBUG - Frame 96: Only 1 blobs detected, missing count: 2
+2025-07-12 07:48:54,134 - DEBUG - Frame 97: Only 1 blobs detected, missing count: 3
+2025-07-12 07:48:55,477 - DEBUG - Frame 98: Only 1 blobs detected, missing count: 4
+2025-07-12 07:48:57,044 - DEBUG - Frame 99: Only 1 blobs detected, missing count: 5
+2025-07-12 07:48:57,044 - INFO - Frame 99: Blob 1 marked as disappeared after 5 missing frames
+2025-07-12 07:48:59,716 - INFO - Processed frame 100/329
+2025-07-12 07:49:13,614 - INFO - Processed frame 110/329
+2025-07-12 07:49:27,708 - INFO - Processed frame 120/329
+2025-07-12 07:49:41,738 - INFO - Processed frame 130/329
+2025-07-12 07:49:55,704 - INFO - Processed frame 140/329
+2025-07-12 07:50:09,835 - INFO - Processed frame 150/329
+2025-07-12 07:50:23,745 - INFO - Processed frame 160/329
+2025-07-12 07:50:37,726 - INFO - Processed frame 170/329
+2025-07-12 07:50:51,731 - INFO - Processed frame 180/329
+2025-07-12 07:51:05,859 - INFO - Processed frame 190/329
+2025-07-12 07:51:20,098 - INFO - Processed frame 200/329
+2025-07-12 07:51:34,090 - INFO - Processed frame 210/329
+2025-07-12 07:51:48,595 - INFO - Processed frame 220/329
+2025-07-12 07:52:02,686 - INFO - Processed frame 230/329
+2025-07-12 07:52:16,903 - INFO - Processed frame 240/329
+2025-07-12 07:52:31,245 - INFO - Processed frame 250/329
+2025-07-12 07:52:46,438 - INFO - Processed frame 260/329
+2025-07-12 07:53:06,910 - INFO - Processed frame 270/329
+2025-07-12 07:53:28,246 - INFO - Processed frame 280/329
+2025-07-12 07:53:42,229 - INFO - Processed frame 290/329
+2025-07-12 07:53:56,513 - INFO - Processed frame 300/329
+2025-07-12 07:54:10,459 - INFO - Processed frame 310/329
+2025-07-12 07:54:24,584 - INFO - Processed frame 320/329
+2025-07-12 07:54:35,868 - INFO - Creating final video: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_videos/segformer_model-BConcave+BConvex+3700/videos_processed/segformer_model-BConcave+BConvex+3700.mp4
+2025-07-12 07:54:38,630 - INFO - Final video created successfully
+2025-07-12 07:54:38,634 - INFO - Video processing completed: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_videos/segformer_model-BConcave+BConvex+3700
+2025-07-12 07:54:38,634 - INFO - Video BConcave+BConvex+3700: Blob 1 disappeared at frame 99
+2025-07-12 07:54:38,634 - INFO - Video BConcave+BConvex+3700: Blob 1 memory strategy = running_average
+2025-07-12 07:54:38,634 - INFO - Video BConcave+BConvex+3700: Blob 1 memory frozen after frame 80
+2025-07-12 07:54:38,651 - INFO - Found 631 mask files
+2025-07-12 07:54:40,895 - INFO - Found 315 frames with valid blob data
+2025-07-12 07:54:41,308 - DEBUG - No collision detected for BConcave+BConvex+3700 at IoU 0.05
+2025-07-12 07:54:41,721 - DEBUG - No collision detected for BConcave+BConvex+3700 at IoU 0.1
+2025-07-12 07:54:42,132 - DEBUG - No collision detected for BConcave+BConvex+3700 at IoU 0.15
+2025-07-12 07:54:42,553 - DEBUG - No collision detected for BConcave+BConvex+3700 at IoU 0.2
+2025-07-12 07:54:42,988 - DEBUG - No collision detected for BConcave+BConvex+3700 at IoU 0.25
+2025-07-12 07:54:43,399 - DEBUG - No collision detected for BConcave+BConvex+3700 at IoU 0.3
+2025-07-12 07:54:43,814 - DEBUG - No collision detected for BConcave+BConvex+3700 at IoU 0.35
+2025-07-12 07:54:44,226 - DEBUG - No collision detected for BConcave+BConvex+3700 at IoU 0.4
+2025-07-12 07:54:44,637 - DEBUG - No collision detected for BConcave+BConvex+3700 at IoU 0.45
+2025-07-12 07:54:45,047 - DEBUG - No collision detected for BConcave+BConvex+3700 at IoU 0.5
+2025-07-12 07:54:45,458 - DEBUG - No collision detected for BConcave+BConvex+3700 at IoU 0.55
+2025-07-12 07:54:45,872 - DEBUG - No collision detected for BConcave+BConvex+3700 at IoU 0.6
+2025-07-12 07:54:46,298 - DEBUG - No collision detected for BConcave+BConvex+3700 at IoU 0.65
+2025-07-12 07:54:46,730 - DEBUG - No collision detected for BConcave+BConvex+3700 at IoU 0.7
+2025-07-12 07:54:47,140 - DEBUG - No collision detected for BConcave+BConvex+3700 at IoU 0.75
+2025-07-12 07:54:47,556 - DEBUG - No collision detected for BConcave+BConvex+3700 at IoU 0.8
+2025-07-12 07:54:47,967 - DEBUG - No collision detected for BConcave+BConvex+3700 at IoU 0.85
+2025-07-12 07:54:48,376 - DEBUG - No collision detected for BConcave+BConvex+3700 at IoU 0.9
+2025-07-12 07:54:48,788 - DEBUG - No collision detected for BConcave+BConvex+3700 at IoU 0.95
+2025-07-12 07:54:48,788 - INFO - Processing video: BConcave+BConvex+3900_flipped
+2025-07-12 07:54:48,788 - INFO - Starting video processing: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/exp2TTC_files/BConcave+BConvex+3900_flipped.mp4
+2025-07-12 07:54:48,788 - INFO - Reset blob state tracking for new video
+2025-07-12 07:54:49,149 - INFO - Video metadata: {'width': 1500, 'height': 400, 'fps': 60.0, 'total_frames': 329, 'duration': 5.483333333333333}
+2025-07-12 07:54:49,154 - INFO - Starting processing from beginning
+2025-07-12 07:54:49,347 - INFO - Processed frame 0/329
+2025-07-12 07:54:49,586 - INFO - Processed frame 10/329
+2025-07-12 07:54:50,356 - DEBUG - Frame 13: Updated blob 1 memory with running average of 1 masks
+2025-07-12 07:54:51,334 - DEBUG - Frame 14: Updated blob 1 memory with running average of 2 masks
+2025-07-12 07:54:52,321 - DEBUG - Frame 15: Updated blob 1 memory with running average of 3 masks
+2025-07-12 07:54:53,300 - DEBUG - Frame 16: Updated blob 1 memory with running average of 4 masks
+2025-07-12 07:54:54,283 - DEBUG - Frame 17: Updated blob 1 memory with running average of 5 masks
+2025-07-12 07:54:55,264 - DEBUG - Frame 18: Updated blob 1 memory with running average of 6 masks
+2025-07-12 07:54:56,241 - DEBUG - Frame 19: Updated blob 1 memory with running average of 7 masks
+2025-07-12 07:54:57,226 - DEBUG - Frame 20: Updated blob 1 memory with running average of 8 masks
+2025-07-12 07:54:57,526 - INFO - Processed frame 20/329
+2025-07-12 07:54:58,225 - DEBUG - Frame 21: Updated blob 1 memory with running average of 9 masks
+2025-07-12 07:54:59,426 - DEBUG - Frame 22: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:55:00,406 - DEBUG - Frame 23: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:55:01,386 - DEBUG - Frame 24: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:55:02,376 - DEBUG - Frame 25: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:55:03,352 - DEBUG - Frame 26: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:55:04,333 - DEBUG - Frame 27: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:55:05,309 - DEBUG - Frame 28: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:55:06,295 - DEBUG - Frame 29: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:55:08,601 - DEBUG - Frame 30: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:55:08,900 - INFO - Processed frame 30/329
+2025-07-12 07:55:10,738 - DEBUG - Frame 31: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:55:12,858 - DEBUG - Frame 32: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:55:15,219 - DEBUG - Frame 33: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:55:17,346 - DEBUG - Frame 34: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:55:19,675 - DEBUG - Frame 35: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:55:21,811 - DEBUG - Frame 36: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:55:24,139 - DEBUG - Frame 37: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:55:26,258 - DEBUG - Frame 38: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:55:28,613 - DEBUG - Frame 39: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:55:30,745 - DEBUG - Frame 40: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:55:31,047 - INFO - Processed frame 40/329
+2025-07-12 07:55:33,070 - DEBUG - Frame 41: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:55:35,188 - DEBUG - Frame 42: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:55:37,306 - DEBUG - Frame 43: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:55:39,657 - DEBUG - Frame 44: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:55:41,798 - DEBUG - Frame 45: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:55:44,120 - DEBUG - Frame 46: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:55:46,250 - DEBUG - Frame 47: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:55:48,572 - DEBUG - Frame 48: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:55:50,719 - DEBUG - Frame 49: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:55:53,049 - DEBUG - Frame 50: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:55:53,353 - INFO - Processed frame 50/329
+2025-07-12 07:55:55,173 - DEBUG - Frame 51: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:55:57,537 - DEBUG - Frame 52: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:55:59,679 - DEBUG - Frame 53: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:56:02,060 - DEBUG - Frame 54: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:56:04,324 - DEBUG - Frame 55: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:56:06,455 - DEBUG - Frame 56: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:56:08,805 - DEBUG - Frame 57: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:56:10,955 - DEBUG - Frame 58: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:56:13,277 - DEBUG - Frame 59: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:56:15,401 - DEBUG - Frame 60: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:56:15,697 - INFO - Processed frame 60/329
+2025-07-12 07:56:17,747 - DEBUG - Frame 61: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:56:19,868 - DEBUG - Frame 62: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:56:22,212 - DEBUG - Frame 63: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:56:24,339 - DEBUG - Frame 64: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:56:26,688 - DEBUG - Frame 65: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:56:28,833 - DEBUG - Frame 66: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:56:31,211 - DEBUG - Frame 67: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:56:33,344 - DEBUG - Frame 68: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:56:35,476 - DEBUG - Frame 69: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:56:37,840 - DEBUG - Frame 70: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:56:38,137 - INFO - Processed frame 70/329
+2025-07-12 07:56:39,968 - DEBUG - Frame 71: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:56:42,312 - DEBUG - Frame 72: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:56:44,507 - DEBUG - Frame 73: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:56:46,871 - DEBUG - Frame 74: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:56:49,026 - DEBUG - Frame 75: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:56:51,555 - DEBUG - Frame 76: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:56:53,838 - DEBUG - Frame 77: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:56:56,221 - DEBUG - Frame 78: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:56:58,397 - DEBUG - Frame 79: Updated blob 1 memory with running average of 10 masks
+2025-07-12 07:57:00,582 - DEBUG - Frame 80: Blob 1 memory frozen, not updating running average
+2025-07-12 07:57:01,108 - INFO - Processed frame 80/329
+2025-07-12 07:57:02,916 - DEBUG - Frame 81: Blob 1 memory frozen, not updating running average
+2025-07-12 07:57:05,035 - DEBUG - Frame 82: Blob 1 memory frozen, not updating running average
+2025-07-12 07:57:07,373 - DEBUG - Frame 83: Blob 1 memory frozen, not updating running average
+2025-07-12 07:57:09,485 - DEBUG - Frame 84: Blob 1 memory frozen, not updating running average
+2025-07-12 07:57:11,826 - DEBUG - Frame 85: Blob 1 memory frozen, not updating running average
+2025-07-12 07:57:13,956 - DEBUG - Frame 86: Blob 1 memory frozen, not updating running average
+2025-07-12 07:57:16,287 - DEBUG - Frame 87: Blob 1 memory frozen, not updating running average
+2025-07-12 07:57:18,461 - DEBUG - Frame 88: Blob 1 memory frozen, not updating running average
+2025-07-12 07:57:20,840 - DEBUG - Frame 89: Blob 1 memory frozen, not updating running average
+2025-07-12 07:57:23,001 - DEBUG - Frame 90: Blob 1 memory frozen, not updating running average
+2025-07-12 07:57:23,297 - INFO - Processed frame 90/329
+2025-07-12 07:57:25,400 - DEBUG - Frame 91: Blob 1 memory frozen, not updating running average
+2025-07-12 07:57:27,786 - DEBUG - Frame 92: Blob 1 memory frozen, not updating running average
+2025-07-12 07:57:30,555 - DEBUG - Frame 93: Blob 1 memory frozen, not updating running average
+2025-07-12 07:57:32,722 - DEBUG - Frame 94: Blob 1 memory frozen, not updating running average
+2025-07-12 07:57:33,033 - DEBUG - Frame 95: Only 1 blobs detected, missing count: 1
+2025-07-12 07:57:34,431 - DEBUG - Frame 96: Only 1 blobs detected, missing count: 2
+2025-07-12 07:57:35,813 - DEBUG - Frame 97: Only 1 blobs detected, missing count: 3
+2025-07-12 07:57:37,409 - DEBUG - Frame 98: Only 1 blobs detected, missing count: 4
+2025-07-12 07:57:38,781 - DEBUG - Frame 99: Only 1 blobs detected, missing count: 5
+2025-07-12 07:57:38,781 - INFO - Frame 99: Blob 1 marked as disappeared after 5 missing frames
+2025-07-12 07:57:41,545 - INFO - Processed frame 100/329
+2025-07-12 07:57:55,944 - INFO - Processed frame 110/329
+2025-07-12 07:58:10,224 - INFO - Processed frame 120/329
+2025-07-12 07:58:24,664 - INFO - Processed frame 130/329
+2025-07-12 07:58:38,941 - INFO - Processed frame 140/329
+2025-07-12 07:58:52,773 - INFO - Processed frame 150/329
+2025-07-12 07:59:06,953 - INFO - Processed frame 160/329
+2025-07-12 07:59:21,103 - INFO - Processed frame 170/329
