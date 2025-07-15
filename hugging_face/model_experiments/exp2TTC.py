@@ -165,15 +165,28 @@ class TTCExperiment:
             video_name = Path(video_file).stem
             self.logger.info(f"Processing video: {video_name}")
             
-            # Use VideoProcessor to process the entire video
-            try:
+            # Check if video already processed (simple check: videos_processed folder exists)
+            expected_output_dir = os.path.join(self.processed_videos_dir, f"segformer_model-{video_name}")
+            videos_processed_dir = os.path.join(expected_output_dir, "videos_processed")
+            
+            if resume and os.path.exists(videos_processed_dir):
+                self.logger.info(f"Video {video_name} already processed, skipping...")
+                # Create mock output dirs for consistency
+                video_output_dirs = self.video_processor.setup_output_directories(
+                    video_path=video_file,
+                    output_root=self.processed_videos_dir,
+                    model_prefix="segformer_model"
+                )
+            else:
+                # Process the video
                 video_output_dirs = self.video_processor.process_video(
                     video_path=video_file,
                     output_root=self.processed_videos_dir,
                     model_prefix="segformer_model",
-                    resume=resume
+                    resume=False  # Always start fresh since we do the check above
                 )
-                
+            
+            try:
                 # Log blob state information
                 self._log_blob_state_info(video_name, video_output_dirs)
                 
@@ -211,7 +224,7 @@ class TTCExperiment:
                         self.logger.debug(f"Collision time for {video_name} at IoU {iou_threshold}: {collision_time:.2f}ms")
                     else:
                         self.logger.debug(f"No collision detected for {video_name} at IoU {iou_threshold}")
-                    
+                        
             except Exception as e:
                 self.logger.error(f"Failed to process video {video_name}: {e}")
                 continue
@@ -424,6 +437,11 @@ class TTCExperiment:
         self._generate_summary_analysis(
             out_dir / "summary", iou_thr, video_names, collision_data, participant_df
         )
+        
+        # Convex vs Concave analysis
+        self._analyze_convex_vs_concave(
+            out_dir / "convex_vs_concave", iou_thr, video_names, collision_data, participant_df
+        )
 
     def _analyze_individual_participants(self, output_dir: Path, iou_thr: float, video_names: List[str],
                                        collision_data: Dict[Tuple[str, float], float], 
@@ -593,6 +611,226 @@ class TTCExperiment:
                 return video_name
         
         return None
+    
+    def _parse_video_name(self, video_name: str) -> Dict[str, Any]:
+        """
+        Parse video name to extract concave/convex information and ground truth time.
+        
+        Expected format: something like "BConcave+AConcave+3500" or "BConvex+AConvex+2000"
+        """
+        # Remove file extension if present
+        base_name = video_name.replace('.mp4', '').replace('.avi', '')
+        
+        # Split by '+' to get components
+        parts = base_name.split('+')
+        
+        if len(parts) < 3:
+            return {"is_concave": None, "ground_truth": None, "tokens": parts}
+        
+        # Extract ground truth time (usually the last numeric part)
+        ground_truth = None
+        for part in reversed(parts):
+            try:
+                # Try to extract number from the part
+                import re
+                numbers = re.findall(r'\d+', part)
+                if numbers:
+                    ground_truth = int(numbers[-1])
+                    break
+            except:
+                continue
+        
+        # Determine if concave or convex based on tokens
+        # Look for "Concave" or "Convex" in the parts
+        is_concave = None
+        concave_count = 0
+        convex_count = 0
+        
+        for part in parts:
+            part_lower = part.lower()
+            if 'concave' in part_lower:
+                concave_count += 1
+            elif 'convex' in part_lower:
+                convex_count += 1
+        
+        # Determine overall classification
+        if concave_count > convex_count:
+            is_concave = True
+        elif convex_count > concave_count:
+            is_concave = False
+        # If equal or neither found, leave as None
+        
+        return {
+            "is_concave": is_concave,
+            "ground_truth": ground_truth,
+            "tokens": parts,
+            "concave_count": concave_count,
+            "convex_count": convex_count
+        }
+    
+    def _is_concave_token(self, token: str) -> bool:
+        """Check if a token represents concave shape."""
+        return "concave" in token.lower()
+    
+    def _analyze_convex_vs_concave(self, output_dir: Path, iou_thr: float, video_names: List[str],
+                                 collision_data: Dict[Tuple[str, float], float], 
+                                 participant_df: pd.DataFrame) -> None:
+        """
+        Analyze differences between concave and convex videos, similar to original data_analysis_v2.py.
+        """
+        output_dir.mkdir(exist_ok=True)
+        
+        # Parse all video names to get concave/convex info
+        video_info = {}
+        for video_name in video_names:
+            parsed = self._parse_video_name(video_name)
+            if parsed['is_concave'] is not None and parsed['ground_truth'] is not None:
+                video_info[video_name] = parsed
+        
+        if not video_info:
+            self.logger.warning(f"No videos with valid concave/convex info for IoU {iou_thr}")
+            return
+        
+        # Group by ground truth time
+        gt_to_concave_vals = {}
+        gt_to_convex_vals = {}
+        
+        # Model data: group collision times by ground truth and concave/convex
+        for video_name, info in video_info.items():
+            gt = info['ground_truth']
+            is_concave = info['is_concave']
+            collision_time = collision_data.get((video_name, iou_thr), float('nan'))
+            
+            if not np.isnan(collision_time):
+                if is_concave:
+                    gt_to_concave_vals.setdefault(gt, []).append(collision_time)
+                else:
+                    gt_to_convex_vals.setdefault(gt, []).append(collision_time)
+        
+        # Human data: group by ground truth and is_concave from CSV
+        if 'groundTruth' in participant_df.columns and 'is_concave' in participant_df.columns:
+            df_grouped = participant_df.groupby(['groundTruth', 'is_concave'])['rt'].mean().reset_index()
+            
+            # Convert to the same format as model data
+            human_gt_to_concave = {}
+            human_gt_to_convex = {}
+            
+            for _, row in df_grouped.iterrows():
+                gt = row['groundTruth']
+                is_concave = bool(row['is_concave'])
+                avg_rt = row['rt']
+                
+                if is_concave:
+                    human_gt_to_concave.setdefault(gt, []).append(avg_rt)
+                else:
+                    human_gt_to_convex.setdefault(gt, []).append(avg_rt)
+        else:
+            self.logger.warning("No groundTruth or is_concave columns in participant data")
+            human_gt_to_concave = {}
+            human_gt_to_convex = {}
+        
+        # Compute differences for each ground truth time
+        gt_sorted = sorted(set(list(gt_to_concave_vals.keys()) + list(gt_to_convex_vals.keys())))
+        
+        model_diffs = []
+        human_diffs = []
+        
+        for gt in gt_sorted:
+            # Model differences
+            model_concave_times = gt_to_concave_vals.get(gt, [])
+            model_convex_times = gt_to_convex_vals.get(gt, [])
+            
+            if model_concave_times and model_convex_times:
+                mean_concave = np.mean(model_concave_times)
+                mean_convex = np.mean(model_convex_times)
+                model_diff = abs(mean_concave - mean_convex)
+            else:
+                model_diff = float('nan')
+            model_diffs.append(model_diff)
+            
+            # Human differences
+            human_concave_times = human_gt_to_concave.get(gt, [])
+            human_convex_times = human_gt_to_convex.get(gt, [])
+            
+            if human_concave_times and human_convex_times:
+                mean_concave = np.mean(human_concave_times)
+                mean_convex = np.mean(human_convex_times)
+                human_diff = abs(mean_concave - mean_convex)
+            else:
+                human_diff = float('nan')
+            human_diffs.append(human_diff)
+        
+        # Create visualization
+        x_indices = np.arange(len(gt_sorted))
+        width = 0.35
+        
+        fig, ax = plt.subplots(figsize=(10, 6))
+        
+        # Filter out NaN values for plotting
+        valid_indices = []
+        valid_model_diffs = []
+        valid_human_diffs = []
+        valid_gt_labels = []
+        
+        for i, (model_diff, human_diff) in enumerate(zip(model_diffs, human_diffs)):
+            if not (np.isnan(model_diff) and np.isnan(human_diff)):
+                valid_indices.append(i)
+                valid_model_diffs.append(model_diff if not np.isnan(model_diff) else 0)
+                valid_human_diffs.append(human_diff if not np.isnan(human_diff) else 0)
+                valid_gt_labels.append(str(gt_sorted[i]))
+        
+        if valid_indices:
+            x_valid = np.arange(len(valid_indices))
+            
+            bars1 = ax.bar(x_valid - width/2, valid_model_diffs, width, label='Model', alpha=0.7)
+            bars2 = ax.bar(x_valid + width/2, valid_human_diffs, width, label='Human', alpha=0.7)
+            
+            ax.set_xlabel('Ground Truth Time (ms)')
+            ax.set_ylabel('Concave vs Convex Absolute Difference (ms)')
+            ax.set_title(f'Concave vs Convex Differences, IoU={iou_thr}')
+            ax.set_xticks(x_valid)
+            ax.set_xticklabels(valid_gt_labels)
+            ax.legend()
+            ax.grid(True, alpha=0.3)
+            
+            # Add value labels on bars
+            for bar, val in zip(bars1, valid_model_diffs):
+                if val > 0:  # Only label non-zero bars
+                    ax.text(bar.get_x() + bar.get_width()/2, bar.get_height() + max(valid_model_diffs + valid_human_diffs)*0.01,
+                           f'{val:.1f}', ha='center', va='bottom', fontsize=8)
+            
+            for bar, val in zip(bars2, valid_human_diffs):
+                if val > 0:  # Only label non-zero bars
+                    ax.text(bar.get_x() + bar.get_width()/2, bar.get_height() + max(valid_model_diffs + valid_human_diffs)*0.01,
+                           f'{val:.1f}', ha='center', va='bottom', fontsize=8)
+        else:
+            ax.text(0.5, 0.5, 'No valid data for comparison', ha='center', va='center', transform=ax.transAxes)
+            ax.set_title(f'Concave vs Convex Differences, IoU={iou_thr} (No Data)')
+        
+        plt.tight_layout()
+        
+        # Save plot
+        plot_path = output_dir / "concave_vs_convex.png"
+        plt.savefig(plot_path, dpi=300, bbox_inches='tight')
+        plt.close(fig)
+        
+        # Save data
+        analysis_data = {
+            "iou_threshold": float(iou_thr),
+            "ground_truth_times": gt_sorted,
+            "model_differences": [float(d) if not np.isnan(d) else None for d in model_diffs],
+            "human_differences": [float(d) if not np.isnan(d) else None for d in human_diffs],
+            "video_info": {k: v for k, v in video_info.items()},
+            "summary": {
+                "valid_comparisons": len(valid_indices),
+                "total_ground_truth_times": len(gt_sorted)
+            }
+        }
+        
+        with open(output_dir / "concave_vs_convex_analysis.json", 'w') as f:
+            json.dump(analysis_data, f, indent=2)
+        
+        self.logger.info(f"Convex vs Concave analysis completed for IoU {iou_thr}")
 
     def _compute_correlation(self, xvals: List[float], yvals: List[float]) -> float:
         """

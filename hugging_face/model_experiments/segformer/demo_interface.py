@@ -24,7 +24,9 @@ import matplotlib.pyplot as plt
 
 # Add parent directory to path to import segformer_interface
 sys.path.append(str(Path(__file__).parent))
+sys.path.append(str(Path(__file__).parent.parent))  # To access vanilla_segmentation
 from segformer_interface import SegFormerInterface
+from vanilla_segmentation import VanillaSegmentationSaver
 
 
 def setup_logging():
@@ -176,6 +178,8 @@ def main():
     parser.add_argument("--output_dir", type=str, default="test_outputs", help="Output directory for saved files")
     parser.add_argument("--model_name", type=str, default="nvidia/segformer-b5-finetuned-ade-640-640", 
                        help="SegFormer model name")
+    parser.add_argument("--enable_vanilla_segmentation", action="store_true", 
+                       help="Enable vanilla segmentation saving")
     
     args = parser.parse_args()
     
@@ -214,6 +218,25 @@ def main():
         
         # Analyze results
         analyze_predictions(predictions, logger)
+        
+        # Save vanilla segmentation if enabled
+        if args.enable_vanilla_segmentation:
+            logger.info("Saving vanilla segmentation results...")
+            if args.save_output:
+                vanilla_output_dir = os.path.join(args.output_dir, "vanilla_segmentation")
+            else:
+                vanilla_output_dir = "vanilla_segmentation_demo"
+            
+            vanilla_saver = VanillaSegmentationSaver(
+                model_interface=interface,
+                output_dir=vanilla_output_dir,
+                logger=logger
+            )
+            
+            vanilla_results = vanilla_saver.save_frame_segmentation(image, frame_idx=0)
+            logger.info(f"Vanilla segmentation saved to: {vanilla_output_dir}")
+            if vanilla_results:
+                logger.info(f"Generated files: {list(vanilla_results.keys())}")
         
         # Visualize results
         logger.info("Generating visualizations...")

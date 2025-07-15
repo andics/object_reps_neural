@@ -28,6 +28,7 @@ from skimage.measure import label, regionprops, find_contours
 from scipy.optimize import linear_sum_assignment
 
 from segformer.segformer_interface import ModelInterface
+from vanilla_segmentation import VanillaSegmentationSaver
 
 
 class VideoProcessor:
@@ -51,7 +52,7 @@ class VideoProcessor:
     
     def __init__(self, model_interface: ModelInterface, n_blobs: int = 2, logger: logging.Logger = None,
                  blob_1_memory_strategy: str = 'exponential', blob_1_running_avg_window: int = 10,
-                 blob_1_memory_freeze_frame: Optional[int] = None):
+                 blob_1_memory_freeze_frame: Optional[int] = None, enable_vanilla_segmentation: bool = True):
         self.model_interface = model_interface
         self.logger = logger or logging.getLogger(__name__)
         
@@ -65,6 +66,10 @@ class VideoProcessor:
         self.blob_1_memory_strategy = blob_1_memory_strategy
         self.blob_1_running_avg_window = blob_1_running_avg_window
         self.blob_1_memory_freeze_frame = blob_1_memory_freeze_frame
+        
+        # Vanilla segmentation option
+        self.enable_vanilla_segmentation = enable_vanilla_segmentation
+        self.vanilla_saver = None
         
         # Memory for tracking masks across frames
         self.mem_floats = None
@@ -88,6 +93,8 @@ class VideoProcessor:
             self.logger.info(f"Blob 1 running average window: {self.blob_1_running_avg_window}")
         if self.blob_1_memory_freeze_frame is not None:
             self.logger.info(f"Blob 1 memory will freeze after frame: {self.blob_1_memory_freeze_frame}")
+        if self.enable_vanilla_segmentation:
+            self.logger.info("Vanilla segmentation enabled")
         
     def setup_output_directories(self, video_path: str, output_root: str, model_prefix: str = None) -> Dict[str, str]:
         """Setup organized output directory structure for video processing."""
@@ -110,12 +117,21 @@ class VideoProcessor:
             'frames_memory_collage': os.path.join(root_folder, "frames_memorycollage"),
             'frames_processed': os.path.join(root_folder, "frames_processed"),
             'videos_processed': os.path.join(root_folder, "videos_processed"),
-            'metadata': os.path.join(root_folder, "metadata")
+            'metadata': os.path.join(root_folder, "metadata"),
+            'org_segmentation': os.path.join(root_folder, "org_segmentation")
         }
         
         # Create all directories
         for dir_path in directories.values():
             os.makedirs(dir_path, exist_ok=True)
+        
+        # Initialize vanilla segmentation saver if enabled
+        if self.enable_vanilla_segmentation:
+            self.vanilla_saver = VanillaSegmentationSaver(
+                model_interface=self.model_interface,
+                output_dir=directories['org_segmentation'],
+                logger=self.logger
+            )
             
         return directories
     
@@ -348,6 +364,9 @@ class VideoProcessor:
                             directories: Dict[str, str], flip_blobs: bool, H: int, W: int) -> None:
         """Process a single video frame following main_gen_vids_and_meshes.py logic."""
         
+        # Track current frame index for frozen mask logic
+        self.current_frame_idx = frame_idx
+        
         # Skip detection for initial frames
         if frame_idx < self.initial_skip_frames:
             self._save_skipped_frame(frame, frame_idx, directories)
@@ -399,6 +418,13 @@ class VideoProcessor:
         
         # 11. Create final overlay and save
         self._create_and_save_final_overlay(frame, memory_masks, frame_idx, directories, flip_blobs, H, W)
+        
+        # 12. Save vanilla segmentation if enabled
+        if self.enable_vanilla_segmentation and self.vanilla_saver is not None:
+            try:
+                self.vanilla_saver.save_frame_segmentation(frame, frame_idx)
+            except Exception as e:
+                self.logger.warning(f"Failed to save vanilla segmentation for frame {frame_idx}: {e}")
     
     def _find_color_blobs(self, frame: np.ndarray, flip_blobs: bool = False, frame_idx: int = 0) -> List[np.ndarray]:
         """
@@ -671,7 +697,29 @@ class VideoProcessor:
     
     def _get_memory_masks(self) -> List[np.ndarray]:
         """Get current memory masks as binary arrays."""
-        return [mem_float > 0.5 for mem_float in self.mem_floats]
+        masks = [mem_float > 0.5 for mem_float in self.mem_floats]
+        
+        # If blob 1 memory is frozen and we have a frozen mask, use that instead
+        if (hasattr(self, 'current_frame_idx') and 
+            self.blob_1_memory_freeze_frame is not None and 
+            self.current_frame_idx >= self.blob_1_memory_freeze_frame and
+            1 in self.frozen_memory_masks and
+            len(masks) > 1):
+            
+            try:
+                # Load the frozen mask
+                frozen_mask_path = self.frozen_memory_masks[1]
+                if os.path.exists(frozen_mask_path):
+                    from PIL import Image
+                    frozen_img = Image.open(frozen_mask_path).convert('L')
+                    frozen_array = np.array(frozen_img, dtype=np.uint8)
+                    frozen_mask = (frozen_array > 127).astype(np.float32)
+                    masks[1] = frozen_mask
+                    self.logger.debug(f"Using frozen mask for blob 1 at frame {self.current_frame_idx}")
+            except Exception as e:
+                self.logger.warning(f"Failed to load frozen mask for blob 1: {e}")
+        
+        return masks
     
     def _save_nonmemory_masks(self, assigned_masks: List[np.ndarray], frame_idx: int, 
                             directories: Dict[str, str]) -> None:
@@ -690,49 +738,52 @@ class VideoProcessor:
         """Save memory masks with freeze frame logic - after freeze frame, reuse frozen masks."""
         
         for blob_idx, mask in enumerate(memory_masks):
-            if mask.sum() > 0:
-                mask_path = os.path.join(
-                    directories['frames_masks'],
-                    f"mask_memory_blob_{blob_idx}_frame_{frame_idx:06d}.png"
-                )
+            mask_path = os.path.join(
+                directories['frames_masks'],
+                f"mask_memory_blob_{blob_idx}_frame_{frame_idx:06d}.png"
+            )
+            
+            # Check if this blob should be frozen
+            if (blob_idx == 1 and 
+                self.blob_1_memory_freeze_frame is not None and 
+                frame_idx >= self.blob_1_memory_freeze_frame):
                 
-                # Check if this blob should be frozen
-                if (blob_idx == 1 and 
-                    self.blob_1_memory_freeze_frame is not None and 
-                    frame_idx >= self.blob_1_memory_freeze_frame):
-                    
-                    # This is blob 1 and we're past the freeze frame
-                    if blob_idx in self.frozen_memory_masks:
-                        # Copy the frozen mask file
-                        frozen_mask_path = self.frozen_memory_masks[blob_idx]
-                        if os.path.exists(frozen_mask_path):
-                            shutil.copy2(frozen_mask_path, mask_path)
-                            self.logger.debug(f"Frame {frame_idx}: Reused frozen blob 1 memory mask")
-                        else:
-                            self.logger.warning(f"Frame {frame_idx}: Frozen mask file not found: {frozen_mask_path}")
-                            # Fall back to saving current mask
+                # This is blob 1 and we're past the freeze frame
+                if blob_idx in self.frozen_memory_masks:
+                    # Copy the frozen mask file
+                    frozen_mask_path = self.frozen_memory_masks[blob_idx]
+                    if os.path.exists(frozen_mask_path):
+                        shutil.copy2(frozen_mask_path, mask_path)
+                        self.logger.debug(f"Frame {frame_idx}: Reused frozen blob 1 memory mask")
+                    else:
+                        self.logger.warning(f"Frame {frame_idx}: Frozen mask file not found: {frozen_mask_path}")
+                        # Fall back to saving current mask but this should not happen
+                        if mask.sum() > 0:
                             mask_255 = (mask.astype(np.uint8)) * 255
                             Image.fromarray(mask_255).save(mask_path)
-                    else:
-                        # This shouldn't happen if logic is correct, but save current mask as fallback
-                        self.logger.warning(f"Frame {frame_idx}: No frozen mask stored for blob 1")
+                else:
+                    # This shouldn't happen if logic is correct, but save current mask as fallback
+                    self.logger.warning(f"Frame {frame_idx}: No frozen mask stored for blob 1")
+                    if mask.sum() > 0:
                         mask_255 = (mask.astype(np.uint8)) * 255
                         Image.fromarray(mask_255).save(mask_path)
+            
+            elif (blob_idx == 1 and 
+                  self.blob_1_memory_freeze_frame is not None and 
+                  frame_idx == self.blob_1_memory_freeze_frame - 1):
                 
-                elif (blob_idx == 1 and 
-                      self.blob_1_memory_freeze_frame is not None and 
-                      frame_idx == self.blob_1_memory_freeze_frame - 1):
-                    
-                    # This is the last frame before freezing - save as the frozen mask
+                # This is the last frame before freezing - save as the frozen mask
+                if mask.sum() > 0:
                     mask_255 = (mask.astype(np.uint8)) * 255
                     Image.fromarray(mask_255).save(mask_path)
                     
                     # Store this as the frozen mask to reuse
                     self.frozen_memory_masks[blob_idx] = mask_path
                     self.logger.info(f"Frame {frame_idx}: Saved blob 1 memory mask to be frozen at {mask_path}")
-                
-                else:
-                    # Normal case - save the current mask
+            
+            else:
+                # Normal case - save the current mask
+                if mask.sum() > 0:
                     mask_255 = (mask.astype(np.uint8)) * 255
                     Image.fromarray(mask_255).save(mask_path)
     

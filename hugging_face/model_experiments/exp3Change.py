@@ -32,6 +32,7 @@ from scipy.optimize import linear_sum_assignment
 
 # Import model interfaces
 from segformer.segformer_interface import SegFormerInterface, ModelInterface
+from vanilla_segmentation import VanillaSegmentationSaver
 
 torch.set_grad_enabled(False)
 
@@ -51,9 +52,11 @@ class ChangeDetectionExperiment:
     5. Saves results for each threshold comparison
     """
     
-    def __init__(self, model_interface: ModelInterface, output_dir: str, logger: logging.Logger = None):
+    def __init__(self, model_interface: ModelInterface, output_dir: str, logger: logging.Logger = None, 
+                 enable_vanilla_segmentation: bool = True):
         self.model_interface = model_interface
         self.output_dir = output_dir
+        self.enable_vanilla_segmentation = enable_vanilla_segmentation
         
         # Create output subdirectories FIRST (before logger is set up)
         self.results_dir = os.path.join(output_dir, "results")
@@ -61,13 +64,24 @@ class ChangeDetectionExperiment:
         self.logs_dir = os.path.join(output_dir, "logs")
         self.processed_images_dir = os.path.join(output_dir, "processed_images")
         self.threshold_results_dir = os.path.join(output_dir, "threshold_results")
+        self.org_segmentation_dir = os.path.join(output_dir, "org_segmentation")
         
         for dir_path in [self.results_dir, self.plots_dir, self.logs_dir, 
-                        self.processed_images_dir, self.threshold_results_dir]:
+                        self.processed_images_dir, self.threshold_results_dir, self.org_segmentation_dir]:
             os.makedirs(dir_path, exist_ok=True)
 
         # Now setup logger after logs_dir exists
         self.logger = logger or self._setup_logger()
+        
+        # Initialize vanilla segmentation saver if enabled
+        self.vanilla_saver = None
+        if self.enable_vanilla_segmentation:
+            self.vanilla_saver = VanillaSegmentationSaver(
+                model_interface=self.model_interface,
+                output_dir=self.org_segmentation_dir,
+                logger=self.logger
+            )
+            self.logger.info("Vanilla segmentation enabled for change detection experiment")
             
         self.logger.info(f"Initialized Change Detection Experiment with output dir: {output_dir}")
 
@@ -261,6 +275,13 @@ class ChangeDetectionExperiment:
 
         # Compute blob statistics
         blob_stats = self._compute_blob_statistics(chosen_mask)
+        
+        # Save vanilla segmentation if enabled
+        if self.enable_vanilla_segmentation and self.vanilla_saver is not None:
+            try:
+                self.vanilla_saver.save_frame_segmentation(frame, frame_idx=0)  # Use 0 for single images
+            except Exception as e:
+                self.logger.warning(f"Failed to save vanilla segmentation for image {image_name}: {e}")
 
         return {
             'mask': chosen_mask,
