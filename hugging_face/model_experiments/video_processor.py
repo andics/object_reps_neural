@@ -267,12 +267,19 @@ class VideoProcessor:
         status['masks_generated'] = True
         self._save_processing_status(directories, status)
         
-        # Create final video if not exists
-        if not status['video_created']:
+        # ALWAYS create final video if it doesn't exist
+        videos_dir = directories['videos_processed']
+        video_files_exist = any(f.endswith(('.mp4', '.avi', '.mov')) for f in os.listdir(videos_dir) if os.path.isfile(os.path.join(videos_dir, f)))
+        
+        if not video_files_exist:
+            self.logger.info("No video file found, creating final video...")
             self._create_final_video(directories, video_metadata)
             status['video_created'] = True
             status['processing_complete'] = True
             self._save_processing_status(directories, status)
+        else:
+            self.logger.info("Video file already exists")
+            status['video_created'] = True
         
         self.logger.info(f"Video processing completed: {directories['root']}")
         return directories
@@ -419,50 +426,48 @@ class VideoProcessor:
             except Exception as e:
                 self.logger.warning(f"Failed to save vanilla segmentation for frame {frame_idx}: {e}")
         
-        # 4. Handle case where no color blobs detected
+        # 4. Handle case where no color blobs detected - CONTINUE processing with empty masks
         if len(blob_masks) == 0:
-            self.logger.debug(f"Frame {frame_idx}: No color blobs detected, but continuing processing")
-            # Still create final overlay frame (just the original frame)
-            overlay_img = Image.fromarray(frame)
-            output_path = os.path.join(directories['frames_processed'], f"frame_{frame_idx:06d}.png")
-            overlay_img.save(output_path)
-            return
+            self.logger.debug(f"Frame {frame_idx}: No color blobs detected, continuing with empty mask processing")
+            # Create empty blob masks for consistency
+            blob_masks = []
+            assigned_masks = []
+        else:
+            # 5. Save blob visualization (only if blobs detected)
+            self._save_blob_visualization(frame, blob_masks, frame_idx, directories)
+            
+            # 6. Assign masks to blobs using bipartite matching
+            assigned_indices, cost_matrix = self._bipartite_assign_blobs_to_masks(blob_masks, pred_masks)
+            
+            # 7. Create collage showing mask fitting quality
+            if cost_matrix is not None and frame_idx >= 30:
+                self._create_and_save_collage(frame, blob_masks, pred_masks, cost_matrix, frame_idx, directories)
+            
+            # 8. Get assigned masks
+            assigned_masks = []
+            for blob_idx in range(len(blob_masks)):
+                pred_idx = assigned_indices[blob_idx]
+                if pred_idx is not None:
+                    assigned_masks.append(pred_masks[pred_idx])
+                else:
+                    assigned_masks.append(None)
         
-        # 5. Save blob visualization
-        self._save_blob_visualization(frame, blob_masks, frame_idx, directories)
-        
-        # 6. Assign masks to blobs using bipartite matching
-        assigned_indices, cost_matrix = self._bipartite_assign_blobs_to_masks(blob_masks, pred_masks)
-        
-        # 7. Create collage showing mask fitting quality
-        if cost_matrix is not None and frame_idx >= 30:
-            self._create_and_save_collage(frame, blob_masks, pred_masks, cost_matrix, frame_idx, directories)
-        
-        # 8. Get assigned masks
-        assigned_masks = []
-        for blob_idx in range(len(blob_masks)):
-            pred_idx = assigned_indices[blob_idx]
-            if pred_idx is not None:
-                assigned_masks.append(pred_masks[pred_idx])
-            else:
-                assigned_masks.append(None)
-        
-        # 9. Save non-memory masks
+        # 9. Save non-memory masks (even if empty)
         self._save_nonmemory_masks(assigned_masks, frame_idx, directories)
         
-        # 10. Update memory with custom strategy
+        # 10. Update memory with custom strategy (CRITICAL: Always update memory)
         self._update_memory_masks_with_strategy(assigned_masks, frame_idx)
         
-        # 11. Get memory masks
+        # 11. Get memory masks (CRITICAL: Always get memory masks)
         memory_masks = self._get_memory_masks()
         
-        # 12. Save memory masks (with freeze frame logic)
+        # 12. Save memory masks (CRITICAL: Always save memory masks with freeze frame logic)
         self._save_memory_masks_with_freeze_logic(memory_masks, frame_idx, directories)
         
-        # 13. Create memory collage 
+        # 13. Create memory collage (even if empty)
         self._create_memory_collage(frame, assigned_masks, memory_masks, frame_idx, directories)
         
-        # 14. Create final overlay and save
+        # 14. Create final overlay and save (CRITICAL: ALWAYS save final frame)
         self._create_and_save_final_overlay(frame, memory_masks, frame_idx, directories, flip_blobs, H, W)
     
     def _find_color_blobs(self, frame: np.ndarray, flip_blobs: bool = False, frame_idx: int = 0) -> List[np.ndarray]:

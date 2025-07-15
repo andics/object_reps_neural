@@ -133,11 +133,16 @@ class TTCExperiment:
         
         collision_data = self._process_videos_for_collision_detection(video_files, iou_values, resume=resume)
         
-        # Step 4: Analyze correlations with participant data
-        if collision_data:
-            self._analyze_participant_correlations(collision_data, participant_df, iou_values)
+        # Step 4: ALWAYS analyze correlations with participant data (collect from all sources)
+        # Collect collision data from all videos (both newly processed and existing)
+        self.logger.info("Collecting collision data from all videos for analysis...")
+        final_collision_data = self._collect_all_collision_data(all_video_names, iou_values)
+        
+        if final_collision_data:
+            self.logger.info(f"Collected collision data for {len(set([vname for (vname, _) in final_collision_data.keys()]))} videos")
+            self._analyze_participant_correlations(final_collision_data, participant_df, iou_values)
         else:
-            self.logger.warning("No collision data generated - skipping correlation analysis")
+            self.logger.warning("No collision data available from any videos - skipping correlation analysis")
         
         self.logger.info("TTC experiment completed successfully")
 
@@ -161,6 +166,9 @@ class TTCExperiment:
         
         collision_times = {}
         
+        # First, collect ALL videos that should have collision data (both processed and to be processed)
+        all_video_names = [Path(video_file).stem for video_file in video_files]
+        
         for video_file in video_files:
             video_name = Path(video_file).stem
             self.logger.info(f"Processing video: {video_name}")
@@ -174,100 +182,200 @@ class TTCExperiment:
             if resume and os.path.exists(videos_processed_dir):
                 video_files_in_dir = [f for f in os.listdir(videos_processed_dir) if f.endswith(('.mp4', '.avi', '.mov'))]
                 if video_files_in_dir:
-                    self.logger.info(f"Video {video_name} already processed (found {video_files_in_dir[0]}), skipping ALL processing...")
-                    continue  # Skip all processing for this video
-            
-            # Check if we have partial processing (frames exist but no video)
-            video_output_dirs = None
-            if resume and os.path.exists(frames_processed_dir):
-                frame_files = [f for f in os.listdir(frames_processed_dir) if f.startswith("frame_") and f.endswith(".png")]
-                if len(frame_files) > 0:
-                    self.logger.info(f"Found {len(frame_files)} existing frames for {video_name}, attempting to complete processing...")
-                    
-                    # Setup directories first
+                    self.logger.info(f"Video {video_name} already processed (found {video_files_in_dir[0]}), skipping video processing...")
+                    # Don't skip completely - we still need to extract collision data for analysis
                     video_output_dirs = self.video_processor.setup_output_directories(
                         video_path=video_file,
                         output_root=self.processed_videos_dir,
                         model_prefix="segformer_model"
                     )
-                    
-                    # Try to process with resume=True to handle partial processing
+                    # Skip to collision data extraction
+                    process_video = False
+                else:
+                    process_video = True
+            else:
+                process_video = True
+            
+            # Only do video processing if needed
+            if process_video:
+                # Check if we have partial processing (frames exist but no video)
+                if resume and os.path.exists(frames_processed_dir):
+                    frame_files = [f for f in os.listdir(frames_processed_dir) if f.startswith("frame_") and f.endswith(".png")]
+                    if len(frame_files) > 0:
+                        self.logger.info(f"Found {len(frame_files)} existing frames for {video_name}, attempting to complete processing...")
+                        
+                        # Setup directories first
+                        video_output_dirs = self.video_processor.setup_output_directories(
+                            video_path=video_file,
+                            output_root=self.processed_videos_dir,
+                            model_prefix="segformer_model"
+                        )
+                        
+                        # Try to process with resume=True to handle partial processing
+                        try:
+                            video_output_dirs = self.video_processor.process_video(
+                                video_path=video_file,
+                                output_root=self.processed_videos_dir,
+                                model_prefix="segformer_model",
+                                resume=True  # Allow it to handle partial processing
+                            )
+                            self.logger.info(f"Successfully completed processing for {video_name}")
+                        except Exception as e:
+                            self.logger.warning(f"Failed to complete partial processing for {video_name}: {e}")
+                            self.logger.info(f"Will attempt full reprocessing for {video_name}")
+                            video_output_dirs = None
+                
+                # If we still don't have processed video, do full processing
+                if not hasattr(locals(), 'video_output_dirs') or video_output_dirs is None:
                     try:
+                        self.logger.info(f"Starting full processing for {video_name}")
                         video_output_dirs = self.video_processor.process_video(
                             video_path=video_file,
                             output_root=self.processed_videos_dir,
                             model_prefix="segformer_model",
-                            resume=True  # Allow it to handle partial processing
+                            resume=False  # Start fresh
                         )
-                        self.logger.info(f"Successfully completed processing for {video_name}")
                     except Exception as e:
-                        self.logger.warning(f"Failed to complete partial processing for {video_name}: {e}")
-                        self.logger.info(f"Will attempt full reprocessing for {video_name}")
-                        video_output_dirs = None
+                        self.logger.error(f"Failed to process video {video_name}: {e}")
+                        continue
             
-            # If we still don't have processed video, do full processing
-            if video_output_dirs is None:
-                try:
-                    self.logger.info(f"Starting full processing for {video_name}")
-                    video_output_dirs = self.video_processor.process_video(
-                        video_path=video_file,
-                        output_root=self.processed_videos_dir,
-                        model_prefix="segformer_model",
-                        resume=False  # Start fresh
-                    )
-                except Exception as e:
-                    self.logger.error(f"Failed to process video {video_name}: {e}")
-                    continue
-            
-            # At this point, we should have video_output_dirs from either partial completion or full processing
+            # At this point, we should have video_output_dirs from either setup or processing
             if video_output_dirs is None:
                 self.logger.error(f"No video output directories available for {video_name}")
                 continue
             
             try:
-                # Log blob state information
-                self._log_blob_state_info(video_name, video_output_dirs)
+                # ALWAYS extract collision data (either from existing results or by computing)
+                collision_data_extracted = self._extract_or_compute_collision_data(
+                    video_name, video_output_dirs, iou_values, process_video
+                )
                 
-                # Extract mask data from processed video
-                mask_data = self._extract_mask_data_from_processed_video(video_output_dirs)
-                
-                if not mask_data:
-                    self.logger.warning(f"No mask data extracted for video {video_name}")
-                    continue
-                
-                # For each IoU threshold, find collision time
-                for iou_threshold in iou_values:
-                    collision_time = self._find_first_collision_time(mask_data, iou_threshold, fps=60)
-                    collision_times[(video_name, iou_threshold)] = collision_time
-                    
-                    # Save individual result with blob state info
-                    results_dir = Path(video_output_dirs['root']) / "collision_results"
-                    results_dir.mkdir(exist_ok=True)
-                    output_json_path = results_dir / f"iou_{iou_threshold}.json"
-                    
-                    result_data = {
-                        "collision_time": float(collision_time),
-                        "is_collision_detected": not np.isnan(collision_time),
-                        "iou_threshold": float(iou_threshold),
-                        "blob_1_disappeared": self.video_processor.blob_1_disappeared,
-                        "blob_1_disappeared_frame": self.video_processor.blob_1_disappeared_frame,
-                        "blob_1_memory_strategy": self.video_processor.blob_1_memory_strategy,
-                        "blob_1_memory_freeze_frame": self.video_processor.blob_1_memory_freeze_frame
-                    }
-                    
-                    with open(output_json_path, 'w') as f:
-                        json.dump(result_data, f, indent=2)
-                    
-                    if not np.isnan(collision_time):
-                        self.logger.debug(f"Collision time for {video_name} at IoU {iou_threshold}: {collision_time:.2f}ms")
-                    else:
-                        self.logger.debug(f"No collision detected for {video_name} at IoU {iou_threshold}")
+                if collision_data_extracted:
+                    # Add collision data to the main dictionary
+                    for iou_threshold in iou_values:
+                        if (video_name, iou_threshold) not in collision_times:
+                            # Load from existing file if available
+                            results_dir = Path(video_output_dirs['root']) / "collision_results"
+                            result_file = results_dir / f"iou_{iou_threshold}.json"
+                            if result_file.exists():
+                                try:
+                                    with open(result_file, 'r') as f:
+                                        result_data = json.load(f)
+                                    collision_time = result_data.get("collision_time", float('nan'))
+                                    collision_times[(video_name, iou_threshold)] = collision_time
+                                    self.logger.debug(f"Loaded collision time for {video_name} at IoU {iou_threshold}: {collision_time}")
+                                except Exception as e:
+                                    self.logger.warning(f"Failed to load existing collision data for {video_name}, IoU {iou_threshold}: {e}")
+                else:
+                    self.logger.warning(f"Failed to extract collision data for video {video_name}")
                         
             except Exception as e:
                 self.logger.error(f"Failed to analyze video {video_name}: {e}")
                 continue
         
         return collision_times
+    
+    def _extract_or_compute_collision_data(self, video_name: str, video_output_dirs: Dict[str, str], 
+                                         iou_values: np.ndarray, process_video: bool) -> bool:
+        """
+        Extract collision data either from existing results or by computing from masks.
+        Returns True if successful, False otherwise.
+        """
+        results_dir = Path(video_output_dirs['root']) / "collision_results"
+        
+        # Check if collision results already exist for all IoU values
+        all_exist = True
+        for iou_threshold in iou_values:
+            result_file = results_dir / f"iou_{iou_threshold}.json"
+            if not result_file.exists():
+                all_exist = False
+                break
+        
+        if all_exist and not process_video:
+            self.logger.info(f"All collision results already exist for {video_name}")
+            return True
+        
+        # Need to compute collision data
+        self.logger.info(f"Computing collision data for {video_name}")
+        
+        # Log blob state information (only if we processed the video)
+        if process_video:
+            self._log_blob_state_info(video_name, video_output_dirs)
+        
+        # Extract mask data from processed video
+        mask_data = self._extract_mask_data_from_processed_video(video_output_dirs)
+        
+        if not mask_data:
+            self.logger.warning(f"No mask data extracted for video {video_name}")
+            return False
+        
+        # Create results directory
+        results_dir.mkdir(exist_ok=True)
+        
+        # For each IoU threshold, find collision time
+        for iou_threshold in iou_values:
+            result_file = results_dir / f"iou_{iou_threshold}.json"
+            
+            # Skip if result already exists (unless we're reprocessing)
+            if result_file.exists() and not process_video:
+                continue
+                
+            collision_time = self._find_first_collision_time(mask_data, iou_threshold, fps=60)
+            
+            # Save individual result with blob state info
+            result_data = {
+                "collision_time": float(collision_time),
+                "is_collision_detected": not np.isnan(collision_time),
+                "iou_threshold": float(iou_threshold),
+                "blob_1_disappeared": getattr(self.video_processor, 'blob_1_disappeared', False),
+                "blob_1_disappeared_frame": getattr(self.video_processor, 'blob_1_disappeared_frame', None),
+                "blob_1_memory_strategy": getattr(self.video_processor, 'blob_1_memory_strategy', None),
+                "blob_1_memory_freeze_frame": getattr(self.video_processor, 'blob_1_memory_freeze_frame', None)
+            }
+            
+            with open(result_file, 'w') as f:
+                json.dump(result_data, f, indent=2)
+            
+            if not np.isnan(collision_time):
+                self.logger.debug(f"Collision time for {video_name} at IoU {iou_threshold}: {collision_time:.2f}ms")
+            else:
+                self.logger.debug(f"No collision detected for {video_name} at IoU {iou_threshold}")
+        
+        return True
+    
+    def _collect_all_collision_data(self, all_video_names: List[str], iou_values: np.ndarray) -> Dict[Tuple[str, float], float]:
+        """
+        Collect collision data from all videos (both newly processed and existing).
+        Returns dictionary mapping (video_name, iou_threshold) -> collision_time.
+        """
+        collision_data = {}
+        
+        for video_name in all_video_names:
+            expected_output_dir = os.path.join(self.processed_videos_dir, f"segformer_model-{video_name}")
+            results_dir = Path(expected_output_dir) / "collision_results"
+            
+            if not results_dir.exists():
+                self.logger.warning(f"No collision results directory found for {video_name}")
+                continue
+            
+            for iou_threshold in iou_values:
+                result_file = results_dir / f"iou_{iou_threshold}.json"
+                
+                if result_file.exists():
+                    try:
+                        with open(result_file, 'r') as f:
+                            result_data = json.load(f)
+                        collision_time = result_data.get("collision_time", float('nan'))
+                        collision_data[(video_name, iou_threshold)] = collision_time
+                        self.logger.debug(f"Collected collision time for {video_name} at IoU {iou_threshold}: {collision_time}")
+                    except Exception as e:
+                        self.logger.warning(f"Failed to load collision data for {video_name}, IoU {iou_threshold}: {e}")
+                        collision_data[(video_name, iou_threshold)] = float('nan')
+                else:
+                    self.logger.warning(f"Missing collision result file for {video_name}, IoU {iou_threshold}")
+                    collision_data[(video_name, iou_threshold)] = float('nan')
+        
+        return collision_data
 
     def _log_blob_state_info(self, video_name: str, video_output_dirs: Dict[str, str]) -> None:
         """Log blob state information for analysis."""
