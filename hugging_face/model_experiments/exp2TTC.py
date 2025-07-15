@@ -165,19 +165,19 @@ class TTCExperiment:
             video_name = Path(video_file).stem
             self.logger.info(f"Processing video: {video_name}")
             
-            # Check if video already processed (simple check: videos_processed folder exists)
+            # Simple check: if videos_processed folder contains a video file, skip everything
             expected_output_dir = os.path.join(self.processed_videos_dir, f"segformer_model-{video_name}")
             videos_processed_dir = os.path.join(expected_output_dir, "videos_processed")
             
             if resume and os.path.exists(videos_processed_dir):
-                self.logger.info(f"Video {video_name} already processed, skipping...")
-                # Create mock output dirs for consistency
-                video_output_dirs = self.video_processor.setup_output_directories(
-                    video_path=video_file,
-                    output_root=self.processed_videos_dir,
-                    model_prefix="segformer_model"
-                )
-            else:
+                # Check if there's actually a video file in the videos_processed folder
+                video_files_in_dir = [f for f in os.listdir(videos_processed_dir) if f.endswith(('.mp4', '.avi', '.mov'))]
+                if video_files_in_dir:
+                    self.logger.info(f"Video {video_name} already processed (found {video_files_in_dir[0]}), skipping ALL processing...")
+                    continue  # Skip all processing for this video
+            
+            # If we get here, we need to process the video
+            try:
                 # Process the video
                 video_output_dirs = self.video_processor.process_video(
                     video_path=video_file,
@@ -185,8 +185,7 @@ class TTCExperiment:
                     model_prefix="segformer_model",
                     resume=False  # Always start fresh since we do the check above
                 )
-            
-            try:
+                
                 # Log blob state information
                 self._log_blob_state_info(video_name, video_output_dirs)
                 
