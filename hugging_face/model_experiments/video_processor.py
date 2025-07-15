@@ -221,20 +221,39 @@ class VideoProcessor:
             start_frame = 0
             self._initialize_memory(video_metadata['height'], video_metadata['width'])
         elif status['processing_complete'] and resume:
-            self.logger.info("Processing already complete. Skipping to video creation if needed.")
+            self.logger.info("Processing already complete. Checking video creation...")
             if not status['video_created']:
-                self._create_final_video(directories, video_metadata)
-            self.logger.info(f"Video processing already completed: {directories['root']}")
-            return directories
+                # Try to create video from existing frames
+                if self._attempt_video_generation_from_existing_frames(directories, video_metadata):
+                    self.logger.info("Video created from existing frames")
+                    status['video_created'] = True
+                    self._save_processing_status(directories, status)
+                else:
+                    self.logger.warning("Could not create video from existing frames, will reprocess")
+                    # Fall through to reprocessing
+                    start_frame = 0
+                    self._initialize_memory(video_metadata['height'], video_metadata['width'])
+            else:
+                self.logger.info(f"Video processing already completed: {directories['root']}")
+                return directories
         elif resume and status['can_resume']:
-            self.logger.info(f"Resuming processing from frame {status['last_processed_frame'] + 1}")
-            start_frame = status['last_processed_frame'] + 1
-            # Note: Memory state is lost on resume, but this is acceptable for most use cases
-            self._initialize_memory(video_metadata['height'], video_metadata['width'])
+            self.logger.info(f"Partial processing detected. Last frame: {status['last_processed_frame']}")
+            
+            # Check if we can create video from existing frames
+            if self._attempt_video_generation_from_existing_frames(directories, video_metadata):
+                self.logger.info("Video created from existing partial frames")
+                status['video_created'] = True
+                status['processing_complete'] = True
+                self._save_processing_status(directories, status)
+                return directories
+            else:
+                # Not enough frames, continue processing
+                self.logger.info(f"Not enough frames for video, resuming processing from frame {status['last_processed_frame'] + 1}")
+                start_frame = status['last_processed_frame'] + 1
+                self._initialize_memory(video_metadata['height'], video_metadata['width'])
         else:
             self.logger.info("Starting processing from beginning")
             start_frame = 0
-            # Initialize memory
             self._initialize_memory(video_metadata['height'], video_metadata['width'])
         
         # Process frames
@@ -367,32 +386,59 @@ class VideoProcessor:
         # Track current frame index for frozen mask logic
         self.current_frame_idx = frame_idx
         
-        # Skip detection for initial frames
+        # Handle initial frames (still process them, but no blob detection)
         if frame_idx < self.initial_skip_frames:
-            self._save_skipped_frame(frame, frame_idx, directories)
+            # Still run model inference and save vanilla segmentation for initial frames
+            if self.enable_vanilla_segmentation and self.vanilla_saver is not None:
+                try:
+                    self.vanilla_saver.save_frame_segmentation(frame, frame_idx)
+                except Exception as e:
+                    self.logger.warning(f"Failed to save vanilla segmentation for frame {frame_idx}: {e}")
+            
+            # Save the original frame as processed frame
+            output_path = os.path.join(directories['frames_processed'], f"frame_{frame_idx:06d}.png")
+            Image.fromarray(frame).save(output_path)
+            
+            # Create empty memory JSON
+            empty_data = {}
+            mem_json_path = os.path.join(directories['frames_json_memory'], f"frame_{frame_idx:06d}.json")
+            with open(mem_json_path, 'w') as f:
+                json.dump(empty_data, f, indent=2)
             return
         
         # 1. Detect color blobs (ground truth) with state tracking
         blob_masks = self._find_color_blobs(frame, flip_blobs, frame_idx)
         
-        if len(blob_masks) == 0:
-            self._save_skipped_frame(frame, frame_idx, directories)
-            return
-        
-        # Save blob visualization
-        self._save_blob_visualization(frame, blob_masks, frame_idx, directories)
-        
-        # 2. Run model inference and get predicted masks
+        # 2. ALWAYS run model inference to get predicted masks (even if no blobs detected)
         pred_masks = self._run_model_inference_with_splitting(frame, H, W)
         
-        # 3. Assign masks to blobs using bipartite matching
+        # 3. Save vanilla segmentation FIRST (before any blob-specific processing)
+        if self.enable_vanilla_segmentation and self.vanilla_saver is not None:
+            try:
+                self.vanilla_saver.save_frame_segmentation(frame, frame_idx)
+            except Exception as e:
+                self.logger.warning(f"Failed to save vanilla segmentation for frame {frame_idx}: {e}")
+        
+        # 4. Handle case where no color blobs detected
+        if len(blob_masks) == 0:
+            self.logger.debug(f"Frame {frame_idx}: No color blobs detected, but continuing processing")
+            # Still create final overlay frame (just the original frame)
+            overlay_img = Image.fromarray(frame)
+            output_path = os.path.join(directories['frames_processed'], f"frame_{frame_idx:06d}.png")
+            overlay_img.save(output_path)
+            return
+        
+        # 5. Save blob visualization
+        self._save_blob_visualization(frame, blob_masks, frame_idx, directories)
+        
+        # 6. Assign masks to blobs using bipartite matching
         assigned_indices, cost_matrix = self._bipartite_assign_blobs_to_masks(blob_masks, pred_masks)
         
-        # 4. Create collage showing mask fitting quality (IMPORTANT: This was missing!)
+        # 7. Create collage showing mask fitting quality
         if cost_matrix is not None and frame_idx >= 30:
             self._create_and_save_collage(frame, blob_masks, pred_masks, cost_matrix, frame_idx, directories)
         
-        # 5. Get assigned masks
+        # 8. Get assigned masks
         assigned_masks = []
         for blob_idx in range(len(blob_masks)):
             pred_idx = assigned_indices[blob_idx]
@@ -401,30 +447,23 @@ class VideoProcessor:
             else:
                 assigned_masks.append(None)
         
-        # 6. Save non-memory masks
+        # 9. Save non-memory masks
         self._save_nonmemory_masks(assigned_masks, frame_idx, directories)
         
-        # 7. Update memory with custom strategy
+        # 10. Update memory with custom strategy
         self._update_memory_masks_with_strategy(assigned_masks, frame_idx)
         
-        # 8. Get memory masks
+        # 11. Get memory masks
         memory_masks = self._get_memory_masks()
         
-        # 9. Save memory masks (with freeze frame logic)
+        # 12. Save memory masks (with freeze frame logic)
         self._save_memory_masks_with_freeze_logic(memory_masks, frame_idx, directories)
         
-        # 10. Create memory collage 
+        # 13. Create memory collage 
         self._create_memory_collage(frame, assigned_masks, memory_masks, frame_idx, directories)
         
-        # 11. Create final overlay and save
+        # 14. Create final overlay and save
         self._create_and_save_final_overlay(frame, memory_masks, frame_idx, directories, flip_blobs, H, W)
-        
-        # 12. Save vanilla segmentation if enabled
-        if self.enable_vanilla_segmentation and self.vanilla_saver is not None:
-            try:
-                self.vanilla_saver.save_frame_segmentation(frame, frame_idx)
-            except Exception as e:
-                self.logger.warning(f"Failed to save vanilla segmentation for frame {frame_idx}: {e}")
     
     def _find_color_blobs(self, frame: np.ndarray, flip_blobs: bool = False, frame_idx: int = 0) -> List[np.ndarray]:
         """
@@ -887,18 +926,64 @@ class VideoProcessor:
         
         self.logger.info(f"Creating final video: {final_video_path}")
         
+        # Find all available processed frames
+        frames_processed_dir = directories['frames_processed']
+        available_frames = []
+        for frame_idx in range(video_metadata['total_frames']):
+            frame_path = os.path.join(frames_processed_dir, f"frame_{frame_idx:06d}.png")
+            if os.path.exists(frame_path):
+                available_frames.append((frame_idx, frame_path))
+        
+        if not available_frames:
+            self.logger.error("No processed frames found for video creation")
+            return
+        
+        self.logger.info(f"Found {len(available_frames)} processed frames out of {video_metadata['total_frames']} total frames")
+        
         writer = imageio.get_writer(final_video_path, fps=video_metadata['fps'], macro_block_size=1)
         
         try:
-            for frame_idx in range(video_metadata['total_frames']):
-                frame_path = os.path.join(directories['frames_processed'], f"frame_{frame_idx:06d}.png")
-                if os.path.exists(frame_path):
-                    frame = imageio.v2.imread(frame_path)
-                    writer.append_data(frame)
+            frames_written = 0
+            for frame_idx, frame_path in available_frames:
+                frame = imageio.v2.imread(frame_path)
+                writer.append_data(frame)
+                frames_written += 1
+                
+                if frames_written % 100 == 0:
+                    self.logger.info(f"Written {frames_written}/{len(available_frames)} frames to video")
         finally:
             writer.close()
         
-        self.logger.info("Final video created successfully")
+        self.logger.info(f"Final video created successfully with {frames_written} frames")
+    
+    def _count_existing_frames(self, frames_processed_dir: str) -> int:
+        """Count existing processed frames."""
+        if not os.path.exists(frames_processed_dir):
+            return 0
+        
+        frame_files = [f for f in os.listdir(frames_processed_dir) 
+                      if f.startswith("frame_") and f.endswith(".png")]
+        return len(frame_files)
+    
+    def _attempt_video_generation_from_existing_frames(self, directories: Dict[str, str], video_metadata: Dict[str, Any]) -> bool:
+        """
+        Attempt to generate video from existing frames.
+        Returns True if successful, False if not enough frames.
+        """
+        frames_count = self._count_existing_frames(directories['frames_processed'])
+        min_required_frames = max(10, video_metadata['total_frames'] // 2)  # Need at least half the frames or 10 frames
+        
+        if frames_count >= min_required_frames:
+            self.logger.info(f"Found {frames_count} existing frames, attempting video generation...")
+            try:
+                self._create_final_video(directories, video_metadata)
+                return True
+            except Exception as e:
+                self.logger.error(f"Failed to create video from existing frames: {e}")
+                return False
+        else:
+            self.logger.info(f"Not enough frames for video generation: {frames_count} < {min_required_frames}")
+            return False
     
     # Helper methods
     def _parse_video_prefix(self, video_path: str) -> str:
@@ -923,16 +1008,7 @@ class VideoProcessor:
             return corrected
         return frame
     
-    def _save_skipped_frame(self, frame: np.ndarray, frame_idx: int, directories: Dict[str, str]) -> None:
-        """Save frame without processing (for skipped frames)."""
-        output_path = os.path.join(directories['frames_processed'], f"frame_{frame_idx:06d}.png")
-        Image.fromarray(frame).save(output_path)
-        
-        # Also create empty memory JSON
-        empty_data = {}
-        mem_json_path = os.path.join(directories['frames_json_memory'], f"frame_{frame_idx:06d}.json")
-        with open(mem_json_path, 'w') as f:
-            json.dump(empty_data, f, indent=2)
+
     
     def _count_processed_frames(self, frames_dir: str) -> int:
         """Count number of processed frames in directory."""

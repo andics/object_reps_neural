@@ -165,27 +165,66 @@ class TTCExperiment:
             video_name = Path(video_file).stem
             self.logger.info(f"Processing video: {video_name}")
             
-            # Simple check: if videos_processed folder contains a video file, skip everything
+            # Check processing status
             expected_output_dir = os.path.join(self.processed_videos_dir, f"segformer_model-{video_name}")
             videos_processed_dir = os.path.join(expected_output_dir, "videos_processed")
+            frames_processed_dir = os.path.join(expected_output_dir, "frames_processed")
             
+            # Check if final video already exists
             if resume and os.path.exists(videos_processed_dir):
-                # Check if there's actually a video file in the videos_processed folder
                 video_files_in_dir = [f for f in os.listdir(videos_processed_dir) if f.endswith(('.mp4', '.avi', '.mov'))]
                 if video_files_in_dir:
                     self.logger.info(f"Video {video_name} already processed (found {video_files_in_dir[0]}), skipping ALL processing...")
                     continue  # Skip all processing for this video
             
-            # If we get here, we need to process the video
+            # Check if we have partial processing (frames exist but no video)
+            video_output_dirs = None
+            if resume and os.path.exists(frames_processed_dir):
+                frame_files = [f for f in os.listdir(frames_processed_dir) if f.startswith("frame_") and f.endswith(".png")]
+                if len(frame_files) > 0:
+                    self.logger.info(f"Found {len(frame_files)} existing frames for {video_name}, attempting to complete processing...")
+                    
+                    # Setup directories first
+                    video_output_dirs = self.video_processor.setup_output_directories(
+                        video_path=video_file,
+                        output_root=self.processed_videos_dir,
+                        model_prefix="segformer_model"
+                    )
+                    
+                    # Try to process with resume=True to handle partial processing
+                    try:
+                        video_output_dirs = self.video_processor.process_video(
+                            video_path=video_file,
+                            output_root=self.processed_videos_dir,
+                            model_prefix="segformer_model",
+                            resume=True  # Allow it to handle partial processing
+                        )
+                        self.logger.info(f"Successfully completed processing for {video_name}")
+                    except Exception as e:
+                        self.logger.warning(f"Failed to complete partial processing for {video_name}: {e}")
+                        self.logger.info(f"Will attempt full reprocessing for {video_name}")
+                        video_output_dirs = None
+            
+            # If we still don't have processed video, do full processing
+            if video_output_dirs is None:
+                try:
+                    self.logger.info(f"Starting full processing for {video_name}")
+                    video_output_dirs = self.video_processor.process_video(
+                        video_path=video_file,
+                        output_root=self.processed_videos_dir,
+                        model_prefix="segformer_model",
+                        resume=False  # Start fresh
+                    )
+                except Exception as e:
+                    self.logger.error(f"Failed to process video {video_name}: {e}")
+                    continue
+            
+            # At this point, we should have video_output_dirs from either partial completion or full processing
+            if video_output_dirs is None:
+                self.logger.error(f"No video output directories available for {video_name}")
+                continue
+            
             try:
-                # Process the video
-                video_output_dirs = self.video_processor.process_video(
-                    video_path=video_file,
-                    output_root=self.processed_videos_dir,
-                    model_prefix="segformer_model",
-                    resume=False  # Always start fresh since we do the check above
-                )
-                
                 # Log blob state information
                 self._log_blob_state_info(video_name, video_output_dirs)
                 
@@ -225,7 +264,7 @@ class TTCExperiment:
                         self.logger.debug(f"No collision detected for {video_name} at IoU {iou_threshold}")
                         
             except Exception as e:
-                self.logger.error(f"Failed to process video {video_name}: {e}")
+                self.logger.error(f"Failed to analyze video {video_name}: {e}")
                 continue
         
         return collision_times
