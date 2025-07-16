@@ -6,6 +6,12 @@ Change Detection Experiment that processes raw image files and computes mistake 
 based on blob segmentation and change detection thresholds.
 Completely self-contained from raw images to final analysis.
 
+FIXED VERSION:
+- Fixed array indexing issues by ensuring all masks are boolean
+- Enhanced error handling for mask operations
+- Proper type conversion for regionprops and find_contours
+- Robust mask handling throughout the pipeline
+
 Usage:
     python exp3Change.py --model_interface segformer --images_dir /path/to/raw_images --output_dir /path/to/output [--resume]
 """
@@ -260,11 +266,14 @@ class ChangeDetectionExperiment:
         
         if chosen_mask is not None and chosen_mask.sum() > 0:
             mask_file = os.path.join(dirs['mask'], f"mask_{image_name}.png")
-            Image.fromarray((chosen_mask.astype(np.uint8)*255)).save(mask_file)
+            # Ensure mask is boolean and convert to uint8 for saving
+            mask_bool = chosen_mask.astype(bool)
+            mask_uint8 = (mask_bool.astype(np.uint8) * 255)
+            Image.fromarray(mask_uint8).save(mask_file)
             self.logger.info(f"Saved chosen mask to {mask_file}")
         else:
             self.logger.warning(f"No suitable model mask found for {image_name}")
-            chosen_mask = blob  # Fall back to detected blob
+            chosen_mask = blob.astype(bool) if blob is not None else None  # Fall back to detected blob
 
         # Generate collage of top candidate masks
         if candidates:
@@ -297,7 +306,9 @@ class ChangeDetectionExperiment:
             regs = sorted(regionprops(labeled), key=lambda r: r.area, reverse=True)
             if regs:
                 self.logger.debug(f"Blob detected with threshold {thr} (area={regs[0].area})")
-                return labeled == regs[0].label
+                # Ensure we return a boolean array
+                blob_mask = (labeled == regs[0].label).astype(bool)
+                return blob_mask
             else:
                 self.logger.debug(f"No blob found at threshold {thr}")
         return None
@@ -305,7 +316,9 @@ class ChangeDetectionExperiment:
     def _save_blob_overlay(self, frame: np.ndarray, blob: np.ndarray, output_dir: str, image_name: str) -> None:
         """Save blob overlay image."""
         overlay = frame.copy()
-        overlay[blob] = [255, 0, 0]
+        # Ensure blob is boolean for indexing
+        blob_bool = blob.astype(bool) if blob is not None else np.zeros_like(frame[:,:,0], dtype=bool)
+        overlay[blob_bool] = [255, 0, 0]
         blob_file = os.path.join(output_dir, f"{image_name}_blobs.png")
         Image.fromarray(overlay).save(blob_file)
 
@@ -326,12 +339,12 @@ class ChangeDetectionExperiment:
             mask = pred_masks[0, i].cpu().numpy()  # (H, W)
             
             # Threshold to get binary mask
-            binary_mask = (mask > 0.5).astype(np.float32)
+            binary_mask = (mask > 0.5).astype(bool)  # Use bool instead of float32
             
             # Connected component analysis to get individual blobs
             labeled = label(binary_mask, connectivity=2)
             for lbl in range(1, labeled.max() + 1):
-                component_mask = (labeled == lbl).astype(np.float32)
+                component_mask = (labeled == lbl).astype(bool)  # Use bool instead of float32
                 if component_mask.sum() > 0:  # Only add non-empty masks
                     candidates.append(component_mask)
         
@@ -351,14 +364,22 @@ class ChangeDetectionExperiment:
                 best_iou = iou
                 best_mask = candidate
         
-        return best_mask if best_iou > 0.1 else None  # Minimum IoU threshold
+        # Ensure the returned mask is boolean
+        if best_mask is not None and best_iou > 0.1:
+            return best_mask.astype(bool)
+        else:
+            return None  # Minimum IoU threshold
 
     def _compute_iou(self, mask1: np.ndarray, mask2: np.ndarray) -> float:
         """Compute IoU between two binary masks."""
         try:
-            # Ensure masks are binary
-            mask1_binary = (mask1 > 0).astype(np.uint8)
-            mask2_binary = (mask2 > 0).astype(np.uint8)
+            # Handle None masks
+            if mask1 is None or mask2 is None:
+                return 0.0
+            
+            # Ensure masks are boolean
+            mask1_binary = mask1.astype(bool) if mask1 is not None else np.zeros_like(mask2, dtype=bool)
+            mask2_binary = mask2.astype(bool) if mask2 is not None else np.zeros_like(mask1, dtype=bool)
             
             intersection = np.logical_and(mask1_binary, mask2_binary).sum()
             union = np.logical_or(mask1_binary, mask2_binary).sum()
@@ -390,8 +411,12 @@ class ChangeDetectionExperiment:
                 break
                 
             overlay = frame.copy()
-            overlay[blob] = [0, 255, 0]  # Green for ground truth
-            overlay[candidates[idx]] = [255, 0, 0]  # Red for candidate
+            # Ensure masks are boolean for indexing
+            blob_bool = blob.astype(bool) if blob is not None else np.zeros_like(frame[:,:,0], dtype=bool)
+            candidate_bool = candidates[idx].astype(bool) if candidates[idx] is not None else np.zeros_like(frame[:,:,0], dtype=bool)
+            
+            overlay[blob_bool] = [0, 255, 0]  # Green for ground truth
+            overlay[candidate_bool] = [255, 0, 0]  # Red for candidate
             
             axes[i].imshow(overlay)
             axes[i].set_title(f"#{idx}\nIoU: {ious[idx]:.3f}", fontsize=8)
@@ -407,8 +432,12 @@ class ChangeDetectionExperiment:
         """Save final overlay with polygon."""
         final = Image.fromarray(frame.copy())
         if mask is not None and mask.sum() > 0:
+            # Ensure mask is boolean and convert to uint8 for find_contours
+            mask_bool = mask.astype(bool)
+            mask_uint8 = mask_bool.astype(np.uint8)
+            
             # Find contours and create polygon
-            contours = find_contours(mask.astype(np.uint8), 0.5)
+            contours = find_contours(mask_uint8, 0.5)
             if contours:
                 biggest_contour = max(contours, key=len)
                 polygon_points = [(p[1], p[0]) for p in biggest_contour]
@@ -430,7 +459,11 @@ class ChangeDetectionExperiment:
             return {'area': 0.0, 'centroid_x': 0.0, 'centroid_y': 0.0, 'perimeter': 0.0}
         
         try:
-            labeled = label(mask.astype(np.uint8), connectivity=2)
+            # Ensure mask is boolean and convert to uint8 for regionprops
+            mask_bool = mask.astype(bool)
+            mask_uint8 = mask_bool.astype(np.uint8)
+            
+            labeled = label(mask_uint8, connectivity=2)
             props = regionprops(labeled)
             
             if not props:
