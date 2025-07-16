@@ -227,17 +227,14 @@ class TTCExperiment:
                 
                 # If we still don't have processed video, do full processing
                 if not hasattr(locals(), 'video_output_dirs') or video_output_dirs is None:
-                    try:
-                        self.logger.info(f"Starting full processing for {video_name}")
-                        video_output_dirs = self.video_processor.process_video(
-                            video_path=video_file,
-                            output_root=self.processed_videos_dir,
-                            model_prefix="segformer_model",
-                            resume=False  # Start fresh
-                        )
-                    except Exception as e:
-                        self.logger.error(f"Failed to process video {video_name}: {e}")
-                        continue
+                    self.logger.info(f"Starting full processing for {video_name}")
+                    video_output_dirs = self.video_processor.process_video(
+                        video_path=video_file,
+                        output_root=self.processed_videos_dir,
+                        model_prefix="segformer_model",
+                        resume=False  # Start fresh
+                    )
+                    self.logger.error(f"Failed to process video {video_name}: {e}")
             
             # At this point, we should have video_output_dirs from either setup or processing
             if video_output_dirs is None:

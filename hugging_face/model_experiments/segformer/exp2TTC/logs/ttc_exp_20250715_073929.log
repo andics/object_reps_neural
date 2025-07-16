@@ -1,0 +1,367 @@
+2025-07-15 07:39:29,054 - INFO - Logger initialized. Writing detailed log to /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/logs/ttc_exp_20250715_073929.log
+2025-07-15 07:39:29,054 - INFO - VideoProcessor initialized with 2 blobs to detect
+2025-07-15 07:39:29,054 - INFO - Blob 1 memory strategy: running_average
+2025-07-15 07:39:29,054 - INFO - Blob 1 running average window: 10
+2025-07-15 07:39:29,054 - INFO - Blob 1 memory will freeze after frame: 80
+2025-07-15 07:39:29,054 - INFO - Vanilla segmentation enabled
+2025-07-15 07:39:29,054 - INFO - Initialized TTC Experiment with output dir: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC
+2025-07-15 07:39:29,054 - INFO - TTC-specific configuration:
+2025-07-15 07:39:29,054 - INFO -   - Blob 1 memory: running average of past 10 frames
+2025-07-15 07:39:29,054 - INFO -   - Blob 1 memory updates stop after frame 80
+2025-07-15 07:39:29,054 - INFO - Starting full TTC experiment
+2025-07-15 07:39:29,055 - INFO - Found 99 video files to process
+2025-07-15 07:39:29,055 - INFO - Reading participant CSV from /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/exp2TTC_files/experiment2-CollisionDetection-Data.csv...
+2025-07-15 07:39:29,072 - INFO - CSV loaded with 13974 rows and 10 columns.
+2025-07-15 07:39:29,072 - INFO - Starting collision detection across videos and IoU thresholds...
+2025-07-15 07:39:29,072 - INFO - Processing video: AConcave_FConcave
+2025-07-15 07:39:29,073 - INFO - Video AConcave_FConcave already processed (found segformer_model-AConcave_FConcave.mp4), skipping ALL processing...
+2025-07-15 07:39:29,073 - INFO - Processing video: BConcave+AConcave+3500
+2025-07-15 07:39:29,073 - INFO - Video BConcave+AConcave+3500 already processed (found segformer_model-BConcave+AConcave+3500.mp4), skipping ALL processing...
+2025-07-15 07:39:29,073 - INFO - Processing video: BConcave+AConcave+3700_flipped
+2025-07-15 07:39:29,074 - INFO - Video BConcave+AConcave+3700_flipped already processed (found segformer_model-BConcave+AConcave+3700_flipped.mp4), skipping ALL processing...
+2025-07-15 07:39:29,074 - INFO - Processing video: BConcave+AConcave+3900
+2025-07-15 07:39:29,074 - INFO - Video BConcave+AConcave+3900 already processed (found segformer_model-BConcave+AConcave+3900.mp4), skipping ALL processing...
+2025-07-15 07:39:29,074 - INFO - Processing video: BConcave+AConcave+4100_flipped
+2025-07-15 07:39:29,075 - INFO - Video BConcave+AConcave+4100_flipped already processed (found segformer_model-BConcave+AConcave+4100_flipped.mp4), skipping ALL processing...
+2025-07-15 07:39:29,075 - INFO - Processing video: BConcave+AConcave+4300
+2025-07-15 07:39:29,075 - INFO - Video BConcave+AConcave+4300 already processed (found segformer_model-BConcave+AConcave+4300.mp4), skipping ALL processing...
+2025-07-15 07:39:29,075 - INFO - Processing video: BConcave+AConcave+4500_flipped
+2025-07-15 07:39:29,076 - INFO - Video BConcave+AConcave+4500_flipped already processed (found segformer_model-BConcave+AConcave+4500_flipped.mp4), skipping ALL processing...
+2025-07-15 07:39:29,076 - INFO - Processing video: BConcave+AConvex+3500_flipped
+2025-07-15 07:39:29,076 - INFO - Video BConcave+AConvex+3500_flipped already processed (found segformer_model-BConcave+AConvex+3500_flipped.mp4), skipping ALL processing...
+2025-07-15 07:39:29,076 - INFO - Processing video: BConcave+AConvex+3700
+2025-07-15 07:39:29,077 - INFO - Video BConcave+AConvex+3700 already processed (found segformer_model-BConcave+AConvex+3700.mp4), skipping ALL processing...
+2025-07-15 07:39:29,077 - INFO - Processing video: BConcave+AConvex+3900_flipped
+2025-07-15 07:39:29,077 - INFO - Video BConcave+AConvex+3900_flipped already processed (found segformer_model-BConcave+AConvex+3900_flipped.mp4), skipping ALL processing...
+2025-07-15 07:39:29,077 - INFO - Processing video: BConcave+AConvex+4100
+2025-07-15 07:39:29,078 - INFO - Video BConcave+AConvex+4100 already processed (found segformer_model-BConcave+AConvex+4100.mp4), skipping ALL processing...
+2025-07-15 07:39:29,078 - INFO - Processing video: BConcave+AConvex+4300_flipped
+2025-07-15 07:39:29,078 - INFO - Video BConcave+AConvex+4300_flipped already processed (found segformer_model-BConcave+AConvex+4300_flipped.mp4), skipping ALL processing...
+2025-07-15 07:39:29,078 - INFO - Processing video: BConcave+AConvex+4500
+2025-07-15 07:39:29,079 - INFO - Video BConcave+AConvex+4500 already processed (found segformer_model-BConcave+AConvex+4500.mp4), skipping ALL processing...
+2025-07-15 07:39:29,079 - INFO - Processing video: BConcave+BConcavePatient+3500
+2025-07-15 07:39:29,079 - INFO - Video BConcave+BConcavePatient+3500 already processed (found segformer_model-BConcave+BConcavePatient+3500.mp4), skipping ALL processing...
+2025-07-15 07:39:29,079 - INFO - Processing video: BConcave+BConcavePatient+3700_flipped
+2025-07-15 07:39:29,080 - INFO - Video BConcave+BConcavePatient+3700_flipped already processed (found segformer_model-BConcave+BConcavePatient+3700_flipped.mp4), skipping ALL processing...
+2025-07-15 07:39:29,080 - INFO - Processing video: BConcave+BConcavePatient+3900
+2025-07-15 07:39:29,080 - INFO - Video BConcave+BConcavePatient+3900 already processed (found segformer_model-BConcave+BConcavePatient+3900.mp4), skipping ALL processing...
+2025-07-15 07:39:29,081 - INFO - Processing video: BConcave+BConcavePatient+4100_flipped
+2025-07-15 07:39:29,081 - INFO - Video BConcave+BConcavePatient+4100_flipped already processed (found segformer_model-BConcave+BConcavePatient+4100_flipped.mp4), skipping ALL processing...
+2025-07-15 07:39:29,081 - INFO - Processing video: BConcave+BConcavePatient+4300
+2025-07-15 07:39:29,082 - INFO - Video BConcave+BConcavePatient+4300 already processed (found segformer_model-BConcave+BConcavePatient+4300.mp4), skipping ALL processing...
+2025-07-15 07:39:29,082 - INFO - Processing video: BConcave+BConcavePatient+4500_flipped
+2025-07-15 07:39:29,082 - INFO - Video BConcave+BConcavePatient+4500_flipped already processed (found segformer_model-BConcave+BConcavePatient+4500_flipped.mp4), skipping ALL processing...
+2025-07-15 07:39:29,082 - INFO - Processing video: BConcave+BConvex+3500_flipped
+2025-07-15 07:39:29,083 - INFO - Video BConcave+BConvex+3500_flipped already processed (found segformer_model-BConcave+BConvex+3500_flipped.mp4), skipping ALL processing...
+2025-07-15 07:39:29,083 - INFO - Processing video: BConcave+BConvex+3700
+2025-07-15 07:39:29,083 - INFO - Video BConcave+BConvex+3700 already processed (found segformer_model-BConcave+BConvex+3700.mp4), skipping ALL processing...
+2025-07-15 07:39:29,083 - INFO - Processing video: BConcave+BConvex+3900_flipped
+2025-07-15 07:39:29,084 - INFO - Video BConcave+BConvex+3900_flipped already processed (found segformer_model-BConcave+BConvex+3900_flipped.mp4), skipping ALL processing...
+2025-07-15 07:39:29,084 - INFO - Processing video: BConcave+BConvex+4100
+2025-07-15 07:39:29,084 - INFO - Video BConcave+BConvex+4100 already processed (found segformer_model-BConcave+BConvex+4100.mp4), skipping ALL processing...
+2025-07-15 07:39:29,084 - INFO - Processing video: BConcave+BConvex+4300_flipped
+2025-07-15 07:39:29,085 - INFO - Video BConcave+BConvex+4300_flipped already processed (found segformer_model-BConcave+BConvex+4300_flipped.mp4), skipping ALL processing...
+2025-07-15 07:39:29,085 - INFO - Processing video: BConcave+BConvex+4500
+2025-07-15 07:39:29,085 - INFO - Video BConcave+BConvex+4500 already processed (found segformer_model-BConcave+BConvex+4500.mp4), skipping ALL processing...
+2025-07-15 07:39:29,085 - INFO - Processing video: BConcave+CConcave+3500
+2025-07-15 07:39:29,086 - INFO - Video BConcave+CConcave+3500 already processed (found segformer_model-BConcave+CConcave+3500.mp4), skipping ALL processing...
+2025-07-15 07:39:29,086 - INFO - Processing video: BConcave+CConcave+3700_flipped
+2025-07-15 07:39:29,086 - INFO - Video BConcave+CConcave+3700_flipped already processed (found segformer_model-BConcave+CConcave+3700_flipped.mp4), skipping ALL processing...
+2025-07-15 07:39:29,086 - INFO - Processing video: BConcave+CConcave+3900
+2025-07-15 07:39:29,087 - INFO - Video BConcave+CConcave+3900 already processed (found segformer_model-BConcave+CConcave+3900.mp4), skipping ALL processing...
+2025-07-15 07:39:29,087 - INFO - Processing video: BConcave+CConcave+4100_flipped
+2025-07-15 07:39:29,088 - INFO - Video BConcave+CConcave+4100_flipped already processed (found segformer_model-BConcave+CConcave+4100_flipped.mp4), skipping ALL processing...
+2025-07-15 07:39:29,088 - INFO - Processing video: BConcave+CConcave+4300
+2025-07-15 07:39:29,088 - INFO - Video BConcave+CConcave+4300 already processed (found segformer_model-BConcave+CConcave+4300.mp4), skipping ALL processing...
+2025-07-15 07:39:29,088 - INFO - Processing video: BConcave+CConcave+4500_flipped
+2025-07-15 07:39:29,089 - INFO - Video BConcave+CConcave+4500_flipped already processed (found segformer_model-BConcave+CConcave+4500_flipped.mp4), skipping ALL processing...
+2025-07-15 07:39:29,089 - INFO - Processing video: BConcave+CConvex+3500_flipped
+2025-07-15 07:39:29,089 - INFO - Video BConcave+CConvex+3500_flipped already processed (found segformer_model-BConcave+CConvex+3500_flipped.mp4), skipping ALL processing...
+2025-07-15 07:39:29,089 - INFO - Processing video: BConcave+CConvex+3700
+2025-07-15 07:39:29,090 - INFO - Video BConcave+CConvex+3700 already processed (found segformer_model-BConcave+CConvex+3700.mp4), skipping ALL processing...
+2025-07-15 07:39:29,090 - INFO - Processing video: BConcave+CConvex+3900_flipped
+2025-07-15 07:39:29,090 - INFO - Video BConcave+CConvex+3900_flipped already processed (found segformer_model-BConcave+CConvex+3900_flipped.mp4), skipping ALL processing...
+2025-07-15 07:39:29,091 - INFO - Processing video: BConcave+CConvex+4100
+2025-07-15 07:39:29,091 - INFO - Video BConcave+CConvex+4100 already processed (found segformer_model-BConcave+CConvex+4100.mp4), skipping ALL processing...
+2025-07-15 07:39:29,091 - INFO - Processing video: BConcave+CConvex+4300_flipped
+2025-07-15 07:39:29,092 - INFO - Video BConcave+CConvex+4300_flipped already processed (found segformer_model-BConcave+CConvex+4300_flipped.mp4), skipping ALL processing...
+2025-07-15 07:39:29,092 - INFO - Processing video: BConcave+CConvex+4500
+2025-07-15 07:39:29,092 - INFO - Video BConcave+CConvex+4500 already processed (found segformer_model-BConcave+CConvex+4500.mp4), skipping ALL processing...
+2025-07-15 07:39:29,092 - INFO - Processing video: BConcave+DConcave+3500
+2025-07-15 07:39:29,093 - INFO - Video BConcave+DConcave+3500 already processed (found segformer_model-BConcave+DConcave+3500.mp4), skipping ALL processing...
+2025-07-15 07:39:29,093 - INFO - Processing video: BConcave+DConcave+3700_flipped
+2025-07-15 07:39:29,093 - INFO - Video BConcave+DConcave+3700_flipped already processed (found segformer_model-BConcave+DConcave+3700_flipped.mp4), skipping ALL processing...
+2025-07-15 07:39:29,093 - INFO - Processing video: BConcave+DConcave+3900
+2025-07-15 07:39:29,094 - INFO - Video BConcave+DConcave+3900 already processed (found segformer_model-BConcave+DConcave+3900.mp4), skipping ALL processing...
+2025-07-15 07:39:29,094 - INFO - Processing video: BConcave+DConcave+4100_flipped
+2025-07-15 07:39:29,094 - INFO - Video BConcave+DConcave+4100_flipped already processed (found segformer_model-BConcave+DConcave+4100_flipped.mp4), skipping ALL processing...
+2025-07-15 07:39:29,094 - INFO - Processing video: BConcave+DConcave+4300
+2025-07-15 07:39:29,095 - INFO - Video BConcave+DConcave+4300 already processed (found segformer_model-BConcave+DConcave+4300.mp4), skipping ALL processing...
+2025-07-15 07:39:29,095 - INFO - Processing video: BConcave+DConcave+4500_flipped
+2025-07-15 07:39:29,096 - INFO - Video BConcave+DConcave+4500_flipped already processed (found segformer_model-BConcave+DConcave+4500_flipped.mp4), skipping ALL processing...
+2025-07-15 07:39:29,096 - INFO - Processing video: BConcave+DConvex+3500_flipped
+2025-07-15 07:39:29,096 - INFO - Video BConcave+DConvex+3500_flipped already processed (found segformer_model-BConcave+DConvex+3500_flipped.mp4), skipping ALL processing...
+2025-07-15 07:39:29,096 - INFO - Processing video: BConcave+DConvex+3700
+2025-07-15 07:39:29,097 - INFO - Video BConcave+DConvex+3700 already processed (found segformer_model-BConcave+DConvex+3700.mp4), skipping ALL processing...
+2025-07-15 07:39:29,097 - INFO - Processing video: BConcave+DConvex+3900_flipped
+2025-07-15 07:39:29,097 - INFO - Video BConcave+DConvex+3900_flipped already processed (found segformer_model-BConcave+DConvex+3900_flipped.mp4), skipping ALL processing...
+2025-07-15 07:39:29,097 - INFO - Processing video: BConcave+DConvex+4100
+2025-07-15 07:39:29,098 - INFO - Video BConcave+DConvex+4100 already processed (found segformer_model-BConcave+DConvex+4100.mp4), skipping ALL processing...
+2025-07-15 07:39:29,098 - INFO - Processing video: BConcave+DConvex+4300_flipped
+2025-07-15 07:39:29,098 - INFO - Video BConcave+DConvex+4300_flipped already processed (found segformer_model-BConcave+DConvex+4300_flipped.mp4), skipping ALL processing...
+2025-07-15 07:39:29,098 - INFO - Processing video: BConcave+DConvex+4500
+2025-07-15 07:39:29,099 - INFO - Video BConcave+DConvex+4500 already processed (found segformer_model-BConcave+DConvex+4500.mp4), skipping ALL processing...
+2025-07-15 07:39:29,099 - INFO - Processing video: BConcave+EConcave+3500_flipped
+2025-07-15 07:39:29,100 - INFO - Video BConcave+EConcave+3500_flipped already processed (found segformer_model-BConcave+EConcave+3500_flipped.mp4), skipping ALL processing...
+2025-07-15 07:39:29,100 - INFO - Processing video: BConcave+EConcave+3700
+2025-07-15 07:39:29,100 - INFO - Video BConcave+EConcave+3700 already processed (found segformer_model-BConcave+EConcave+3700.mp4), skipping ALL processing...
+2025-07-15 07:39:29,100 - INFO - Processing video: BConcave+EConcave+3900_flipped
+2025-07-15 07:39:29,101 - INFO - Video BConcave+EConcave+3900_flipped already processed (found segformer_model-BConcave+EConcave+3900_flipped.mp4), skipping ALL processing...
+2025-07-15 07:39:29,101 - INFO - Processing video: BConcave+EConcave+4100
+2025-07-15 07:39:29,101 - INFO - Video BConcave+EConcave+4100 already processed (found segformer_model-BConcave+EConcave+4100.mp4), skipping ALL processing...
+2025-07-15 07:39:29,101 - INFO - Processing video: BConcave+EConcave+4300_flipped
+2025-07-15 07:39:29,102 - INFO - Video BConcave+EConcave+4300_flipped already processed (found segformer_model-BConcave+EConcave+4300_flipped.mp4), skipping ALL processing...
+2025-07-15 07:39:29,102 - INFO - Processing video: BConcave+EConcave+4500
+2025-07-15 07:39:29,102 - INFO - Video BConcave+EConcave+4500 already processed (found segformer_model-BConcave+EConcave+4500.mp4), skipping ALL processing...
+2025-07-15 07:39:29,102 - INFO - Processing video: BConcave+EConvex+3500
+2025-07-15 07:39:29,103 - INFO - Video BConcave+EConvex+3500 already processed (found segformer_model-BConcave+EConvex+3500.mp4), skipping ALL processing...
+2025-07-15 07:39:29,103 - INFO - Processing video: BConcave+EConvex+3700_flipped
+2025-07-15 07:39:29,103 - INFO - Video BConcave+EConvex+3700_flipped already processed (found segformer_model-BConcave+EConvex+3700_flipped.mp4), skipping ALL processing...
+2025-07-15 07:39:29,103 - INFO - Processing video: BConcave+EConvex+3900
+2025-07-15 07:39:29,104 - INFO - Video BConcave+EConvex+3900 already processed (found segformer_model-BConcave+EConvex+3900.mp4), skipping ALL processing...
+2025-07-15 07:39:29,104 - INFO - Processing video: BConcave+EConvex+4100_flipped
+2025-07-15 07:39:29,104 - INFO - Video BConcave+EConvex+4100_flipped already processed (found segformer_model-BConcave+EConvex+4100_flipped.mp4), skipping ALL processing...
+2025-07-15 07:39:29,104 - INFO - Processing video: BConcave+EConvex+4300
+2025-07-15 07:39:29,105 - INFO - Video BConcave+EConvex+4300 already processed (found segformer_model-BConcave+EConvex+4300.mp4), skipping ALL processing...
+2025-07-15 07:39:29,105 - INFO - Processing video: BConcave+EConvex+4500_flipped
+2025-07-15 07:39:29,105 - INFO - Video BConcave+EConvex+4500_flipped already processed (found segformer_model-BConcave+EConvex+4500_flipped.mp4), skipping ALL processing...
+2025-07-15 07:39:29,105 - INFO - Processing video: BConcave+FConcave+3500_flipped
+2025-07-15 07:39:29,106 - INFO - Video BConcave+FConcave+3500_flipped already processed (found segformer_model-BConcave+FConcave+3500_flipped.mp4), skipping ALL processing...
+2025-07-15 07:39:29,106 - INFO - Processing video: BConcave+FConcave+3700
+2025-07-15 07:39:29,106 - INFO - Video BConcave+FConcave+3700 already processed (found segformer_model-BConcave+FConcave+3700.mp4), skipping ALL processing...
+2025-07-15 07:39:29,106 - INFO - Processing video: BConcave+FConcave+3900_flipped
+2025-07-15 07:39:29,107 - INFO - Video BConcave+FConcave+3900_flipped already processed (found segformer_model-BConcave+FConcave+3900_flipped.mp4), skipping ALL processing...
+2025-07-15 07:39:29,107 - INFO - Processing video: BConcave+FConcave+4100
+2025-07-15 07:39:29,107 - INFO - Video BConcave+FConcave+4100 already processed (found segformer_model-BConcave+FConcave+4100.mp4), skipping ALL processing...
+2025-07-15 07:39:29,107 - INFO - Processing video: BConcave+FConcave+4300_flipped
+2025-07-15 07:39:29,108 - INFO - Video BConcave+FConcave+4300_flipped already processed (found segformer_model-BConcave+FConcave+4300_flipped.mp4), skipping ALL processing...
+2025-07-15 07:39:29,108 - INFO - Processing video: BConcave+FConcave+4500
+2025-07-15 07:39:29,108 - INFO - Video BConcave+FConcave+4500 already processed (found segformer_model-BConcave+FConcave+4500.mp4), skipping ALL processing...
+2025-07-15 07:39:29,109 - INFO - Processing video: BConcave+FConvex+3500
+2025-07-15 07:39:29,109 - INFO - Video BConcave+FConvex+3500 already processed (found segformer_model-BConcave+FConvex+3500.mp4), skipping ALL processing...
+2025-07-15 07:39:29,109 - INFO - Processing video: BConcave+FConvex+3700_flipped
+2025-07-15 07:39:29,110 - INFO - Video BConcave+FConvex+3700_flipped already processed (found segformer_model-BConcave+FConvex+3700_flipped.mp4), skipping ALL processing...
+2025-07-15 07:39:29,110 - INFO - Processing video: BConcave+FConvex+3900
+2025-07-15 07:39:29,110 - INFO - Video BConcave+FConvex+3900 already processed (found segformer_model-BConcave+FConvex+3900.mp4), skipping ALL processing...
+2025-07-15 07:39:29,110 - INFO - Processing video: BConcave+FConvex+4100_flipped
+2025-07-15 07:39:29,111 - INFO - Video BConcave+FConvex+4100_flipped already processed (found segformer_model-BConcave+FConvex+4100_flipped.mp4), skipping ALL processing...
+2025-07-15 07:39:29,111 - INFO - Processing video: BConcave+FConvex+4300
+2025-07-15 07:39:29,111 - INFO - Video BConcave+FConvex+4300 already processed (found segformer_model-BConcave+FConvex+4300.mp4), skipping ALL processing...
+2025-07-15 07:39:29,111 - INFO - Processing video: BConcave+FConvex+4500_flipped
+2025-07-15 07:39:29,112 - INFO - Video BConcave+FConvex+4500_flipped already processed (found segformer_model-BConcave+FConvex+4500_flipped.mp4), skipping ALL processing...
+2025-07-15 07:39:29,112 - INFO - Processing video: BConcave+gConcave+3500_flipped
+2025-07-15 07:39:29,112 - INFO - Video BConcave+gConcave+3500_flipped already processed (found segformer_model-BConcave+gConcave+3500_flipped.mp4), skipping ALL processing...
+2025-07-15 07:39:29,112 - INFO - Processing video: BConcave+gConcave+3700
+2025-07-15 07:39:29,113 - INFO - Video BConcave+gConcave+3700 already processed (found segformer_model-BConcave+gConcave+3700.mp4), skipping ALL processing...
+2025-07-15 07:39:29,113 - INFO - Processing video: BConcave+gConcave+3900_flipped
+2025-07-15 07:39:29,113 - INFO - Video BConcave+gConcave+3900_flipped already processed (found segformer_model-BConcave+gConcave+3900_flipped.mp4), skipping ALL processing...
+2025-07-15 07:39:29,113 - INFO - Processing video: BConcave+gConcave+4100
+2025-07-15 07:39:29,114 - INFO - Video BConcave+gConcave+4100 already processed (found segformer_model-BConcave+gConcave+4100.mp4), skipping ALL processing...
+2025-07-15 07:39:29,114 - INFO - Processing video: BConcave+gConcave+4300_flipped
+2025-07-15 07:39:29,114 - INFO - Video BConcave+gConcave+4300_flipped already processed (found segformer_model-BConcave+gConcave+4300_flipped.mp4), skipping ALL processing...
+2025-07-15 07:39:29,114 - INFO - Processing video: BConcave+gConcave+4500
+2025-07-15 07:39:29,115 - INFO - Video BConcave+gConcave+4500 already processed (found segformer_model-BConcave+gConcave+4500.mp4), skipping ALL processing...
+2025-07-15 07:39:29,115 - INFO - Processing video: BConcave+gConvex+3500
+2025-07-15 07:39:29,115 - INFO - Video BConcave+gConvex+3500 already processed (found segformer_model-BConcave+gConvex+3500.mp4), skipping ALL processing...
+2025-07-15 07:39:29,115 - INFO - Processing video: BConcave+gConvex+3700_flipped
+2025-07-15 07:39:29,116 - INFO - Video BConcave+gConvex+3700_flipped already processed (found segformer_model-BConcave+gConvex+3700_flipped.mp4), skipping ALL processing...
+2025-07-15 07:39:29,116 - INFO - Processing video: BConcave+gConvex+3900
+2025-07-15 07:39:29,116 - INFO - Video BConcave+gConvex+3900 already processed (found segformer_model-BConcave+gConvex+3900.mp4), skipping ALL processing...
+2025-07-15 07:39:29,116 - INFO - Processing video: BConcave+gConvex+4100_flipped
+2025-07-15 07:39:29,117 - INFO - Video BConcave+gConvex+4100_flipped already processed (found segformer_model-BConcave+gConvex+4100_flipped.mp4), skipping ALL processing...
+2025-07-15 07:39:29,117 - INFO - Processing video: BConcave+gConvex+4300
+2025-07-15 07:39:29,117 - INFO - Video BConcave+gConvex+4300 already processed (found segformer_model-BConcave+gConvex+4300.mp4), skipping ALL processing...
+2025-07-15 07:39:29,117 - INFO - Processing video: BConcave+gConvex+4500_flipped
+2025-07-15 07:39:29,118 - INFO - Video BConcave+gConvex+4500_flipped already processed (found segformer_model-BConcave+gConvex+4500_flipped.mp4), skipping ALL processing...
+2025-07-15 07:39:29,118 - INFO - Processing video: BConcave+hConcave+3500_flipped
+2025-07-15 07:39:29,118 - INFO - Video BConcave+hConcave+3500_flipped already processed (found segformer_model-BConcave+hConcave+3500_flipped.mp4), skipping ALL processing...
+2025-07-15 07:39:29,119 - INFO - Processing video: BConcave+hConcave+3700
+2025-07-15 07:39:29,119 - INFO - Video BConcave+hConcave+3700 already processed (found segformer_model-BConcave+hConcave+3700.mp4), skipping ALL processing...
+2025-07-15 07:39:29,119 - INFO - Processing video: BConcave+hConcave+3900_flipped
+2025-07-15 07:39:29,120 - INFO - Video BConcave+hConcave+3900_flipped already processed (found segformer_model-BConcave+hConcave+3900_flipped.mp4), skipping ALL processing...
+2025-07-15 07:39:29,120 - INFO - Processing video: BConcave+hConcave+4100
+2025-07-15 07:39:29,120 - INFO - Video BConcave+hConcave+4100 already processed (found segformer_model-BConcave+hConcave+4100.mp4), skipping ALL processing...
+2025-07-15 07:39:29,120 - INFO - Processing video: BConcave+hConcave+4300_flipped
+2025-07-15 07:39:29,121 - INFO - Video BConcave+hConcave+4300_flipped already processed (found segformer_model-BConcave+hConcave+4300_flipped.mp4), skipping ALL processing...
+2025-07-15 07:39:29,121 - INFO - Processing video: BConcave+hConcave+4500
+2025-07-15 07:39:29,121 - INFO - Video BConcave+hConcave+4500 already processed (found segformer_model-BConcave+hConcave+4500.mp4), skipping ALL processing...
+2025-07-15 07:39:29,121 - INFO - Processing video: BConcave+hConvex+3500
+2025-07-15 07:39:29,122 - INFO - Video BConcave+hConvex+3500 already processed (found segformer_model-BConcave+hConvex+3500.mp4), skipping ALL processing...
+2025-07-15 07:39:29,122 - INFO - Processing video: BConcave+hConvex+3700_flipped
+2025-07-15 07:39:29,122 - INFO - Video BConcave+hConvex+3700_flipped already processed (found segformer_model-BConcave+hConvex+3700_flipped.mp4), skipping ALL processing...
+2025-07-15 07:39:29,122 - INFO - Processing video: BConcave+hConvex+3900
+2025-07-15 07:39:29,123 - INFO - Video BConcave+hConvex+3900 already processed (found segformer_model-BConcave+hConvex+3900.mp4), skipping ALL processing...
+2025-07-15 07:39:29,123 - INFO - Processing video: BConcave+hConvex+4100_flipped
+2025-07-15 07:39:29,123 - INFO - Video BConcave+hConvex+4100_flipped already processed (found segformer_model-BConcave+hConvex+4100_flipped.mp4), skipping ALL processing...
+2025-07-15 07:39:29,123 - INFO - Processing video: BConcave+hConvex+4300
+2025-07-15 07:39:29,124 - INFO - Starting video processing: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/exp2TTC_files/BConcave+hConvex+4300.mp4
+2025-07-15 07:39:29,124 - INFO - Reset blob state tracking for new video
+2025-07-15 07:39:29,142 - INFO - VanillaSegmentationSaver initialized with output dir: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_videos/segformer_model-BConcave+hConvex+4300/org_segmentation
+2025-07-15 07:39:29,142 - INFO - Loading model...
+2025-07-15 07:39:32,700 - INFO - Video metadata: {'width': 1500, 'height': 400, 'fps': 60.0, 'total_frames': 329, 'duration': 5.483333333333333}
+2025-07-15 07:39:32,703 - INFO - Processing already complete, but not resuming. Starting from beginning.
+2025-07-15 07:39:32,792 - INFO - Processed frame 0/329
+2025-07-15 07:39:33,053 - INFO - Processed frame 10/329
+2025-07-15 07:39:34,183 - DEBUG - Frame 13: Updated blob 1 memory with running average of 1 masks
+2025-07-15 07:39:35,865 - DEBUG - Saved vanilla segmentation for frame 13
+2025-07-15 07:39:36,605 - DEBUG - Frame 14: Updated blob 1 memory with running average of 2 masks
+2025-07-15 07:39:38,038 - DEBUG - Saved vanilla segmentation for frame 14
+2025-07-15 07:39:38,758 - DEBUG - Frame 15: Updated blob 1 memory with running average of 3 masks
+2025-07-15 07:39:40,328 - DEBUG - Saved vanilla segmentation for frame 15
+2025-07-15 07:39:41,054 - DEBUG - Frame 16: Updated blob 1 memory with running average of 4 masks
+2025-07-15 07:39:42,494 - DEBUG - Saved vanilla segmentation for frame 16
+2025-07-15 07:39:43,234 - DEBUG - Frame 17: Updated blob 1 memory with running average of 5 masks
+2025-07-15 07:39:44,733 - DEBUG - Saved vanilla segmentation for frame 17
+2025-07-15 07:39:45,475 - DEBUG - Frame 18: Updated blob 1 memory with running average of 6 masks
+2025-07-15 07:39:47,134 - DEBUG - Saved vanilla segmentation for frame 18
+2025-07-15 07:39:47,863 - DEBUG - Frame 19: Updated blob 1 memory with running average of 7 masks
+2025-07-15 07:39:49,290 - DEBUG - Saved vanilla segmentation for frame 19
+2025-07-15 07:39:50,013 - DEBUG - Frame 20: Updated blob 1 memory with running average of 8 masks
+2025-07-15 07:39:51,444 - DEBUG - Saved vanilla segmentation for frame 20
+2025-07-15 07:39:51,444 - INFO - Processed frame 20/329
+2025-07-15 07:39:52,172 - DEBUG - Frame 21: Updated blob 1 memory with running average of 9 masks
+2025-07-15 07:39:53,630 - DEBUG - Saved vanilla segmentation for frame 21
+2025-07-15 07:39:54,369 - DEBUG - Frame 22: Updated blob 1 memory with running average of 10 masks
+2025-07-15 07:39:55,809 - DEBUG - Saved vanilla segmentation for frame 22
+2025-07-15 07:39:56,665 - DEBUG - Frame 23: Updated blob 1 memory with running average of 10 masks
+2025-07-15 07:39:58,093 - DEBUG - Saved vanilla segmentation for frame 23
+2025-07-15 07:39:58,938 - DEBUG - Frame 24: Updated blob 1 memory with running average of 10 masks
+2025-07-15 07:40:00,677 - DEBUG - Saved vanilla segmentation for frame 24
+2025-07-15 07:40:01,400 - DEBUG - Frame 25: Updated blob 1 memory with running average of 10 masks
+2025-07-15 07:40:02,834 - DEBUG - Saved vanilla segmentation for frame 25
+2025-07-15 07:40:03,561 - DEBUG - Frame 26: Updated blob 1 memory with running average of 10 masks
+2025-07-15 07:40:04,985 - DEBUG - Saved vanilla segmentation for frame 26
+2025-07-15 07:40:05,729 - DEBUG - Frame 27: Updated blob 1 memory with running average of 10 masks
+2025-07-15 07:40:07,163 - DEBUG - Saved vanilla segmentation for frame 27
+2025-07-15 07:40:07,934 - DEBUG - Frame 28: Updated blob 1 memory with running average of 10 masks
+2025-07-15 07:40:09,377 - DEBUG - Saved vanilla segmentation for frame 28
+2025-07-15 07:40:10,106 - DEBUG - Frame 29: Updated blob 1 memory with running average of 10 masks
+2025-07-15 07:40:11,553 - DEBUG - Saved vanilla segmentation for frame 29
+2025-07-15 07:40:13,774 - DEBUG - Frame 30: Updated blob 1 memory with running average of 10 masks
+2025-07-15 07:40:15,259 - DEBUG - Saved vanilla segmentation for frame 30
+2025-07-15 07:40:15,259 - INFO - Processed frame 30/329
+2025-07-15 07:40:17,214 - DEBUG - Frame 31: Updated blob 1 memory with running average of 10 masks
+2025-07-15 07:40:18,692 - DEBUG - Saved vanilla segmentation for frame 31
+2025-07-15 07:40:21,395 - DEBUG - Frame 32: Updated blob 1 memory with running average of 10 masks
+2025-07-15 07:40:22,885 - DEBUG - Saved vanilla segmentation for frame 32
+2025-07-15 07:40:24,842 - DEBUG - Frame 33: Updated blob 1 memory with running average of 10 masks
+2025-07-15 07:40:26,556 - DEBUG - Saved vanilla segmentation for frame 33
+2025-07-15 07:40:28,608 - DEBUG - Frame 34: Updated blob 1 memory with running average of 10 masks
+2025-07-15 07:40:30,074 - DEBUG - Saved vanilla segmentation for frame 34
+2025-07-15 07:40:32,230 - DEBUG - Frame 35: Updated blob 1 memory with running average of 10 masks
+2025-07-15 07:40:33,694 - DEBUG - Saved vanilla segmentation for frame 35
+2025-07-15 07:40:35,665 - DEBUG - Frame 36: Updated blob 1 memory with running average of 10 masks
+2025-07-15 07:40:37,561 - DEBUG - Saved vanilla segmentation for frame 36
+2025-07-15 07:40:40,300 - DEBUG - Frame 37: Updated blob 1 memory with running average of 10 masks
+2025-07-15 07:40:41,758 - DEBUG - Saved vanilla segmentation for frame 37
+2025-07-15 07:40:44,389 - DEBUG - Frame 38: Updated blob 1 memory with running average of 10 masks
+2025-07-15 07:40:46,107 - DEBUG - Saved vanilla segmentation for frame 38
+2025-07-15 07:40:48,313 - DEBUG - Frame 39: Updated blob 1 memory with running average of 10 masks
+2025-07-15 07:40:49,761 - DEBUG - Saved vanilla segmentation for frame 39
+2025-07-15 07:40:51,719 - DEBUG - Frame 40: Updated blob 1 memory with running average of 10 masks
+2025-07-15 07:40:53,255 - DEBUG - Saved vanilla segmentation for frame 40
+2025-07-15 07:40:53,256 - INFO - Processed frame 40/329
+2025-07-15 07:40:55,520 - DEBUG - Frame 41: Updated blob 1 memory with running average of 10 masks
+2025-07-15 07:40:56,971 - DEBUG - Saved vanilla segmentation for frame 41
+2025-07-15 07:40:58,950 - DEBUG - Frame 42: Updated blob 1 memory with running average of 10 masks
+2025-07-15 07:41:00,393 - DEBUG - Saved vanilla segmentation for frame 42
+2025-07-15 07:41:02,620 - DEBUG - Frame 43: Updated blob 1 memory with running average of 10 masks
+2025-07-15 07:41:04,063 - DEBUG - Saved vanilla segmentation for frame 43
+2025-07-15 07:41:06,049 - DEBUG - Frame 44: Updated blob 1 memory with running average of 10 masks
+2025-07-15 07:41:07,531 - DEBUG - Saved vanilla segmentation for frame 44
+2025-07-15 07:41:09,768 - DEBUG - Frame 45: Updated blob 1 memory with running average of 10 masks
+2025-07-15 07:41:11,245 - DEBUG - Saved vanilla segmentation for frame 45
+2025-07-15 07:41:13,186 - DEBUG - Frame 46: Updated blob 1 memory with running average of 10 masks
+2025-07-15 07:41:14,660 - DEBUG - Saved vanilla segmentation for frame 46
+2025-07-15 07:41:16,895 - DEBUG - Frame 47: Updated blob 1 memory with running average of 10 masks
+2025-07-15 07:41:18,372 - DEBUG - Saved vanilla segmentation for frame 47
+2025-07-15 07:41:20,332 - DEBUG - Frame 48: Updated blob 1 memory with running average of 10 masks
+2025-07-15 07:41:22,070 - DEBUG - Saved vanilla segmentation for frame 48
+2025-07-15 07:41:24,131 - DEBUG - Frame 49: Updated blob 1 memory with running average of 10 masks
+2025-07-15 07:41:25,645 - DEBUG - Saved vanilla segmentation for frame 49
+2025-07-15 07:41:27,598 - DEBUG - Frame 50: Updated blob 1 memory with running average of 10 masks
+2025-07-15 07:41:29,273 - DEBUG - Saved vanilla segmentation for frame 50
+2025-07-15 07:41:29,276 - INFO - Processed frame 50/329
+2025-07-15 07:41:31,244 - DEBUG - Frame 51: Updated blob 1 memory with running average of 10 masks
+2025-07-15 07:41:32,689 - DEBUG - Saved vanilla segmentation for frame 51
+2025-07-15 07:41:34,896 - DEBUG - Frame 52: Updated blob 1 memory with running average of 10 masks
+2025-07-15 07:41:36,353 - DEBUG - Saved vanilla segmentation for frame 52
+2025-07-15 07:41:38,306 - DEBUG - Frame 53: Updated blob 1 memory with running average of 10 masks
+2025-07-15 07:41:39,761 - DEBUG - Saved vanilla segmentation for frame 53
+2025-07-15 07:41:41,993 - DEBUG - Frame 54: Updated blob 1 memory with running average of 10 masks
+2025-07-15 07:41:43,449 - DEBUG - Saved vanilla segmentation for frame 54
+2025-07-15 07:41:45,416 - DEBUG - Frame 55: Updated blob 1 memory with running average of 10 masks
+2025-07-15 07:41:46,904 - DEBUG - Saved vanilla segmentation for frame 55
+2025-07-15 07:41:49,088 - DEBUG - Frame 56: Updated blob 1 memory with running average of 10 masks
+2025-07-15 07:41:50,553 - DEBUG - Saved vanilla segmentation for frame 56
+2025-07-15 07:41:52,508 - DEBUG - Frame 57: Updated blob 1 memory with running average of 10 masks
+2025-07-15 07:41:53,991 - DEBUG - Saved vanilla segmentation for frame 57
+2025-07-15 07:41:56,657 - DEBUG - Frame 58: Updated blob 1 memory with running average of 10 masks
+2025-07-15 07:41:58,186 - DEBUG - Saved vanilla segmentation for frame 58
+2025-07-15 07:42:00,148 - DEBUG - Frame 59: Updated blob 1 memory with running average of 10 masks
+2025-07-15 07:42:01,588 - DEBUG - Saved vanilla segmentation for frame 59
+2025-07-15 07:42:03,804 - DEBUG - Frame 60: Updated blob 1 memory with running average of 10 masks
+2025-07-15 07:42:05,278 - DEBUG - Saved vanilla segmentation for frame 60
+2025-07-15 07:42:05,278 - INFO - Processed frame 60/329
+2025-07-15 07:42:07,220 - DEBUG - Frame 61: Updated blob 1 memory with running average of 10 masks
+2025-07-15 07:42:08,675 - DEBUG - Saved vanilla segmentation for frame 61
+2025-07-15 07:42:11,031 - DEBUG - Frame 62: Updated blob 1 memory with running average of 10 masks
+2025-07-15 07:42:12,619 - DEBUG - Saved vanilla segmentation for frame 62
+2025-07-15 07:42:14,584 - DEBUG - Frame 63: Updated blob 1 memory with running average of 10 masks
+2025-07-15 07:42:16,052 - DEBUG - Saved vanilla segmentation for frame 63
+2025-07-15 07:42:18,278 - DEBUG - Frame 64: Updated blob 1 memory with running average of 10 masks
+2025-07-15 07:42:19,732 - DEBUG - Saved vanilla segmentation for frame 64
+2025-07-15 07:42:21,687 - DEBUG - Frame 65: Updated blob 1 memory with running average of 10 masks
+2025-07-15 07:42:23,431 - DEBUG - Saved vanilla segmentation for frame 65
+2025-07-15 07:42:25,381 - DEBUG - Frame 66: Updated blob 1 memory with running average of 10 masks
+2025-07-15 07:42:26,824 - DEBUG - Saved vanilla segmentation for frame 66
+2025-07-15 07:42:28,796 - DEBUG - Frame 67: Updated blob 1 memory with running average of 10 masks
+2025-07-15 07:42:30,534 - DEBUG - Saved vanilla segmentation for frame 67
+2025-07-15 07:42:32,445 - DEBUG - Frame 68: Updated blob 1 memory with running average of 10 masks
+2025-07-15 07:42:33,888 - DEBUG - Saved vanilla segmentation for frame 68
+2025-07-15 07:42:36,073 - DEBUG - Frame 69: Updated blob 1 memory with running average of 10 masks
+2025-07-15 07:42:37,517 - DEBUG - Saved vanilla segmentation for frame 69
+2025-07-15 07:42:39,489 - DEBUG - Frame 70: Updated blob 1 memory with running average of 10 masks
+2025-07-15 07:42:40,937 - DEBUG - Saved vanilla segmentation for frame 70
+2025-07-15 07:42:40,937 - INFO - Processed frame 70/329
+2025-07-15 07:42:43,184 - DEBUG - Frame 71: Updated blob 1 memory with running average of 10 masks
+2025-07-15 07:42:44,639 - DEBUG - Saved vanilla segmentation for frame 71
+2025-07-15 07:42:46,624 - DEBUG - Frame 72: Updated blob 1 memory with running average of 10 masks
+2025-07-15 07:42:48,089 - DEBUG - Saved vanilla segmentation for frame 72
+2025-07-15 07:42:50,346 - DEBUG - Frame 73: Updated blob 1 memory with running average of 10 masks
+2025-07-15 07:42:51,791 - DEBUG - Saved vanilla segmentation for frame 73
+2025-07-15 07:42:53,736 - DEBUG - Frame 74: Updated blob 1 memory with running average of 10 masks
+2025-07-15 07:42:55,194 - DEBUG - Saved vanilla segmentation for frame 74
+2025-07-15 07:42:57,439 - DEBUG - Frame 75: Updated blob 1 memory with running average of 10 masks
+2025-07-15 07:42:58,871 - DEBUG - Saved vanilla segmentation for frame 75
+2025-07-15 07:43:00,798 - DEBUG - Frame 76: Updated blob 1 memory with running average of 10 masks
+2025-07-15 07:43:02,242 - DEBUG - Saved vanilla segmentation for frame 76
+2025-07-15 07:43:04,477 - DEBUG - Frame 77: Updated blob 1 memory with running average of 10 masks
+2025-07-15 07:43:05,925 - DEBUG - Saved vanilla segmentation for frame 77
+2025-07-15 07:43:07,855 - DEBUG - Frame 78: Updated blob 1 memory with running average of 10 masks
+2025-07-15 07:43:09,287 - DEBUG - Saved vanilla segmentation for frame 78
+2025-07-15 07:43:11,530 - DEBUG - Frame 79: Updated blob 1 memory with running average of 10 masks
+2025-07-15 07:43:11,551 - INFO - Frame 79: Saved blob 1 memory mask to be frozen at /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_videos/segformer_model-BConcave+hConvex+4300/frames_masks/mask_memory_blob_1_frame_000079.png
+2025-07-15 07:43:12,968 - DEBUG - Saved vanilla segmentation for frame 79
+2025-07-15 07:43:14,899 - DEBUG - Frame 80: Blob 1 memory frozen, not updating running average
+2025-07-15 07:43:14,902 - DEBUG - Using frozen mask for blob 1 at frame 80
+2025-07-15 07:43:14,921 - DEBUG - Frame 80: Reused frozen blob 1 memory mask
+2025-07-15 07:43:14,981 - ERROR - Failed to process video BConcave+hConvex+4300: arrays used as indices must be of integer (or boolean) type
+2025-07-15 07:43:14,981 - INFO - Processing video: BConcave+hConvex+4500_flipped
+2025-07-15 07:43:14,982 - INFO - Video BConcave+hConvex+4500_flipped already processed (found segformer_model-BConcave+hConvex+4500_flipped.mp4), skipping ALL processing...
+2025-07-15 07:43:14,982 - INFO - Processing video: squareA+squareP+4433+L
+2025-07-15 07:43:14,982 - INFO - Video squareA+squareP+4433+L already processed (found segformer_model-squareA+squareP+4433+L.mp4), skipping ALL processing...
+2025-07-15 07:43:14,982 - INFO - Processing video: squareA+squareP+4433+R_flipped
+2025-07-15 07:43:14,983 - INFO - Video squareA+squareP+4433+R_flipped already processed (found segformer_model-squareA+squareP+4433+R_flipped.mp4), skipping ALL processing...
+2025-07-15 07:43:14,983 - WARNING - No collision data generated - skipping correlation analysis
+2025-07-15 07:43:14,983 - INFO - TTC experiment completed successfully
