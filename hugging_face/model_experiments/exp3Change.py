@@ -615,9 +615,11 @@ def main():
     parser = argparse.ArgumentParser(description="Change Detection Experiment - Process raw images and analyze blob segmentation")
     parser.add_argument("--model_interface", type=str, default="segformer",
                       choices=["segformer"], help="Model interface to use")
-    parser.add_argument("--images_dir", type=str, required=True,
+    parser.add_argument("--images_dir", type=str, required=False,
+                      default="/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/exp3Change_files",
                       help="Directory containing raw image files")
-    parser.add_argument("--output_dir", type=str, required=True,
+    parser.add_argument("--output_dir", type=str, required=False,
+                      default="/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change",
                       help="Output directory for results and processed data")
     parser.add_argument("--thresholds", type=int, nargs='+', 
                       default=[1, 2, 3, 4, 5, 6, 8, 10, 12, 14, 16, 18, 20],
