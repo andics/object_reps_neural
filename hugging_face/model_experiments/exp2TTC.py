@@ -6,6 +6,12 @@ Time-to-Collision (TTC) Experiment that processes raw .mp4 videos and computes c
 times under varying IoU thresholds, correlating with participant response data.
 Completely self-contained from raw videos to final analysis.
 
+FIXED VERSION:
+- Enhanced blob 1 memory freezing logic for true stability
+- Fixed undefined variable error in data analysis
+- Added robust correlation computation with NaN protection
+- Improved concave vs convex analysis with two-column bar charts using gen_two_box_plots.py style
+
 Usage:
     python exp2TTC.py --model_interface segformer --videos_dir /path/to/raw_videos --csv_path /path/to/participants.csv --output_dir /path/to/output [--resume] [--blob_1_memory_freeze_frame 80]
 """
@@ -874,83 +880,71 @@ class TTCExperiment:
             human_gt_to_concave = {}
             human_gt_to_convex = {}
         
-        # Compute differences for each ground truth time
+        # Compute model means and standard errors for each ground truth time
         gt_sorted = sorted(set(list(gt_to_concave_vals.keys()) + list(gt_to_convex_vals.keys())))
         
-        model_diffs = []
-        human_diffs = []
+        # Model data: compute means and standard errors for concave vs convex
+        model_concave_means = []
+        model_concave_sems = []
+        model_convex_means = []
+        model_convex_sems = []
         
         for gt in gt_sorted:
-            # Model differences
-            model_concave_times = gt_to_concave_vals.get(gt, [])
-            model_convex_times = gt_to_convex_vals.get(gt, [])
-            
-            if model_concave_times and model_convex_times:
-                mean_concave = np.mean(model_concave_times)
-                mean_convex = np.mean(model_convex_times)
-                model_diff = abs(mean_concave - mean_convex)
+            # Model concave data
+            concave_times = gt_to_concave_vals.get(gt, [])
+            if concave_times:
+                concave_mean = np.mean(concave_times)
+                concave_sem = np.std(concave_times, ddof=1) / np.sqrt(len(concave_times)) if len(concave_times) > 1 else 0
             else:
-                model_diff = float('nan')
-            model_diffs.append(model_diff)
+                concave_mean = float('nan')
+                concave_sem = 0
+            model_concave_means.append(concave_mean)
+            model_concave_sems.append(concave_sem)
             
-            # Human differences
-            human_concave_times = human_gt_to_concave.get(gt, [])
-            human_convex_times = human_gt_to_convex.get(gt, [])
-            
-            if human_concave_times and human_convex_times:
-                mean_concave = np.mean(human_concave_times)
-                mean_convex = np.mean(human_convex_times)
-                human_diff = abs(mean_concave - mean_convex)
+            # Model convex data
+            convex_times = gt_to_convex_vals.get(gt, [])
+            if convex_times:
+                convex_mean = np.mean(convex_times)
+                convex_sem = np.std(convex_times, ddof=1) / np.sqrt(len(convex_times)) if len(convex_times) > 1 else 0
             else:
-                human_diff = float('nan')
-            human_diffs.append(human_diff)
+                convex_mean = float('nan')
+                convex_sem = 0
+            model_convex_means.append(convex_mean)
+            model_convex_sems.append(convex_sem)
         
-        # Create visualization
-        x_indices = np.arange(len(gt_sorted))
-        width = 0.35
-        
+        # Create two-column bar chart visualization using same style as gen_two_box_plots.py
         fig, ax = plt.subplots(figsize=(10, 6))
         
-        # Filter out NaN values for plotting
-        valid_indices = []
-        valid_model_diffs = []
-        valid_human_diffs = []
-        valid_gt_labels = []
+        # Define parameters for the grouped bar chart (same as gen_two_box_plots.py)
+        bar_width = 0.40
+        x_positions = np.arange(len(gt_sorted)) * 1.0
         
-        for i, (model_diff, human_diff) in enumerate(zip(model_diffs, human_diffs)):
-            if not (np.isnan(model_diff) and np.isnan(human_diff)):
-                valid_indices.append(i)
-                valid_model_diffs.append(model_diff if not np.isnan(model_diff) else 0)
-                valid_human_diffs.append(human_diff if not np.isnan(human_diff) else 0)
-                valid_gt_labels.append(str(gt_sorted[i]))
+        # Place bars directly next to each other using exact same colors as gen_two_box_plots.py
+        concave_bars = ax.bar(x_positions - bar_width / 2, model_concave_means, bar_width,
+                             color='#FFBE48', label='Concave')
+        convex_bars = ax.bar(x_positions + bar_width / 2, model_convex_means, bar_width,
+                            color='#56A036', label='Convex')
         
-        if valid_indices:
-            x_valid = np.arange(len(valid_indices))
-            
-            bars1 = ax.bar(x_valid - width/2, valid_model_diffs, width, label='Model', alpha=0.7)
-            bars2 = ax.bar(x_valid + width/2, valid_human_diffs, width, label='Human', alpha=0.7)
-            
-            ax.set_xlabel('Ground Truth Time (ms)')
-            ax.set_ylabel('Concave vs Convex Absolute Difference (ms)')
-            ax.set_title(f'Concave vs Convex Differences, IoU={iou_thr}')
-            ax.set_xticks(x_valid)
-            ax.set_xticklabels(valid_gt_labels)
-            ax.legend()
-            ax.grid(True, alpha=0.3)
-            
-            # Add value labels on bars
-            for bar, val in zip(bars1, valid_model_diffs):
-                if val > 0:  # Only label non-zero bars
-                    ax.text(bar.get_x() + bar.get_width()/2, bar.get_height() + max(valid_model_diffs + valid_human_diffs)*0.01,
-                           f'{val:.1f}', ha='center', va='bottom', fontsize=8)
-            
-            for bar, val in zip(bars2, valid_human_diffs):
-                if val > 0:  # Only label non-zero bars
-                    ax.text(bar.get_x() + bar.get_width()/2, bar.get_height() + max(valid_model_diffs + valid_human_diffs)*0.01,
-                           f'{val:.1f}', ha='center', va='bottom', fontsize=8)
-        else:
-            ax.text(0.5, 0.5, 'No valid data for comparison', ha='center', va='center', transform=ax.transAxes)
-            ax.set_title(f'Concave vs Convex Differences, IoU={iou_thr} (No Data)')
+        # Add error bars on TOP of each bar (same as gen_two_box_plots.py)
+        ax.errorbar(x_positions - bar_width / 2, model_concave_means, yerr=model_concave_sems,
+                   fmt='none', ecolor='black', capsize=3)
+        ax.errorbar(x_positions + bar_width / 2, model_convex_means, yerr=model_convex_sems,
+                   fmt='none', ecolor='black', capsize=3)
+        
+        # Set axis labels and title
+        ax.set_xlabel('Ground Truth Time-to-Collision (ms)')
+        ax.set_ylabel('Model Time-to-Collision (ms)')
+        ax.set_title(f'Concave vs Convex Collision Times, IoU={iou_thr}')
+        
+        # Customize x-axis
+        ax.set_xticks(x_positions)
+        ax.set_xticklabels([str(g) for g in gt_sorted])
+        
+        # Add a grid for better readability
+        ax.grid(axis='y', linestyle='--', alpha=0.3)
+        
+        # Add legend
+        ax.legend()
         
         plt.tight_layout()
         
@@ -963,12 +957,15 @@ class TTCExperiment:
         analysis_data = {
             "iou_threshold": float(iou_thr),
             "ground_truth_times": gt_sorted,
-            "model_differences": [float(d) if not np.isnan(d) else None for d in model_diffs],
-            "human_differences": [float(d) if not np.isnan(d) else None for d in human_diffs],
+            "model_concave_means": [float(m) if not np.isnan(m) else None for m in model_concave_means],
+            "model_concave_sems": [float(s) for s in model_concave_sems],
+            "model_convex_means": [float(m) if not np.isnan(m) else None for m in model_convex_means],
+            "model_convex_sems": [float(s) for s in model_convex_sems],
             "video_info": {k: v for k, v in video_info.items()},
             "summary": {
-                "valid_comparisons": len(valid_indices),
-                "total_ground_truth_times": len(gt_sorted)
+                "total_ground_truth_times": len(gt_sorted),
+                "valid_concave_data_points": sum(1 for m in model_concave_means if not np.isnan(m)),
+                "valid_convex_data_points": sum(1 for m in model_convex_means if not np.isnan(m))
             }
         }
         
@@ -980,13 +977,32 @@ class TTCExperiment:
     def _compute_correlation(self, xvals: List[float], yvals: List[float]) -> float:
         """
         Return Pearson correlation. If insufficient data, return NaN.
+        Includes safeguards against numpy runtime warnings.
         """
         if len(xvals) < 2 or len(yvals) < 2:
             return float('nan')
+        
+        # Convert to numpy arrays for easier handling
+        x_arr = np.array(xvals)
+        y_arr = np.array(yvals)
+        
+        # Check for NaN or infinite values
+        if np.any(np.isnan(x_arr)) or np.any(np.isnan(y_arr)):
+            return float('nan')
+        if np.any(np.isinf(x_arr)) or np.any(np.isinf(y_arr)):
+            return float('nan')
+        
+        # Check for zero variance (constant values)
+        if np.std(x_arr) == 0 or np.std(y_arr) == 0:
+            return float('nan')
+        
         try:
-            r = np.corrcoef(xvals, yvals)[0, 1]
+            # Compute correlation with proper error handling
+            correlation_matrix = np.corrcoef(x_arr, y_arr)
+            r = correlation_matrix[0, 1]
             return float(r) if not np.isnan(r) else float('nan')
-        except:
+        except Exception as e:
+            self.logger.warning(f"Error computing correlation: {e}")
             return float('nan')
 
 ##############################################################################
