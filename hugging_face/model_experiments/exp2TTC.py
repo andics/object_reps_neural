@@ -755,55 +755,56 @@ class TTCExperiment:
                 return video_name
         
         return None
-    
+
     def _parse_video_name(self, video_name: str) -> Dict[str, Any]:
         """
-        Parse video name to extract concave/convex information and ground truth time.
-        
-        Expected format: something like "BConcave+AConcave+3500" or "BConvex+AConvex+2000"
+        Parse video name to extract concave/convex information and ground‑truth time.
+
+        Expected format: e.g. "BConcave+AConcave+3500" or "BConvex+AConvex+2000".
+        The overall interface (return keys) is preserved, but `is_concave`
+        now depends *only* on whether the **second** token contains
+        "concave" or "convex".
         """
-        # Remove file extension if present
+        import re
+
+        # Remove common video extensions
         base_name = video_name.replace('.mp4', '').replace('.avi', '')
-        
+
         # Split by '+' to get components
         parts = base_name.split('+')
-        
+
+        # Early exit if format is unexpected
         if len(parts) < 3:
-            return {"is_concave": None, "ground_truth": None, "tokens": parts}
-        
-        # Extract ground truth time (usually the last numeric part)
-        ground_truth = None
+            return {
+                "is_concave": None,
+                "ground_truth": None,
+                "tokens": parts,
+                "concave_count": 0,
+                "convex_count": 0
+            }
+
+        # --------------------------- ground‑truth ---------------------------
+        ground_truth = np.nan
         for part in reversed(parts):
-            try:
-                # Try to extract number from the part
-                import re
-                numbers = re.findall(r'\d+', part)
-                if numbers:
-                    ground_truth = int(numbers[-1])
-                    break
-            except:
-                continue
-        
-        # Determine if concave or convex based on tokens
-        # Look for "Concave" or "Convex" in the parts
-        is_concave = None
-        concave_count = 0
-        convex_count = 0
-        
-        for part in parts:
-            part_lower = part.lower()
-            if 'concave' in part_lower:
-                concave_count += 1
-            elif 'convex' in part_lower:
-                convex_count += 1
-        
-        # Determine overall classification
-        if concave_count > convex_count:
+            nums = re.findall(r'\d+', part)
+            if nums:
+                ground_truth = int(nums[-1])
+                break
+
+        # --------------------------- concave/convex counts -----------------
+        concave_count = sum('concave' in p.lower() for p in parts)
+        convex_count = sum('convex' in p.lower() for p in parts)
+
+        # --------------------------- is_concave decision -------------------
+        # Only the *second* token (index 1) drives the classification
+        second_token = parts[1].lower() if len(parts) > 1 else ""
+        if 'concave' in second_token:
             is_concave = True
-        elif convex_count > concave_count:
+        elif 'convex' in second_token:
             is_concave = False
-        # If equal or neither found, leave as None
-        
+        else:
+            is_concave = None  # Unknown / undecidable from second token
+
         return {
             "is_concave": is_concave,
             "ground_truth": ground_truth,
@@ -811,7 +812,7 @@ class TTCExperiment:
             "concave_count": concave_count,
             "convex_count": convex_count
         }
-    
+
     def _is_concave_token(self, token: str) -> bool:
         """Check if a token represents concave shape."""
         return "concave" in token.lower()
