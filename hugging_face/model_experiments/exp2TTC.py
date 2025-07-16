@@ -135,6 +135,7 @@ class TTCExperiment:
         
         # Step 4: ALWAYS analyze correlations with participant data (collect from all sources)
         # Collect collision data from all videos (both newly processed and existing)
+        all_video_names = [Path(video_file).stem for video_file in video_files]
         self.logger.info("Collecting collision data from all videos for analysis...")
         final_collision_data = self._collect_all_collision_data(all_video_names, iou_values)
         

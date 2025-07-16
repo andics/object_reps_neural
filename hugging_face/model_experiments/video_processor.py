@@ -711,23 +711,21 @@ class VideoProcessor:
             if i < len(assigned_masks) and assigned_masks[i] is not None:
                 new_mask = assigned_masks[i].astype(np.float32)
                 
-                if i == 1 and self.blob_1_memory_strategy == 'running_average':
-                    # Special handling for blob 1 with running average strategy
-                    self._update_blob_1_running_average(new_mask, frame_idx)
-                elif i == 1 and self.blob_1_memory_freeze_frame is not None and frame_idx >= self.blob_1_memory_freeze_frame:
-                    # Blob 1 memory is frozen - don't update
+                # CRITICAL FIX: Check freeze condition FIRST for blob 1
+                if i == 1 and self.blob_1_memory_freeze_frame is not None and frame_idx >= self.blob_1_memory_freeze_frame:
+                    # Blob 1 memory is frozen - don't update AT ALL regardless of strategy
                     self.logger.debug(f"Frame {frame_idx}: Blob 1 memory frozen, not updating")
                     pass  # Keep existing memory
+                elif i == 1 and self.blob_1_memory_strategy == 'running_average':
+                    # Special handling for blob 1 with running average strategy (only if not frozen)
+                    self._update_blob_1_running_average(new_mask, frame_idx)
                 else:
                     # Standard exponential averaging for other blobs or blob 1 before freeze
                     self.mem_floats[i] = self.alpha * self.mem_floats[i] + (1 - self.alpha) * new_mask
     
     def _update_blob_1_running_average(self, new_mask: np.ndarray, frame_idx: int) -> None:
         """Update blob 1 memory using running average strategy."""
-        # Check if memory should be frozen
-        if self.blob_1_memory_freeze_frame is not None and frame_idx >= self.blob_1_memory_freeze_frame:
-            self.logger.debug(f"Frame {frame_idx}: Blob 1 memory frozen, not updating running average")
-            return
+        # Note: Freeze frame check is now handled in the calling method
         
         # Add new mask to history
         self.blob_1_mask_history.append(new_mask.copy())
