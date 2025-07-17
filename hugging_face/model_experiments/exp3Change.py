@@ -2,8 +2,8 @@
 """
 exp3Change.py
 
-Change Detection Experiment that processes raw image files and computes mistake scores
-based on blob segmentation and change detection thresholds.
+Change Detection Experiment that processes raw image files and computes change detection success rates
+based on blob segmentation across Concave, NoFill, and Convex categories.
 Completely self-contained from raw images to final analysis.
 
 FIXED VERSION:
@@ -11,6 +11,8 @@ FIXED VERSION:
 - Enhanced error handling for mask operations
 - Proper type conversion for regionprops and find_contours
 - Robust mask handling throughout the pipeline
+- Added proper analysis for Concave vs NoFill vs Convex categories
+- Generates box plots showing "% Noticing Change" across categories
 
 Usage:
     python exp3Change.py --model_interface segformer --images_dir /path/to/raw_images --output_dir /path/to/output [--resume]
@@ -53,9 +55,10 @@ class ChangeDetectionExperiment:
     This experiment:
     1. Takes a directory of raw image files as input
     2. Processes each image to detect and segment blobs
-    3. Computes change detection scores at various thresholds
-    4. Generates mistake score analysis and comparison plots
-    5. Saves results for each threshold comparison
+    3. Parses image names to extract Concave/NoFill/Convex categories
+    4. Computes change detection success rates ("% Noticing Change") at various thresholds
+    5. Generates box plots comparing categories across thresholds
+    6. Saves results for each threshold comparison
     """
     
     def __init__(self, model_interface: ModelInterface, output_dir: str, logger: logging.Logger = None, 
@@ -134,14 +137,17 @@ class ChangeDetectionExperiment:
         
         self.logger.info(f"Found {len(image_files)} image files to process")
         
-        # Step 2: Process each image to extract blob information
-        all_blob_data = {}
+        # Step 2: Process each image to extract blob information and parse categories
+        all_image_data = {}
         
         for image_file in image_files:
             image_name = Path(image_file).stem
             self.logger.info(f"Processing image: {image_name}")
             
             try:
+                # Parse image category (Concave, NoFill, Convex)
+                category_info = self._parse_image_category(image_name)
+                
                 if resume and self._is_image_already_processed(image_name):
                     self.logger.info(f"Image {image_name} already processed, loading existing data")
                     blob_data = self._load_existing_blob_data(image_name)
@@ -149,7 +155,8 @@ class ChangeDetectionExperiment:
                     blob_data = self._process_single_image(image_file, image_name)
                 
                 if blob_data:
-                    all_blob_data[image_name] = blob_data
+                    blob_data['category_info'] = category_info
+                    all_image_data[image_name] = blob_data
                 else:
                     self.logger.warning(f"No blob data extracted for image: {image_name}")
                     
@@ -157,13 +164,41 @@ class ChangeDetectionExperiment:
                 self.logger.error(f"Failed to process image {image_name}: {e}")
                 continue
         
-        # Step 3: Generate threshold comparisons and mistake score analysis
-        if all_blob_data:
-            self._analyze_threshold_comparisons(all_blob_data, thresholds)
+        # Step 3: Generate threshold comparisons and change detection analysis
+        if all_image_data:
+            self._analyze_change_detection_across_categories(all_image_data, thresholds)
         else:
-            self.logger.warning("No blob data available - skipping analysis")
+            self.logger.warning("No image data available - skipping analysis")
         
         self.logger.info("Change detection experiment completed successfully")
+
+    def _parse_image_category(self, image_name: str) -> Dict[str, Any]:
+        """
+        Parse image name to extract category information (Concave, NoFill, Convex).
+        
+        Expected naming patterns might include:
+        - Images with "concave", "nofill", "convex" in the name
+        - Or specific patterns that indicate the category
+        """
+        image_lower = image_name.lower()
+        
+        category = "Unknown"
+        if "concave" in image_lower:
+            category = "Concave"
+        elif "nofill" in image_lower or "no_fill" in image_lower:
+            category = "NoFill"
+        elif "convex" in image_lower:
+            category = "Convex"
+        
+        # Try to extract any numeric values that might be thresholds or ground truth
+        import re
+        numbers = re.findall(r'\d+', image_name)
+        
+        return {
+            'category': category,
+            'numbers_in_name': [int(n) for n in numbers],
+            'parsed_successfully': category != "Unknown"
+        }
 
     def _find_image_files(self, images_dir: str) -> List[str]:
         """Find all image files in the specified directory."""
@@ -205,16 +240,35 @@ class ChangeDetectionExperiment:
             
             # Compute blob statistics
             blob_stats = self._compute_blob_statistics(binary_mask)
+            change_detected = self._assess_change_detection_success(binary_mask, image_name)
             
             return {
                 'mask': binary_mask,
                 'blob_stats': blob_stats,
+                'change_detected': change_detected,
                 'processed_dir': str(processed_dir)
             }
             
         except Exception as e:
             self.logger.error(f"Failed to load existing blob data for {image_name}: {e}")
             return None
+
+    def _assess_change_detection_success(self, mask: np.ndarray, image_name: str) -> bool:
+        """
+        Assess whether change detection was successful for this image.
+        
+        This is a simplified assessment - in practice, this would compare against
+        ground truth or use more sophisticated metrics.
+        """
+        if mask is None or mask.sum() == 0:
+            return False
+        
+        # Simple heuristic: if we detected a reasonable amount of change (blob area)
+        total_pixels = mask.shape[0] * mask.shape[1]
+        change_ratio = mask.sum() / total_pixels
+        
+        # Consider change detected if between 1% and 50% of image
+        return 0.01 <= change_ratio <= 0.5
 
     def _process_single_image(self, image_path: str, image_name: str) -> Dict[str, Any]:
         """Process a single image to detect and segment blobs."""
@@ -282,8 +336,9 @@ class ChangeDetectionExperiment:
         # Generate final overlay with polygon
         self._save_final_overlay(frame, chosen_mask, dirs['proc'], image_name, W, H)
 
-        # Compute blob statistics
+        # Compute blob statistics and change detection success
         blob_stats = self._compute_blob_statistics(chosen_mask)
+        change_detected = self._assess_change_detection_success(chosen_mask, image_name)
         
         # Save vanilla segmentation if enabled
         if self.enable_vanilla_segmentation and self.vanilla_saver is not None:
@@ -295,6 +350,7 @@ class ChangeDetectionExperiment:
         return {
             'mask': chosen_mask,
             'blob_stats': blob_stats,
+            'change_detected': change_detected,
             'processed_dir': output_base
         }
 
@@ -483,169 +539,264 @@ class ChangeDetectionExperiment:
             self.logger.warning(f"Error computing blob statistics: {e}")
             return {'area': 0.0, 'centroid_x': 0.0, 'centroid_y': 0.0, 'perimeter': 0.0}
 
-    def _analyze_threshold_comparisons(self, all_blob_data: Dict[str, Dict[str, Any]], 
-                                     thresholds: List[int]) -> None:
-        """Analyze different threshold comparisons and compute mistake scores."""
-        self.logger.info("Analyzing threshold comparisons")
+    def _analyze_change_detection_across_categories(self, all_image_data: Dict[str, Dict[str, Any]], 
+                                                  thresholds: List[int]) -> None:
+        """Analyze change detection success rates across Concave, NoFill, and Convex categories."""
+        self.logger.info("Analyzing change detection across categories (Concave, NoFill, Convex)")
         
-        # For each threshold, compute mistake scores
-        for threshold in thresholds:
-            self.logger.info(f"Processing threshold comparison: {threshold}")
-            
-            # Create output directory for this threshold
-            threshold_dir = Path(self.threshold_results_dir) / f"{threshold}_comparison"
-            threshold_dir.mkdir(exist_ok=True)
-            
-            # Compute mistake scores for this threshold
-            mistake_scores = self._compute_mistake_scores(all_blob_data, threshold)
-            
-            # Generate plots and save results
-            self._save_threshold_results(threshold_dir, threshold, mistake_scores, all_blob_data)
+        # Group images by category
+        category_data = {'Concave': [], 'NoFill': [], 'Convex': []}
         
-        # Generate comparative analysis across all thresholds
-        self._generate_comparative_threshold_analysis(all_blob_data, thresholds)
-
-    def _compute_mistake_scores(self, all_blob_data: Dict[str, Dict[str, Any]], 
-                              threshold: int) -> Dict[str, float]:
-        """
-        Compute mistake scores for a given threshold.
-        
-        The mistake score is based on how much the detected blob deviates from 
-        expected characteristics at the given threshold.
-        """
-        mistake_scores = {}
-        
-        for image_name, blob_data in all_blob_data.items():
-            blob_stats = blob_data['blob_stats']
+        for image_name, image_data in all_image_data.items():
+            category_info = image_data.get('category_info', {})
+            category = category_info.get('category', 'Unknown')
             
-            # Simple mistake score: based on area deviation from threshold
-            # This can be customized based on specific requirements
-            area = blob_stats['area']
-            expected_area = threshold * 100  # Example: threshold-based expected area
-            
-            if expected_area > 0:
-                mistake_score = abs(area - expected_area) / expected_area
+            if category in category_data:
+                category_data[category].append({
+                    'image_name': image_name,
+                    'change_detected': image_data.get('change_detected', False),
+                    'blob_stats': image_data.get('blob_stats', {}),
+                    'category_info': category_info
+                })
             else:
-                mistake_score = 1.0  # Maximum mistake if no expected area
-            
-            mistake_scores[image_name] = mistake_score
-            
-        return mistake_scores
-
-    def _save_threshold_results(self, threshold_dir: Path, threshold: int, 
-                              mistake_scores: Dict[str, float], 
-                              all_blob_data: Dict[str, Dict[str, Any]]) -> None:
-        """Save results for a specific threshold comparison."""
+                self.logger.warning(f"Unknown category '{category}' for image {image_name}")
         
-        # Save mistake scores JSON
-        results_json = {
-            "threshold": threshold,
-            "mistake_scores": mistake_scores,
-            "summary": {
-                "mean_mistake_score": float(np.mean(list(mistake_scores.values()))),
-                "std_mistake_score": float(np.std(list(mistake_scores.values()))),
-                "max_mistake_score": float(max(mistake_scores.values())),
-                "min_mistake_score": float(min(mistake_scores.values())),
-                "total_images": len(mistake_scores)
-            }
-        }
+        # Log category counts
+        for category, data_list in category_data.items():
+            self.logger.info(f"Category '{category}': {len(data_list)} images")
         
-        with open(threshold_dir / "results.json", 'w') as f:
-            json.dump(results_json, f, indent=2)
-        
-        # Generate mistake score distribution plot
-        fig, ax = plt.subplots(figsize=(10, 6))
-        
-        scores = list(mistake_scores.values())
-        image_names = list(mistake_scores.keys())
-        
-        # Bar plot of mistake scores
-        bars = ax.bar(range(len(image_names)), scores, color='coral', alpha=0.7)
-        ax.set_xlabel('Image Index')
-        ax.set_ylabel('Mistake Score')
-        ax.set_title(f'Mistake Scores for Threshold {threshold}')
-        ax.set_xticks(range(0, len(image_names), max(1, len(image_names)//10)))
-        
-        # Add horizontal line for mean
-        mean_score = np.mean(scores)
-        ax.axhline(mean_score, color='red', linestyle='--', 
-                  label=f'Mean: {mean_score:.3f}')
-        ax.legend()
-        
-        plt.tight_layout()
-        plt.savefig(threshold_dir / "mistake_scores.png", dpi=300)
-        plt.close(fig)
-        
-        # Generate histogram of mistake scores
-        fig, ax = plt.subplots(figsize=(8, 6))
-        ax.hist(scores, bins=min(20, len(scores)), color='lightblue', 
-               edgecolor='black', alpha=0.7)
-        ax.set_xlabel('Mistake Score')
-        ax.set_ylabel('Frequency')
-        ax.set_title(f'Distribution of Mistake Scores (Threshold {threshold})')
-        ax.axvline(mean_score, color='red', linestyle='--', 
-                  label=f'Mean: {mean_score:.3f}')
-        ax.legend()
-        
-        plt.tight_layout()
-        plt.savefig(threshold_dir / "mistake_distribution.png", dpi=300)
-        plt.close(fig)
-
-    def _generate_comparative_threshold_analysis(self, all_blob_data: Dict[str, Dict[str, Any]], 
-                                               thresholds: List[int]) -> None:
-        """Generate comparative analysis across all thresholds."""
-        
-        # Compute mean mistake scores for each threshold
-        threshold_means = []
-        threshold_stds = []
+        # For each threshold, compute change detection success rates
+        threshold_results = {}
         
         for threshold in thresholds:
-            mistake_scores = self._compute_mistake_scores(all_blob_data, threshold)
-            scores = list(mistake_scores.values())
-            threshold_means.append(np.mean(scores))
-            threshold_stds.append(np.std(scores))
+            self.logger.info(f"Analyzing threshold: {threshold}")
+            
+            threshold_results[threshold] = {}
+            
+            for category, data_list in category_data.items():
+                if not data_list:
+                    threshold_results[threshold][category] = []
+                    continue
+                
+                # Compute success rates for this category at this threshold
+                success_rates = []
+                
+                for image_data in data_list:
+                    # Apply threshold-based logic to determine success
+                    blob_stats = image_data['blob_stats']
+                    area = blob_stats.get('area', 0)
+                    
+                    # Success criteria: detected change AND area meets threshold requirements
+                    change_detected = image_data['change_detected']
+                    area_meets_threshold = area >= (threshold * 10)  # Scale threshold
+                    
+                    success = change_detected and area_meets_threshold
+                    success_rates.append(1.0 if success else 0.0)
+                
+                threshold_results[threshold][category] = success_rates
         
-        # Plot threshold comparison
-        fig, ax = plt.subplots(figsize=(12, 6))
+        # Generate box plots and analysis
+        self._generate_category_box_plots(threshold_results, thresholds)
         
-        bars = ax.bar(thresholds, threshold_means, yerr=threshold_stds, 
-                     capsize=5, color='steelblue', alpha=0.7, edgecolor='black')
-        ax.set_xlabel('Threshold Value')
-        ax.set_ylabel('Mean Mistake Score')
-        ax.set_title('Mean Mistake Scores Across Different Thresholds')
-        ax.grid(True, alpha=0.3, axis='y')
+        # Save detailed results
+        self._save_category_analysis_results(threshold_results, category_data)
+
+    def _generate_category_box_plots(self, threshold_results: Dict[int, Dict[str, List[float]]], 
+                                   thresholds: List[int]) -> None:
+        """Generate box plots showing % Noticing Change across categories for different thresholds."""
         
-        # Add value labels on bars
-        for bar, mean_val in zip(bars, threshold_means):
-            ax.text(bar.get_x() + bar.get_width()/2, bar.get_height() + max(threshold_means)*0.01,
-                   f'{mean_val:.3f}', ha='center', va='bottom', fontsize=8)
+        # Create figure with subplots for each threshold
+        n_thresholds = len(thresholds)
+        cols = min(4, n_thresholds)
+        rows = (n_thresholds + cols - 1) // cols
         
+        fig, axes = plt.subplots(rows, cols, figsize=(4*cols, 4*rows))
+        if n_thresholds == 1:
+            axes = [axes]
+        elif rows == 1:
+            pass  # axes is already 1D
+        else:
+            axes = axes.flatten()
+        
+        categories = ['Concave', 'NoFill', 'Convex']
+        colors = ['#FF6B6B', '#4ECDC4', '#45B7D1']  # Red, Teal, Blue
+        
+        for i, threshold in enumerate(thresholds):
+            if i >= len(axes):
+                break
+                
+            ax = axes[i]
+            
+            # Prepare data for box plot
+            box_data = []
+            labels = []
+            
+            for category in categories:
+                success_rates = threshold_results[threshold].get(category, [])
+                if success_rates:
+                    # Convert to percentages
+                    percentages = [rate * 100 for rate in success_rates]
+                    box_data.append(percentages)
+                    labels.append(f"{category}\n(n={len(success_rates)})")
+                else:
+                    box_data.append([0])  # Empty data
+                    labels.append(f"{category}\n(n=0)")
+            
+            # Create box plot
+            if any(len(data) > 0 for data in box_data):
+                bp = ax.boxplot(box_data, labels=labels, patch_artist=True)
+                
+                # Color the boxes
+                for patch, color in zip(bp['boxes'], colors):
+                    patch.set_facecolor(color)
+                    patch.set_alpha(0.7)
+            
+            ax.set_title(f'Threshold {threshold}', fontsize=12, fontweight='bold')
+            ax.set_ylabel('% Noticing Change', fontsize=10)
+            ax.set_ylim(0, 105)
+            ax.grid(True, alpha=0.3)
+            
+            # Add mean values as text
+            for j, (category, data) in enumerate(zip(categories, box_data)):
+                if data and len(data) > 0:
+                    mean_val = np.mean(data)
+                    ax.text(j+1, mean_val + 2, f'{mean_val:.1f}%', 
+                           ha='center', va='bottom', fontweight='bold', fontsize=8)
+        
+        # Hide unused subplots
+        for i in range(n_thresholds, len(axes)):
+            axes[i].set_visible(False)
+        
+        plt.suptitle('Change Detection Success Rates by Category and Threshold', 
+                    fontsize=16, fontweight='bold', y=0.95)
         plt.tight_layout()
-        comparison_path = os.path.join(self.plots_dir, "threshold_comparison.png")
-        plt.savefig(comparison_path, dpi=300, bbox_inches='tight')
+        
+        # Save plot
+        box_plot_path = os.path.join(self.plots_dir, "category_box_plots.png")
+        plt.savefig(box_plot_path, dpi=300, bbox_inches='tight')
         plt.close(fig)
         
-        # Save summary CSV
+        self.logger.info(f"Saved category box plots to {box_plot_path}")
+        
+        # Generate summary plot across all thresholds
+        self._generate_summary_category_plot(threshold_results, thresholds)
+
+    def _generate_summary_category_plot(self, threshold_results: Dict[int, Dict[str, List[float]]], 
+                                      thresholds: List[int]) -> None:
+        """Generate summary plot showing mean % Noticing Change across all thresholds."""
+        
+        categories = ['Concave', 'NoFill', 'Convex']
+        colors = ['#FF6B6B', '#4ECDC4', '#45B7D1']
+        
+        # Compute mean success rates for each category across thresholds
+        category_means = {category: [] for category in categories}
+        category_stds = {category: [] for category in categories}
+        
+        for threshold in thresholds:
+            for category in categories:
+                success_rates = threshold_results[threshold].get(category, [])
+                if success_rates:
+                    percentages = [rate * 100 for rate in success_rates]
+                    category_means[category].append(np.mean(percentages))
+                    category_stds[category].append(np.std(percentages))
+                else:
+                    category_means[category].append(0)
+                    category_stds[category].append(0)
+        
+        # Create line plot
+        fig, ax = plt.subplots(figsize=(12, 8))
+        
+        for i, category in enumerate(categories):
+            means = category_means[category]
+            stds = category_stds[category]
+            
+            ax.plot(thresholds, means, 'o-', color=colors[i], linewidth=2, 
+                   markersize=8, label=category)
+            ax.errorbar(thresholds, means, yerr=stds, color=colors[i], 
+                       capsize=5, alpha=0.7)
+        
+        ax.set_xlabel('Threshold', fontsize=12)
+        ax.set_ylabel('% Noticing Change (Mean)', fontsize=12)
+        ax.set_title('Change Detection Success Rates by Category Across Thresholds', 
+                    fontsize=14, fontweight='bold')
+        ax.legend(fontsize=11)
+        ax.grid(True, alpha=0.3)
+        ax.set_ylim(0, 105)
+        
+        plt.tight_layout()
+        
+        # Save plot
+        summary_plot_path = os.path.join(self.plots_dir, "category_summary_plot.png")
+        plt.savefig(summary_plot_path, dpi=300, bbox_inches='tight')
+        plt.close(fig)
+        
+        self.logger.info(f"Saved category summary plot to {summary_plot_path}")
+
+    def _save_category_analysis_results(self, threshold_results: Dict[int, Dict[str, List[float]]], 
+                                      category_data: Dict[str, List[Dict[str, Any]]]) -> None:
+        """Save detailed category analysis results."""
+        
+        # Prepare summary data
         summary_data = []
-        for i, threshold in enumerate(thresholds):
-            summary_data.append({
-                'threshold': threshold,
-                'mean_mistake_score': threshold_means[i],
-                'std_mistake_score': threshold_stds[i]
+        
+        for threshold in sorted(threshold_results.keys()):
+            for category in ['Concave', 'NoFill', 'Convex']:
+                success_rates = threshold_results[threshold].get(category, [])
+                if success_rates:
+                    percentages = [rate * 100 for rate in success_rates]
+                    summary_data.append({
+                        'threshold': threshold,
+                        'category': category,
+                        'mean_success_rate': np.mean(percentages),
+                        'std_success_rate': np.std(percentages),
+                        'n_images': len(success_rates),
+                        'success_rates': percentages
+                    })
+                else:
+                    summary_data.append({
+                        'threshold': threshold,
+                        'category': category,
+                        'mean_success_rate': 0.0,
+                        'std_success_rate': 0.0,
+                        'n_images': 0,
+                        'success_rates': []
+                    })
+        
+        # Save to CSV
+        csv_data = []
+        for entry in summary_data:
+            csv_data.append({
+                'threshold': entry['threshold'],
+                'category': entry['category'],
+                'mean_success_rate': entry['mean_success_rate'],
+                'std_success_rate': entry['std_success_rate'],
+                'n_images': entry['n_images']
             })
         
-        df = pd.DataFrame(summary_data)
-        summary_path = os.path.join(self.results_dir, "threshold_summary.csv")
-        df.to_csv(summary_path, index=False)
+        df = pd.DataFrame(csv_data)
+        csv_path = os.path.join(self.results_dir, "category_analysis_summary.csv")
+        df.to_csv(csv_path, index=False)
         
-        self.logger.info(f"Saved comparative analysis to {comparison_path} and {summary_path}")
+        # Save detailed JSON
+        json_path = os.path.join(self.results_dir, "category_analysis_detailed.json")
+        
+        detailed_results = {
+            'threshold_results': threshold_results,
+            'category_counts': {cat: len(data) for cat, data in category_data.items()},
+            'summary_statistics': summary_data
+        }
+        
+        with open(json_path, 'w') as f:
+            json.dump(detailed_results, f, indent=2)
+        
+        self.logger.info(f"Saved category analysis to {csv_path} and {json_path}")
 
 ##############################################################################
 # MAIN FUNCTION
 ##############################################################################
 
 def main():
-    parser = argparse.ArgumentParser(description="Change Detection Experiment - Process raw images and analyze blob segmentation")
+    parser = argparse.ArgumentParser(description="Change Detection Experiment - Process raw images and analyze blob segmentation across categories")
     parser.add_argument("--model_interface", type=str, default="segformer",
                       choices=["segformer"], help="Model interface to use")
     parser.add_argument("--images_dir", type=str, required=False,
