@@ -13,6 +13,7 @@ FEATURES:
 - Generates threshold-based detection analysis
 - Creates bar plots with diagonal hatches and SEM error bars
 - Categorizes images as concave, concave_nofill, convex, no_change
+- Saves original segmentation overlays for each image
 - Verbose logging and organized output structure
 
 Usage:
@@ -41,7 +42,6 @@ from scipy.optimize import linear_sum_assignment
 
 # Import model interfaces
 from segformer.segformer_interface import SegFormerInterface, ModelInterface
-from vanilla_segmentation import VanillaSegmentationSaver
 
 torch.set_grad_enabled(False)
 
@@ -63,44 +63,29 @@ class ChangeDetectionExperiment:
     This experiment:
     1. Finds image pairs (_init and _out) in the input directory
     2. Processes each image to detect and segment blobs using general model interface
-    3. Computes area change ratios between before/after masks
-    4. Categorizes images by type (concave, concave_nofill, convex, no_change)
-    5. Analyzes detection rates across multiple thresholds
-    6. Generates bar plots with exact styling from original analysis
-    7. Saves detailed results and visualizations
+    3. Saves original segmentation overlays (without blob selection) for each image
+    4. Computes area change ratios between before/after masks
+    5. Categorizes images by type (concave, concave_nofill, convex, no_change)
+    6. Analyzes detection rates across multiple thresholds
+    7. Generates bar plots with exact styling from original analysis
+    8. Saves detailed results and visualizations
     """
     
-    def __init__(self, model_interface: ModelInterface, output_dir: str, logger: logging.Logger = None, 
-                 enable_vanilla_segmentation: bool = True):
+    def __init__(self, model_interface: ModelInterface, output_dir: str, logger: logging.Logger = None):
         self.model_interface = model_interface
         self.output_dir = output_dir
-        self.enable_vanilla_segmentation = enable_vanilla_segmentation
         
-        # Create output subdirectories
-        self.results_dir = os.path.join(output_dir, "results")
-        self.plots_dir = os.path.join(output_dir, "plots")
+        # Create only the directories we actually use
         self.logs_dir = os.path.join(output_dir, "logs")
         self.processed_images_dir = os.path.join(output_dir, "processed_images")
         self.threshold_results_dir = os.path.join(output_dir, "threshold_results")
-        self.org_segmentation_dir = os.path.join(output_dir, "org_segmentation")
         
-        for dir_path in [self.results_dir, self.plots_dir, self.logs_dir, 
-                        self.processed_images_dir, self.threshold_results_dir, self.org_segmentation_dir]:
+        # Create only necessary directories
+        for dir_path in [self.logs_dir, self.processed_images_dir, self.threshold_results_dir]:
             os.makedirs(dir_path, exist_ok=True)
 
         # Setup logger
         self.logger = logger or self._setup_logger()
-        
-        # Initialize vanilla segmentation saver if enabled
-        self.vanilla_saver = None
-        if self.enable_vanilla_segmentation:
-            self.vanilla_saver = VanillaSegmentationSaver(
-                model_interface=self.model_interface,
-                output_dir=self.org_segmentation_dir,
-                logger=self.logger
-            )
-            self.logger.info("Vanilla segmentation enabled for change detection experiment")
-            
         self.logger.info(f"Initialized Change Detection Experiment with output dir: {output_dir}")
 
     def _setup_logger(self) -> logging.Logger:
@@ -239,6 +224,7 @@ class ChangeDetectionExperiment:
             "collage": os.path.join(output_base, "frames_collage"), 
             "mask": os.path.join(output_base, "frames_masks_nonmem"),
             "proc": os.path.join(output_base, "frames_processed"),
+            "original_seg": os.path.join(output_base, "original_segmentation"),
         }
         for d in dirs.values():
             os.makedirs(d, exist_ok=True)
@@ -251,6 +237,9 @@ class ChangeDetectionExperiment:
         except Exception as e:
             self.logger.error(f"Failed to load image {image_path}: {e}")
             return None
+
+        # Save original segmentation overlay (like demo_interface.py)
+        self._save_original_segmentation_overlay(frame, dirs['original_seg'], image_name)
 
         # Detect blob using intensity thresholding (following main_segment_blobs.py)
         blob = self._detect_blob(frame)
@@ -290,13 +279,6 @@ class ChangeDetectionExperiment:
 
         # Compute blob statistics
         blob_stats = self._compute_blob_statistics(chosen_mask)
-        
-        # Save vanilla segmentation if enabled
-        if self.enable_vanilla_segmentation and self.vanilla_saver is not None:
-            try:
-                self.vanilla_saver.save_frame_segmentation(frame, frame_idx=0)
-            except Exception as e:
-                self.logger.warning(f"Failed to save vanilla segmentation for image {image_name}: {e}")
 
         return {
             'mask': chosen_mask,
@@ -304,6 +286,44 @@ class ChangeDetectionExperiment:
             'mask_file': mask_file if chosen_mask is not None and chosen_mask.sum() > 0 else None,
             'processed_dir': output_base
         }
+
+    def _save_original_segmentation_overlay(self, frame: np.ndarray, output_dir: str, image_name: str) -> None:
+        """
+        Save original segmentation overlay (without blob selection) like demo_interface.py.
+        This shows what the raw model segmentation looks like.
+        """
+        try:
+            # Convert frame to PIL Image for model inference
+            pil_image = Image.fromarray(frame).convert('RGB')
+            
+            # Get raw segmentation map from model
+            pixel_values = self.model_interface.processor(pil_image, return_tensors="pt").pixel_values.to(self.model_interface.device)
+            with torch.no_grad():
+                outputs = self.model_interface.model(pixel_values)
+            
+            seg_map = self.model_interface.processor.post_process_semantic_segmentation(
+                outputs, target_sizes=[pil_image.size[::-1]]
+            )[0]  # Shape: (H, W)
+            
+            # Create colored segmentation overlay (following demo_interface.py)
+            palette = np.array(self.model_interface.ade_palette(), dtype=np.uint8)
+            seg_colored = palette[seg_map.cpu().numpy()]  # (H, W, 3)
+            
+            # Create blend overlay (60% original, 40% segmentation)
+            blend = (0.6 * np.asarray(pil_image) + 0.4 * seg_colored[..., ::-1]).astype(np.uint8)
+            
+            # Save the original segmentation overlay
+            overlay_file = os.path.join(output_dir, f"{image_name}_original_segmentation.png")
+            Image.fromarray(blend).save(overlay_file)
+            
+            # Also save the raw segmentation map
+            seg_map_file = os.path.join(output_dir, f"{image_name}_segmentation_map.png")
+            Image.fromarray(seg_colored).save(seg_map_file)
+            
+            self.logger.info(f"    Saved original segmentation overlay -> {overlay_file}")
+            
+        except Exception as e:
+            self.logger.warning(f"Failed to save original segmentation overlay for {image_name}: {e}")
 
     def _detect_blob(self, frame: np.ndarray, thresholds: Tuple[int, ...] = (30, 15, 5)) -> Optional[np.ndarray]:
         """Detect blob using intensity thresholding (following main_segment_blobs.py)."""
