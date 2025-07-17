@@ -2,17 +2,18 @@
 """
 exp3Change.py
 
-Change Detection Experiment that processes raw image files and computes change detection success rates
-based on blob segmentation across Concave, NoFill, and Convex categories.
-Completely self-contained from raw images to final analysis.
+Change Detection Experiment that processes raw image pairs and computes change detection success rates
+based on area changes between before/after blob segmentations across Concave, NoFill, and Convex categories.
+Follows the exact analysis pipeline from main_extract_mistake_score_and_plot.py but uses general model interface.
 
-FIXED VERSION:
-- Fixed array indexing issues by ensuring all masks are boolean
-- Enhanced error handling for mask operations
-- Proper type conversion for regionprops and find_contours
-- Robust mask handling throughout the pipeline
-- Added proper analysis for Concave vs NoFill vs Convex categories
-- Generates box plots showing "% Noticing Change" across categories
+FEATURES:
+- Processes image pairs (_init and _out) like the original analysis
+- Uses general model interface (SegFormer) instead of DETR
+- Computes area change ratios between before/after masks
+- Generates threshold-based detection analysis
+- Creates bar plots with diagonal hatches and SEM error bars
+- Categorizes images as concave, concave_nofill, convex, no_change
+- Verbose logging and organized output structure
 
 Usage:
     python exp3Change.py --model_interface segformer --images_dir /path/to/raw_images --output_dir /path/to/output [--resume]
@@ -28,7 +29,7 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 from pathlib import Path
-from typing import List, Dict, Any, Tuple
+from typing import List, Dict, Any, Tuple, Optional
 from PIL import Image, ImageDraw
 import glob
 from collections import OrderedDict
@@ -44,21 +45,29 @@ from vanilla_segmentation import VanillaSegmentationSaver
 
 torch.set_grad_enabled(False)
 
+# Plotting parameters (matching main_extract_mistake_score_and_plot.py)
+LABEL_FONTSIZE = 21
+TICKS_FONTSIZE = 19
+HIGH_DPI = 200
+BAR_WIDTH = 1.0
+LEFT_MARGIN = 0.5
+
 ##############################################################################
 # EXPERIMENT CLASS
 ##############################################################################
 
 class ChangeDetectionExperiment:
     """
-    Experiment 3: Change Detection Analysis
+    Experiment 3: Change Detection Analysis (Following Original Pipeline)
     
     This experiment:
-    1. Takes a directory of raw image files as input
-    2. Processes each image to detect and segment blobs
-    3. Parses image names to extract Concave/NoFill/Convex categories
-    4. Computes change detection success rates ("% Noticing Change") at various thresholds
-    5. Generates box plots comparing categories across thresholds
-    6. Saves results for each threshold comparison
+    1. Finds image pairs (_init and _out) in the input directory
+    2. Processes each image to detect and segment blobs using general model interface
+    3. Computes area change ratios between before/after masks
+    4. Categorizes images by type (concave, concave_nofill, convex, no_change)
+    5. Analyzes detection rates across multiple thresholds
+    6. Generates bar plots with exact styling from original analysis
+    7. Saves detailed results and visualizations
     """
     
     def __init__(self, model_interface: ModelInterface, output_dir: str, logger: logging.Logger = None, 
@@ -67,7 +76,7 @@ class ChangeDetectionExperiment:
         self.output_dir = output_dir
         self.enable_vanilla_segmentation = enable_vanilla_segmentation
         
-        # Create output subdirectories FIRST (before logger is set up)
+        # Create output subdirectories
         self.results_dir = os.path.join(output_dir, "results")
         self.plots_dir = os.path.join(output_dir, "plots")
         self.logs_dir = os.path.join(output_dir, "logs")
@@ -79,7 +88,7 @@ class ChangeDetectionExperiment:
                         self.processed_images_dir, self.threshold_results_dir, self.org_segmentation_dir]:
             os.makedirs(dir_path, exist_ok=True)
 
-        # Now setup logger after logs_dir exists
+        # Setup logger
         self.logger = logger or self._setup_logger()
         
         # Initialize vanilla segmentation saver if enabled
@@ -121,170 +130,115 @@ class ChangeDetectionExperiment:
         logger.info(f"Logger initialized. Writing detailed log to {log_file_path}")
         return logger
 
-    def run_full_experiment(self, images_dir: str, 
-                          thresholds: List[int] = None, resume: bool = True) -> None:
-        """Run the complete change detection experiment from raw images to final analysis."""
-        self.logger.info("Starting full change detection experiment")
+    def run_full_experiment(self, images_dir: str, resume: bool = True) -> None:
+        """Run the complete change detection experiment following the original analysis pipeline."""
+        self.logger.info("Starting full change detection experiment (following original pipeline)")
         
-        if thresholds is None:
-            thresholds = [1, 2, 3, 4, 5, 6, 8, 10, 12, 14, 16, 18, 20]
-        
-        # Step 1: Find all image files in the input directory
-        image_files = self._find_image_files(images_dir)
-        if not image_files:
-            self.logger.error(f"No image files found in {images_dir}")
+        # Step 1: Find image pairs (_init and _out) like in original analysis
+        image_pairs = self._find_image_pairs(images_dir)
+        if not image_pairs:
+            self.logger.error(f"No valid image pairs found in {images_dir}")
             return
         
-        self.logger.info(f"Found {len(image_files)} image files to process")
+        self.logger.info(f"Found {len(image_pairs)} image pairs to process")
         
-        # Step 2: Process each image to extract blob information and parse categories
-        all_image_data = {}
+        # Step 2: Process each image pair to extract blob information
+        pair_details = []
         
-        for image_file in image_files:
-            image_name = Path(image_file).stem
-            self.logger.info(f"Processing image: {image_name}")
+        for base_name, init_path, out_path in image_pairs:
+            self.logger.info(f"Processing image pair: {base_name}")
             
             try:
-                # Parse image category (Concave, NoFill, Convex)
-                category_info = self._parse_image_category(image_name)
+                # Process both init and out images
+                init_data = self._process_single_image(init_path, f"{base_name}_init", resume)
+                out_data = self._process_single_image(out_path, f"{base_name}_out", resume)
                 
-                if resume and self._is_image_already_processed(image_name):
-                    self.logger.info(f"Image {image_name} already processed, loading existing data")
-                    blob_data = self._load_existing_blob_data(image_name)
+                if init_data and out_data:
+                    # Compute area change ratio
+                    area_change_data = self._compute_area_change(init_data, out_data, base_name)
+                    if area_change_data:
+                        pair_details.append(area_change_data)
                 else:
-                    blob_data = self._process_single_image(image_file, image_name)
-                
-                if blob_data:
-                    blob_data['category_info'] = category_info
-                    all_image_data[image_name] = blob_data
-                else:
-                    self.logger.warning(f"No blob data extracted for image: {image_name}")
+                    self.logger.warning(f"Failed to process one or both images for pair: {base_name}")
                     
             except Exception as e:
-                self.logger.error(f"Failed to process image {image_name}: {e}")
+                self.logger.error(f"Failed to process image pair {base_name}: {e}")
                 continue
         
-        # Step 3: Generate threshold comparisons and change detection analysis
-        if all_image_data:
-            self._analyze_change_detection_across_categories(all_image_data, thresholds)
+        # Step 3: Perform threshold analysis (following original pipeline exactly)
+        if pair_details:
+            self._perform_threshold_analysis(pair_details)
         else:
-            self.logger.warning("No image data available - skipping analysis")
+            self.logger.warning("No valid image pair data - skipping threshold analysis")
         
         self.logger.info("Change detection experiment completed successfully")
 
-    def _parse_image_category(self, image_name: str) -> Dict[str, Any]:
+    def _find_image_pairs(self, images_dir: str) -> List[Tuple[str, str, str]]:
         """
-        Parse image name to extract category information (Concave, NoFill, Convex).
-        
-        Expected naming patterns might include:
-        - Images with "concave", "nofill", "convex" in the name
-        - Or specific patterns that indicate the category
+        Find image pairs following the original analysis pattern.
+        Looks for _init and _out pairs, excluding catch_shape images.
         """
-        image_lower = image_name.lower()
+        pairs = []
         
-        category = "Unknown"
-        if "concave" in image_lower:
-            category = "Concave"
-        elif "nofill" in image_lower or "no_fill" in image_lower:
-            category = "NoFill"
-        elif "convex" in image_lower:
-            category = "Convex"
+        # Get all files in directory
+        all_files = os.listdir(images_dir)
         
-        # Try to extract any numeric values that might be thresholds or ground truth
-        import re
-        numbers = re.findall(r'\d+', image_name)
+        # Find all _init files
+        init_files = [f for f in all_files if f.endswith('_init.png') or f.endswith('_init.jpg') or f.endswith('_init.jpeg')]
         
-        return {
-            'category': category,
-            'numbers_in_name': [int(n) for n in numbers],
-            'parsed_successfully': category != "Unknown"
-        }
+        for init_file in init_files:
+            if 'catch_shape' in init_file:
+                continue
+                
+            # Extract base name
+            base_with_ext = init_file[:-9]  # Remove '_init.png' or similar
+            base_name = os.path.splitext(base_with_ext)[0]
+            
+            # Look for corresponding _out file
+            init_path = os.path.join(images_dir, init_file)
+            
+            # Try different extensions for out file
+            out_file = None
+            for ext in ['.png', '.jpg', '.jpeg']:
+                potential_out = f"{base_name}_out{ext}"
+                if potential_out in all_files:
+                    out_file = potential_out
+                    break
+            
+            if out_file:
+                out_path = os.path.join(images_dir, out_file)
+                pairs.append((base_name, init_path, out_path))
+                self.logger.debug(f"Found pair: {base_name} -> {init_file} & {out_file}")
+            else:
+                self.logger.warning(f"No matching _out file found for {init_file}")
+        
+        return sorted(pairs)
 
-    def _find_image_files(self, images_dir: str) -> List[str]:
-        """Find all image files in the specified directory."""
-        image_extensions = ['*.png', '*.jpg', '*.jpeg', '*.bmp', '*.tif', '*.tiff']
-        image_files = []
-        
-        for ext in image_extensions:
-            pattern = os.path.join(images_dir, ext)
-            image_files.extend(glob.glob(pattern))
-        
-        return sorted(image_files)
-
-    def _is_image_already_processed(self, image_name: str) -> bool:
-        """Check if an image has already been processed."""
-        processed_dir = Path(self.processed_images_dir) / f"segformer_model_{image_name}"
-        return processed_dir.exists() and (processed_dir / "mask").exists()
-
-    def _load_existing_blob_data(self, image_name: str) -> Dict[str, Any]:
-        """Load existing blob data from processed image directory."""
-        try:
-            processed_dir = Path(self.processed_images_dir) / f"segformer_model_{image_name}"
-            mask_dir = processed_dir / "mask"
-            
-            if not mask_dir.exists():
-                self.logger.warning(f"Mask directory does not exist: {mask_dir}")
-                return None
-            
-            # Find mask files
-            mask_files = list(mask_dir.glob("mask_*.png"))
-            if not mask_files:
-                self.logger.warning(f"No mask files found in {mask_dir}")
-                return None
-            
-            # Load the first mask (assuming single image processing)
-            mask_file = mask_files[0]
-            mask_img = Image.open(mask_file).convert('L')
-            mask_array = np.array(mask_img, dtype=np.uint8)
-            binary_mask = (mask_array > 0).astype(np.float32)
-            
-            # Compute blob statistics
-            blob_stats = self._compute_blob_statistics(binary_mask)
-            change_detected = self._assess_change_detection_success(binary_mask, image_name)
-            
-            return {
-                'mask': binary_mask,
-                'blob_stats': blob_stats,
-                'change_detected': change_detected,
-                'processed_dir': str(processed_dir)
-            }
-            
-        except Exception as e:
-            self.logger.error(f"Failed to load existing blob data for {image_name}: {e}")
-            return None
-
-    def _assess_change_detection_success(self, mask: np.ndarray, image_name: str) -> bool:
+    def _process_single_image(self, image_path: str, image_name: str, resume: bool) -> Optional[Dict[str, Any]]:
         """
-        Assess whether change detection was successful for this image.
-        
-        This is a simplified assessment - in practice, this would compare against
-        ground truth or use more sophisticated metrics.
+        Process a single image following the main_segment_blobs.py pipeline.
+        Returns mask data and blob statistics.
         """
-        if mask is None or mask.sum() == 0:
-            return False
+        self.logger.info(f"  Processing image: {image_name}")
         
-        # Simple heuristic: if we detected a reasonable amount of change (blob area)
-        total_pixels = mask.shape[0] * mask.shape[1]
-        change_ratio = mask.sum() / total_pixels
-        
-        # Consider change detected if between 1% and 50% of image
-        return 0.01 <= change_ratio <= 0.5
-
-    def _process_single_image(self, image_path: str, image_name: str) -> Dict[str, Any]:
-        """Process a single image to detect and segment blobs."""
+        # Check if already processed
+        if resume and self._is_image_already_processed(image_name):
+            self.logger.info(f"  Image {image_name} already processed, loading existing data")
+            return self._load_existing_image_data(image_name)
         
         # Load model if not already loaded
         if not hasattr(self.model_interface, 'model') or self.model_interface.model is None:
             self.logger.info("Loading model...")
             self.model_interface.load_model()
         
-        # Setup output directories for this image
-        output_base = os.path.join(self.processed_images_dir, f"segformer_model_{image_name}")
+        # Setup output directories for this image (following main_segment_blobs.py structure)
+        model_prefix = "segformer_model"
+        output_base = os.path.join(self.processed_images_dir, f"{model_prefix}_{image_name}")
         dirs = {
-            "blobs": os.path.join(output_base, "blobs"),
-            "collage": os.path.join(output_base, "collage"),
-            "mask": os.path.join(output_base, "mask"),
-            "proc": os.path.join(output_base, "processed"),
+            "blobs": os.path.join(output_base, "frames_blobs"),
+            "collage": os.path.join(output_base, "frames_collage"), 
+            "mask": os.path.join(output_base, "frames_masks_nonmem"),
+            "proc": os.path.join(output_base, "frames_processed"),
         }
         for d in dirs.values():
             os.makedirs(d, exist_ok=True)
@@ -293,100 +247,93 @@ class ChangeDetectionExperiment:
         try:
             frame = np.array(Image.open(image_path).convert('RGB'))
             H, W, _ = frame.shape
-            self.logger.info(f"Image {image_name} shape: {H}x{W} RGB")
+            self.logger.info(f"  Image {image_name} shape: {H}x{W} RGB")
         except Exception as e:
             self.logger.error(f"Failed to load image {image_path}: {e}")
             return None
 
-        # Detect blob using intensity thresholding
+        # Detect blob using intensity thresholding (following main_segment_blobs.py)
         blob = self._detect_blob(frame)
         if blob is None:
-            self.logger.warning(f"No blob found in image {image_name}")
+            self.logger.warning(f"  No blob found in image {image_name}")
             return None
 
         # Save blob overlay
         self._save_blob_overlay(frame, blob, dirs['blobs'], image_name)
 
-        # Run model inference to get segmentation masks
+        # Run model inference to get segmentation candidates
         try:
             candidates = self._run_model_inference(frame, H, W)
-            self.logger.info(f"Generated {len(candidates)} candidate masks from model.")
+            self.logger.info(f"  Generated {len(candidates)} candidate masks from model.")
         except Exception as e:
             self.logger.error(f"Model inference failed for {image_name}: {e}")
             return None
 
         # Choose best mask that matches the detected blob
-        chosen_mask = self._choose_best_mask(blob, candidates)
+        chosen_mask, best_cost = self._choose_best_mask(blob, candidates)
         
         if chosen_mask is not None and chosen_mask.sum() > 0:
             mask_file = os.path.join(dirs['mask'], f"mask_{image_name}.png")
-            # Ensure mask is boolean and convert to uint8 for saving
-            mask_bool = chosen_mask.astype(bool)
-            mask_uint8 = (mask_bool.astype(np.uint8) * 255)
+            mask_uint8 = (chosen_mask.astype(np.uint8) * 255)
             Image.fromarray(mask_uint8).save(mask_file)
-            self.logger.info(f"Saved chosen mask to {mask_file}")
+            self.logger.info(f"  Chosen mask cost={best_cost:.3f} -> {mask_file}")
         else:
-            self.logger.warning(f"No suitable model mask found for {image_name}")
-            chosen_mask = blob.astype(bool) if blob is not None else None  # Fall back to detected blob
+            self.logger.warning(f"  No suitable model mask found for {image_name}, using detected blob")
+            chosen_mask = blob.astype(bool) if blob is not None else None
 
-        # Generate collage of top candidate masks
+        # Generate collage of top candidate masks (following main_segment_blobs.py)
         if candidates:
             self._save_mask_collage(frame, blob, candidates, dirs['collage'], image_name)
 
         # Generate final overlay with polygon
         self._save_final_overlay(frame, chosen_mask, dirs['proc'], image_name, W, H)
 
-        # Compute blob statistics and change detection success
+        # Compute blob statistics
         blob_stats = self._compute_blob_statistics(chosen_mask)
-        change_detected = self._assess_change_detection_success(chosen_mask, image_name)
         
         # Save vanilla segmentation if enabled
         if self.enable_vanilla_segmentation and self.vanilla_saver is not None:
             try:
-                self.vanilla_saver.save_frame_segmentation(frame, frame_idx=0)  # Use 0 for single images
+                self.vanilla_saver.save_frame_segmentation(frame, frame_idx=0)
             except Exception as e:
                 self.logger.warning(f"Failed to save vanilla segmentation for image {image_name}: {e}")
 
         return {
             'mask': chosen_mask,
             'blob_stats': blob_stats,
-            'change_detected': change_detected,
+            'mask_file': mask_file if chosen_mask is not None and chosen_mask.sum() > 0 else None,
             'processed_dir': output_base
         }
 
-    def _detect_blob(self, frame: np.ndarray, thresholds: Tuple[int, ...] = (30, 15, 5)) -> np.ndarray:
-        """Detect blob using intensity thresholding."""
+    def _detect_blob(self, frame: np.ndarray, thresholds: Tuple[int, ...] = (30, 15, 5)) -> Optional[np.ndarray]:
+        """Detect blob using intensity thresholding (following main_segment_blobs.py)."""
         gray = frame.sum(axis=2)
         for thr in thresholds:
             labeled = label(gray > thr, connectivity=2)
             regs = sorted(regionprops(labeled), key=lambda r: r.area, reverse=True)
             if regs:
-                self.logger.debug(f"Blob detected with threshold {thr} (area={regs[0].area})")
-                # Ensure we return a boolean array
+                self.logger.debug(f"    Blob detected with threshold {thr} (area={regs[0].area})")
                 blob_mask = (labeled == regs[0].label).astype(bool)
                 return blob_mask
             else:
-                self.logger.debug(f"No blob found at threshold {thr}")
+                self.logger.debug(f"    No blob found at threshold {thr}")
         return None
 
     def _save_blob_overlay(self, frame: np.ndarray, blob: np.ndarray, output_dir: str, image_name: str) -> None:
-        """Save blob overlay image."""
+        """Save blob overlay image (following main_segment_blobs.py)."""
         overlay = frame.copy()
-        # Ensure blob is boolean for indexing
         blob_bool = blob.astype(bool) if blob is not None else np.zeros_like(frame[:,:,0], dtype=bool)
         overlay[blob_bool] = [255, 0, 0]
         blob_file = os.path.join(output_dir, f"{image_name}_blobs.png")
         Image.fromarray(overlay).save(blob_file)
+        self.logger.info(f"    Saved blob overlay -> {blob_file}")
 
     def _run_model_inference(self, frame: np.ndarray, H: int, W: int) -> List[np.ndarray]:
-        """Run model inference to get segmentation candidates."""
-        # Convert frame to PIL Image for model inference
+        """Run model inference and split connected components (following general interface pattern)."""
         pil_image = Image.fromarray(frame).convert('RGB')
         
         # Run inference using the model interface
         predictions = self.model_interface.infer_image(pil_image)
-        
-        # Extract masks from predictions
         pred_masks = predictions['pred_masks']  # Shape: (1, num_queries, H, W)
         
         candidates = []
@@ -395,47 +342,36 @@ class ChangeDetectionExperiment:
             mask = pred_masks[0, i].cpu().numpy()  # (H, W)
             
             # Threshold to get binary mask
-            binary_mask = (mask > 0.5).astype(bool)  # Use bool instead of float32
+            binary_mask = (mask > 0.5).astype(bool)
             
-            # Connected component analysis to get individual blobs
+            # Split into connected components
             labeled = label(binary_mask, connectivity=2)
             for lbl in range(1, labeled.max() + 1):
-                component_mask = (labeled == lbl).astype(bool)  # Use bool instead of float32
-                if component_mask.sum() > 0:  # Only add non-empty masks
+                component_mask = (labeled == lbl).astype(bool)
+                if component_mask.sum() > 0:
                     candidates.append(component_mask)
         
         return candidates
 
-    def _choose_best_mask(self, blob: np.ndarray, candidates: List[np.ndarray]) -> np.ndarray:
-        """Choose the best mask from candidates based on IoU with detected blob."""
+    def _choose_best_mask(self, blob: np.ndarray, candidates: List[np.ndarray]) -> Tuple[Optional[np.ndarray], Optional[float]]:
+        """Choose the best mask from candidates based on IoU with detected blob (following main_segment_blobs.py)."""
         if not candidates:
-            return None
-            
-        best_iou = -1
-        best_mask = None
+            return None, None
         
-        for candidate in candidates:
-            iou = self._compute_iou(blob, candidate)
-            if iou > best_iou:
-                best_iou = iou
-                best_mask = candidate
+        costs = np.array([-self._compute_iou(blob, mask) for mask in candidates], dtype=np.float32)
+        best_idx = int(costs.argmin())
+        best_cost = float(costs[best_idx])
         
-        # Ensure the returned mask is boolean
-        if best_mask is not None and best_iou > 0.1:
-            return best_mask.astype(bool)
-        else:
-            return None  # Minimum IoU threshold
+        return candidates[best_idx].astype(bool), best_cost
 
     def _compute_iou(self, mask1: np.ndarray, mask2: np.ndarray) -> float:
         """Compute IoU between two binary masks."""
         try:
-            # Handle None masks
             if mask1 is None or mask2 is None:
                 return 0.0
             
-            # Ensure masks are boolean
-            mask1_binary = mask1.astype(bool) if mask1 is not None else np.zeros_like(mask2, dtype=bool)
-            mask2_binary = mask2.astype(bool) if mask2 is not None else np.zeros_like(mask1, dtype=bool)
+            mask1_binary = mask1.astype(bool)
+            mask2_binary = mask2.astype(bool)
             
             intersection = np.logical_and(mask1_binary, mask2_binary).sum()
             union = np.logical_or(mask1_binary, mask2_binary).sum()
@@ -451,63 +387,60 @@ class ChangeDetectionExperiment:
 
     def _save_mask_collage(self, frame: np.ndarray, blob: np.ndarray, candidates: List[np.ndarray], 
                           output_dir: str, image_name: str) -> None:
-        """Save collage of top candidate masks."""
+        """Save collage of top candidate masks (following main_segment_blobs.py)."""
         if not candidates:
             return
             
-        ious = [self._compute_iou(blob, mask) for mask in candidates]
-        best_indices = np.argsort(ious)[::-1][:10]  # Top 10
+        ious = [-self._compute_iou(blob, mask) for mask in candidates]
+        best_indices = np.argsort(ious)[:10]  # Top 10
         
-        fig, axes = plt.subplots(1, min(10, len(best_indices)), figsize=(25, 3), dpi=100)
-        if len(best_indices) == 1:
-            axes = [axes]
-            
+        fig, axes = plt.subplots(1, 10, figsize=(25, 3), dpi=100)
+        
         for i, idx in enumerate(best_indices):
-            if i >= len(axes):
-                break
-                
             overlay = frame.copy()
-            # Ensure masks are boolean for indexing
             blob_bool = blob.astype(bool) if blob is not None else np.zeros_like(frame[:,:,0], dtype=bool)
-            candidate_bool = candidates[idx].astype(bool) if candidates[idx] is not None else np.zeros_like(frame[:,:,0], dtype=bool)
+            candidate_bool = candidates[idx].astype(bool)
             
             overlay[blob_bool] = [0, 255, 0]  # Green for ground truth
             overlay[candidate_bool] = [255, 0, 0]  # Red for candidate
             
             axes[i].imshow(overlay)
-            axes[i].set_title(f"#{idx}\nIoU: {ious[idx]:.3f}", fontsize=8)
+            axes[i].set_title(f"#{idx}\n{ious[idx]:.3f}", fontsize=6)
             axes[i].axis('off')
         
-        fig.suptitle(f"{image_name} - Top 10 Mask Candidates", fontsize=14)
         collage_file = os.path.join(output_dir, f"{image_name}_collage.png")
         fig.savefig(collage_file, bbox_inches='tight', pad_inches=0)
         plt.close(fig)
+        self.logger.info(f"    Saved collage -> {collage_file}")
 
     def _save_final_overlay(self, frame: np.ndarray, mask: np.ndarray, output_dir: str, 
                            image_name: str, W: int, H: int) -> None:
-        """Save final overlay with polygon."""
+        """Save final overlay with polygon (following main_segment_blobs.py)."""
         final = Image.fromarray(frame.copy())
         if mask is not None and mask.sum() > 0:
-            # Ensure mask is boolean and convert to uint8 for find_contours
-            mask_bool = mask.astype(bool)
-            mask_uint8 = mask_bool.astype(np.uint8)
-            
-            # Find contours and create polygon
-            contours = find_contours(mask_uint8, 0.5)
+            # Create polygon from mask contours
+            contours = find_contours(mask.astype(np.uint8), 0.5)
             if contours:
                 biggest_contour = max(contours, key=len)
-                polygon_points = [(p[1], p[0]) for p in biggest_contour]
+                # Convert to polygon points relative to center
+                cx, cy = W / 2.0, H / 2.0
+                polygon_points = [(p[1] - cx, p[0] - cy) for p in biggest_contour]
+                
+                # Convert back to absolute coordinates for drawing
+                abs_points = [(x + cx, y + cy) for x, y in polygon_points]
                 
                 draw = ImageDraw.Draw(final, 'RGBA')
-                draw.polygon(polygon_points, fill=(255, 0, 0, 120))
+                draw.polygon(abs_points, fill=(255, 0, 0, 120))
                 
                 # Add centroid text
-                centroid_x = np.mean([p[0] for p in polygon_points])
-                centroid_y = np.mean([p[1] for p in polygon_points])
-                draw.text((centroid_x, centroid_y), 'Blob', fill=(255, 255, 255, 255))
+                if abs_points:
+                    centroid_x = sum(p[0] for p in abs_points) / len(abs_points)
+                    centroid_y = sum(p[1] for p in abs_points) / len(abs_points)
+                    draw.text((centroid_x, centroid_y), 'Blob', fill=(255, 255, 255, 255))
         
         final_file = os.path.join(output_dir, f"{image_name}_overlay.png")
         final.save(final_file)
+        self.logger.info(f"    Saved final overlay -> {final_file}")
 
     def _compute_blob_statistics(self, mask: np.ndarray) -> Dict[str, float]:
         """Compute statistics for a blob mask."""
@@ -515,7 +448,6 @@ class ChangeDetectionExperiment:
             return {'area': 0.0, 'centroid_x': 0.0, 'centroid_y': 0.0, 'perimeter': 0.0}
         
         try:
-            # Ensure mask is boolean and convert to uint8 for regionprops
             mask_bool = mask.astype(bool)
             mask_uint8 = mask_bool.astype(np.uint8)
             
@@ -539,275 +471,221 @@ class ChangeDetectionExperiment:
             self.logger.warning(f"Error computing blob statistics: {e}")
             return {'area': 0.0, 'centroid_x': 0.0, 'centroid_y': 0.0, 'perimeter': 0.0}
 
-    def _analyze_change_detection_across_categories(self, all_image_data: Dict[str, Dict[str, Any]], 
-                                                  thresholds: List[int]) -> None:
-        """Analyze change detection success rates across Concave, NoFill, and Convex categories."""
-        self.logger.info("Analyzing change detection across categories (Concave, NoFill, Convex)")
-        
-        # Group images by category
-        category_data = {'Concave': [], 'NoFill': [], 'Convex': []}
-        
-        for image_name, image_data in all_image_data.items():
-            category_info = image_data.get('category_info', {})
-            category = category_info.get('category', 'Unknown')
-            
-            if category in category_data:
-                category_data[category].append({
-                    'image_name': image_name,
-                    'change_detected': image_data.get('change_detected', False),
-                    'blob_stats': image_data.get('blob_stats', {}),
-                    'category_info': category_info
-                })
-            else:
-                self.logger.warning(f"Unknown category '{category}' for image {image_name}")
-        
-        # Log category counts
-        for category, data_list in category_data.items():
-            self.logger.info(f"Category '{category}': {len(data_list)} images")
-        
-        # For each threshold, compute change detection success rates
-        threshold_results = {}
-        
-        for threshold in thresholds:
-            self.logger.info(f"Analyzing threshold: {threshold}")
-            
-            threshold_results[threshold] = {}
-            
-            for category, data_list in category_data.items():
-                if not data_list:
-                    threshold_results[threshold][category] = []
-                    continue
-                
-                # Compute success rates for this category at this threshold
-                success_rates = []
-                
-                for image_data in data_list:
-                    # Apply threshold-based logic to determine success
-                    blob_stats = image_data['blob_stats']
-                    area = blob_stats.get('area', 0)
-                    
-                    # Success criteria: detected change AND area meets threshold requirements
-                    change_detected = image_data['change_detected']
-                    area_meets_threshold = area >= (threshold * 10)  # Scale threshold
-                    
-                    success = change_detected and area_meets_threshold
-                    success_rates.append(1.0 if success else 0.0)
-                
-                threshold_results[threshold][category] = success_rates
-        
-        # Generate box plots and analysis
-        self._generate_category_box_plots(threshold_results, thresholds)
-        
-        # Save detailed results
-        self._save_category_analysis_results(threshold_results, category_data)
+    def _is_image_already_processed(self, image_name: str) -> bool:
+        """Check if an image has already been processed."""
+        processed_dir = Path(self.processed_images_dir) / f"segformer_model_{image_name}"
+        return processed_dir.exists() and (processed_dir / "frames_masks_nonmem").exists()
 
-    def _generate_category_box_plots(self, threshold_results: Dict[int, Dict[str, List[float]]], 
-                                   thresholds: List[int]) -> None:
-        """Generate box plots showing % Noticing Change across categories for different thresholds."""
-        
-        # Create figure with subplots for each threshold
-        n_thresholds = len(thresholds)
-        cols = min(4, n_thresholds)
-        rows = (n_thresholds + cols - 1) // cols
-        
-        fig, axes = plt.subplots(rows, cols, figsize=(4*cols, 4*rows))
-        if n_thresholds == 1:
-            axes = [axes]
-        elif rows == 1:
-            pass  # axes is already 1D
-        else:
-            axes = axes.flatten()
-        
-        categories = ['Concave', 'NoFill', 'Convex']
-        colors = ['#FF6B6B', '#4ECDC4', '#45B7D1']  # Red, Teal, Blue
-        
-        for i, threshold in enumerate(thresholds):
-            if i >= len(axes):
-                break
-                
-            ax = axes[i]
+    def _load_existing_image_data(self, image_name: str) -> Optional[Dict[str, Any]]:
+        """Load existing image data from processed directory."""
+        try:
+            processed_dir = Path(self.processed_images_dir) / f"segformer_model_{image_name}"
+            mask_dir = processed_dir / "frames_masks_nonmem"
             
-            # Prepare data for box plot
-            box_data = []
-            labels = []
+            if not mask_dir.exists():
+                return None
             
-            for category in categories:
-                success_rates = threshold_results[threshold].get(category, [])
-                if success_rates:
-                    # Convert to percentages
-                    percentages = [rate * 100 for rate in success_rates]
-                    box_data.append(percentages)
-                    labels.append(f"{category}\n(n={len(success_rates)})")
-                else:
-                    box_data.append([0])  # Empty data
-                    labels.append(f"{category}\n(n=0)")
+            # Find mask file
+            mask_files = list(mask_dir.glob("mask_*.png"))
+            if not mask_files:
+                return None
             
-            # Create box plot
-            if any(len(data) > 0 for data in box_data):
-                bp = ax.boxplot(box_data, labels=labels, patch_artist=True)
-                
-                # Color the boxes
-                for patch, color in zip(bp['boxes'], colors):
-                    patch.set_facecolor(color)
-                    patch.set_alpha(0.7)
+            # Load the mask
+            mask_file = mask_files[0]
+            mask_img = Image.open(mask_file).convert('L')
+            mask_array = np.array(mask_img, dtype=np.uint8)
+            binary_mask = (mask_array > 0).astype(bool)
             
-            ax.set_title(f'Threshold {threshold}', fontsize=12, fontweight='bold')
-            ax.set_ylabel('% Noticing Change', fontsize=10)
-            ax.set_ylim(0, 105)
-            ax.grid(True, alpha=0.3)
+            # Compute blob statistics
+            blob_stats = self._compute_blob_statistics(binary_mask)
             
-            # Add mean values as text
-            for j, (category, data) in enumerate(zip(categories, box_data)):
-                if data and len(data) > 0:
-                    mean_val = np.mean(data)
-                    ax.text(j+1, mean_val + 2, f'{mean_val:.1f}%', 
-                           ha='center', va='bottom', fontweight='bold', fontsize=8)
+            return {
+                'mask': binary_mask,
+                'blob_stats': blob_stats,
+                'mask_file': str(mask_file),
+                'processed_dir': str(processed_dir)
+            }
+            
+        except Exception as e:
+            self.logger.error(f"Failed to load existing data for {image_name}: {e}")
+            return None
+
+    def _compute_area_change(self, init_data: Dict[str, Any], out_data: Dict[str, Any], 
+                           base_name: str) -> Optional[Dict[str, Any]]:
+        """
+        Compute area change ratio between init and out images.
+        Following the exact logic from main_extract_mistake_score_and_plot.py
+        """
+        try:
+            init_area = init_data['blob_stats']['area']
+            out_area = out_data['blob_stats']['area']
+            
+            # Compute area change ratio (following original logic)
+            area_change_ratio = None
+            if init_area > 0:
+                area_change_ratio = abs(out_area - init_area) / init_area
+            
+            # Determine image type from base name (following original logic)
+            img_type = self._img_type_from_name(base_name)
+            
+            return {
+                'base': base_name,
+                'type': img_type,
+                'before_mask': init_data.get('mask_file', ''),
+                'after_mask': out_data.get('mask_file', ''),
+                'area_before': int(init_area),
+                'area_after': int(out_area),
+                'area_change': area_change_ratio
+            }
+            
+        except Exception as e:
+            self.logger.error(f"Failed to compute area change for {base_name}: {e}")
+            return None
+
+    def _img_type_from_name(self, base: str) -> str:
+        """Categorize image type from name (following original logic exactly)."""
+        base_lower = base.lower()
+        if 'concave_nofill' in base_lower or ('nofill' in base_lower and 'concave' not in base_lower):
+            return 'concave_nofill'
+        if 'concave' in base_lower:
+            return 'concave'
+        if 'convex' in base_lower:
+            return 'convex'
+        if 'no_change' in base_lower:
+            return 'no_change'
+        return 'unknown'
+
+    def _perform_threshold_analysis(self, pair_details: List[Dict[str, Any]]) -> None:
+        """
+        Perform threshold analysis following main_extract_mistake_score_and_plot.py exactly.
+        """
+        self.logger.info("Performing threshold analysis (following original pipeline)")
         
-        # Hide unused subplots
-        for i in range(n_thresholds, len(axes)):
-            axes[i].set_visible(False)
+        # Thresholds including 2% (following original exactly)
+        thresholds = [0.01, 0.02, 0.03, 0.04, 0.05, 0.06] + [i/100 for i in range(8, 21, 2)]
         
-        plt.suptitle('Change Detection Success Rates by Category and Threshold', 
-                    fontsize=16, fontweight='bold', y=0.95)
+        # Image types (following original exactly)
+        types = ['concave', 'concave_nofill', 'convex', 'no_change']
+        
+        # For each threshold, perform analysis
+        for thr in thresholds:
+            pct = int(round(thr * 100))
+            self.logger.info(f"Analyzing threshold: {pct}%")
+            
+            # Create output directory for this threshold
+            dir_out = os.path.join(self.threshold_results_dir, f"{pct}_comparison")
+            os.makedirs(dir_out, exist_ok=True)
+            
+            # Save per-image details (following original exactly)
+            with open(os.path.join(dir_out, 'per_image_detailed.json'), 'w') as f:
+                json.dump(pair_details, f, indent=2)
+            
+            # Compute detections (following original logic exactly)
+            detections = {t: [] for t in types}
+            for detail in pair_details:
+                img_type = detail['type']
+                if img_type in detections:
+                    area_change = detail['area_change']
+                    detected = 1 if (area_change is not None and area_change > thr) else 0
+                    detections[img_type].append(detected)
+            
+            # Overall summary (following original exactly)
+            summary = {
+                t: {'detected': int(sum(detections[t])), 'total': len(detections[t])} 
+                for t in types
+            }
+            with open(os.path.join(dir_out, 'overall_comparison.json'), 'w') as f:
+                json.dump(summary, f, indent=2)
+            
+            # Generate plots (following original styling exactly)
+            self._generate_threshold_plots(detections, types, pct, dir_out)
+        
+        self.logger.info(f"Completed thresholds: {[int(t*100) for t in thresholds]}%")
+
+    def _compute_sem_binary(self, detections: np.ndarray) -> float:
+        """
+        Compute standard error of the mean (SEM) as percentage, then downscale by half.
+        Following main_extract_mistake_score_and_plot.py exactly.
+        """
+        n = detections.size
+        if n == 0:
+            return 0.0
+        p = detections.mean()
+        sem = np.sqrt(p * (1 - p) / n) * 100
+        return sem * 0.5  # Downscale by half
+
+    def _generate_threshold_plots(self, detections: Dict[str, List[int]], types: List[str], 
+                                pct: int, output_dir: str) -> None:
+        """
+        Generate plots following main_extract_mistake_score_and_plot.py styling exactly.
+        """
+        # Compute rates and SEMs
+        rates = np.array([(np.mean(detections[t]) * 100 if detections[t] else 0.0) for t in types])
+        sems = np.array([self._compute_sem_binary(np.array(detections[t])) for t in types])
+        
+        # Overall plot (4 categories)
+        x = np.arange(len(types)) + LEFT_MARGIN
+        fig, ax = plt.subplots(figsize=(4.8, 4), dpi=HIGH_DPI)
+        for i, t in enumerate(types):
+            ax.bar(x[i], rates[i], BAR_WIDTH,
+                   color='lightgray', edgecolor='black', hatch='//',
+                   yerr=sems[i], capsize=5)
+        ax.set_xticks([])
+        ax.set_ylabel('% Detection Rate')
+        ax.set_ylim(0, 100)
+        ax.set_xlim(LEFT_MARGIN - 0.8*BAR_WIDTH, LEFT_MARGIN + len(types) - 0.2*BAR_WIDTH)
+        ax.set_title(f'Threshold = {pct}%')
         plt.tight_layout()
-        
-        # Save plot
-        box_plot_path = os.path.join(self.plots_dir, "category_box_plots.png")
-        plt.savefig(box_plot_path, dpi=300, bbox_inches='tight')
+        fig.savefig(os.path.join(output_dir, 'overall_comparison.png'), dpi=HIGH_DPI)
         plt.close(fig)
         
-        self.logger.info(f"Saved category box plots to {box_plot_path}")
+        # Three-condition plot (following original styling exactly)
+        three = ['concave', 'concave_nofill', 'convex']
+        colors = [
+            (255/255, 188/255, 78/255),  # concave
+            (209/255, 168/255, 95/255),  # concave_nofill  
+            (79/255, 168/255, 78/255)    # convex
+        ]
         
-        # Generate summary plot across all thresholds
-        self._generate_summary_category_plot(threshold_results, thresholds)
-
-    def _generate_summary_category_plot(self, threshold_results: Dict[int, Dict[str, List[float]]], 
-                                      thresholds: List[int]) -> None:
-        """Generate summary plot showing mean % Noticing Change across all thresholds."""
+        # Width calculation (following original exactly: base 15% + extra 10% => 1.15 * 1.10 = 1.265)
+        width_three = BAR_WIDTH * 2.1
+        margin_data = BAR_WIDTH * 0.8
+        x2 = np.arange(len(three)) * width_three + LEFT_MARGIN
         
-        categories = ['Concave', 'NoFill', 'Convex']
-        colors = ['#FF6B6B', '#4ECDC4', '#45B7D1']
-        
-        # Compute mean success rates for each category across thresholds
-        category_means = {category: [] for category in categories}
-        category_stds = {category: [] for category in categories}
-        
-        for threshold in thresholds:
-            for category in categories:
-                success_rates = threshold_results[threshold].get(category, [])
-                if success_rates:
-                    percentages = [rate * 100 for rate in success_rates]
-                    category_means[category].append(np.mean(percentages))
-                    category_stds[category].append(np.std(percentages))
-                else:
-                    category_means[category].append(0)
-                    category_stds[category].append(0)
-        
-        # Create line plot
-        fig, ax = plt.subplots(figsize=(12, 8))
-        
-        for i, category in enumerate(categories):
-            means = category_means[category]
-            stds = category_stds[category]
-            
-            ax.plot(thresholds, means, 'o-', color=colors[i], linewidth=2, 
-                   markersize=8, label=category)
-            ax.errorbar(thresholds, means, yerr=stds, color=colors[i], 
-                       capsize=5, alpha=0.7)
-        
-        ax.set_xlabel('Threshold', fontsize=12)
-        ax.set_ylabel('% Noticing Change (Mean)', fontsize=12)
-        ax.set_title('Change Detection Success Rates by Category Across Thresholds', 
-                    fontsize=14, fontweight='bold')
-        ax.legend(fontsize=11)
-        ax.grid(True, alpha=0.3)
-        ax.set_ylim(0, 105)
-        
+        fig, ax = plt.subplots(figsize=(4.5, 6), dpi=HIGH_DPI)
+        for i, t in enumerate(three):
+            idx = types.index(t)
+            ax.bar(x2[i], rates[idx], width_three,
+                   color=colors[i], edgecolor='black', hatch='//',
+                   yerr=sems[idx], capsize=5)
+        ax.set_xticks([])
+        ax.tick_params(axis='y', labelsize=TICKS_FONTSIZE)
+        ax.set_ylabel('% Noticing Change', fontsize=LABEL_FONTSIZE)
+        ax.set_ylim(0, 100)
+        left_lim = x2[0] - width_three/2 - margin_data
+        right_lim = x2[-1] + width_three/2 + margin_data
+        ax.set_xlim(left_lim, right_lim)
+        ax.set_title(f'Threshold = {pct}%')
         plt.tight_layout()
-        
-        # Save plot
-        summary_plot_path = os.path.join(self.plots_dir, "category_summary_plot.png")
-        plt.savefig(summary_plot_path, dpi=300, bbox_inches='tight')
+        fig.savefig(os.path.join(output_dir, 'three_comparison.png'), dpi=HIGH_DPI)
         plt.close(fig)
         
-        self.logger.info(f"Saved category summary plot to {summary_plot_path}")
-
-    def _save_category_analysis_results(self, threshold_results: Dict[int, Dict[str, List[float]]], 
-                                      category_data: Dict[str, List[Dict[str, Any]]]) -> None:
-        """Save detailed category analysis results."""
-        
-        # Prepare summary data
-        summary_data = []
-        
-        for threshold in sorted(threshold_results.keys()):
-            for category in ['Concave', 'NoFill', 'Convex']:
-                success_rates = threshold_results[threshold].get(category, [])
-                if success_rates:
-                    percentages = [rate * 100 for rate in success_rates]
-                    summary_data.append({
-                        'threshold': threshold,
-                        'category': category,
-                        'mean_success_rate': np.mean(percentages),
-                        'std_success_rate': np.std(percentages),
-                        'n_images': len(success_rates),
-                        'success_rates': percentages
-                    })
-                else:
-                    summary_data.append({
-                        'threshold': threshold,
-                        'category': category,
-                        'mean_success_rate': 0.0,
-                        'std_success_rate': 0.0,
-                        'n_images': 0,
-                        'success_rates': []
-                    })
-        
-        # Save to CSV
-        csv_data = []
-        for entry in summary_data:
-            csv_data.append({
-                'threshold': entry['threshold'],
-                'category': entry['category'],
-                'mean_success_rate': entry['mean_success_rate'],
-                'std_success_rate': entry['std_success_rate'],
-                'n_images': entry['n_images']
-            })
-        
-        df = pd.DataFrame(csv_data)
-        csv_path = os.path.join(self.results_dir, "category_analysis_summary.csv")
-        df.to_csv(csv_path, index=False)
-        
-        # Save detailed JSON
-        json_path = os.path.join(self.results_dir, "category_analysis_detailed.json")
-        
-        detailed_results = {
-            'threshold_results': threshold_results,
-            'category_counts': {cat: len(data) for cat, data in category_data.items()},
-            'summary_statistics': summary_data
-        }
-        
-        with open(json_path, 'w') as f:
-            json.dump(detailed_results, f, indent=2)
-        
-        self.logger.info(f"Saved category analysis to {csv_path} and {json_path}")
+        self.logger.info(f"  Generated plots for threshold {pct}%")
 
 ##############################################################################
 # MAIN FUNCTION
 ##############################################################################
 
 def main():
-    parser = argparse.ArgumentParser(description="Change Detection Experiment - Process raw images and analyze blob segmentation across categories")
+    parser = argparse.ArgumentParser(description="Change Detection Experiment - Following Original Analysis Pipeline")
     parser.add_argument("--model_interface", type=str, default="segformer",
                       choices=["segformer"], help="Model interface to use")
     parser.add_argument("--images_dir", type=str, required=False,
-                      default="/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/exp3Change_files",
-                      help="Directory containing raw image files")
+                      default="/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/detr/EXP_3_CHANGE/Data_processed/Stimuli/Exp3b_Images",
+                      help="Directory containing raw image files with _init and _out pairs")
     parser.add_argument("--output_dir", type=str, required=False,
                       default="/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change",
                       help="Output directory for results and processed data")
-    parser.add_argument("--thresholds", type=int, nargs='+', 
-                      default=[1, 2, 3, 4, 5, 6, 8, 10, 12, 14, 16, 18, 20],
-                      help="List of thresholds to analyze (default: 1 2 3 4 5 6 8 10 12 14 16 18 20)")
     parser.add_argument("--resume", action="store_true", default=True,
                       help="Resume processing from checkpoints (default: True)")
     parser.add_argument("--no_resume", action="store_true", default=False,
@@ -838,7 +716,6 @@ def main():
     try:
         experiment.run_full_experiment(
             images_dir=args.images_dir,
-            thresholds=args.thresholds,
             resume=resume
         )
         print("Change detection experiment completed successfully!")
