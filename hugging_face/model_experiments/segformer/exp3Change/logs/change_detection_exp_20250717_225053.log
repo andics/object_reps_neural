@@ -1,0 +1,1042 @@
+2025-07-17 22:50:53,700 - INFO - Logger initialized. Writing detailed log to /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/logs/change_detection_exp_20250717_225053.log
+2025-07-17 22:50:53,701 - INFO - Initialized Change Detection Experiment with output dir: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change
+2025-07-17 22:50:53,701 - INFO - Starting full change detection experiment (following original pipeline)
+2025-07-17 22:50:53,701 - WARNING - No matching _out file found for shape4_no_change6_init.png
+2025-07-17 22:50:53,701 - DEBUG - Found pair: shape1_concave_area1 -> shape1_concave_area1_init.png & shape1_concave_area1_out.png
+2025-07-17 22:50:53,701 - WARNING - No matching _out file found for shape2_no_change5_init.png
+2025-07-17 22:50:53,701 - DEBUG - Found pair: shape5_concave_area1 -> shape5_concave_area1_init.png & shape5_concave_area1_out.png
+2025-07-17 22:50:53,701 - DEBUG - Found pair: shape8_convex_area1 -> shape8_convex_area1_init.png & shape8_convex_area1_out.png
+2025-07-17 22:50:53,701 - DEBUG - Found pair: shape2_concave_area2 -> shape2_concave_area2_init.png & shape2_concave_area2_out.png
+2025-07-17 22:50:53,701 - DEBUG - Found pair: shape8_concave_nofill_area2 -> shape8_concave_nofill_area2_init.png & shape8_concave_nofill_area2_out.png
+2025-07-17 22:50:53,701 - WARNING - No matching _out file found for shape7_no_change5_init.png
+2025-07-17 22:50:53,701 - WARNING - No matching _out file found for shape5_no_change6_init.png
+2025-07-17 22:50:53,701 - DEBUG - Found pair: shape5_convex_area2 -> shape5_convex_area2_init.png & shape5_convex_area2_out.png
+2025-07-17 22:50:53,701 - WARNING - No matching _out file found for shape3_no_change1_init.png
+2025-07-17 22:50:53,701 - DEBUG - Found pair: shape3_concave_area1 -> shape3_concave_area1_init.png & shape3_concave_area1_out.png
+2025-07-17 22:50:53,701 - DEBUG - Found pair: shape2_convex_area1 -> shape2_convex_area1_init.png & shape2_convex_area1_out.png
+2025-07-17 22:50:53,701 - DEBUG - Found pair: shape1_convex_area2 -> shape1_convex_area2_init.png & shape1_convex_area2_out.png
+2025-07-17 22:50:53,701 - WARNING - No matching _out file found for shape1_no_change2_init.png
+2025-07-17 22:50:53,701 - WARNING - No matching _out file found for shape6_no_change4_init.png
+2025-07-17 22:50:53,701 - DEBUG - Found pair: shape7_convex_area1 -> shape7_convex_area1_init.png & shape7_convex_area1_out.png
+2025-07-17 22:50:53,701 - DEBUG - Found pair: shape7_concave_nofill_area1 -> shape7_concave_nofill_area1_init.png & shape7_concave_nofill_area1_out.png
+2025-07-17 22:50:53,701 - WARNING - No matching _out file found for shape6_no_change3_init.png
+2025-07-17 22:50:53,701 - DEBUG - Found pair: shape3_concave_area2 -> shape3_concave_area2_init.png & shape3_concave_area2_out.png
+2025-07-17 22:50:53,701 - DEBUG - Found pair: shape8_concave_nofill_area1 -> shape8_concave_nofill_area1_init.png & shape8_concave_nofill_area1_out.png
+2025-07-17 22:50:53,701 - DEBUG - Found pair: shape6_convex_area2 -> shape6_convex_area2_init.png & shape6_convex_area2_out.png
+2025-07-17 22:50:53,702 - DEBUG - Found pair: shape4_convex_area1 -> shape4_convex_area1_init.png & shape4_convex_area1_out.png
+2025-07-17 22:50:53,702 - DEBUG - Found pair: shape5_convex_area1 -> shape5_convex_area1_init.png & shape5_convex_area1_out.png
+2025-07-17 22:50:53,702 - DEBUG - Found pair: shape2_concave_nofill_area1 -> shape2_concave_nofill_area1_init.png & shape2_concave_nofill_area1_out.png
+2025-07-17 22:50:53,702 - WARNING - No matching _out file found for shape7_no_change1_init.png
+2025-07-17 22:50:53,702 - WARNING - No matching _out file found for shape4_no_change2_init.png
+2025-07-17 22:50:53,702 - WARNING - No matching _out file found for shape1_no_change5_init.png
+2025-07-17 22:50:53,702 - DEBUG - Found pair: shape4_concave_area1 -> shape4_concave_area1_init.png & shape4_concave_area1_out.png
+2025-07-17 22:50:53,702 - WARNING - No matching _out file found for shape3_no_change2_init.png
+2025-07-17 22:50:53,702 - WARNING - No matching _out file found for shape8_no_change1_init.png
+2025-07-17 22:50:53,702 - DEBUG - Found pair: shape4_concave_nofill_area1 -> shape4_concave_nofill_area1_init.png & shape4_concave_nofill_area1_out.png
+2025-07-17 22:50:53,702 - DEBUG - Found pair: shape7_concave_area2 -> shape7_concave_area2_init.png & shape7_concave_area2_out.png
+2025-07-17 22:50:53,702 - WARNING - No matching _out file found for shape8_no_change5_init.png
+2025-07-17 22:50:53,702 - WARNING - No matching _out file found for shape2_no_change2_init.png
+2025-07-17 22:50:53,702 - WARNING - No matching _out file found for shape5_no_change4_init.png
+2025-07-17 22:50:53,702 - DEBUG - Found pair: shape4_concave_nofill_area2 -> shape4_concave_nofill_area2_init.png & shape4_concave_nofill_area2_out.png
+2025-07-17 22:50:53,702 - WARNING - No matching _out file found for shape3_no_change5_init.png
+2025-07-17 22:50:53,702 - DEBUG - Found pair: shape1_concave_area2 -> shape1_concave_area2_init.png & shape1_concave_area2_out.png
+2025-07-17 22:50:53,702 - WARNING - No matching _out file found for shape1_no_change6_init.png
+2025-07-17 22:50:53,702 - DEBUG - Found pair: shape3_concave_nofill_area2 -> shape3_concave_nofill_area2_init.png & shape3_concave_nofill_area2_out.png
+2025-07-17 22:50:53,702 - DEBUG - Found pair: shape3_convex_area1 -> shape3_convex_area1_init.png & shape3_convex_area1_out.png
+2025-07-17 22:50:53,702 - DEBUG - Found pair: shape5_concave_area2 -> shape5_concave_area2_init.png & shape5_concave_area2_out.png
+2025-07-17 22:50:53,702 - DEBUG - Found pair: shape7_concave_area1 -> shape7_concave_area1_init.png & shape7_concave_area1_out.png
+2025-07-17 22:50:53,702 - WARNING - No matching _out file found for shape8_no_change6_init.png
+2025-07-17 22:50:53,702 - DEBUG - Found pair: shape6_concave_nofill_area2 -> shape6_concave_nofill_area2_init.png & shape6_concave_nofill_area2_out.png
+2025-07-17 22:50:53,702 - WARNING - No matching _out file found for shape5_no_change3_init.png
+2025-07-17 22:50:53,702 - DEBUG - Found pair: shape3_concave_nofill_area1 -> shape3_concave_nofill_area1_init.png & shape3_concave_nofill_area1_out.png
+2025-07-17 22:50:53,702 - DEBUG - Found pair: shape6_concave_area1 -> shape6_concave_area1_init.png & shape6_concave_area1_out.png
+2025-07-17 22:50:53,702 - WARNING - No matching _out file found for shape6_no_change1_init.png
+2025-07-17 22:50:53,702 - WARNING - No matching _out file found for shape5_no_change1_init.png
+2025-07-17 22:50:53,702 - DEBUG - Found pair: shape2_concave_nofill_area2 -> shape2_concave_nofill_area2_init.png & shape2_concave_nofill_area2_out.png
+2025-07-17 22:50:53,702 - DEBUG - Found pair: shape1_concave_nofill_area1 -> shape1_concave_nofill_area1_init.png & shape1_concave_nofill_area1_out.png
+2025-07-17 22:50:53,702 - DEBUG - Found pair: shape6_concave_area2 -> shape6_concave_area2_init.png & shape6_concave_area2_out.png
+2025-07-17 22:50:53,702 - WARNING - No matching _out file found for shape7_no_change2_init.png
+2025-07-17 22:50:53,702 - DEBUG - Found pair: shape3_convex_area2 -> shape3_convex_area2_init.png & shape3_convex_area2_out.png
+2025-07-17 22:50:53,702 - WARNING - No matching _out file found for shape5_no_change5_init.png
+2025-07-17 22:50:53,702 - DEBUG - Found pair: shape8_concave_area1 -> shape8_concave_area1_init.png & shape8_concave_area1_out.png
+2025-07-17 22:50:53,702 - DEBUG - Found pair: shape5_concave_nofill_area2 -> shape5_concave_nofill_area2_init.png & shape5_concave_nofill_area2_out.png
+2025-07-17 22:50:53,702 - DEBUG - Found pair: shape2_convex_area2 -> shape2_convex_area2_init.png & shape2_convex_area2_out.png
+2025-07-17 22:50:53,703 - WARNING - No matching _out file found for shape2_no_change1_init.png
+2025-07-17 22:50:53,703 - WARNING - No matching _out file found for shape3_no_change4_init.png
+2025-07-17 22:50:53,703 - DEBUG - Found pair: shape2_concave_area1 -> shape2_concave_area1_init.png & shape2_concave_area1_out.png
+2025-07-17 22:50:53,703 - WARNING - No matching _out file found for shape5_no_change2_init.png
+2025-07-17 22:50:53,703 - WARNING - No matching _out file found for shape7_no_change4_init.png
+2025-07-17 22:50:53,703 - WARNING - No matching _out file found for shape7_no_change3_init.png
+2025-07-17 22:50:53,703 - WARNING - No matching _out file found for shape1_no_change3_init.png
+2025-07-17 22:50:53,703 - DEBUG - Found pair: shape4_convex_area2 -> shape4_convex_area2_init.png & shape4_convex_area2_out.png
+2025-07-17 22:50:53,703 - WARNING - No matching _out file found for shape1_no_change1_init.png
+2025-07-17 22:50:53,703 - DEBUG - Found pair: shape8_convex_area2 -> shape8_convex_area2_init.png & shape8_convex_area2_out.png
+2025-07-17 22:50:53,703 - WARNING - No matching _out file found for shape4_no_change3_init.png
+2025-07-17 22:50:53,703 - DEBUG - Found pair: shape6_convex_area1 -> shape6_convex_area1_init.png & shape6_convex_area1_out.png
+2025-07-17 22:50:53,703 - WARNING - No matching _out file found for shape4_no_change5_init.png
+2025-07-17 22:50:53,703 - WARNING - No matching _out file found for shape6_no_change6_init.png
+2025-07-17 22:50:53,703 - WARNING - No matching _out file found for shape2_no_change3_init.png
+2025-07-17 22:50:53,703 - WARNING - No matching _out file found for shape7_no_change6_init.png
+2025-07-17 22:50:53,703 - WARNING - No matching _out file found for shape6_no_change5_init.png
+2025-07-17 22:50:53,703 - DEBUG - Found pair: shape1_convex_area1 -> shape1_convex_area1_init.png & shape1_convex_area1_out.png
+2025-07-17 22:50:53,703 - DEBUG - Found pair: shape1_concave_nofill_area2 -> shape1_concave_nofill_area2_init.png & shape1_concave_nofill_area2_out.png
+2025-07-17 22:50:53,703 - WARNING - No matching _out file found for shape6_no_change2_init.png
+2025-07-17 22:50:53,703 - WARNING - No matching _out file found for shape2_no_change4_init.png
+2025-07-17 22:50:53,703 - DEBUG - Found pair: shape5_concave_nofill_area1 -> shape5_concave_nofill_area1_init.png & shape5_concave_nofill_area1_out.png
+2025-07-17 22:50:53,703 - WARNING - No matching _out file found for shape4_no_change4_init.png
+2025-07-17 22:50:53,703 - WARNING - No matching _out file found for shape3_no_change3_init.png
+2025-07-17 22:50:53,703 - WARNING - No matching _out file found for shape2_no_change6_init.png
+2025-07-17 22:50:53,703 - DEBUG - Found pair: shape7_convex_area2 -> shape7_convex_area2_init.png & shape7_convex_area2_out.png
+2025-07-17 22:50:53,703 - DEBUG - Found pair: shape6_concave_nofill_area1 -> shape6_concave_nofill_area1_init.png & shape6_concave_nofill_area1_out.png
+2025-07-17 22:50:53,703 - WARNING - No matching _out file found for shape1_no_change4_init.png
+2025-07-17 22:50:53,703 - WARNING - No matching _out file found for shape8_no_change4_init.png
+2025-07-17 22:50:53,703 - WARNING - No matching _out file found for shape4_no_change1_init.png
+2025-07-17 22:50:53,703 - DEBUG - Found pair: shape8_concave_area2 -> shape8_concave_area2_init.png & shape8_concave_area2_out.png
+2025-07-17 22:50:53,703 - WARNING - No matching _out file found for shape3_no_change6_init.png
+2025-07-17 22:50:53,703 - DEBUG - Found pair: shape4_concave_area2 -> shape4_concave_area2_init.png & shape4_concave_area2_out.png
+2025-07-17 22:50:53,703 - WARNING - No matching _out file found for shape8_no_change3_init.png
+2025-07-17 22:50:53,704 - DEBUG - Found pair: shape7_concave_nofill_area2 -> shape7_concave_nofill_area2_init.png & shape7_concave_nofill_area2_out.png
+2025-07-17 22:50:53,704 - WARNING - No matching _out file found for shape8_no_change2_init.png
+2025-07-17 22:50:53,704 - INFO - Found 48 image pairs to process
+2025-07-17 22:50:53,704 - INFO - Processing image pair: shape1_concave_area1
+2025-07-17 22:50:53,704 - INFO -   Processing image: shape1_concave_area1_init
+2025-07-17 22:50:53,704 - INFO - Loading model...
+2025-07-17 22:50:57,354 - INFO -   Image shape1_concave_area1_init shape: 400x1000 RGB
+2025-07-17 22:50:57,845 - INFO -     Saved original segmentation overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape1_concave_area1_init/original_segmentation/shape1_concave_area1_init_original_segmentation.png
+2025-07-17 22:50:57,866 - DEBUG -     Blob detected with threshold 30 (area=12755.0)
+2025-07-17 22:50:57,931 - INFO -     Saved blob overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape1_concave_area1_init/frames_blobs/shape1_concave_area1_init_blobs.png
+2025-07-17 22:50:58,378 - INFO -   Generated 4 candidate masks from model.
+2025-07-17 22:50:58,388 - INFO -   Chosen mask cost=-0.471 -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape1_concave_area1_init/frames_masks_nonmem/mask_shape1_concave_area1_init.png
+2025-07-17 22:50:59,405 - INFO -     Saved collage -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape1_concave_area1_init/frames_collage/shape1_concave_area1_init_collage.png
+2025-07-17 22:50:59,483 - INFO -     Saved final overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape1_concave_area1_init/frames_processed/shape1_concave_area1_init_overlay.png
+2025-07-17 22:50:59,489 - INFO -   Processing image: shape1_concave_area1_out
+2025-07-17 22:50:59,515 - INFO -   Image shape1_concave_area1_out shape: 400x1000 RGB
+2025-07-17 22:50:59,658 - INFO -     Saved original segmentation overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape1_concave_area1_out/original_segmentation/shape1_concave_area1_out_original_segmentation.png
+2025-07-17 22:50:59,669 - DEBUG -     Blob detected with threshold 30 (area=12905.0)
+2025-07-17 22:50:59,735 - INFO -     Saved blob overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape1_concave_area1_out/frames_blobs/shape1_concave_area1_out_blobs.png
+2025-07-17 22:51:00,181 - INFO -   Generated 8 candidate masks from model.
+2025-07-17 22:51:00,193 - INFO -   Chosen mask cost=-0.437 -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape1_concave_area1_out/frames_masks_nonmem/mask_shape1_concave_area1_out.png
+2025-07-17 22:51:00,807 - INFO -     Saved collage -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape1_concave_area1_out/frames_collage/shape1_concave_area1_out_collage.png
+2025-07-17 22:51:00,886 - INFO -     Saved final overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape1_concave_area1_out/frames_processed/shape1_concave_area1_out_overlay.png
+2025-07-17 22:51:00,890 - INFO - Processing image pair: shape1_concave_area2
+2025-07-17 22:51:00,890 - INFO -   Processing image: shape1_concave_area2_init
+2025-07-17 22:51:00,912 - INFO -   Image shape1_concave_area2_init shape: 400x1000 RGB
+2025-07-17 22:51:01,054 - INFO -     Saved original segmentation overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape1_concave_area2_init/original_segmentation/shape1_concave_area2_init_original_segmentation.png
+2025-07-17 22:51:01,065 - DEBUG -     Blob detected with threshold 30 (area=12773.0)
+2025-07-17 22:51:01,132 - INFO -     Saved blob overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape1_concave_area2_init/frames_blobs/shape1_concave_area2_init_blobs.png
+2025-07-17 22:51:01,590 - INFO -   Generated 13 candidate masks from model.
+2025-07-17 22:51:01,605 - INFO -   Chosen mask cost=-0.570 -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape1_concave_area2_init/frames_masks_nonmem/mask_shape1_concave_area2_init.png
+2025-07-17 22:51:02,189 - INFO -     Saved collage -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape1_concave_area2_init/frames_collage/shape1_concave_area2_init_collage.png
+2025-07-17 22:51:02,266 - INFO -     Saved final overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape1_concave_area2_init/frames_processed/shape1_concave_area2_init_overlay.png
+2025-07-17 22:51:02,271 - INFO -   Processing image: shape1_concave_area2_out
+2025-07-17 22:51:02,287 - INFO -   Image shape1_concave_area2_out shape: 400x1000 RGB
+2025-07-17 22:51:02,427 - INFO -     Saved original segmentation overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape1_concave_area2_out/original_segmentation/shape1_concave_area2_out_original_segmentation.png
+2025-07-17 22:51:02,438 - DEBUG -     Blob detected with threshold 30 (area=13057.0)
+2025-07-17 22:51:02,504 - INFO -     Saved blob overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape1_concave_area2_out/frames_blobs/shape1_concave_area2_out_blobs.png
+2025-07-17 22:51:02,948 - INFO -   Generated 8 candidate masks from model.
+2025-07-17 22:51:02,959 - INFO -   Chosen mask cost=-0.426 -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape1_concave_area2_out/frames_masks_nonmem/mask_shape1_concave_area2_out.png
+2025-07-17 22:51:03,567 - INFO -     Saved collage -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape1_concave_area2_out/frames_collage/shape1_concave_area2_out_collage.png
+2025-07-17 22:51:03,645 - INFO -     Saved final overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape1_concave_area2_out/frames_processed/shape1_concave_area2_out_overlay.png
+2025-07-17 22:51:03,649 - INFO - Processing image pair: shape1_concave_nofill_area1
+2025-07-17 22:51:03,649 - INFO -   Processing image: shape1_concave_nofill_area1_init
+2025-07-17 22:51:03,672 - INFO -   Image shape1_concave_nofill_area1_init shape: 400x1000 RGB
+2025-07-17 22:51:03,829 - INFO -     Saved original segmentation overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape1_concave_nofill_area1_init/original_segmentation/shape1_concave_nofill_area1_init_original_segmentation.png
+2025-07-17 22:51:03,839 - DEBUG -     Blob detected with threshold 30 (area=12755.0)
+2025-07-17 22:51:03,906 - INFO -     Saved blob overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape1_concave_nofill_area1_init/frames_blobs/shape1_concave_nofill_area1_init_blobs.png
+2025-07-17 22:51:04,369 - INFO -   Generated 20 candidate masks from model.
+2025-07-17 22:51:04,387 - INFO -   Chosen mask cost=-0.412 -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape1_concave_nofill_area1_init/frames_masks_nonmem/mask_shape1_concave_nofill_area1_init.png
+2025-07-17 22:51:05,190 - INFO -     Saved collage -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape1_concave_nofill_area1_init/frames_collage/shape1_concave_nofill_area1_init_collage.png
+2025-07-17 22:51:05,268 - INFO -     Saved final overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape1_concave_nofill_area1_init/frames_processed/shape1_concave_nofill_area1_init_overlay.png
+2025-07-17 22:51:05,273 - INFO -   Processing image: shape1_concave_nofill_area1_out
+2025-07-17 22:51:05,300 - INFO -   Image shape1_concave_nofill_area1_out shape: 400x1000 RGB
+2025-07-17 22:51:05,462 - INFO -     Saved original segmentation overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape1_concave_nofill_area1_out/original_segmentation/shape1_concave_nofill_area1_out_original_segmentation.png
+2025-07-17 22:51:05,472 - DEBUG -     Blob detected with threshold 30 (area=12942.0)
+2025-07-17 22:51:05,539 - INFO -     Saved blob overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape1_concave_nofill_area1_out/frames_blobs/shape1_concave_nofill_area1_out_blobs.png
+2025-07-17 22:51:05,989 - INFO -   Generated 13 candidate masks from model.
+2025-07-17 22:51:06,005 - INFO -   Chosen mask cost=-0.569 -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape1_concave_nofill_area1_out/frames_masks_nonmem/mask_shape1_concave_nofill_area1_out.png
+2025-07-17 22:51:06,585 - INFO -     Saved collage -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape1_concave_nofill_area1_out/frames_collage/shape1_concave_nofill_area1_out_collage.png
+2025-07-17 22:51:06,666 - INFO -     Saved final overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape1_concave_nofill_area1_out/frames_processed/shape1_concave_nofill_area1_out_overlay.png
+2025-07-17 22:51:06,671 - INFO - Processing image pair: shape1_concave_nofill_area2
+2025-07-17 22:51:06,671 - INFO -   Processing image: shape1_concave_nofill_area2_init
+2025-07-17 22:51:06,712 - INFO -   Image shape1_concave_nofill_area2_init shape: 400x1000 RGB
+2025-07-17 22:51:06,887 - INFO -     Saved original segmentation overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape1_concave_nofill_area2_init/original_segmentation/shape1_concave_nofill_area2_init_original_segmentation.png
+2025-07-17 22:51:06,898 - DEBUG -     Blob detected with threshold 30 (area=12765.0)
+2025-07-17 22:51:06,970 - INFO -     Saved blob overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape1_concave_nofill_area2_init/frames_blobs/shape1_concave_nofill_area2_init_blobs.png
+2025-07-17 22:51:07,419 - INFO -   Generated 8 candidate masks from model.
+2025-07-17 22:51:07,434 - INFO -   Chosen mask cost=-0.493 -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape1_concave_nofill_area2_init/frames_masks_nonmem/mask_shape1_concave_nofill_area2_init.png
+2025-07-17 22:51:08,058 - INFO -     Saved collage -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape1_concave_nofill_area2_init/frames_collage/shape1_concave_nofill_area2_init_collage.png
+2025-07-17 22:51:08,141 - INFO -     Saved final overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape1_concave_nofill_area2_init/frames_processed/shape1_concave_nofill_area2_init_overlay.png
+2025-07-17 22:51:08,146 - INFO -   Processing image: shape1_concave_nofill_area2_out
+2025-07-17 22:51:08,175 - INFO -   Image shape1_concave_nofill_area2_out shape: 400x1000 RGB
+2025-07-17 22:51:08,349 - INFO -     Saved original segmentation overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape1_concave_nofill_area2_out/original_segmentation/shape1_concave_nofill_area2_out_original_segmentation.png
+2025-07-17 22:51:08,359 - DEBUG -     Blob detected with threshold 30 (area=13084.0)
+2025-07-17 22:51:08,433 - INFO -     Saved blob overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape1_concave_nofill_area2_out/frames_blobs/shape1_concave_nofill_area2_out_blobs.png
+2025-07-17 22:51:08,902 - INFO -   Generated 10 candidate masks from model.
+2025-07-17 22:51:08,918 - INFO -   Chosen mask cost=-0.430 -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape1_concave_nofill_area2_out/frames_masks_nonmem/mask_shape1_concave_nofill_area2_out.png
+2025-07-17 22:51:09,519 - INFO -     Saved collage -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape1_concave_nofill_area2_out/frames_collage/shape1_concave_nofill_area2_out_collage.png
+2025-07-17 22:51:09,597 - INFO -     Saved final overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape1_concave_nofill_area2_out/frames_processed/shape1_concave_nofill_area2_out_overlay.png
+2025-07-17 22:51:09,602 - INFO - Processing image pair: shape1_convex_area1
+2025-07-17 22:51:09,602 - INFO -   Processing image: shape1_convex_area1_init
+2025-07-17 22:51:09,630 - INFO -   Image shape1_convex_area1_init shape: 400x1000 RGB
+2025-07-17 22:51:09,775 - INFO -     Saved original segmentation overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape1_convex_area1_init/original_segmentation/shape1_convex_area1_init_original_segmentation.png
+2025-07-17 22:51:09,786 - DEBUG -     Blob detected with threshold 30 (area=12755.0)
+2025-07-17 22:51:09,857 - INFO -     Saved blob overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape1_convex_area1_init/frames_blobs/shape1_convex_area1_init_blobs.png
+2025-07-17 22:51:10,322 - INFO -   Generated 6 candidate masks from model.
+2025-07-17 22:51:10,334 - INFO -   Chosen mask cost=-0.412 -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape1_convex_area1_init/frames_masks_nonmem/mask_shape1_convex_area1_init.png
+2025-07-17 22:51:10,955 - INFO -     Saved collage -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape1_convex_area1_init/frames_collage/shape1_convex_area1_init_collage.png
+2025-07-17 22:51:11,037 - INFO -     Saved final overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape1_convex_area1_init/frames_processed/shape1_convex_area1_init_overlay.png
+2025-07-17 22:51:11,043 - INFO -   Processing image: shape1_convex_area1_out
+2025-07-17 22:51:11,066 - INFO -   Image shape1_convex_area1_out shape: 400x1000 RGB
+2025-07-17 22:51:11,212 - INFO -     Saved original segmentation overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape1_convex_area1_out/original_segmentation/shape1_convex_area1_out_original_segmentation.png
+2025-07-17 22:51:11,223 - DEBUG -     Blob detected with threshold 30 (area=12936.0)
+2025-07-17 22:51:11,294 - INFO -     Saved blob overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape1_convex_area1_out/frames_blobs/shape1_convex_area1_out_blobs.png
+2025-07-17 22:51:11,758 - INFO -   Generated 6 candidate masks from model.
+2025-07-17 22:51:11,770 - INFO -   Chosen mask cost=-0.499 -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape1_convex_area1_out/frames_masks_nonmem/mask_shape1_convex_area1_out.png
+2025-07-17 22:51:12,678 - INFO -     Saved collage -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape1_convex_area1_out/frames_collage/shape1_convex_area1_out_collage.png
+2025-07-17 22:51:12,761 - INFO -     Saved final overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape1_convex_area1_out/frames_processed/shape1_convex_area1_out_overlay.png
+2025-07-17 22:51:12,768 - INFO - Processing image pair: shape1_convex_area2
+2025-07-17 22:51:12,768 - INFO -   Processing image: shape1_convex_area2_init
+2025-07-17 22:51:12,784 - INFO -   Image shape1_convex_area2_init shape: 400x1000 RGB
+2025-07-17 22:51:12,958 - INFO -     Saved original segmentation overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape1_convex_area2_init/original_segmentation/shape1_convex_area2_init_original_segmentation.png
+2025-07-17 22:51:12,969 - DEBUG -     Blob detected with threshold 30 (area=12756.0)
+2025-07-17 22:51:13,039 - INFO -     Saved blob overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape1_convex_area2_init/frames_blobs/shape1_convex_area2_init_blobs.png
+2025-07-17 22:51:13,531 - INFO -   Generated 11 candidate masks from model.
+2025-07-17 22:51:13,545 - INFO -   Chosen mask cost=-0.433 -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape1_convex_area2_init/frames_masks_nonmem/mask_shape1_convex_area2_init.png
+2025-07-17 22:51:14,158 - INFO -     Saved collage -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape1_convex_area2_init/frames_collage/shape1_convex_area2_init_collage.png
+2025-07-17 22:51:14,236 - INFO -     Saved final overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape1_convex_area2_init/frames_processed/shape1_convex_area2_init_overlay.png
+2025-07-17 22:51:14,241 - INFO -   Processing image: shape1_convex_area2_out
+2025-07-17 22:51:14,259 - INFO -   Image shape1_convex_area2_out shape: 400x1000 RGB
+2025-07-17 22:51:14,452 - INFO -     Saved original segmentation overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape1_convex_area2_out/original_segmentation/shape1_convex_area2_out_original_segmentation.png
+2025-07-17 22:51:14,463 - DEBUG -     Blob detected with threshold 30 (area=13168.0)
+2025-07-17 22:51:14,531 - INFO -     Saved blob overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape1_convex_area2_out/frames_blobs/shape1_convex_area2_out_blobs.png
+2025-07-17 22:51:15,032 - INFO -   Generated 23 candidate masks from model.
+2025-07-17 22:51:15,051 - INFO -   Chosen mask cost=-0.377 -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape1_convex_area2_out/frames_masks_nonmem/mask_shape1_convex_area2_out.png
+2025-07-17 22:51:15,675 - INFO -     Saved collage -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape1_convex_area2_out/frames_collage/shape1_convex_area2_out_collage.png
+2025-07-17 22:51:15,753 - INFO -     Saved final overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape1_convex_area2_out/frames_processed/shape1_convex_area2_out_overlay.png
+2025-07-17 22:51:15,758 - INFO - Processing image pair: shape2_concave_area1
+2025-07-17 22:51:15,758 - INFO -   Processing image: shape2_concave_area1_init
+2025-07-17 22:51:15,777 - INFO -   Image shape2_concave_area1_init shape: 400x1000 RGB
+2025-07-17 22:51:15,917 - INFO -     Saved original segmentation overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape2_concave_area1_init/original_segmentation/shape2_concave_area1_init_original_segmentation.png
+2025-07-17 22:51:15,928 - DEBUG -     Blob detected with threshold 30 (area=7545.0)
+2025-07-17 22:51:15,996 - INFO -     Saved blob overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape2_concave_area1_init/frames_blobs/shape2_concave_area1_init_blobs.png
+2025-07-17 22:51:16,669 - INFO -   Generated 3 candidate masks from model.
+2025-07-17 22:51:16,679 - INFO -   Chosen mask cost=-0.262 -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape2_concave_area1_init/frames_masks_nonmem/mask_shape2_concave_area1_init.png
+2025-07-17 22:51:17,332 - INFO -     Saved collage -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape2_concave_area1_init/frames_collage/shape2_concave_area1_init_collage.png
+2025-07-17 22:51:17,412 - INFO -     Saved final overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape2_concave_area1_init/frames_processed/shape2_concave_area1_init_overlay.png
+2025-07-17 22:51:17,420 - INFO -   Processing image: shape2_concave_area1_out
+2025-07-17 22:51:17,438 - INFO -   Image shape2_concave_area1_out shape: 400x1000 RGB
+2025-07-17 22:51:17,583 - INFO -     Saved original segmentation overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape2_concave_area1_out/original_segmentation/shape2_concave_area1_out_original_segmentation.png
+2025-07-17 22:51:17,594 - DEBUG -     Blob detected with threshold 30 (area=7688.0)
+2025-07-17 22:51:17,664 - INFO -     Saved blob overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape2_concave_area1_out/frames_blobs/shape2_concave_area1_out_blobs.png
+2025-07-17 22:51:18,154 - INFO -   Generated 6 candidate masks from model.
+2025-07-17 22:51:18,165 - INFO -   Chosen mask cost=-0.192 -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape2_concave_area1_out/frames_masks_nonmem/mask_shape2_concave_area1_out.png
+2025-07-17 22:51:18,794 - INFO -     Saved collage -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape2_concave_area1_out/frames_collage/shape2_concave_area1_out_collage.png
+2025-07-17 22:51:18,873 - INFO -     Saved final overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape2_concave_area1_out/frames_processed/shape2_concave_area1_out_overlay.png
+2025-07-17 22:51:18,878 - INFO - Processing image pair: shape2_concave_area2
+2025-07-17 22:51:18,878 - INFO -   Processing image: shape2_concave_area2_init
+2025-07-17 22:51:18,897 - INFO -   Image shape2_concave_area2_init shape: 400x1000 RGB
+2025-07-17 22:51:19,036 - INFO -     Saved original segmentation overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape2_concave_area2_init/original_segmentation/shape2_concave_area2_init_original_segmentation.png
+2025-07-17 22:51:19,047 - DEBUG -     Blob detected with threshold 30 (area=7545.0)
+2025-07-17 22:51:19,116 - INFO -     Saved blob overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape2_concave_area2_init/frames_blobs/shape2_concave_area2_init_blobs.png
+2025-07-17 22:51:19,567 - INFO -   Generated 3 candidate masks from model.
+2025-07-17 22:51:19,576 - INFO -   Chosen mask cost=-0.456 -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape2_concave_area2_init/frames_masks_nonmem/mask_shape2_concave_area2_init.png
+2025-07-17 22:51:20,539 - INFO -     Saved collage -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape2_concave_area2_init/frames_collage/shape2_concave_area2_init_collage.png
+2025-07-17 22:51:20,619 - INFO -     Saved final overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape2_concave_area2_init/frames_processed/shape2_concave_area2_init_overlay.png
+2025-07-17 22:51:20,625 - INFO -   Processing image: shape2_concave_area2_out
+2025-07-17 22:51:20,643 - INFO -   Image shape2_concave_area2_out shape: 400x1000 RGB
+2025-07-17 22:51:20,786 - INFO -     Saved original segmentation overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape2_concave_area2_out/original_segmentation/shape2_concave_area2_out_original_segmentation.png
+2025-07-17 22:51:20,797 - DEBUG -     Blob detected with threshold 30 (area=7809.0)
+2025-07-17 22:51:20,869 - INFO -     Saved blob overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape2_concave_area2_out/frames_blobs/shape2_concave_area2_out_blobs.png
+2025-07-17 22:51:21,335 - INFO -   Generated 4 candidate masks from model.
+2025-07-17 22:51:21,344 - INFO -   Chosen mask cost=-0.364 -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape2_concave_area2_out/frames_masks_nonmem/mask_shape2_concave_area2_out.png
+2025-07-17 22:51:21,971 - INFO -     Saved collage -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape2_concave_area2_out/frames_collage/shape2_concave_area2_out_collage.png
+2025-07-17 22:51:22,047 - INFO -     Saved final overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape2_concave_area2_out/frames_processed/shape2_concave_area2_out_overlay.png
+2025-07-17 22:51:22,052 - INFO - Processing image pair: shape2_concave_nofill_area1
+2025-07-17 22:51:22,052 - INFO -   Processing image: shape2_concave_nofill_area1_init
+2025-07-17 22:51:22,068 - INFO -   Image shape2_concave_nofill_area1_init shape: 400x1000 RGB
+2025-07-17 22:51:22,238 - INFO -     Saved original segmentation overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape2_concave_nofill_area1_init/original_segmentation/shape2_concave_nofill_area1_init_original_segmentation.png
+2025-07-17 22:51:22,249 - DEBUG -     Blob detected with threshold 30 (area=7545.0)
+2025-07-17 22:51:22,320 - INFO -     Saved blob overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape2_concave_nofill_area1_init/frames_blobs/shape2_concave_nofill_area1_init_blobs.png
+2025-07-17 22:51:22,783 - INFO -   Generated 5 candidate masks from model.
+2025-07-17 22:51:22,793 - INFO -   Chosen mask cost=-0.358 -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape2_concave_nofill_area1_init/frames_masks_nonmem/mask_shape2_concave_nofill_area1_init.png
+2025-07-17 22:51:23,429 - INFO -     Saved collage -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape2_concave_nofill_area1_init/frames_collage/shape2_concave_nofill_area1_init_collage.png
+2025-07-17 22:51:23,506 - INFO -     Saved final overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape2_concave_nofill_area1_init/frames_processed/shape2_concave_nofill_area1_init_overlay.png
+2025-07-17 22:51:23,510 - INFO -   Processing image: shape2_concave_nofill_area1_out
+2025-07-17 22:51:23,527 - INFO -   Image shape2_concave_nofill_area1_out shape: 400x1000 RGB
+2025-07-17 22:51:23,694 - INFO -     Saved original segmentation overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape2_concave_nofill_area1_out/original_segmentation/shape2_concave_nofill_area1_out_original_segmentation.png
+2025-07-17 22:51:23,705 - DEBUG -     Blob detected with threshold 30 (area=7717.0)
+2025-07-17 22:51:23,772 - INFO -     Saved blob overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape2_concave_nofill_area1_out/frames_blobs/shape2_concave_nofill_area1_out_blobs.png
+2025-07-17 22:51:24,245 - INFO -   Generated 8 candidate masks from model.
+2025-07-17 22:51:24,256 - INFO -   Chosen mask cost=-0.308 -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape2_concave_nofill_area1_out/frames_masks_nonmem/mask_shape2_concave_nofill_area1_out.png
+2025-07-17 22:51:24,899 - INFO -     Saved collage -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape2_concave_nofill_area1_out/frames_collage/shape2_concave_nofill_area1_out_collage.png
+2025-07-17 22:51:24,974 - INFO -     Saved final overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape2_concave_nofill_area1_out/frames_processed/shape2_concave_nofill_area1_out_overlay.png
+2025-07-17 22:51:24,979 - INFO - Processing image pair: shape2_concave_nofill_area2
+2025-07-17 22:51:24,979 - INFO -   Processing image: shape2_concave_nofill_area2_init
+2025-07-17 22:51:24,996 - INFO -   Image shape2_concave_nofill_area2_init shape: 400x1000 RGB
+2025-07-17 22:51:25,130 - INFO -     Saved original segmentation overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape2_concave_nofill_area2_init/original_segmentation/shape2_concave_nofill_area2_init_original_segmentation.png
+2025-07-17 22:51:25,141 - DEBUG -     Blob detected with threshold 30 (area=7545.0)
+2025-07-17 22:51:25,212 - INFO -     Saved blob overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape2_concave_nofill_area2_init/frames_blobs/shape2_concave_nofill_area2_init_blobs.png
+2025-07-17 22:51:25,672 - INFO -   Generated 5 candidate masks from model.
+2025-07-17 22:51:25,681 - INFO -   Chosen mask cost=-0.667 -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape2_concave_nofill_area2_init/frames_masks_nonmem/mask_shape2_concave_nofill_area2_init.png
+2025-07-17 22:51:26,312 - INFO -     Saved collage -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape2_concave_nofill_area2_init/frames_collage/shape2_concave_nofill_area2_init_collage.png
+2025-07-17 22:51:26,389 - INFO -     Saved final overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape2_concave_nofill_area2_init/frames_processed/shape2_concave_nofill_area2_init_overlay.png
+2025-07-17 22:51:26,394 - INFO -   Processing image: shape2_concave_nofill_area2_out
+2025-07-17 22:51:26,410 - INFO -   Image shape2_concave_nofill_area2_out shape: 400x1000 RGB
+2025-07-17 22:51:26,550 - INFO -     Saved original segmentation overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape2_concave_nofill_area2_out/original_segmentation/shape2_concave_nofill_area2_out_original_segmentation.png
+2025-07-17 22:51:26,560 - DEBUG -     Blob detected with threshold 30 (area=7779.0)
+2025-07-17 22:51:26,627 - INFO -     Saved blob overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape2_concave_nofill_area2_out/frames_blobs/shape2_concave_nofill_area2_out_blobs.png
+2025-07-17 22:51:27,090 - INFO -   Generated 4 candidate masks from model.
+2025-07-17 22:51:27,100 - INFO -   Chosen mask cost=-0.640 -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape2_concave_nofill_area2_out/frames_masks_nonmem/mask_shape2_concave_nofill_area2_out.png
+2025-07-17 22:51:27,971 - INFO -     Saved collage -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape2_concave_nofill_area2_out/frames_collage/shape2_concave_nofill_area2_out_collage.png
+2025-07-17 22:51:28,048 - INFO -     Saved final overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape2_concave_nofill_area2_out/frames_processed/shape2_concave_nofill_area2_out_overlay.png
+2025-07-17 22:51:28,052 - INFO - Processing image pair: shape2_convex_area1
+2025-07-17 22:51:28,052 - INFO -   Processing image: shape2_convex_area1_init
+2025-07-17 22:51:28,068 - INFO -   Image shape2_convex_area1_init shape: 400x1000 RGB
+2025-07-17 22:51:28,231 - INFO -     Saved original segmentation overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape2_convex_area1_init/original_segmentation/shape2_convex_area1_init_original_segmentation.png
+2025-07-17 22:51:28,243 - DEBUG -     Blob detected with threshold 30 (area=7545.0)
+2025-07-17 22:51:28,311 - INFO -     Saved blob overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape2_convex_area1_init/frames_blobs/shape2_convex_area1_init_blobs.png
+2025-07-17 22:51:28,778 - INFO -   Generated 9 candidate masks from model.
+2025-07-17 22:51:28,791 - INFO -   Chosen mask cost=-0.438 -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape2_convex_area1_init/frames_masks_nonmem/mask_shape2_convex_area1_init.png
+2025-07-17 22:51:29,409 - INFO -     Saved collage -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape2_convex_area1_init/frames_collage/shape2_convex_area1_init_collage.png
+2025-07-17 22:51:29,486 - INFO -     Saved final overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape2_convex_area1_init/frames_processed/shape2_convex_area1_init_overlay.png
+2025-07-17 22:51:29,491 - INFO -   Processing image: shape2_convex_area1_out
+2025-07-17 22:51:29,507 - INFO -   Image shape2_convex_area1_out shape: 400x1000 RGB
+2025-07-17 22:51:29,665 - INFO -     Saved original segmentation overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape2_convex_area1_out/original_segmentation/shape2_convex_area1_out_original_segmentation.png
+2025-07-17 22:51:29,675 - DEBUG -     Blob detected with threshold 30 (area=7703.0)
+2025-07-17 22:51:29,745 - INFO -     Saved blob overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape2_convex_area1_out/frames_blobs/shape2_convex_area1_out_blobs.png
+2025-07-17 22:51:30,239 - INFO -   Generated 4 candidate masks from model.
+2025-07-17 22:51:30,249 - INFO -   Chosen mask cost=-0.498 -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape2_convex_area1_out/frames_masks_nonmem/mask_shape2_convex_area1_out.png
+2025-07-17 22:51:30,912 - INFO -     Saved collage -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape2_convex_area1_out/frames_collage/shape2_convex_area1_out_collage.png
+2025-07-17 22:51:30,989 - INFO -     Saved final overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape2_convex_area1_out/frames_processed/shape2_convex_area1_out_overlay.png
+2025-07-17 22:51:30,995 - INFO - Processing image pair: shape2_convex_area2
+2025-07-17 22:51:30,995 - INFO -   Processing image: shape2_convex_area2_init
+2025-07-17 22:51:31,011 - INFO -   Image shape2_convex_area2_init shape: 400x1000 RGB
+2025-07-17 22:51:31,174 - INFO -     Saved original segmentation overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape2_convex_area2_init/original_segmentation/shape2_convex_area2_init_original_segmentation.png
+2025-07-17 22:51:31,185 - DEBUG -     Blob detected with threshold 30 (area=7545.0)
+2025-07-17 22:51:31,253 - INFO -     Saved blob overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape2_convex_area2_init/frames_blobs/shape2_convex_area2_init_blobs.png
+2025-07-17 22:51:31,951 - INFO -   Generated 5 candidate masks from model.
+2025-07-17 22:51:31,962 - INFO -   Chosen mask cost=-0.339 -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape2_convex_area2_init/frames_masks_nonmem/mask_shape2_convex_area2_init.png
+2025-07-17 22:51:32,604 - INFO -     Saved collage -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape2_convex_area2_init/frames_collage/shape2_convex_area2_init_collage.png
+2025-07-17 22:51:32,680 - INFO -     Saved final overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape2_convex_area2_init/frames_processed/shape2_convex_area2_init_overlay.png
+2025-07-17 22:51:32,685 - INFO -   Processing image: shape2_convex_area2_out
+2025-07-17 22:51:32,701 - INFO -   Image shape2_convex_area2_out shape: 400x1000 RGB
+2025-07-17 22:51:32,856 - INFO -     Saved original segmentation overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape2_convex_area2_out/original_segmentation/shape2_convex_area2_out_original_segmentation.png
+2025-07-17 22:51:32,867 - DEBUG -     Blob detected with threshold 30 (area=7799.0)
+2025-07-17 22:51:32,935 - INFO -     Saved blob overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape2_convex_area2_out/frames_blobs/shape2_convex_area2_out_blobs.png
+2025-07-17 22:51:33,413 - INFO -   Generated 16 candidate masks from model.
+2025-07-17 22:51:33,429 - INFO -   Chosen mask cost=-0.302 -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape2_convex_area2_out/frames_masks_nonmem/mask_shape2_convex_area2_out.png
+2025-07-17 22:51:34,021 - INFO -     Saved collage -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape2_convex_area2_out/frames_collage/shape2_convex_area2_out_collage.png
+2025-07-17 22:51:34,097 - INFO -     Saved final overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape2_convex_area2_out/frames_processed/shape2_convex_area2_out_overlay.png
+2025-07-17 22:51:34,101 - INFO - Processing image pair: shape3_concave_area1
+2025-07-17 22:51:34,101 - INFO -   Processing image: shape3_concave_area1_init
+2025-07-17 22:51:34,117 - INFO -   Image shape3_concave_area1_init shape: 400x1000 RGB
+2025-07-17 22:51:34,259 - INFO -     Saved original segmentation overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape3_concave_area1_init/original_segmentation/shape3_concave_area1_init_original_segmentation.png
+2025-07-17 22:51:34,270 - DEBUG -     Blob detected with threshold 30 (area=6793.0)
+2025-07-17 22:51:34,339 - INFO -     Saved blob overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape3_concave_area1_init/frames_blobs/shape3_concave_area1_init_blobs.png
+2025-07-17 22:51:34,802 - INFO -   Generated 10 candidate masks from model.
+2025-07-17 22:51:34,815 - INFO -   Chosen mask cost=-0.175 -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape3_concave_area1_init/frames_masks_nonmem/mask_shape3_concave_area1_init.png
+2025-07-17 22:51:35,419 - INFO -     Saved collage -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape3_concave_area1_init/frames_collage/shape3_concave_area1_init_collage.png
+2025-07-17 22:51:35,748 - INFO -     Saved final overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape3_concave_area1_init/frames_processed/shape3_concave_area1_init_overlay.png
+2025-07-17 22:51:35,753 - INFO -   Processing image: shape3_concave_area1_out
+2025-07-17 22:51:35,769 - INFO -   Image shape3_concave_area1_out shape: 400x1000 RGB
+2025-07-17 22:51:35,910 - INFO -     Saved original segmentation overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape3_concave_area1_out/original_segmentation/shape3_concave_area1_out_original_segmentation.png
+2025-07-17 22:51:35,921 - DEBUG -     Blob detected with threshold 30 (area=6823.0)
+2025-07-17 22:51:35,988 - INFO -     Saved blob overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape3_concave_area1_out/frames_blobs/shape3_concave_area1_out_blobs.png
+2025-07-17 22:51:36,436 - INFO -   Generated 10 candidate masks from model.
+2025-07-17 22:51:36,449 - INFO -   Chosen mask cost=-0.151 -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape3_concave_area1_out/frames_masks_nonmem/mask_shape3_concave_area1_out.png
+2025-07-17 22:51:37,041 - INFO -     Saved collage -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape3_concave_area1_out/frames_collage/shape3_concave_area1_out_collage.png
+2025-07-17 22:51:37,116 - INFO -     Saved final overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape3_concave_area1_out/frames_processed/shape3_concave_area1_out_overlay.png
+2025-07-17 22:51:37,120 - INFO - Processing image pair: shape3_concave_area2
+2025-07-17 22:51:37,120 - INFO -   Processing image: shape3_concave_area2_init
+2025-07-17 22:51:37,135 - INFO -   Image shape3_concave_area2_init shape: 400x1000 RGB
+2025-07-17 22:51:37,286 - INFO -     Saved original segmentation overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape3_concave_area2_init/original_segmentation/shape3_concave_area2_init_original_segmentation.png
+2025-07-17 22:51:37,296 - DEBUG -     Blob detected with threshold 30 (area=6793.0)
+2025-07-17 22:51:37,365 - INFO -     Saved blob overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape3_concave_area2_init/frames_blobs/shape3_concave_area2_init_blobs.png
+2025-07-17 22:51:37,825 - INFO -   Generated 11 candidate masks from model.
+2025-07-17 22:51:37,839 - INFO -   Chosen mask cost=-0.515 -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape3_concave_area2_init/frames_masks_nonmem/mask_shape3_concave_area2_init.png
+2025-07-17 22:51:38,437 - INFO -     Saved collage -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape3_concave_area2_init/frames_collage/shape3_concave_area2_init_collage.png
+2025-07-17 22:51:38,515 - INFO -     Saved final overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape3_concave_area2_init/frames_processed/shape3_concave_area2_init_overlay.png
+2025-07-17 22:51:38,520 - INFO -   Processing image: shape3_concave_area2_out
+2025-07-17 22:51:38,535 - INFO -   Image shape3_concave_area2_out shape: 400x1000 RGB
+2025-07-17 22:51:38,684 - INFO -     Saved original segmentation overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape3_concave_area2_out/original_segmentation/shape3_concave_area2_out_original_segmentation.png
+2025-07-17 22:51:38,695 - DEBUG -     Blob detected with threshold 30 (area=6965.0)
+2025-07-17 22:51:38,763 - INFO -     Saved blob overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape3_concave_area2_out/frames_blobs/shape3_concave_area2_out_blobs.png
+2025-07-17 22:51:39,228 - INFO -   Generated 12 candidate masks from model.
+2025-07-17 22:51:39,242 - INFO -   Chosen mask cost=-0.431 -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape3_concave_area2_out/frames_masks_nonmem/mask_shape3_concave_area2_out.png
+2025-07-17 22:51:39,838 - INFO -     Saved collage -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape3_concave_area2_out/frames_collage/shape3_concave_area2_out_collage.png
+2025-07-17 22:51:39,915 - INFO -     Saved final overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape3_concave_area2_out/frames_processed/shape3_concave_area2_out_overlay.png
+2025-07-17 22:51:39,920 - INFO - Processing image pair: shape3_concave_nofill_area1
+2025-07-17 22:51:39,920 - INFO -   Processing image: shape3_concave_nofill_area1_init
+2025-07-17 22:51:39,936 - INFO -   Image shape3_concave_nofill_area1_init shape: 400x1000 RGB
+2025-07-17 22:51:40,076 - INFO -     Saved original segmentation overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape3_concave_nofill_area1_init/original_segmentation/shape3_concave_nofill_area1_init_original_segmentation.png
+2025-07-17 22:51:40,086 - DEBUG -     Blob detected with threshold 30 (area=6793.0)
+2025-07-17 22:51:40,154 - INFO -     Saved blob overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape3_concave_nofill_area1_init/frames_blobs/shape3_concave_nofill_area1_init_blobs.png
+2025-07-17 22:51:40,610 - INFO -   Generated 8 candidate masks from model.
+2025-07-17 22:51:40,622 - INFO -   Chosen mask cost=-0.468 -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape3_concave_nofill_area1_init/frames_masks_nonmem/mask_shape3_concave_nofill_area1_init.png
+2025-07-17 22:51:41,235 - INFO -     Saved collage -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape3_concave_nofill_area1_init/frames_collage/shape3_concave_nofill_area1_init_collage.png
+2025-07-17 22:51:41,312 - INFO -     Saved final overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape3_concave_nofill_area1_init/frames_processed/shape3_concave_nofill_area1_init_overlay.png
+2025-07-17 22:51:41,317 - INFO -   Processing image: shape3_concave_nofill_area1_out
+2025-07-17 22:51:41,333 - INFO -   Image shape3_concave_nofill_area1_out shape: 400x1000 RGB
+2025-07-17 22:51:41,472 - INFO -     Saved original segmentation overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape3_concave_nofill_area1_out/original_segmentation/shape3_concave_nofill_area1_out_original_segmentation.png
+2025-07-17 22:51:41,483 - DEBUG -     Blob detected with threshold 30 (area=6855.0)
+2025-07-17 22:51:41,551 - INFO -     Saved blob overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape3_concave_nofill_area1_out/frames_blobs/shape3_concave_nofill_area1_out_blobs.png
+2025-07-17 22:51:42,012 - INFO -   Generated 7 candidate masks from model.
+2025-07-17 22:51:42,023 - INFO -   Chosen mask cost=-0.517 -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape3_concave_nofill_area1_out/frames_masks_nonmem/mask_shape3_concave_nofill_area1_out.png
+2025-07-17 22:51:42,850 - INFO -     Saved collage -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape3_concave_nofill_area1_out/frames_collage/shape3_concave_nofill_area1_out_collage.png
+2025-07-17 22:51:42,929 - INFO -     Saved final overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape3_concave_nofill_area1_out/frames_processed/shape3_concave_nofill_area1_out_overlay.png
+2025-07-17 22:51:42,933 - INFO - Processing image pair: shape3_concave_nofill_area2
+2025-07-17 22:51:42,933 - INFO -   Processing image: shape3_concave_nofill_area2_init
+2025-07-17 22:51:42,950 - INFO -   Image shape3_concave_nofill_area2_init shape: 400x1000 RGB
+2025-07-17 22:51:43,091 - INFO -     Saved original segmentation overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape3_concave_nofill_area2_init/original_segmentation/shape3_concave_nofill_area2_init_original_segmentation.png
+2025-07-17 22:51:43,102 - DEBUG -     Blob detected with threshold 30 (area=6793.0)
+2025-07-17 22:51:43,170 - INFO -     Saved blob overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape3_concave_nofill_area2_init/frames_blobs/shape3_concave_nofill_area2_init_blobs.png
+2025-07-17 22:51:43,627 - INFO -   Generated 7 candidate masks from model.
+2025-07-17 22:51:43,639 - INFO -   Chosen mask cost=-0.560 -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape3_concave_nofill_area2_init/frames_masks_nonmem/mask_shape3_concave_nofill_area2_init.png
+2025-07-17 22:51:44,249 - INFO -     Saved collage -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape3_concave_nofill_area2_init/frames_collage/shape3_concave_nofill_area2_init_collage.png
+2025-07-17 22:51:44,327 - INFO -     Saved final overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape3_concave_nofill_area2_init/frames_processed/shape3_concave_nofill_area2_init_overlay.png
+2025-07-17 22:51:44,331 - INFO -   Processing image: shape3_concave_nofill_area2_out
+2025-07-17 22:51:44,348 - INFO -   Image shape3_concave_nofill_area2_out shape: 400x1000 RGB
+2025-07-17 22:51:44,488 - INFO -     Saved original segmentation overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape3_concave_nofill_area2_out/original_segmentation/shape3_concave_nofill_area2_out_original_segmentation.png
+2025-07-17 22:51:44,498 - DEBUG -     Blob detected with threshold 30 (area=7010.0)
+2025-07-17 22:51:44,567 - INFO -     Saved blob overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape3_concave_nofill_area2_out/frames_blobs/shape3_concave_nofill_area2_out_blobs.png
+2025-07-17 22:51:45,020 - INFO -   Generated 4 candidate masks from model.
+2025-07-17 22:51:45,029 - INFO -   Chosen mask cost=-0.553 -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape3_concave_nofill_area2_out/frames_masks_nonmem/mask_shape3_concave_nofill_area2_out.png
+2025-07-17 22:51:45,664 - INFO -     Saved collage -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape3_concave_nofill_area2_out/frames_collage/shape3_concave_nofill_area2_out_collage.png
+2025-07-17 22:51:45,740 - INFO -     Saved final overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape3_concave_nofill_area2_out/frames_processed/shape3_concave_nofill_area2_out_overlay.png
+2025-07-17 22:51:45,745 - INFO - Processing image pair: shape3_convex_area1
+2025-07-17 22:51:45,745 - INFO -   Processing image: shape3_convex_area1_init
+2025-07-17 22:51:45,761 - INFO -   Image shape3_convex_area1_init shape: 400x1000 RGB
+2025-07-17 22:51:45,899 - INFO -     Saved original segmentation overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape3_convex_area1_init/original_segmentation/shape3_convex_area1_init_original_segmentation.png
+2025-07-17 22:51:45,909 - DEBUG -     Blob detected with threshold 30 (area=6793.0)
+2025-07-17 22:51:45,976 - INFO -     Saved blob overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape3_convex_area1_init/frames_blobs/shape3_convex_area1_init_blobs.png
+2025-07-17 22:51:46,439 - INFO -   Generated 9 candidate masks from model.
+2025-07-17 22:51:46,451 - INFO -   Chosen mask cost=-0.474 -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape3_convex_area1_init/frames_masks_nonmem/mask_shape3_convex_area1_init.png
+2025-07-17 22:51:47,064 - INFO -     Saved collage -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape3_convex_area1_init/frames_collage/shape3_convex_area1_init_collage.png
+2025-07-17 22:51:47,142 - INFO -     Saved final overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape3_convex_area1_init/frames_processed/shape3_convex_area1_init_overlay.png
+2025-07-17 22:51:47,147 - INFO -   Processing image: shape3_convex_area1_out
+2025-07-17 22:51:47,164 - INFO -   Image shape3_convex_area1_out shape: 400x1000 RGB
+2025-07-17 22:51:47,302 - INFO -     Saved original segmentation overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape3_convex_area1_out/original_segmentation/shape3_convex_area1_out_original_segmentation.png
+2025-07-17 22:51:47,313 - DEBUG -     Blob detected with threshold 30 (area=6842.0)
+2025-07-17 22:51:47,381 - INFO -     Saved blob overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape3_convex_area1_out/frames_blobs/shape3_convex_area1_out_blobs.png
+2025-07-17 22:51:47,837 - INFO -   Generated 9 candidate masks from model.
+2025-07-17 22:51:47,849 - INFO -   Chosen mask cost=-0.681 -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape3_convex_area1_out/frames_masks_nonmem/mask_shape3_convex_area1_out.png
+2025-07-17 22:51:48,465 - INFO -     Saved collage -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape3_convex_area1_out/frames_collage/shape3_convex_area1_out_collage.png
+2025-07-17 22:51:48,543 - INFO -     Saved final overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape3_convex_area1_out/frames_processed/shape3_convex_area1_out_overlay.png
+2025-07-17 22:51:48,548 - INFO - Processing image pair: shape3_convex_area2
+2025-07-17 22:51:48,548 - INFO -   Processing image: shape3_convex_area2_init
+2025-07-17 22:51:48,565 - INFO -   Image shape3_convex_area2_init shape: 400x1000 RGB
+2025-07-17 22:51:48,722 - INFO -     Saved original segmentation overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape3_convex_area2_init/original_segmentation/shape3_convex_area2_init_original_segmentation.png
+2025-07-17 22:51:48,732 - DEBUG -     Blob detected with threshold 30 (area=6793.0)
+2025-07-17 22:51:48,801 - INFO -     Saved blob overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape3_convex_area2_init/frames_blobs/shape3_convex_area2_init_blobs.png
+2025-07-17 22:51:49,329 - INFO -   Generated 7 candidate masks from model.
+2025-07-17 22:51:49,340 - INFO -   Chosen mask cost=-0.548 -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape3_convex_area2_init/frames_masks_nonmem/mask_shape3_convex_area2_init.png
+2025-07-17 22:51:50,157 - INFO -     Saved collage -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape3_convex_area2_init/frames_collage/shape3_convex_area2_init_collage.png
+2025-07-17 22:51:50,238 - INFO -     Saved final overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape3_convex_area2_init/frames_processed/shape3_convex_area2_init_overlay.png
+2025-07-17 22:51:50,243 - INFO -   Processing image: shape3_convex_area2_out
+2025-07-17 22:51:50,262 - INFO -   Image shape3_convex_area2_out shape: 400x1000 RGB
+2025-07-17 22:51:50,421 - INFO -     Saved original segmentation overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape3_convex_area2_out/original_segmentation/shape3_convex_area2_out_original_segmentation.png
+2025-07-17 22:51:50,431 - DEBUG -     Blob detected with threshold 30 (area=7045.0)
+2025-07-17 22:51:50,500 - INFO -     Saved blob overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape3_convex_area2_out/frames_blobs/shape3_convex_area2_out_blobs.png
+2025-07-17 22:51:50,955 - INFO -   Generated 7 candidate masks from model.
+2025-07-17 22:51:50,967 - INFO -   Chosen mask cost=-0.436 -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape3_convex_area2_out/frames_masks_nonmem/mask_shape3_convex_area2_out.png
+2025-07-17 22:51:51,572 - INFO -     Saved collage -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape3_convex_area2_out/frames_collage/shape3_convex_area2_out_collage.png
+2025-07-17 22:51:51,647 - INFO -     Saved final overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape3_convex_area2_out/frames_processed/shape3_convex_area2_out_overlay.png
+2025-07-17 22:51:51,652 - INFO - Processing image pair: shape4_concave_area1
+2025-07-17 22:51:51,652 - INFO -   Processing image: shape4_concave_area1_init
+2025-07-17 22:51:51,670 - INFO -   Image shape4_concave_area1_init shape: 400x1000 RGB
+2025-07-17 22:51:51,820 - INFO -     Saved original segmentation overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape4_concave_area1_init/original_segmentation/shape4_concave_area1_init_original_segmentation.png
+2025-07-17 22:51:51,831 - DEBUG -     Blob detected with threshold 30 (area=4958.0)
+2025-07-17 22:51:51,899 - INFO -     Saved blob overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape4_concave_area1_init/frames_blobs/shape4_concave_area1_init_blobs.png
+2025-07-17 22:51:52,339 - INFO -   Generated 9 candidate masks from model.
+2025-07-17 22:51:52,354 - INFO -   Chosen mask cost=-0.156 -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape4_concave_area1_init/frames_masks_nonmem/mask_shape4_concave_area1_init.png
+2025-07-17 22:51:52,939 - INFO -     Saved collage -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape4_concave_area1_init/frames_collage/shape4_concave_area1_init_collage.png
+2025-07-17 22:51:53,015 - INFO -     Saved final overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape4_concave_area1_init/frames_processed/shape4_concave_area1_init_overlay.png
+2025-07-17 22:51:53,018 - INFO -   Processing image: shape4_concave_area1_out
+2025-07-17 22:51:53,039 - INFO -   Image shape4_concave_area1_out shape: 400x1000 RGB
+2025-07-17 22:51:53,186 - INFO -     Saved original segmentation overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape4_concave_area1_out/original_segmentation/shape4_concave_area1_out_original_segmentation.png
+2025-07-17 22:51:53,196 - DEBUG -     Blob detected with threshold 30 (area=4979.0)
+2025-07-17 22:51:53,267 - INFO -     Saved blob overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape4_concave_area1_out/frames_blobs/shape4_concave_area1_out_blobs.png
+2025-07-17 22:51:53,713 - INFO -   Generated 10 candidate masks from model.
+2025-07-17 22:51:53,727 - INFO -   Chosen mask cost=-0.313 -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape4_concave_area1_out/frames_masks_nonmem/mask_shape4_concave_area1_out.png
+2025-07-17 22:51:54,301 - INFO -     Saved collage -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape4_concave_area1_out/frames_collage/shape4_concave_area1_out_collage.png
+2025-07-17 22:51:54,376 - INFO -     Saved final overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape4_concave_area1_out/frames_processed/shape4_concave_area1_out_overlay.png
+2025-07-17 22:51:54,380 - INFO - Processing image pair: shape4_concave_area2
+2025-07-17 22:51:54,380 - INFO -   Processing image: shape4_concave_area2_init
+2025-07-17 22:51:54,400 - INFO -   Image shape4_concave_area2_init shape: 400x1000 RGB
+2025-07-17 22:51:54,553 - INFO -     Saved original segmentation overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape4_concave_area2_init/original_segmentation/shape4_concave_area2_init_original_segmentation.png
+2025-07-17 22:51:54,563 - DEBUG -     Blob detected with threshold 30 (area=4958.0)
+2025-07-17 22:51:54,631 - INFO -     Saved blob overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape4_concave_area2_init/frames_blobs/shape4_concave_area2_init_blobs.png
+2025-07-17 22:51:55,097 - INFO -   Generated 17 candidate masks from model.
+2025-07-17 22:51:55,114 - INFO -   Chosen mask cost=-0.386 -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape4_concave_area2_init/frames_masks_nonmem/mask_shape4_concave_area2_init.png
+2025-07-17 22:51:55,696 - INFO -     Saved collage -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape4_concave_area2_init/frames_collage/shape4_concave_area2_init_collage.png
+2025-07-17 22:51:55,770 - INFO -     Saved final overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape4_concave_area2_init/frames_processed/shape4_concave_area2_init_overlay.png
+2025-07-17 22:51:55,774 - INFO -   Processing image: shape4_concave_area2_out
+2025-07-17 22:51:55,793 - INFO -   Image shape4_concave_area2_out shape: 400x1000 RGB
+2025-07-17 22:51:55,941 - INFO -     Saved original segmentation overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape4_concave_area2_out/original_segmentation/shape4_concave_area2_out_original_segmentation.png
+2025-07-17 22:51:55,951 - DEBUG -     Blob detected with threshold 30 (area=5025.0)
+2025-07-17 22:51:56,017 - INFO -     Saved blob overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape4_concave_area2_out/frames_blobs/shape4_concave_area2_out_blobs.png
+2025-07-17 22:51:56,475 - INFO -   Generated 12 candidate masks from model.
+2025-07-17 22:51:56,489 - INFO -   Chosen mask cost=-0.350 -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape4_concave_area2_out/frames_masks_nonmem/mask_shape4_concave_area2_out.png
+2025-07-17 22:51:57,324 - INFO -     Saved collage -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape4_concave_area2_out/frames_collage/shape4_concave_area2_out_collage.png
+2025-07-17 22:51:57,400 - INFO -     Saved final overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape4_concave_area2_out/frames_processed/shape4_concave_area2_out_overlay.png
+2025-07-17 22:51:57,404 - INFO - Processing image pair: shape4_concave_nofill_area1
+2025-07-17 22:51:57,404 - INFO -   Processing image: shape4_concave_nofill_area1_init
+2025-07-17 22:51:57,431 - INFO -   Image shape4_concave_nofill_area1_init shape: 400x1000 RGB
+2025-07-17 22:51:57,579 - INFO -     Saved original segmentation overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape4_concave_nofill_area1_init/original_segmentation/shape4_concave_nofill_area1_init_original_segmentation.png
+2025-07-17 22:51:57,589 - DEBUG -     Blob detected with threshold 30 (area=4958.0)
+2025-07-17 22:51:57,658 - INFO -     Saved blob overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape4_concave_nofill_area1_init/frames_blobs/shape4_concave_nofill_area1_init_blobs.png
+2025-07-17 22:51:58,116 - INFO -   Generated 11 candidate masks from model.
+2025-07-17 22:51:58,129 - INFO -   Chosen mask cost=-0.640 -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape4_concave_nofill_area1_init/frames_masks_nonmem/mask_shape4_concave_nofill_area1_init.png
+2025-07-17 22:51:58,722 - INFO -     Saved collage -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape4_concave_nofill_area1_init/frames_collage/shape4_concave_nofill_area1_init_collage.png
+2025-07-17 22:51:58,799 - INFO -     Saved final overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape4_concave_nofill_area1_init/frames_processed/shape4_concave_nofill_area1_init_overlay.png
+2025-07-17 22:51:58,803 - INFO -   Processing image: shape4_concave_nofill_area1_out
+2025-07-17 22:51:58,874 - INFO -   Image shape4_concave_nofill_area1_out shape: 400x1000 RGB
+2025-07-17 22:51:59,040 - INFO -     Saved original segmentation overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape4_concave_nofill_area1_out/original_segmentation/shape4_concave_nofill_area1_out_original_segmentation.png
+2025-07-17 22:51:59,050 - DEBUG -     Blob detected with threshold 30 (area=5004.0)
+2025-07-17 22:51:59,118 - INFO -     Saved blob overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape4_concave_nofill_area1_out/frames_blobs/shape4_concave_nofill_area1_out_blobs.png
+2025-07-17 22:51:59,565 - INFO -   Generated 9 candidate masks from model.
+2025-07-17 22:51:59,577 - INFO -   Chosen mask cost=-0.758 -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape4_concave_nofill_area1_out/frames_masks_nonmem/mask_shape4_concave_nofill_area1_out.png
+2025-07-17 22:52:00,189 - INFO -     Saved collage -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape4_concave_nofill_area1_out/frames_collage/shape4_concave_nofill_area1_out_collage.png
+2025-07-17 22:52:00,266 - INFO -     Saved final overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape4_concave_nofill_area1_out/frames_processed/shape4_concave_nofill_area1_out_overlay.png
+2025-07-17 22:52:00,271 - INFO - Processing image pair: shape4_concave_nofill_area2
+2025-07-17 22:52:00,271 - INFO -   Processing image: shape4_concave_nofill_area2_init
+2025-07-17 22:52:00,291 - INFO -   Image shape4_concave_nofill_area2_init shape: 400x1000 RGB
+2025-07-17 22:52:00,467 - INFO -     Saved original segmentation overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape4_concave_nofill_area2_init/original_segmentation/shape4_concave_nofill_area2_init_original_segmentation.png
+2025-07-17 22:52:00,477 - DEBUG -     Blob detected with threshold 30 (area=4958.0)
+2025-07-17 22:52:00,547 - INFO -     Saved blob overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape4_concave_nofill_area2_init/frames_blobs/shape4_concave_nofill_area2_init_blobs.png
+2025-07-17 22:52:01,006 - INFO -   Generated 6 candidate masks from model.
+2025-07-17 22:52:01,017 - INFO -   Chosen mask cost=-0.648 -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape4_concave_nofill_area2_init/frames_masks_nonmem/mask_shape4_concave_nofill_area2_init.png
+2025-07-17 22:52:01,659 - INFO -     Saved collage -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape4_concave_nofill_area2_init/frames_collage/shape4_concave_nofill_area2_init_collage.png
+2025-07-17 22:52:01,736 - INFO -     Saved final overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape4_concave_nofill_area2_init/frames_processed/shape4_concave_nofill_area2_init_overlay.png
+2025-07-17 22:52:01,741 - INFO -   Processing image: shape4_concave_nofill_area2_out
+2025-07-17 22:52:01,757 - INFO -   Image shape4_concave_nofill_area2_out shape: 400x1000 RGB
+2025-07-17 22:52:01,950 - INFO -     Saved original segmentation overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape4_concave_nofill_area2_out/original_segmentation/shape4_concave_nofill_area2_out_original_segmentation.png
+2025-07-17 22:52:01,961 - DEBUG -     Blob detected with threshold 30 (area=5057.0)
+2025-07-17 22:52:02,030 - INFO -     Saved blob overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape4_concave_nofill_area2_out/frames_blobs/shape4_concave_nofill_area2_out_blobs.png
+2025-07-17 22:52:02,505 - INFO -   Generated 9 candidate masks from model.
+2025-07-17 22:52:02,534 - INFO -   Chosen mask cost=-0.479 -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape4_concave_nofill_area2_out/frames_masks_nonmem/mask_shape4_concave_nofill_area2_out.png
+2025-07-17 22:52:03,166 - INFO -     Saved collage -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape4_concave_nofill_area2_out/frames_collage/shape4_concave_nofill_area2_out_collage.png
+2025-07-17 22:52:03,243 - INFO -     Saved final overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape4_concave_nofill_area2_out/frames_processed/shape4_concave_nofill_area2_out_overlay.png
+2025-07-17 22:52:03,248 - INFO - Processing image pair: shape4_convex_area1
+2025-07-17 22:52:03,248 - INFO -   Processing image: shape4_convex_area1_init
+2025-07-17 22:52:03,265 - INFO -   Image shape4_convex_area1_init shape: 400x1000 RGB
+2025-07-17 22:52:03,414 - INFO -     Saved original segmentation overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape4_convex_area1_init/original_segmentation/shape4_convex_area1_init_original_segmentation.png
+2025-07-17 22:52:03,425 - DEBUG -     Blob detected with threshold 30 (area=4958.0)
+2025-07-17 22:52:03,495 - INFO -     Saved blob overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape4_convex_area1_init/frames_blobs/shape4_convex_area1_init_blobs.png
+2025-07-17 22:52:03,972 - INFO -   Generated 8 candidate masks from model.
+2025-07-17 22:52:03,984 - INFO -   Chosen mask cost=-0.802 -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape4_convex_area1_init/frames_masks_nonmem/mask_shape4_convex_area1_init.png
+2025-07-17 22:52:04,908 - INFO -     Saved collage -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape4_convex_area1_init/frames_collage/shape4_convex_area1_init_collage.png
+2025-07-17 22:52:04,987 - INFO -     Saved final overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape4_convex_area1_init/frames_processed/shape4_convex_area1_init_overlay.png
+2025-07-17 22:52:04,992 - INFO -   Processing image: shape4_convex_area1_out
+2025-07-17 22:52:05,014 - INFO -   Image shape4_convex_area1_out shape: 400x1000 RGB
+2025-07-17 22:52:05,157 - INFO -     Saved original segmentation overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape4_convex_area1_out/original_segmentation/shape4_convex_area1_out_original_segmentation.png
+2025-07-17 22:52:05,168 - DEBUG -     Blob detected with threshold 30 (area=4994.0)
+2025-07-17 22:52:05,238 - INFO -     Saved blob overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape4_convex_area1_out/frames_blobs/shape4_convex_area1_out_blobs.png
+2025-07-17 22:52:05,696 - INFO -   Generated 7 candidate masks from model.
+2025-07-17 22:52:05,707 - INFO -   Chosen mask cost=-0.764 -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape4_convex_area1_out/frames_masks_nonmem/mask_shape4_convex_area1_out.png
+2025-07-17 22:52:06,336 - INFO -     Saved collage -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape4_convex_area1_out/frames_collage/shape4_convex_area1_out_collage.png
+2025-07-17 22:52:06,413 - INFO -     Saved final overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape4_convex_area1_out/frames_processed/shape4_convex_area1_out_overlay.png
+2025-07-17 22:52:06,418 - INFO - Processing image pair: shape4_convex_area2
+2025-07-17 22:52:06,418 - INFO -   Processing image: shape4_convex_area2_init
+2025-07-17 22:52:06,436 - INFO -   Image shape4_convex_area2_init shape: 400x1000 RGB
+2025-07-17 22:52:06,588 - INFO -     Saved original segmentation overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape4_convex_area2_init/original_segmentation/shape4_convex_area2_init_original_segmentation.png
+2025-07-17 22:52:06,599 - DEBUG -     Blob detected with threshold 30 (area=4958.0)
+2025-07-17 22:52:06,668 - INFO -     Saved blob overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape4_convex_area2_init/frames_blobs/shape4_convex_area2_init_blobs.png
+2025-07-17 22:52:07,139 - INFO -   Generated 5 candidate masks from model.
+2025-07-17 22:52:07,149 - INFO -   Chosen mask cost=-0.488 -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape4_convex_area2_init/frames_masks_nonmem/mask_shape4_convex_area2_init.png
+2025-07-17 22:52:07,779 - INFO -     Saved collage -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape4_convex_area2_init/frames_collage/shape4_convex_area2_init_collage.png
+2025-07-17 22:52:07,856 - INFO -     Saved final overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape4_convex_area2_init/frames_processed/shape4_convex_area2_init_overlay.png
+2025-07-17 22:52:07,861 - INFO -   Processing image: shape4_convex_area2_out
+2025-07-17 22:52:07,876 - INFO -   Image shape4_convex_area2_out shape: 400x1000 RGB
+2025-07-17 22:52:08,040 - INFO -     Saved original segmentation overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape4_convex_area2_out/original_segmentation/shape4_convex_area2_out_original_segmentation.png
+2025-07-17 22:52:08,051 - DEBUG -     Blob detected with threshold 30 (area=5064.0)
+2025-07-17 22:52:08,120 - INFO -     Saved blob overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape4_convex_area2_out/frames_blobs/shape4_convex_area2_out_blobs.png
+2025-07-17 22:52:08,584 - INFO -   Generated 5 candidate masks from model.
+2025-07-17 22:52:08,594 - INFO -   Chosen mask cost=-0.468 -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape4_convex_area2_out/frames_masks_nonmem/mask_shape4_convex_area2_out.png
+2025-07-17 22:52:09,238 - INFO -     Saved collage -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape4_convex_area2_out/frames_collage/shape4_convex_area2_out_collage.png
+2025-07-17 22:52:09,317 - INFO -     Saved final overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape4_convex_area2_out/frames_processed/shape4_convex_area2_out_overlay.png
+2025-07-17 22:52:09,324 - INFO - Processing image pair: shape5_concave_area1
+2025-07-17 22:52:09,324 - INFO -   Processing image: shape5_concave_area1_init
+2025-07-17 22:52:09,342 - INFO -   Image shape5_concave_area1_init shape: 400x1000 RGB
+2025-07-17 22:52:09,559 - INFO -     Saved original segmentation overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape5_concave_area1_init/original_segmentation/shape5_concave_area1_init_original_segmentation.png
+2025-07-17 22:52:09,570 - DEBUG -     Blob detected with threshold 30 (area=4904.0)
+2025-07-17 22:52:09,641 - INFO -     Saved blob overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape5_concave_area1_init/frames_blobs/shape5_concave_area1_init_blobs.png
+2025-07-17 22:52:10,149 - INFO -   Generated 8 candidate masks from model.
+2025-07-17 22:52:10,161 - INFO -   Chosen mask cost=-0.636 -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape5_concave_area1_init/frames_masks_nonmem/mask_shape5_concave_area1_init.png
+2025-07-17 22:52:10,799 - INFO -     Saved collage -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape5_concave_area1_init/frames_collage/shape5_concave_area1_init_collage.png
+2025-07-17 22:52:10,877 - INFO -     Saved final overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape5_concave_area1_init/frames_processed/shape5_concave_area1_init_overlay.png
+2025-07-17 22:52:10,882 - INFO -   Processing image: shape5_concave_area1_out
+2025-07-17 22:52:10,899 - INFO -   Image shape5_concave_area1_out shape: 400x1000 RGB
+2025-07-17 22:52:11,117 - INFO -     Saved original segmentation overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape5_concave_area1_out/original_segmentation/shape5_concave_area1_out_original_segmentation.png
+2025-07-17 22:52:11,128 - DEBUG -     Blob detected with threshold 30 (area=4972.0)
+2025-07-17 22:52:11,197 - INFO -     Saved blob overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape5_concave_area1_out/frames_blobs/shape5_concave_area1_out_blobs.png
+2025-07-17 22:52:11,720 - INFO -   Generated 5 candidate masks from model.
+2025-07-17 22:52:11,732 - INFO -   Chosen mask cost=-0.390 -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape5_concave_area1_out/frames_masks_nonmem/mask_shape5_concave_area1_out.png
+2025-07-17 22:52:12,380 - INFO -     Saved collage -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape5_concave_area1_out/frames_collage/shape5_concave_area1_out_collage.png
+2025-07-17 22:52:12,458 - INFO -     Saved final overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape5_concave_area1_out/frames_processed/shape5_concave_area1_out_overlay.png
+2025-07-17 22:52:12,463 - INFO - Processing image pair: shape5_concave_area2
+2025-07-17 22:52:12,463 - INFO -   Processing image: shape5_concave_area2_init
+2025-07-17 22:52:12,490 - INFO -   Image shape5_concave_area2_init shape: 400x1000 RGB
+2025-07-17 22:52:12,630 - INFO -     Saved original segmentation overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape5_concave_area2_init/original_segmentation/shape5_concave_area2_init_original_segmentation.png
+2025-07-17 22:52:12,641 - DEBUG -     Blob detected with threshold 30 (area=4904.0)
+2025-07-17 22:52:12,710 - INFO -     Saved blob overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape5_concave_area2_init/frames_blobs/shape5_concave_area2_init_blobs.png
+2025-07-17 22:52:13,163 - INFO -   Generated 3 candidate masks from model.
+2025-07-17 22:52:13,172 - INFO -   Chosen mask cost=-0.769 -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape5_concave_area2_init/frames_masks_nonmem/mask_shape5_concave_area2_init.png
+2025-07-17 22:52:14,088 - INFO -     Saved collage -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape5_concave_area2_init/frames_collage/shape5_concave_area2_init_collage.png
+2025-07-17 22:52:14,164 - INFO -     Saved final overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape5_concave_area2_init/frames_processed/shape5_concave_area2_init_overlay.png
+2025-07-17 22:52:14,169 - INFO -   Processing image: shape5_concave_area2_out
+2025-07-17 22:52:14,187 - INFO -   Image shape5_concave_area2_out shape: 400x1000 RGB
+2025-07-17 22:52:14,328 - INFO -     Saved original segmentation overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape5_concave_area2_out/original_segmentation/shape5_concave_area2_out_original_segmentation.png
+2025-07-17 22:52:14,339 - DEBUG -     Blob detected with threshold 30 (area=5110.0)
+2025-07-17 22:52:14,410 - INFO -     Saved blob overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape5_concave_area2_out/frames_blobs/shape5_concave_area2_out_blobs.png
+2025-07-17 22:52:14,878 - INFO -   Generated 6 candidate masks from model.
+2025-07-17 22:52:14,889 - INFO -   Chosen mask cost=-0.509 -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape5_concave_area2_out/frames_masks_nonmem/mask_shape5_concave_area2_out.png
+2025-07-17 22:52:15,523 - INFO -     Saved collage -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape5_concave_area2_out/frames_collage/shape5_concave_area2_out_collage.png
+2025-07-17 22:52:15,600 - INFO -     Saved final overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape5_concave_area2_out/frames_processed/shape5_concave_area2_out_overlay.png
+2025-07-17 22:52:15,605 - INFO - Processing image pair: shape5_concave_nofill_area1
+2025-07-17 22:52:15,605 - INFO -   Processing image: shape5_concave_nofill_area1_init
+2025-07-17 22:52:15,622 - INFO -   Image shape5_concave_nofill_area1_init shape: 400x1000 RGB
+2025-07-17 22:52:15,754 - INFO -     Saved original segmentation overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape5_concave_nofill_area1_init/original_segmentation/shape5_concave_nofill_area1_init_original_segmentation.png
+2025-07-17 22:52:15,765 - DEBUG -     Blob detected with threshold 30 (area=4904.0)
+2025-07-17 22:52:15,834 - INFO -     Saved blob overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape5_concave_nofill_area1_init/frames_blobs/shape5_concave_nofill_area1_init_blobs.png
+2025-07-17 22:52:16,298 - INFO -   Generated 8 candidate masks from model.
+2025-07-17 22:52:16,310 - INFO -   Chosen mask cost=-0.473 -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape5_concave_nofill_area1_init/frames_masks_nonmem/mask_shape5_concave_nofill_area1_init.png
+2025-07-17 22:52:16,946 - INFO -     Saved collage -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape5_concave_nofill_area1_init/frames_collage/shape5_concave_nofill_area1_init_collage.png
+2025-07-17 22:52:17,023 - INFO -     Saved final overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape5_concave_nofill_area1_init/frames_processed/shape5_concave_nofill_area1_init_overlay.png
+2025-07-17 22:52:17,028 - INFO -   Processing image: shape5_concave_nofill_area1_out
+2025-07-17 22:52:17,045 - INFO -   Image shape5_concave_nofill_area1_out shape: 400x1000 RGB
+2025-07-17 22:52:17,178 - INFO -     Saved original segmentation overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape5_concave_nofill_area1_out/original_segmentation/shape5_concave_nofill_area1_out_original_segmentation.png
+2025-07-17 22:52:17,189 - DEBUG -     Blob detected with threshold 30 (area=5004.0)
+2025-07-17 22:52:17,259 - INFO -     Saved blob overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape5_concave_nofill_area1_out/frames_blobs/shape5_concave_nofill_area1_out_blobs.png
+2025-07-17 22:52:17,886 - INFO -   Generated 8 candidate masks from model.
+2025-07-17 22:52:17,898 - INFO -   Chosen mask cost=-0.544 -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape5_concave_nofill_area1_out/frames_masks_nonmem/mask_shape5_concave_nofill_area1_out.png
+2025-07-17 22:52:18,518 - INFO -     Saved collage -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape5_concave_nofill_area1_out/frames_collage/shape5_concave_nofill_area1_out_collage.png
+2025-07-17 22:52:18,595 - INFO -     Saved final overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape5_concave_nofill_area1_out/frames_processed/shape5_concave_nofill_area1_out_overlay.png
+2025-07-17 22:52:18,599 - INFO - Processing image pair: shape5_concave_nofill_area2
+2025-07-17 22:52:18,599 - INFO -   Processing image: shape5_concave_nofill_area2_init
+2025-07-17 22:52:18,616 - INFO -   Image shape5_concave_nofill_area2_init shape: 400x1000 RGB
+2025-07-17 22:52:18,788 - INFO -     Saved original segmentation overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape5_concave_nofill_area2_init/original_segmentation/shape5_concave_nofill_area2_init_original_segmentation.png
+2025-07-17 22:52:18,798 - DEBUG -     Blob detected with threshold 30 (area=4904.0)
+2025-07-17 22:52:18,869 - INFO -     Saved blob overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape5_concave_nofill_area2_init/frames_blobs/shape5_concave_nofill_area2_init_blobs.png
+2025-07-17 22:52:19,343 - INFO -   Generated 16 candidate masks from model.
+2025-07-17 22:52:19,359 - INFO -   Chosen mask cost=-0.725 -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape5_concave_nofill_area2_init/frames_masks_nonmem/mask_shape5_concave_nofill_area2_init.png
+2025-07-17 22:52:20,169 - INFO -     Saved collage -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape5_concave_nofill_area2_init/frames_collage/shape5_concave_nofill_area2_init_collage.png
+2025-07-17 22:52:20,245 - INFO -     Saved final overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape5_concave_nofill_area2_init/frames_processed/shape5_concave_nofill_area2_init_overlay.png
+2025-07-17 22:52:20,251 - INFO -   Processing image: shape5_concave_nofill_area2_out
+2025-07-17 22:52:20,267 - INFO -   Image shape5_concave_nofill_area2_out shape: 400x1000 RGB
+2025-07-17 22:52:20,420 - INFO -     Saved original segmentation overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape5_concave_nofill_area2_out/original_segmentation/shape5_concave_nofill_area2_out_original_segmentation.png
+2025-07-17 22:52:20,431 - DEBUG -     Blob detected with threshold 30 (area=5155.0)
+2025-07-17 22:52:20,500 - INFO -     Saved blob overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape5_concave_nofill_area2_out/frames_blobs/shape5_concave_nofill_area2_out_blobs.png
+2025-07-17 22:52:20,950 - INFO -   Generated 8 candidate masks from model.
+2025-07-17 22:52:20,962 - INFO -   Chosen mask cost=-0.814 -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape5_concave_nofill_area2_out/frames_masks_nonmem/mask_shape5_concave_nofill_area2_out.png
+2025-07-17 22:52:21,602 - INFO -     Saved collage -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape5_concave_nofill_area2_out/frames_collage/shape5_concave_nofill_area2_out_collage.png
+2025-07-17 22:52:21,681 - INFO -     Saved final overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape5_concave_nofill_area2_out/frames_processed/shape5_concave_nofill_area2_out_overlay.png
+2025-07-17 22:52:21,686 - INFO - Processing image pair: shape5_convex_area1
+2025-07-17 22:52:21,686 - INFO -   Processing image: shape5_convex_area1_init
+2025-07-17 22:52:21,704 - INFO -   Image shape5_convex_area1_init shape: 400x1000 RGB
+2025-07-17 22:52:21,846 - INFO -     Saved original segmentation overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape5_convex_area1_init/original_segmentation/shape5_convex_area1_init_original_segmentation.png
+2025-07-17 22:52:21,857 - DEBUG -     Blob detected with threshold 30 (area=4904.0)
+2025-07-17 22:52:21,929 - INFO -     Saved blob overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape5_convex_area1_init/frames_blobs/shape5_convex_area1_init_blobs.png
+2025-07-17 22:52:22,430 - INFO -   Generated 8 candidate masks from model.
+2025-07-17 22:52:22,444 - INFO -   Chosen mask cost=-0.352 -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape5_convex_area1_init/frames_masks_nonmem/mask_shape5_convex_area1_init.png
+2025-07-17 22:52:23,083 - INFO -     Saved collage -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape5_convex_area1_init/frames_collage/shape5_convex_area1_init_collage.png
+2025-07-17 22:52:23,160 - INFO -     Saved final overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape5_convex_area1_init/frames_processed/shape5_convex_area1_init_overlay.png
+2025-07-17 22:52:23,165 - INFO -   Processing image: shape5_convex_area1_out
+2025-07-17 22:52:23,183 - INFO -   Image shape5_convex_area1_out shape: 400x1000 RGB
+2025-07-17 22:52:23,328 - INFO -     Saved original segmentation overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape5_convex_area1_out/original_segmentation/shape5_convex_area1_out_original_segmentation.png
+2025-07-17 22:52:23,339 - DEBUG -     Blob detected with threshold 30 (area=5005.0)
+2025-07-17 22:52:23,409 - INFO -     Saved blob overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape5_convex_area1_out/frames_blobs/shape5_convex_area1_out_blobs.png
+2025-07-17 22:52:23,889 - INFO -   Generated 12 candidate masks from model.
+2025-07-17 22:52:23,902 - INFO -   Chosen mask cost=-0.507 -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape5_convex_area1_out/frames_masks_nonmem/mask_shape5_convex_area1_out.png
+2025-07-17 22:52:24,519 - INFO -     Saved collage -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape5_convex_area1_out/frames_collage/shape5_convex_area1_out_collage.png
+2025-07-17 22:52:24,594 - INFO -     Saved final overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape5_convex_area1_out/frames_processed/shape5_convex_area1_out_overlay.png
+2025-07-17 22:52:24,599 - INFO - Processing image pair: shape5_convex_area2
+2025-07-17 22:52:24,599 - INFO -   Processing image: shape5_convex_area2_init
+2025-07-17 22:52:24,616 - INFO -   Image shape5_convex_area2_init shape: 400x1000 RGB
+2025-07-17 22:52:24,788 - INFO -     Saved original segmentation overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape5_convex_area2_init/original_segmentation/shape5_convex_area2_init_original_segmentation.png
+2025-07-17 22:52:24,799 - DEBUG -     Blob detected with threshold 30 (area=4904.0)
+2025-07-17 22:52:24,868 - INFO -     Saved blob overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape5_convex_area2_init/frames_blobs/shape5_convex_area2_init_blobs.png
+2025-07-17 22:52:25,345 - INFO -   Generated 9 candidate masks from model.
+2025-07-17 22:52:25,358 - INFO -   Chosen mask cost=-0.412 -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape5_convex_area2_init/frames_masks_nonmem/mask_shape5_convex_area2_init.png
+2025-07-17 22:52:25,974 - INFO -     Saved collage -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape5_convex_area2_init/frames_collage/shape5_convex_area2_init_collage.png
+2025-07-17 22:52:26,049 - INFO -     Saved final overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape5_convex_area2_init/frames_processed/shape5_convex_area2_init_overlay.png
+2025-07-17 22:52:26,053 - INFO -   Processing image: shape5_convex_area2_out
+2025-07-17 22:52:26,071 - INFO -   Image shape5_convex_area2_out shape: 400x1000 RGB
+2025-07-17 22:52:26,225 - INFO -     Saved original segmentation overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape5_convex_area2_out/original_segmentation/shape5_convex_area2_out_original_segmentation.png
+2025-07-17 22:52:26,235 - DEBUG -     Blob detected with threshold 30 (area=5168.0)
+2025-07-17 22:52:26,305 - INFO -     Saved blob overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape5_convex_area2_out/frames_blobs/shape5_convex_area2_out_blobs.png
+2025-07-17 22:52:26,766 - INFO -   Generated 11 candidate masks from model.
+2025-07-17 22:52:26,778 - INFO -   Chosen mask cost=-0.444 -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape5_convex_area2_out/frames_masks_nonmem/mask_shape5_convex_area2_out.png
+2025-07-17 22:52:27,618 - INFO -     Saved collage -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape5_convex_area2_out/frames_collage/shape5_convex_area2_out_collage.png
+2025-07-17 22:52:27,694 - INFO -     Saved final overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape5_convex_area2_out/frames_processed/shape5_convex_area2_out_overlay.png
+2025-07-17 22:52:27,698 - INFO - Processing image pair: shape6_concave_area1
+2025-07-17 22:52:27,699 - INFO -   Processing image: shape6_concave_area1_init
+2025-07-17 22:52:27,716 - INFO -   Image shape6_concave_area1_init shape: 400x1000 RGB
+2025-07-17 22:52:27,983 - INFO -     Saved original segmentation overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape6_concave_area1_init/original_segmentation/shape6_concave_area1_init_original_segmentation.png
+2025-07-17 22:52:27,994 - DEBUG -     Blob detected with threshold 30 (area=4548.0)
+2025-07-17 22:52:28,062 - INFO -     Saved blob overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape6_concave_area1_init/frames_blobs/shape6_concave_area1_init_blobs.png
+2025-07-17 22:52:28,528 - INFO -   Generated 2 candidate masks from model.
+2025-07-17 22:52:28,536 - INFO -   Chosen mask cost=-0.603 -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape6_concave_area1_init/frames_masks_nonmem/mask_shape6_concave_area1_init.png
+2025-07-17 22:52:29,178 - INFO -     Saved collage -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape6_concave_area1_init/frames_collage/shape6_concave_area1_init_collage.png
+2025-07-17 22:52:29,254 - INFO -     Saved final overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape6_concave_area1_init/frames_processed/shape6_concave_area1_init_overlay.png
+2025-07-17 22:52:29,258 - INFO -   Processing image: shape6_concave_area1_out
+2025-07-17 22:52:29,275 - INFO -   Image shape6_concave_area1_out shape: 400x1000 RGB
+2025-07-17 22:52:29,484 - INFO -     Saved original segmentation overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape6_concave_area1_out/original_segmentation/shape6_concave_area1_out_original_segmentation.png
+2025-07-17 22:52:29,494 - DEBUG -     Blob detected with threshold 30 (area=4647.0)
+2025-07-17 22:52:29,563 - INFO -     Saved blob overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape6_concave_area1_out/frames_blobs/shape6_concave_area1_out_blobs.png
+2025-07-17 22:52:30,008 - INFO -   Generated 2 candidate masks from model.
+2025-07-17 22:52:30,016 - INFO -   Chosen mask cost=-0.659 -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape6_concave_area1_out/frames_masks_nonmem/mask_shape6_concave_area1_out.png
+2025-07-17 22:52:30,664 - INFO -     Saved collage -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape6_concave_area1_out/frames_collage/shape6_concave_area1_out_collage.png
+2025-07-17 22:52:30,741 - INFO -     Saved final overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape6_concave_area1_out/frames_processed/shape6_concave_area1_out_overlay.png
+2025-07-17 22:52:30,746 - INFO - Processing image pair: shape6_concave_area2
+2025-07-17 22:52:30,746 - INFO -   Processing image: shape6_concave_area2_init
+2025-07-17 22:52:30,763 - INFO -   Image shape6_concave_area2_init shape: 400x1000 RGB
+2025-07-17 22:52:30,960 - INFO -     Saved original segmentation overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape6_concave_area2_init/original_segmentation/shape6_concave_area2_init_original_segmentation.png
+2025-07-17 22:52:30,971 - DEBUG -     Blob detected with threshold 30 (area=4548.0)
+2025-07-17 22:52:31,040 - INFO -     Saved blob overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape6_concave_area2_init/frames_blobs/shape6_concave_area2_init_blobs.png
+2025-07-17 22:52:31,504 - INFO -   Generated 5 candidate masks from model.
+2025-07-17 22:52:31,514 - INFO -   Chosen mask cost=-0.535 -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape6_concave_area2_init/frames_masks_nonmem/mask_shape6_concave_area2_init.png
+2025-07-17 22:52:32,146 - INFO -     Saved collage -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape6_concave_area2_init/frames_collage/shape6_concave_area2_init_collage.png
+2025-07-17 22:52:32,225 - INFO -     Saved final overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape6_concave_area2_init/frames_processed/shape6_concave_area2_init_overlay.png
+2025-07-17 22:52:32,230 - INFO -   Processing image: shape6_concave_area2_out
+2025-07-17 22:52:32,246 - INFO -   Image shape6_concave_area2_out shape: 400x1000 RGB
+2025-07-17 22:52:32,462 - INFO -     Saved original segmentation overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape6_concave_area2_out/original_segmentation/shape6_concave_area2_out_original_segmentation.png
+2025-07-17 22:52:32,474 - DEBUG -     Blob detected with threshold 30 (area=4805.0)
+2025-07-17 22:52:32,542 - INFO -     Saved blob overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape6_concave_area2_out/frames_blobs/shape6_concave_area2_out_blobs.png
+2025-07-17 22:52:33,011 - INFO -   Generated 3 candidate masks from model.
+2025-07-17 22:52:33,020 - INFO -   Chosen mask cost=-0.677 -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape6_concave_area2_out/frames_masks_nonmem/mask_shape6_concave_area2_out.png
+2025-07-17 22:52:33,671 - INFO -     Saved collage -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape6_concave_area2_out/frames_collage/shape6_concave_area2_out_collage.png
+2025-07-17 22:52:33,747 - INFO -     Saved final overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape6_concave_area2_out/frames_processed/shape6_concave_area2_out_overlay.png
+2025-07-17 22:52:33,752 - INFO - Processing image pair: shape6_concave_nofill_area1
+2025-07-17 22:52:33,752 - INFO -   Processing image: shape6_concave_nofill_area1_init
+2025-07-17 22:52:33,769 - INFO -   Image shape6_concave_nofill_area1_init shape: 400x1000 RGB
+2025-07-17 22:52:33,961 - INFO -     Saved original segmentation overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape6_concave_nofill_area1_init/original_segmentation/shape6_concave_nofill_area1_init_original_segmentation.png
+2025-07-17 22:52:33,972 - DEBUG -     Blob detected with threshold 30 (area=4548.0)
+2025-07-17 22:52:34,041 - INFO -     Saved blob overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape6_concave_nofill_area1_init/frames_blobs/shape6_concave_nofill_area1_init_blobs.png
+2025-07-17 22:52:34,549 - INFO -   Generated 2 candidate masks from model.
+2025-07-17 22:52:34,557 - INFO -   Chosen mask cost=-0.488 -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape6_concave_nofill_area1_init/frames_masks_nonmem/mask_shape6_concave_nofill_area1_init.png
+2025-07-17 22:52:35,434 - INFO -     Saved collage -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape6_concave_nofill_area1_init/frames_collage/shape6_concave_nofill_area1_init_collage.png
+2025-07-17 22:52:35,512 - INFO -     Saved final overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape6_concave_nofill_area1_init/frames_processed/shape6_concave_nofill_area1_init_overlay.png
+2025-07-17 22:52:35,516 - INFO -   Processing image: shape6_concave_nofill_area1_out
+2025-07-17 22:52:35,532 - INFO -   Image shape6_concave_nofill_area1_out shape: 400x1000 RGB
+2025-07-17 22:52:35,723 - INFO -     Saved original segmentation overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape6_concave_nofill_area1_out/original_segmentation/shape6_concave_nofill_area1_out_original_segmentation.png
+2025-07-17 22:52:35,734 - DEBUG -     Blob detected with threshold 30 (area=4684.0)
+2025-07-17 22:52:35,802 - INFO -     Saved blob overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape6_concave_nofill_area1_out/frames_blobs/shape6_concave_nofill_area1_out_blobs.png
+2025-07-17 22:52:36,255 - INFO -   Generated 4 candidate masks from model.
+2025-07-17 22:52:36,265 - INFO -   Chosen mask cost=-0.597 -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape6_concave_nofill_area1_out/frames_masks_nonmem/mask_shape6_concave_nofill_area1_out.png
+2025-07-17 22:52:36,896 - INFO -     Saved collage -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape6_concave_nofill_area1_out/frames_collage/shape6_concave_nofill_area1_out_collage.png
+2025-07-17 22:52:36,972 - INFO -     Saved final overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape6_concave_nofill_area1_out/frames_processed/shape6_concave_nofill_area1_out_overlay.png
+2025-07-17 22:52:36,977 - INFO - Processing image pair: shape6_concave_nofill_area2
+2025-07-17 22:52:36,977 - INFO -   Processing image: shape6_concave_nofill_area2_init
+2025-07-17 22:52:36,995 - INFO -   Image shape6_concave_nofill_area2_init shape: 400x1000 RGB
+2025-07-17 22:52:37,178 - INFO -     Saved original segmentation overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape6_concave_nofill_area2_init/original_segmentation/shape6_concave_nofill_area2_init_original_segmentation.png
+2025-07-17 22:52:37,188 - DEBUG -     Blob detected with threshold 30 (area=4548.0)
+2025-07-17 22:52:37,258 - INFO -     Saved blob overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape6_concave_nofill_area2_init/frames_blobs/shape6_concave_nofill_area2_init_blobs.png
+2025-07-17 22:52:37,716 - INFO -   Generated 11 candidate masks from model.
+2025-07-17 22:52:37,732 - INFO -   Chosen mask cost=-0.023 -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape6_concave_nofill_area2_init/frames_masks_nonmem/mask_shape6_concave_nofill_area2_init.png
+2025-07-17 22:52:38,321 - INFO -     Saved collage -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape6_concave_nofill_area2_init/frames_collage/shape6_concave_nofill_area2_init_collage.png
+2025-07-17 22:52:38,406 - INFO -     Saved final overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape6_concave_nofill_area2_init/frames_processed/shape6_concave_nofill_area2_init_overlay.png
+2025-07-17 22:52:38,426 - INFO -   Processing image: shape6_concave_nofill_area2_out
+2025-07-17 22:52:38,449 - INFO -   Image shape6_concave_nofill_area2_out shape: 400x1000 RGB
+2025-07-17 22:52:38,619 - INFO -     Saved original segmentation overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape6_concave_nofill_area2_out/original_segmentation/shape6_concave_nofill_area2_out_original_segmentation.png
+2025-07-17 22:52:38,629 - DEBUG -     Blob detected with threshold 30 (area=4884.0)
+2025-07-17 22:52:38,698 - INFO -     Saved blob overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape6_concave_nofill_area2_out/frames_blobs/shape6_concave_nofill_area2_out_blobs.png
+2025-07-17 22:52:39,136 - INFO -   Generated 6 candidate masks from model.
+2025-07-17 22:52:39,151 - INFO -   Chosen mask cost=-0.057 -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape6_concave_nofill_area2_out/frames_masks_nonmem/mask_shape6_concave_nofill_area2_out.png
+2025-07-17 22:52:39,772 - INFO -     Saved collage -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape6_concave_nofill_area2_out/frames_collage/shape6_concave_nofill_area2_out_collage.png
+2025-07-17 22:52:39,850 - INFO -     Saved final overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape6_concave_nofill_area2_out/frames_processed/shape6_concave_nofill_area2_out_overlay.png
+2025-07-17 22:52:39,855 - INFO - Processing image pair: shape6_convex_area1
+2025-07-17 22:52:39,855 - INFO -   Processing image: shape6_convex_area1_init
+2025-07-17 22:52:39,881 - INFO -   Image shape6_convex_area1_init shape: 400x1000 RGB
+2025-07-17 22:52:40,097 - INFO -     Saved original segmentation overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape6_convex_area1_init/original_segmentation/shape6_convex_area1_init_original_segmentation.png
+2025-07-17 22:52:40,107 - DEBUG -     Blob detected with threshold 30 (area=4548.0)
+2025-07-17 22:52:40,180 - INFO -     Saved blob overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape6_convex_area1_init/frames_blobs/shape6_convex_area1_init_blobs.png
+2025-07-17 22:52:40,625 - INFO -   Generated 4 candidate masks from model.
+2025-07-17 22:52:40,640 - INFO -   Chosen mask cost=-0.534 -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape6_convex_area1_init/frames_masks_nonmem/mask_shape6_convex_area1_init.png
+2025-07-17 22:52:41,272 - INFO -     Saved collage -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape6_convex_area1_init/frames_collage/shape6_convex_area1_init_collage.png
+2025-07-17 22:52:41,352 - INFO -     Saved final overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape6_convex_area1_init/frames_processed/shape6_convex_area1_init_overlay.png
+2025-07-17 22:52:41,357 - INFO -   Processing image: shape6_convex_area1_out
+2025-07-17 22:52:41,393 - INFO -   Image shape6_convex_area1_out shape: 400x1000 RGB
+2025-07-17 22:52:41,598 - INFO -     Saved original segmentation overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape6_convex_area1_out/original_segmentation/shape6_convex_area1_out_original_segmentation.png
+2025-07-17 22:52:41,608 - DEBUG -     Blob detected with threshold 30 (area=4695.0)
+2025-07-17 22:52:41,678 - INFO -     Saved blob overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape6_convex_area1_out/frames_blobs/shape6_convex_area1_out_blobs.png
+2025-07-17 22:52:42,148 - INFO -   Generated 11 candidate masks from model.
+2025-07-17 22:52:42,163 - INFO -   Chosen mask cost=-0.500 -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape6_convex_area1_out/frames_masks_nonmem/mask_shape6_convex_area1_out.png
+2025-07-17 22:52:42,996 - INFO -     Saved collage -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape6_convex_area1_out/frames_collage/shape6_convex_area1_out_collage.png
+2025-07-17 22:52:43,073 - INFO -     Saved final overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape6_convex_area1_out/frames_processed/shape6_convex_area1_out_overlay.png
+2025-07-17 22:52:43,077 - INFO - Processing image pair: shape6_convex_area2
+2025-07-17 22:52:43,077 - INFO -   Processing image: shape6_convex_area2_init
+2025-07-17 22:52:43,104 - INFO -   Image shape6_convex_area2_init shape: 400x1000 RGB
+2025-07-17 22:52:43,326 - INFO -     Saved original segmentation overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape6_convex_area2_init/original_segmentation/shape6_convex_area2_init_original_segmentation.png
+2025-07-17 22:52:43,337 - DEBUG -     Blob detected with threshold 30 (area=4548.0)
+2025-07-17 22:52:43,407 - INFO -     Saved blob overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape6_convex_area2_init/frames_blobs/shape6_convex_area2_init_blobs.png
+2025-07-17 22:52:43,862 - INFO -   Generated 3 candidate masks from model.
+2025-07-17 22:52:43,871 - INFO -   Chosen mask cost=-0.593 -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape6_convex_area2_init/frames_masks_nonmem/mask_shape6_convex_area2_init.png
+2025-07-17 22:52:44,522 - INFO -     Saved collage -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape6_convex_area2_init/frames_collage/shape6_convex_area2_init_collage.png
+2025-07-17 22:52:44,609 - INFO -     Saved final overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape6_convex_area2_init/frames_processed/shape6_convex_area2_init_overlay.png
+2025-07-17 22:52:44,615 - INFO -   Processing image: shape6_convex_area2_out
+2025-07-17 22:52:44,633 - INFO -   Image shape6_convex_area2_out shape: 400x1000 RGB
+2025-07-17 22:52:44,834 - INFO -     Saved original segmentation overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape6_convex_area2_out/original_segmentation/shape6_convex_area2_out_original_segmentation.png
+2025-07-17 22:52:44,846 - DEBUG -     Blob detected with threshold 30 (area=4885.0)
+2025-07-17 22:52:44,916 - INFO -     Saved blob overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape6_convex_area2_out/frames_blobs/shape6_convex_area2_out_blobs.png
+2025-07-17 22:52:45,440 - INFO -   Generated 12 candidate masks from model.
+2025-07-17 22:52:45,454 - INFO -   Chosen mask cost=-0.488 -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape6_convex_area2_out/frames_masks_nonmem/mask_shape6_convex_area2_out.png
+2025-07-17 22:52:46,067 - INFO -     Saved collage -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape6_convex_area2_out/frames_collage/shape6_convex_area2_out_collage.png
+2025-07-17 22:52:46,152 - INFO -     Saved final overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape6_convex_area2_out/frames_processed/shape6_convex_area2_out_overlay.png
+2025-07-17 22:52:46,156 - INFO - Processing image pair: shape7_concave_area1
+2025-07-17 22:52:46,156 - INFO -   Processing image: shape7_concave_area1_init
+2025-07-17 22:52:46,174 - INFO -   Image shape7_concave_area1_init shape: 400x1000 RGB
+2025-07-17 22:52:46,319 - INFO -     Saved original segmentation overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape7_concave_area1_init/original_segmentation/shape7_concave_area1_init_original_segmentation.png
+2025-07-17 22:52:46,330 - DEBUG -     Blob detected with threshold 30 (area=5566.0)
+2025-07-17 22:52:46,405 - INFO -     Saved blob overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape7_concave_area1_init/frames_blobs/shape7_concave_area1_init_blobs.png
+2025-07-17 22:52:46,858 - INFO -   Generated 7 candidate masks from model.
+2025-07-17 22:52:46,869 - INFO -   Chosen mask cost=-0.625 -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape7_concave_area1_init/frames_masks_nonmem/mask_shape7_concave_area1_init.png
+2025-07-17 22:52:47,500 - INFO -     Saved collage -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape7_concave_area1_init/frames_collage/shape7_concave_area1_init_collage.png
+2025-07-17 22:52:47,576 - INFO -     Saved final overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape7_concave_area1_init/frames_processed/shape7_concave_area1_init_overlay.png
+2025-07-17 22:52:47,581 - INFO -   Processing image: shape7_concave_area1_out
+2025-07-17 22:52:47,605 - INFO -   Image shape7_concave_area1_out shape: 400x1000 RGB
+2025-07-17 22:52:47,746 - INFO -     Saved original segmentation overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape7_concave_area1_out/original_segmentation/shape7_concave_area1_out_original_segmentation.png
+2025-07-17 22:52:47,757 - DEBUG -     Blob detected with threshold 30 (area=5660.0)
+2025-07-17 22:52:47,825 - INFO -     Saved blob overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape7_concave_area1_out/frames_blobs/shape7_concave_area1_out_blobs.png
+2025-07-17 22:52:48,282 - INFO -   Generated 7 candidate masks from model.
+2025-07-17 22:52:48,293 - INFO -   Chosen mask cost=-0.693 -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape7_concave_area1_out/frames_masks_nonmem/mask_shape7_concave_area1_out.png
+2025-07-17 22:52:48,908 - INFO -     Saved collage -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape7_concave_area1_out/frames_collage/shape7_concave_area1_out_collage.png
+2025-07-17 22:52:48,984 - INFO -     Saved final overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape7_concave_area1_out/frames_processed/shape7_concave_area1_out_overlay.png
+2025-07-17 22:52:48,988 - INFO - Processing image pair: shape7_concave_area2
+2025-07-17 22:52:48,988 - INFO -   Processing image: shape7_concave_area2_init
+2025-07-17 22:52:49,009 - INFO -   Image shape7_concave_area2_init shape: 400x1000 RGB
+2025-07-17 22:52:49,150 - INFO -     Saved original segmentation overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape7_concave_area2_init/original_segmentation/shape7_concave_area2_init_original_segmentation.png
+2025-07-17 22:52:49,162 - DEBUG -     Blob detected with threshold 30 (area=5566.0)
+2025-07-17 22:52:49,233 - INFO -     Saved blob overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape7_concave_area2_init/frames_blobs/shape7_concave_area2_init_blobs.png
+2025-07-17 22:52:49,735 - INFO -   Generated 16 candidate masks from model.
+2025-07-17 22:52:49,751 - INFO -   Chosen mask cost=-0.566 -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape7_concave_area2_init/frames_masks_nonmem/mask_shape7_concave_area2_init.png
+2025-07-17 22:52:50,344 - INFO -     Saved collage -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape7_concave_area2_init/frames_collage/shape7_concave_area2_init_collage.png
+2025-07-17 22:52:50,420 - INFO -     Saved final overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape7_concave_area2_init/frames_processed/shape7_concave_area2_init_overlay.png
+2025-07-17 22:52:50,424 - INFO -   Processing image: shape7_concave_area2_out
+2025-07-17 22:52:50,443 - INFO -   Image shape7_concave_area2_out shape: 400x1000 RGB
+2025-07-17 22:52:50,586 - INFO -     Saved original segmentation overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape7_concave_area2_out/original_segmentation/shape7_concave_area2_out_original_segmentation.png
+2025-07-17 22:52:50,597 - DEBUG -     Blob detected with threshold 30 (area=5802.0)
+2025-07-17 22:52:50,665 - INFO -     Saved blob overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape7_concave_area2_out/frames_blobs/shape7_concave_area2_out_blobs.png
+2025-07-17 22:52:51,145 - INFO -   Generated 14 candidate masks from model.
+2025-07-17 22:52:51,160 - INFO -   Chosen mask cost=-0.738 -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape7_concave_area2_out/frames_masks_nonmem/mask_shape7_concave_area2_out.png
+2025-07-17 22:52:52,046 - INFO -     Saved collage -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape7_concave_area2_out/frames_collage/shape7_concave_area2_out_collage.png
+2025-07-17 22:52:52,122 - INFO -     Saved final overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape7_concave_area2_out/frames_processed/shape7_concave_area2_out_overlay.png
+2025-07-17 22:52:52,127 - INFO - Processing image pair: shape7_concave_nofill_area1
+2025-07-17 22:52:52,127 - INFO -   Processing image: shape7_concave_nofill_area1_init
+2025-07-17 22:52:52,143 - INFO -   Image shape7_concave_nofill_area1_init shape: 400x1000 RGB
+2025-07-17 22:52:52,286 - INFO -     Saved original segmentation overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape7_concave_nofill_area1_init/original_segmentation/shape7_concave_nofill_area1_init_original_segmentation.png
+2025-07-17 22:52:52,297 - DEBUG -     Blob detected with threshold 30 (area=5566.0)
+2025-07-17 22:52:52,368 - INFO -     Saved blob overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape7_concave_nofill_area1_init/frames_blobs/shape7_concave_nofill_area1_init_blobs.png
+2025-07-17 22:52:52,836 - INFO -   Generated 8 candidate masks from model.
+2025-07-17 22:52:52,848 - INFO -   Chosen mask cost=-0.537 -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape7_concave_nofill_area1_init/frames_masks_nonmem/mask_shape7_concave_nofill_area1_init.png
+2025-07-17 22:52:53,496 - INFO -     Saved collage -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape7_concave_nofill_area1_init/frames_collage/shape7_concave_nofill_area1_init_collage.png
+2025-07-17 22:52:53,573 - INFO -     Saved final overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape7_concave_nofill_area1_init/frames_processed/shape7_concave_nofill_area1_init_overlay.png
+2025-07-17 22:52:53,578 - INFO -   Processing image: shape7_concave_nofill_area1_out
+2025-07-17 22:52:53,597 - INFO -   Image shape7_concave_nofill_area1_out shape: 400x1000 RGB
+2025-07-17 22:52:53,730 - INFO -     Saved original segmentation overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape7_concave_nofill_area1_out/original_segmentation/shape7_concave_nofill_area1_out_original_segmentation.png
+2025-07-17 22:52:53,741 - DEBUG -     Blob detected with threshold 30 (area=5693.0)
+2025-07-17 22:52:53,812 - INFO -     Saved blob overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape7_concave_nofill_area1_out/frames_blobs/shape7_concave_nofill_area1_out_blobs.png
+2025-07-17 22:52:54,287 - INFO -   Generated 9 candidate masks from model.
+2025-07-17 22:52:54,300 - INFO -   Chosen mask cost=-0.478 -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape7_concave_nofill_area1_out/frames_masks_nonmem/mask_shape7_concave_nofill_area1_out.png
+2025-07-17 22:52:54,923 - INFO -     Saved collage -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape7_concave_nofill_area1_out/frames_collage/shape7_concave_nofill_area1_out_collage.png
+2025-07-17 22:52:55,002 - INFO -     Saved final overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape7_concave_nofill_area1_out/frames_processed/shape7_concave_nofill_area1_out_overlay.png
+2025-07-17 22:52:55,007 - INFO - Processing image pair: shape7_concave_nofill_area2
+2025-07-17 22:52:55,007 - INFO -   Processing image: shape7_concave_nofill_area2_init
+2025-07-17 22:52:55,024 - INFO -   Image shape7_concave_nofill_area2_init shape: 400x1000 RGB
+2025-07-17 22:52:55,162 - INFO -     Saved original segmentation overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape7_concave_nofill_area2_init/original_segmentation/shape7_concave_nofill_area2_init_original_segmentation.png
+2025-07-17 22:52:55,173 - DEBUG -     Blob detected with threshold 30 (area=5566.0)
+2025-07-17 22:52:55,242 - INFO -     Saved blob overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape7_concave_nofill_area2_init/frames_blobs/shape7_concave_nofill_area2_init_blobs.png
+2025-07-17 22:52:55,714 - INFO -   Generated 3 candidate masks from model.
+2025-07-17 22:52:55,723 - INFO -   Chosen mask cost=-0.049 -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape7_concave_nofill_area2_init/frames_masks_nonmem/mask_shape7_concave_nofill_area2_init.png
+2025-07-17 22:52:56,393 - INFO -     Saved collage -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape7_concave_nofill_area2_init/frames_collage/shape7_concave_nofill_area2_init_collage.png
+2025-07-17 22:52:56,472 - INFO -     Saved final overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape7_concave_nofill_area2_init/frames_processed/shape7_concave_nofill_area2_init_overlay.png
+2025-07-17 22:52:56,477 - INFO -   Processing image: shape7_concave_nofill_area2_out
+2025-07-17 22:52:56,493 - INFO -   Image shape7_concave_nofill_area2_out shape: 400x1000 RGB
+2025-07-17 22:52:56,634 - INFO -     Saved original segmentation overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape7_concave_nofill_area2_out/original_segmentation/shape7_concave_nofill_area2_out_original_segmentation.png
+2025-07-17 22:52:56,646 - DEBUG -     Blob detected with threshold 30 (area=5865.0)
+2025-07-17 22:52:56,716 - INFO -     Saved blob overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape7_concave_nofill_area2_out/frames_blobs/shape7_concave_nofill_area2_out_blobs.png
+2025-07-17 22:52:57,273 - INFO -   Generated 4 candidate masks from model.
+2025-07-17 22:52:57,282 - INFO -   Chosen mask cost=-0.058 -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape7_concave_nofill_area2_out/frames_masks_nonmem/mask_shape7_concave_nofill_area2_out.png
+2025-07-17 22:52:58,182 - INFO -     Saved collage -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape7_concave_nofill_area2_out/frames_collage/shape7_concave_nofill_area2_out_collage.png
+2025-07-17 22:52:58,261 - INFO -     Saved final overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape7_concave_nofill_area2_out/frames_processed/shape7_concave_nofill_area2_out_overlay.png
+2025-07-17 22:52:58,265 - INFO - Processing image pair: shape7_convex_area1
+2025-07-17 22:52:58,266 - INFO -   Processing image: shape7_convex_area1_init
+2025-07-17 22:52:58,283 - INFO -   Image shape7_convex_area1_init shape: 400x1000 RGB
+2025-07-17 22:52:58,424 - INFO -     Saved original segmentation overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape7_convex_area1_init/original_segmentation/shape7_convex_area1_init_original_segmentation.png
+2025-07-17 22:52:58,434 - DEBUG -     Blob detected with threshold 30 (area=5566.0)
+2025-07-17 22:52:58,507 - INFO -     Saved blob overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape7_convex_area1_init/frames_blobs/shape7_convex_area1_init_blobs.png
+2025-07-17 22:52:58,969 - INFO -   Generated 1 candidate masks from model.
+2025-07-17 22:52:58,977 - INFO -   Chosen mask cost=-0.145 -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape7_convex_area1_init/frames_masks_nonmem/mask_shape7_convex_area1_init.png
+2025-07-17 22:52:59,646 - INFO -     Saved collage -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape7_convex_area1_init/frames_collage/shape7_convex_area1_init_collage.png
+2025-07-17 22:52:59,723 - INFO -     Saved final overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape7_convex_area1_init/frames_processed/shape7_convex_area1_init_overlay.png
+2025-07-17 22:52:59,727 - INFO -   Processing image: shape7_convex_area1_out
+2025-07-17 22:52:59,744 - INFO -   Image shape7_convex_area1_out shape: 400x1000 RGB
+2025-07-17 22:52:59,894 - INFO -     Saved original segmentation overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape7_convex_area1_out/original_segmentation/shape7_convex_area1_out_original_segmentation.png
+2025-07-17 22:52:59,905 - DEBUG -     Blob detected with threshold 30 (area=5702.0)
+2025-07-17 22:52:59,974 - INFO -     Saved blob overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape7_convex_area1_out/frames_blobs/shape7_convex_area1_out_blobs.png
+2025-07-17 22:53:00,452 - INFO -   Generated 13 candidate masks from model.
+2025-07-17 22:53:00,467 - INFO -   Chosen mask cost=-0.137 -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape7_convex_area1_out/frames_masks_nonmem/mask_shape7_convex_area1_out.png
+2025-07-17 22:53:01,083 - INFO -     Saved collage -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape7_convex_area1_out/frames_collage/shape7_convex_area1_out_collage.png
+2025-07-17 22:53:01,160 - INFO -     Saved final overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape7_convex_area1_out/frames_processed/shape7_convex_area1_out_overlay.png
+2025-07-17 22:53:01,164 - INFO - Processing image pair: shape7_convex_area2
+2025-07-17 22:53:01,164 - INFO -   Processing image: shape7_convex_area2_init
+2025-07-17 22:53:01,181 - INFO -   Image shape7_convex_area2_init shape: 400x1000 RGB
+2025-07-17 22:53:01,323 - INFO -     Saved original segmentation overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape7_convex_area2_init/original_segmentation/shape7_convex_area2_init_original_segmentation.png
+2025-07-17 22:53:01,334 - DEBUG -     Blob detected with threshold 30 (area=5566.0)
+2025-07-17 22:53:01,406 - INFO -     Saved blob overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape7_convex_area2_init/frames_blobs/shape7_convex_area2_init_blobs.png
+2025-07-17 22:53:01,894 - INFO -   Generated 1 candidate masks from model.
+2025-07-17 22:53:01,901 - INFO -   Chosen mask cost=-0.126 -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape7_convex_area2_init/frames_masks_nonmem/mask_shape7_convex_area2_init.png
+2025-07-17 22:53:02,581 - INFO -     Saved collage -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape7_convex_area2_init/frames_collage/shape7_convex_area2_init_collage.png
+2025-07-17 22:53:02,656 - INFO -     Saved final overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape7_convex_area2_init/frames_processed/shape7_convex_area2_init_overlay.png
+2025-07-17 22:53:02,660 - INFO -   Processing image: shape7_convex_area2_out
+2025-07-17 22:53:02,675 - INFO -   Image shape7_convex_area2_out shape: 400x1000 RGB
+2025-07-17 22:53:02,807 - INFO -     Saved original segmentation overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape7_convex_area2_out/original_segmentation/shape7_convex_area2_out_original_segmentation.png
+2025-07-17 22:53:02,818 - DEBUG -     Blob detected with threshold 30 (area=5873.0)
+2025-07-17 22:53:02,889 - INFO -     Saved blob overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape7_convex_area2_out/frames_blobs/shape7_convex_area2_out_blobs.png
+2025-07-17 22:53:03,381 - INFO -   Generated 6 candidate masks from model.
+2025-07-17 22:53:03,392 - INFO -   Chosen mask cost=-0.073 -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape7_convex_area2_out/frames_masks_nonmem/mask_shape7_convex_area2_out.png
+2025-07-17 22:53:04,040 - INFO -     Saved collage -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape7_convex_area2_out/frames_collage/shape7_convex_area2_out_collage.png
+2025-07-17 22:53:04,116 - INFO -     Saved final overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape7_convex_area2_out/frames_processed/shape7_convex_area2_out_overlay.png
+2025-07-17 22:53:04,121 - INFO - Processing image pair: shape8_concave_area1
+2025-07-17 22:53:04,121 - INFO -   Processing image: shape8_concave_area1_init
+2025-07-17 22:53:04,138 - INFO -   Image shape8_concave_area1_init shape: 400x1000 RGB
+2025-07-17 22:53:04,284 - INFO -     Saved original segmentation overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape8_concave_area1_init/original_segmentation/shape8_concave_area1_init_original_segmentation.png
+2025-07-17 22:53:04,295 - DEBUG -     Blob detected with threshold 30 (area=6085.0)
+2025-07-17 22:53:04,366 - INFO -     Saved blob overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape8_concave_area1_init/frames_blobs/shape8_concave_area1_init_blobs.png
+2025-07-17 22:53:04,835 - INFO -   Generated 5 candidate masks from model.
+2025-07-17 22:53:04,844 - INFO -   Chosen mask cost=-0.067 -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape8_concave_area1_init/frames_masks_nonmem/mask_shape8_concave_area1_init.png
+2025-07-17 22:53:05,790 - INFO -     Saved collage -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape8_concave_area1_init/frames_collage/shape8_concave_area1_init_collage.png
+2025-07-17 22:53:05,866 - INFO -     Saved final overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape8_concave_area1_init/frames_processed/shape8_concave_area1_init_overlay.png
+2025-07-17 22:53:05,870 - INFO -   Processing image: shape8_concave_area1_out
+2025-07-17 22:53:05,889 - INFO -   Image shape8_concave_area1_out shape: 400x1000 RGB
+2025-07-17 22:53:06,033 - INFO -     Saved original segmentation overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape8_concave_area1_out/original_segmentation/shape8_concave_area1_out_original_segmentation.png
+2025-07-17 22:53:06,043 - DEBUG -     Blob detected with threshold 30 (area=6274.0)
+2025-07-17 22:53:06,113 - INFO -     Saved blob overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape8_concave_area1_out/frames_blobs/shape8_concave_area1_out_blobs.png
+2025-07-17 22:53:06,596 - INFO -   Generated 11 candidate masks from model.
+2025-07-17 22:53:06,609 - INFO -   Chosen mask cost=-0.409 -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape8_concave_area1_out/frames_masks_nonmem/mask_shape8_concave_area1_out.png
+2025-07-17 22:53:07,231 - INFO -     Saved collage -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape8_concave_area1_out/frames_collage/shape8_concave_area1_out_collage.png
+2025-07-17 22:53:07,311 - INFO -     Saved final overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape8_concave_area1_out/frames_processed/shape8_concave_area1_out_overlay.png
+2025-07-17 22:53:07,316 - INFO - Processing image pair: shape8_concave_area2
+2025-07-17 22:53:07,316 - INFO -   Processing image: shape8_concave_area2_init
+2025-07-17 22:53:07,334 - INFO -   Image shape8_concave_area2_init shape: 400x1000 RGB
+2025-07-17 22:53:07,488 - INFO -     Saved original segmentation overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape8_concave_area2_init/original_segmentation/shape8_concave_area2_init_original_segmentation.png
+2025-07-17 22:53:07,498 - DEBUG -     Blob detected with threshold 30 (area=6085.0)
+2025-07-17 22:53:07,568 - INFO -     Saved blob overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape8_concave_area2_init/frames_blobs/shape8_concave_area2_init_blobs.png
+2025-07-17 22:53:08,067 - INFO -   Generated 16 candidate masks from model.
+2025-07-17 22:53:08,084 - INFO -   Chosen mask cost=-0.184 -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape8_concave_area2_init/frames_masks_nonmem/mask_shape8_concave_area2_init.png
+2025-07-17 22:53:08,717 - INFO -     Saved collage -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape8_concave_area2_init/frames_collage/shape8_concave_area2_init_collage.png
+2025-07-17 22:53:08,795 - INFO -     Saved final overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape8_concave_area2_init/frames_processed/shape8_concave_area2_init_overlay.png
+2025-07-17 22:53:08,800 - INFO -   Processing image: shape8_concave_area2_out
+2025-07-17 22:53:08,817 - INFO -   Image shape8_concave_area2_out shape: 400x1000 RGB
+2025-07-17 22:53:08,969 - INFO -     Saved original segmentation overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape8_concave_area2_out/original_segmentation/shape8_concave_area2_out_original_segmentation.png
+2025-07-17 22:53:08,981 - DEBUG -     Blob detected with threshold 30 (area=6543.0)
+2025-07-17 22:53:09,053 - INFO -     Saved blob overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape8_concave_area2_out/frames_blobs/shape8_concave_area2_out_blobs.png
+2025-07-17 22:53:09,555 - INFO -   Generated 12 candidate masks from model.
+2025-07-17 22:53:09,569 - INFO -   Chosen mask cost=-0.299 -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape8_concave_area2_out/frames_masks_nonmem/mask_shape8_concave_area2_out.png
+2025-07-17 22:53:10,190 - INFO -     Saved collage -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape8_concave_area2_out/frames_collage/shape8_concave_area2_out_collage.png
+2025-07-17 22:53:10,269 - INFO -     Saved final overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape8_concave_area2_out/frames_processed/shape8_concave_area2_out_overlay.png
+2025-07-17 22:53:10,274 - INFO - Processing image pair: shape8_concave_nofill_area1
+2025-07-17 22:53:10,275 - INFO -   Processing image: shape8_concave_nofill_area1_init
+2025-07-17 22:53:10,292 - INFO -   Image shape8_concave_nofill_area1_init shape: 400x1000 RGB
+2025-07-17 22:53:10,444 - INFO -     Saved original segmentation overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape8_concave_nofill_area1_init/original_segmentation/shape8_concave_nofill_area1_init_original_segmentation.png
+2025-07-17 22:53:10,455 - DEBUG -     Blob detected with threshold 30 (area=6085.0)
+2025-07-17 22:53:10,526 - INFO -     Saved blob overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape8_concave_nofill_area1_init/frames_blobs/shape8_concave_nofill_area1_init_blobs.png
+2025-07-17 22:53:11,010 - INFO -   Generated 9 candidate masks from model.
+2025-07-17 22:53:11,022 - INFO -   Chosen mask cost=-0.162 -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape8_concave_nofill_area1_init/frames_masks_nonmem/mask_shape8_concave_nofill_area1_init.png
+2025-07-17 22:53:11,667 - INFO -     Saved collage -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape8_concave_nofill_area1_init/frames_collage/shape8_concave_nofill_area1_init_collage.png
+2025-07-17 22:53:11,744 - INFO -     Saved final overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape8_concave_nofill_area1_init/frames_processed/shape8_concave_nofill_area1_init_overlay.png
+2025-07-17 22:53:11,749 - INFO -   Processing image: shape8_concave_nofill_area1_out
+2025-07-17 22:53:11,772 - INFO -   Image shape8_concave_nofill_area1_out shape: 400x1000 RGB
+2025-07-17 22:53:11,932 - INFO -     Saved original segmentation overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape8_concave_nofill_area1_out/original_segmentation/shape8_concave_nofill_area1_out_original_segmentation.png
+2025-07-17 22:53:11,943 - DEBUG -     Blob detected with threshold 30 (area=6336.0)
+2025-07-17 22:53:12,013 - INFO -     Saved blob overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape8_concave_nofill_area1_out/frames_blobs/shape8_concave_nofill_area1_out_blobs.png
+2025-07-17 22:53:12,485 - INFO -   Generated 8 candidate masks from model.
+2025-07-17 22:53:12,497 - INFO -   Chosen mask cost=-0.484 -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape8_concave_nofill_area1_out/frames_masks_nonmem/mask_shape8_concave_nofill_area1_out.png
+2025-07-17 22:53:13,140 - INFO -     Saved collage -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape8_concave_nofill_area1_out/frames_collage/shape8_concave_nofill_area1_out_collage.png
+2025-07-17 22:53:13,217 - INFO -     Saved final overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape8_concave_nofill_area1_out/frames_processed/shape8_concave_nofill_area1_out_overlay.png
+2025-07-17 22:53:13,222 - INFO - Processing image pair: shape8_concave_nofill_area2
+2025-07-17 22:53:13,222 - INFO -   Processing image: shape8_concave_nofill_area2_init
+2025-07-17 22:53:13,241 - INFO -   Image shape8_concave_nofill_area2_init shape: 400x1000 RGB
+2025-07-17 22:53:13,404 - INFO -     Saved original segmentation overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape8_concave_nofill_area2_init/original_segmentation/shape8_concave_nofill_area2_init_original_segmentation.png
+2025-07-17 22:53:13,415 - DEBUG -     Blob detected with threshold 30 (area=6085.0)
+2025-07-17 22:53:13,486 - INFO -     Saved blob overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape8_concave_nofill_area2_init/frames_blobs/shape8_concave_nofill_area2_init_blobs.png
+2025-07-17 22:53:13,990 - INFO -   Generated 12 candidate masks from model.
+2025-07-17 22:53:14,004 - INFO -   Chosen mask cost=-0.241 -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape8_concave_nofill_area2_init/frames_masks_nonmem/mask_shape8_concave_nofill_area2_init.png
+2025-07-17 22:53:14,960 - INFO -     Saved collage -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape8_concave_nofill_area2_init/frames_collage/shape8_concave_nofill_area2_init_collage.png
+2025-07-17 22:53:15,037 - INFO -     Saved final overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape8_concave_nofill_area2_init/frames_processed/shape8_concave_nofill_area2_init_overlay.png
+2025-07-17 22:53:15,041 - INFO -   Processing image: shape8_concave_nofill_area2_out
+2025-07-17 22:53:15,058 - INFO -   Image shape8_concave_nofill_area2_out shape: 400x1000 RGB
+2025-07-17 22:53:15,206 - INFO -     Saved original segmentation overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape8_concave_nofill_area2_out/original_segmentation/shape8_concave_nofill_area2_out_original_segmentation.png
+2025-07-17 22:53:15,217 - DEBUG -     Blob detected with threshold 30 (area=6654.0)
+2025-07-17 22:53:15,288 - INFO -     Saved blob overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape8_concave_nofill_area2_out/frames_blobs/shape8_concave_nofill_area2_out_blobs.png
+2025-07-17 22:53:15,793 - INFO -   Generated 11 candidate masks from model.
+2025-07-17 22:53:15,807 - INFO -   Chosen mask cost=-0.375 -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape8_concave_nofill_area2_out/frames_masks_nonmem/mask_shape8_concave_nofill_area2_out.png
+2025-07-17 22:53:16,438 - INFO -     Saved collage -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape8_concave_nofill_area2_out/frames_collage/shape8_concave_nofill_area2_out_collage.png
+2025-07-17 22:53:16,516 - INFO -     Saved final overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape8_concave_nofill_area2_out/frames_processed/shape8_concave_nofill_area2_out_overlay.png
+2025-07-17 22:53:16,521 - INFO - Processing image pair: shape8_convex_area1
+2025-07-17 22:53:16,521 - INFO -   Processing image: shape8_convex_area1_init
+2025-07-17 22:53:16,538 - INFO -   Image shape8_convex_area1_init shape: 400x1000 RGB
+2025-07-17 22:53:16,675 - INFO -     Saved original segmentation overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape8_convex_area1_init/original_segmentation/shape8_convex_area1_init_original_segmentation.png
+2025-07-17 22:53:16,686 - DEBUG -     Blob detected with threshold 30 (area=6085.0)
+2025-07-17 22:53:16,756 - INFO -     Saved blob overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape8_convex_area1_init/frames_blobs/shape8_convex_area1_init_blobs.png
+2025-07-17 22:53:17,216 - INFO -   Generated 11 candidate masks from model.
+2025-07-17 22:53:17,229 - INFO -   Chosen mask cost=-0.133 -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape8_convex_area1_init/frames_masks_nonmem/mask_shape8_convex_area1_init.png
+2025-07-17 22:53:17,843 - INFO -     Saved collage -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape8_convex_area1_init/frames_collage/shape8_convex_area1_init_collage.png
+2025-07-17 22:53:17,964 - INFO -     Saved final overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape8_convex_area1_init/frames_processed/shape8_convex_area1_init_overlay.png
+2025-07-17 22:53:17,968 - INFO -   Processing image: shape8_convex_area1_out
+2025-07-17 22:53:17,985 - INFO -   Image shape8_convex_area1_out shape: 400x1000 RGB
+2025-07-17 22:53:18,125 - INFO -     Saved original segmentation overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape8_convex_area1_out/original_segmentation/shape8_convex_area1_out_original_segmentation.png
+2025-07-17 22:53:18,136 - DEBUG -     Blob detected with threshold 30 (area=6331.0)
+2025-07-17 22:53:18,207 - INFO -     Saved blob overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape8_convex_area1_out/frames_blobs/shape8_convex_area1_out_blobs.png
+2025-07-17 22:53:18,690 - INFO -   Generated 5 candidate masks from model.
+2025-07-17 22:53:18,700 - INFO -   Chosen mask cost=-0.040 -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape8_convex_area1_out/frames_masks_nonmem/mask_shape8_convex_area1_out.png
+2025-07-17 22:53:19,330 - INFO -     Saved collage -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape8_convex_area1_out/frames_collage/shape8_convex_area1_out_collage.png
+2025-07-17 22:53:19,405 - INFO -     Saved final overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape8_convex_area1_out/frames_processed/shape8_convex_area1_out_overlay.png
+2025-07-17 22:53:19,409 - INFO - Processing image pair: shape8_convex_area2
+2025-07-17 22:53:19,409 - INFO -   Processing image: shape8_convex_area2_init
+2025-07-17 22:53:19,426 - INFO -   Image shape8_convex_area2_init shape: 400x1000 RGB
+2025-07-17 22:53:19,590 - INFO -     Saved original segmentation overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape8_convex_area2_init/original_segmentation/shape8_convex_area2_init_original_segmentation.png
+2025-07-17 22:53:19,600 - DEBUG -     Blob detected with threshold 30 (area=6085.0)
+2025-07-17 22:53:19,670 - INFO -     Saved blob overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape8_convex_area2_init/frames_blobs/shape8_convex_area2_init_blobs.png
+2025-07-17 22:53:20,131 - INFO -   Generated 11 candidate masks from model.
+2025-07-17 22:53:20,144 - INFO -   Chosen mask cost=-0.233 -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape8_convex_area2_init/frames_masks_nonmem/mask_shape8_convex_area2_init.png
+2025-07-17 22:53:20,737 - INFO -     Saved collage -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape8_convex_area2_init/frames_collage/shape8_convex_area2_init_collage.png
+2025-07-17 22:53:20,813 - INFO -     Saved final overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape8_convex_area2_init/frames_processed/shape8_convex_area2_init_overlay.png
+2025-07-17 22:53:20,818 - INFO -   Processing image: shape8_convex_area2_out
+2025-07-17 22:53:20,836 - INFO -   Image shape8_convex_area2_out shape: 400x1000 RGB
+2025-07-17 22:53:20,987 - INFO -     Saved original segmentation overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape8_convex_area2_out/original_segmentation/shape8_convex_area2_out_original_segmentation.png
+2025-07-17 22:53:20,998 - DEBUG -     Blob detected with threshold 30 (area=6650.0)
+2025-07-17 22:53:21,070 - INFO -     Saved blob overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape8_convex_area2_out/frames_blobs/shape8_convex_area2_out_blobs.png
+2025-07-17 22:53:21,538 - INFO -   Generated 7 candidate masks from model.
+2025-07-17 22:53:21,549 - INFO -   Chosen mask cost=-0.578 -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape8_convex_area2_out/frames_masks_nonmem/mask_shape8_convex_area2_out.png
+2025-07-17 22:53:22,414 - INFO -     Saved collage -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape8_convex_area2_out/frames_collage/shape8_convex_area2_out_collage.png
+2025-07-17 22:53:22,493 - INFO -     Saved final overlay -> /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp3Change/processed_images/segformer_model_shape8_convex_area2_out/frames_processed/shape8_convex_area2_out_overlay.png
+2025-07-17 22:53:22,498 - INFO - Performing threshold analysis (following original pipeline)
+2025-07-17 22:53:22,498 - INFO - Analyzing threshold: 1%
+2025-07-17 22:53:23,015 - INFO -   Generated plots for threshold 1%
+2025-07-17 22:53:23,015 - INFO - Analyzing threshold: 2%
+2025-07-17 22:53:23,525 - INFO -   Generated plots for threshold 2%
+2025-07-17 22:53:23,525 - INFO - Analyzing threshold: 3%
+2025-07-17 22:53:24,044 - INFO -   Generated plots for threshold 3%
+2025-07-17 22:53:24,044 - INFO - Analyzing threshold: 4%
+2025-07-17 22:53:24,555 - INFO -   Generated plots for threshold 4%
+2025-07-17 22:53:24,555 - INFO - Analyzing threshold: 5%
+2025-07-17 22:53:25,076 - INFO -   Generated plots for threshold 5%
+2025-07-17 22:53:25,077 - INFO - Analyzing threshold: 6%
+2025-07-17 22:53:25,596 - INFO -   Generated plots for threshold 6%
+2025-07-17 22:53:25,596 - INFO - Analyzing threshold: 8%
+2025-07-17 22:53:26,119 - INFO -   Generated plots for threshold 8%
+2025-07-17 22:53:26,119 - INFO - Analyzing threshold: 10%
+2025-07-17 22:53:26,630 - INFO -   Generated plots for threshold 10%
+2025-07-17 22:53:26,630 - INFO - Analyzing threshold: 12%
+2025-07-17 22:53:27,145 - INFO -   Generated plots for threshold 12%
+2025-07-17 22:53:27,145 - INFO - Analyzing threshold: 14%
+2025-07-17 22:53:27,646 - INFO -   Generated plots for threshold 14%
+2025-07-17 22:53:27,646 - INFO - Analyzing threshold: 16%
+2025-07-17 22:53:28,144 - INFO -   Generated plots for threshold 16%
+2025-07-17 22:53:28,144 - INFO - Analyzing threshold: 18%
+2025-07-17 22:53:28,656 - INFO -   Generated plots for threshold 18%
+2025-07-17 22:53:28,656 - INFO - Analyzing threshold: 20%
+2025-07-17 22:53:29,159 - INFO -   Generated plots for threshold 20%
+2025-07-17 22:53:29,159 - INFO - Completed thresholds: [1, 2, 3, 4, 5, 6, 8, 10, 12, 14, 16, 18, 20]%
+2025-07-17 22:53:29,159 - INFO - Change detection experiment completed successfully

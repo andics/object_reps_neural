@@ -1,0 +1,73 @@
+2025-07-22 00:49:58,740 - INFO - Logger initialized. Writing detailed log to /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/logs/ttc_exp_20250722_004958.log
+2025-07-22 00:49:58,740 - INFO - VideoProcessor initialized with 2 blobs to detect
+2025-07-22 00:49:58,740 - INFO - Blob 1 memory strategy: running_average
+2025-07-22 00:49:58,740 - INFO - Blob 1 running average window: 10
+2025-07-22 00:49:58,740 - INFO - Blob 1 memory will freeze after frame: 80
+2025-07-22 00:49:58,740 - INFO - Vanilla segmentation enabled
+2025-07-22 00:49:58,740 - INFO - Initialized TTC Experiment with output dir: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC
+2025-07-22 00:49:58,740 - INFO - TTC-specific configuration:
+2025-07-22 00:49:58,740 - INFO -   - Blob 1 memory: running average of past 10 frames
+2025-07-22 00:49:58,740 - INFO -   - Blob 1 memory updates stop after frame 80
+2025-07-22 00:49:58,740 - INFO - Starting full TTC experiment
+2025-07-22 00:49:58,741 - INFO - Found 99 video files to process
+2025-07-22 00:49:58,741 - INFO - Reading participant CSV from /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/exp2TTC_files/experiment2-CollisionDetection-Data.csv...
+2025-07-22 00:49:58,759 - INFO - CSV loaded with 13974 rows and 10 columns.
+2025-07-22 00:49:58,759 - INFO - Starting collision detection across videos and IoU thresholds...
+2025-07-22 00:49:58,759 - INFO - Processing video: AConcave_FConcave
+2025-07-22 00:49:58,764 - INFO - Found 51 existing frames for AConcave_FConcave, attempting to complete processing...
+2025-07-22 00:49:58,771 - INFO - VanillaSegmentationSaver initialized with output dir: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_videos/segformer_model-AConcave_FConcave/org_segmentation
+2025-07-22 00:49:58,772 - INFO - Starting video processing: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/exp2TTC_files/AConcave_FConcave.mp4
+2025-07-22 00:49:58,772 - INFO - Reset blob state tracking for new video
+2025-07-22 00:49:58,778 - INFO - VanillaSegmentationSaver initialized with output dir: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_videos/segformer_model-AConcave_FConcave/org_segmentation
+2025-07-22 00:49:58,778 - INFO - Loading model...
+2025-07-22 00:50:00,877 - INFO - Video metadata: {'width': 1500, 'height': 400, 'fps': 60.0, 'total_frames': 269, 'duration': 4.483333333333333}
+2025-07-22 00:50:00,879 - INFO - Partial processing detected. Last frame: 50
+2025-07-22 00:50:00,879 - INFO - Not enough frames for video generation: 51 < 134
+2025-07-22 00:50:00,879 - INFO - Not enough frames for video, resuming processing from frame 51
+2025-07-22 00:50:03,028 - DEBUG - Saved vanilla segmentation for frame 51
+2025-07-22 00:50:04,600 - DEBUG - Frame 51: Updated blob 1 memory with running average of 1 masks
+2025-07-22 00:50:06,587 - DEBUG - Saved vanilla segmentation for frame 52
+2025-07-22 00:50:08,006 - DEBUG - Frame 52: Updated blob 1 memory with running average of 2 masks
+2025-07-22 00:50:10,238 - DEBUG - Saved vanilla segmentation for frame 53
+2025-07-22 00:50:11,679 - DEBUG - Frame 53: Updated blob 1 memory with running average of 3 masks
+2025-07-22 00:50:13,710 - DEBUG - Saved vanilla segmentation for frame 54
+2025-07-22 00:50:15,285 - DEBUG - Frame 54: Updated blob 1 memory with running average of 4 masks
+2025-07-22 00:50:17,317 - DEBUG - Saved vanilla segmentation for frame 55
+2025-07-22 00:50:18,711 - DEBUG - Frame 55: Updated blob 1 memory with running average of 5 masks
+2025-07-22 00:50:20,919 - DEBUG - Saved vanilla segmentation for frame 56
+2025-07-22 00:50:22,547 - DEBUG - Frame 56: Updated blob 1 memory with running average of 6 masks
+2025-07-22 00:50:24,621 - DEBUG - Saved vanilla segmentation for frame 57
+2025-07-22 00:50:26,028 - DEBUG - Frame 57: Updated blob 1 memory with running average of 7 masks
+2025-07-22 00:50:28,130 - DEBUG - Saved vanilla segmentation for frame 58
+2025-07-22 00:50:29,849 - DEBUG - Frame 58: Updated blob 1 memory with running average of 8 masks
+2025-07-22 00:50:31,925 - DEBUG - Saved vanilla segmentation for frame 59
+2025-07-22 00:50:33,359 - DEBUG - Frame 59: Updated blob 1 memory with running average of 9 masks
+2025-07-22 00:50:37,933 - DEBUG - Saved vanilla segmentation for frame 60
+2025-07-22 00:50:39,694 - DEBUG - Frame 60: Updated blob 1 memory with running average of 10 masks
+2025-07-22 00:50:40,036 - INFO - Processed frame 60/269
+2025-07-22 00:50:43,630 - DEBUG - Saved vanilla segmentation for frame 61
+2025-07-22 00:50:45,043 - DEBUG - Frame 61: Updated blob 1 memory with running average of 10 masks
+2025-07-22 00:50:49,411 - DEBUG - Saved vanilla segmentation for frame 62
+2025-07-22 00:50:50,792 - DEBUG - Frame 62: Updated blob 1 memory with running average of 10 masks
+2025-07-22 00:50:54,716 - DEBUG - Saved vanilla segmentation for frame 63
+2025-07-22 00:50:56,330 - DEBUG - Frame 63: Updated blob 1 memory with running average of 10 masks
+2025-07-22 00:50:58,290 - DEBUG - Saved vanilla segmentation for frame 64
+2025-07-22 00:50:59,678 - DEBUG - Frame 64: Updated blob 1 memory with running average of 10 masks
+2025-07-22 00:51:01,711 - DEBUG - Saved vanilla segmentation for frame 65
+2025-07-22 00:51:03,353 - DEBUG - Frame 65: Updated blob 1 memory with running average of 10 masks
+2025-07-22 00:51:05,334 - DEBUG - Saved vanilla segmentation for frame 66
+2025-07-22 00:51:06,742 - DEBUG - Frame 66: Updated blob 1 memory with running average of 10 masks
+2025-07-22 00:51:08,736 - DEBUG - Saved vanilla segmentation for frame 67
+2025-07-22 00:51:10,385 - DEBUG - Frame 67: Updated blob 1 memory with running average of 10 masks
+2025-07-22 00:51:12,339 - DEBUG - Saved vanilla segmentation for frame 68
+2025-07-22 00:51:13,737 - DEBUG - Frame 68: Updated blob 1 memory with running average of 10 masks
+2025-07-22 00:51:15,897 - DEBUG - Saved vanilla segmentation for frame 69
+2025-07-22 00:51:17,300 - DEBUG - Frame 69: Updated blob 1 memory with running average of 10 masks
+2025-07-22 00:51:19,365 - DEBUG - Saved vanilla segmentation for frame 70
+2025-07-22 00:51:20,994 - DEBUG - Frame 70: Updated blob 1 memory with running average of 10 masks
+2025-07-22 00:51:21,326 - INFO - Processed frame 70/269
+2025-07-22 00:51:22,949 - DEBUG - Saved vanilla segmentation for frame 71
+2025-07-22 00:51:24,340 - DEBUG - Frame 71: Updated blob 1 memory with running average of 10 masks
+2025-07-22 00:51:26,304 - DEBUG - Saved vanilla segmentation for frame 72
+2025-07-22 00:51:27,976 - DEBUG - Frame 72: Updated blob 1 memory with running average of 10 masks
+2025-07-22 00:51:30,059 - DEBUG - Saved vanilla segmentation for frame 73

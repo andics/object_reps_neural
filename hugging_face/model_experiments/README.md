@@ -85,7 +85,7 @@ output_dir/
 
 **Usage**:
 ```bash
-python exp2TTC.py --model_interface segformer \
+python exp2TTC_b1.py --model_interface segformer \
                   --videos_dir /path/to/raw_videos \
                   --csv_path /path/to/participant_data.csv \
                   --output_dir /path/to/output \
@@ -253,7 +253,7 @@ python exp1Causality.py --model_interface segformer \
                         --n_blobs 2
 
 # Experiment 2: TTC Analysis  
-python exp2TTC.py --model_interface segformer \
+python exp2TTC_b1.py --model_interface segformer \
                   --videos_dir /data/raw_videos \
                   --csv_path /data/participants.csv \
                   --output_dir /output/exp2_results \
@@ -283,13 +283,13 @@ For large datasets, experiments can be run in sequence or parallel:
 
 ```bash
 # Sequential processing
-for exp in exp1Causality.py exp2TTC.py exp3Change.py; do
+for exp in exp1Causality.py exp2TTC_b1.py exp3Change.py; do
     python $exp --model_interface segformer [args...]
 done
 
 # Parallel processing (if sufficient resources)
 python exp1Causality.py [args...] &
-python exp2TTC.py [args...] &
+python exp2TTC_b1.py [args...] &
 python exp3Change.py [args...] &
 wait
 ```
@@ -306,7 +306,7 @@ python exp1Causality.py --n_blobs 2 [other args...]
 python exp1Causality.py --n_blobs 4 [other args...]
 
 # Single object tracking
-python exp2TTC.py --n_blobs 1 [other args...]
+python exp2TTC_b1.py --n_blobs 1 [other args...]
 
 # Complex scenes with many objects
 python exp1Causality.py --n_blobs 6 [other args...]
