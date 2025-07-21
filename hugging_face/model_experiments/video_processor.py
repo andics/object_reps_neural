@@ -768,7 +768,9 @@ class VideoProcessor:
         """Save non-memory masks as PNG files."""
         for blob_idx, mask in enumerate(assigned_masks):
             if mask is not None and mask.sum() > 0:
-                mask_255 = (mask.astype(np.uint8)) * 255
+                # Ensure mask is boolean before converting to uint8
+                mask_bool = mask.astype(bool)
+                mask_255 = (mask_bool.astype(np.uint8)) * 255
                 mask_path = os.path.join(
                     directories['frames_masks_nonmem'],
                     f"mask_blob_{blob_idx}_frame_{frame_idx:06d}.png"
@@ -801,13 +803,17 @@ class VideoProcessor:
                         self.logger.warning(f"Frame {frame_idx}: Frozen mask file not found: {frozen_mask_path}")
                         # Fall back to saving current mask but this should not happen
                         if mask.sum() > 0:
-                            mask_255 = (mask.astype(np.uint8)) * 255
+                            # Ensure mask is boolean before converting to uint8
+                            mask_bool = mask.astype(bool)
+                            mask_255 = (mask_bool.astype(np.uint8)) * 255
                             Image.fromarray(mask_255).save(mask_path)
                 else:
                     # This shouldn't happen if logic is correct, but save current mask as fallback
                     self.logger.warning(f"Frame {frame_idx}: No frozen mask stored for blob 1")
                     if mask.sum() > 0:
-                        mask_255 = (mask.astype(np.uint8)) * 255
+                        # Ensure mask is boolean before converting to uint8
+                        mask_bool = mask.astype(bool)
+                        mask_255 = (mask_bool.astype(np.uint8)) * 255
                         Image.fromarray(mask_255).save(mask_path)
             
             elif (blob_idx == 1 and 
@@ -816,7 +822,9 @@ class VideoProcessor:
                 
                 # This is the last frame before freezing - save as the frozen mask
                 if mask.sum() > 0:
-                    mask_255 = (mask.astype(np.uint8)) * 255
+                    # Ensure mask is boolean before converting to uint8
+                    mask_bool = mask.astype(bool)
+                    mask_255 = (mask_bool.astype(np.uint8)) * 255
                     Image.fromarray(mask_255).save(mask_path)
                     
                     # Store this as the frozen mask to reuse
@@ -826,7 +834,9 @@ class VideoProcessor:
             else:
                 # Normal case - save the current mask
                 if mask.sum() > 0:
-                    mask_255 = (mask.astype(np.uint8)) * 255
+                    # Ensure mask is boolean before converting to uint8
+                    mask_bool = mask.astype(bool)
+                    mask_255 = (mask_bool.astype(np.uint8)) * 255
                     Image.fromarray(mask_255).save(mask_path)
     
     def _save_blob_visualization(self, frame: np.ndarray, blob_masks: List[np.ndarray],
@@ -837,9 +847,11 @@ class VideoProcessor:
         
         for i, blob_mask in enumerate(blob_masks):
             color = colors[i % len(colors)]
-            debug_frame[blob_mask, 0] = color[0]
-            debug_frame[blob_mask, 1] = color[1] 
-            debug_frame[blob_mask, 2] = color[2]
+            # Ensure blob_mask is boolean for indexing
+            blob_mask_bool = blob_mask.astype(bool)
+            debug_frame[blob_mask_bool, 0] = color[0]
+            debug_frame[blob_mask_bool, 1] = color[1] 
+            debug_frame[blob_mask_bool, 2] = color[2]
         
         debug_path = os.path.join(directories['frames_blobs'], f"frame_{frame_idx:06d}_blobs.png")
         Image.fromarray(debug_frame.astype(np.uint8)).save(debug_path)
@@ -873,7 +885,9 @@ class VideoProcessor:
         mask_info = []
         for i, mask in enumerate(disjoint_masks):
             if mask is not None and mask.sum() > 0:
-                coords = np.argwhere(mask)
+                # Ensure mask is boolean for argwhere
+                mask_bool = mask.astype(bool)
+                coords = np.argwhere(mask_bool)
                 mean_col = coords[:, 1].mean()
                 mask_info.append((i, mask, mean_col))
             else:
@@ -888,7 +902,9 @@ class VideoProcessor:
                 continue
                 
             # Create polygon from mask contours
-            contours = find_contours(mask.astype(np.uint8), 0.5)
+            # Ensure mask is boolean before converting to uint8
+            mask_bool = mask.astype(bool)
+            contours = find_contours(mask_bool.astype(np.uint8), 0.5)
             if contours:
                 largest_contour = max(contours, key=len)
                 polygon_points = []
@@ -916,10 +932,14 @@ class VideoProcessor:
         for i in range(len(masks)):
             if masks[i] is None:
                 continue
+            # Ensure mask_i is boolean for bitwise operations
+            mask_i_bool = masks[i].astype(bool)
             for j in range(i+1, len(masks)):
                 if masks[j] is None:
                     continue
-                masks[j] = masks[j] & ~masks[i]
+                # Ensure mask_j is boolean for bitwise operations
+                mask_j_bool = masks[j].astype(bool)
+                masks[j] = mask_j_bool & ~mask_i_bool
         return masks
     
     def _create_final_video(self, directories: Dict[str, str], video_metadata: Dict[str, Any]) -> None:

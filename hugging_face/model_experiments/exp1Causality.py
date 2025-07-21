@@ -568,7 +568,10 @@ def main():
         print("\nExperiment interrupted by user")
         sys.exit(1)
     except Exception as e:
+        import traceback
         print(f"Experiment failed with error: {e}")
+        print("\nFull traceback:")
+        traceback.print_exc()
         sys.exit(1)
 
 if __name__ == "__main__":
