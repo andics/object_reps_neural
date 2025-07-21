@@ -1,0 +1,318 @@
+2025-07-16 20:56:06,653 - INFO - Logger initialized. Writing detailed log to /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/logs/change_detection_exp_20250716_205606.log
+2025-07-16 20:56:06,662 - INFO - VanillaSegmentationSaver initialized with output dir: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/org_segmentation
+2025-07-16 20:56:06,662 - INFO - Vanilla segmentation enabled for change detection experiment
+2025-07-16 20:56:06,662 - INFO - Initialized Change Detection Experiment with output dir: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC
+2025-07-16 20:56:06,662 - INFO - Starting full change detection experiment
+2025-07-16 20:56:06,673 - INFO - Found 162 image files to process
+2025-07-16 20:56:06,673 - INFO - Processing image: catch_shape_change1_init
+2025-07-16 20:56:06,674 - INFO - Loading model...
+2025-07-16 20:56:11,132 - INFO - Image catch_shape_change1_init shape: 400x1000 RGB
+2025-07-16 20:56:11,153 - DEBUG - Blob detected with threshold 30 (area=7396.0)
+2025-07-16 20:56:11,928 - INFO - Generated 4 candidate masks from model.
+2025-07-16 20:56:11,938 - INFO - Saved chosen mask to /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_images/segformer_model_catch_shape_change1_init/mask/mask_catch_shape_change1_init.png
+2025-07-16 20:56:12,466 - ERROR - Failed to process image catch_shape_change1_init: arrays used as indices must be of integer (or boolean) type
+2025-07-16 20:56:12,466 - INFO - Processing image: catch_shape_change1_out
+2025-07-16 20:56:12,487 - INFO - Image catch_shape_change1_out shape: 400x1000 RGB
+2025-07-16 20:56:12,497 - DEBUG - Blob detected with threshold 30 (area=3968.0)
+2025-07-16 20:56:12,963 - INFO - Generated 7 candidate masks from model.
+2025-07-16 20:56:12,977 - INFO - Saved chosen mask to /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_images/segformer_model_catch_shape_change1_out/mask/mask_catch_shape_change1_out.png
+2025-07-16 20:56:13,079 - ERROR - Failed to process image catch_shape_change1_out: arrays used as indices must be of integer (or boolean) type
+2025-07-16 20:56:13,079 - INFO - Processing image: catch_shape_change2_init
+2025-07-16 20:56:13,098 - INFO - Image catch_shape_change2_init shape: 400x1000 RGB
+2025-07-16 20:56:13,108 - DEBUG - Blob detected with threshold 30 (area=7396.0)
+2025-07-16 20:56:13,548 - INFO - Generated 4 candidate masks from model.
+2025-07-16 20:56:13,559 - INFO - Saved chosen mask to /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_images/segformer_model_catch_shape_change2_init/mask/mask_catch_shape_change2_init.png
+2025-07-16 20:56:13,636 - ERROR - Failed to process image catch_shape_change2_init: arrays used as indices must be of integer (or boolean) type
+2025-07-16 20:56:13,636 - INFO - Processing image: catch_shape_change2_out
+2025-07-16 20:56:13,654 - INFO - Image catch_shape_change2_out shape: 400x1000 RGB
+2025-07-16 20:56:13,664 - DEBUG - Blob detected with threshold 30 (area=3968.0)
+2025-07-16 20:56:14,109 - INFO - Generated 5 candidate masks from model.
+2025-07-16 20:56:14,121 - INFO - Saved chosen mask to /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_images/segformer_model_catch_shape_change2_out/mask/mask_catch_shape_change2_out.png
+2025-07-16 20:56:14,203 - ERROR - Failed to process image catch_shape_change2_out: arrays used as indices must be of integer (or boolean) type
+2025-07-16 20:56:14,203 - INFO - Processing image: catch_shape_change3_init
+2025-07-16 20:56:14,222 - INFO - Image catch_shape_change3_init shape: 400x1000 RGB
+2025-07-16 20:56:14,232 - DEBUG - Blob detected with threshold 30 (area=7396.0)
+2025-07-16 20:56:14,689 - INFO - Generated 3 candidate masks from model.
+2025-07-16 20:56:14,692 - WARNING - No suitable model mask found for catch_shape_change3_init
+2025-07-16 20:56:14,759 - ERROR - Failed to process image catch_shape_change3_init: arrays used as indices must be of integer (or boolean) type
+2025-07-16 20:56:14,759 - INFO - Processing image: catch_shape_change3_out
+2025-07-16 20:56:14,779 - INFO - Image catch_shape_change3_out shape: 400x1000 RGB
+2025-07-16 20:56:14,788 - DEBUG - Blob detected with threshold 30 (area=3968.0)
+2025-07-16 20:56:15,276 - INFO - Generated 2 candidate masks from model.
+2025-07-16 20:56:15,285 - INFO - Saved chosen mask to /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_images/segformer_model_catch_shape_change3_out/mask/mask_catch_shape_change3_out.png
+2025-07-16 20:56:15,342 - ERROR - Failed to process image catch_shape_change3_out: arrays used as indices must be of integer (or boolean) type
+2025-07-16 20:56:15,342 - INFO - Processing image: catch_shape_change4_init
+2025-07-16 20:56:15,362 - INFO - Image catch_shape_change4_init shape: 400x1000 RGB
+2025-07-16 20:56:15,372 - DEBUG - Blob detected with threshold 30 (area=7396.0)
+2025-07-16 20:56:15,833 - INFO - Generated 4 candidate masks from model.
+2025-07-16 20:56:15,844 - INFO - Saved chosen mask to /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_images/segformer_model_catch_shape_change4_init/mask/mask_catch_shape_change4_init.png
+2025-07-16 20:56:15,925 - ERROR - Failed to process image catch_shape_change4_init: arrays used as indices must be of integer (or boolean) type
+2025-07-16 20:56:15,925 - INFO - Processing image: catch_shape_change4_out
+2025-07-16 20:56:15,943 - INFO - Image catch_shape_change4_out shape: 400x1000 RGB
+2025-07-16 20:56:15,953 - DEBUG - Blob detected with threshold 30 (area=3968.0)
+2025-07-16 20:56:16,413 - INFO - Generated 6 candidate masks from model.
+2025-07-16 20:56:16,427 - INFO - Saved chosen mask to /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_images/segformer_model_catch_shape_change4_out/mask/mask_catch_shape_change4_out.png
+2025-07-16 20:56:16,524 - ERROR - Failed to process image catch_shape_change4_out: arrays used as indices must be of integer (or boolean) type
+2025-07-16 20:56:16,524 - INFO - Processing image: catch_shape_change5_init
+2025-07-16 20:56:16,545 - INFO - Image catch_shape_change5_init shape: 400x1000 RGB
+2025-07-16 20:56:16,556 - DEBUG - Blob detected with threshold 30 (area=7396.0)
+2025-07-16 20:56:17,023 - INFO - Generated 3 candidate masks from model.
+2025-07-16 20:56:17,033 - INFO - Saved chosen mask to /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_images/segformer_model_catch_shape_change5_init/mask/mask_catch_shape_change5_init.png
+2025-07-16 20:56:17,104 - ERROR - Failed to process image catch_shape_change5_init: arrays used as indices must be of integer (or boolean) type
+2025-07-16 20:56:17,104 - INFO - Processing image: catch_shape_change5_out
+2025-07-16 20:56:17,124 - INFO - Image catch_shape_change5_out shape: 400x1000 RGB
+2025-07-16 20:56:17,135 - DEBUG - Blob detected with threshold 30 (area=3968.0)
+2025-07-16 20:56:17,586 - INFO - Generated 4 candidate masks from model.
+2025-07-16 20:56:17,598 - INFO - Saved chosen mask to /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_images/segformer_model_catch_shape_change5_out/mask/mask_catch_shape_change5_out.png
+2025-07-16 20:56:17,673 - ERROR - Failed to process image catch_shape_change5_out: arrays used as indices must be of integer (or boolean) type
+2025-07-16 20:56:17,673 - INFO - Processing image: catch_shape_change6_init
+2025-07-16 20:56:17,691 - INFO - Image catch_shape_change6_init shape: 400x1000 RGB
+2025-07-16 20:56:17,702 - DEBUG - Blob detected with threshold 30 (area=7396.0)
+2025-07-16 20:56:18,155 - INFO - Generated 1 candidate masks from model.
+2025-07-16 20:56:18,156 - WARNING - No suitable model mask found for catch_shape_change6_init
+2025-07-16 20:56:18,205 - ERROR - Failed to process image catch_shape_change6_init: arrays used as indices must be of integer (or boolean) type
+2025-07-16 20:56:18,205 - INFO - Processing image: catch_shape_change6_out
+2025-07-16 20:56:18,223 - INFO - Image catch_shape_change6_out shape: 400x1000 RGB
+2025-07-16 20:56:18,233 - DEBUG - Blob detected with threshold 30 (area=3968.0)
+2025-07-16 20:56:18,675 - INFO - Generated 5 candidate masks from model.
+2025-07-16 20:56:18,687 - INFO - Saved chosen mask to /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_images/segformer_model_catch_shape_change6_out/mask/mask_catch_shape_change6_out.png
+2025-07-16 20:56:18,772 - ERROR - Failed to process image catch_shape_change6_out: arrays used as indices must be of integer (or boolean) type
+2025-07-16 20:56:18,772 - INFO - Processing image: catch_shape_no_change1_init
+2025-07-16 20:56:18,790 - INFO - Image catch_shape_no_change1_init shape: 400x1000 RGB
+2025-07-16 20:56:18,800 - DEBUG - Blob detected with threshold 30 (area=7396.0)
+2025-07-16 20:56:19,246 - INFO - Generated 4 candidate masks from model.
+2025-07-16 20:56:19,258 - INFO - Saved chosen mask to /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_images/segformer_model_catch_shape_no_change1_init/mask/mask_catch_shape_no_change1_init.png
+2025-07-16 20:56:19,534 - ERROR - Failed to process image catch_shape_no_change1_init: arrays used as indices must be of integer (or boolean) type
+2025-07-16 20:56:19,535 - INFO - Processing image: catch_shape_no_change2_init
+2025-07-16 20:56:19,554 - INFO - Image catch_shape_no_change2_init shape: 400x1000 RGB
+2025-07-16 20:56:19,564 - DEBUG - Blob detected with threshold 30 (area=7396.0)
+2025-07-16 20:56:20,031 - INFO - Generated 4 candidate masks from model.
+2025-07-16 20:56:20,042 - INFO - Saved chosen mask to /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_images/segformer_model_catch_shape_no_change2_init/mask/mask_catch_shape_no_change2_init.png
+2025-07-16 20:56:20,117 - ERROR - Failed to process image catch_shape_no_change2_init: arrays used as indices must be of integer (or boolean) type
+2025-07-16 20:56:20,117 - INFO - Processing image: catch_shape_no_change3_init
+2025-07-16 20:56:20,135 - INFO - Image catch_shape_no_change3_init shape: 400x1000 RGB
+2025-07-16 20:56:20,145 - DEBUG - Blob detected with threshold 30 (area=7396.0)
+2025-07-16 20:56:20,785 - INFO - Generated 1 candidate masks from model.
+2025-07-16 20:56:20,793 - INFO - Saved chosen mask to /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_images/segformer_model_catch_shape_no_change3_init/mask/mask_catch_shape_no_change3_init.png
+2025-07-16 20:56:20,845 - ERROR - Failed to process image catch_shape_no_change3_init: arrays used as indices must be of integer (or boolean) type
+2025-07-16 20:56:20,845 - INFO - Processing image: catch_shape_no_change4_init
+2025-07-16 20:56:20,864 - INFO - Image catch_shape_no_change4_init shape: 400x1000 RGB
+2025-07-16 20:56:20,875 - DEBUG - Blob detected with threshold 30 (area=7396.0)
+2025-07-16 20:56:21,320 - INFO - Generated 2 candidate masks from model.
+2025-07-16 20:56:21,328 - INFO - Saved chosen mask to /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_images/segformer_model_catch_shape_no_change4_init/mask/mask_catch_shape_no_change4_init.png
+2025-07-16 20:56:21,389 - ERROR - Failed to process image catch_shape_no_change4_init: arrays used as indices must be of integer (or boolean) type
+2025-07-16 20:56:21,389 - INFO - Processing image: catch_shape_no_change5_init
+2025-07-16 20:56:21,406 - INFO - Image catch_shape_no_change5_init shape: 400x1000 RGB
+2025-07-16 20:56:21,416 - DEBUG - Blob detected with threshold 30 (area=7396.0)
+2025-07-16 20:56:21,856 - INFO - Generated 4 candidate masks from model.
+2025-07-16 20:56:21,869 - INFO - Saved chosen mask to /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_images/segformer_model_catch_shape_no_change5_init/mask/mask_catch_shape_no_change5_init.png
+2025-07-16 20:56:21,948 - ERROR - Failed to process image catch_shape_no_change5_init: arrays used as indices must be of integer (or boolean) type
+2025-07-16 20:56:21,948 - INFO - Processing image: catch_shape_no_change6_init
+2025-07-16 20:56:21,966 - INFO - Image catch_shape_no_change6_init shape: 400x1000 RGB
+2025-07-16 20:56:21,976 - DEBUG - Blob detected with threshold 30 (area=7396.0)
+2025-07-16 20:56:22,427 - INFO - Generated 3 candidate masks from model.
+2025-07-16 20:56:22,436 - INFO - Saved chosen mask to /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_images/segformer_model_catch_shape_no_change6_init/mask/mask_catch_shape_no_change6_init.png
+2025-07-16 20:56:22,504 - ERROR - Failed to process image catch_shape_no_change6_init: arrays used as indices must be of integer (or boolean) type
+2025-07-16 20:56:22,504 - INFO - Processing image: shape1_concave_area1_init
+2025-07-16 20:56:22,522 - INFO - Image shape1_concave_area1_init shape: 400x1000 RGB
+2025-07-16 20:56:22,532 - DEBUG - Blob detected with threshold 30 (area=12755.0)
+2025-07-16 20:56:22,984 - INFO - Generated 4 candidate masks from model.
+2025-07-16 20:56:22,995 - INFO - Saved chosen mask to /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_images/segformer_model_shape1_concave_area1_init/mask/mask_shape1_concave_area1_init.png
+2025-07-16 20:56:23,075 - ERROR - Failed to process image shape1_concave_area1_init: arrays used as indices must be of integer (or boolean) type
+2025-07-16 20:56:23,075 - INFO - Processing image: shape1_concave_area1_out
+2025-07-16 20:56:23,094 - INFO - Image shape1_concave_area1_out shape: 400x1000 RGB
+2025-07-16 20:56:23,104 - DEBUG - Blob detected with threshold 30 (area=12905.0)
+2025-07-16 20:56:23,614 - INFO - Generated 8 candidate masks from model.
+2025-07-16 20:56:23,629 - INFO - Saved chosen mask to /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_images/segformer_model_shape1_concave_area1_out/mask/mask_shape1_concave_area1_out.png
+2025-07-16 20:56:23,740 - ERROR - Failed to process image shape1_concave_area1_out: arrays used as indices must be of integer (or boolean) type
+2025-07-16 20:56:23,740 - INFO - Processing image: shape1_concave_area2_init
+2025-07-16 20:56:23,758 - INFO - Image shape1_concave_area2_init shape: 400x1000 RGB
+2025-07-16 20:56:23,769 - DEBUG - Blob detected with threshold 30 (area=12773.0)
+2025-07-16 20:56:24,257 - INFO - Generated 13 candidate masks from model.
+2025-07-16 20:56:24,276 - INFO - Saved chosen mask to /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_images/segformer_model_shape1_concave_area2_init/mask/mask_shape1_concave_area2_init.png
+2025-07-16 20:56:24,402 - ERROR - Failed to process image shape1_concave_area2_init: arrays used as indices must be of integer (or boolean) type
+2025-07-16 20:56:24,402 - INFO - Processing image: shape1_concave_area2_out
+2025-07-16 20:56:24,420 - INFO - Image shape1_concave_area2_out shape: 400x1000 RGB
+2025-07-16 20:56:24,429 - DEBUG - Blob detected with threshold 30 (area=13057.0)
+2025-07-16 20:56:24,923 - INFO - Generated 8 candidate masks from model.
+2025-07-16 20:56:24,940 - INFO - Saved chosen mask to /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_images/segformer_model_shape1_concave_area2_out/mask/mask_shape1_concave_area2_out.png
+2025-07-16 20:56:25,068 - ERROR - Failed to process image shape1_concave_area2_out: arrays used as indices must be of integer (or boolean) type
+2025-07-16 20:56:25,068 - INFO - Processing image: shape1_concave_nofill_area1_init
+2025-07-16 20:56:25,086 - INFO - Image shape1_concave_nofill_area1_init shape: 400x1000 RGB
+2025-07-16 20:56:25,097 - DEBUG - Blob detected with threshold 30 (area=12755.0)
+2025-07-16 20:56:25,589 - INFO - Generated 20 candidate masks from model.
+2025-07-16 20:56:25,613 - INFO - Saved chosen mask to /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_images/segformer_model_shape1_concave_nofill_area1_init/mask/mask_shape1_concave_nofill_area1_init.png
+2025-07-16 20:56:25,749 - ERROR - Failed to process image shape1_concave_nofill_area1_init: arrays used as indices must be of integer (or boolean) type
+2025-07-16 20:56:25,749 - INFO - Processing image: shape1_concave_nofill_area1_out
+2025-07-16 20:56:25,768 - INFO - Image shape1_concave_nofill_area1_out shape: 400x1000 RGB
+2025-07-16 20:56:25,778 - DEBUG - Blob detected with threshold 30 (area=12942.0)
+2025-07-16 20:56:26,259 - INFO - Generated 13 candidate masks from model.
+2025-07-16 20:56:26,278 - INFO - Saved chosen mask to /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_images/segformer_model_shape1_concave_nofill_area1_out/mask/mask_shape1_concave_nofill_area1_out.png
+2025-07-16 20:56:26,406 - ERROR - Failed to process image shape1_concave_nofill_area1_out: arrays used as indices must be of integer (or boolean) type
+2025-07-16 20:56:26,406 - INFO - Processing image: shape1_concave_nofill_area2_init
+2025-07-16 20:56:26,423 - INFO - Image shape1_concave_nofill_area2_init shape: 400x1000 RGB
+2025-07-16 20:56:26,432 - DEBUG - Blob detected with threshold 30 (area=12765.0)
+2025-07-16 20:56:26,915 - INFO - Generated 8 candidate masks from model.
+2025-07-16 20:56:26,930 - INFO - Saved chosen mask to /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_images/segformer_model_shape1_concave_nofill_area2_init/mask/mask_shape1_concave_nofill_area2_init.png
+2025-07-16 20:56:27,285 - ERROR - Failed to process image shape1_concave_nofill_area2_init: arrays used as indices must be of integer (or boolean) type
+2025-07-16 20:56:27,285 - INFO - Processing image: shape1_concave_nofill_area2_out
+2025-07-16 20:56:27,303 - INFO - Image shape1_concave_nofill_area2_out shape: 400x1000 RGB
+2025-07-16 20:56:27,313 - DEBUG - Blob detected with threshold 30 (area=13084.0)
+2025-07-16 20:56:27,803 - INFO - Generated 10 candidate masks from model.
+2025-07-16 20:56:27,820 - INFO - Saved chosen mask to /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_images/segformer_model_shape1_concave_nofill_area2_out/mask/mask_shape1_concave_nofill_area2_out.png
+2025-07-16 20:56:27,944 - ERROR - Failed to process image shape1_concave_nofill_area2_out: arrays used as indices must be of integer (or boolean) type
+2025-07-16 20:56:27,944 - INFO - Processing image: shape1_convex_area1_init
+2025-07-16 20:56:27,962 - INFO - Image shape1_convex_area1_init shape: 400x1000 RGB
+2025-07-16 20:56:27,971 - DEBUG - Blob detected with threshold 30 (area=12755.0)
+2025-07-16 20:56:28,436 - INFO - Generated 6 candidate masks from model.
+2025-07-16 20:56:28,450 - INFO - Saved chosen mask to /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_images/segformer_model_shape1_convex_area1_init/mask/mask_shape1_convex_area1_init.png
+2025-07-16 20:56:28,542 - ERROR - Failed to process image shape1_convex_area1_init: arrays used as indices must be of integer (or boolean) type
+2025-07-16 20:56:28,542 - INFO - Processing image: shape1_convex_area1_out
+2025-07-16 20:56:28,559 - INFO - Image shape1_convex_area1_out shape: 400x1000 RGB
+2025-07-16 20:56:28,569 - DEBUG - Blob detected with threshold 30 (area=12936.0)
+2025-07-16 20:56:29,036 - INFO - Generated 6 candidate masks from model.
+2025-07-16 20:56:29,050 - INFO - Saved chosen mask to /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_images/segformer_model_shape1_convex_area1_out/mask/mask_shape1_convex_area1_out.png
+2025-07-16 20:56:29,145 - ERROR - Failed to process image shape1_convex_area1_out: arrays used as indices must be of integer (or boolean) type
+2025-07-16 20:56:29,146 - INFO - Processing image: shape1_convex_area2_init
+2025-07-16 20:56:29,164 - INFO - Image shape1_convex_area2_init shape: 400x1000 RGB
+2025-07-16 20:56:29,174 - DEBUG - Blob detected with threshold 30 (area=12756.0)
+2025-07-16 20:56:29,696 - INFO - Generated 11 candidate masks from model.
+2025-07-16 20:56:29,714 - INFO - Saved chosen mask to /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_images/segformer_model_shape1_convex_area2_init/mask/mask_shape1_convex_area2_init.png
+2025-07-16 20:56:29,848 - ERROR - Failed to process image shape1_convex_area2_init: arrays used as indices must be of integer (or boolean) type
+2025-07-16 20:56:29,848 - INFO - Processing image: shape1_convex_area2_out
+2025-07-16 20:56:29,865 - INFO - Image shape1_convex_area2_out shape: 400x1000 RGB
+2025-07-16 20:56:29,875 - DEBUG - Blob detected with threshold 30 (area=13168.0)
+2025-07-16 20:56:30,384 - INFO - Generated 23 candidate masks from model.
+2025-07-16 20:56:30,412 - INFO - Saved chosen mask to /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_images/segformer_model_shape1_convex_area2_out/mask/mask_shape1_convex_area2_out.png
+2025-07-16 20:56:30,546 - ERROR - Failed to process image shape1_convex_area2_out: arrays used as indices must be of integer (or boolean) type
+2025-07-16 20:56:30,546 - INFO - Processing image: shape1_no_change1_init
+2025-07-16 20:56:30,565 - INFO - Image shape1_no_change1_init shape: 400x1000 RGB
+2025-07-16 20:56:30,576 - DEBUG - Blob detected with threshold 30 (area=12755.0)
+2025-07-16 20:56:31,066 - INFO - Generated 20 candidate masks from model.
+2025-07-16 20:56:31,091 - INFO - Saved chosen mask to /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_images/segformer_model_shape1_no_change1_init/mask/mask_shape1_no_change1_init.png
+2025-07-16 20:56:31,225 - ERROR - Failed to process image shape1_no_change1_init: arrays used as indices must be of integer (or boolean) type
+2025-07-16 20:56:31,225 - INFO - Processing image: shape1_no_change2_init
+2025-07-16 20:56:31,242 - INFO - Image shape1_no_change2_init shape: 400x1000 RGB
+2025-07-16 20:56:31,252 - DEBUG - Blob detected with threshold 30 (area=12755.0)
+2025-07-16 20:56:31,735 - INFO - Generated 17 candidate masks from model.
+2025-07-16 20:56:31,757 - INFO - Saved chosen mask to /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_images/segformer_model_shape1_no_change2_init/mask/mask_shape1_no_change2_init.png
+2025-07-16 20:56:31,889 - ERROR - Failed to process image shape1_no_change2_init: arrays used as indices must be of integer (or boolean) type
+2025-07-16 20:56:31,889 - INFO - Processing image: shape1_no_change3_init
+2025-07-16 20:56:31,907 - INFO - Image shape1_no_change3_init shape: 400x1000 RGB
+2025-07-16 20:56:31,916 - DEBUG - Blob detected with threshold 30 (area=12755.0)
+2025-07-16 20:56:32,407 - INFO - Generated 3 candidate masks from model.
+2025-07-16 20:56:32,418 - INFO - Saved chosen mask to /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_images/segformer_model_shape1_no_change3_init/mask/mask_shape1_no_change3_init.png
+2025-07-16 20:56:32,485 - ERROR - Failed to process image shape1_no_change3_init: arrays used as indices must be of integer (or boolean) type
+2025-07-16 20:56:32,485 - INFO - Processing image: shape1_no_change4_init
+2025-07-16 20:56:32,503 - INFO - Image shape1_no_change4_init shape: 400x1000 RGB
+2025-07-16 20:56:32,513 - DEBUG - Blob detected with threshold 30 (area=12755.0)
+2025-07-16 20:56:32,983 - INFO - Generated 7 candidate masks from model.
+2025-07-16 20:56:32,997 - INFO - Saved chosen mask to /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_images/segformer_model_shape1_no_change4_init/mask/mask_shape1_no_change4_init.png
+2025-07-16 20:56:33,097 - ERROR - Failed to process image shape1_no_change4_init: arrays used as indices must be of integer (or boolean) type
+2025-07-16 20:56:33,097 - INFO - Processing image: shape1_no_change5_init
+2025-07-16 20:56:33,114 - INFO - Image shape1_no_change5_init shape: 400x1000 RGB
+2025-07-16 20:56:33,124 - DEBUG - Blob detected with threshold 30 (area=12755.0)
+2025-07-16 20:56:33,623 - INFO - Generated 24 candidate masks from model.
+2025-07-16 20:56:33,651 - INFO - Saved chosen mask to /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_images/segformer_model_shape1_no_change5_init/mask/mask_shape1_no_change5_init.png
+2025-07-16 20:56:33,787 - ERROR - Failed to process image shape1_no_change5_init: arrays used as indices must be of integer (or boolean) type
+2025-07-16 20:56:33,787 - INFO - Processing image: shape1_no_change6_init
+2025-07-16 20:56:33,804 - INFO - Image shape1_no_change6_init shape: 400x1000 RGB
+2025-07-16 20:56:33,814 - DEBUG - Blob detected with threshold 30 (area=12755.0)
+2025-07-16 20:56:34,274 - INFO - Generated 6 candidate masks from model.
+2025-07-16 20:56:34,287 - INFO - Saved chosen mask to /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_images/segformer_model_shape1_no_change6_init/mask/mask_shape1_no_change6_init.png
+2025-07-16 20:56:34,707 - ERROR - Failed to process image shape1_no_change6_init: arrays used as indices must be of integer (or boolean) type
+2025-07-16 20:56:34,707 - INFO - Processing image: shape2_concave_area1_init
+2025-07-16 20:56:34,726 - INFO - Image shape2_concave_area1_init shape: 400x1000 RGB
+2025-07-16 20:56:34,736 - DEBUG - Blob detected with threshold 30 (area=7545.0)
+2025-07-16 20:56:35,217 - INFO - Generated 3 candidate masks from model.
+2025-07-16 20:56:35,227 - INFO - Saved chosen mask to /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_images/segformer_model_shape2_concave_area1_init/mask/mask_shape2_concave_area1_init.png
+2025-07-16 20:56:35,296 - ERROR - Failed to process image shape2_concave_area1_init: arrays used as indices must be of integer (or boolean) type
+2025-07-16 20:56:35,296 - INFO - Processing image: shape2_concave_area1_out
+2025-07-16 20:56:35,314 - INFO - Image shape2_concave_area1_out shape: 400x1000 RGB
+2025-07-16 20:56:35,324 - DEBUG - Blob detected with threshold 30 (area=7688.0)
+2025-07-16 20:56:35,937 - INFO - Generated 6 candidate masks from model.
+2025-07-16 20:56:35,951 - INFO - Saved chosen mask to /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_images/segformer_model_shape2_concave_area1_out/mask/mask_shape2_concave_area1_out.png
+2025-07-16 20:56:36,045 - ERROR - Failed to process image shape2_concave_area1_out: arrays used as indices must be of integer (or boolean) type
+2025-07-16 20:56:36,045 - INFO - Processing image: shape2_concave_area2_init
+2025-07-16 20:56:36,063 - INFO - Image shape2_concave_area2_init shape: 400x1000 RGB
+2025-07-16 20:56:36,073 - DEBUG - Blob detected with threshold 30 (area=7545.0)
+2025-07-16 20:56:36,529 - INFO - Generated 3 candidate masks from model.
+2025-07-16 20:56:36,539 - INFO - Saved chosen mask to /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_images/segformer_model_shape2_concave_area2_init/mask/mask_shape2_concave_area2_init.png
+2025-07-16 20:56:36,605 - ERROR - Failed to process image shape2_concave_area2_init: arrays used as indices must be of integer (or boolean) type
+2025-07-16 20:56:36,605 - INFO - Processing image: shape2_concave_area2_out
+2025-07-16 20:56:36,623 - INFO - Image shape2_concave_area2_out shape: 400x1000 RGB
+2025-07-16 20:56:36,633 - DEBUG - Blob detected with threshold 30 (area=7809.0)
+2025-07-16 20:56:37,091 - INFO - Generated 4 candidate masks from model.
+2025-07-16 20:56:37,103 - INFO - Saved chosen mask to /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_images/segformer_model_shape2_concave_area2_out/mask/mask_shape2_concave_area2_out.png
+2025-07-16 20:56:37,178 - ERROR - Failed to process image shape2_concave_area2_out: arrays used as indices must be of integer (or boolean) type
+2025-07-16 20:56:37,178 - INFO - Processing image: shape2_concave_nofill_area1_init
+2025-07-16 20:56:37,196 - INFO - Image shape2_concave_nofill_area1_init shape: 400x1000 RGB
+2025-07-16 20:56:37,206 - DEBUG - Blob detected with threshold 30 (area=7545.0)
+2025-07-16 20:56:37,674 - INFO - Generated 5 candidate masks from model.
+2025-07-16 20:56:37,687 - INFO - Saved chosen mask to /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_images/segformer_model_shape2_concave_nofill_area1_init/mask/mask_shape2_concave_nofill_area1_init.png
+2025-07-16 20:56:37,771 - ERROR - Failed to process image shape2_concave_nofill_area1_init: arrays used as indices must be of integer (or boolean) type
+2025-07-16 20:56:37,771 - INFO - Processing image: shape2_concave_nofill_area1_out
+2025-07-16 20:56:37,790 - INFO - Image shape2_concave_nofill_area1_out shape: 400x1000 RGB
+2025-07-16 20:56:37,800 - DEBUG - Blob detected with threshold 30 (area=7717.0)
+2025-07-16 20:56:38,304 - INFO - Generated 8 candidate masks from model.
+2025-07-16 20:56:38,319 - INFO - Saved chosen mask to /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_images/segformer_model_shape2_concave_nofill_area1_out/mask/mask_shape2_concave_nofill_area1_out.png
+2025-07-16 20:56:38,442 - ERROR - Failed to process image shape2_concave_nofill_area1_out: arrays used as indices must be of integer (or boolean) type
+2025-07-16 20:56:38,442 - INFO - Processing image: shape2_concave_nofill_area2_init
+2025-07-16 20:56:38,461 - INFO - Image shape2_concave_nofill_area2_init shape: 400x1000 RGB
+2025-07-16 20:56:38,472 - DEBUG - Blob detected with threshold 30 (area=7545.0)
+2025-07-16 20:56:38,934 - INFO - Generated 5 candidate masks from model.
+2025-07-16 20:56:38,946 - INFO - Saved chosen mask to /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_images/segformer_model_shape2_concave_nofill_area2_init/mask/mask_shape2_concave_nofill_area2_init.png
+2025-07-16 20:56:39,028 - ERROR - Failed to process image shape2_concave_nofill_area2_init: arrays used as indices must be of integer (or boolean) type
+2025-07-16 20:56:39,028 - INFO - Processing image: shape2_concave_nofill_area2_out
+2025-07-16 20:56:39,046 - INFO - Image shape2_concave_nofill_area2_out shape: 400x1000 RGB
+2025-07-16 20:56:39,055 - DEBUG - Blob detected with threshold 30 (area=7779.0)
+2025-07-16 20:56:39,531 - INFO - Generated 4 candidate masks from model.
+2025-07-16 20:56:39,543 - INFO - Saved chosen mask to /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_images/segformer_model_shape2_concave_nofill_area2_out/mask/mask_shape2_concave_nofill_area2_out.png
+2025-07-16 20:56:39,619 - ERROR - Failed to process image shape2_concave_nofill_area2_out: arrays used as indices must be of integer (or boolean) type
+2025-07-16 20:56:39,619 - INFO - Processing image: shape2_convex_area1_init
+2025-07-16 20:56:39,636 - INFO - Image shape2_convex_area1_init shape: 400x1000 RGB
+2025-07-16 20:56:39,647 - DEBUG - Blob detected with threshold 30 (area=7545.0)
+2025-07-16 20:56:40,120 - INFO - Generated 9 candidate masks from model.
+2025-07-16 20:56:40,135 - INFO - Saved chosen mask to /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_images/segformer_model_shape2_convex_area1_init/mask/mask_shape2_convex_area1_init.png
+2025-07-16 20:56:40,250 - ERROR - Failed to process image shape2_convex_area1_init: arrays used as indices must be of integer (or boolean) type
+2025-07-16 20:56:40,250 - INFO - Processing image: shape2_convex_area1_out
+2025-07-16 20:56:40,268 - INFO - Image shape2_convex_area1_out shape: 400x1000 RGB
+2025-07-16 20:56:40,277 - DEBUG - Blob detected with threshold 30 (area=7703.0)
+2025-07-16 20:56:40,757 - INFO - Generated 4 candidate masks from model.
+2025-07-16 20:56:40,768 - INFO - Saved chosen mask to /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_images/segformer_model_shape2_convex_area1_out/mask/mask_shape2_convex_area1_out.png
+2025-07-16 20:56:40,844 - ERROR - Failed to process image shape2_convex_area1_out: arrays used as indices must be of integer (or boolean) type
+2025-07-16 20:56:40,844 - INFO - Processing image: shape2_convex_area2_init
+2025-07-16 20:56:40,860 - INFO - Image shape2_convex_area2_init shape: 400x1000 RGB
+2025-07-16 20:56:40,870 - DEBUG - Blob detected with threshold 30 (area=7545.0)
+2025-07-16 20:56:41,453 - INFO - Generated 5 candidate masks from model.
+2025-07-16 20:56:41,465 - INFO - Saved chosen mask to /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_images/segformer_model_shape2_convex_area2_init/mask/mask_shape2_convex_area2_init.png
+2025-07-16 20:56:41,551 - ERROR - Failed to process image shape2_convex_area2_init: arrays used as indices must be of integer (or boolean) type
+2025-07-16 20:56:41,551 - INFO - Processing image: shape2_convex_area2_out
+2025-07-16 20:56:41,569 - INFO - Image shape2_convex_area2_out shape: 400x1000 RGB
+2025-07-16 20:56:41,579 - DEBUG - Blob detected with threshold 30 (area=7799.0)
+2025-07-16 20:56:42,076 - INFO - Generated 16 candidate masks from model.
+2025-07-16 20:56:42,098 - INFO - Saved chosen mask to /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_images/segformer_model_shape2_convex_area2_out/mask/mask_shape2_convex_area2_out.png
+2025-07-16 20:56:42,224 - ERROR - Failed to process image shape2_convex_area2_out: arrays used as indices must be of integer (or boolean) type
+2025-07-16 20:56:42,224 - INFO - Processing image: shape2_no_change1_init
+2025-07-16 20:56:42,242 - INFO - Image shape2_no_change1_init shape: 400x1000 RGB
+2025-07-16 20:56:42,252 - DEBUG - Blob detected with threshold 30 (area=7545.0)
+2025-07-16 20:56:42,725 - INFO - Generated 5 candidate masks from model.
+2025-07-16 20:56:42,737 - INFO - Saved chosen mask to /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_images/segformer_model_shape2_no_change1_init/mask/mask_shape2_no_change1_init.png
+2025-07-16 20:56:42,821 - ERROR - Failed to process image shape2_no_change1_init: arrays used as indices must be of integer (or boolean) type
+2025-07-16 20:56:42,821 - INFO - Processing image: shape2_no_change2_init
+2025-07-16 20:56:42,840 - INFO - Image shape2_no_change2_init shape: 400x1000 RGB
+2025-07-16 20:56:42,850 - DEBUG - Blob detected with threshold 30 (area=7545.0)
+2025-07-16 20:56:43,309 - INFO - Generated 4 candidate masks from model.
+2025-07-16 20:56:43,320 - INFO - Saved chosen mask to /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_images/segformer_model_shape2_no_change2_init/mask/mask_shape2_no_change2_init.png
+2025-07-16 20:56:43,397 - ERROR - Failed to process image shape2_no_change2_init: arrays used as indices must be of integer (or boolean) type
+2025-07-16 20:56:43,397 - INFO - Processing image: shape2_no_change3_init
+2025-07-16 20:56:43,415 - INFO - Image shape2_no_change3_init shape: 400x1000 RGB
+2025-07-16 20:56:43,425 - DEBUG - Blob detected with threshold 30 (area=7545.0)
+2025-07-16 20:56:43,910 - INFO - Generated 12 candidate masks from model.
+2025-07-16 20:56:43,929 - INFO - Saved chosen mask to /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_images/segformer_model_shape2_no_change3_init/mask/mask_shape2_no_change3_init.png
+2025-07-16 20:56:44,053 - ERROR - Failed to process image shape2_no_change3_init: arrays used as indices must be of integer (or boolean) type
+2025-07-16 20:56:44,053 - INFO - Processing image: shape2_no_change4_init
+2025-07-16 20:56:44,072 - INFO - Image shape2_no_change4_init shape: 400x1000 RGB
+2025-07-16 20:56:44,082 - DEBUG - Blob detected with threshold 30 (area=7545.0)
+2025-07-16 20:56:44,570 - INFO - Generated 12 candidate masks from model.
+2025-07-16 20:56:44,588 - INFO - Saved chosen mask to /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_images/segformer_model_shape2_no_change4_init/mask/mask_shape2_no_change4_init.png

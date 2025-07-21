@@ -1,0 +1,18 @@
+{
+  "concave": {
+    "detected": 10,
+    "total": 16
+  },
+  "concave_nofill": {
+    "detected": 12,
+    "total": 16
+  },
+  "convex": {
+    "detected": 11,
+    "total": 16
+  },
+  "no_change": {
+    "detected": 0,
+    "total": 0
+  }
+}

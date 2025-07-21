@@ -57,7 +57,7 @@ class SegFormerInterface(ModelInterface):
 
     def __init__(
         self,
-        model_name: str = "nvidia/segformer-b5-finetuned-ade-640-640",
+        model_name: str = "nvidia/segformer-b1-finetuned-ade-512-512",
         device: Union[str, torch.device, None] = None,
         num_queries: int = 100,
         logger: logging.Logger = None,
@@ -134,7 +134,7 @@ class SegFormerInterface(ModelInterface):
         
         return {
             'pred_masks': pred_masks,
-            'pred_logits': pred_logits, 
+            'pred_logits': pred_logits,
             'pred_boxes': pred_boxes
         }
 

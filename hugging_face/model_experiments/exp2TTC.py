@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-exp2TTC.py
+exp2TTC_b1.py
 
 Time-to-Collision (TTC) Experiment that processes raw .mp4 videos and computes collision detection
 times under varying IoU thresholds, correlating with participant response data.
@@ -13,7 +13,7 @@ FIXED VERSION:
 - Improved concave vs convex analysis with two-column bar charts using gen_two_box_plots.py style
 
 Usage:
-    python exp2TTC.py --model_interface segformer --videos_dir /path/to/raw_videos --csv_path /path/to/participants.csv --output_dir /path/to/output [--resume] [--blob_1_memory_freeze_frame 80]
+    python exp2TTC_b1.py --model_interface segformer --videos_dir /path/to/raw_videos --csv_path /path/to/participants.csv --output_dir /path/to/output [--resume] [--blob_1_memory_freeze_frame 80]
 """
 
 import argparse
