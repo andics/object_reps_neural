@@ -413,18 +413,32 @@ class VideoProcessor:
                 json.dump(empty_data, f, indent=2)
             return
         
-        # 1. Detect color blobs (ground truth) with state tracking
-        blob_masks = self._find_color_blobs(frame, flip_blobs, frame_idx)
-        
-        # 2. ALWAYS run model inference to get predicted masks (even if no blobs detected)
-        pred_masks = self._run_model_inference_with_splitting(frame, H, W)
+        try:
+            # 1. Detect color blobs (ground truth) with state tracking
+            blob_masks = self._find_color_blobs(frame, flip_blobs, frame_idx)
+            
+            # 2. ALWAYS run model inference to get predicted masks (even if no blobs detected)
+            pred_masks = self._run_model_inference_with_splitting(frame, H, W)
+        except Exception as e:
+            import traceback
+            self.logger.error(f"Failed blob detection or model inference for frame {frame_idx}: {e}")
+            self.logger.error("Full traceback:")
+            for line in traceback.format_exc().splitlines():
+                self.logger.error(line)
+            # Use empty masks and continue
+            blob_masks = []
+            pred_masks = []
         
         # 3. Save vanilla segmentation FIRST (before any blob-specific processing)
         if self.enable_vanilla_segmentation and self.vanilla_saver is not None:
             try:
                 self.vanilla_saver.save_frame_segmentation(frame, frame_idx)
             except Exception as e:
-                self.logger.warning(f"Failed to save vanilla segmentation for frame {frame_idx}: {e}")
+                import traceback
+                self.logger.error(f"Failed to save vanilla segmentation for frame {frame_idx}: {e}")
+                self.logger.error("Full traceback:")
+                for line in traceback.format_exc().splitlines():
+                    self.logger.error(line)
         
         # 4. Handle case where no color blobs detected - CONTINUE processing with empty masks
         if len(blob_masks) == 0:
@@ -433,42 +447,61 @@ class VideoProcessor:
             blob_masks = []
             assigned_masks = []
         else:
-            # 5. Save blob visualization (only if blobs detected)
-            self._save_blob_visualization(frame, blob_masks, frame_idx, directories)
+            try:
+                # 5. Save blob visualization (only if blobs detected)
+                self._save_blob_visualization(frame, blob_masks, frame_idx, directories)
+                
+                # 6. Assign masks to blobs using bipartite matching
+                assigned_indices, cost_matrix = self._bipartite_assign_blobs_to_masks(blob_masks, pred_masks)
+                
+                # 7. Create collage showing mask fitting quality
+                if cost_matrix is not None and frame_idx >= 30:
+                    self._create_and_save_collage(frame, blob_masks, pred_masks, cost_matrix, frame_idx, directories)
+                
+                # 8. Get assigned masks
+                assigned_masks = []
+                for blob_idx in range(len(blob_masks)):
+                    pred_idx = assigned_indices[blob_idx]
+                    if pred_idx is not None:
+                        assigned_masks.append(pred_masks[pred_idx])
+                    else:
+                        assigned_masks.append(None)
+                        
+            except Exception as e:
+                import traceback
+                self.logger.error(f"Failed blob assignment processing for frame {frame_idx}: {e}")
+                self.logger.error("Full traceback:")
+                for line in traceback.format_exc().splitlines():
+                    self.logger.error(line)
+                # Continue with empty masks
+                assigned_masks = []
+        
+        try:
+            # 9. Save non-memory masks (even if empty)
+            self._save_nonmemory_masks(assigned_masks, frame_idx, directories)
             
-            # 6. Assign masks to blobs using bipartite matching
-            assigned_indices, cost_matrix = self._bipartite_assign_blobs_to_masks(blob_masks, pred_masks)
+            # 10. Update memory with custom strategy (CRITICAL: Always update memory)
+            self._update_memory_masks_with_strategy(assigned_masks, frame_idx)
             
-            # 7. Create collage showing mask fitting quality
-            if cost_matrix is not None and frame_idx >= 30:
-                self._create_and_save_collage(frame, blob_masks, pred_masks, cost_matrix, frame_idx, directories)
+            # 11. Get memory masks (CRITICAL: Always get memory masks)
+            memory_masks = self._get_memory_masks()
             
-            # 8. Get assigned masks
-            assigned_masks = []
-            for blob_idx in range(len(blob_masks)):
-                pred_idx = assigned_indices[blob_idx]
-                if pred_idx is not None:
-                    assigned_masks.append(pred_masks[pred_idx])
-                else:
-                    assigned_masks.append(None)
-        
-        # 9. Save non-memory masks (even if empty)
-        self._save_nonmemory_masks(assigned_masks, frame_idx, directories)
-        
-        # 10. Update memory with custom strategy (CRITICAL: Always update memory)
-        self._update_memory_masks_with_strategy(assigned_masks, frame_idx)
-        
-        # 11. Get memory masks (CRITICAL: Always get memory masks)
-        memory_masks = self._get_memory_masks()
-        
-        # 12. Save memory masks (CRITICAL: Always save memory masks with freeze frame logic)
-        self._save_memory_masks_with_freeze_logic(memory_masks, frame_idx, directories)
-        
-        # 13. Create memory collage (even if empty)
-        self._create_memory_collage(frame, assigned_masks, memory_masks, frame_idx, directories)
-        
-        # 14. Create final overlay and save (CRITICAL: ALWAYS save final frame)
-        self._create_and_save_final_overlay(frame, memory_masks, frame_idx, directories, flip_blobs, H, W)
+            # 12. Save memory masks (CRITICAL: Always save memory masks with freeze frame logic)
+            self._save_memory_masks_with_freeze_logic(memory_masks, frame_idx, directories)
+            
+            # 13. Create memory collage (even if empty)
+            self._create_memory_collage(frame, assigned_masks, memory_masks, frame_idx, directories)
+            
+            # 14. Create final overlay and save (CRITICAL: ALWAYS save final frame)
+            self._create_and_save_final_overlay(frame, memory_masks, frame_idx, directories, flip_blobs, H, W)
+            
+        except Exception as e:
+            import traceback
+            self.logger.error(f"CRITICAL ERROR in memory operations for frame {frame_idx}: {e}")
+            self.logger.error("Full traceback:")
+            for line in traceback.format_exc().splitlines():
+                self.logger.error(line)
+            raise  # Re-raise memory errors as they are critical
     
     def _find_color_blobs(self, frame: np.ndarray, flip_blobs: bool = False, frame_idx: int = 0) -> List[np.ndarray]:
         """
@@ -552,38 +585,48 @@ class VideoProcessor:
     
     def _run_model_inference_with_splitting(self, frame: np.ndarray, H: int, W: int) -> List[np.ndarray]:
         """Run model inference and split connected components (following main_gen_vids_and_meshes.py)."""
-        pil_image = Image.fromarray(frame, 'RGB')
-        
-        # Get predictions from model interface
-        predictions = self.model_interface.infer_image(pil_image)
-        pred_masks_tensor = predictions['pred_masks']  # (1, n_queries, H', W')
-        
-        # Convert to list of numpy masks and split connected components
-        split_pred_masks = []
-        for i in range(pred_masks_tensor.shape[1]):
-            mask_tensor = pred_masks_tensor[0, i]  # (H', W')
+        try:
+            pil_image = Image.fromarray(frame, 'RGB')
             
-            # Resize to original frame size if needed
-            if mask_tensor.shape != (H, W):
-                mask_tensor = F.interpolate(
-                    mask_tensor.unsqueeze(0).unsqueeze(0),
-                    size=(H, W),
-                    mode='bilinear',
-                    align_corners=False
-                ).squeeze()
+            # Get predictions from model interface
+            predictions = self.model_interface.infer_image(pil_image)
+            pred_masks_tensor = predictions['pred_masks']  # (1, n_queries, H', W')
             
-            # Convert to binary mask
-            binary_mask = mask_tensor.cpu().numpy() > 0.5
+            # Convert to list of numpy masks and split connected components
+            split_pred_masks = []
+            for i in range(pred_masks_tensor.shape[1]):
+                mask_tensor = pred_masks_tensor[0, i]  # (H', W')
+                
+                # Resize to original frame size if needed
+                if mask_tensor.shape != (H, W):
+                    mask_tensor = F.interpolate(
+                        mask_tensor.unsqueeze(0).unsqueeze(0),
+                        size=(H, W),
+                        mode='bilinear',
+                        align_corners=False
+                    ).squeeze()
+                
+                # Convert to binary mask
+                binary_mask = mask_tensor.cpu().numpy() > 0.5
+                
+                # Split into connected components (IMPORTANT: This was missing proper implementation)
+                labeled = label(binary_mask, connectivity=2)
+                max_cc = labeled.max()
+                for cc_label in range(1, max_cc + 1):
+                    component_mask = (labeled == cc_label)
+                    if component_mask.sum() > 0:  # Only add non-empty masks
+                        split_pred_masks.append(component_mask)
             
-            # Split into connected components (IMPORTANT: This was missing proper implementation)
-            labeled = label(binary_mask, connectivity=2)
-            max_cc = labeled.max()
-            for cc_label in range(1, max_cc + 1):
-                component_mask = (labeled == cc_label)
-                if component_mask.sum() > 0:  # Only add non-empty masks
-                    split_pred_masks.append(component_mask)
-        
-        return split_pred_masks
+            return split_pred_masks
+            
+        except Exception as e:
+            import traceback
+            self.logger.error(f"Failed model inference: {e}")
+            self.logger.error("Full traceback:")
+            for line in traceback.format_exc().splitlines():
+                self.logger.error(line)
+            # Return empty list on failure
+            return []
     
     def _bipartite_assign_blobs_to_masks(self, blob_masks: List[np.ndarray], 
                                        pred_masks: List[np.ndarray]) -> Tuple[List[Optional[int]], Optional[np.ndarray]]:
@@ -645,15 +688,17 @@ class VideoProcessor:
                 overlay = frame.copy()
                 
                 # Green for the ground truth blob
-                overlay[blob_masks[b_idx], 0] = 0
-                overlay[blob_masks[b_idx], 1] = 255
-                overlay[blob_masks[b_idx], 2] = 0
+                blob_mask_bool = blob_masks[b_idx].astype(bool)
+                overlay[blob_mask_bool, 0] = 0
+                overlay[blob_mask_bool, 1] = 255
+                overlay[blob_mask_bool, 2] = 0
                 
                 # Red for the predicted mask
                 if pred_idx < len(pred_masks):
-                    overlay[pred_masks[pred_idx], 0] = 255
-                    overlay[pred_masks[pred_idx], 1] = 0
-                    overlay[pred_masks[pred_idx], 2] = 0
+                    pred_mask_bool = pred_masks[pred_idx].astype(bool)
+                    overlay[pred_mask_bool, 0] = 255
+                    overlay[pred_mask_bool, 1] = 0
+                    overlay[pred_mask_bool, 2] = 0
                 
                 cost_val = row_cost[pred_idx]
                 iou_val = -cost_val  # Convert back to positive IoU
@@ -671,39 +716,52 @@ class VideoProcessor:
                              memory_masks: List[np.ndarray], frame_idx: int, 
                              directories: Dict[str, str]) -> None:
         """Create memory collage showing current vs memory masks (from main_gen_vids_and_meshes.py)."""
-        nb = len(assigned_masks)
-        
-        fig, axes = plt.subplots(nb, 2, figsize=(10, 5*nb), dpi=100)
-        if nb == 1 and len(axes.shape) == 1:
-            axes = axes[np.newaxis, :]
-        
-        for b_i in range(nb):
-            # Left: Current assigned mask
-            axL = axes[b_i, 0]
-            overlay_cur = frame.copy()
-            if assigned_masks[b_i] is not None:
-                overlay_cur[assigned_masks[b_i], 0] = 255
-                overlay_cur[assigned_masks[b_i], 1] = 0
-                overlay_cur[assigned_masks[b_i], 2] = 0
-            axL.imshow(overlay_cur)
-            axL.set_title(f"Blob {b_i} - Current", fontsize=8)
-            axL.set_axis_off()
+        try:
+            nb = len(assigned_masks)
+            
+            fig, axes = plt.subplots(nb, 2, figsize=(10, 5*nb), dpi=100)
+            if nb == 1 and len(axes.shape) == 1:
+                axes = axes[np.newaxis, :]
+            
+            for b_i in range(nb):
+                # Left: Current assigned mask
+                axL = axes[b_i, 0]
+                overlay_cur = frame.copy()
+                if assigned_masks[b_i] is not None:
+                    # Ensure mask is boolean for indexing
+                    mask_bool = assigned_masks[b_i].astype(bool)
+                    overlay_cur[mask_bool, 0] = 255
+                    overlay_cur[mask_bool, 1] = 0
+                    overlay_cur[mask_bool, 2] = 0
+                axL.imshow(overlay_cur)
+                axL.set_title(f"Blob {b_i} - Current", fontsize=8)
+                axL.set_axis_off()
 
-            # Right: Memory mask
-            axR = axes[b_i, 1]
-            overlay_mem = frame.copy()
-            if b_i < len(memory_masks):
-                overlay_mem[memory_masks[b_i], 0] = 0
-                overlay_mem[memory_masks[b_i], 1] = 255
-                overlay_mem[memory_masks[b_i], 2] = 0
-            axR.imshow(overlay_mem)
-            axR.set_title(f"Blob {b_i} - Memory", fontsize=8)
-            axR.set_axis_off()
+                # Right: Memory mask
+                axR = axes[b_i, 1]
+                overlay_mem = frame.copy()
+                if b_i < len(memory_masks) and memory_masks[b_i] is not None:
+                    # Ensure mask is boolean for indexing
+                    mem_mask_bool = memory_masks[b_i].astype(bool)
+                    overlay_mem[mem_mask_bool, 0] = 0
+                    overlay_mem[mem_mask_bool, 1] = 255
+                    overlay_mem[mem_mask_bool, 2] = 0
+                axR.imshow(overlay_mem)
+                axR.set_title(f"Blob {b_i} - Memory", fontsize=8)
+                axR.set_axis_off()
 
-        fig.suptitle(f"Frame {frame_idx} - Memory Collage", fontsize=14)
-        memcoll_path = os.path.join(directories['frames_memory_collage'], f"frame_{frame_idx:06d}_memcollage.png")
-        fig.savefig(memcoll_path, bbox_inches='tight', pad_inches=0)
-        plt.close(fig)
+            fig.suptitle(f"Frame {frame_idx} - Memory Collage", fontsize=14)
+            memcoll_path = os.path.join(directories['frames_memory_collage'], f"frame_{frame_idx:06d}_memcollage.png")
+            fig.savefig(memcoll_path, bbox_inches='tight', pad_inches=0)
+            plt.close(fig)
+            
+        except Exception as e:
+            import traceback
+            self.logger.error(f"Failed to create memory collage for frame {frame_idx}: {e}")
+            self.logger.error("Full traceback:")
+            for line in traceback.format_exc().splitlines():
+                self.logger.error(line)
+            # Don't re-raise - continue processing
     
     def _update_memory_masks_with_strategy(self, assigned_masks: List[np.ndarray], frame_idx: int) -> None:
         """Update memory masks using different strategies for different blobs."""

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-exp2TTC_b1.py
+exp2TTC.py
 
 Time-to-Collision (TTC) Experiment that processes raw .mp4 videos and computes collision detection
 times under varying IoU thresholds, correlating with participant response data.
@@ -13,7 +13,7 @@ FIXED VERSION:
 - Improved concave vs convex analysis with two-column bar charts using gen_two_box_plots.py style
 
 Usage:
-    python exp2TTC_b1.py --model_interface segformer --videos_dir /path/to/raw_videos --csv_path /path/to/participants.csv --output_dir /path/to/output [--resume] [--blob_1_memory_freeze_frame 80]
+    python exp2TTC.py --model_interface segformer --videos_dir /path/to/raw_videos --csv_path /path/to/participants.csv --output_dir /path/to/output [--resume] [--blob_1_memory_freeze_frame 80]
 """
 
 import argparse
@@ -228,20 +228,31 @@ class TTCExperiment:
                             )
                             self.logger.info(f"Successfully completed processing for {video_name}")
                         except Exception as e:
-                            self.logger.warning(f"Failed to complete partial processing for {video_name}: {e}")
+                            import traceback
+                            self.logger.error(f"Failed to complete partial processing for {video_name}: {e}")
+                            self.logger.error("Full traceback:")
+                            for line in traceback.format_exc().splitlines():
+                                self.logger.error(line)
                             self.logger.info(f"Will attempt full reprocessing for {video_name}")
                             video_output_dirs = None
                 
                 # If we still don't have processed video, do full processing
                 if not hasattr(locals(), 'video_output_dirs') or video_output_dirs is None:
                     self.logger.info(f"Starting full processing for {video_name}")
-                    video_output_dirs = self.video_processor.process_video(
-                        video_path=video_file,
-                        output_root=self.processed_videos_dir,
-                        model_prefix="segformer_model",
-                        resume=False  # Start fresh
-                    )
-                    self.logger.error(f"Failed to process video {video_name}: {e}")
+                    try:
+                        video_output_dirs = self.video_processor.process_video(
+                            video_path=video_file,
+                            output_root=self.processed_videos_dir,
+                            model_prefix="segformer_model",
+                            resume=False  # Start fresh
+                        )
+                    except Exception as e:
+                        import traceback
+                        self.logger.error(f"Failed to process video {video_name}: {e}")
+                        self.logger.error("Full traceback:")
+                        for line in traceback.format_exc().splitlines():
+                            self.logger.error(line)
+                        video_output_dirs = None
             
             # At this point, we should have video_output_dirs from either setup or processing
             if video_output_dirs is None:
@@ -1081,4 +1092,4 @@ def main():
         sys.exit(1)
 
 if __name__ == "__main__":
-    main() 
+    main()
