@@ -1,0 +1,175 @@
+%File: anonymous-submission-latex-2026.tex
+\documentclass[letterpaper]{article} % DO NOT CHANGE THIS
+\usepackage[submission]{aaai2026}  % DO NOT CHANGE THIS
+\usepackage{times}  % DO NOT CHANGE THIS
+\usepackage{helvet}  % DO NOT CHANGE THIS
+\usepackage{courier}  % DO NOT CHANGE THIS
+\usepackage[hyphens]{url}  % DO NOT CHANGE THIS
+\usepackage{graphicx} % DO NOT CHANGE THIS
+\usepackage{amsmath}
+\urlstyle{rm} % DO NOT CHANGE THIS
+\def\UrlFont{\rm}  % DO NOT CHANGE THIS
+\usepackage{natbib}  % DO NOT CHANGE THIS AND DO NOT ADD ANY OPTIONS TO IT
+\usepackage{caption} % DO NOT CHANGE THIS AND DO NOT ADD ANY OPTIONS TO IT
+\frenchspacing  % DO NOT CHANGE THIS
+\setlength{\pdfpagewidth}{8.5in} % DO NOT CHANGE THIS
+\setlength{\pdfpageheight}{11in} % DO NOT CHANGE THIS
+%
+% These are recommended to typeset algorithms but not required. See the subsubsection on algorithms. Remove them if you don't have algorithms in your paper.
+\usepackage{algorithm}
+\usepackage{algorithmic}
+
+%
+% These are are recommended to typeset listings but not required. See the subsubsection on listing. Remove this block if you don't have listings in your paper.
+\usepackage{newfloat}
+\usepackage{listings}
+\DeclareCaptionStyle{ruled}{labelfont=normalfont,labelsep=colon,strut=off} % DO NOT CHANGE THIS
+\lstset{%
+	basicstyle={\footnotesize\ttfamily},% footnotesize acceptable for monospace
+	numbers=left,numberstyle=\footnotesize,xleftmargin=2em,% show line numbers, remove this entire line if you don't want the numbers.
+	aboveskip=0pt,belowskip=0pt,%
+	showstringspaces=false,tabsize=2,breaklines=true}
+\floatstyle{ruled}
+\newfloat{listing}{tb}{lst}{}
+\floatname{listing}{Listing}
+%
+% Keep the \pdfinfo as shown here. There's no need
+% for you to add the /Title and /Author tags.
+\pdfinfo{
+/TemplateVersion (2026.1)
+}
+
+% DISALLOWED PACKAGES
+% \usepackage{authblk} -- This package is specifically forbidden
+% \usepackage{balance} -- This package is specifically forbidden
+% \usepackage{color (if used in text)
+% \usepackage{CJK} -- This package is specifically forbidden
+% \usepackage{float} -- This package is specifically forbidden
+% \usepackage{flushend} -- This package is specifically forbidden
+% \usepackage{fontenc} -- This package is specifically forbidden
+% \usepackage{fullpage} -- This package is specifically forbidden
+% \usepackage{geometry} -- This package is specifically forbidden
+% \usepackage{grffile} -- This package is specifically forbidden
+% \usepackage{hyperref} -- This package is specifically forbidden
+% \usepackage{navigator} -- This package is specifically forbidden
+% (or any other package that embeds links such as navigator or hyperref)
+% \indentfirst} -- This package is specifically forbidden
+% \layout} -- This package is specifically forbidden
+% \multicol} -- This package is specifically forbidden
+% \nameref} -- This package is specifically forbidden
+% \usepackage{savetrees} -- This package is specifically forbidden
+% \usepackage{setspace} -- This package is specifically forbidden
+% \usepackage{stfloats} -- This package is specifically forbidden
+% \usepackage{tabu} -- This package is specifically forbidden
+% \usepackage{titlesec} -- This package is specifically forbidden
+% \usepackage{tocbibind} -- This package is specifically forbidden
+% \usepackage{ulem} -- This package is specifically forbidden
+% \usepackage{wrapfig} -- This package is specifically forbidden
+% DISALLOWED COMMANDS
+% \nocopyright -- Your paper will not be published if you use this command
+% \addtolength -- This command may not be used
+% \balance -- This command may not be used
+% \baselinestretch -- Your paper will not be published if you use this command
+% \clearpage -- No page breaks of any kind may be used for the final version of your paper
+% \columnsep -- This command may not be used
+% \newpage -- No page breaks of any kind may be used for the final version of your paper
+% \pagebreak -- No page breaks of any kind may be used for the final version of your paperr
+% \pagestyle -- This command may not be used
+% \tiny -- This is not an acceptable font size.
+% \vspace{- -- No negative value may be used in proximity of a caption, figure, table, section, subsection, subsubsection, or reference
+% \vskip{- -- No negative value may be used to alter spacing above or below a caption, figure, table, section, subsection, subsubsection, or reference
+
+\setcounter{secnumdepth}{0} %May be changed to 1 or 2 if section numbers are desired.
+
+% The file aaai2026.sty is the style file for AAAI Press
+% proceedings, working notes, and technical reports.
+%
+
+% Title
+
+% Your title must be in mixed case, not sentence case.
+% That means all verbs (including short verbs like be, is, using,and go),
+% nouns, adverbs, adjectives should be capitalized, including both words in hyphenated terms, while
+% articles, conjunctions, and prepositions are lower case unless they
+% directly follow a colon or long dash
+\title{Towards aligned body representation in vision models}
+% Authors
+\author{
+    Andrey Gizdov\textsuperscript{\rm 1}\thanks{Equal contribution.},
+    YingQiao Wang\textsuperscript{\rm 1}\footnotemark[1],
+    Daniel Harari\textsuperscript{\rm 2},
+    Tomer~Ullman\textsuperscript{\rm 1}
+}
+\affiliations{
+    \textsuperscript{\rm 1}Harvard University, Cambridge, MA, USA\\
+    \textsuperscript{\rm 2}Weizmann Institute of Science, Rehovot, Israel\\
+    andreygizdov@fas.harvard.edu,\; yingqiaowang@g.harvard.edu,\; hararid@weizmann.ac.il,\; tullman@fas.harvard.edu
+}
+
+% REMOVE THIS: bibentry
+% This is only needed to show inline citations in the guidelines document. You should not need it and can safely delete it.
+\usepackage{bibentry}
+% END REMOVE bibentry
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+Human understanding of physics relies on internal “body” representations that specify an object’s overall shape and extent. People form such coarse body representations through low-level perceptual tasks (segmentation, recognition, localization). Many artificial intelligence (AI) systems with an understanding of physics also learn from bottom-up visual cues. Yet, it is unknown whether the object representations they acquire resemble those in humans. We test leading vision models on a psychophysical experiment conducted on 32 human subjects and quantitatively compare the body representations in the AI systems to those in people. Evaluating twelve vision architectures reveals that large vision–language transformers (e.g., CLIP-ViT) align poorly with human judgements ($<$ 40\% correlation), whereas much smaller convolutional networks achieve $>$ 80\% alignment. We show that classical CNN inductive biases more closely mirror human body priors, and argue that large vision networks will require explicit alignment if they are to be deployed in the real world. Our benchmark establishes a framework for developing bottom-up vision models that reason about the physical world in human-aligned ways.
+\end{abstract}
+
+\section{Introduction}
+
+Perceiving \emph{what} is present in a scene and anticipating \emph{how} it will behave are tightly coupled problems in human cognition.  Developmental studies show that infants first carve the visual field into cohesive “physical bodies’’—volumetric entities with approximate shape and spatial extent—before they infer contact relations, support, or motion trajectories~\cite{spelke1990principles, baillargeon2004infant}.  This coarse object‐centric representation is built from bottom-up perceptual signals such as segmentation, recognition, and localisation, and it underpins later, more abstract physical reasoning.
+
+Contemporary computer-vision systems often mimic this pipeline: dense segmentation modules feed downstream physics engines for physics prediction~\cite{battaglia2013simulation, li2022probabilistic}.  Yet it remains unclear whether the latent object representations that emerge in segmentation models reflect the body representations humans appear to rely on.  Direct comparisons are hampered by the absence of (i) a behavioural dataset that makes human body priors observable and (ii) a quantitative protocol for measuring alignment between those priors and learned model embeddings.
+
+\noindent \textbf{Contributions.} In this work, we address those two problems and make the following contributions:
+
+\begin{enumerate}
+    \item \textbf{Benchmark for alignment of vision models}.  
+          We adapt an existing psychophysics dataset given to 32 human subjects, and create a Python pipeline for testing any artificial segmentation model on it. Our pipeline quantitatively describes how much a segmentation model's output aligns with the approximate body representation in humans. We refer to this score as describing the \textit{alignment of vision models}. \tex
+    \item \textbf{CNNs align better with human priors}.
+          We benchmark twelve leading segmentation architectures—SAM ViT-H (632 M), CLIP ViT-L/14 (428 M), LLaMA-7B + vision adapter, SegFormer-B4 (64 M), Mask R-CNN-R50-FPN (44 M), and DETR-R50 (41 M)—plus smaller baselines.  
+          Alignment scores reveal: (i) parameter count is weakly correlated with human alignment, and (ii) convolution-centric backbones (e.g.\ Mask R-CNN, \(\rho_{\text{NC}}\!=0.82\)) consistently produce more human-like alignment than pure-attention or language-conditioned models (CLIP, \(\rho_{\text{NC}}\!=0.37\)).
+    \item \textbf{Average human representation}.
+          As a gateway into understanding the underlying approximate body representations in humans, we derive the average representations produced by the segmentation models. We discover that alpha shapes seem to emerge naturally in segmentation models, affirming findings of prior works hypothesizing their existence in human body priors.
+\end{enumerate}
+
+Cognitive science has shown that humans rely on coarse, object-centric “body” representations—simplified volumetric approximations—rather than detailed shapes for intuitive physical reasoning \cite{li2023approximate, spelke1990principles, baillargeon2004infant}. We extend this perspective by demonstrating that averaging the internal feature representations of segmentation models uncovers analogous abstractions. This provides a principled method for quantifying how closely a model’s object encoding aligns with human cognitive priors. From a robotics standpoint, such alignment is crucial: vision modules grounded in human-like body priors enable robots to simulate physics in ways that mirror human expectations about object trajectories, collisions, and support. Empirical evidence—such as the ASAP framework—shows that tuning simulated physics reduces sim-to-real errors in humanoid dynamics, fostering behaviors that accord with human intuition. Moreover, aligning robot and human internal representations enhances interpretability and reliability in shared tasks. Altogether, our alignment benchmark and average-representation analysis bridge cognitive science and applied robotics, guiding the design of perception systems that think—and act—in ways human collaborators can intuitively trust.
+
+\section{Methods}
+
+Our study juxtaposes human judgements with the raw, un-finetuned outputs of modern computer-vision systems.  We begin with the same video stimuli shown to 32 human participants and feed every frame directly into each segmentation model \emph{without} any additional training.  This design ensures that any alignment we measure reflects the object priors learned ``in the wild'', not adaptations to our specific task.
+
+\textbf{Stimuli and ground-truth blobs.}  Each video depicts one or two brightly–coloured shapes moving against a uniform background.  Because the colours are unique and saturated, a simple grayscale threshold is sufficient to isolate the foreground.  Connected-component analysis then yields a set of candidate regions; we retain only those larger than $50$ pixels and keep the two largest by area when multiple regions survive.  For every accepted blob $b_i$ we store a binary mask $\mathbf{M}^{(b)}_i \in \{0,1\}^{H\times W}$ and its pixel area
+\begin{equation}
+A^{(b)}_i = \sum_{x,y} \mathbf{M}^{(b)}_i(x,y).
+\label{eq:area}
+\end{equation}
+If, over ten consecutive frames, fewer than two regions are detected, we declare that the second object has disappeared and continue with a single-blob representation.
+
+\textbf{Model predictions.}  Every frame is also passed through the segmentation model under test.  The model returns $N_p$ soft masks which we binarise at $0.5$ and split into connected components, producing a set $\{\mathbf{M}^{(p)}_j\}$.  Importantly, we make no attempt to balance the number of model masks with the number of ground-truth blobs; instead, we rely on a deterministic assignment step.
+
+\textbf{Deterministic blob–mask assignment.}  For each frame we construct a cost matrix based on the (negative) Intersection-over-Union between every blob and every predicted mask.  IoU for a pair $(b_i, p_j)$ is
+\begin{equation}
+\text{IoU}(b_i,p_j) = \frac{\lvert \mathbf{M}^{(b)}_i \cap \mathbf{M}^{(p)}_j \rvert}{\lvert \mathbf{M}^{(b)}_i \cup \mathbf{M}^{(p)}_j \rvert}.
+\label{eq:iou}
+\end{equation}
+The Hungarian algorithm then selects the one-to-one assignment that maximises overall IoU.  In practice this means each blob is paired with the single most overlapping model mask, while superfluous predictions are ignored.
+
+\textbf{Temporal memory.}  Physical reasoning often benefits from temporal smoothing.  We therefore maintain an exponential moving average (EMA) of each blob’s mask across time:
+\begin{equation}
+\mathbf{M}^{(mem)}(t) = \alpha\,\mathbf{M}^{(mem)}(t-1) + (1-\alpha)\,\mathbf{M}^{(assigned)}(t),
+\label{eq:ema}
+\end{equation}
+with $\alpha=0.9$.  After frame~80 we freeze the memory of the second blob so that an impending collision cannot erase it, mirroring the perceptual stability seen in human observers.
+
+\textbf{Evaluation.}  For collision detection we declare a hit when the IoU between the two EMA masks first exceeds a threshold and compare the resulting collision time with human reaction times via Spearman correlation.  Change-detection and causality tasks follow analogous procedures, always grounding the analysis in masks obtained through the deterministic pipeline described above.
+
+This methodology lets us compare models and humans on equal footing: both reason about objects derived solely from bottom-up visual cues, and the assignment procedure introduces no stochasticity or trainable parameters.
+
+\bibliography{aaai2026}
+
+\end{document}
