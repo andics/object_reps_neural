@@ -507,13 +507,17 @@ class VideoProcessor:
         """
         Find colored blobs in the frame with state tracking to prevent false detections.
         
+        KEY BEHAVIOR:
+        - When blob 1 has NOT disappeared: Always take the 2 LARGEST blobs by area (if more exist)
+        - When blob 1 HAS disappeared: Only take the 1 LARGEST blob by area
+        
         Args:
             frame: Input frame
             flip_blobs: Whether to flip blob ordering
             frame_idx: Current frame index for logging
             
         Returns:
-            List of blob masks
+            List of blob masks (max 2 before disappearance, max 1 after)
         """
         gray = frame.sum(axis=2)
         non_black = (gray > self.black_thresh)
@@ -529,13 +533,15 @@ class VideoProcessor:
         
         # Apply state-based blob detection logic
         if not self.blob_1_disappeared:
-            # Normal case: can detect up to n_blobs
-            if len(significant_regions) >= self.n_blobs:
-                # We have enough blobs - take top n_blobs
-                top_regions = significant_regions[:self.n_blobs]
+            # Normal case: can detect up to 2 blobs, always take the 2 largest by area
+            if len(significant_regions) >= 2:
+                # We have enough blobs - take the 2 largest by area
+                top_regions = significant_regions[:2]
                 self.blob_1_missing_count = 0  # Reset missing count
+                if len(significant_regions) > 2:
+                    self.logger.debug(f"Frame {frame_idx}: Found {len(significant_regions)} blobs, taking the 2 largest by area")
             else:
-                # Not enough blobs detected
+                # Not enough blobs detected (less than 2)
                 self.blob_1_missing_count += 1
                 self.logger.debug(f"Frame {frame_idx}: Only {len(significant_regions)} blobs detected, missing count: {self.blob_1_missing_count}")
                 
@@ -545,18 +551,21 @@ class VideoProcessor:
                     self.blob_1_disappeared_frame = frame_idx
                     self.logger.info(f"Frame {frame_idx}: Blob 1 marked as disappeared after {self.blob_1_missing_count} missing frames")
                 
-                # Use whatever regions we have
-                top_regions = significant_regions[:self.n_blobs]
+                # Use whatever regions we have (0 or 1 blob)
+                top_regions = significant_regions[:2]  # This will be 0 or 1 blob
         else:
-            # Blob 1 has disappeared - only allow detection of one blob
+            # Blob 1 has disappeared - only allow detection of one blob (the largest)
             if len(significant_regions) >= 2:
                 # Multiple blobs detected but blob 1 should be gone
-                # Take only the largest blob
+                # Take only the largest blob by area
                 top_regions = [significant_regions[0]]
-                self.logger.debug(f"Frame {frame_idx}: Multiple blobs detected after blob 1 disappeared, taking only the largest")
+                self.logger.debug(f"Frame {frame_idx}: Found {len(significant_regions)} blobs after blob 1 disappeared, taking only the largest by area")
+            elif len(significant_regions) == 1:
+                # One blob - normal case after disappearance
+                top_regions = [significant_regions[0]]
             else:
-                # One or no blobs - normal case
-                top_regions = significant_regions[:1]
+                # No blobs detected
+                top_regions = []
         
         # Sort by horizontal position if we have multiple regions
         if len(top_regions) > 1:
