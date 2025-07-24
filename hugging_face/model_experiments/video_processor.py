@@ -52,7 +52,8 @@ class VideoProcessor:
     
     def __init__(self, model_interface: ModelInterface, n_blobs: int = 2, logger: logging.Logger = None,
                  blob_1_memory_strategy: str = 'exponential', blob_1_running_avg_window: int = 10,
-                 blob_1_memory_freeze_frame: Optional[int] = None, enable_vanilla_segmentation: bool = True):
+                 blob_1_memory_freeze_frame: Optional[int] = None, enable_vanilla_segmentation: bool = True,
+                 fast_mode: bool = False):
         self.model_interface = model_interface
         self.logger = logger or logging.getLogger(__name__)
         
@@ -67,8 +68,9 @@ class VideoProcessor:
         self.blob_1_running_avg_window = blob_1_running_avg_window
         self.blob_1_memory_freeze_frame = blob_1_memory_freeze_frame
         
-        # Vanilla segmentation option
-        self.enable_vanilla_segmentation = enable_vanilla_segmentation
+        # Performance-tuning flags
+        self.enable_vanilla_segmentation = False if fast_mode else enable_vanilla_segmentation
+        self.fast_mode = fast_mode
         self.vanilla_saver = None
         
         # Memory for tracking masks across frames
@@ -95,6 +97,8 @@ class VideoProcessor:
             self.logger.info(f"Blob 1 memory will freeze after frame: {self.blob_1_memory_freeze_frame}")
         if self.enable_vanilla_segmentation:
             self.logger.info("Vanilla segmentation enabled")
+        if self.fast_mode:
+            self.logger.info("FAST-MODE enabled: heavy visualisations and intermediate PNGs will be skipped")
         
     def setup_output_directories(self, video_path: str, output_root: str, model_prefix: str = None) -> Dict[str, str]:
         """Setup organized output directory structure for video processing."""
@@ -290,6 +294,9 @@ class VideoProcessor:
         self.blob_1_disappeared_frame = None
         self.blob_1_missing_count = 0
         self.blob_1_mask_history.clear()
+        if hasattr(self, 'blob_mask_histories'):
+            for dq in self.blob_mask_histories:
+                dq.clear()
         self.frozen_memory_masks.clear()
         self.logger.info("Reset blob state tracking for new video")
     
@@ -448,14 +455,15 @@ class VideoProcessor:
             assigned_masks = []
         else:
             try:
-                # 5. Save blob visualization (only if blobs detected)
-                self._save_blob_visualization(frame, blob_masks, frame_idx, directories)
+                # 5. Save blob visualization (only if blobs detected and not in fast_mode)
+                if not self.fast_mode:
+                    self._save_blob_visualization(frame, blob_masks, frame_idx, directories)
                 
                 # 6. Assign masks to blobs using bipartite matching
                 assigned_indices, cost_matrix = self._bipartite_assign_blobs_to_masks(blob_masks, pred_masks)
                 
-                # 7. Create collage showing mask fitting quality
-                if cost_matrix is not None and frame_idx >= 30:
+                # 7. Create collage showing mask fitting quality (skip in fast_mode)
+                if (not self.fast_mode) and cost_matrix is not None and frame_idx >= 30:
                     self._create_and_save_collage(frame, blob_masks, pred_masks, cost_matrix, frame_idx, directories)
                 
                 # 8. Get assigned masks
@@ -477,8 +485,9 @@ class VideoProcessor:
                 assigned_masks = []
         
         try:
-            # 9. Save non-memory masks (even if empty)
-            self._save_nonmemory_masks(assigned_masks, frame_idx, directories)
+            # 9. Save non-memory masks unless in fast_mode
+            if not self.fast_mode:
+                self._save_nonmemory_masks(assigned_masks, frame_idx, directories)
             
             # 10. Update memory with custom strategy (CRITICAL: Always update memory)
             self._update_memory_masks_with_strategy(assigned_masks, frame_idx)
@@ -489,11 +498,17 @@ class VideoProcessor:
             # 12. Save memory masks (CRITICAL: Always save memory masks with freeze frame logic)
             self._save_memory_masks_with_freeze_logic(memory_masks, frame_idx, directories)
             
-            # 13. Create memory collage (even if empty)
-            self._create_memory_collage(frame, assigned_masks, memory_masks, frame_idx, directories)
+            # 13. Create memory collage (skip in fast_mode)
+            if not self.fast_mode:
+                self._create_memory_collage(frame, assigned_masks, memory_masks, frame_idx, directories)
             
-            # 14. Create final overlay and save (CRITICAL: ALWAYS save final frame)
-            self._create_and_save_final_overlay(frame, memory_masks, frame_idx, directories, flip_blobs, H, W)
+            # 14. Create final overlay and save
+            if self.fast_mode:
+                # Simply store the raw frame to speed things up
+                output_path = os.path.join(directories['frames_processed'], f"frame_{frame_idx:06d}.png")
+                Image.fromarray(frame).save(output_path)
+            else:
+                self._create_and_save_final_overlay(frame, memory_masks, frame_idx, directories, flip_blobs, H, W)
             
         except Exception as e:
             import traceback
@@ -777,18 +792,21 @@ class VideoProcessor:
         for i in range(self.n_blobs):
             if i < len(assigned_masks) and assigned_masks[i] is not None:
                 new_mask = assigned_masks[i].astype(np.float32)
-                
-                # CRITICAL FIX: Check freeze condition FIRST for blob 1
+
+                # Freeze logic for blob-1 remains
                 if i == 1 and self.blob_1_memory_freeze_frame is not None and frame_idx >= self.blob_1_memory_freeze_frame:
-                    # Blob 1 memory is frozen - don't update AT ALL regardless of strategy
                     self.logger.debug(f"Frame {frame_idx}: Blob 1 memory frozen, not updating")
-                    pass  # Keep existing memory
-                elif i == 1 and self.blob_1_memory_strategy == 'running_average':
-                    # Special handling for blob 1 with running average strategy (only if not frozen)
-                    self._update_blob_1_running_average(new_mask, frame_idx)
-                else:
-                    # Standard exponential averaging for other blobs or blob 1 before freeze
-                    self.mem_floats[i] = self.alpha * self.mem_floats[i] + (1 - self.alpha) * new_mask
+                    continue
+
+                # Append to history deque (create if first time)
+                if not hasattr(self, 'blob_mask_histories'):
+                    from collections import deque
+                    self.blob_mask_histories = [deque(maxlen=self.blob_1_running_avg_window) for _ in range(self.n_blobs)]
+
+                self.blob_mask_histories[i].append(new_mask.copy())
+
+                # Running-average memory update (simple mean)
+                self.mem_floats[i] = np.mean(np.stack(self.blob_mask_histories[i]), axis=0).astype(np.float32)
     
     def _update_blob_1_running_average(self, new_mask: np.ndarray, frame_idx: int) -> None:
         """Update blob 1 memory using running average strategy."""

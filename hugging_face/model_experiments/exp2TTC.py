@@ -55,7 +55,8 @@ class TTCExperiment:
     """
 
     def __init__(self, model_interface: ModelInterface, output_dir: str, n_blobs: int = 2,
-                 blob_1_memory_freeze_frame: int = 80, logger: logging.Logger = None):
+                 blob_1_memory_freeze_frame: int = 80, logger: logging.Logger = None,
+                 fast_mode: bool = False):
         self.model_interface = model_interface
         self.output_dir = output_dir
         self.blob_1_memory_freeze_frame = blob_1_memory_freeze_frame
@@ -81,7 +82,8 @@ class TTCExperiment:
             logger=self.logger,
             blob_1_memory_strategy='running_average',
             blob_1_running_avg_window=10,
-            blob_1_memory_freeze_frame=self.blob_1_memory_freeze_frame
+            blob_1_memory_freeze_frame=self.blob_1_memory_freeze_frame,
+            fast_mode=fast_mode
         )
 
         self.logger.info(f"Initialized TTC Experiment with output dir: {output_dir}")
@@ -1041,6 +1043,8 @@ def main():
                       help="Resume processing from checkpoints (default: True)")
     parser.add_argument("--no_resume", action="store_true", default=False,
                       help="Start processing from scratch, ignoring checkpoints")
+    parser.add_argument("--fast_mode", action="store_true", default=False,
+                      help="Run in fast mode (less detailed logging, potentially faster)")
     
     args = parser.parse_args()
     
@@ -1070,7 +1074,8 @@ def main():
         model_interface, 
         args.output_dir, 
         args.n_blobs,
-        blob_1_memory_freeze_frame=args.blob_1_memory_freeze_frame
+        blob_1_memory_freeze_frame=args.blob_1_memory_freeze_frame,
+        fast_mode=args.fast_mode
     )
     
     try:
