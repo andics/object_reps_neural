@@ -534,6 +534,8 @@ def main():
                       help="Resume processing from checkpoints (default: True)")
     parser.add_argument("--no_resume", action="store_true", default=False,
                       help="Start processing from scratch, ignoring checkpoints")
+    parser.add_argument("--model_name", type=str, default="nvidia/segformer-b1-finetuned-ade-512-512",
+                      help="HuggingFace model repo for SegFormer")
     
     args = parser.parse_args()
     
@@ -545,12 +547,16 @@ def main():
         print(f"Error: Videos directory '{args.videos_dir}' does not exist")
         sys.exit(1)
     
-    # Create output directory
+    # Append model suffix to output directory
+    model_suffix = args.model_name.split("/")[-1]
+    if not args.output_dir.endswith(model_suffix):
+        args.output_dir = f"{args.output_dir}_{model_suffix}"
+
     os.makedirs(args.output_dir, exist_ok=True)
     
     # Initialize model interface
     if args.model_interface == "segformer":
-        model_interface = SegFormerInterface()
+        model_interface = SegFormerInterface(model_name=args.model_name)
     else:
         raise ValueError(f"Unknown model interface: {args.model_interface}")
     

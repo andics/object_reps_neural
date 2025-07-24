@@ -1026,6 +1026,9 @@ def main():
     parser = argparse.ArgumentParser(description="Time-to-Collision (TTC) Experiment - Process raw videos and correlate with human response times")
     parser.add_argument("--model_interface", type=str, default="segformer",
                       choices=["segformer"], help="Model interface to use")
+    # NEW: allow custom model checkpoint
+    parser.add_argument("--model_name", type=str, default="nvidia/segformer-b1-finetuned-ade-512-512",
+                      help="HuggingFace model repo for SegFormer")
     parser.add_argument("--videos_dir", type=str, required=False,
                       default="/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/exp2TTC_files",
                       help="Directory containing raw .mp4 video files")
@@ -1060,19 +1063,24 @@ def main():
         print(f"Error: CSV file '{args.csv_path}' does not exist")
         sys.exit(1)
     
-    # Create output directory
+    # Append model suffix to the output directory for clarity
+    model_suffix = args.model_name.split("/")[-1]
+    if not args.output_dir.endswith(model_suffix):
+        args.output_dir = f"{args.output_dir}_{model_suffix}"
+
+    # Create output directory (with suffix)
     os.makedirs(args.output_dir, exist_ok=True)
     
     # Initialize model interface
     if args.model_interface == "segformer":
-        model_interface = SegFormerInterface()
+        model_interface = SegFormerInterface(model_name=args.model_name)
     else:
         raise ValueError(f"Unknown model interface: {args.model_interface}")
     
     # Run experiment
     experiment = TTCExperiment(
-        model_interface, 
-        args.output_dir, 
+        model_interface,
+        args.output_dir,
         args.n_blobs,
         blob_1_memory_freeze_frame=args.blob_1_memory_freeze_frame,
         fast_mode=args.fast_mode
