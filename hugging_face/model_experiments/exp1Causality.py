@@ -25,6 +25,8 @@ import glob
 
 # Import model interfaces and video processor
 from segformer.segformer_interface import SegFormerInterface, ModelInterface
+from detr.detr_interface import DetrInterface
+from maskrcnn.maskrcnn_interface import MaskRCNNInterface
 from video_processor import VideoProcessor
 
 ##############################################################################
@@ -523,7 +525,7 @@ class CausalityExperiment:
 def main():
     parser = argparse.ArgumentParser(description="Causality Experiment - Process raw videos and compute causality scores")
     parser.add_argument("--model_interface", type=str, default="segformer",
-                      choices=["segformer"], help="Model interface to use")
+                      choices=["segformer", "detr", "maskrcnn"], help="Model interface to use")
     parser.add_argument("--videos_dir", type=str, required=True,
                       help="Directory containing raw .mp4 video files")
     parser.add_argument("--output_dir", type=str, required=True,
@@ -535,7 +537,7 @@ def main():
     parser.add_argument("--no_resume", action="store_true", default=False,
                       help="Start processing from scratch, ignoring checkpoints")
     parser.add_argument("--model_name", type=str, default="nvidia/segformer-b1-finetuned-ade-512-512",
-                      help="HuggingFace model repo for SegFormer")
+                      help="HuggingFace model repo for SegFormer/DETR or torchvision model name for MaskRCNN")
     
     args = parser.parse_args()
     
@@ -547,8 +549,14 @@ def main():
         print(f"Error: Videos directory '{args.videos_dir}' does not exist")
         sys.exit(1)
     
+    # Update default model name based on interface choice
+    if args.model_interface == "detr" and args.model_name == "nvidia/segformer-b1-finetuned-ade-512-512":
+        args.model_name = "facebook/detr-resnet-50-panoptic"
+    elif args.model_interface == "maskrcnn" and args.model_name == "nvidia/segformer-b1-finetuned-ade-512-512":
+        args.model_name = "maskrcnn_resnet50_fpn"
+    
     # Append model suffix to output directory
-    model_suffix = args.model_name.split("/")[-1]
+    model_suffix = args.model_name.split("/")[-1] if "/" in args.model_name else args.model_name
     if not args.output_dir.endswith(model_suffix):
         args.output_dir = f"{args.output_dir}_{model_suffix}"
 
@@ -557,6 +565,10 @@ def main():
     # Initialize model interface
     if args.model_interface == "segformer":
         model_interface = SegFormerInterface(model_name=args.model_name)
+    elif args.model_interface == "detr":
+        model_interface = DetrInterface(model_name=args.model_name)
+    elif args.model_interface == "maskrcnn":
+        model_interface = MaskRCNNInterface(model_name=args.model_name)
     else:
         raise ValueError(f"Unknown model interface: {args.model_interface}")
     

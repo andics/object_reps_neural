@@ -32,6 +32,8 @@ import glob
 
 # Import model interfaces and video processor
 from segformer.segformer_interface import SegFormerInterface, ModelInterface
+from detr.detr_interface import DetrInterface
+from maskrcnn.maskrcnn_interface import MaskRCNNInterface
 from video_processor import VideoProcessor
 
 ##############################################################################
@@ -1025,10 +1027,10 @@ class TTCExperiment:
 def main():
     parser = argparse.ArgumentParser(description="Time-to-Collision (TTC) Experiment - Process raw videos and correlate with human response times")
     parser.add_argument("--model_interface", type=str, default="segformer",
-                      choices=["segformer"], help="Model interface to use")
+                      choices=["segformer", "detr", "maskrcnn"], help="Model interface to use")
     # NEW: allow custom model checkpoint
     parser.add_argument("--model_name", type=str, default="nvidia/segformer-b1-finetuned-ade-512-512",
-                      help="HuggingFace model repo for SegFormer")
+                      help="HuggingFace model repo for SegFormer/DETR or torchvision model name for MaskRCNN")
     parser.add_argument("--videos_dir", type=str, required=False,
                       default="/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/exp2TTC_files",
                       help="Directory containing raw .mp4 video files")
@@ -1063,8 +1065,14 @@ def main():
         print(f"Error: CSV file '{args.csv_path}' does not exist")
         sys.exit(1)
     
+    # Update default model name based on interface choice
+    if args.model_interface == "detr" and args.model_name == "nvidia/segformer-b1-finetuned-ade-512-512":
+        args.model_name = "facebook/detr-resnet-50-panoptic"
+    elif args.model_interface == "maskrcnn" and args.model_name == "nvidia/segformer-b1-finetuned-ade-512-512":
+        args.model_name = "maskrcnn_resnet50_fpn"
+    
     # Append model suffix to the output directory for clarity
-    model_suffix = args.model_name.split("/")[-1]
+    model_suffix = args.model_name.split("/")[-1] if "/" in args.model_name else args.model_name
     if not args.output_dir.endswith(model_suffix):
         args.output_dir = f"{args.output_dir}_{model_suffix}"
 
@@ -1074,6 +1082,10 @@ def main():
     # Initialize model interface
     if args.model_interface == "segformer":
         model_interface = SegFormerInterface(model_name=args.model_name)
+    elif args.model_interface == "detr":
+        model_interface = DetrInterface(model_name=args.model_name)
+    elif args.model_interface == "maskrcnn":
+        model_interface = MaskRCNNInterface(model_name=args.model_name)
     else:
         raise ValueError(f"Unknown model interface: {args.model_interface}")
     

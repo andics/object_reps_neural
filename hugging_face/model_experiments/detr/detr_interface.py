@@ -1,7 +1,7 @@
- """
+"""
 detr_interface.py
 
-A model interface wrapper that provides DETR-compatible output from DETR models.
+A model interface wrapper that provides DETR-compatible output from DETR segmentation models.
 This interface standardizes model loading, inference, and output formatting across experiments.
 
 Dependencies:
@@ -11,6 +11,7 @@ Dependencies:
 from pathlib import Path
 from typing import Union, Dict, Any
 import logging
+import io
 
 import numpy as np
 import torch
@@ -20,8 +21,9 @@ from huggingface_hub import hf_hub_download
 from matplotlib import pyplot as plt
 from transformers import (
     DetrImageProcessor,
-    DetrForObjectDetection,
+    DetrForSegmentation,
 )
+from transformers.models.detr.feature_extraction_detr import rgb_to_id
 from skimage.measure import label, regionprops
 
 
@@ -50,14 +52,13 @@ class ModelInterface:
 
 class DetrInterface(ModelInterface):
     """
-    DETR model interface that provides compatible output format.
-    Converts DETR object detection outputs to mask-based format for compatibility
-    with existing segmentation-based experiments.
+    DETR segmentation model interface that provides panoptic segmentation outputs.
+    Uses DETR for panoptic segmentation which outputs proper segmentation masks.
     """
 
     def __init__(
         self,
-        model_name: str = "facebook/detr-resnet-50",
+        model_name: str = "facebook/detr-resnet-50-panoptic",
         device: Union[str, torch.device, None] = None,
         num_queries: int = 100,
         logger: logging.Logger = None,
@@ -78,31 +79,29 @@ class DetrInterface(ModelInterface):
         
         # DETR processor handles image preprocessing
         self.processor = DetrImageProcessor.from_pretrained(self.model_name)
-        self.model: DetrForObjectDetection = None
+        self.model: DetrForSegmentation = None
         
-        self.logger.info(f"Initialized DETR interface with device: {self.device}")
+        self.logger.info(f"Initialized DETR Segmentation interface with device: {self.device}")
 
     def load_model(self, use_safetensors: bool = True) -> None:
-        """Downloads and loads the DETR model."""
-        self.logger.info(f"Loading DETR model: {self.model_name}")
+        """Downloads and loads the DETR segmentation model."""
+        self.logger.info(f"Loading DETR segmentation model: {self.model_name}")
         
         self.model = (
-            DetrForObjectDetection.from_pretrained(
+            DetrForSegmentation.from_pretrained(
                 self.model_name, use_safetensors=use_safetensors
             )
             .to(self.device)
             .eval()
         )
         
-        self.logger.info("DETR model loaded successfully")
+        self.logger.info("DETR segmentation model loaded successfully")
 
     def infer_image(self, image: Image.Image) -> Dict[str, Any]:
         """
         Run inference and return DETR-compatible predictions.
         
-        The DETR object detection outputs are converted to mask-based format
-        by creating binary masks from bounding boxes for compatibility with
-        existing segmentation-based experiments.
+        The DETR segmentation model outputs proper segmentation masks from panoptic segmentation.
         """
         if self.model is None:
             raise RuntimeError("Call load_model() before infer_image().")
@@ -110,21 +109,25 @@ class DetrInterface(ModelInterface):
         # Get original image dimensions
         orig_width, orig_height = image.size
         
-        # Run DETR inference
+        # Run DETR segmentation inference
         inputs = self.processor(images=image, return_tensors="pt").to(self.device)
 
         with torch.no_grad():
             outputs = self.model(**inputs)
 
-        # Post-process the outputs to get final predictions
-        target_sizes = torch.tensor([image.size[::-1]]).to(self.device)  # (height, width)
-        results = self.processor.post_process_object_detection(
-            outputs, target_sizes=target_sizes, threshold=self.confidence_threshold
-        )[0]
+        # Post-process the panoptic segmentation outputs
+        processed_sizes = torch.as_tensor(inputs["pixel_values"].shape[-2:]).unsqueeze(0)
+        result = self.processor.post_process_panoptic(outputs, processed_sizes)[0]
         
-        # Convert to mask-based format for compatibility
-        pred_masks = self._convert_boxes_to_masks(
-            results, orig_height, orig_width
+        # Extract the panoptic segmentation
+        panoptic_seg = Image.open(io.BytesIO(result["png_string"]))
+        panoptic_seg = np.array(panoptic_seg, dtype=np.uint8)
+        # Convert RGB to segment IDs
+        panoptic_seg_id = rgb_to_id(panoptic_seg)
+        
+        # Convert panoptic segmentation to individual masks
+        pred_masks = self._convert_panoptic_to_masks(
+            panoptic_seg_id, result["segments_info"], orig_height, orig_width
         )
         
         # Use the original DETR outputs for logits and boxes
@@ -137,61 +140,70 @@ class DetrInterface(ModelInterface):
             'pred_boxes': pred_boxes
         }
 
-    def _convert_boxes_to_masks(self, results: Dict[str, torch.Tensor], 
-                               height: int, width: int) -> torch.Tensor:
+    def _convert_panoptic_to_masks(self, panoptic_seg_id: np.ndarray, 
+                                  segments_info: list, height: int, width: int) -> torch.Tensor:
         """
-        Convert DETR bounding box predictions to binary masks.
+        Convert panoptic segmentation to individual binary masks.
         
         Args:
-            results: Post-processed DETR results with 'boxes', 'scores', 'labels'
+            panoptic_seg_id: Panoptic segmentation map with segment IDs
+            segments_info: Information about each segment
             height, width: Original image dimensions
             
         Returns:
             Tensor of shape (1, num_queries, H, W) with binary masks
         """
         
-        # Initialize empty masks
+        # Resize panoptic segmentation to original image size
+        if panoptic_seg_id.shape != (height, width):
+            panoptic_pil = Image.fromarray(panoptic_seg_id.astype(np.uint8))
+            panoptic_pil = panoptic_pil.resize((width, height), Image.NEAREST)
+            panoptic_seg_id = np.array(panoptic_pil)
+        
+        # Initialize masks list
         masks = []
         
-        # Get detected boxes (already filtered by confidence threshold)
-        boxes = results.get("boxes", torch.empty(0, 4))  # (N, 4) in xyxy format
-        scores = results.get("scores", torch.empty(0))
-        labels = results.get("labels", torch.empty(0))
+        # Create masks from segments
+        for segment in segments_info:
+            segment_id = segment['id']
+            
+            # Create binary mask for this segment
+            mask = (panoptic_seg_id == segment_id).astype(np.float32)
+            
+            if mask.sum() > 0:  # Only add non-empty masks
+                masks.append(torch.from_numpy(mask))
         
-        # Create masks from detected boxes
-        for i, (box, score, label) in enumerate(zip(boxes, scores, labels)):
-            if len(masks) >= self.num_queries:
-                break
+        # If we don't have enough masks, create additional masks by splitting larger segments
+        if len(masks) < self.num_queries:
+            # Find larger segments and split them into connected components
+            for segment in segments_info:
+                if len(masks) >= self.num_queries:
+                    break
+                    
+                segment_id = segment['id']
+                mask = (panoptic_seg_id == segment_id).astype(np.uint8)
                 
-            # Create binary mask from bounding box
-            mask = torch.zeros((height, width), dtype=torch.float32)
-            
-            # Convert box coordinates to integers (boxes are in xyxy format)
-            x1, y1, x2, y2 = box.cpu().numpy().astype(int)
-            
-            # Ensure coordinates are within image bounds
-            x1 = max(0, min(x1, width - 1))
-            y1 = max(0, min(y1, height - 1))
-            x2 = max(0, min(x2, width - 1))
-            y2 = max(0, min(y2, height - 1))
-            
-            # Fill the bounding box region
-            if x2 > x1 and y2 > y1:
-                mask[y1:y2, x1:x2] = 1.0
-            
-            masks.append(mask)
+                # Split into connected components
+                labeled = label(mask, connectivity=2)
+                regions = regionprops(labeled)
+                
+                # Add largest connected components as separate masks
+                for region in sorted(regions, key=lambda r: r.area, reverse=True):
+                    if len(masks) >= self.num_queries:
+                        break
+                    if region.area > 50:  # Minimum area threshold
+                        component_mask = (labeled == region.label).astype(np.float32)
+                        masks.append(torch.from_numpy(component_mask))
         
-        # If we don't have enough detected objects, create some additional masks
-        # using a simple grid-based approach for compatibility
+        # If still not enough masks, create simple grid-based masks as fallback
         while len(masks) < self.num_queries:
-            # Create simple grid-based masks as fallback
             grid_idx = len(masks) % 16  # Create up to 16 different grid positions
             grid_size = 4  # 4x4 grid
             row = grid_idx // grid_size
             col = grid_idx % grid_size
             
             # Create mask in grid cell
-            mask = torch.zeros((height, width), dtype=torch.float32)
+            mask = np.zeros((height, width), dtype=np.float32)
             
             cell_h = height // grid_size
             cell_w = width // grid_size
@@ -214,7 +226,7 @@ class DetrInterface(ModelInterface):
             if mask_y2 > mask_y1 and mask_x2 > mask_x1:
                 mask[mask_y1:mask_y2, mask_x1:mask_x2] = 0.1  # Lower confidence for fallback masks
             
-            masks.append(mask)
+            masks.append(torch.from_numpy(mask))
         
         # Stack and add batch dimension
         pred_masks = torch.stack(masks[:self.num_queries], dim=0)  # (num_queries, H, W)
@@ -234,7 +246,7 @@ class DetrInterface(ModelInterface):
     def visualize_predictions(self, image: Image.Image, predictions: Dict[str, Any], 
                             threshold: float = 0.5) -> Image.Image:
         """
-        Visualize DETR predictions on the image.
+        Visualize DETR panoptic segmentation predictions on the image.
         
         Args:
             image: Input PIL image
@@ -249,36 +261,37 @@ class DetrInterface(ModelInterface):
         with torch.no_grad():
             outputs = self.model(**inputs)
         
-        target_sizes = torch.tensor([image.size[::-1]]).to(self.device)
-        results = self.processor.post_process_object_detection(
-            outputs, target_sizes=target_sizes, threshold=threshold
-        )[0]
+        processed_sizes = torch.as_tensor(inputs["pixel_values"].shape[-2:]).unsqueeze(0)
+        result = self.processor.post_process_panoptic(outputs, processed_sizes)[0]
         
-        # Draw results on image
-        import matplotlib.patches as patches
+        # Extract panoptic segmentation
+        panoptic_seg = Image.open(io.BytesIO(result["png_string"]))
+        panoptic_seg = np.array(panoptic_seg, dtype=np.uint8)
+        
+        # Create overlay
         fig, ax = plt.subplots(1, 1, figsize=(12, 8))
         ax.imshow(image)
+        ax.imshow(panoptic_seg, alpha=0.5)
         
-        # Get class labels
-        labels_map = self.get_coco_labels()
-        
-        for score, label, box in zip(results["scores"], results["labels"], results["boxes"]):
-            box = box.cpu().numpy()
-            score = score.cpu().item()
-            label = label.cpu().item()
+        # Add segment labels
+        panoptic_seg_id = rgb_to_id(panoptic_seg)
+        for segment in result["segments_info"]:
+            segment_id = segment['id']
+            label_id = segment['label_id']
             
-            # Create rectangle patch
-            x1, y1, x2, y2 = box
-            rect = patches.Rectangle(
-                (x1, y1), x2 - x1, y2 - y1,
-                linewidth=2, edgecolor='red', facecolor='none'
-            )
-            ax.add_patch(rect)
+            # Get class labels
+            labels_map = self.get_coco_labels()
+            label_text = labels_map.get(label_id, 'unknown')
             
-            # Add label and score
-            label_text = f"{labels_map.get(label, 'unknown')}: {score:.2f}"
-            ax.text(x1, y1 - 10, label_text, fontsize=10, color='red',
-                   bbox=dict(boxstyle="round,pad=0.3", facecolor="white", alpha=0.7))
+            # Find centroid of segment
+            mask = (panoptic_seg_id == segment_id)
+            if mask.sum() > 0:
+                y_coords, x_coords = np.where(mask)
+                centroid_x = np.mean(x_coords)
+                centroid_y = np.mean(y_coords)
+                
+                ax.text(centroid_x, centroid_y, label_text, fontsize=10, color='white',
+                       bbox=dict(boxstyle="round,pad=0.3", facecolor="black", alpha=0.7))
         
         ax.axis('off')
         plt.tight_layout()
@@ -324,10 +337,11 @@ if __name__ == "__main__":
     print(f"- pred_masks shape: {predictions['pred_masks'].shape}")
     print(f"- pred_logits shape: {predictions['pred_logits'].shape}")
     print(f"- pred_boxes shape: {predictions['pred_boxes'].shape}")
+    print(f"- Number of non-empty masks: {(predictions['pred_masks'].sum(dim=(-2, -1)) > 0).sum().item()}")
 
-    # For visualization, show detected objects
-    results_vis = interface.visualize_predictions(image, predictions, threshold=0.5)
+    # For visualization, show panoptic segmentation
+    results_vis = interface.visualize_predictions(image, predictions)
     
     # Save visualization
-    results_vis.save("detr_demo_output.png")
-    print("Saved visualization to detr_demo_output.png")
+    results_vis.save("detr_segmentation_demo_output.png")
+    print("Saved visualization to detr_segmentation_demo_output.png")
