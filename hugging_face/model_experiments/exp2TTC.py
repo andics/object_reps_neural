@@ -11,9 +11,11 @@ FIXED VERSION:
 - Fixed undefined variable error in data analysis
 - Added robust correlation computation with NaN protection
 - Improved concave vs convex analysis with two-column bar charts using gen_two_box_plots.py style
+- CRITICAL FIX: Added proper name_mapping.json support matching data_analysis_v2.py exactly
+- CRITICAL FIX: Dynamic model prefix based on actual model interface, not hardcoded "segformer"
 
 Usage:
-    python exp2TTC.py --model_interface segformer --videos_dir /path/to/raw_videos --csv_path /path/to/participants.csv --output_dir /path/to/output [--resume] [--blob_1_memory_freeze_frame 80]
+    python exp2TTC.py --model_interface segformer --videos_dir /path/to/raw_videos --csv_path /path/to/participants.csv --name_mapping /path/to/name_mapping.json --output_dir /path/to/output [--resume] [--blob_1_memory_freeze_frame 80]
 """
 
 import argparse
@@ -48,12 +50,13 @@ class TTCExperiment:
     1. Takes a directory of raw .mp4 video files as input
     2. Processes each video using VideoProcessor to extract frames and detect objects
     3. Computes collision times under varying IoU thresholds
-    4. Correlates model predictions with participant response times
+    4. Correlates model predictions with participant response times using proper name mapping
     5. Generates analysis plots and statistics
     
     Special configuration for TTC experiment:
     - Blob 1 memory uses running average of past 10 frames
     - Blob 1 memory updates stop after specified freeze frame (default: 80)
+    - Uses name_mapping.json for proper stimulus-to-video matching (like data_analysis_v2.py)
     """
 
     def __init__(self, model_interface: ModelInterface, output_dir: str, n_blobs: int = 2,
@@ -62,6 +65,9 @@ class TTCExperiment:
         self.model_interface = model_interface
         self.output_dir = output_dir
         self.blob_1_memory_freeze_frame = blob_1_memory_freeze_frame
+
+        # Determine model prefix dynamically based on model interface
+        self.model_prefix = self._get_model_prefix()
 
         # Create output subdirectories FIRST (before logger is set up)
         self.results_dir = os.path.join(output_dir, "results")
@@ -89,9 +95,30 @@ class TTCExperiment:
         )
 
         self.logger.info(f"Initialized TTC Experiment with output dir: {output_dir}")
+        self.logger.info(f"Model prefix: {self.model_prefix}")
         self.logger.info("TTC-specific configuration:")
         self.logger.info("  - Blob 1 memory: running average of past 10 frames")
         self.logger.info(f"  - Blob 1 memory updates stop after frame {self.blob_1_memory_freeze_frame}")
+
+    def _get_model_prefix(self) -> str:
+        """Get model prefix based on the model interface type."""
+        if isinstance(self.model_interface, SegFormerInterface):
+            return "segformer_model"
+        elif isinstance(self.model_interface, DetrInterface):
+            return "detr_model"
+        elif isinstance(self.model_interface, MaskRCNNInterface):
+            return "maskrcnn_model"
+        else:
+            # Fallback - try to infer from class name
+            class_name = self.model_interface.__class__.__name__.lower()
+            if "segformer" in class_name:
+                return "segformer_model"
+            elif "detr" in class_name:
+                return "detr_model"
+            elif "mask" in class_name or "rcnn" in class_name:
+                return "maskrcnn_model"
+            else:
+                return "unknown_model"
 
     def _setup_logger(self) -> logging.Logger:
         """Setup logging configuration."""
@@ -120,7 +147,7 @@ class TTCExperiment:
         logger.info(f"Logger initialized. Writing detailed log to {log_file_path}")
         return logger
 
-    def run_full_experiment(self, videos_dir: str, csv_path: str, 
+    def run_full_experiment(self, videos_dir: str, csv_path: str, name_mapping_path: str,
                           iou_start: float = 0.05, iou_end: float = 0.95, iou_step: float = 0.05,
                           resume: bool = True) -> None:
         """Run the complete TTC experiment from raw videos to final analysis."""
@@ -134,8 +161,9 @@ class TTCExperiment:
         
         self.logger.info(f"Found {len(video_files)} video files to process")
         
-        # Step 2: Load participant data
+        # Step 2: Load participant data and name mapping
         participant_df = self._read_participant_csv(csv_path)
+        name_mapping = self._read_name_mapping(name_mapping_path)
         
         # Step 3: Generate collision detection data  
         iou_values = np.arange(iou_start, iou_end + iou_step, iou_step)
@@ -151,7 +179,7 @@ class TTCExperiment:
         
         if final_collision_data:
             self.logger.info(f"Collected collision data for {len(set([vname for (vname, _) in final_collision_data.keys()]))} videos")
-            self._analyze_participant_correlations(final_collision_data, participant_df, iou_values)
+            self._analyze_participant_correlations(final_collision_data, participant_df, name_mapping, iou_values)
         else:
             self.logger.warning("No collision data available from any videos - skipping correlation analysis")
         
@@ -170,6 +198,14 @@ class TTCExperiment:
         self.logger.info(f"CSV loaded with {len(df)} rows and {len(df.columns)} columns.")
         return df
 
+    def _read_name_mapping(self, name_mapping_path: str) -> Dict[str, str]:
+        """Read the JSON name mapping (key -> subfolder name) - same as data_analysis_v2.py."""
+        self.logger.info(f"Reading name mapping from {name_mapping_path}...")
+        with open(name_mapping_path, 'r') as f:
+            mapping = json.load(f)
+        self.logger.info(f"Loaded name mapping with {len(mapping)} entries.")
+        return mapping
+
     def _process_videos_for_collision_detection(self, video_files: List[str], 
                                               iou_values: np.ndarray, resume: bool = True) -> Dict[Tuple[str, float], float]:
         """Process all videos to detect collision times for different IoU thresholds."""
@@ -185,7 +221,7 @@ class TTCExperiment:
             self.logger.info(f"Processing video: {video_name}")
             
             # Check processing status
-            expected_output_dir = os.path.join(self.processed_videos_dir, f"segformer_model-{video_name}")
+            expected_output_dir = os.path.join(self.processed_videos_dir, f"{self.model_prefix}-{video_name}")
             videos_processed_dir = os.path.join(expected_output_dir, "videos_processed")
             frames_processed_dir = os.path.join(expected_output_dir, "frames_processed")
             
@@ -198,7 +234,7 @@ class TTCExperiment:
                     video_output_dirs = self.video_processor.setup_output_directories(
                         video_path=video_file,
                         output_root=self.processed_videos_dir,
-                        model_prefix="segformer_model"
+                        model_prefix=self.model_prefix
                     )
                     # Skip to collision data extraction
                     process_video = False
@@ -219,7 +255,7 @@ class TTCExperiment:
                         video_output_dirs = self.video_processor.setup_output_directories(
                             video_path=video_file,
                             output_root=self.processed_videos_dir,
-                            model_prefix="segformer_model"
+                            model_prefix=self.model_prefix
                         )
                         
                         # Try to process with resume=True to handle partial processing
@@ -227,7 +263,7 @@ class TTCExperiment:
                             video_output_dirs = self.video_processor.process_video(
                                 video_path=video_file,
                                 output_root=self.processed_videos_dir,
-                                model_prefix="segformer_model",
+                                model_prefix=self.model_prefix,
                                 resume=True  # Allow it to handle partial processing
                             )
                             self.logger.info(f"Successfully completed processing for {video_name}")
@@ -247,7 +283,7 @@ class TTCExperiment:
                         video_output_dirs = self.video_processor.process_video(
                             video_path=video_file,
                             output_root=self.processed_videos_dir,
-                            model_prefix="segformer_model",
+                            model_prefix=self.model_prefix,
                             resume=False  # Start fresh
                         )
                     except Exception as e:
@@ -370,7 +406,7 @@ class TTCExperiment:
         collision_data = {}
         
         for video_name in all_video_names:
-            expected_output_dir = os.path.join(self.processed_videos_dir, f"segformer_model-{video_name}")
+            expected_output_dir = os.path.join(self.processed_videos_dir, f"{self.model_prefix}-{video_name}")
             results_dir = Path(expected_output_dir) / "collision_results"
             
             if not results_dir.exists():
@@ -560,22 +596,54 @@ class TTCExperiment:
             return float('nan')
 
     def _analyze_participant_correlations(self, collision_data: Dict[Tuple[str, float], float], 
-                                        participant_df: pd.DataFrame, 
+                                        participant_df: pd.DataFrame, name_mapping: Dict[str, str],
                                         iou_values: np.ndarray) -> None:
-        """Analyze correlations between model predictions and participant data."""
-        self.logger.info("Analyzing participant correlations...")
+        """Analyze correlations between model predictions and participant data using proper name mapping."""
+        self.logger.info("Analyzing participant correlations with proper name mapping...")
         
         # Get list of video names
         video_names = list(set([video_name for (video_name, _) in collision_data.keys()]))
         
-        # For this analysis, we'll create a simple correlation between video names and participant stimuli
-        # This assumes video file names can be mapped to participant stimulus names
+        # Create folder mapping for video matching (following data_analysis_v2.py exactly)
+        folder_map = {}
+        for video_name in video_names:
+            # For each video name, create the after-dash mapping
+            # Video names are like "BConcave+AConcave+3500" 
+            # We need to handle cases where they might have model prefix
+            if '-' in video_name:
+                after_dash = video_name.split('-', 1)[1]  # e.g. "BConcave+AConcave+3500"
+            else:
+                after_dash = video_name
+            folder_map[video_name] = after_dash
+        
+        # Create subfolder lookup function (following data_analysis_v2.py exactly)
+        def get_video_for_stimulus(stimulus: str) -> str:
+            """
+            Get video name for stimulus using name mapping (following data_analysis_v2.py exactly).
+            """
+            # Extract "1" from "Stimulus/1.mp4"
+            base_stim = os.path.basename(stimulus)  # "1.mp4"
+            stim_id = os.path.splitext(base_stim)[0]  # "1"
+            
+            if stim_id not in name_mapping:
+                return None
+                
+            raw_folder_name = name_mapping[stim_id]  # e.g. "BConcave+AConcave+3500.mp4"
+            folder_key = os.path.splitext(raw_folder_name)[0]  # "BConcave+AConcave+3500"
+            
+            # Now find the video name that contains this folder_key
+            for video_name in video_names:
+                if folder_key in folder_map[video_name]:
+                    return video_name
+            return None
+        
+        # For this analysis, we'll create correlations for each IoU threshold
         for iou_thr in iou_values:
-            self._analyze_iou_threshold(iou_thr, video_names, collision_data, participant_df)
+            self._analyze_iou_threshold(iou_thr, video_names, collision_data, participant_df, get_video_for_stimulus)
 
     def _analyze_iou_threshold(self, iou_thr: float, video_names: List[str],
                               collision_data: Dict[Tuple[str, float], float], 
-                              participant_df: pd.DataFrame) -> None:
+                              participant_df: pd.DataFrame, get_video_for_stimulus) -> None:
         """Analyze a specific IoU threshold."""
         
         # Create output directory
@@ -590,12 +658,12 @@ class TTCExperiment:
         
         # Individual participant analysis
         self._analyze_individual_participants(
-            out_dir / "ID", iou_thr, video_names, collision_data, participant_df
+            out_dir / "ID", iou_thr, video_names, collision_data, participant_df, get_video_for_stimulus
         )
         
         # Average participant analysis
         self._analyze_average_participant(
-            out_dir / "Average_person", iou_thr, video_names, collision_data, participant_df
+            out_dir / "Average_person", iou_thr, video_names, collision_data, participant_df, get_video_for_stimulus
         )
         
         # Summary analysis
@@ -610,8 +678,8 @@ class TTCExperiment:
 
     def _analyze_individual_participants(self, output_dir: Path, iou_thr: float, video_names: List[str],
                                        collision_data: Dict[Tuple[str, float], float], 
-                                       participant_df: pd.DataFrame) -> None:
-        """Analyze individual participant correlations."""
+                                       participant_df: pd.DataFrame, get_video_for_stimulus) -> None:
+        """Analyze individual participant correlations using proper name mapping."""
         
         participant_groups = participant_df.groupby("ID")
         
@@ -622,8 +690,8 @@ class TTCExperiment:
             
             for _, row in group.iterrows():
                 stimulus = row.get("stimulus", "")
-                # Try to match stimulus to video name (simple matching)
-                video_match = self._match_stimulus_to_video(stimulus, video_names)
+                # Use proper name mapping to match stimulus to video name
+                video_match = get_video_for_stimulus(stimulus)
                 
                 if video_match:
                     collision_time = collision_data.get((video_match, iou_thr), float('nan'))
@@ -631,6 +699,8 @@ class TTCExperiment:
                         predicted_times.append(collision_time)
                         human_times.append(row["rt"])
                         used_videos.append(video_match)
+                else:
+                    self.logger.debug(f"No video match found for stimulus: {stimulus}")
             
             # Compute correlation
             r_val = self._compute_correlation(predicted_times, human_times) if len(predicted_times) > 1 else float('nan')
@@ -656,15 +726,15 @@ class TTCExperiment:
 
     def _analyze_average_participant(self, output_dir: Path, iou_thr: float, video_names: List[str],
                                    collision_data: Dict[Tuple[str, float], float], 
-                                   participant_df: pd.DataFrame) -> None:
-        """Analyze average participant correlations."""
+                                   participant_df: pd.DataFrame, get_video_for_stimulus) -> None:
+        """Analyze average participant correlations using proper name mapping."""
         
-        # Map video names to average RTs
+        # Map video names to average RTs using proper name mapping
         video_rts = {name: [] for name in video_names}
         
         for _, row in participant_df.iterrows():
             stimulus = row.get("stimulus", "")
-            video_match = self._match_stimulus_to_video(stimulus, video_names)
+            video_match = get_video_for_stimulus(stimulus)
             if video_match and video_match in video_rts:
                 video_rts[video_match].append(row["rt"])
         
@@ -759,24 +829,6 @@ class TTCExperiment:
         with open(output_dir / f"summary_iou_{iou_thr}.json", 'w') as f:
             json.dump(summary_data, f, indent=2)
 
-    def _match_stimulus_to_video(self, stimulus: str, video_names: List[str]) -> str:
-        """
-        Match participant stimulus name to video file name.
-        This is a simple matching function that can be customized based on naming conventions.
-        """
-        if not stimulus:
-            return None
-        
-        # Simple matching: look for video names that contain the stimulus or vice versa
-        stimulus_clean = stimulus.lower().replace('stimulus/', '').replace('.mp4', '')
-        
-        for video_name in video_names:
-            video_clean = video_name.lower()
-            if stimulus_clean in video_clean or video_clean in stimulus_clean:
-                return video_name
-        
-        return None
-
     def _parse_video_name(self, video_name: str) -> Dict[str, Any]:
         """
         Parse video name to extract concave/convex information and ground‑truth time.
@@ -788,8 +840,12 @@ class TTCExperiment:
         """
         import re
 
-        # Remove common video extensions
+        # Remove common video extensions and model prefix
         base_name = video_name.replace('.mp4', '').replace('.avi', '')
+        
+        # Remove model prefix if present (e.g., "segformer_model-BConcave+AConcave+3500")
+        if '-' in base_name:
+            base_name = base_name.split('-', 1)[1]
 
         # Split by '+' to get components
         parts = base_name.split('+')
@@ -1037,6 +1093,8 @@ def main():
     parser.add_argument("--csv_path", type=str, required=False,
                       default="/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/exp2TTC_files/experiment2-CollisionDetection-Data.csv",
                       help="Path to CSV file with participant data")
+    parser.add_argument("--name_mapping", type=str, required=True,
+                      help="Path to name_mapping.json file for stimulus-to-video mapping")
     parser.add_argument("--output_dir", type=str, required=False,
                       default="/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC",
                       help="Output directory for results and processed data")
@@ -1063,6 +1121,10 @@ def main():
     
     if not os.path.isfile(args.csv_path):
         print(f"Error: CSV file '{args.csv_path}' does not exist")
+        sys.exit(1)
+    
+    if not os.path.isfile(args.name_mapping):
+        print(f"Error: Name mapping file '{args.name_mapping}' does not exist")
         sys.exit(1)
     
     # Update default model name based on interface choice
@@ -1102,6 +1164,7 @@ def main():
         experiment.run_full_experiment(
             videos_dir=args.videos_dir,
             csv_path=args.csv_path,
+            name_mapping_path=args.name_mapping,
             resume=resume
         )
         print("TTC experiment completed successfully!")
