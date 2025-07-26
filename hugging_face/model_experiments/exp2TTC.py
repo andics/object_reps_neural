@@ -13,9 +13,10 @@ FIXED VERSION:
 - Improved concave vs convex analysis with two-column bar charts using gen_two_box_plots.py style
 - CRITICAL FIX: Added proper name_mapping.json support matching data_analysis_v2.py exactly
 - CRITICAL FIX: Dynamic model prefix based on actual model interface, not hardcoded "segformer"
+- NEW: Added debug argument to disable try-except blocks for error visibility
 
 Usage:
-    python exp2TTC.py --model_interface segformer --videos_dir /path/to/raw_videos --csv_path /path/to/participants.csv --name_mapping /path/to/name_mapping.json --output_dir /path/to/output [--resume] [--blob_1_memory_freeze_frame 80]
+    python exp2TTC.py --model_interface segformer --videos_dir /path/to/raw_videos --csv_path /path/to/participants.csv --name_mapping /path/to/name_mapping.json --output_dir /path/to/output [--resume] [--blob_1_memory_freeze_frame 80] [--debug]
 """
 
 import argparse
@@ -61,10 +62,11 @@ class TTCExperiment:
 
     def __init__(self, model_interface: ModelInterface, output_dir: str, n_blobs: int = 2,
                  blob_1_memory_freeze_frame: int = 80, logger: logging.Logger = None,
-                 fast_mode: bool = False):
+                 fast_mode: bool = False, debug_mode: bool = False):
         self.model_interface = model_interface
         self.output_dir = output_dir
         self.blob_1_memory_freeze_frame = blob_1_memory_freeze_frame
+        self.debug_mode = debug_mode
 
         # Determine model prefix dynamically based on model interface
         self.model_prefix = self._get_model_prefix()
@@ -91,11 +93,13 @@ class TTCExperiment:
             blob_1_memory_strategy='running_average',
             blob_1_running_avg_window=10,
             blob_1_memory_freeze_frame=self.blob_1_memory_freeze_frame,
-            fast_mode=fast_mode
+            fast_mode=fast_mode,
+            debug_mode=debug_mode
         )
 
         self.logger.info(f"Initialized TTC Experiment with output dir: {output_dir}")
         self.logger.info(f"Model prefix: {self.model_prefix}")
+        self.logger.info(f"Debug mode: {debug_mode}")
         self.logger.info("TTC-specific configuration:")
         self.logger.info("  - Blob 1 memory: running average of past 10 frames")
         self.logger.info(f"  - Blob 1 memory updates stop after frame {self.blob_1_memory_freeze_frame}")
@@ -268,6 +272,8 @@ class TTCExperiment:
                             )
                             self.logger.info(f"Successfully completed processing for {video_name}")
                         except Exception as e:
+                            if self.debug_mode:
+                                raise  # Re-raise the exception to see full traceback
                             import traceback
                             self.logger.error(f"Failed to complete partial processing for {video_name}: {e}")
                             self.logger.error("Full traceback:")
@@ -287,6 +293,8 @@ class TTCExperiment:
                             resume=False  # Start fresh
                         )
                     except Exception as e:
+                        if self.debug_mode:
+                            raise  # Re-raise the exception to see full traceback
                         import traceback
                         self.logger.error(f"Failed to process video {video_name}: {e}")
                         self.logger.error("Full traceback:")
@@ -320,11 +328,15 @@ class TTCExperiment:
                                     collision_times[(video_name, iou_threshold)] = collision_time
                                     self.logger.debug(f"Loaded collision time for {video_name} at IoU {iou_threshold}: {collision_time}")
                                 except Exception as e:
+                                    if self.debug_mode:
+                                        raise
                                     self.logger.warning(f"Failed to load existing collision data for {video_name}, IoU {iou_threshold}: {e}")
                 else:
                     self.logger.warning(f"Failed to extract collision data for video {video_name}")
                         
             except Exception as e:
+                if self.debug_mode:
+                    raise  # Re-raise the exception to see full traceback
                 self.logger.error(f"Failed to analyze video {video_name}: {e}")
                 continue
         
@@ -424,6 +436,8 @@ class TTCExperiment:
                         collision_data[(video_name, iou_threshold)] = collision_time
                         self.logger.debug(f"Collected collision time for {video_name} at IoU {iou_threshold}: {collision_time}")
                     except Exception as e:
+                        if self.debug_mode:
+                            raise
                         self.logger.warning(f"Failed to load collision data for {video_name}, IoU {iou_threshold}: {e}")
                         collision_data[(video_name, iou_threshold)] = float('nan')
                 else:
@@ -503,6 +517,8 @@ class TTCExperiment:
                     frame_masks[frame_num][f"blob_{blob_idx}"] = binary_mask
                 
             except Exception as e:
+                if self.debug_mode:
+                    raise
                 self.logger.warning(f"Error processing mask file {mask_file}: {e}")
                 continue
         
@@ -592,6 +608,8 @@ class TTCExperiment:
             return float(iou)
             
         except Exception as e:
+            if self.debug_mode:
+                raise
             self.logger.warning(f"Error computing IoU: {e}")
             return float('nan')
 
@@ -1073,6 +1091,8 @@ class TTCExperiment:
             r = correlation_matrix[0, 1]
             return float(r) if not np.isnan(r) else float('nan')
         except Exception as e:
+            if self.debug_mode:
+                raise
             self.logger.warning(f"Error computing correlation: {e}")
             return float('nan')
 
@@ -1109,6 +1129,8 @@ def main():
                       help="Start processing from scratch, ignoring checkpoints")
     parser.add_argument("--fast_mode", action="store_true", default=False,
                       help="Run in fast mode (less detailed logging, potentially faster)")
+    parser.add_argument("--debug", action="store_true", default=False,
+                      help="Enable debug mode (disable try-except blocks to see full error tracebacks)")
     
     args = parser.parse_args()
     
@@ -1158,7 +1180,8 @@ def main():
         args.output_dir,
         args.n_blobs,
         blob_1_memory_freeze_frame=args.blob_1_memory_freeze_frame,
-        fast_mode=args.fast_mode
+        fast_mode=args.fast_mode,
+        debug_mode=args.debug
     )
     
     try:
@@ -1174,6 +1197,8 @@ def main():
         print("\nExperiment interrupted by user")
         sys.exit(1)
     except Exception as e:
+        if args.debug:
+            raise  # Re-raise the exception to see full traceback
         import traceback
         print(f"Experiment failed with error: {e}")
         print("\nFull traceback:")

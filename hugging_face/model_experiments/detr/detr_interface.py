@@ -3,6 +3,7 @@ detr_interface.py
 
 A model interface wrapper that provides DETR-compatible output from DETR segmentation models.
 This interface standardizes model loading, inference, and output formatting across experiments.
+Updated to use raw instance segmentation masks like the original main_gen_vids_and_meshes.py script.
 
 Dependencies:
   pip install transformers safetensors huggingface_hub pillow matplotlib torch torchvision
@@ -19,11 +20,8 @@ import torch.nn.functional as F
 from PIL import Image
 from huggingface_hub import hf_hub_download
 from matplotlib import pyplot as plt
-from transformers import (
-    DetrImageProcessor,
-    DetrForSegmentation,
-)
-from transformers.models.detr.feature_extraction_detr import rgb_to_id
+import torchvision.transforms as T
+from collections import OrderedDict
 from skimage.measure import label, regionprops
 
 
@@ -52,8 +50,8 @@ class ModelInterface:
 
 class DetrInterface(ModelInterface):
     """
-    DETR segmentation model interface that provides panoptic segmentation outputs.
-    Uses DETR for panoptic segmentation which outputs proper segmentation masks.
+    DETR segmentation model interface that provides instance segmentation outputs.
+    Uses the same approach as main_gen_vids_and_meshes.py for compatibility.
     """
 
     def __init__(
@@ -77,37 +75,117 @@ class DetrInterface(ModelInterface):
             else torch.device("cuda" if torch.cuda.is_available() else "cpu")
         )
         
-        # DETR processor handles image preprocessing
-        self.processor = DetrImageProcessor.from_pretrained(self.model_name)
-        self.model: DetrForSegmentation = None
+        # Model will be loaded in load_model()
+        self.model = None
+        
+        # Transform for preprocessing (same as main_gen_vids_and_meshes.py)
+        self.transform_resize = T.Resize(800)
+        self.transform_norm = T.Compose([
+            T.ToTensor(),
+            T.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])
+        ])
         
         self.logger.info(f"Initialized DETR Segmentation interface with device: {self.device}")
 
     def load_model(self, use_safetensors: bool = True) -> None:
-        """Downloads and loads the DETR segmentation model."""
-        self.logger.info(f"Loading DETR segmentation model: {self.model_name}")
+        """Load the DETR segmentation model using torch hub (same as main_gen_vids_and_meshes.py)."""
+        self.logger.info(f"Loading DETR segmentation model via torch hub")
         
-        self.model = (
-            DetrForSegmentation.from_pretrained(
-                self.model_name, use_safetensors=use_safetensors
+        try:
+            # Load model using torch hub like main_gen_vids_and_meshes.py
+            # We don't use the postprocessor since we want raw outputs
+            self.model, _ = torch.hub.load(
+                'facebookresearch/detr',
+                'detr_resnet101_panoptic',  # This model has segmentation head
+                pretrained=True,
+                return_postprocessor=True,
+                num_classes=91
             )
-            .to(self.device)
-            .eval()
-        )
-        
-        self.logger.info("DETR segmentation model loaded successfully")
+            
+            # If a custom model path is provided, try to load it
+            # For now, we'll use the pretrained model from torch hub
+            
+            self.model = self.model.to(self.device).eval()
+            self.logger.info("DETR segmentation model loaded successfully via torch hub")
+            
+        except Exception as e:
+            self.logger.error(f"Failed to load DETR model via torch hub: {e}")
+            # Fallback to transformers approach
+            self.logger.info("Falling back to transformers approach...")
+            from transformers import DetrImageProcessor, DetrForSegmentation
+            
+            self.processor = DetrImageProcessor.from_pretrained(self.model_name)
+            self.model = (
+                DetrForSegmentation.from_pretrained(
+                    self.model_name, use_safetensors=use_safetensors
+                )
+                .to(self.device)
+                .eval()
+            )
+            self.logger.info("DETR segmentation model loaded successfully via transformers")
 
     def infer_image(self, image: Image.Image) -> Dict[str, Any]:
         """
-        Run inference and return DETR-compatible predictions.
-        
-        The DETR segmentation model outputs proper segmentation masks from panoptic segmentation.
+        Run inference and return DETR-compatible predictions using the same approach as main_gen_vids_and_meshes.py.
         """
         if self.model is None:
             raise RuntimeError("Call load_model() before infer_image().")
 
         # Get original image dimensions
         orig_width, orig_height = image.size
+        
+        try:
+            # Use torch hub model approach (same as main_gen_vids_and_meshes.py)
+            if hasattr(self.model, 'backbone'):  # torch hub model
+                return self._infer_torch_hub_model(image, orig_width, orig_height)
+            else:  # transformers model
+                return self._infer_transformers_model(image, orig_width, orig_height)
+        except Exception as e:
+            self.logger.error(f"Error in DETR inference: {e}")
+            # Return empty predictions to avoid crashing
+            return self._get_empty_predictions(orig_height, orig_width)
+
+    def _infer_torch_hub_model(self, image: Image.Image, orig_width: int, orig_height: int) -> Dict[str, Any]:
+        """Inference using torch hub model (same approach as main_gen_vids_and_meshes.py)."""
+        
+        # Preprocess image (same as main_gen_vids_and_meshes.py)
+        resized_img = self.transform_resize(image)
+        model_input = self.transform_norm(resized_img).unsqueeze(0).to(self.device)
+        
+        # Run inference
+        with torch.no_grad():
+            outputs = self.model(model_input)
+        
+        # Extract masks (same as main_gen_vids_and_meshes.py)
+        pred_masks_raw = outputs["pred_masks"]  # Shape: (1, num_queries, h', w')
+        pred_logits = outputs["pred_logits"]    # Shape: (1, num_queries, num_classes)
+        pred_boxes = outputs["pred_boxes"]      # Shape: (1, num_queries, 4)
+        
+        # Upsample masks to original image size (same as main_gen_vids_and_meshes.py)
+        pred_masks_upsampled = []
+        for i in range(pred_masks_raw.shape[1]):
+            mask_i = pred_masks_raw[0, i].unsqueeze(0).unsqueeze(0)  # (1, 1, h', w')
+            upsampled = F.interpolate(
+                mask_i, 
+                size=(orig_height, orig_width), 
+                mode='bilinear', 
+                align_corners=False
+            )
+            # Apply sigmoid and threshold (same as main_gen_vids_and_meshes.py)
+            mask_binary = torch.sigmoid(upsampled).squeeze().cpu().numpy() > 0.5
+            pred_masks_upsampled.append(torch.from_numpy(mask_binary.astype(np.float32)))
+        
+        # Stack masks
+        pred_masks = torch.stack(pred_masks_upsampled, dim=0).unsqueeze(0).to(self.device)  # (1, num_queries, H, W)
+        
+        return {
+            'pred_masks': pred_masks,
+            'pred_logits': pred_logits,
+            'pred_boxes': pred_boxes
+        }
+
+    def _infer_transformers_model(self, image: Image.Image, orig_width: int, orig_height: int) -> Dict[str, Any]:
+        """Fallback inference using transformers model."""
         
         # Run DETR segmentation inference
         inputs = self.processor(images=image, return_tensors="pt").to(self.device)
@@ -120,6 +198,7 @@ class DetrInterface(ModelInterface):
         result = self.processor.post_process_panoptic(outputs, processed_sizes)[0]
         
         # Extract the panoptic segmentation
+        from transformers.models.detr.feature_extraction_detr import rgb_to_id
         panoptic_seg = Image.open(io.BytesIO(result["png_string"]))
         panoptic_seg = np.array(panoptic_seg, dtype=np.uint8)
         # Convert RGB to segment IDs
@@ -133,6 +212,19 @@ class DetrInterface(ModelInterface):
         # Use the original DETR outputs for logits and boxes
         pred_logits = outputs.logits  # (1, num_queries, num_classes)
         pred_boxes = outputs.pred_boxes  # (1, num_queries, 4)
+        
+        return {
+            'pred_masks': pred_masks,
+            'pred_logits': pred_logits,
+            'pred_boxes': pred_boxes
+        }
+
+    def _get_empty_predictions(self, height: int, width: int) -> Dict[str, Any]:
+        """Return empty predictions when inference fails."""
+        batch_size = 1
+        pred_masks = torch.zeros(batch_size, self.num_queries, height, width, device=self.device)
+        pred_logits = torch.zeros(batch_size, self.num_queries, 91, device=self.device)  # 91 COCO classes
+        pred_boxes = torch.zeros(batch_size, self.num_queries, 4, device=self.device)
         
         return {
             'pred_masks': pred_masks,
@@ -239,14 +331,28 @@ class DetrInterface(ModelInterface):
     # ------------------------------------------------------------------
     def get_coco_labels(self) -> Dict[int, str]:
         """Get COCO class labels used by DETR."""
-        if self.model is None:
-            return {}
-        return self.model.config.id2label
+        return {
+            0: 'N/A', 1: 'person', 2: 'bicycle', 3: 'car', 4: 'motorcycle', 5: 'airplane', 6: 'bus',
+            7: 'train', 8: 'truck', 9: 'boat', 10: 'traffic light', 11: 'fire hydrant', 12: 'N/A',
+            13: 'stop sign', 14: 'parking meter', 15: 'bench', 16: 'bird', 17: 'cat', 18: 'dog',
+            19: 'horse', 20: 'sheep', 21: 'cow', 22: 'elephant', 23: 'bear', 24: 'zebra',
+            25: 'giraffe', 26: 'N/A', 27: 'backpack', 28: 'umbrella', 29: 'handbag', 30: 'tie',
+            31: 'suitcase', 32: 'frisbee', 33: 'skis', 34: 'snowboard', 35: 'sports ball',
+            36: 'kite', 37: 'baseball bat', 38: 'baseball glove', 39: 'skateboard', 40: 'surfboard',
+            41: 'tennis racket', 42: 'bottle', 43: 'wine glass', 44: 'cup', 45: 'fork', 46: 'knife',
+            47: 'spoon', 48: 'bowl', 49: 'banana', 50: 'apple', 51: 'sandwich', 52: 'orange',
+            53: 'broccoli', 54: 'carrot', 55: 'hot dog', 56: 'pizza', 57: 'donut', 58: 'cake',
+            59: 'chair', 60: 'couch', 61: 'potted plant', 62: 'bed', 63: 'dining table',
+            64: 'toilet', 65: 'tv', 66: 'laptop', 67: 'mouse', 68: 'remote', 69: 'keyboard',
+            70: 'cell phone', 71: 'microwave', 72: 'oven', 73: 'toaster', 74: 'sink',
+            75: 'refrigerator', 76: 'N/A', 77: 'book', 78: 'clock', 79: 'vase', 80: 'scissors',
+            81: 'teddy bear', 82: 'hair drier', 83: 'toothbrush'
+        }
 
     def visualize_predictions(self, image: Image.Image, predictions: Dict[str, Any], 
                             threshold: float = 0.5) -> Image.Image:
         """
-        Visualize DETR panoptic segmentation predictions on the image.
+        Visualize DETR segmentation predictions on the image.
         
         Args:
             image: Input PIL image
@@ -256,53 +362,28 @@ class DetrInterface(ModelInterface):
         Returns:
             PIL image with visualizations
         """
-        # Re-run post-processing for visualization
-        inputs = self.processor(images=image, return_tensors="pt").to(self.device)
-        with torch.no_grad():
-            outputs = self.model(**inputs)
-        
-        processed_sizes = torch.as_tensor(inputs["pixel_values"].shape[-2:]).unsqueeze(0)
-        result = self.processor.post_process_panoptic(outputs, processed_sizes)[0]
-        
-        # Get original image dimensions
-        orig_width, orig_height = image.size
-        
-        # Extract panoptic segmentation
-        panoptic_seg = Image.open(io.BytesIO(result["png_string"]))
-        panoptic_seg = np.array(panoptic_seg, dtype=np.uint8)
-        
-        # Resize panoptic segmentation to original image size
-        if panoptic_seg.shape[:2] != (orig_height, orig_width):
-            panoptic_pil = Image.fromarray(panoptic_seg)
-            panoptic_pil = panoptic_pil.resize((orig_width, orig_height), Image.NEAREST)
-            panoptic_seg = np.array(panoptic_pil)
         
         # Convert image to numpy array
         image_np = np.array(image)
-        
-        # Create colored overlay for each segment
         overlay = image_np.copy()
-        panoptic_seg_id = rgb_to_id(panoptic_seg)
         
-        # Generate colors for segments
+        pred_masks = predictions['pred_masks'][0]  # Remove batch dimension
+        
+        # Generate colors for masks
         import matplotlib.colors as mcolors
         colors = list(mcolors.TABLEAU_COLORS.values()) + list(mcolors.CSS4_COLORS.values())
         
-        for i, segment in enumerate(result["segments_info"]):
-            segment_id = segment['id']
-            category_id = segment['category_id']
-            
-            # Create mask for this segment
-            mask = (panoptic_seg_id == segment_id)
-            if mask.sum() == 0:
-                continue
-            
-            # Get color for this segment
-            color_hex = colors[i % len(colors)]
-            color_rgb = tuple(int(color_hex.lstrip('#')[j:j+2], 16) for j in (0, 2, 4))
-            
-            # Apply color to mask region with transparency
-            overlay[mask] = overlay[mask] * 0.6 + np.array(color_rgb) * 0.4
+        # Apply masks with different colors
+        for i in range(pred_masks.shape[0]):
+            mask = pred_masks[i].cpu().numpy()
+            if mask.sum() > 50:  # Only visualize masks with some content
+                # Get color for this mask
+                color_hex = colors[i % len(colors)]
+                color_rgb = tuple(int(color_hex.lstrip('#')[j:j+2], 16) for j in (0, 2, 4))
+                
+                # Apply color to mask region with transparency
+                mask_bool = mask > threshold
+                overlay[mask_bool] = overlay[mask_bool] * 0.6 + np.array(color_rgb) * 0.4
         
         # Create final visualization
         fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(16, 8))
@@ -312,30 +393,11 @@ class DetrInterface(ModelInterface):
         ax1.set_title('Original Image')
         ax1.axis('off')
         
-        # Overlay with labels
+        # Overlay
         ax2.imshow(overlay.astype(np.uint8))
-        ax2.set_title('Panoptic Segmentation')
-        
-        # Add segment labels
-        labels_map = self.get_coco_labels()
-        for segment in result["segments_info"]:
-            segment_id = segment['id']
-            category_id = segment['category_id']
-            
-            label_text = labels_map.get(category_id, 'unknown')
-            
-            # Find centroid of segment
-            mask = (panoptic_seg_id == segment_id)
-            if mask.sum() > 0:
-                y_coords, x_coords = np.where(mask)
-                centroid_x = np.mean(x_coords)
-                centroid_y = np.mean(y_coords)
-                
-                ax2.text(centroid_x, centroid_y, label_text, fontsize=8, color='white',
-                        bbox=dict(boxstyle="round,pad=0.2", facecolor="black", alpha=0.8),
-                        ha='center', va='center')
-        
+        ax2.set_title('DETR Segmentation')
         ax2.axis('off')
+        
         plt.tight_layout()
         
         # Convert matplotlib figure to PIL Image
@@ -381,7 +443,7 @@ if __name__ == "__main__":
     print(f"- pred_boxes shape: {predictions['pred_boxes'].shape}")
     print(f"- Number of non-empty masks: {(predictions['pred_masks'].sum(dim=(-2, -1)) > 0).sum().item()}")
 
-    # For visualization, show panoptic segmentation
+    # For visualization
     results_vis = interface.visualize_predictions(image, predictions)
     
     # Save visualization

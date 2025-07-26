@@ -48,12 +48,13 @@ class VideoProcessor:
         blob_1_memory_strategy: Strategy for blob 1 memory updates ('exponential' or 'running_average')
         blob_1_running_avg_window: Window size for running average (default: 10)
         blob_1_memory_freeze_frame: Frame after which blob 1 memory stops updating (default: None)
+        debug_mode: Enable debug mode (disable exception handling to see full tracebacks, default: False)
     """
     
     def __init__(self, model_interface: ModelInterface, n_blobs: int = 2, logger: logging.Logger = None,
                  blob_1_memory_strategy: str = 'exponential', blob_1_running_avg_window: int = 10,
                  blob_1_memory_freeze_frame: Optional[int] = None, enable_vanilla_segmentation: bool = True,
-                 fast_mode: bool = False):
+                 fast_mode: bool = False, debug_mode: bool = False):
         self.model_interface = model_interface
         self.logger = logger or logging.getLogger(__name__)
         
@@ -71,6 +72,7 @@ class VideoProcessor:
         # Performance-tuning flags
         self.enable_vanilla_segmentation = False if fast_mode else enable_vanilla_segmentation
         self.fast_mode = fast_mode
+        self.debug_mode = debug_mode
         self.vanilla_saver = None
         
         # Memory for tracking masks across frames
@@ -99,6 +101,8 @@ class VideoProcessor:
             self.logger.info("Vanilla segmentation enabled")
         if self.fast_mode:
             self.logger.info("FAST-MODE enabled: heavy visualisations and intermediate PNGs will be skipped")
+        if self.debug_mode:
+            self.logger.info("DEBUG MODE enabled: exceptions will not be caught to show full tracebacks")
         
     def setup_output_directories(self, video_path: str, output_root: str, model_prefix: str = None) -> Dict[str, str]:
         """Setup organized output directory structure for video processing."""
@@ -159,6 +163,8 @@ class VideoProcessor:
                     saved_status = json.load(f)
                 status.update(saved_status)
             except Exception as e:
+                if self.debug_mode:
+                    raise
                 self.logger.warning(f"Could not load processing status: {e}")
         
         # Check actual files to verify status
@@ -194,6 +200,8 @@ class VideoProcessor:
             with open(metadata_file, 'w') as f:
                 json.dump(status, f, indent=2)
         except Exception as e:
+            if self.debug_mode:
+                raise
             self.logger.warning(f"Could not save processing status: {e}")
     
     def process_video(self, video_path: str, output_root: str, model_prefix: str = None, 
@@ -407,6 +415,8 @@ class VideoProcessor:
                 try:
                     self.vanilla_saver.save_frame_segmentation(frame, frame_idx)
                 except Exception as e:
+                    if self.debug_mode:
+                        raise
                     self.logger.warning(f"Failed to save vanilla segmentation for frame {frame_idx}: {e}")
             
             # Save the original frame as processed frame
@@ -427,6 +437,8 @@ class VideoProcessor:
             # 2. ALWAYS run model inference to get predicted masks (even if no blobs detected)
             pred_masks = self._run_model_inference_with_splitting(frame, H, W)
         except Exception as e:
+            if self.debug_mode:
+                raise  # Re-raise exception to see full traceback
             import traceback
             self.logger.error(f"Failed blob detection or model inference for frame {frame_idx}: {e}")
             self.logger.error("Full traceback:")
@@ -441,6 +453,8 @@ class VideoProcessor:
             try:
                 self.vanilla_saver.save_frame_segmentation(frame, frame_idx)
             except Exception as e:
+                if self.debug_mode:
+                    raise  # Re-raise exception to see full traceback
                 import traceback
                 self.logger.error(f"Failed to save vanilla segmentation for frame {frame_idx}: {e}")
                 self.logger.error("Full traceback:")
