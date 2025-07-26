@@ -3,7 +3,7 @@ detr_interface.py
 
 A model interface wrapper that provides DETR-compatible output from DETR segmentation models.
 This interface standardizes model loading, inference, and output formatting across experiments.
-Updated to use raw instance segmentation masks like the original main_gen_vids_and_meshes.py script.
+Uses ONLY transformers library with the specified model_name.
 
 Dependencies:
   pip install transformers safetensors huggingface_hub pillow matplotlib torch torchvision
@@ -20,8 +20,11 @@ import torch.nn.functional as F
 from PIL import Image
 from huggingface_hub import hf_hub_download
 from matplotlib import pyplot as plt
-import torchvision.transforms as T
-from collections import OrderedDict
+from transformers import (
+    DetrImageProcessor,
+    DetrForSegmentation,
+)
+from transformers.models.detr.feature_extraction_detr import rgb_to_id
 from skimage.measure import label, regionprops
 
 
@@ -51,7 +54,7 @@ class ModelInterface:
 class DetrInterface(ModelInterface):
     """
     DETR segmentation model interface that provides instance segmentation outputs.
-    Uses the same approach as main_gen_vids_and_meshes.py for compatibility.
+    Uses ONLY transformers library with the specified model_name.
     """
 
     def __init__(
@@ -75,45 +78,19 @@ class DetrInterface(ModelInterface):
             else torch.device("cuda" if torch.cuda.is_available() else "cpu")
         )
         
-        # Model will be loaded in load_model()
+        # DETR processor and model from transformers
+        self.processor = None
         self.model = None
         
-        # Transform for preprocessing (same as main_gen_vids_and_meshes.py)
-        self.transform_resize = T.Resize(800)
-        self.transform_norm = T.Compose([
-            T.ToTensor(),
-            T.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])
-        ])
-        
         self.logger.info(f"Initialized DETR Segmentation interface with device: {self.device}")
+        self.logger.info(f"Will load model: {self.model_name}")
 
     def load_model(self, use_safetensors: bool = True) -> None:
-        """Load the DETR segmentation model using torch hub (same as main_gen_vids_and_meshes.py)."""
-        self.logger.info(f"Loading DETR segmentation model via torch hub")
+        """Load the DETR segmentation model using transformers library ONLY."""
+        self.logger.info(f"Loading DETR segmentation model: {self.model_name}")
         
         try:
-            # Load model using torch hub like main_gen_vids_and_meshes.py
-            # We don't use the postprocessor since we want raw outputs
-            self.model, _ = torch.hub.load(
-                'facebookresearch/detr',
-                'detr_resnet101_panoptic',  # This model has segmentation head
-                pretrained=True,
-                return_postprocessor=True,
-                num_classes=91
-            )
-            
-            # If a custom model path is provided, try to load it
-            # For now, we'll use the pretrained model from torch hub
-            
-            self.model = self.model.to(self.device).eval()
-            self.logger.info("DETR segmentation model loaded successfully via torch hub")
-            
-        except Exception as e:
-            self.logger.error(f"Failed to load DETR model via torch hub: {e}")
-            # Fallback to transformers approach
-            self.logger.info("Falling back to transformers approach...")
-            from transformers import DetrImageProcessor, DetrForSegmentation
-            
+            # Load processor and model from transformers
             self.processor = DetrImageProcessor.from_pretrained(self.model_name)
             self.model = (
                 DetrForSegmentation.from_pretrained(
@@ -123,101 +100,57 @@ class DetrInterface(ModelInterface):
                 .eval()
             )
             self.logger.info("DETR segmentation model loaded successfully via transformers")
+            
+        except Exception as e:
+            self.logger.error(f"Failed to load DETR model {self.model_name}: {e}")
+            raise
 
     def infer_image(self, image: Image.Image) -> Dict[str, Any]:
         """
-        Run inference and return DETR-compatible predictions using the same approach as main_gen_vids_and_meshes.py.
+        Run inference and return DETR-compatible predictions using transformers.
         """
-        if self.model is None:
+        if self.model is None or self.processor is None:
             raise RuntimeError("Call load_model() before infer_image().")
 
         # Get original image dimensions
         orig_width, orig_height = image.size
         
         try:
-            # Use torch hub model approach (same as main_gen_vids_and_meshes.py)
-            if hasattr(self.model, 'backbone'):  # torch hub model
-                return self._infer_torch_hub_model(image, orig_width, orig_height)
-            else:  # transformers model
-                return self._infer_transformers_model(image, orig_width, orig_height)
+            # Run DETR segmentation inference
+            inputs = self.processor(images=image, return_tensors="pt").to(self.device)
+
+            with torch.no_grad():
+                outputs = self.model(**inputs)
+
+            # Post-process the panoptic segmentation outputs
+            processed_sizes = torch.as_tensor(inputs["pixel_values"].shape[-2:]).unsqueeze(0)
+            result = self.processor.post_process_panoptic(outputs, processed_sizes)[0]
+            
+            # Extract the panoptic segmentation
+            panoptic_seg = Image.open(io.BytesIO(result["png_string"]))
+            panoptic_seg = np.array(panoptic_seg, dtype=np.uint8)
+            # Convert RGB to segment IDs
+            panoptic_seg_id = rgb_to_id(panoptic_seg)
+            
+            # Convert panoptic segmentation to individual masks
+            pred_masks = self._convert_panoptic_to_masks(
+                panoptic_seg_id, result["segments_info"], orig_height, orig_width
+            )
+            
+            # Use the original DETR outputs for logits and boxes
+            pred_logits = outputs.logits  # (1, num_queries, num_classes)
+            pred_boxes = outputs.pred_boxes  # (1, num_queries, 4)
+            
+            return {
+                'pred_masks': pred_masks,
+                'pred_logits': pred_logits,
+                'pred_boxes': pred_boxes
+            }
+            
         except Exception as e:
             self.logger.error(f"Error in DETR inference: {e}")
             # Return empty predictions to avoid crashing
             return self._get_empty_predictions(orig_height, orig_width)
-
-    def _infer_torch_hub_model(self, image: Image.Image, orig_width: int, orig_height: int) -> Dict[str, Any]:
-        """Inference using torch hub model (same approach as main_gen_vids_and_meshes.py)."""
-        
-        # Preprocess image (same as main_gen_vids_and_meshes.py)
-        resized_img = self.transform_resize(image)
-        model_input = self.transform_norm(resized_img).unsqueeze(0).to(self.device)
-        
-        # Run inference
-        with torch.no_grad():
-            outputs = self.model(model_input)
-        
-        # Extract masks (same as main_gen_vids_and_meshes.py)
-        pred_masks_raw = outputs["pred_masks"]  # Shape: (1, num_queries, h', w')
-        pred_logits = outputs["pred_logits"]    # Shape: (1, num_queries, num_classes)
-        pred_boxes = outputs["pred_boxes"]      # Shape: (1, num_queries, 4)
-        
-        # Upsample masks to original image size (same as main_gen_vids_and_meshes.py)
-        pred_masks_upsampled = []
-        for i in range(pred_masks_raw.shape[1]):
-            mask_i = pred_masks_raw[0, i].unsqueeze(0).unsqueeze(0)  # (1, 1, h', w')
-            upsampled = F.interpolate(
-                mask_i, 
-                size=(orig_height, orig_width), 
-                mode='bilinear', 
-                align_corners=False
-            )
-            # Apply sigmoid and threshold (same as main_gen_vids_and_meshes.py)
-            mask_binary = torch.sigmoid(upsampled).squeeze().cpu().numpy() > 0.5
-            pred_masks_upsampled.append(torch.from_numpy(mask_binary.astype(np.float32)))
-        
-        # Stack masks
-        pred_masks = torch.stack(pred_masks_upsampled, dim=0).unsqueeze(0).to(self.device)  # (1, num_queries, H, W)
-        
-        return {
-            'pred_masks': pred_masks,
-            'pred_logits': pred_logits,
-            'pred_boxes': pred_boxes
-        }
-
-    def _infer_transformers_model(self, image: Image.Image, orig_width: int, orig_height: int) -> Dict[str, Any]:
-        """Fallback inference using transformers model."""
-        
-        # Run DETR segmentation inference
-        inputs = self.processor(images=image, return_tensors="pt").to(self.device)
-
-        with torch.no_grad():
-            outputs = self.model(**inputs)
-
-        # Post-process the panoptic segmentation outputs
-        processed_sizes = torch.as_tensor(inputs["pixel_values"].shape[-2:]).unsqueeze(0)
-        result = self.processor.post_process_panoptic(outputs, processed_sizes)[0]
-        
-        # Extract the panoptic segmentation
-        from transformers.models.detr.feature_extraction_detr import rgb_to_id
-        panoptic_seg = Image.open(io.BytesIO(result["png_string"]))
-        panoptic_seg = np.array(panoptic_seg, dtype=np.uint8)
-        # Convert RGB to segment IDs
-        panoptic_seg_id = rgb_to_id(panoptic_seg)
-        
-        # Convert panoptic segmentation to individual masks
-        pred_masks = self._convert_panoptic_to_masks(
-            panoptic_seg_id, result["segments_info"], orig_height, orig_width
-        )
-        
-        # Use the original DETR outputs for logits and boxes
-        pred_logits = outputs.logits  # (1, num_queries, num_classes)
-        pred_boxes = outputs.pred_boxes  # (1, num_queries, 4)
-        
-        return {
-            'pred_masks': pred_masks,
-            'pred_logits': pred_logits,
-            'pred_boxes': pred_boxes
-        }
 
     def _get_empty_predictions(self, height: int, width: int) -> Dict[str, Any]:
         """Return empty predictions when inference fails."""
