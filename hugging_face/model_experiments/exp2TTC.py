@@ -1094,6 +1094,7 @@ def main():
                       default="/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/exp2TTC_files/experiment2-CollisionDetection-Data.csv",
                       help="Path to CSV file with participant data")
     parser.add_argument("--name_mapping", type=str, required=True,
+                      default="/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/exp2TTC_files/name_mapping.json",
                       help="Path to name_mapping.json file for stimulus-to-video mapping")
     parser.add_argument("--output_dir", type=str, required=False,
                       default="/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC",
