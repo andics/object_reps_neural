@@ -1085,7 +1085,7 @@ def main():
     parser.add_argument("--model_interface", type=str, default="segformer",
                       choices=["segformer", "detr", "maskrcnn"], help="Model interface to use")
     # NEW: allow custom model checkpoint
-    parser.add_argument("--model_name", type=str, default="nvidia/segformer-b1-finetuned-ade-512-512",
+    parser.add_argument("--model_name", type=str, default="nvidia/segformer-b5-finetuned-ade-640-640",
                       help="HuggingFace model repo for SegFormer/DETR or torchvision model name for MaskRCNN")
     parser.add_argument("--videos_dir", type=str, required=False,
                       default="/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/exp2TTC_files",
@@ -1093,7 +1093,7 @@ def main():
     parser.add_argument("--csv_path", type=str, required=False,
                       default="/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/exp2TTC_files/experiment2-CollisionDetection-Data.csv",
                       help="Path to CSV file with participant data")
-    parser.add_argument("--name_mapping", type=str, required=True,
+    parser.add_argument("--name_mapping", type=str, required=False,
                       default="/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/exp2TTC_files/name_mapping.json",
                       help="Path to name_mapping.json file for stimulus-to-video mapping")
     parser.add_argument("--output_dir", type=str, required=False,

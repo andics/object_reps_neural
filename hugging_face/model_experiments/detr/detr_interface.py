@@ -264,24 +264,65 @@ class DetrInterface(ModelInterface):
         processed_sizes = torch.as_tensor(inputs["pixel_values"].shape[-2:]).unsqueeze(0)
         result = self.processor.post_process_panoptic(outputs, processed_sizes)[0]
         
+        # Get original image dimensions
+        orig_width, orig_height = image.size
+        
         # Extract panoptic segmentation
         panoptic_seg = Image.open(io.BytesIO(result["png_string"]))
         panoptic_seg = np.array(panoptic_seg, dtype=np.uint8)
         
-        # Create overlay
-        fig, ax = plt.subplots(1, 1, figsize=(12, 8))
-        ax.imshow(image)
-        ax.imshow(panoptic_seg, alpha=0.5)
+        # Resize panoptic segmentation to original image size
+        if panoptic_seg.shape[:2] != (orig_height, orig_width):
+            panoptic_pil = Image.fromarray(panoptic_seg)
+            panoptic_pil = panoptic_pil.resize((orig_width, orig_height), Image.NEAREST)
+            panoptic_seg = np.array(panoptic_pil)
+        
+        # Convert image to numpy array
+        image_np = np.array(image)
+        
+        # Create colored overlay for each segment
+        overlay = image_np.copy()
+        panoptic_seg_id = rgb_to_id(panoptic_seg)
+        
+        # Generate colors for segments
+        import matplotlib.colors as mcolors
+        colors = list(mcolors.TABLEAU_COLORS.values()) + list(mcolors.CSS4_COLORS.values())
+        
+        for i, segment in enumerate(result["segments_info"]):
+            segment_id = segment['id']
+            category_id = segment['category_id']
+            
+            # Create mask for this segment
+            mask = (panoptic_seg_id == segment_id)
+            if mask.sum() == 0:
+                continue
+            
+            # Get color for this segment
+            color_hex = colors[i % len(colors)]
+            color_rgb = tuple(int(color_hex.lstrip('#')[j:j+2], 16) for j in (0, 2, 4))
+            
+            # Apply color to mask region with transparency
+            overlay[mask] = overlay[mask] * 0.6 + np.array(color_rgb) * 0.4
+        
+        # Create final visualization
+        fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(16, 8))
+        
+        # Original image
+        ax1.imshow(image_np)
+        ax1.set_title('Original Image')
+        ax1.axis('off')
+        
+        # Overlay with labels
+        ax2.imshow(overlay.astype(np.uint8))
+        ax2.set_title('Panoptic Segmentation')
         
         # Add segment labels
-        panoptic_seg_id = rgb_to_id(panoptic_seg)
+        labels_map = self.get_coco_labels()
         for segment in result["segments_info"]:
             segment_id = segment['id']
-            label_id = segment['label_id']
+            category_id = segment['category_id']
             
-            # Get class labels
-            labels_map = self.get_coco_labels()
-            label_text = labels_map.get(label_id, 'unknown')
+            label_text = labels_map.get(category_id, 'unknown')
             
             # Find centroid of segment
             mask = (panoptic_seg_id == segment_id)
@@ -290,10 +331,11 @@ class DetrInterface(ModelInterface):
                 centroid_x = np.mean(x_coords)
                 centroid_y = np.mean(y_coords)
                 
-                ax.text(centroid_x, centroid_y, label_text, fontsize=10, color='white',
-                       bbox=dict(boxstyle="round,pad=0.3", facecolor="black", alpha=0.7))
+                ax2.text(centroid_x, centroid_y, label_text, fontsize=8, color='white',
+                        bbox=dict(boxstyle="round,pad=0.2", facecolor="black", alpha=0.8),
+                        ha='center', va='center')
         
-        ax.axis('off')
+        ax2.axis('off')
         plt.tight_layout()
         
         # Convert matplotlib figure to PIL Image

@@ -380,40 +380,93 @@ class MaskRCNNInterface(ModelInterface):
         masks = pred['masks'][keep]
         scores = scores[keep]
         
-        # Create visualization
-        fig, ax = plt.subplots(1, 1, figsize=(12, 8))
-        ax.imshow(image)
+        # Get original image dimensions
+        orig_width, orig_height = image.size
+        
+        # Convert image to numpy array
+        image_np = np.array(image)
+        
+        # Create overlay
+        overlay = image_np.copy().astype(np.float32)
         
         # Get class labels
         labels_map = self.get_coco_labels()
         
-        # Draw masks and boxes
-        colors = plt.cm.Set3(np.linspace(0, 1, len(masks)))
+        # Generate colors for instances
+        import matplotlib.colors as mcolors
+        colors = list(mcolors.TABLEAU_COLORS.values()) + list(mcolors.CSS4_COLORS.values())
         
-        for i, (box, label, mask, score, color) in enumerate(zip(boxes, labels, masks, scores, colors)):
-            # Draw mask
+        detection_info = []
+        
+        for i, (box, label, mask, score) in enumerate(zip(boxes, labels, masks, scores)):
+            # Process mask
             mask_np = mask.squeeze(0).cpu().numpy()
-            mask_np = (mask_np > 0.5).astype(np.uint8)
+            mask_binary = (mask_np > 0.5).astype(np.uint8)
             
-            # Create colored mask
-            colored_mask = np.zeros((*mask_np.shape, 4))
-            colored_mask[:, :, :3] = color[:3]
-            colored_mask[:, :, 3] = mask_np * 0.5  # Semi-transparent
+            # Resize mask to original image size if needed
+            if mask_binary.shape != (orig_height, orig_width):
+                mask_pil = Image.fromarray((mask_binary * 255).astype(np.uint8))
+                mask_pil = mask_pil.resize((orig_width, orig_height), Image.NEAREST)
+                mask_binary = (np.array(mask_pil) > 127).astype(np.uint8)
             
-            ax.imshow(colored_mask)
+            # Get color for this instance
+            color_hex = colors[i % len(colors)]
+            color_rgb = np.array([int(color_hex.lstrip('#')[j:j+2], 16) for j in (0, 2, 4)])
+            
+            # Apply colored mask with transparency
+            mask_indices = mask_binary == 1
+            overlay[mask_indices] = overlay[mask_indices] * 0.6 + color_rgb * 0.4
+            
+            # Store detection info for labeling
+            x1, y1, x2, y2 = box.cpu().numpy()
+            label_text = f"{labels_map.get(label.item(), 'unknown')}: {score:.2f}"
+            detection_info.append({
+                'box': (x1, y1, x2, y2),
+                'label': label_text,
+                'color': color_rgb,
+                'mask_centroid': None
+            })
+            
+            # Calculate mask centroid for label placement
+            if mask_indices.sum() > 0:
+                y_coords, x_coords = np.where(mask_indices)
+                centroid_x = np.mean(x_coords)
+                centroid_y = np.mean(y_coords)
+                detection_info[-1]['mask_centroid'] = (centroid_x, centroid_y)
+        
+        # Create visualization
+        fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(16, 8))
+        
+        # Original image
+        ax1.imshow(image_np)
+        ax1.set_title('Original Image')
+        ax1.axis('off')
+        
+        # Overlay with masks and boxes
+        ax2.imshow(overlay.astype(np.uint8))
+        ax2.set_title('Instance Segmentation')
+        
+        # Draw bounding boxes and labels
+        for info in detection_info:
+            x1, y1, x2, y2 = info['box']
+            color_norm = info['color'] / 255.0  # Normalize for matplotlib
             
             # Draw bounding box
-            x1, y1, x2, y2 = box.cpu().numpy()
             rect = plt.Rectangle((x1, y1), x2 - x1, y2 - y1, 
-                               fill=False, edgecolor=color, linewidth=2)
-            ax.add_patch(rect)
+                               fill=False, edgecolor=color_norm, linewidth=2)
+            ax2.add_patch(rect)
             
-            # Add label
-            label_text = f"{labels_map.get(label.item(), 'unknown')}: {score:.2f}"
-            ax.text(x1, y1 - 10, label_text, fontsize=10, color='white',
-                   bbox=dict(boxstyle="round,pad=0.3", facecolor=color, alpha=0.7))
+            # Add label (prefer mask centroid, fallback to box top-left)
+            if info['mask_centroid'] is not None:
+                label_x, label_y = info['mask_centroid']
+            else:
+                label_x, label_y = x1, y1 - 10
+            
+            ax2.text(label_x, label_y, info['label'], fontsize=8, color='white',
+                    bbox=dict(boxstyle="round,pad=0.2", facecolor=color_norm, alpha=0.8),
+                    ha='center', va='center')
         
-        ax.axis('off')
+        ax2.axis('off')
         plt.tight_layout()
         
         # Convert matplotlib figure to PIL Image
