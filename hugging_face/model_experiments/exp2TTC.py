@@ -1129,9 +1129,9 @@ def main():
         sys.exit(1)
     
     # Update default model name based on interface choice
-    if args.model_interface == "detr" and args.model_name == "nvidia/segformer-b5-finetuned-ade-640-640":
+    if args.model_interface == "detr" and args.model_name == "facebook/detr-resnet-50-panoptic":
         args.model_name = "facebook/detr-resnet-50-panoptic"
-    elif args.model_interface == "maskrcnn" and args.model_name == "nvidia/segformer-b5-finetuned-ade-640-640":
+    elif args.model_interface == "maskrcnn" and args.model_name == "maskrcnn_resnet50_fpn":
         args.model_name = "maskrcnn_resnet50_fpn"
     
     # Append model suffix to the output directory for clarity
