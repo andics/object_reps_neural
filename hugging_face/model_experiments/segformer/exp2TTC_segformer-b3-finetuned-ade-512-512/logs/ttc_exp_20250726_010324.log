@@ -1,0 +1,765 @@
+2025-07-26 01:03:24,879 - INFO - Logger initialized. Writing detailed log to /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC_segformer-b3-finetuned-ade-512-512/logs/ttc_exp_20250726_010324.log
+2025-07-26 01:03:24,880 - INFO - VideoProcessor initialized with 2 blobs to detect
+2025-07-26 01:03:24,880 - INFO - Blob 1 memory strategy: running_average
+2025-07-26 01:03:24,880 - INFO - Blob 1 running average window: 10
+2025-07-26 01:03:24,880 - INFO - Blob 1 memory will freeze after frame: 80
+2025-07-26 01:03:24,880 - INFO - Vanilla segmentation enabled
+2025-07-26 01:03:24,880 - INFO - Initialized TTC Experiment with output dir: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC_segformer-b3-finetuned-ade-512-512
+2025-07-26 01:03:24,880 - INFO - TTC-specific configuration:
+2025-07-26 01:03:24,880 - INFO -   - Blob 1 memory: running average of past 10 frames
+2025-07-26 01:03:24,880 - INFO -   - Blob 1 memory updates stop after frame 80
+2025-07-26 01:03:24,880 - INFO - Starting full TTC experiment
+2025-07-26 01:03:24,881 - INFO - Found 99 video files to process
+2025-07-26 01:03:24,881 - INFO - Reading participant CSV from /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/exp2TTC_files/experiment2-CollisionDetection-Data.csv...
+2025-07-26 01:03:24,902 - INFO - CSV loaded with 13974 rows and 10 columns.
+2025-07-26 01:03:24,902 - INFO - Starting collision detection across videos and IoU thresholds...
+2025-07-26 01:03:24,903 - INFO - Processing video: AConcave_FConcave
+2025-07-26 01:03:24,911 - INFO - Video AConcave_FConcave already processed (found segformer_model-AConcave_FConcave.mp4), skipping video processing...
+2025-07-26 01:03:24,917 - INFO - VanillaSegmentationSaver initialized with output dir: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC_segformer-b3-finetuned-ade-512-512/processed_videos/segformer_model-AConcave_FConcave/org_segmentation
+2025-07-26 01:03:24,933 - INFO - All collision results already exist for AConcave_FConcave
+2025-07-26 01:03:24,934 - DEBUG - Loaded collision time for AConcave_FConcave at IoU 0.05: 4016.6666666666665
+2025-07-26 01:03:24,936 - DEBUG - Loaded collision time for AConcave_FConcave at IoU 0.1: 4016.6666666666665
+2025-07-26 01:03:24,937 - DEBUG - Loaded collision time for AConcave_FConcave at IoU 0.15: 4016.6666666666665
+2025-07-26 01:03:24,938 - DEBUG - Loaded collision time for AConcave_FConcave at IoU 0.2: nan
+2025-07-26 01:03:24,939 - DEBUG - Loaded collision time for AConcave_FConcave at IoU 0.25: nan
+2025-07-26 01:03:24,941 - DEBUG - Loaded collision time for AConcave_FConcave at IoU 0.3: nan
+2025-07-26 01:03:24,942 - DEBUG - Loaded collision time for AConcave_FConcave at IoU 0.35: nan
+2025-07-26 01:03:24,943 - DEBUG - Loaded collision time for AConcave_FConcave at IoU 0.4: nan
+2025-07-26 01:03:24,944 - DEBUG - Loaded collision time for AConcave_FConcave at IoU 0.45: nan
+2025-07-26 01:03:24,946 - DEBUG - Loaded collision time for AConcave_FConcave at IoU 0.5: nan
+2025-07-26 01:03:24,947 - DEBUG - Loaded collision time for AConcave_FConcave at IoU 0.55: nan
+2025-07-26 01:03:24,948 - DEBUG - Loaded collision time for AConcave_FConcave at IoU 0.6: nan
+2025-07-26 01:03:24,949 - DEBUG - Loaded collision time for AConcave_FConcave at IoU 0.65: nan
+2025-07-26 01:03:24,950 - DEBUG - Loaded collision time for AConcave_FConcave at IoU 0.7: nan
+2025-07-26 01:03:24,951 - DEBUG - Loaded collision time for AConcave_FConcave at IoU 0.75: nan
+2025-07-26 01:03:24,952 - DEBUG - Loaded collision time for AConcave_FConcave at IoU 0.8: nan
+2025-07-26 01:03:24,953 - DEBUG - Loaded collision time for AConcave_FConcave at IoU 0.85: nan
+2025-07-26 01:03:24,954 - DEBUG - Loaded collision time for AConcave_FConcave at IoU 0.9: nan
+2025-07-26 01:03:24,955 - DEBUG - Loaded collision time for AConcave_FConcave at IoU 0.95: nan
+2025-07-26 01:03:24,955 - INFO - Processing video: BConcave+AConcave+3500
+2025-07-26 01:03:24,957 - INFO - Video BConcave+AConcave+3500 already processed (found segformer_model-BConcave+AConcave+3500.mp4), skipping video processing...
+2025-07-26 01:03:24,963 - INFO - VanillaSegmentationSaver initialized with output dir: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC_segformer-b3-finetuned-ade-512-512/processed_videos/segformer_model-BConcave+AConcave+3500/org_segmentation
+2025-07-26 01:03:24,979 - INFO - All collision results already exist for BConcave+AConcave+3500
+2025-07-26 01:03:24,980 - DEBUG - Loaded collision time for BConcave+AConcave+3500 at IoU 0.05: nan
+2025-07-26 01:03:24,981 - DEBUG - Loaded collision time for BConcave+AConcave+3500 at IoU 0.1: nan
+2025-07-26 01:03:24,982 - DEBUG - Loaded collision time for BConcave+AConcave+3500 at IoU 0.15: nan
+2025-07-26 01:03:24,984 - DEBUG - Loaded collision time for BConcave+AConcave+3500 at IoU 0.2: nan
+2025-07-26 01:03:24,985 - DEBUG - Loaded collision time for BConcave+AConcave+3500 at IoU 0.25: nan
+2025-07-26 01:03:24,986 - DEBUG - Loaded collision time for BConcave+AConcave+3500 at IoU 0.3: nan
+2025-07-26 01:03:24,987 - DEBUG - Loaded collision time for BConcave+AConcave+3500 at IoU 0.35: nan
+2025-07-26 01:03:24,988 - DEBUG - Loaded collision time for BConcave+AConcave+3500 at IoU 0.4: nan
+2025-07-26 01:03:24,989 - DEBUG - Loaded collision time for BConcave+AConcave+3500 at IoU 0.45: nan
+2025-07-26 01:03:24,991 - DEBUG - Loaded collision time for BConcave+AConcave+3500 at IoU 0.5: nan
+2025-07-26 01:03:24,992 - DEBUG - Loaded collision time for BConcave+AConcave+3500 at IoU 0.55: nan
+2025-07-26 01:03:24,993 - DEBUG - Loaded collision time for BConcave+AConcave+3500 at IoU 0.6: nan
+2025-07-26 01:03:24,994 - DEBUG - Loaded collision time for BConcave+AConcave+3500 at IoU 0.65: nan
+2025-07-26 01:03:24,995 - DEBUG - Loaded collision time for BConcave+AConcave+3500 at IoU 0.7: nan
+2025-07-26 01:03:24,996 - DEBUG - Loaded collision time for BConcave+AConcave+3500 at IoU 0.75: nan
+2025-07-26 01:03:24,998 - DEBUG - Loaded collision time for BConcave+AConcave+3500 at IoU 0.8: nan
+2025-07-26 01:03:24,999 - DEBUG - Loaded collision time for BConcave+AConcave+3500 at IoU 0.85: nan
+2025-07-26 01:03:25,000 - DEBUG - Loaded collision time for BConcave+AConcave+3500 at IoU 0.9: nan
+2025-07-26 01:03:25,001 - DEBUG - Loaded collision time for BConcave+AConcave+3500 at IoU 0.95: nan
+2025-07-26 01:03:25,001 - INFO - Processing video: BConcave+AConcave+3700_flipped
+2025-07-26 01:03:25,002 - INFO - Video BConcave+AConcave+3700_flipped already processed (found segformer_model-BConcave+AConcave+3700_flipped.mp4), skipping video processing...
+2025-07-26 01:03:25,008 - INFO - VanillaSegmentationSaver initialized with output dir: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC_segformer-b3-finetuned-ade-512-512/processed_videos/segformer_model-BConcave+AConcave+3700_flipped/org_segmentation
+2025-07-26 01:03:25,023 - INFO - All collision results already exist for BConcave+AConcave+3700_flipped
+2025-07-26 01:03:25,024 - DEBUG - Loaded collision time for BConcave+AConcave+3700_flipped at IoU 0.05: nan
+2025-07-26 01:03:25,025 - DEBUG - Loaded collision time for BConcave+AConcave+3700_flipped at IoU 0.1: nan
+2025-07-26 01:03:25,027 - DEBUG - Loaded collision time for BConcave+AConcave+3700_flipped at IoU 0.15: nan
+2025-07-26 01:03:25,028 - DEBUG - Loaded collision time for BConcave+AConcave+3700_flipped at IoU 0.2: nan
+2025-07-26 01:03:25,030 - DEBUG - Loaded collision time for BConcave+AConcave+3700_flipped at IoU 0.25: nan
+2025-07-26 01:03:25,031 - DEBUG - Loaded collision time for BConcave+AConcave+3700_flipped at IoU 0.3: nan
+2025-07-26 01:03:25,033 - DEBUG - Loaded collision time for BConcave+AConcave+3700_flipped at IoU 0.35: nan
+2025-07-26 01:03:25,034 - DEBUG - Loaded collision time for BConcave+AConcave+3700_flipped at IoU 0.4: nan
+2025-07-26 01:03:25,035 - DEBUG - Loaded collision time for BConcave+AConcave+3700_flipped at IoU 0.45: nan
+2025-07-26 01:03:25,037 - DEBUG - Loaded collision time for BConcave+AConcave+3700_flipped at IoU 0.5: nan
+2025-07-26 01:03:25,038 - DEBUG - Loaded collision time for BConcave+AConcave+3700_flipped at IoU 0.55: nan
+2025-07-26 01:03:25,040 - DEBUG - Loaded collision time for BConcave+AConcave+3700_flipped at IoU 0.6: nan
+2025-07-26 01:03:25,041 - DEBUG - Loaded collision time for BConcave+AConcave+3700_flipped at IoU 0.65: nan
+2025-07-26 01:03:25,042 - DEBUG - Loaded collision time for BConcave+AConcave+3700_flipped at IoU 0.7: nan
+2025-07-26 01:03:25,043 - DEBUG - Loaded collision time for BConcave+AConcave+3700_flipped at IoU 0.75: nan
+2025-07-26 01:03:25,045 - DEBUG - Loaded collision time for BConcave+AConcave+3700_flipped at IoU 0.8: nan
+2025-07-26 01:03:25,046 - DEBUG - Loaded collision time for BConcave+AConcave+3700_flipped at IoU 0.85: nan
+2025-07-26 01:03:25,047 - DEBUG - Loaded collision time for BConcave+AConcave+3700_flipped at IoU 0.9: nan
+2025-07-26 01:03:25,048 - DEBUG - Loaded collision time for BConcave+AConcave+3700_flipped at IoU 0.95: nan
+2025-07-26 01:03:25,048 - INFO - Processing video: BConcave+AConcave+3900
+2025-07-26 01:03:25,049 - INFO - Video BConcave+AConcave+3900 already processed (found segformer_model-BConcave+AConcave+3900.mp4), skipping video processing...
+2025-07-26 01:03:25,054 - INFO - VanillaSegmentationSaver initialized with output dir: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC_segformer-b3-finetuned-ade-512-512/processed_videos/segformer_model-BConcave+AConcave+3900/org_segmentation
+2025-07-26 01:03:25,076 - INFO - All collision results already exist for BConcave+AConcave+3900
+2025-07-26 01:03:25,078 - DEBUG - Loaded collision time for BConcave+AConcave+3900 at IoU 0.05: 4133.333333333334
+2025-07-26 01:03:25,079 - DEBUG - Loaded collision time for BConcave+AConcave+3900 at IoU 0.1: 4216.666666666667
+2025-07-26 01:03:25,080 - DEBUG - Loaded collision time for BConcave+AConcave+3900 at IoU 0.15: 4283.333333333333
+2025-07-26 01:03:25,081 - DEBUG - Loaded collision time for BConcave+AConcave+3900 at IoU 0.2: 4350.0
+2025-07-26 01:03:25,082 - DEBUG - Loaded collision time for BConcave+AConcave+3900 at IoU 0.25: 4450.0
+2025-07-26 01:03:25,084 - DEBUG - Loaded collision time for BConcave+AConcave+3900 at IoU 0.3: 4500.0
+2025-07-26 01:03:25,085 - DEBUG - Loaded collision time for BConcave+AConcave+3900 at IoU 0.35: nan
+2025-07-26 01:03:25,086 - DEBUG - Loaded collision time for BConcave+AConcave+3900 at IoU 0.4: nan
+2025-07-26 01:03:25,087 - DEBUG - Loaded collision time for BConcave+AConcave+3900 at IoU 0.45: nan
+2025-07-26 01:03:25,088 - DEBUG - Loaded collision time for BConcave+AConcave+3900 at IoU 0.5: nan
+2025-07-26 01:03:25,089 - DEBUG - Loaded collision time for BConcave+AConcave+3900 at IoU 0.55: nan
+2025-07-26 01:03:25,090 - DEBUG - Loaded collision time for BConcave+AConcave+3900 at IoU 0.6: nan
+2025-07-26 01:03:25,091 - DEBUG - Loaded collision time for BConcave+AConcave+3900 at IoU 0.65: nan
+2025-07-26 01:03:25,092 - DEBUG - Loaded collision time for BConcave+AConcave+3900 at IoU 0.7: nan
+2025-07-26 01:03:25,093 - DEBUG - Loaded collision time for BConcave+AConcave+3900 at IoU 0.75: nan
+2025-07-26 01:03:25,095 - DEBUG - Loaded collision time for BConcave+AConcave+3900 at IoU 0.8: nan
+2025-07-26 01:03:25,096 - DEBUG - Loaded collision time for BConcave+AConcave+3900 at IoU 0.85: nan
+2025-07-26 01:03:25,097 - DEBUG - Loaded collision time for BConcave+AConcave+3900 at IoU 0.9: nan
+2025-07-26 01:03:25,098 - DEBUG - Loaded collision time for BConcave+AConcave+3900 at IoU 0.95: nan
+2025-07-26 01:03:25,098 - INFO - Processing video: BConcave+AConcave+4100_flipped
+2025-07-26 01:03:25,099 - INFO - Video BConcave+AConcave+4100_flipped already processed (found segformer_model-BConcave+AConcave+4100_flipped.mp4), skipping video processing...
+2025-07-26 01:03:25,104 - INFO - VanillaSegmentationSaver initialized with output dir: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC_segformer-b3-finetuned-ade-512-512/processed_videos/segformer_model-BConcave+AConcave+4100_flipped/org_segmentation
+2025-07-26 01:03:25,120 - INFO - All collision results already exist for BConcave+AConcave+4100_flipped
+2025-07-26 01:03:25,122 - DEBUG - Loaded collision time for BConcave+AConcave+4100_flipped at IoU 0.05: 4333.333333333333
+2025-07-26 01:03:25,123 - DEBUG - Loaded collision time for BConcave+AConcave+4100_flipped at IoU 0.1: 4416.666666666667
+2025-07-26 01:03:25,124 - DEBUG - Loaded collision time for BConcave+AConcave+4100_flipped at IoU 0.15: 4500.0
+2025-07-26 01:03:25,125 - DEBUG - Loaded collision time for BConcave+AConcave+4100_flipped at IoU 0.2: 4566.666666666666
+2025-07-26 01:03:25,126 - DEBUG - Loaded collision time for BConcave+AConcave+4100_flipped at IoU 0.25: 4633.333333333334
+2025-07-26 01:03:25,127 - DEBUG - Loaded collision time for BConcave+AConcave+4100_flipped at IoU 0.3: 4716.666666666667
+2025-07-26 01:03:25,128 - DEBUG - Loaded collision time for BConcave+AConcave+4100_flipped at IoU 0.35: nan
+2025-07-26 01:03:25,129 - DEBUG - Loaded collision time for BConcave+AConcave+4100_flipped at IoU 0.4: nan
+2025-07-26 01:03:25,130 - DEBUG - Loaded collision time for BConcave+AConcave+4100_flipped at IoU 0.45: nan
+2025-07-26 01:03:25,131 - DEBUG - Loaded collision time for BConcave+AConcave+4100_flipped at IoU 0.5: nan
+2025-07-26 01:03:25,132 - DEBUG - Loaded collision time for BConcave+AConcave+4100_flipped at IoU 0.55: nan
+2025-07-26 01:03:25,133 - DEBUG - Loaded collision time for BConcave+AConcave+4100_flipped at IoU 0.6: nan
+2025-07-26 01:03:25,134 - DEBUG - Loaded collision time for BConcave+AConcave+4100_flipped at IoU 0.65: nan
+2025-07-26 01:03:25,135 - DEBUG - Loaded collision time for BConcave+AConcave+4100_flipped at IoU 0.7: nan
+2025-07-26 01:03:25,136 - DEBUG - Loaded collision time for BConcave+AConcave+4100_flipped at IoU 0.75: nan
+2025-07-26 01:03:25,137 - DEBUG - Loaded collision time for BConcave+AConcave+4100_flipped at IoU 0.8: nan
+2025-07-26 01:03:25,138 - DEBUG - Loaded collision time for BConcave+AConcave+4100_flipped at IoU 0.85: nan
+2025-07-26 01:03:25,140 - DEBUG - Loaded collision time for BConcave+AConcave+4100_flipped at IoU 0.9: nan
+2025-07-26 01:03:25,141 - DEBUG - Loaded collision time for BConcave+AConcave+4100_flipped at IoU 0.95: nan
+2025-07-26 01:03:25,141 - INFO - Processing video: BConcave+AConcave+4300
+2025-07-26 01:03:25,142 - INFO - Video BConcave+AConcave+4300 already processed (found segformer_model-BConcave+AConcave+4300.mp4), skipping video processing...
+2025-07-26 01:03:25,148 - INFO - VanillaSegmentationSaver initialized with output dir: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC_segformer-b3-finetuned-ade-512-512/processed_videos/segformer_model-BConcave+AConcave+4300/org_segmentation
+2025-07-26 01:03:25,165 - INFO - All collision results already exist for BConcave+AConcave+4300
+2025-07-26 01:03:25,167 - DEBUG - Loaded collision time for BConcave+AConcave+4300 at IoU 0.05: 4500.0
+2025-07-26 01:03:25,168 - DEBUG - Loaded collision time for BConcave+AConcave+4300 at IoU 0.1: 4583.333333333333
+2025-07-26 01:03:25,169 - DEBUG - Loaded collision time for BConcave+AConcave+4300 at IoU 0.15: 4666.666666666667
+2025-07-26 01:03:25,170 - DEBUG - Loaded collision time for BConcave+AConcave+4300 at IoU 0.2: 4733.333333333333
+2025-07-26 01:03:25,171 - DEBUG - Loaded collision time for BConcave+AConcave+4300 at IoU 0.25: 4800.0
+2025-07-26 01:03:25,172 - DEBUG - Loaded collision time for BConcave+AConcave+4300 at IoU 0.3: 4866.666666666666
+2025-07-26 01:03:25,173 - DEBUG - Loaded collision time for BConcave+AConcave+4300 at IoU 0.35: nan
+2025-07-26 01:03:25,174 - DEBUG - Loaded collision time for BConcave+AConcave+4300 at IoU 0.4: nan
+2025-07-26 01:03:25,175 - DEBUG - Loaded collision time for BConcave+AConcave+4300 at IoU 0.45: nan
+2025-07-26 01:03:25,177 - DEBUG - Loaded collision time for BConcave+AConcave+4300 at IoU 0.5: nan
+2025-07-26 01:03:25,178 - DEBUG - Loaded collision time for BConcave+AConcave+4300 at IoU 0.55: nan
+2025-07-26 01:03:25,179 - DEBUG - Loaded collision time for BConcave+AConcave+4300 at IoU 0.6: nan
+2025-07-26 01:03:25,180 - DEBUG - Loaded collision time for BConcave+AConcave+4300 at IoU 0.65: nan
+2025-07-26 01:03:25,181 - DEBUG - Loaded collision time for BConcave+AConcave+4300 at IoU 0.7: nan
+2025-07-26 01:03:25,182 - DEBUG - Loaded collision time for BConcave+AConcave+4300 at IoU 0.75: nan
+2025-07-26 01:03:25,183 - DEBUG - Loaded collision time for BConcave+AConcave+4300 at IoU 0.8: nan
+2025-07-26 01:03:25,184 - DEBUG - Loaded collision time for BConcave+AConcave+4300 at IoU 0.85: nan
+2025-07-26 01:03:25,185 - DEBUG - Loaded collision time for BConcave+AConcave+4300 at IoU 0.9: nan
+2025-07-26 01:03:25,186 - DEBUG - Loaded collision time for BConcave+AConcave+4300 at IoU 0.95: nan
+2025-07-26 01:03:25,186 - INFO - Processing video: BConcave+AConcave+4500_flipped
+2025-07-26 01:03:25,187 - INFO - Video BConcave+AConcave+4500_flipped already processed (found segformer_model-BConcave+AConcave+4500_flipped.mp4), skipping video processing...
+2025-07-26 01:03:25,193 - INFO - VanillaSegmentationSaver initialized with output dir: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC_segformer-b3-finetuned-ade-512-512/processed_videos/segformer_model-BConcave+AConcave+4500_flipped/org_segmentation
+2025-07-26 01:03:25,207 - INFO - All collision results already exist for BConcave+AConcave+4500_flipped
+2025-07-26 01:03:25,208 - DEBUG - Loaded collision time for BConcave+AConcave+4500_flipped at IoU 0.05: nan
+2025-07-26 01:03:25,209 - DEBUG - Loaded collision time for BConcave+AConcave+4500_flipped at IoU 0.1: nan
+2025-07-26 01:03:25,210 - DEBUG - Loaded collision time for BConcave+AConcave+4500_flipped at IoU 0.15: nan
+2025-07-26 01:03:25,211 - DEBUG - Loaded collision time for BConcave+AConcave+4500_flipped at IoU 0.2: nan
+2025-07-26 01:03:25,212 - DEBUG - Loaded collision time for BConcave+AConcave+4500_flipped at IoU 0.25: nan
+2025-07-26 01:03:25,213 - DEBUG - Loaded collision time for BConcave+AConcave+4500_flipped at IoU 0.3: nan
+2025-07-26 01:03:25,214 - DEBUG - Loaded collision time for BConcave+AConcave+4500_flipped at IoU 0.35: nan
+2025-07-26 01:03:25,215 - DEBUG - Loaded collision time for BConcave+AConcave+4500_flipped at IoU 0.4: nan
+2025-07-26 01:03:25,216 - DEBUG - Loaded collision time for BConcave+AConcave+4500_flipped at IoU 0.45: nan
+2025-07-26 01:03:25,217 - DEBUG - Loaded collision time for BConcave+AConcave+4500_flipped at IoU 0.5: nan
+2025-07-26 01:03:25,218 - DEBUG - Loaded collision time for BConcave+AConcave+4500_flipped at IoU 0.55: nan
+2025-07-26 01:03:25,219 - DEBUG - Loaded collision time for BConcave+AConcave+4500_flipped at IoU 0.6: nan
+2025-07-26 01:03:25,220 - DEBUG - Loaded collision time for BConcave+AConcave+4500_flipped at IoU 0.65: nan
+2025-07-26 01:03:25,222 - DEBUG - Loaded collision time for BConcave+AConcave+4500_flipped at IoU 0.7: nan
+2025-07-26 01:03:25,223 - DEBUG - Loaded collision time for BConcave+AConcave+4500_flipped at IoU 0.75: nan
+2025-07-26 01:03:25,224 - DEBUG - Loaded collision time for BConcave+AConcave+4500_flipped at IoU 0.8: nan
+2025-07-26 01:03:25,225 - DEBUG - Loaded collision time for BConcave+AConcave+4500_flipped at IoU 0.85: nan
+2025-07-26 01:03:25,226 - DEBUG - Loaded collision time for BConcave+AConcave+4500_flipped at IoU 0.9: nan
+2025-07-26 01:03:25,228 - DEBUG - Loaded collision time for BConcave+AConcave+4500_flipped at IoU 0.95: nan
+2025-07-26 01:03:25,228 - INFO - Processing video: BConcave+AConvex+3500_flipped
+2025-07-26 01:03:25,229 - INFO - Video BConcave+AConvex+3500_flipped already processed (found segformer_model-BConcave+AConvex+3500_flipped.mp4), skipping video processing...
+2025-07-26 01:03:25,235 - INFO - VanillaSegmentationSaver initialized with output dir: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC_segformer-b3-finetuned-ade-512-512/processed_videos/segformer_model-BConcave+AConvex+3500_flipped/org_segmentation
+2025-07-26 01:03:25,251 - INFO - All collision results already exist for BConcave+AConvex+3500_flipped
+2025-07-26 01:03:25,252 - DEBUG - Loaded collision time for BConcave+AConvex+3500_flipped at IoU 0.05: 3883.3333333333335
+2025-07-26 01:03:25,253 - DEBUG - Loaded collision time for BConcave+AConvex+3500_flipped at IoU 0.1: 4066.6666666666665
+2025-07-26 01:03:25,254 - DEBUG - Loaded collision time for BConcave+AConvex+3500_flipped at IoU 0.15: 4316.666666666666
+2025-07-26 01:03:25,255 - DEBUG - Loaded collision time for BConcave+AConvex+3500_flipped at IoU 0.2: nan
+2025-07-26 01:03:25,256 - DEBUG - Loaded collision time for BConcave+AConvex+3500_flipped at IoU 0.25: nan
+2025-07-26 01:03:25,257 - DEBUG - Loaded collision time for BConcave+AConvex+3500_flipped at IoU 0.3: nan
+2025-07-26 01:03:25,258 - DEBUG - Loaded collision time for BConcave+AConvex+3500_flipped at IoU 0.35: nan
+2025-07-26 01:03:25,263 - DEBUG - Loaded collision time for BConcave+AConvex+3500_flipped at IoU 0.4: nan
+2025-07-26 01:03:25,269 - DEBUG - Loaded collision time for BConcave+AConvex+3500_flipped at IoU 0.45: nan
+2025-07-26 01:03:25,270 - DEBUG - Loaded collision time for BConcave+AConvex+3500_flipped at IoU 0.5: nan
+2025-07-26 01:03:25,271 - DEBUG - Loaded collision time for BConcave+AConvex+3500_flipped at IoU 0.55: nan
+2025-07-26 01:03:25,273 - DEBUG - Loaded collision time for BConcave+AConvex+3500_flipped at IoU 0.6: nan
+2025-07-26 01:03:25,274 - DEBUG - Loaded collision time for BConcave+AConvex+3500_flipped at IoU 0.65: nan
+2025-07-26 01:03:25,275 - DEBUG - Loaded collision time for BConcave+AConvex+3500_flipped at IoU 0.7: nan
+2025-07-26 01:03:25,277 - DEBUG - Loaded collision time for BConcave+AConvex+3500_flipped at IoU 0.75: nan
+2025-07-26 01:03:25,278 - DEBUG - Loaded collision time for BConcave+AConvex+3500_flipped at IoU 0.8: nan
+2025-07-26 01:03:25,279 - DEBUG - Loaded collision time for BConcave+AConvex+3500_flipped at IoU 0.85: nan
+2025-07-26 01:03:25,280 - DEBUG - Loaded collision time for BConcave+AConvex+3500_flipped at IoU 0.9: nan
+2025-07-26 01:03:25,281 - DEBUG - Loaded collision time for BConcave+AConvex+3500_flipped at IoU 0.95: nan
+2025-07-26 01:03:25,281 - INFO - Processing video: BConcave+AConvex+3700
+2025-07-26 01:03:25,283 - INFO - Video BConcave+AConvex+3700 already processed (found segformer_model-BConcave+AConvex+3700.mp4), skipping video processing...
+2025-07-26 01:03:25,289 - INFO - VanillaSegmentationSaver initialized with output dir: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC_segformer-b3-finetuned-ade-512-512/processed_videos/segformer_model-BConcave+AConvex+3700/org_segmentation
+2025-07-26 01:03:25,304 - INFO - All collision results already exist for BConcave+AConvex+3700
+2025-07-26 01:03:25,306 - DEBUG - Loaded collision time for BConcave+AConvex+3700 at IoU 0.05: 4300.0
+2025-07-26 01:03:25,307 - DEBUG - Loaded collision time for BConcave+AConvex+3700 at IoU 0.1: nan
+2025-07-26 01:03:25,308 - DEBUG - Loaded collision time for BConcave+AConvex+3700 at IoU 0.15: nan
+2025-07-26 01:03:25,309 - DEBUG - Loaded collision time for BConcave+AConvex+3700 at IoU 0.2: nan
+2025-07-26 01:03:25,310 - DEBUG - Loaded collision time for BConcave+AConvex+3700 at IoU 0.25: nan
+2025-07-26 01:03:25,311 - DEBUG - Loaded collision time for BConcave+AConvex+3700 at IoU 0.3: nan
+2025-07-26 01:03:25,312 - DEBUG - Loaded collision time for BConcave+AConvex+3700 at IoU 0.35: nan
+2025-07-26 01:03:25,313 - DEBUG - Loaded collision time for BConcave+AConvex+3700 at IoU 0.4: nan
+2025-07-26 01:03:25,315 - DEBUG - Loaded collision time for BConcave+AConvex+3700 at IoU 0.45: nan
+2025-07-26 01:03:25,316 - DEBUG - Loaded collision time for BConcave+AConvex+3700 at IoU 0.5: nan
+2025-07-26 01:03:25,317 - DEBUG - Loaded collision time for BConcave+AConvex+3700 at IoU 0.55: nan
+2025-07-26 01:03:25,318 - DEBUG - Loaded collision time for BConcave+AConvex+3700 at IoU 0.6: nan
+2025-07-26 01:03:25,319 - DEBUG - Loaded collision time for BConcave+AConvex+3700 at IoU 0.65: nan
+2025-07-26 01:03:25,320 - DEBUG - Loaded collision time for BConcave+AConvex+3700 at IoU 0.7: nan
+2025-07-26 01:03:25,322 - DEBUG - Loaded collision time for BConcave+AConvex+3700 at IoU 0.75: nan
+2025-07-26 01:03:25,323 - DEBUG - Loaded collision time for BConcave+AConvex+3700 at IoU 0.8: nan
+2025-07-26 01:03:25,324 - DEBUG - Loaded collision time for BConcave+AConvex+3700 at IoU 0.85: nan
+2025-07-26 01:03:25,326 - DEBUG - Loaded collision time for BConcave+AConvex+3700 at IoU 0.9: nan
+2025-07-26 01:03:25,327 - DEBUG - Loaded collision time for BConcave+AConvex+3700 at IoU 0.95: nan
+2025-07-26 01:03:25,327 - INFO - Processing video: BConcave+AConvex+3900_flipped
+2025-07-26 01:03:25,329 - INFO - Video BConcave+AConvex+3900_flipped already processed (found segformer_model-BConcave+AConvex+3900_flipped.mp4), skipping video processing...
+2025-07-26 01:03:25,334 - INFO - VanillaSegmentationSaver initialized with output dir: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC_segformer-b3-finetuned-ade-512-512/processed_videos/segformer_model-BConcave+AConvex+3900_flipped/org_segmentation
+2025-07-26 01:03:25,350 - INFO - All collision results already exist for BConcave+AConvex+3900_flipped
+2025-07-26 01:03:25,352 - DEBUG - Loaded collision time for BConcave+AConvex+3900_flipped at IoU 0.05: 4250.0
+2025-07-26 01:03:25,353 - DEBUG - Loaded collision time for BConcave+AConvex+3900_flipped at IoU 0.1: 4400.0
+2025-07-26 01:03:25,354 - DEBUG - Loaded collision time for BConcave+AConvex+3900_flipped at IoU 0.15: 4500.0
+2025-07-26 01:03:25,355 - DEBUG - Loaded collision time for BConcave+AConvex+3900_flipped at IoU 0.2: 5000.0
+2025-07-26 01:03:25,356 - DEBUG - Loaded collision time for BConcave+AConvex+3900_flipped at IoU 0.25: nan
+2025-07-26 01:03:25,357 - DEBUG - Loaded collision time for BConcave+AConvex+3900_flipped at IoU 0.3: nan
+2025-07-26 01:03:25,358 - DEBUG - Loaded collision time for BConcave+AConvex+3900_flipped at IoU 0.35: nan
+2025-07-26 01:03:25,359 - DEBUG - Loaded collision time for BConcave+AConvex+3900_flipped at IoU 0.4: nan
+2025-07-26 01:03:25,360 - DEBUG - Loaded collision time for BConcave+AConvex+3900_flipped at IoU 0.45: nan
+2025-07-26 01:03:25,361 - DEBUG - Loaded collision time for BConcave+AConvex+3900_flipped at IoU 0.5: nan
+2025-07-26 01:03:25,362 - DEBUG - Loaded collision time for BConcave+AConvex+3900_flipped at IoU 0.55: nan
+2025-07-26 01:03:25,363 - DEBUG - Loaded collision time for BConcave+AConvex+3900_flipped at IoU 0.6: nan
+2025-07-26 01:03:25,364 - DEBUG - Loaded collision time for BConcave+AConvex+3900_flipped at IoU 0.65: nan
+2025-07-26 01:03:25,365 - DEBUG - Loaded collision time for BConcave+AConvex+3900_flipped at IoU 0.7: nan
+2025-07-26 01:03:25,366 - DEBUG - Loaded collision time for BConcave+AConvex+3900_flipped at IoU 0.75: nan
+2025-07-26 01:03:25,367 - DEBUG - Loaded collision time for BConcave+AConvex+3900_flipped at IoU 0.8: nan
+2025-07-26 01:03:25,368 - DEBUG - Loaded collision time for BConcave+AConvex+3900_flipped at IoU 0.85: nan
+2025-07-26 01:03:25,369 - DEBUG - Loaded collision time for BConcave+AConvex+3900_flipped at IoU 0.9: nan
+2025-07-26 01:03:25,370 - DEBUG - Loaded collision time for BConcave+AConvex+3900_flipped at IoU 0.95: nan
+2025-07-26 01:03:25,370 - INFO - Processing video: BConcave+AConvex+4100
+2025-07-26 01:03:25,371 - INFO - Video BConcave+AConvex+4100 already processed (found segformer_model-BConcave+AConvex+4100.mp4), skipping video processing...
+2025-07-26 01:03:25,376 - INFO - VanillaSegmentationSaver initialized with output dir: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC_segformer-b3-finetuned-ade-512-512/processed_videos/segformer_model-BConcave+AConvex+4100/org_segmentation
+2025-07-26 01:03:25,389 - INFO - All collision results already exist for BConcave+AConvex+4100
+2025-07-26 01:03:25,391 - DEBUG - Loaded collision time for BConcave+AConvex+4100 at IoU 0.05: 4833.333333333333
+2025-07-26 01:03:25,392 - DEBUG - Loaded collision time for BConcave+AConvex+4100 at IoU 0.1: 5100.0
+2025-07-26 01:03:25,393 - DEBUG - Loaded collision time for BConcave+AConvex+4100 at IoU 0.15: nan
+2025-07-26 01:03:25,394 - DEBUG - Loaded collision time for BConcave+AConvex+4100 at IoU 0.2: nan
+2025-07-26 01:03:25,395 - DEBUG - Loaded collision time for BConcave+AConvex+4100 at IoU 0.25: nan
+2025-07-26 01:03:25,396 - DEBUG - Loaded collision time for BConcave+AConvex+4100 at IoU 0.3: nan
+2025-07-26 01:03:25,397 - DEBUG - Loaded collision time for BConcave+AConvex+4100 at IoU 0.35: nan
+2025-07-26 01:03:25,397 - DEBUG - Loaded collision time for BConcave+AConvex+4100 at IoU 0.4: nan
+2025-07-26 01:03:25,398 - DEBUG - Loaded collision time for BConcave+AConvex+4100 at IoU 0.45: nan
+2025-07-26 01:03:25,400 - DEBUG - Loaded collision time for BConcave+AConvex+4100 at IoU 0.5: nan
+2025-07-26 01:03:25,401 - DEBUG - Loaded collision time for BConcave+AConvex+4100 at IoU 0.55: nan
+2025-07-26 01:03:25,401 - DEBUG - Loaded collision time for BConcave+AConvex+4100 at IoU 0.6: nan
+2025-07-26 01:03:25,403 - DEBUG - Loaded collision time for BConcave+AConvex+4100 at IoU 0.65: nan
+2025-07-26 01:03:25,404 - DEBUG - Loaded collision time for BConcave+AConvex+4100 at IoU 0.7: nan
+2025-07-26 01:03:25,405 - DEBUG - Loaded collision time for BConcave+AConvex+4100 at IoU 0.75: nan
+2025-07-26 01:03:25,406 - DEBUG - Loaded collision time for BConcave+AConvex+4100 at IoU 0.8: nan
+2025-07-26 01:03:25,407 - DEBUG - Loaded collision time for BConcave+AConvex+4100 at IoU 0.85: nan
+2025-07-26 01:03:25,408 - DEBUG - Loaded collision time for BConcave+AConvex+4100 at IoU 0.9: nan
+2025-07-26 01:03:25,409 - DEBUG - Loaded collision time for BConcave+AConvex+4100 at IoU 0.95: nan
+2025-07-26 01:03:25,409 - INFO - Processing video: BConcave+AConvex+4300_flipped
+2025-07-26 01:03:25,410 - INFO - Video BConcave+AConvex+4300_flipped already processed (found segformer_model-BConcave+AConvex+4300_flipped.mp4), skipping video processing...
+2025-07-26 01:03:25,415 - INFO - VanillaSegmentationSaver initialized with output dir: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC_segformer-b3-finetuned-ade-512-512/processed_videos/segformer_model-BConcave+AConvex+4300_flipped/org_segmentation
+2025-07-26 01:03:25,430 - INFO - All collision results already exist for BConcave+AConvex+4300_flipped
+2025-07-26 01:03:25,431 - DEBUG - Loaded collision time for BConcave+AConvex+4300_flipped at IoU 0.05: 4700.0
+2025-07-26 01:03:25,432 - DEBUG - Loaded collision time for BConcave+AConvex+4300_flipped at IoU 0.1: 4883.333333333334
+2025-07-26 01:03:25,433 - DEBUG - Loaded collision time for BConcave+AConvex+4300_flipped at IoU 0.15: 5033.333333333333
+2025-07-26 01:03:25,434 - DEBUG - Loaded collision time for BConcave+AConvex+4300_flipped at IoU 0.2: nan
+2025-07-26 01:03:25,435 - DEBUG - Loaded collision time for BConcave+AConvex+4300_flipped at IoU 0.25: nan
+2025-07-26 01:03:25,436 - DEBUG - Loaded collision time for BConcave+AConvex+4300_flipped at IoU 0.3: nan
+2025-07-26 01:03:25,439 - DEBUG - Loaded collision time for BConcave+AConvex+4300_flipped at IoU 0.35: nan
+2025-07-26 01:03:25,440 - DEBUG - Loaded collision time for BConcave+AConvex+4300_flipped at IoU 0.4: nan
+2025-07-26 01:03:25,446 - DEBUG - Loaded collision time for BConcave+AConvex+4300_flipped at IoU 0.45: nan
+2025-07-26 01:03:25,447 - DEBUG - Loaded collision time for BConcave+AConvex+4300_flipped at IoU 0.5: nan
+2025-07-26 01:03:25,448 - DEBUG - Loaded collision time for BConcave+AConvex+4300_flipped at IoU 0.55: nan
+2025-07-26 01:03:25,449 - DEBUG - Loaded collision time for BConcave+AConvex+4300_flipped at IoU 0.6: nan
+2025-07-26 01:03:25,450 - DEBUG - Loaded collision time for BConcave+AConvex+4300_flipped at IoU 0.65: nan
+2025-07-26 01:03:25,451 - DEBUG - Loaded collision time for BConcave+AConvex+4300_flipped at IoU 0.7: nan
+2025-07-26 01:03:25,452 - DEBUG - Loaded collision time for BConcave+AConvex+4300_flipped at IoU 0.75: nan
+2025-07-26 01:03:25,453 - DEBUG - Loaded collision time for BConcave+AConvex+4300_flipped at IoU 0.8: nan
+2025-07-26 01:03:25,454 - DEBUG - Loaded collision time for BConcave+AConvex+4300_flipped at IoU 0.85: nan
+2025-07-26 01:03:25,455 - DEBUG - Loaded collision time for BConcave+AConvex+4300_flipped at IoU 0.9: nan
+2025-07-26 01:03:25,456 - DEBUG - Loaded collision time for BConcave+AConvex+4300_flipped at IoU 0.95: nan
+2025-07-26 01:03:25,456 - INFO - Processing video: BConcave+AConvex+4500
+2025-07-26 01:03:25,458 - INFO - Video BConcave+AConvex+4500 already processed (found segformer_model-BConcave+AConvex+4500.mp4), skipping video processing...
+2025-07-26 01:03:25,462 - INFO - VanillaSegmentationSaver initialized with output dir: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC_segformer-b3-finetuned-ade-512-512/processed_videos/segformer_model-BConcave+AConvex+4500/org_segmentation
+2025-07-26 01:03:25,478 - INFO - All collision results already exist for BConcave+AConvex+4500
+2025-07-26 01:03:25,479 - DEBUG - Loaded collision time for BConcave+AConvex+4500 at IoU 0.05: 4883.333333333334
+2025-07-26 01:03:25,480 - DEBUG - Loaded collision time for BConcave+AConvex+4500 at IoU 0.1: 5050.0
+2025-07-26 01:03:25,481 - DEBUG - Loaded collision time for BConcave+AConvex+4500 at IoU 0.15: 5250.0
+2025-07-26 01:03:25,482 - DEBUG - Loaded collision time for BConcave+AConvex+4500 at IoU 0.2: nan
+2025-07-26 01:03:25,483 - DEBUG - Loaded collision time for BConcave+AConvex+4500 at IoU 0.25: nan
+2025-07-26 01:03:25,484 - DEBUG - Loaded collision time for BConcave+AConvex+4500 at IoU 0.3: nan
+2025-07-26 01:03:25,485 - DEBUG - Loaded collision time for BConcave+AConvex+4500 at IoU 0.35: nan
+2025-07-26 01:03:25,486 - DEBUG - Loaded collision time for BConcave+AConvex+4500 at IoU 0.4: nan
+2025-07-26 01:03:25,487 - DEBUG - Loaded collision time for BConcave+AConvex+4500 at IoU 0.45: nan
+2025-07-26 01:03:25,488 - DEBUG - Loaded collision time for BConcave+AConvex+4500 at IoU 0.5: nan
+2025-07-26 01:03:25,489 - DEBUG - Loaded collision time for BConcave+AConvex+4500 at IoU 0.55: nan
+2025-07-26 01:03:25,490 - DEBUG - Loaded collision time for BConcave+AConvex+4500 at IoU 0.6: nan
+2025-07-26 01:03:25,491 - DEBUG - Loaded collision time for BConcave+AConvex+4500 at IoU 0.65: nan
+2025-07-26 01:03:25,492 - DEBUG - Loaded collision time for BConcave+AConvex+4500 at IoU 0.7: nan
+2025-07-26 01:03:25,493 - DEBUG - Loaded collision time for BConcave+AConvex+4500 at IoU 0.75: nan
+2025-07-26 01:03:25,494 - DEBUG - Loaded collision time for BConcave+AConvex+4500 at IoU 0.8: nan
+2025-07-26 01:03:25,495 - DEBUG - Loaded collision time for BConcave+AConvex+4500 at IoU 0.85: nan
+2025-07-26 01:03:25,496 - DEBUG - Loaded collision time for BConcave+AConvex+4500 at IoU 0.9: nan
+2025-07-26 01:03:25,497 - DEBUG - Loaded collision time for BConcave+AConvex+4500 at IoU 0.95: nan
+2025-07-26 01:03:25,497 - INFO - Processing video: BConcave+BConcavePatient+3500
+2025-07-26 01:03:25,498 - INFO - Video BConcave+BConcavePatient+3500 already processed (found segformer_model-BConcave+BConcavePatient+3500.mp4), skipping video processing...
+2025-07-26 01:03:25,503 - INFO - VanillaSegmentationSaver initialized with output dir: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC_segformer-b3-finetuned-ade-512-512/processed_videos/segformer_model-BConcave+BConcavePatient+3500/org_segmentation
+2025-07-26 01:03:25,516 - INFO - All collision results already exist for BConcave+BConcavePatient+3500
+2025-07-26 01:03:25,517 - DEBUG - Loaded collision time for BConcave+BConcavePatient+3500 at IoU 0.05: 3716.666666666667
+2025-07-26 01:03:25,518 - DEBUG - Loaded collision time for BConcave+BConcavePatient+3500 at IoU 0.1: 3800.0
+2025-07-26 01:03:25,519 - DEBUG - Loaded collision time for BConcave+BConcavePatient+3500 at IoU 0.15: 3866.6666666666665
+2025-07-26 01:03:25,520 - DEBUG - Loaded collision time for BConcave+BConcavePatient+3500 at IoU 0.2: 3966.666666666667
+2025-07-26 01:03:25,521 - DEBUG - Loaded collision time for BConcave+BConcavePatient+3500 at IoU 0.25: nan
+2025-07-26 01:03:25,522 - DEBUG - Loaded collision time for BConcave+BConcavePatient+3500 at IoU 0.3: nan
+2025-07-26 01:03:25,523 - DEBUG - Loaded collision time for BConcave+BConcavePatient+3500 at IoU 0.35: nan
+2025-07-26 01:03:25,524 - DEBUG - Loaded collision time for BConcave+BConcavePatient+3500 at IoU 0.4: nan
+2025-07-26 01:03:25,525 - DEBUG - Loaded collision time for BConcave+BConcavePatient+3500 at IoU 0.45: nan
+2025-07-26 01:03:25,526 - DEBUG - Loaded collision time for BConcave+BConcavePatient+3500 at IoU 0.5: nan
+2025-07-26 01:03:25,527 - DEBUG - Loaded collision time for BConcave+BConcavePatient+3500 at IoU 0.55: nan
+2025-07-26 01:03:25,528 - DEBUG - Loaded collision time for BConcave+BConcavePatient+3500 at IoU 0.6: nan
+2025-07-26 01:03:25,529 - DEBUG - Loaded collision time for BConcave+BConcavePatient+3500 at IoU 0.65: nan
+2025-07-26 01:03:25,530 - DEBUG - Loaded collision time for BConcave+BConcavePatient+3500 at IoU 0.7: nan
+2025-07-26 01:03:25,531 - DEBUG - Loaded collision time for BConcave+BConcavePatient+3500 at IoU 0.75: nan
+2025-07-26 01:03:25,532 - DEBUG - Loaded collision time for BConcave+BConcavePatient+3500 at IoU 0.8: nan
+2025-07-26 01:03:25,533 - DEBUG - Loaded collision time for BConcave+BConcavePatient+3500 at IoU 0.85: nan
+2025-07-26 01:03:25,533 - DEBUG - Loaded collision time for BConcave+BConcavePatient+3500 at IoU 0.9: nan
+2025-07-26 01:03:25,534 - DEBUG - Loaded collision time for BConcave+BConcavePatient+3500 at IoU 0.95: nan
+2025-07-26 01:03:25,535 - INFO - Processing video: BConcave+BConcavePatient+3700_flipped
+2025-07-26 01:03:25,536 - INFO - Video BConcave+BConcavePatient+3700_flipped already processed (found segformer_model-BConcave+BConcavePatient+3700_flipped.mp4), skipping video processing...
+2025-07-26 01:03:25,540 - INFO - VanillaSegmentationSaver initialized with output dir: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC_segformer-b3-finetuned-ade-512-512/processed_videos/segformer_model-BConcave+BConcavePatient+3700_flipped/org_segmentation
+2025-07-26 01:03:25,555 - INFO - All collision results already exist for BConcave+BConcavePatient+3700_flipped
+2025-07-26 01:03:25,557 - DEBUG - Loaded collision time for BConcave+BConcavePatient+3700_flipped at IoU 0.05: nan
+2025-07-26 01:03:25,557 - DEBUG - Loaded collision time for BConcave+BConcavePatient+3700_flipped at IoU 0.1: nan
+2025-07-26 01:03:25,558 - DEBUG - Loaded collision time for BConcave+BConcavePatient+3700_flipped at IoU 0.15: nan
+2025-07-26 01:03:25,559 - DEBUG - Loaded collision time for BConcave+BConcavePatient+3700_flipped at IoU 0.2: nan
+2025-07-26 01:03:25,560 - DEBUG - Loaded collision time for BConcave+BConcavePatient+3700_flipped at IoU 0.25: nan
+2025-07-26 01:03:25,561 - DEBUG - Loaded collision time for BConcave+BConcavePatient+3700_flipped at IoU 0.3: nan
+2025-07-26 01:03:25,562 - DEBUG - Loaded collision time for BConcave+BConcavePatient+3700_flipped at IoU 0.35: nan
+2025-07-26 01:03:25,563 - DEBUG - Loaded collision time for BConcave+BConcavePatient+3700_flipped at IoU 0.4: nan
+2025-07-26 01:03:25,564 - DEBUG - Loaded collision time for BConcave+BConcavePatient+3700_flipped at IoU 0.45: nan
+2025-07-26 01:03:25,565 - DEBUG - Loaded collision time for BConcave+BConcavePatient+3700_flipped at IoU 0.5: nan
+2025-07-26 01:03:25,566 - DEBUG - Loaded collision time for BConcave+BConcavePatient+3700_flipped at IoU 0.55: nan
+2025-07-26 01:03:25,567 - DEBUG - Loaded collision time for BConcave+BConcavePatient+3700_flipped at IoU 0.6: nan
+2025-07-26 01:03:25,568 - DEBUG - Loaded collision time for BConcave+BConcavePatient+3700_flipped at IoU 0.65: nan
+2025-07-26 01:03:25,569 - DEBUG - Loaded collision time for BConcave+BConcavePatient+3700_flipped at IoU 0.7: nan
+2025-07-26 01:03:25,570 - DEBUG - Loaded collision time for BConcave+BConcavePatient+3700_flipped at IoU 0.75: nan
+2025-07-26 01:03:25,571 - DEBUG - Loaded collision time for BConcave+BConcavePatient+3700_flipped at IoU 0.8: nan
+2025-07-26 01:03:25,572 - DEBUG - Loaded collision time for BConcave+BConcavePatient+3700_flipped at IoU 0.85: nan
+2025-07-26 01:03:25,573 - DEBUG - Loaded collision time for BConcave+BConcavePatient+3700_flipped at IoU 0.9: nan
+2025-07-26 01:03:25,574 - DEBUG - Loaded collision time for BConcave+BConcavePatient+3700_flipped at IoU 0.95: nan
+2025-07-26 01:03:25,574 - INFO - Processing video: BConcave+BConcavePatient+3900
+2025-07-26 01:03:25,575 - INFO - Video BConcave+BConcavePatient+3900 already processed (found segformer_model-BConcave+BConcavePatient+3900.mp4), skipping video processing...
+2025-07-26 01:03:25,580 - INFO - VanillaSegmentationSaver initialized with output dir: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC_segformer-b3-finetuned-ade-512-512/processed_videos/segformer_model-BConcave+BConcavePatient+3900/org_segmentation
+2025-07-26 01:03:25,595 - INFO - All collision results already exist for BConcave+BConcavePatient+3900
+2025-07-26 01:03:25,596 - DEBUG - Loaded collision time for BConcave+BConcavePatient+3900 at IoU 0.05: 4116.666666666666
+2025-07-26 01:03:25,597 - DEBUG - Loaded collision time for BConcave+BConcavePatient+3900 at IoU 0.1: 4166.666666666667
+2025-07-26 01:03:25,598 - DEBUG - Loaded collision time for BConcave+BConcavePatient+3900 at IoU 0.15: 4233.333333333333
+2025-07-26 01:03:25,599 - DEBUG - Loaded collision time for BConcave+BConcavePatient+3900 at IoU 0.2: 4316.666666666666
+2025-07-26 01:03:25,600 - DEBUG - Loaded collision time for BConcave+BConcavePatient+3900 at IoU 0.25: nan
+2025-07-26 01:03:25,601 - DEBUG - Loaded collision time for BConcave+BConcavePatient+3900 at IoU 0.3: nan
+2025-07-26 01:03:25,602 - DEBUG - Loaded collision time for BConcave+BConcavePatient+3900 at IoU 0.35: nan
+2025-07-26 01:03:25,603 - DEBUG - Loaded collision time for BConcave+BConcavePatient+3900 at IoU 0.4: nan
+2025-07-26 01:03:25,611 - DEBUG - Loaded collision time for BConcave+BConcavePatient+3900 at IoU 0.45: nan
+2025-07-26 01:03:25,612 - DEBUG - Loaded collision time for BConcave+BConcavePatient+3900 at IoU 0.5: nan
+2025-07-26 01:03:25,613 - DEBUG - Loaded collision time for BConcave+BConcavePatient+3900 at IoU 0.55: nan
+2025-07-26 01:03:25,614 - DEBUG - Loaded collision time for BConcave+BConcavePatient+3900 at IoU 0.6: nan
+2025-07-26 01:03:25,615 - DEBUG - Loaded collision time for BConcave+BConcavePatient+3900 at IoU 0.65: nan
+2025-07-26 01:03:25,616 - DEBUG - Loaded collision time for BConcave+BConcavePatient+3900 at IoU 0.7: nan
+2025-07-26 01:03:25,618 - DEBUG - Loaded collision time for BConcave+BConcavePatient+3900 at IoU 0.75: nan
+2025-07-26 01:03:25,619 - DEBUG - Loaded collision time for BConcave+BConcavePatient+3900 at IoU 0.8: nan
+2025-07-26 01:03:25,620 - DEBUG - Loaded collision time for BConcave+BConcavePatient+3900 at IoU 0.85: nan
+2025-07-26 01:03:25,621 - DEBUG - Loaded collision time for BConcave+BConcavePatient+3900 at IoU 0.9: nan
+2025-07-26 01:03:25,622 - DEBUG - Loaded collision time for BConcave+BConcavePatient+3900 at IoU 0.95: nan
+2025-07-26 01:03:25,622 - INFO - Processing video: BConcave+BConcavePatient+4100_flipped
+2025-07-26 01:03:25,623 - INFO - Video BConcave+BConcavePatient+4100_flipped already processed (found segformer_model-BConcave+BConcavePatient+4100_flipped.mp4), skipping video processing...
+2025-07-26 01:03:25,628 - INFO - VanillaSegmentationSaver initialized with output dir: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC_segformer-b3-finetuned-ade-512-512/processed_videos/segformer_model-BConcave+BConcavePatient+4100_flipped/org_segmentation
+2025-07-26 01:03:25,641 - INFO - All collision results already exist for BConcave+BConcavePatient+4100_flipped
+2025-07-26 01:03:25,642 - DEBUG - Loaded collision time for BConcave+BConcavePatient+4100_flipped at IoU 0.05: 4400.0
+2025-07-26 01:03:25,644 - DEBUG - Loaded collision time for BConcave+BConcavePatient+4100_flipped at IoU 0.1: 4466.666666666667
+2025-07-26 01:03:25,645 - DEBUG - Loaded collision time for BConcave+BConcavePatient+4100_flipped at IoU 0.15: nan
+2025-07-26 01:03:25,646 - DEBUG - Loaded collision time for BConcave+BConcavePatient+4100_flipped at IoU 0.2: nan
+2025-07-26 01:03:25,647 - DEBUG - Loaded collision time for BConcave+BConcavePatient+4100_flipped at IoU 0.25: nan
+2025-07-26 01:03:25,648 - DEBUG - Loaded collision time for BConcave+BConcavePatient+4100_flipped at IoU 0.3: nan
+2025-07-26 01:03:25,649 - DEBUG - Loaded collision time for BConcave+BConcavePatient+4100_flipped at IoU 0.35: nan
+2025-07-26 01:03:25,650 - DEBUG - Loaded collision time for BConcave+BConcavePatient+4100_flipped at IoU 0.4: nan
+2025-07-26 01:03:25,651 - DEBUG - Loaded collision time for BConcave+BConcavePatient+4100_flipped at IoU 0.45: nan
+2025-07-26 01:03:25,652 - DEBUG - Loaded collision time for BConcave+BConcavePatient+4100_flipped at IoU 0.5: nan
+2025-07-26 01:03:25,653 - DEBUG - Loaded collision time for BConcave+BConcavePatient+4100_flipped at IoU 0.55: nan
+2025-07-26 01:03:25,654 - DEBUG - Loaded collision time for BConcave+BConcavePatient+4100_flipped at IoU 0.6: nan
+2025-07-26 01:03:25,655 - DEBUG - Loaded collision time for BConcave+BConcavePatient+4100_flipped at IoU 0.65: nan
+2025-07-26 01:03:25,656 - DEBUG - Loaded collision time for BConcave+BConcavePatient+4100_flipped at IoU 0.7: nan
+2025-07-26 01:03:25,657 - DEBUG - Loaded collision time for BConcave+BConcavePatient+4100_flipped at IoU 0.75: nan
+2025-07-26 01:03:25,658 - DEBUG - Loaded collision time for BConcave+BConcavePatient+4100_flipped at IoU 0.8: nan
+2025-07-26 01:03:25,658 - DEBUG - Loaded collision time for BConcave+BConcavePatient+4100_flipped at IoU 0.85: nan
+2025-07-26 01:03:25,659 - DEBUG - Loaded collision time for BConcave+BConcavePatient+4100_flipped at IoU 0.9: nan
+2025-07-26 01:03:25,660 - DEBUG - Loaded collision time for BConcave+BConcavePatient+4100_flipped at IoU 0.95: nan
+2025-07-26 01:03:25,660 - INFO - Processing video: BConcave+BConcavePatient+4300
+2025-07-26 01:03:25,662 - INFO - Video BConcave+BConcavePatient+4300 already processed (found segformer_model-BConcave+BConcavePatient+4300.mp4), skipping video processing...
+2025-07-26 01:03:25,666 - INFO - VanillaSegmentationSaver initialized with output dir: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC_segformer-b3-finetuned-ade-512-512/processed_videos/segformer_model-BConcave+BConcavePatient+4300/org_segmentation
+2025-07-26 01:03:25,681 - INFO - All collision results already exist for BConcave+BConcavePatient+4300
+2025-07-26 01:03:25,682 - DEBUG - Loaded collision time for BConcave+BConcavePatient+4300 at IoU 0.05: 4816.666666666666
+2025-07-26 01:03:25,683 - DEBUG - Loaded collision time for BConcave+BConcavePatient+4300 at IoU 0.1: nan
+2025-07-26 01:03:25,684 - DEBUG - Loaded collision time for BConcave+BConcavePatient+4300 at IoU 0.15: nan
+2025-07-26 01:03:25,685 - DEBUG - Loaded collision time for BConcave+BConcavePatient+4300 at IoU 0.2: nan
+2025-07-26 01:03:25,686 - DEBUG - Loaded collision time for BConcave+BConcavePatient+4300 at IoU 0.25: nan
+2025-07-26 01:03:25,687 - DEBUG - Loaded collision time for BConcave+BConcavePatient+4300 at IoU 0.3: nan
+2025-07-26 01:03:25,688 - DEBUG - Loaded collision time for BConcave+BConcavePatient+4300 at IoU 0.35: nan
+2025-07-26 01:03:25,689 - DEBUG - Loaded collision time for BConcave+BConcavePatient+4300 at IoU 0.4: nan
+2025-07-26 01:03:25,690 - DEBUG - Loaded collision time for BConcave+BConcavePatient+4300 at IoU 0.45: nan
+2025-07-26 01:03:25,691 - DEBUG - Loaded collision time for BConcave+BConcavePatient+4300 at IoU 0.5: nan
+2025-07-26 01:03:25,692 - DEBUG - Loaded collision time for BConcave+BConcavePatient+4300 at IoU 0.55: nan
+2025-07-26 01:03:25,693 - DEBUG - Loaded collision time for BConcave+BConcavePatient+4300 at IoU 0.6: nan
+2025-07-26 01:03:25,694 - DEBUG - Loaded collision time for BConcave+BConcavePatient+4300 at IoU 0.65: nan
+2025-07-26 01:03:25,695 - DEBUG - Loaded collision time for BConcave+BConcavePatient+4300 at IoU 0.7: nan
+2025-07-26 01:03:25,696 - DEBUG - Loaded collision time for BConcave+BConcavePatient+4300 at IoU 0.75: nan
+2025-07-26 01:03:25,697 - DEBUG - Loaded collision time for BConcave+BConcavePatient+4300 at IoU 0.8: nan
+2025-07-26 01:03:25,698 - DEBUG - Loaded collision time for BConcave+BConcavePatient+4300 at IoU 0.85: nan
+2025-07-26 01:03:25,699 - DEBUG - Loaded collision time for BConcave+BConcavePatient+4300 at IoU 0.9: nan
+2025-07-26 01:03:25,700 - DEBUG - Loaded collision time for BConcave+BConcavePatient+4300 at IoU 0.95: nan
+2025-07-26 01:03:25,700 - INFO - Processing video: BConcave+BConcavePatient+4500_flipped
+2025-07-26 01:03:25,701 - INFO - Video BConcave+BConcavePatient+4500_flipped already processed (found segformer_model-BConcave+BConcavePatient+4500_flipped.mp4), skipping video processing...
+2025-07-26 01:03:25,706 - INFO - VanillaSegmentationSaver initialized with output dir: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC_segformer-b3-finetuned-ade-512-512/processed_videos/segformer_model-BConcave+BConcavePatient+4500_flipped/org_segmentation
+2025-07-26 01:03:25,723 - INFO - All collision results already exist for BConcave+BConcavePatient+4500_flipped
+2025-07-26 01:03:25,724 - DEBUG - Loaded collision time for BConcave+BConcavePatient+4500_flipped at IoU 0.05: nan
+2025-07-26 01:03:25,725 - DEBUG - Loaded collision time for BConcave+BConcavePatient+4500_flipped at IoU 0.1: nan
+2025-07-26 01:03:25,726 - DEBUG - Loaded collision time for BConcave+BConcavePatient+4500_flipped at IoU 0.15: nan
+2025-07-26 01:03:25,727 - DEBUG - Loaded collision time for BConcave+BConcavePatient+4500_flipped at IoU 0.2: nan
+2025-07-26 01:03:25,728 - DEBUG - Loaded collision time for BConcave+BConcavePatient+4500_flipped at IoU 0.25: nan
+2025-07-26 01:03:25,730 - DEBUG - Loaded collision time for BConcave+BConcavePatient+4500_flipped at IoU 0.3: nan
+2025-07-26 01:03:25,731 - DEBUG - Loaded collision time for BConcave+BConcavePatient+4500_flipped at IoU 0.35: nan
+2025-07-26 01:03:25,731 - DEBUG - Loaded collision time for BConcave+BConcavePatient+4500_flipped at IoU 0.4: nan
+2025-07-26 01:03:25,732 - DEBUG - Loaded collision time for BConcave+BConcavePatient+4500_flipped at IoU 0.45: nan
+2025-07-26 01:03:25,734 - DEBUG - Loaded collision time for BConcave+BConcavePatient+4500_flipped at IoU 0.5: nan
+2025-07-26 01:03:25,734 - DEBUG - Loaded collision time for BConcave+BConcavePatient+4500_flipped at IoU 0.55: nan
+2025-07-26 01:03:25,735 - DEBUG - Loaded collision time for BConcave+BConcavePatient+4500_flipped at IoU 0.6: nan
+2025-07-26 01:03:25,736 - DEBUG - Loaded collision time for BConcave+BConcavePatient+4500_flipped at IoU 0.65: nan
+2025-07-26 01:03:25,737 - DEBUG - Loaded collision time for BConcave+BConcavePatient+4500_flipped at IoU 0.7: nan
+2025-07-26 01:03:25,738 - DEBUG - Loaded collision time for BConcave+BConcavePatient+4500_flipped at IoU 0.75: nan
+2025-07-26 01:03:25,739 - DEBUG - Loaded collision time for BConcave+BConcavePatient+4500_flipped at IoU 0.8: nan
+2025-07-26 01:03:25,740 - DEBUG - Loaded collision time for BConcave+BConcavePatient+4500_flipped at IoU 0.85: nan
+2025-07-26 01:03:25,741 - DEBUG - Loaded collision time for BConcave+BConcavePatient+4500_flipped at IoU 0.9: nan
+2025-07-26 01:03:25,742 - DEBUG - Loaded collision time for BConcave+BConcavePatient+4500_flipped at IoU 0.95: nan
+2025-07-26 01:03:25,742 - INFO - Processing video: BConcave+BConvex+3500_flipped
+2025-07-26 01:03:25,744 - INFO - Video BConcave+BConvex+3500_flipped already processed (found segformer_model-BConcave+BConvex+3500_flipped.mp4), skipping video processing...
+2025-07-26 01:03:25,748 - INFO - VanillaSegmentationSaver initialized with output dir: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC_segformer-b3-finetuned-ade-512-512/processed_videos/segformer_model-BConcave+BConvex+3500_flipped/org_segmentation
+2025-07-26 01:03:25,765 - INFO - All collision results already exist for BConcave+BConvex+3500_flipped
+2025-07-26 01:03:25,766 - DEBUG - Loaded collision time for BConcave+BConvex+3500_flipped at IoU 0.05: nan
+2025-07-26 01:03:25,767 - DEBUG - Loaded collision time for BConcave+BConvex+3500_flipped at IoU 0.1: nan
+2025-07-26 01:03:25,768 - DEBUG - Loaded collision time for BConcave+BConvex+3500_flipped at IoU 0.15: nan
+2025-07-26 01:03:25,769 - DEBUG - Loaded collision time for BConcave+BConvex+3500_flipped at IoU 0.2: nan
+2025-07-26 01:03:25,770 - DEBUG - Loaded collision time for BConcave+BConvex+3500_flipped at IoU 0.25: nan
+2025-07-26 01:03:25,771 - DEBUG - Loaded collision time for BConcave+BConvex+3500_flipped at IoU 0.3: nan
+2025-07-26 01:03:25,772 - DEBUG - Loaded collision time for BConcave+BConvex+3500_flipped at IoU 0.35: nan
+2025-07-26 01:03:25,773 - DEBUG - Loaded collision time for BConcave+BConvex+3500_flipped at IoU 0.4: nan
+2025-07-26 01:03:25,774 - DEBUG - Loaded collision time for BConcave+BConvex+3500_flipped at IoU 0.45: nan
+2025-07-26 01:03:25,775 - DEBUG - Loaded collision time for BConcave+BConvex+3500_flipped at IoU 0.5: nan
+2025-07-26 01:03:25,776 - DEBUG - Loaded collision time for BConcave+BConvex+3500_flipped at IoU 0.55: nan
+2025-07-26 01:03:25,777 - DEBUG - Loaded collision time for BConcave+BConvex+3500_flipped at IoU 0.6: nan
+2025-07-26 01:03:25,778 - DEBUG - Loaded collision time for BConcave+BConvex+3500_flipped at IoU 0.65: nan
+2025-07-26 01:03:25,779 - DEBUG - Loaded collision time for BConcave+BConvex+3500_flipped at IoU 0.7: nan
+2025-07-26 01:03:25,780 - DEBUG - Loaded collision time for BConcave+BConvex+3500_flipped at IoU 0.75: nan
+2025-07-26 01:03:25,781 - DEBUG - Loaded collision time for BConcave+BConvex+3500_flipped at IoU 0.8: nan
+2025-07-26 01:03:25,782 - DEBUG - Loaded collision time for BConcave+BConvex+3500_flipped at IoU 0.85: nan
+2025-07-26 01:03:25,783 - DEBUG - Loaded collision time for BConcave+BConvex+3500_flipped at IoU 0.9: nan
+2025-07-26 01:03:25,784 - DEBUG - Loaded collision time for BConcave+BConvex+3500_flipped at IoU 0.95: nan
+2025-07-26 01:03:25,784 - INFO - Processing video: BConcave+BConvex+3700
+2025-07-26 01:03:25,785 - INFO - Video BConcave+BConvex+3700 already processed (found segformer_model-BConcave+BConvex+3700.mp4), skipping video processing...
+2025-07-26 01:03:25,789 - INFO - VanillaSegmentationSaver initialized with output dir: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC_segformer-b3-finetuned-ade-512-512/processed_videos/segformer_model-BConcave+BConvex+3700/org_segmentation
+2025-07-26 01:03:25,806 - INFO - All collision results already exist for BConcave+BConvex+3700
+2025-07-26 01:03:25,807 - DEBUG - Loaded collision time for BConcave+BConvex+3700 at IoU 0.05: 4650.0
+2025-07-26 01:03:25,808 - DEBUG - Loaded collision time for BConcave+BConvex+3700 at IoU 0.1: 4866.666666666666
+2025-07-26 01:03:25,809 - DEBUG - Loaded collision time for BConcave+BConvex+3700 at IoU 0.15: nan
+2025-07-26 01:03:25,811 - DEBUG - Loaded collision time for BConcave+BConvex+3700 at IoU 0.2: nan
+2025-07-26 01:03:25,812 - DEBUG - Loaded collision time for BConcave+BConvex+3700 at IoU 0.25: nan
+2025-07-26 01:03:25,813 - DEBUG - Loaded collision time for BConcave+BConvex+3700 at IoU 0.3: nan
+2025-07-26 01:03:25,814 - DEBUG - Loaded collision time for BConcave+BConvex+3700 at IoU 0.35: nan
+2025-07-26 01:03:25,814 - DEBUG - Loaded collision time for BConcave+BConvex+3700 at IoU 0.4: nan
+2025-07-26 01:03:25,816 - DEBUG - Loaded collision time for BConcave+BConvex+3700 at IoU 0.45: nan
+2025-07-26 01:03:25,816 - DEBUG - Loaded collision time for BConcave+BConvex+3700 at IoU 0.5: nan
+2025-07-26 01:03:25,817 - DEBUG - Loaded collision time for BConcave+BConvex+3700 at IoU 0.55: nan
+2025-07-26 01:03:25,818 - DEBUG - Loaded collision time for BConcave+BConvex+3700 at IoU 0.6: nan
+2025-07-26 01:03:25,819 - DEBUG - Loaded collision time for BConcave+BConvex+3700 at IoU 0.65: nan
+2025-07-26 01:03:25,820 - DEBUG - Loaded collision time for BConcave+BConvex+3700 at IoU 0.7: nan
+2025-07-26 01:03:25,821 - DEBUG - Loaded collision time for BConcave+BConvex+3700 at IoU 0.75: nan
+2025-07-26 01:03:25,822 - DEBUG - Loaded collision time for BConcave+BConvex+3700 at IoU 0.8: nan
+2025-07-26 01:03:25,823 - DEBUG - Loaded collision time for BConcave+BConvex+3700 at IoU 0.85: nan
+2025-07-26 01:03:25,824 - DEBUG - Loaded collision time for BConcave+BConvex+3700 at IoU 0.9: nan
+2025-07-26 01:03:25,825 - DEBUG - Loaded collision time for BConcave+BConvex+3700 at IoU 0.95: nan
+2025-07-26 01:03:25,825 - INFO - Processing video: BConcave+BConvex+3900_flipped
+2025-07-26 01:03:25,826 - INFO - Video BConcave+BConvex+3900_flipped already processed (found segformer_model-BConcave+BConvex+3900_flipped.mp4), skipping video processing...
+2025-07-26 01:03:25,831 - INFO - VanillaSegmentationSaver initialized with output dir: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC_segformer-b3-finetuned-ade-512-512/processed_videos/segformer_model-BConcave+BConvex+3900_flipped/org_segmentation
+2025-07-26 01:03:25,845 - INFO - All collision results already exist for BConcave+BConvex+3900_flipped
+2025-07-26 01:03:25,846 - DEBUG - Loaded collision time for BConcave+BConvex+3900_flipped at IoU 0.05: 4600.0
+2025-07-26 01:03:25,847 - DEBUG - Loaded collision time for BConcave+BConvex+3900_flipped at IoU 0.1: 4633.333333333334
+2025-07-26 01:03:25,848 - DEBUG - Loaded collision time for BConcave+BConvex+3900_flipped at IoU 0.15: 4666.666666666667
+2025-07-26 01:03:25,849 - DEBUG - Loaded collision time for BConcave+BConvex+3900_flipped at IoU 0.2: 4683.333333333334
+2025-07-26 01:03:25,850 - DEBUG - Loaded collision time for BConcave+BConvex+3900_flipped at IoU 0.25: 4733.333333333333
+2025-07-26 01:03:25,851 - DEBUG - Loaded collision time for BConcave+BConvex+3900_flipped at IoU 0.3: 4750.0
+2025-07-26 01:03:25,852 - DEBUG - Loaded collision time for BConcave+BConvex+3900_flipped at IoU 0.35: 4816.666666666666
+2025-07-26 01:03:25,853 - DEBUG - Loaded collision time for BConcave+BConvex+3900_flipped at IoU 0.4: nan
+2025-07-26 01:03:25,854 - DEBUG - Loaded collision time for BConcave+BConvex+3900_flipped at IoU 0.45: nan
+2025-07-26 01:03:25,855 - DEBUG - Loaded collision time for BConcave+BConvex+3900_flipped at IoU 0.5: nan
+2025-07-26 01:03:25,856 - DEBUG - Loaded collision time for BConcave+BConvex+3900_flipped at IoU 0.55: nan
+2025-07-26 01:03:25,857 - DEBUG - Loaded collision time for BConcave+BConvex+3900_flipped at IoU 0.6: nan
+2025-07-26 01:03:25,858 - DEBUG - Loaded collision time for BConcave+BConvex+3900_flipped at IoU 0.65: nan
+2025-07-26 01:03:25,859 - DEBUG - Loaded collision time for BConcave+BConvex+3900_flipped at IoU 0.7: nan
+2025-07-26 01:03:25,860 - DEBUG - Loaded collision time for BConcave+BConvex+3900_flipped at IoU 0.75: nan
+2025-07-26 01:03:25,860 - DEBUG - Loaded collision time for BConcave+BConvex+3900_flipped at IoU 0.8: nan
+2025-07-26 01:03:25,861 - DEBUG - Loaded collision time for BConcave+BConvex+3900_flipped at IoU 0.85: nan
+2025-07-26 01:03:25,862 - DEBUG - Loaded collision time for BConcave+BConvex+3900_flipped at IoU 0.9: nan
+2025-07-26 01:03:25,863 - DEBUG - Loaded collision time for BConcave+BConvex+3900_flipped at IoU 0.95: nan
+2025-07-26 01:03:25,863 - INFO - Processing video: BConcave+BConvex+4100
+2025-07-26 01:03:25,865 - INFO - Video BConcave+BConvex+4100 already processed (found segformer_model-BConcave+BConvex+4100.mp4), skipping video processing...
+2025-07-26 01:03:25,870 - INFO - VanillaSegmentationSaver initialized with output dir: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC_segformer-b3-finetuned-ade-512-512/processed_videos/segformer_model-BConcave+BConvex+4100/org_segmentation
+2025-07-26 01:03:25,883 - INFO - All collision results already exist for BConcave+BConvex+4100
+2025-07-26 01:03:25,884 - DEBUG - Loaded collision time for BConcave+BConvex+4100 at IoU 0.05: 4433.333333333334
+2025-07-26 01:03:25,885 - DEBUG - Loaded collision time for BConcave+BConvex+4100 at IoU 0.1: 4700.0
+2025-07-26 01:03:25,886 - DEBUG - Loaded collision time for BConcave+BConvex+4100 at IoU 0.15: 5066.666666666666
+2025-07-26 01:03:25,887 - DEBUG - Loaded collision time for BConcave+BConvex+4100 at IoU 0.2: 5233.333333333333
+2025-07-26 01:03:25,889 - DEBUG - Loaded collision time for BConcave+BConvex+4100 at IoU 0.25: nan
+2025-07-26 01:03:25,890 - DEBUG - Loaded collision time for BConcave+BConvex+4100 at IoU 0.3: nan
+2025-07-26 01:03:25,891 - DEBUG - Loaded collision time for BConcave+BConvex+4100 at IoU 0.35: nan
+2025-07-26 01:03:25,892 - DEBUG - Loaded collision time for BConcave+BConvex+4100 at IoU 0.4: nan
+2025-07-26 01:03:25,893 - DEBUG - Loaded collision time for BConcave+BConvex+4100 at IoU 0.45: nan
+2025-07-26 01:03:25,894 - DEBUG - Loaded collision time for BConcave+BConvex+4100 at IoU 0.5: nan
+2025-07-26 01:03:25,895 - DEBUG - Loaded collision time for BConcave+BConvex+4100 at IoU 0.55: nan
+2025-07-26 01:03:25,896 - DEBUG - Loaded collision time for BConcave+BConvex+4100 at IoU 0.6: nan
+2025-07-26 01:03:25,898 - DEBUG - Loaded collision time for BConcave+BConvex+4100 at IoU 0.65: nan
+2025-07-26 01:03:25,899 - DEBUG - Loaded collision time for BConcave+BConvex+4100 at IoU 0.7: nan
+2025-07-26 01:03:25,900 - DEBUG - Loaded collision time for BConcave+BConvex+4100 at IoU 0.75: nan
+2025-07-26 01:03:25,901 - DEBUG - Loaded collision time for BConcave+BConvex+4100 at IoU 0.8: nan
+2025-07-26 01:03:25,902 - DEBUG - Loaded collision time for BConcave+BConvex+4100 at IoU 0.85: nan
+2025-07-26 01:03:25,903 - DEBUG - Loaded collision time for BConcave+BConvex+4100 at IoU 0.9: nan
+2025-07-26 01:03:25,904 - DEBUG - Loaded collision time for BConcave+BConvex+4100 at IoU 0.95: nan
+2025-07-26 01:03:25,904 - INFO - Processing video: BConcave+BConvex+4300_flipped
+2025-07-26 01:03:25,904 - INFO - Video BConcave+BConvex+4300_flipped already processed (found segformer_model-BConcave+BConvex+4300_flipped.mp4), skipping video processing...
+2025-07-26 01:03:25,910 - INFO - VanillaSegmentationSaver initialized with output dir: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC_segformer-b3-finetuned-ade-512-512/processed_videos/segformer_model-BConcave+BConvex+4300_flipped/org_segmentation
+2025-07-26 01:03:25,924 - INFO - All collision results already exist for BConcave+BConvex+4300_flipped
+2025-07-26 01:03:25,925 - DEBUG - Loaded collision time for BConcave+BConvex+4300_flipped at IoU 0.05: 1500.0
+2025-07-26 01:03:25,927 - DEBUG - Loaded collision time for BConcave+BConvex+4300_flipped at IoU 0.1: 1500.0
+2025-07-26 01:03:25,928 - DEBUG - Loaded collision time for BConcave+BConvex+4300_flipped at IoU 0.15: 1500.0
+2025-07-26 01:03:25,929 - DEBUG - Loaded collision time for BConcave+BConvex+4300_flipped at IoU 0.2: 1500.0
+2025-07-26 01:03:25,930 - DEBUG - Loaded collision time for BConcave+BConvex+4300_flipped at IoU 0.25: 1500.0
+2025-07-26 01:03:25,931 - DEBUG - Loaded collision time for BConcave+BConvex+4300_flipped at IoU 0.3: 1500.0
+2025-07-26 01:03:25,932 - DEBUG - Loaded collision time for BConcave+BConvex+4300_flipped at IoU 0.35: 1500.0
+2025-07-26 01:03:25,933 - DEBUG - Loaded collision time for BConcave+BConvex+4300_flipped at IoU 0.4: 1500.0
+2025-07-26 01:03:25,934 - DEBUG - Loaded collision time for BConcave+BConvex+4300_flipped at IoU 0.45: 1500.0
+2025-07-26 01:03:25,935 - DEBUG - Loaded collision time for BConcave+BConvex+4300_flipped at IoU 0.5: 1500.0
+2025-07-26 01:03:25,936 - DEBUG - Loaded collision time for BConcave+BConvex+4300_flipped at IoU 0.55: 1500.0
+2025-07-26 01:03:25,937 - DEBUG - Loaded collision time for BConcave+BConvex+4300_flipped at IoU 0.6: 1500.0
+2025-07-26 01:03:25,938 - DEBUG - Loaded collision time for BConcave+BConvex+4300_flipped at IoU 0.65: 1500.0
+2025-07-26 01:03:25,939 - DEBUG - Loaded collision time for BConcave+BConvex+4300_flipped at IoU 0.7: 1500.0
+2025-07-26 01:03:25,940 - DEBUG - Loaded collision time for BConcave+BConvex+4300_flipped at IoU 0.75: 1500.0
+2025-07-26 01:03:25,941 - DEBUG - Loaded collision time for BConcave+BConvex+4300_flipped at IoU 0.8: 1500.0
+2025-07-26 01:03:25,942 - DEBUG - Loaded collision time for BConcave+BConvex+4300_flipped at IoU 0.85: 1516.6666666666665
+2025-07-26 01:03:25,943 - DEBUG - Loaded collision time for BConcave+BConvex+4300_flipped at IoU 0.9: 1566.6666666666667
+2025-07-26 01:03:25,944 - DEBUG - Loaded collision time for BConcave+BConvex+4300_flipped at IoU 0.95: nan
+2025-07-26 01:03:25,944 - INFO - Processing video: BConcave+BConvex+4500
+2025-07-26 01:03:25,945 - INFO - Video BConcave+BConvex+4500 already processed (found segformer_model-BConcave+BConvex+4500.mp4), skipping video processing...
+2025-07-26 01:03:25,951 - INFO - VanillaSegmentationSaver initialized with output dir: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC_segformer-b3-finetuned-ade-512-512/processed_videos/segformer_model-BConcave+BConvex+4500/org_segmentation
+2025-07-26 01:03:25,969 - INFO - All collision results already exist for BConcave+BConvex+4500
+2025-07-26 01:03:25,970 - DEBUG - Loaded collision time for BConcave+BConvex+4500 at IoU 0.05: nan
+2025-07-26 01:03:25,972 - DEBUG - Loaded collision time for BConcave+BConvex+4500 at IoU 0.1: nan
+2025-07-26 01:03:25,973 - DEBUG - Loaded collision time for BConcave+BConvex+4500 at IoU 0.15: nan
+2025-07-26 01:03:25,974 - DEBUG - Loaded collision time for BConcave+BConvex+4500 at IoU 0.2: nan
+2025-07-26 01:03:25,975 - DEBUG - Loaded collision time for BConcave+BConvex+4500 at IoU 0.25: nan
+2025-07-26 01:03:25,976 - DEBUG - Loaded collision time for BConcave+BConvex+4500 at IoU 0.3: nan
+2025-07-26 01:03:25,978 - DEBUG - Loaded collision time for BConcave+BConvex+4500 at IoU 0.35: nan
+2025-07-26 01:03:25,979 - DEBUG - Loaded collision time for BConcave+BConvex+4500 at IoU 0.4: nan
+2025-07-26 01:03:25,981 - DEBUG - Loaded collision time for BConcave+BConvex+4500 at IoU 0.45: nan
+2025-07-26 01:03:25,982 - DEBUG - Loaded collision time for BConcave+BConvex+4500 at IoU 0.5: nan
+2025-07-26 01:03:25,983 - DEBUG - Loaded collision time for BConcave+BConvex+4500 at IoU 0.55: nan
+2025-07-26 01:03:25,984 - DEBUG - Loaded collision time for BConcave+BConvex+4500 at IoU 0.6: nan
+2025-07-26 01:03:25,985 - DEBUG - Loaded collision time for BConcave+BConvex+4500 at IoU 0.65: nan
+2025-07-26 01:03:25,987 - DEBUG - Loaded collision time for BConcave+BConvex+4500 at IoU 0.7: nan
+2025-07-26 01:03:25,988 - DEBUG - Loaded collision time for BConcave+BConvex+4500 at IoU 0.75: nan
+2025-07-26 01:03:25,989 - DEBUG - Loaded collision time for BConcave+BConvex+4500 at IoU 0.8: nan
+2025-07-26 01:03:25,990 - DEBUG - Loaded collision time for BConcave+BConvex+4500 at IoU 0.85: nan
+2025-07-26 01:03:25,992 - DEBUG - Loaded collision time for BConcave+BConvex+4500 at IoU 0.9: nan
+2025-07-26 01:03:25,993 - DEBUG - Loaded collision time for BConcave+BConvex+4500 at IoU 0.95: nan
+2025-07-26 01:03:25,993 - INFO - Processing video: BConcave+CConcave+3500
+2025-07-26 01:03:25,994 - INFO - Video BConcave+CConcave+3500 already processed (found segformer_model-BConcave+CConcave+3500.mp4), skipping video processing...
+2025-07-26 01:03:25,999 - INFO - VanillaSegmentationSaver initialized with output dir: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC_segformer-b3-finetuned-ade-512-512/processed_videos/segformer_model-BConcave+CConcave+3500/org_segmentation
+2025-07-26 01:03:26,013 - INFO - All collision results already exist for BConcave+CConcave+3500
+2025-07-26 01:03:26,015 - DEBUG - Loaded collision time for BConcave+CConcave+3500 at IoU 0.05: 3716.666666666667
+2025-07-26 01:03:26,016 - DEBUG - Loaded collision time for BConcave+CConcave+3500 at IoU 0.1: 3833.3333333333335
+2025-07-26 01:03:26,017 - DEBUG - Loaded collision time for BConcave+CConcave+3500 at IoU 0.15: 3916.6666666666665
+2025-07-26 01:03:26,018 - DEBUG - Loaded collision time for BConcave+CConcave+3500 at IoU 0.2: 4033.333333333333
+2025-07-26 01:03:26,020 - DEBUG - Loaded collision time for BConcave+CConcave+3500 at IoU 0.25: 4133.333333333334
+2025-07-26 01:03:26,021 - DEBUG - Loaded collision time for BConcave+CConcave+3500 at IoU 0.3: 4300.0
+2025-07-26 01:03:26,022 - DEBUG - Loaded collision time for BConcave+CConcave+3500 at IoU 0.35: nan
+2025-07-26 01:03:26,023 - DEBUG - Loaded collision time for BConcave+CConcave+3500 at IoU 0.4: nan
+2025-07-26 01:03:26,025 - DEBUG - Loaded collision time for BConcave+CConcave+3500 at IoU 0.45: nan
+2025-07-26 01:03:26,026 - DEBUG - Loaded collision time for BConcave+CConcave+3500 at IoU 0.5: nan
+2025-07-26 01:03:26,027 - DEBUG - Loaded collision time for BConcave+CConcave+3500 at IoU 0.55: nan
+2025-07-26 01:03:26,028 - DEBUG - Loaded collision time for BConcave+CConcave+3500 at IoU 0.6: nan
+2025-07-26 01:03:26,029 - DEBUG - Loaded collision time for BConcave+CConcave+3500 at IoU 0.65: nan
+2025-07-26 01:03:26,030 - DEBUG - Loaded collision time for BConcave+CConcave+3500 at IoU 0.7: nan
+2025-07-26 01:03:26,031 - DEBUG - Loaded collision time for BConcave+CConcave+3500 at IoU 0.75: nan
+2025-07-26 01:03:26,033 - DEBUG - Loaded collision time for BConcave+CConcave+3500 at IoU 0.8: nan
+2025-07-26 01:03:26,034 - DEBUG - Loaded collision time for BConcave+CConcave+3500 at IoU 0.85: nan
+2025-07-26 01:03:26,035 - DEBUG - Loaded collision time for BConcave+CConcave+3500 at IoU 0.9: nan
+2025-07-26 01:03:26,036 - DEBUG - Loaded collision time for BConcave+CConcave+3500 at IoU 0.95: nan
+2025-07-26 01:03:26,036 - INFO - Processing video: BConcave+CConcave+3700_flipped
+2025-07-26 01:03:26,038 - INFO - Video BConcave+CConcave+3700_flipped already processed (found segformer_model-BConcave+CConcave+3700_flipped.mp4), skipping video processing...
+2025-07-26 01:03:26,043 - INFO - VanillaSegmentationSaver initialized with output dir: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC_segformer-b3-finetuned-ade-512-512/processed_videos/segformer_model-BConcave+CConcave+3700_flipped/org_segmentation
+2025-07-26 01:03:26,057 - INFO - All collision results already exist for BConcave+CConcave+3700_flipped
+2025-07-26 01:03:26,059 - DEBUG - Loaded collision time for BConcave+CConcave+3700_flipped at IoU 0.05: 4116.666666666666
+2025-07-26 01:03:26,060 - DEBUG - Loaded collision time for BConcave+CConcave+3700_flipped at IoU 0.1: 4366.666666666666
+2025-07-26 01:03:26,062 - DEBUG - Loaded collision time for BConcave+CConcave+3700_flipped at IoU 0.15: 4516.666666666667
+2025-07-26 01:03:26,063 - DEBUG - Loaded collision time for BConcave+CConcave+3700_flipped at IoU 0.2: 4650.0
+2025-07-26 01:03:26,064 - DEBUG - Loaded collision time for BConcave+CConcave+3700_flipped at IoU 0.25: nan
+2025-07-26 01:03:26,066 - DEBUG - Loaded collision time for BConcave+CConcave+3700_flipped at IoU 0.3: nan
+2025-07-26 01:03:26,067 - DEBUG - Loaded collision time for BConcave+CConcave+3700_flipped at IoU 0.35: nan
+2025-07-26 01:03:26,069 - DEBUG - Loaded collision time for BConcave+CConcave+3700_flipped at IoU 0.4: nan
+2025-07-26 01:03:26,070 - DEBUG - Loaded collision time for BConcave+CConcave+3700_flipped at IoU 0.45: nan
+2025-07-26 01:03:26,071 - DEBUG - Loaded collision time for BConcave+CConcave+3700_flipped at IoU 0.5: nan
+2025-07-26 01:03:26,072 - DEBUG - Loaded collision time for BConcave+CConcave+3700_flipped at IoU 0.55: nan
+2025-07-26 01:03:26,073 - DEBUG - Loaded collision time for BConcave+CConcave+3700_flipped at IoU 0.6: nan
+2025-07-26 01:03:26,075 - DEBUG - Loaded collision time for BConcave+CConcave+3700_flipped at IoU 0.65: nan
+2025-07-26 01:03:26,076 - DEBUG - Loaded collision time for BConcave+CConcave+3700_flipped at IoU 0.7: nan
+2025-07-26 01:03:26,077 - DEBUG - Loaded collision time for BConcave+CConcave+3700_flipped at IoU 0.75: nan
+2025-07-26 01:03:26,078 - DEBUG - Loaded collision time for BConcave+CConcave+3700_flipped at IoU 0.8: nan
+2025-07-26 01:03:26,079 - DEBUG - Loaded collision time for BConcave+CConcave+3700_flipped at IoU 0.85: nan
+2025-07-26 01:03:26,080 - DEBUG - Loaded collision time for BConcave+CConcave+3700_flipped at IoU 0.9: nan
+2025-07-26 01:03:26,081 - DEBUG - Loaded collision time for BConcave+CConcave+3700_flipped at IoU 0.95: nan
+2025-07-26 01:03:26,081 - INFO - Processing video: BConcave+CConcave+3900
+2025-07-26 01:03:26,082 - INFO - Video BConcave+CConcave+3900 already processed (found segformer_model-BConcave+CConcave+3900.mp4), skipping video processing...
+2025-07-26 01:03:26,088 - INFO - VanillaSegmentationSaver initialized with output dir: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC_segformer-b3-finetuned-ade-512-512/processed_videos/segformer_model-BConcave+CConcave+3900/org_segmentation
+2025-07-26 01:03:26,106 - INFO - All collision results already exist for BConcave+CConcave+3900
+2025-07-26 01:03:26,107 - DEBUG - Loaded collision time for BConcave+CConcave+3900 at IoU 0.05: nan
+2025-07-26 01:03:26,108 - DEBUG - Loaded collision time for BConcave+CConcave+3900 at IoU 0.1: nan
+2025-07-26 01:03:26,109 - DEBUG - Loaded collision time for BConcave+CConcave+3900 at IoU 0.15: nan
+2025-07-26 01:03:26,110 - DEBUG - Loaded collision time for BConcave+CConcave+3900 at IoU 0.2: nan
+2025-07-26 01:03:26,111 - DEBUG - Loaded collision time for BConcave+CConcave+3900 at IoU 0.25: nan
+2025-07-26 01:03:26,112 - DEBUG - Loaded collision time for BConcave+CConcave+3900 at IoU 0.3: nan
+2025-07-26 01:03:26,113 - DEBUG - Loaded collision time for BConcave+CConcave+3900 at IoU 0.35: nan
+2025-07-26 01:03:26,114 - DEBUG - Loaded collision time for BConcave+CConcave+3900 at IoU 0.4: nan
+2025-07-26 01:03:26,115 - DEBUG - Loaded collision time for BConcave+CConcave+3900 at IoU 0.45: nan
+2025-07-26 01:03:26,116 - DEBUG - Loaded collision time for BConcave+CConcave+3900 at IoU 0.5: nan
+2025-07-26 01:03:26,118 - DEBUG - Loaded collision time for BConcave+CConcave+3900 at IoU 0.55: nan
+2025-07-26 01:03:26,119 - DEBUG - Loaded collision time for BConcave+CConcave+3900 at IoU 0.6: nan
+2025-07-26 01:03:26,120 - DEBUG - Loaded collision time for BConcave+CConcave+3900 at IoU 0.65: nan
+2025-07-26 01:03:26,121 - DEBUG - Loaded collision time for BConcave+CConcave+3900 at IoU 0.7: nan
+2025-07-26 01:03:26,122 - DEBUG - Loaded collision time for BConcave+CConcave+3900 at IoU 0.75: nan
+2025-07-26 01:03:26,123 - DEBUG - Loaded collision time for BConcave+CConcave+3900 at IoU 0.8: nan
+2025-07-26 01:03:26,124 - DEBUG - Loaded collision time for BConcave+CConcave+3900 at IoU 0.85: nan
+2025-07-26 01:03:26,126 - DEBUG - Loaded collision time for BConcave+CConcave+3900 at IoU 0.9: nan
+2025-07-26 01:03:26,127 - DEBUG - Loaded collision time for BConcave+CConcave+3900 at IoU 0.95: nan
+2025-07-26 01:03:26,127 - INFO - Processing video: BConcave+CConcave+4100_flipped
+2025-07-26 01:03:26,136 - INFO - Found 169 existing frames for BConcave+CConcave+4100_flipped, attempting to complete processing...
+2025-07-26 01:03:26,142 - INFO - VanillaSegmentationSaver initialized with output dir: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC_segformer-b3-finetuned-ade-512-512/processed_videos/segformer_model-BConcave+CConcave+4100_flipped/org_segmentation
+2025-07-26 01:03:26,142 - INFO - Starting video processing: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/exp2TTC_files/BConcave+CConcave+4100_flipped.mp4
+2025-07-26 01:03:26,142 - INFO - Reset blob state tracking for new video
+2025-07-26 01:03:26,147 - INFO - VanillaSegmentationSaver initialized with output dir: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC_segformer-b3-finetuned-ade-512-512/processed_videos/segformer_model-BConcave+CConcave+4100_flipped/org_segmentation
+2025-07-26 01:03:26,147 - INFO - Loading model...
+2025-07-26 01:03:29,374 - INFO - Video metadata: {'width': 1500, 'height': 400, 'fps': 60.0, 'total_frames': 329, 'duration': 5.483333333333333}
+2025-07-26 01:03:29,379 - INFO - Partial processing detected. Last frame: 168
+2025-07-26 01:03:29,379 - INFO - Found 169 existing frames, attempting video generation...
+2025-07-26 01:03:29,379 - INFO - Creating final video: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC_segformer-b3-finetuned-ade-512-512/processed_videos/segformer_model-BConcave+CConcave+4100_flipped/videos_processed/segformer_model-BConcave+CConcave+4100_flipped.mp4
+2025-07-26 01:03:29,430 - INFO - Found 169 processed frames out of 329 total frames
+2025-07-26 01:03:31,505 - INFO - Written 100/169 frames to video
+2025-07-26 01:03:32,920 - INFO - Final video created successfully with 169 frames
+2025-07-26 01:03:32,921 - INFO - Video created from existing partial frames
+2025-07-26 01:03:32,923 - INFO - Successfully completed processing for BConcave+CConcave+4100_flipped
+2025-07-26 01:03:32,923 - INFO - Starting full processing for BConcave+CConcave+4100_flipped
+2025-07-26 01:03:32,923 - INFO - Starting video processing: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/exp2TTC_files/BConcave+CConcave+4100_flipped.mp4
+2025-07-26 01:03:32,923 - INFO - Reset blob state tracking for new video
+2025-07-26 01:03:32,927 - INFO - VanillaSegmentationSaver initialized with output dir: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC_segformer-b3-finetuned-ade-512-512/processed_videos/segformer_model-BConcave+CConcave+4100_flipped/org_segmentation
+2025-07-26 01:03:33,476 - INFO - Video metadata: {'width': 1500, 'height': 400, 'fps': 60.0, 'total_frames': 329, 'duration': 5.483333333333333}
+2025-07-26 01:03:33,479 - INFO - Starting processing from beginning
+2025-07-26 01:03:38,704 - DEBUG - Saved vanilla segmentation for frame 0
+2025-07-26 01:03:38,734 - INFO - Processed frame 0/329
+2025-07-26 01:03:46,065 - DEBUG - Saved vanilla segmentation for frame 1
+2025-07-26 01:03:52,100 - DEBUG - Saved vanilla segmentation for frame 2
+2025-07-26 01:03:57,669 - DEBUG - Saved vanilla segmentation for frame 3
+2025-07-26 01:04:04,267 - DEBUG - Saved vanilla segmentation for frame 4
+2025-07-26 01:04:08,726 - DEBUG - Saved vanilla segmentation for frame 5
+2025-07-26 01:04:14,049 - DEBUG - Saved vanilla segmentation for frame 6
+2025-07-26 01:04:18,857 - DEBUG - Saved vanilla segmentation for frame 7
+2025-07-26 01:04:25,164 - DEBUG - Saved vanilla segmentation for frame 8
+2025-07-26 01:04:30,447 - DEBUG - Saved vanilla segmentation for frame 9
+2025-07-26 01:04:36,782 - DEBUG - Saved vanilla segmentation for frame 10
+2025-07-26 01:04:36,805 - INFO - Processed frame 10/329
+2025-07-26 01:04:42,269 - DEBUG - Saved vanilla segmentation for frame 11
+2025-07-26 01:04:47,981 - DEBUG - Saved vanilla segmentation for frame 12
+2025-07-26 01:05:00,420 - DEBUG - Saved vanilla segmentation for frame 13
+2025-07-26 01:05:11,715 - DEBUG - Saved vanilla segmentation for frame 14
+2025-07-26 01:05:22,577 - DEBUG - Saved vanilla segmentation for frame 15
+2025-07-26 01:05:34,774 - DEBUG - Saved vanilla segmentation for frame 16
+2025-07-26 01:05:48,494 - DEBUG - Saved vanilla segmentation for frame 17
+2025-07-26 01:06:01,263 - DEBUG - Saved vanilla segmentation for frame 18
+2025-07-26 01:06:12,851 - DEBUG - Saved vanilla segmentation for frame 19
+2025-07-26 01:06:26,564 - DEBUG - Saved vanilla segmentation for frame 20
+2025-07-26 01:06:27,320 - INFO - Processed frame 20/329
+2025-07-26 01:06:41,900 - DEBUG - Saved vanilla segmentation for frame 21
+2025-07-26 01:06:55,975 - DEBUG - Saved vanilla segmentation for frame 22
+2025-07-26 01:07:07,111 - DEBUG - Saved vanilla segmentation for frame 23
+2025-07-26 01:07:21,568 - DEBUG - Saved vanilla segmentation for frame 24
+2025-07-26 01:07:32,083 - DEBUG - Saved vanilla segmentation for frame 25
+2025-07-26 01:07:42,588 - DEBUG - Saved vanilla segmentation for frame 26
+2025-07-26 01:07:52,623 - DEBUG - Saved vanilla segmentation for frame 27
+2025-07-26 01:08:01,597 - DEBUG - Saved vanilla segmentation for frame 28
+2025-07-26 01:08:11,062 - DEBUG - Saved vanilla segmentation for frame 29
+2025-07-26 01:08:20,311 - DEBUG - Saved vanilla segmentation for frame 30
+2025-07-26 01:08:22,440 - INFO - Processed frame 30/329
+2025-07-26 01:08:32,839 - DEBUG - Saved vanilla segmentation for frame 31
+2025-07-26 01:08:44,315 - DEBUG - Saved vanilla segmentation for frame 32
+2025-07-26 01:09:00,060 - DEBUG - Saved vanilla segmentation for frame 33
+2025-07-26 01:09:12,353 - DEBUG - Saved vanilla segmentation for frame 34
+2025-07-26 01:09:27,529 - DEBUG - Saved vanilla segmentation for frame 35
+2025-07-26 01:09:40,380 - DEBUG - Saved vanilla segmentation for frame 36
+2025-07-26 01:09:51,600 - DEBUG - Saved vanilla segmentation for frame 37
+2025-07-26 01:10:05,911 - DEBUG - Saved vanilla segmentation for frame 38
+2025-07-26 01:10:23,246 - DEBUG - Saved vanilla segmentation for frame 39
+2025-07-26 01:10:34,697 - DEBUG - Saved vanilla segmentation for frame 40
+2025-07-26 01:10:38,696 - INFO - Processed frame 40/329
+2025-07-26 01:10:50,421 - DEBUG - Saved vanilla segmentation for frame 41
+2025-07-26 01:11:03,233 - DEBUG - Saved vanilla segmentation for frame 42
+2025-07-26 01:11:16,093 - DEBUG - Saved vanilla segmentation for frame 43
+2025-07-26 01:11:31,796 - DEBUG - Saved vanilla segmentation for frame 44
+2025-07-26 01:11:46,378 - DEBUG - Saved vanilla segmentation for frame 45
+2025-07-26 01:12:00,630 - DEBUG - Saved vanilla segmentation for frame 46
+2025-07-26 01:12:11,879 - DEBUG - Saved vanilla segmentation for frame 47
+2025-07-26 01:12:24,186 - DEBUG - Saved vanilla segmentation for frame 48
+2025-07-26 01:12:37,263 - DEBUG - Saved vanilla segmentation for frame 49
+2025-07-26 01:12:49,557 - DEBUG - Saved vanilla segmentation for frame 50
+2025-07-26 01:12:52,709 - INFO - Processed frame 50/329
+2025-07-26 01:13:01,662 - DEBUG - Saved vanilla segmentation for frame 51
+2025-07-26 01:13:13,371 - DEBUG - Saved vanilla segmentation for frame 52
+2025-07-26 01:13:27,075 - DEBUG - Saved vanilla segmentation for frame 53
+2025-07-26 01:13:38,500 - DEBUG - Saved vanilla segmentation for frame 54
+2025-07-26 01:13:52,160 - DEBUG - Saved vanilla segmentation for frame 55
+2025-07-26 01:14:04,148 - DEBUG - Saved vanilla segmentation for frame 56
+2025-07-26 01:14:17,973 - DEBUG - Saved vanilla segmentation for frame 57
+2025-07-26 01:14:30,734 - DEBUG - Saved vanilla segmentation for frame 58
+2025-07-26 01:14:42,749 - DEBUG - Saved vanilla segmentation for frame 59
+2025-07-26 01:14:55,017 - DEBUG - Saved vanilla segmentation for frame 60
+2025-07-26 01:14:57,595 - INFO - Processed frame 60/329
+2025-07-26 01:15:05,671 - DEBUG - Saved vanilla segmentation for frame 61
+2025-07-26 01:15:18,261 - DEBUG - Saved vanilla segmentation for frame 62
+2025-07-26 01:15:31,100 - DEBUG - Saved vanilla segmentation for frame 63
+2025-07-26 01:15:42,299 - DEBUG - Saved vanilla segmentation for frame 64
+2025-07-26 01:15:56,212 - DEBUG - Saved vanilla segmentation for frame 65
+2025-07-26 01:16:08,120 - DEBUG - Saved vanilla segmentation for frame 66
+2025-07-26 01:16:20,823 - DEBUG - Saved vanilla segmentation for frame 67
+2025-07-26 01:16:31,963 - DEBUG - Saved vanilla segmentation for frame 68
+2025-07-26 01:16:42,370 - DEBUG - Saved vanilla segmentation for frame 69
+2025-07-26 01:16:53,571 - DEBUG - Saved vanilla segmentation for frame 70
+2025-07-26 01:16:56,466 - INFO - Processed frame 70/329
+2025-07-26 01:17:06,584 - DEBUG - Saved vanilla segmentation for frame 71
+2025-07-26 01:17:21,190 - DEBUG - Saved vanilla segmentation for frame 72
+2025-07-26 01:17:33,684 - DEBUG - Saved vanilla segmentation for frame 73
+2025-07-26 01:17:46,306 - DEBUG - Saved vanilla segmentation for frame 74
+2025-07-26 01:17:58,440 - DEBUG - Saved vanilla segmentation for frame 75

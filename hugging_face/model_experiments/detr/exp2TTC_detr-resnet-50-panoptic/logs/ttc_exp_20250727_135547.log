@@ -1,0 +1,774 @@
+2025-07-27 13:55:47,214 - INFO - Logger initialized. Writing detailed log to /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/detr/exp2TTC_detr-resnet-50-panoptic/logs/ttc_exp_20250727_135547.log
+2025-07-27 13:55:47,214 - INFO - VideoProcessor initialized with 2 blobs to detect
+2025-07-27 13:55:47,215 - INFO - Blob 1 memory strategy: running_average
+2025-07-27 13:55:47,215 - INFO - Blob 1 running average window: 10
+2025-07-27 13:55:47,215 - INFO - Blob 1 memory will freeze after frame: 80
+2025-07-27 13:55:47,215 - INFO - Vanilla segmentation enabled
+2025-07-27 13:55:47,215 - INFO - DEBUG MODE enabled: exceptions will not be caught to show full tracebacks
+2025-07-27 13:55:47,215 - INFO - Initialized TTC Experiment with output dir: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/detr/exp2TTC_detr-resnet-50-panoptic
+2025-07-27 13:55:47,215 - INFO - Model prefix: detr_model
+2025-07-27 13:55:47,215 - INFO - Debug mode: True
+2025-07-27 13:55:47,215 - INFO - TTC-specific configuration:
+2025-07-27 13:55:47,215 - INFO -   - Blob 1 memory: running average of past 10 frames
+2025-07-27 13:55:47,215 - INFO -   - Blob 1 memory updates stop after frame 80
+2025-07-27 13:55:47,216 - INFO - Starting full TTC experiment
+2025-07-27 13:55:47,218 - INFO - Found 99 video files to process
+2025-07-27 13:55:47,218 - INFO - Reading participant CSV from /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/exp2TTC_files/experiment2-CollisionDetection-Data.csv...
+2025-07-27 13:55:47,238 - INFO - CSV loaded with 13974 rows and 10 columns.
+2025-07-27 13:55:47,239 - INFO - Reading name mapping from /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/exp2TTC_files/name_mapping.json...
+2025-07-27 13:55:47,239 - INFO - Loaded name mapping with 96 entries.
+2025-07-27 13:55:47,239 - INFO - Starting collision detection across videos and IoU thresholds...
+2025-07-27 13:55:47,241 - INFO - Processing video: AConcave_FConcave
+2025-07-27 13:55:47,244 - INFO - Found 13 existing frames for AConcave_FConcave, attempting to complete processing...
+2025-07-27 13:55:47,251 - INFO - VanillaSegmentationSaver initialized with output dir: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/detr/exp2TTC_detr-resnet-50-panoptic/processed_videos/detr_model-AConcave_FConcave/org_segmentation
+2025-07-27 13:55:47,252 - INFO - Starting video processing: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/exp2TTC_files/AConcave_FConcave.mp4
+2025-07-27 13:55:47,252 - INFO - Reset blob state tracking for new video
+2025-07-27 13:55:47,258 - INFO - VanillaSegmentationSaver initialized with output dir: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/detr/exp2TTC_detr-resnet-50-panoptic/processed_videos/detr_model-AConcave_FConcave/org_segmentation
+2025-07-27 13:55:47,258 - INFO - Loading model...
+2025-07-27 14:02:21,876 - INFO - Video metadata: {'width': 1500, 'height': 400, 'fps': 60.0, 'total_frames': 269, 'duration': 4.483333333333333}
+2025-07-27 14:02:21,879 - INFO - Partial processing detected. Last frame: 12
+2025-07-27 14:02:30,233 - INFO - Not enough frames for video generation: 13 < 134
+2025-07-27 14:02:30,233 - INFO - Not enough frames for video, resuming processing from frame 13
+2025-07-27 14:02:46,593 - DEBUG - Saved vanilla segmentation for frame 13
+2025-07-27 14:02:49,849 - DEBUG - Saved vanilla segmentation for frame 14
+2025-07-27 14:02:53,100 - DEBUG - Saved vanilla segmentation for frame 15
+2025-07-27 14:02:56,207 - DEBUG - Saved vanilla segmentation for frame 16
+2025-07-27 14:02:59,304 - DEBUG - Saved vanilla segmentation for frame 17
+2025-07-27 14:03:02,440 - DEBUG - Saved vanilla segmentation for frame 18
+2025-07-27 14:03:05,542 - DEBUG - Saved vanilla segmentation for frame 19
+2025-07-27 14:03:08,629 - DEBUG - Saved vanilla segmentation for frame 20
+2025-07-27 14:03:09,926 - INFO - Processed frame 20/269
+2025-07-27 14:03:11,961 - DEBUG - Saved vanilla segmentation for frame 21
+2025-07-27 14:03:15,102 - DEBUG - Saved vanilla segmentation for frame 22
+2025-07-27 14:03:18,240 - DEBUG - Saved vanilla segmentation for frame 23
+2025-07-27 14:03:21,502 - DEBUG - Saved vanilla segmentation for frame 24
+2025-07-27 14:03:24,697 - DEBUG - Saved vanilla segmentation for frame 25
+2025-07-27 14:03:27,859 - DEBUG - Saved vanilla segmentation for frame 26
+2025-07-27 14:03:30,954 - DEBUG - Saved vanilla segmentation for frame 27
+2025-07-27 14:03:34,274 - DEBUG - Saved vanilla segmentation for frame 28
+2025-07-27 14:03:37,351 - DEBUG - Saved vanilla segmentation for frame 29
+2025-07-27 14:03:40,419 - DEBUG - Saved vanilla segmentation for frame 30
+2025-07-27 14:03:43,765 - INFO - Processed frame 30/269
+2025-07-27 14:03:45,612 - DEBUG - Saved vanilla segmentation for frame 31
+2025-07-27 14:03:51,012 - DEBUG - Saved vanilla segmentation for frame 32
+2025-07-27 14:03:56,382 - DEBUG - Saved vanilla segmentation for frame 33
+2025-07-27 14:04:01,548 - DEBUG - Saved vanilla segmentation for frame 34
+2025-07-27 14:04:06,940 - DEBUG - Saved vanilla segmentation for frame 35
+2025-07-27 14:04:12,113 - DEBUG - Saved vanilla segmentation for frame 36
+2025-07-27 14:04:17,511 - DEBUG - Saved vanilla segmentation for frame 37
+2025-07-27 14:04:22,695 - DEBUG - Saved vanilla segmentation for frame 38
+2025-07-27 14:04:28,178 - DEBUG - Saved vanilla segmentation for frame 39
+2025-07-27 14:04:33,368 - DEBUG - Saved vanilla segmentation for frame 40
+2025-07-27 14:04:36,954 - INFO - Processed frame 40/269
+2025-07-27 14:04:38,779 - DEBUG - Saved vanilla segmentation for frame 41
+2025-07-27 14:04:44,003 - DEBUG - Saved vanilla segmentation for frame 42
+2025-07-27 14:04:49,458 - DEBUG - Saved vanilla segmentation for frame 43
+2025-07-27 14:04:54,645 - DEBUG - Saved vanilla segmentation for frame 44
+2025-07-27 14:05:00,131 - DEBUG - Saved vanilla segmentation for frame 45
+2025-07-27 14:05:05,357 - DEBUG - Saved vanilla segmentation for frame 46
+2025-07-27 14:05:10,763 - DEBUG - Saved vanilla segmentation for frame 47
+2025-07-27 14:05:15,967 - DEBUG - Saved vanilla segmentation for frame 48
+2025-07-27 14:05:21,632 - DEBUG - Saved vanilla segmentation for frame 49
+2025-07-27 14:05:26,930 - DEBUG - Saved vanilla segmentation for frame 50
+2025-07-27 14:05:30,534 - INFO - Processed frame 50/269
+2025-07-27 14:05:32,430 - DEBUG - Saved vanilla segmentation for frame 51
+2025-07-27 14:05:37,636 - DEBUG - Saved vanilla segmentation for frame 52
+2025-07-27 14:05:43,071 - DEBUG - Saved vanilla segmentation for frame 53
+2025-07-27 14:05:48,228 - DEBUG - Saved vanilla segmentation for frame 54
+2025-07-27 14:05:53,627 - DEBUG - Saved vanilla segmentation for frame 55
+2025-07-27 14:05:58,792 - DEBUG - Saved vanilla segmentation for frame 56
+2025-07-27 14:06:04,174 - DEBUG - Saved vanilla segmentation for frame 57
+2025-07-27 14:06:09,347 - DEBUG - Saved vanilla segmentation for frame 58
+2025-07-27 14:06:14,778 - DEBUG - Saved vanilla segmentation for frame 59
+2025-07-27 14:06:19,918 - DEBUG - Saved vanilla segmentation for frame 60
+2025-07-27 14:06:23,459 - INFO - Processed frame 60/269
+2025-07-27 14:06:25,278 - DEBUG - Saved vanilla segmentation for frame 61
+2025-07-27 14:06:30,453 - DEBUG - Saved vanilla segmentation for frame 62
+2025-07-27 14:06:35,849 - DEBUG - Saved vanilla segmentation for frame 63
+2025-07-27 14:06:41,046 - DEBUG - Saved vanilla segmentation for frame 64
+2025-07-27 14:06:46,468 - DEBUG - Saved vanilla segmentation for frame 65
+2025-07-27 14:06:51,610 - DEBUG - Saved vanilla segmentation for frame 66
+2025-07-27 14:06:57,014 - DEBUG - Saved vanilla segmentation for frame 67
+2025-07-27 14:07:02,189 - DEBUG - Saved vanilla segmentation for frame 68
+2025-07-27 14:07:07,648 - DEBUG - Saved vanilla segmentation for frame 69
+2025-07-27 14:07:12,843 - DEBUG - Saved vanilla segmentation for frame 70
+2025-07-27 14:07:16,495 - INFO - Processed frame 70/269
+2025-07-27 14:07:18,346 - DEBUG - Saved vanilla segmentation for frame 71
+2025-07-27 14:07:23,674 - DEBUG - Saved vanilla segmentation for frame 72
+2025-07-27 14:07:29,099 - DEBUG - Saved vanilla segmentation for frame 73
+2025-07-27 14:07:34,302 - DEBUG - Saved vanilla segmentation for frame 74
+2025-07-27 14:07:40,207 - DEBUG - Saved vanilla segmentation for frame 75
+2025-07-27 14:07:45,435 - DEBUG - Saved vanilla segmentation for frame 76
+2025-07-27 14:07:50,810 - DEBUG - Saved vanilla segmentation for frame 77
+2025-07-27 14:07:55,965 - DEBUG - Saved vanilla segmentation for frame 78
+2025-07-27 14:08:01,363 - DEBUG - Saved vanilla segmentation for frame 79
+2025-07-27 14:08:04,230 - INFO - Frame 79: Saved blob 1 memory mask to be frozen at /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/detr/exp2TTC_detr-resnet-50-panoptic/processed_videos/detr_model-AConcave_FConcave/frames_masks/mask_memory_blob_1_frame_000079.png
+2025-07-27 14:08:06,521 - DEBUG - Saved vanilla segmentation for frame 80
+2025-07-27 14:08:09,333 - DEBUG - Frame 80: Blob 1 memory frozen, not updating
+2025-07-27 14:08:09,338 - DEBUG - Using frozen mask for blob 1 at frame 80
+2025-07-27 14:08:09,352 - DEBUG - Frame 80: Reused frozen blob 1 memory mask
+2025-07-27 14:08:10,103 - INFO - Processed frame 80/269
+2025-07-27 14:08:11,907 - DEBUG - Saved vanilla segmentation for frame 81
+2025-07-27 14:08:14,714 - DEBUG - Frame 81: Blob 1 memory frozen, not updating
+2025-07-27 14:08:14,717 - DEBUG - Using frozen mask for blob 1 at frame 81
+2025-07-27 14:08:14,731 - DEBUG - Frame 81: Reused frozen blob 1 memory mask
+2025-07-27 14:08:17,024 - DEBUG - Saved vanilla segmentation for frame 82
+2025-07-27 14:08:20,055 - DEBUG - Frame 82: Blob 1 memory frozen, not updating
+2025-07-27 14:08:20,058 - DEBUG - Using frozen mask for blob 1 at frame 82
+2025-07-27 14:08:20,072 - DEBUG - Frame 82: Reused frozen blob 1 memory mask
+2025-07-27 14:08:22,365 - DEBUG - Saved vanilla segmentation for frame 83
+2025-07-27 14:08:25,191 - DEBUG - Frame 83: Blob 1 memory frozen, not updating
+2025-07-27 14:08:25,194 - DEBUG - Using frozen mask for blob 1 at frame 83
+2025-07-27 14:08:25,207 - DEBUG - Frame 83: Reused frozen blob 1 memory mask
+2025-07-27 14:08:27,485 - DEBUG - Saved vanilla segmentation for frame 84
+2025-07-27 14:08:30,548 - DEBUG - Frame 84: Blob 1 memory frozen, not updating
+2025-07-27 14:08:30,552 - DEBUG - Using frozen mask for blob 1 at frame 84
+2025-07-27 14:08:30,568 - DEBUG - Frame 84: Reused frozen blob 1 memory mask
+2025-07-27 14:08:32,855 - DEBUG - Saved vanilla segmentation for frame 85
+2025-07-27 14:08:35,673 - DEBUG - Frame 85: Blob 1 memory frozen, not updating
+2025-07-27 14:08:35,677 - DEBUG - Using frozen mask for blob 1 at frame 85
+2025-07-27 14:08:35,691 - DEBUG - Frame 85: Reused frozen blob 1 memory mask
+2025-07-27 14:08:37,986 - DEBUG - Saved vanilla segmentation for frame 86
+2025-07-27 14:08:40,818 - DEBUG - Frame 86: Blob 1 memory frozen, not updating
+2025-07-27 14:08:40,821 - DEBUG - Using frozen mask for blob 1 at frame 86
+2025-07-27 14:08:40,836 - DEBUG - Frame 86: Reused frozen blob 1 memory mask
+2025-07-27 14:08:43,426 - DEBUG - Saved vanilla segmentation for frame 87
+2025-07-27 14:08:46,264 - DEBUG - Frame 87: Blob 1 memory frozen, not updating
+2025-07-27 14:08:46,268 - DEBUG - Using frozen mask for blob 1 at frame 87
+2025-07-27 14:08:46,281 - DEBUG - Frame 87: Reused frozen blob 1 memory mask
+2025-07-27 14:08:48,640 - DEBUG - Saved vanilla segmentation for frame 88
+2025-07-27 14:08:51,683 - DEBUG - Frame 88: Blob 1 memory frozen, not updating
+2025-07-27 14:08:51,686 - DEBUG - Using frozen mask for blob 1 at frame 88
+2025-07-27 14:08:51,700 - DEBUG - Frame 88: Reused frozen blob 1 memory mask
+2025-07-27 14:08:53,998 - DEBUG - Saved vanilla segmentation for frame 89
+2025-07-27 14:08:56,827 - DEBUG - Frame 89: Blob 1 memory frozen, not updating
+2025-07-27 14:08:56,830 - DEBUG - Using frozen mask for blob 1 at frame 89
+2025-07-27 14:08:56,847 - DEBUG - Frame 89: Reused frozen blob 1 memory mask
+2025-07-27 14:08:59,169 - DEBUG - Saved vanilla segmentation for frame 90
+2025-07-27 14:09:02,053 - DEBUG - Frame 90: Blob 1 memory frozen, not updating
+2025-07-27 14:09:02,057 - DEBUG - Using frozen mask for blob 1 at frame 90
+2025-07-27 14:09:02,071 - DEBUG - Frame 90: Reused frozen blob 1 memory mask
+2025-07-27 14:09:02,826 - INFO - Processed frame 90/269
+2025-07-27 14:09:04,658 - DEBUG - Saved vanilla segmentation for frame 91
+2025-07-27 14:09:07,482 - DEBUG - Frame 91: Blob 1 memory frozen, not updating
+2025-07-27 14:09:07,485 - DEBUG - Using frozen mask for blob 1 at frame 91
+2025-07-27 14:09:07,500 - DEBUG - Frame 91: Reused frozen blob 1 memory mask
+2025-07-27 14:09:09,798 - DEBUG - Saved vanilla segmentation for frame 92
+2025-07-27 14:09:12,850 - DEBUG - Frame 92: Blob 1 memory frozen, not updating
+2025-07-27 14:09:12,854 - DEBUG - Using frozen mask for blob 1 at frame 92
+2025-07-27 14:09:12,868 - DEBUG - Frame 92: Reused frozen blob 1 memory mask
+2025-07-27 14:09:15,169 - DEBUG - Saved vanilla segmentation for frame 93
+2025-07-27 14:09:17,998 - DEBUG - Frame 93: Blob 1 memory frozen, not updating
+2025-07-27 14:09:18,001 - DEBUG - Using frozen mask for blob 1 at frame 93
+2025-07-27 14:09:18,015 - DEBUG - Frame 93: Reused frozen blob 1 memory mask
+2025-07-27 14:09:20,318 - DEBUG - Saved vanilla segmentation for frame 94
+2025-07-27 14:09:23,381 - DEBUG - Frame 94: Blob 1 memory frozen, not updating
+2025-07-27 14:09:23,385 - DEBUG - Using frozen mask for blob 1 at frame 94
+2025-07-27 14:09:23,398 - DEBUG - Frame 94: Reused frozen blob 1 memory mask
+2025-07-27 14:09:25,733 - DEBUG - Saved vanilla segmentation for frame 95
+2025-07-27 14:09:28,565 - DEBUG - Frame 95: Blob 1 memory frozen, not updating
+2025-07-27 14:09:28,568 - DEBUG - Using frozen mask for blob 1 at frame 95
+2025-07-27 14:09:28,581 - DEBUG - Frame 95: Reused frozen blob 1 memory mask
+2025-07-27 14:09:30,909 - DEBUG - Saved vanilla segmentation for frame 96
+2025-07-27 14:09:33,740 - DEBUG - Frame 96: Blob 1 memory frozen, not updating
+2025-07-27 14:09:33,744 - DEBUG - Using frozen mask for blob 1 at frame 96
+2025-07-27 14:09:33,759 - DEBUG - Frame 96: Reused frozen blob 1 memory mask
+2025-07-27 14:09:36,352 - DEBUG - Saved vanilla segmentation for frame 97
+2025-07-27 14:09:39,282 - DEBUG - Frame 97: Blob 1 memory frozen, not updating
+2025-07-27 14:09:39,286 - DEBUG - Using frozen mask for blob 1 at frame 97
+2025-07-27 14:09:39,301 - DEBUG - Frame 97: Reused frozen blob 1 memory mask
+2025-07-27 14:09:41,594 - DEBUG - Saved vanilla segmentation for frame 98
+2025-07-27 14:09:44,686 - DEBUG - Frame 98: Blob 1 memory frozen, not updating
+2025-07-27 14:09:44,690 - DEBUG - Using frozen mask for blob 1 at frame 98
+2025-07-27 14:09:44,705 - DEBUG - Frame 98: Reused frozen blob 1 memory mask
+2025-07-27 14:09:47,100 - DEBUG - Saved vanilla segmentation for frame 99
+2025-07-27 14:09:49,991 - DEBUG - Frame 99: Blob 1 memory frozen, not updating
+2025-07-27 14:09:49,995 - DEBUG - Using frozen mask for blob 1 at frame 99
+2025-07-27 14:09:50,009 - DEBUG - Frame 99: Reused frozen blob 1 memory mask
+2025-07-27 14:09:52,382 - DEBUG - Saved vanilla segmentation for frame 100
+2025-07-27 14:09:55,596 - DEBUG - Frame 100: Blob 1 memory frozen, not updating
+2025-07-27 14:09:55,600 - DEBUG - Using frozen mask for blob 1 at frame 100
+2025-07-27 14:09:55,613 - DEBUG - Frame 100: Reused frozen blob 1 memory mask
+2025-07-27 14:09:56,142 - INFO - Processed frame 100/269
+2025-07-27 14:09:58,067 - DEBUG - Saved vanilla segmentation for frame 101
+2025-07-27 14:10:01,007 - DEBUG - Frame 101: Blob 1 memory frozen, not updating
+2025-07-27 14:10:01,011 - DEBUG - Using frozen mask for blob 1 at frame 101
+2025-07-27 14:10:01,026 - DEBUG - Frame 101: Reused frozen blob 1 memory mask
+2025-07-27 14:10:03,433 - DEBUG - Saved vanilla segmentation for frame 102
+2025-07-27 14:10:06,373 - DEBUG - Frame 102: Blob 1 memory frozen, not updating
+2025-07-27 14:10:06,376 - DEBUG - Using frozen mask for blob 1 at frame 102
+2025-07-27 14:10:06,390 - DEBUG - Frame 102: Reused frozen blob 1 memory mask
+2025-07-27 14:10:09,048 - DEBUG - Saved vanilla segmentation for frame 103
+2025-07-27 14:10:12,030 - DEBUG - Frame 103: Blob 1 memory frozen, not updating
+2025-07-27 14:10:12,034 - DEBUG - Using frozen mask for blob 1 at frame 103
+2025-07-27 14:10:12,048 - DEBUG - Frame 103: Reused frozen blob 1 memory mask
+2025-07-27 14:10:14,423 - DEBUG - Saved vanilla segmentation for frame 104
+2025-07-27 14:10:17,529 - DEBUG - Frame 104: Blob 1 memory frozen, not updating
+2025-07-27 14:10:17,532 - DEBUG - Using frozen mask for blob 1 at frame 104
+2025-07-27 14:10:17,547 - DEBUG - Frame 104: Reused frozen blob 1 memory mask
+2025-07-27 14:10:19,915 - DEBUG - Saved vanilla segmentation for frame 105
+2025-07-27 14:10:22,785 - DEBUG - Frame 105: Blob 1 memory frozen, not updating
+2025-07-27 14:10:22,788 - DEBUG - Using frozen mask for blob 1 at frame 105
+2025-07-27 14:10:22,803 - DEBUG - Frame 105: Reused frozen blob 1 memory mask
+2025-07-27 14:10:25,208 - DEBUG - Saved vanilla segmentation for frame 106
+2025-07-27 14:10:28,194 - DEBUG - Frame 106: Blob 1 memory frozen, not updating
+2025-07-27 14:10:28,198 - DEBUG - Using frozen mask for blob 1 at frame 106
+2025-07-27 14:10:28,212 - DEBUG - Frame 106: Reused frozen blob 1 memory mask
+2025-07-27 14:10:30,980 - DEBUG - Saved vanilla segmentation for frame 107
+2025-07-27 14:10:33,853 - DEBUG - Frame 107: Blob 1 memory frozen, not updating
+2025-07-27 14:10:33,857 - DEBUG - Using frozen mask for blob 1 at frame 107
+2025-07-27 14:10:33,870 - DEBUG - Frame 107: Reused frozen blob 1 memory mask
+2025-07-27 14:10:36,294 - DEBUG - Saved vanilla segmentation for frame 108
+2025-07-27 14:10:39,561 - DEBUG - Frame 108: Blob 1 memory frozen, not updating
+2025-07-27 14:10:39,564 - DEBUG - Using frozen mask for blob 1 at frame 108
+2025-07-27 14:10:39,578 - DEBUG - Frame 108: Reused frozen blob 1 memory mask
+2025-07-27 14:10:41,958 - DEBUG - Saved vanilla segmentation for frame 109
+2025-07-27 14:10:44,938 - DEBUG - Frame 109: Blob 1 memory frozen, not updating
+2025-07-27 14:10:44,942 - DEBUG - Using frozen mask for blob 1 at frame 109
+2025-07-27 14:10:44,955 - DEBUG - Frame 109: Reused frozen blob 1 memory mask
+2025-07-27 14:10:47,328 - DEBUG - Saved vanilla segmentation for frame 110
+2025-07-27 14:10:50,474 - DEBUG - Frame 110: Blob 1 memory frozen, not updating
+2025-07-27 14:10:50,479 - DEBUG - Using frozen mask for blob 1 at frame 110
+2025-07-27 14:10:50,494 - DEBUG - Frame 110: Reused frozen blob 1 memory mask
+2025-07-27 14:10:50,994 - INFO - Processed frame 110/269
+2025-07-27 14:10:52,907 - DEBUG - Saved vanilla segmentation for frame 111
+2025-07-27 14:10:55,901 - DEBUG - Frame 111: Blob 1 memory frozen, not updating
+2025-07-27 14:10:55,905 - DEBUG - Using frozen mask for blob 1 at frame 111
+2025-07-27 14:10:55,923 - DEBUG - Frame 111: Reused frozen blob 1 memory mask
+2025-07-27 14:10:58,372 - DEBUG - Saved vanilla segmentation for frame 112
+2025-07-27 14:11:01,358 - DEBUG - Frame 112: Blob 1 memory frozen, not updating
+2025-07-27 14:11:01,361 - DEBUG - Using frozen mask for blob 1 at frame 112
+2025-07-27 14:11:01,377 - DEBUG - Frame 112: Reused frozen blob 1 memory mask
+2025-07-27 14:11:04,085 - DEBUG - Saved vanilla segmentation for frame 113
+2025-07-27 14:11:07,073 - DEBUG - Frame 113: Blob 1 memory frozen, not updating
+2025-07-27 14:11:07,076 - DEBUG - Using frozen mask for blob 1 at frame 113
+2025-07-27 14:11:07,090 - DEBUG - Frame 113: Reused frozen blob 1 memory mask
+2025-07-27 14:11:09,482 - DEBUG - Saved vanilla segmentation for frame 114
+2025-07-27 14:11:12,780 - DEBUG - Frame 114: Blob 1 memory frozen, not updating
+2025-07-27 14:11:12,784 - DEBUG - Using frozen mask for blob 1 at frame 114
+2025-07-27 14:11:12,798 - DEBUG - Frame 114: Reused frozen blob 1 memory mask
+2025-07-27 14:11:15,173 - DEBUG - Saved vanilla segmentation for frame 115
+2025-07-27 14:11:18,039 - DEBUG - Frame 115: Blob 1 memory frozen, not updating
+2025-07-27 14:11:18,042 - DEBUG - Using frozen mask for blob 1 at frame 115
+2025-07-27 14:11:18,057 - DEBUG - Frame 115: Reused frozen blob 1 memory mask
+2025-07-27 14:11:20,434 - DEBUG - Saved vanilla segmentation for frame 116
+2025-07-27 14:11:23,511 - DEBUG - Frame 116: Blob 1 memory frozen, not updating
+2025-07-27 14:11:23,514 - DEBUG - Using frozen mask for blob 1 at frame 116
+2025-07-27 14:11:23,529 - DEBUG - Frame 116: Reused frozen blob 1 memory mask
+2025-07-27 14:11:25,855 - DEBUG - Saved vanilla segmentation for frame 117
+2025-07-27 14:11:28,710 - DEBUG - Frame 117: Blob 1 memory frozen, not updating
+2025-07-27 14:11:28,714 - DEBUG - Using frozen mask for blob 1 at frame 117
+2025-07-27 14:11:28,728 - DEBUG - Frame 117: Reused frozen blob 1 memory mask
+2025-07-27 14:11:31,042 - DEBUG - Saved vanilla segmentation for frame 118
+2025-07-27 14:11:33,876 - DEBUG - Frame 118: Blob 1 memory frozen, not updating
+2025-07-27 14:11:33,879 - DEBUG - Using frozen mask for blob 1 at frame 118
+2025-07-27 14:11:33,893 - DEBUG - Frame 118: Reused frozen blob 1 memory mask
+2025-07-27 14:11:36,475 - DEBUG - Saved vanilla segmentation for frame 119
+2025-07-27 14:11:39,332 - DEBUG - Frame 119: Blob 1 memory frozen, not updating
+2025-07-27 14:11:39,336 - DEBUG - Using frozen mask for blob 1 at frame 119
+2025-07-27 14:11:39,350 - DEBUG - Frame 119: Reused frozen blob 1 memory mask
+2025-07-27 14:11:41,646 - DEBUG - Saved vanilla segmentation for frame 120
+2025-07-27 14:11:44,732 - DEBUG - Frame 120: Blob 1 memory frozen, not updating
+2025-07-27 14:11:44,735 - DEBUG - Using frozen mask for blob 1 at frame 120
+2025-07-27 14:11:44,750 - DEBUG - Frame 120: Reused frozen blob 1 memory mask
+2025-07-27 14:11:45,240 - INFO - Processed frame 120/269
+2025-07-27 14:11:47,069 - DEBUG - Saved vanilla segmentation for frame 121
+2025-07-27 14:11:49,990 - DEBUG - Frame 121: Blob 1 memory frozen, not updating
+2025-07-27 14:11:49,993 - DEBUG - Using frozen mask for blob 1 at frame 121
+2025-07-27 14:11:50,007 - DEBUG - Frame 121: Reused frozen blob 1 memory mask
+2025-07-27 14:11:52,332 - DEBUG - Saved vanilla segmentation for frame 122
+2025-07-27 14:11:55,270 - DEBUG - Frame 122: Blob 1 memory frozen, not updating
+2025-07-27 14:11:55,273 - DEBUG - Using frozen mask for blob 1 at frame 122
+2025-07-27 14:11:55,288 - DEBUG - Frame 122: Reused frozen blob 1 memory mask
+2025-07-27 14:11:57,877 - DEBUG - Saved vanilla segmentation for frame 123
+2025-07-27 14:12:00,771 - DEBUG - Frame 123: Blob 1 memory frozen, not updating
+2025-07-27 14:12:00,774 - DEBUG - Using frozen mask for blob 1 at frame 123
+2025-07-27 14:12:00,788 - DEBUG - Frame 123: Reused frozen blob 1 memory mask
+2025-07-27 14:12:03,104 - DEBUG - Saved vanilla segmentation for frame 124
+2025-07-27 14:12:06,270 - DEBUG - Frame 124: Blob 1 memory frozen, not updating
+2025-07-27 14:12:06,274 - DEBUG - Using frozen mask for blob 1 at frame 124
+2025-07-27 14:12:06,287 - DEBUG - Frame 124: Reused frozen blob 1 memory mask
+2025-07-27 14:12:08,643 - DEBUG - Saved vanilla segmentation for frame 125
+2025-07-27 14:12:11,606 - DEBUG - Frame 125: Blob 1 memory frozen, not updating
+2025-07-27 14:12:11,609 - DEBUG - Using frozen mask for blob 1 at frame 125
+2025-07-27 14:12:11,623 - DEBUG - Frame 125: Reused frozen blob 1 memory mask
+2025-07-27 14:12:13,976 - DEBUG - Saved vanilla segmentation for frame 126
+2025-07-27 14:12:17,154 - DEBUG - Frame 126: Blob 1 memory frozen, not updating
+2025-07-27 14:12:17,157 - DEBUG - Using frozen mask for blob 1 at frame 126
+2025-07-27 14:12:17,172 - DEBUG - Frame 126: Reused frozen blob 1 memory mask
+2025-07-27 14:12:19,544 - DEBUG - Saved vanilla segmentation for frame 127
+2025-07-27 14:12:22,496 - DEBUG - Frame 127: Blob 1 memory frozen, not updating
+2025-07-27 14:12:22,500 - DEBUG - Using frozen mask for blob 1 at frame 127
+2025-07-27 14:12:22,514 - DEBUG - Frame 127: Reused frozen blob 1 memory mask
+2025-07-27 14:12:24,824 - DEBUG - Saved vanilla segmentation for frame 128
+2025-07-27 14:12:27,691 - DEBUG - Frame 128: Blob 1 memory frozen, not updating
+2025-07-27 14:12:27,694 - DEBUG - Using frozen mask for blob 1 at frame 128
+2025-07-27 14:12:27,709 - DEBUG - Frame 128: Reused frozen blob 1 memory mask
+2025-07-27 14:12:30,321 - DEBUG - Saved vanilla segmentation for frame 129
+2025-07-27 14:12:33,251 - DEBUG - Frame 129: Blob 1 memory frozen, not updating
+2025-07-27 14:12:33,255 - DEBUG - Using frozen mask for blob 1 at frame 129
+2025-07-27 14:12:33,274 - DEBUG - Frame 129: Reused frozen blob 1 memory mask
+2025-07-27 14:12:35,643 - DEBUG - Saved vanilla segmentation for frame 130
+2025-07-27 14:12:38,587 - DEBUG - Frame 130: Blob 1 memory frozen, not updating
+2025-07-27 14:12:38,590 - DEBUG - Using frozen mask for blob 1 at frame 130
+2025-07-27 14:12:38,605 - DEBUG - Frame 130: Reused frozen blob 1 memory mask
+2025-07-27 14:12:39,319 - INFO - Processed frame 130/269
+2025-07-27 14:12:41,338 - DEBUG - Saved vanilla segmentation for frame 131
+2025-07-27 14:12:44,171 - DEBUG - Frame 131: Blob 1 memory frozen, not updating
+2025-07-27 14:12:44,175 - DEBUG - Using frozen mask for blob 1 at frame 131
+2025-07-27 14:12:44,188 - DEBUG - Frame 131: Reused frozen blob 1 memory mask
+2025-07-27 14:12:46,535 - DEBUG - Saved vanilla segmentation for frame 132
+2025-07-27 14:12:49,719 - DEBUG - Frame 132: Blob 1 memory frozen, not updating
+2025-07-27 14:12:49,722 - DEBUG - Using frozen mask for blob 1 at frame 132
+2025-07-27 14:12:49,737 - DEBUG - Frame 132: Reused frozen blob 1 memory mask
+2025-07-27 14:12:52,087 - DEBUG - Saved vanilla segmentation for frame 133
+2025-07-27 14:12:55,030 - DEBUG - Frame 133: Blob 1 memory frozen, not updating
+2025-07-27 14:12:55,033 - DEBUG - Using frozen mask for blob 1 at frame 133
+2025-07-27 14:12:55,047 - DEBUG - Frame 133: Reused frozen blob 1 memory mask
+2025-07-27 14:12:57,397 - DEBUG - Saved vanilla segmentation for frame 134
+2025-07-27 14:13:00,644 - DEBUG - Frame 134: Blob 1 memory frozen, not updating
+2025-07-27 14:13:00,647 - DEBUG - Using frozen mask for blob 1 at frame 134
+2025-07-27 14:13:00,662 - DEBUG - Frame 134: Reused frozen blob 1 memory mask
+2025-07-27 14:13:03,035 - DEBUG - Saved vanilla segmentation for frame 135
+2025-07-27 14:13:06,099 - DEBUG - Frame 135: Blob 1 memory frozen, not updating
+2025-07-27 14:13:06,103 - DEBUG - Using frozen mask for blob 1 at frame 135
+2025-07-27 14:13:06,119 - DEBUG - Frame 135: Reused frozen blob 1 memory mask
+2025-07-27 14:13:08,503 - DEBUG - Saved vanilla segmentation for frame 136
+2025-07-27 14:13:11,478 - DEBUG - Frame 136: Blob 1 memory frozen, not updating
+2025-07-27 14:13:11,481 - DEBUG - Using frozen mask for blob 1 at frame 136
+2025-07-27 14:13:11,495 - DEBUG - Frame 136: Reused frozen blob 1 memory mask
+2025-07-27 14:13:14,103 - DEBUG - Saved vanilla segmentation for frame 137
+2025-07-27 14:13:17,075 - DEBUG - Frame 137: Blob 1 memory frozen, not updating
+2025-07-27 14:13:17,079 - DEBUG - Using frozen mask for blob 1 at frame 137
+2025-07-27 14:13:17,093 - DEBUG - Frame 137: Reused frozen blob 1 memory mask
+2025-07-27 14:13:19,430 - DEBUG - Saved vanilla segmentation for frame 138
+2025-07-27 14:13:22,570 - DEBUG - Frame 138: Blob 1 memory frozen, not updating
+2025-07-27 14:13:22,574 - DEBUG - Using frozen mask for blob 1 at frame 138
+2025-07-27 14:13:22,589 - DEBUG - Frame 138: Reused frozen blob 1 memory mask
+2025-07-27 14:13:24,951 - DEBUG - Saved vanilla segmentation for frame 139
+2025-07-27 14:13:27,833 - DEBUG - Frame 139: Blob 1 memory frozen, not updating
+2025-07-27 14:13:27,836 - DEBUG - Using frozen mask for blob 1 at frame 139
+2025-07-27 14:13:27,851 - DEBUG - Frame 139: Reused frozen blob 1 memory mask
+2025-07-27 14:13:30,188 - DEBUG - Saved vanilla segmentation for frame 140
+2025-07-27 14:13:33,392 - DEBUG - Frame 140: Blob 1 memory frozen, not updating
+2025-07-27 14:13:33,396 - DEBUG - Using frozen mask for blob 1 at frame 140
+2025-07-27 14:13:33,409 - DEBUG - Frame 140: Reused frozen blob 1 memory mask
+2025-07-27 14:13:33,895 - INFO - Processed frame 140/269
+2025-07-27 14:13:35,849 - DEBUG - Saved vanilla segmentation for frame 141
+2025-07-27 14:13:38,772 - DEBUG - Frame 141: Blob 1 memory frozen, not updating
+2025-07-27 14:13:38,776 - DEBUG - Using frozen mask for blob 1 at frame 141
+2025-07-27 14:13:38,790 - DEBUG - Frame 141: Reused frozen blob 1 memory mask
+2025-07-27 14:13:41,133 - DEBUG - Saved vanilla segmentation for frame 142
+2025-07-27 14:13:44,140 - DEBUG - Frame 142: Blob 1 memory frozen, not updating
+2025-07-27 14:13:44,143 - DEBUG - Using frozen mask for blob 1 at frame 142
+2025-07-27 14:13:44,158 - DEBUG - Frame 142: Reused frozen blob 1 memory mask
+2025-07-27 14:13:46,752 - DEBUG - Saved vanilla segmentation for frame 143
+2025-07-27 14:13:49,678 - DEBUG - Frame 143: Blob 1 memory frozen, not updating
+2025-07-27 14:13:49,681 - DEBUG - Using frozen mask for blob 1 at frame 143
+2025-07-27 14:13:49,696 - DEBUG - Frame 143: Reused frozen blob 1 memory mask
+2025-07-27 14:13:51,992 - DEBUG - Saved vanilla segmentation for frame 144
+2025-07-27 14:13:55,055 - DEBUG - Frame 144: Blob 1 memory frozen, not updating
+2025-07-27 14:13:55,060 - DEBUG - Using frozen mask for blob 1 at frame 144
+2025-07-27 14:13:55,075 - DEBUG - Frame 144: Reused frozen blob 1 memory mask
+2025-07-27 14:13:57,412 - DEBUG - Saved vanilla segmentation for frame 145
+2025-07-27 14:14:00,385 - DEBUG - Frame 145: Blob 1 memory frozen, not updating
+2025-07-27 14:14:00,388 - DEBUG - Using frozen mask for blob 1 at frame 145
+2025-07-27 14:14:00,402 - DEBUG - Frame 145: Reused frozen blob 1 memory mask
+2025-07-27 14:14:02,771 - DEBUG - Saved vanilla segmentation for frame 146
+2025-07-27 14:14:05,836 - DEBUG - Frame 146: Blob 1 memory frozen, not updating
+2025-07-27 14:14:05,839 - DEBUG - Using frozen mask for blob 1 at frame 146
+2025-07-27 14:14:05,854 - DEBUG - Frame 146: Reused frozen blob 1 memory mask
+2025-07-27 14:14:08,479 - DEBUG - Saved vanilla segmentation for frame 147
+2025-07-27 14:14:11,479 - DEBUG - Frame 147: Blob 1 memory frozen, not updating
+2025-07-27 14:14:11,482 - DEBUG - Using frozen mask for blob 1 at frame 147
+2025-07-27 14:14:11,496 - DEBUG - Frame 147: Reused frozen blob 1 memory mask
+2025-07-27 14:14:13,881 - DEBUG - Saved vanilla segmentation for frame 148
+2025-07-27 14:14:17,142 - DEBUG - Frame 148: Blob 1 memory frozen, not updating
+2025-07-27 14:14:17,146 - DEBUG - Using frozen mask for blob 1 at frame 148
+2025-07-27 14:14:17,161 - DEBUG - Frame 148: Reused frozen blob 1 memory mask
+2025-07-27 14:14:19,511 - DEBUG - Saved vanilla segmentation for frame 149
+2025-07-27 14:14:22,477 - DEBUG - Frame 149: Blob 1 memory frozen, not updating
+2025-07-27 14:14:22,480 - DEBUG - Using frozen mask for blob 1 at frame 149
+2025-07-27 14:14:22,495 - DEBUG - Frame 149: Reused frozen blob 1 memory mask
+2025-07-27 14:14:24,851 - DEBUG - Saved vanilla segmentation for frame 150
+2025-07-27 14:14:27,752 - DEBUG - Frame 150: Blob 1 memory frozen, not updating
+2025-07-27 14:14:27,756 - DEBUG - Using frozen mask for blob 1 at frame 150
+2025-07-27 14:14:27,770 - DEBUG - Frame 150: Reused frozen blob 1 memory mask
+2025-07-27 14:14:28,527 - INFO - Processed frame 150/269
+2025-07-27 14:14:30,395 - DEBUG - Saved vanilla segmentation for frame 151
+2025-07-27 14:14:33,304 - DEBUG - Frame 151: Blob 1 memory frozen, not updating
+2025-07-27 14:14:33,308 - DEBUG - Using frozen mask for blob 1 at frame 151
+2025-07-27 14:14:33,322 - DEBUG - Frame 151: Reused frozen blob 1 memory mask
+2025-07-27 14:14:35,649 - DEBUG - Saved vanilla segmentation for frame 152
+2025-07-27 14:14:38,530 - DEBUG - Frame 152: Blob 1 memory frozen, not updating
+2025-07-27 14:14:38,533 - DEBUG - Using frozen mask for blob 1 at frame 152
+2025-07-27 14:14:38,548 - DEBUG - Frame 152: Reused frozen blob 1 memory mask
+2025-07-27 14:14:41,134 - DEBUG - Saved vanilla segmentation for frame 153
+2025-07-27 14:14:44,159 - DEBUG - Frame 153: Blob 1 memory frozen, not updating
+2025-07-27 14:14:44,163 - DEBUG - Using frozen mask for blob 1 at frame 153
+2025-07-27 14:14:44,177 - DEBUG - Frame 153: Reused frozen blob 1 memory mask
+2025-07-27 14:14:46,524 - DEBUG - Saved vanilla segmentation for frame 154
+2025-07-27 14:14:49,709 - DEBUG - Frame 154: Blob 1 memory frozen, not updating
+2025-07-27 14:14:49,712 - DEBUG - Using frozen mask for blob 1 at frame 154
+2025-07-27 14:14:49,726 - DEBUG - Frame 154: Reused frozen blob 1 memory mask
+2025-07-27 14:14:52,047 - DEBUG - Saved vanilla segmentation for frame 155
+2025-07-27 14:14:54,948 - DEBUG - Frame 155: Blob 1 memory frozen, not updating
+2025-07-27 14:14:54,951 - DEBUG - Using frozen mask for blob 1 at frame 155
+2025-07-27 14:14:54,965 - DEBUG - Frame 155: Reused frozen blob 1 memory mask
+2025-07-27 14:14:57,311 - DEBUG - Saved vanilla segmentation for frame 156
+2025-07-27 14:15:00,357 - DEBUG - Frame 156: Blob 1 memory frozen, not updating
+2025-07-27 14:15:00,361 - DEBUG - Using frozen mask for blob 1 at frame 156
+2025-07-27 14:15:00,375 - DEBUG - Frame 156: Reused frozen blob 1 memory mask
+2025-07-27 14:15:02,966 - DEBUG - Saved vanilla segmentation for frame 157
+2025-07-27 14:15:05,913 - DEBUG - Frame 157: Blob 1 memory frozen, not updating
+2025-07-27 14:15:05,917 - DEBUG - Using frozen mask for blob 1 at frame 157
+2025-07-27 14:15:05,931 - DEBUG - Frame 157: Reused frozen blob 1 memory mask
+2025-07-27 14:15:08,296 - DEBUG - Saved vanilla segmentation for frame 158
+2025-07-27 14:15:11,531 - DEBUG - Frame 158: Blob 1 memory frozen, not updating
+2025-07-27 14:15:11,535 - DEBUG - Using frozen mask for blob 1 at frame 158
+2025-07-27 14:15:11,551 - DEBUG - Frame 158: Reused frozen blob 1 memory mask
+2025-07-27 14:15:13,921 - DEBUG - Saved vanilla segmentation for frame 159
+2025-07-27 14:15:16,905 - DEBUG - Frame 159: Blob 1 memory frozen, not updating
+2025-07-27 14:15:16,908 - DEBUG - Using frozen mask for blob 1 at frame 159
+2025-07-27 14:15:16,923 - DEBUG - Frame 159: Reused frozen blob 1 memory mask
+2025-07-27 14:15:19,273 - DEBUG - Saved vanilla segmentation for frame 160
+2025-07-27 14:15:22,380 - DEBUG - Frame 160: Blob 1 memory frozen, not updating
+2025-07-27 14:15:22,384 - DEBUG - Using frozen mask for blob 1 at frame 160
+2025-07-27 14:15:22,398 - DEBUG - Frame 160: Reused frozen blob 1 memory mask
+2025-07-27 14:15:23,184 - INFO - Processed frame 160/269
+2025-07-27 14:15:25,318 - DEBUG - Saved vanilla segmentation for frame 161
+2025-07-27 14:15:28,374 - DEBUG - Frame 161: Blob 1 memory frozen, not updating
+2025-07-27 14:15:28,378 - DEBUG - Using frozen mask for blob 1 at frame 161
+2025-07-27 14:15:28,392 - DEBUG - Frame 161: Reused frozen blob 1 memory mask
+2025-07-27 14:15:30,759 - DEBUG - Saved vanilla segmentation for frame 162
+2025-07-27 14:15:34,000 - DEBUG - Frame 162: Blob 1 memory frozen, not updating
+2025-07-27 14:15:34,004 - DEBUG - Using frozen mask for blob 1 at frame 162
+2025-07-27 14:15:34,019 - DEBUG - Frame 162: Reused frozen blob 1 memory mask
+2025-07-27 14:15:36,396 - DEBUG - Saved vanilla segmentation for frame 163
+2025-07-27 14:15:39,349 - DEBUG - Frame 163: Blob 1 memory frozen, not updating
+2025-07-27 14:15:39,352 - DEBUG - Using frozen mask for blob 1 at frame 163
+2025-07-27 14:15:39,366 - DEBUG - Frame 163: Reused frozen blob 1 memory mask
+2025-07-27 14:15:41,695 - DEBUG - Saved vanilla segmentation for frame 164
+2025-07-27 14:15:44,603 - DEBUG - Frame 164: Blob 1 memory frozen, not updating
+2025-07-27 14:15:44,606 - DEBUG - Using frozen mask for blob 1 at frame 164
+2025-07-27 14:15:44,620 - DEBUG - Frame 164: Reused frozen blob 1 memory mask
+2025-07-27 14:15:47,202 - DEBUG - Saved vanilla segmentation for frame 165
+2025-07-27 14:15:50,098 - DEBUG - Frame 165: Blob 1 memory frozen, not updating
+2025-07-27 14:15:50,102 - DEBUG - Using frozen mask for blob 1 at frame 165
+2025-07-27 14:15:50,116 - DEBUG - Frame 165: Reused frozen blob 1 memory mask
+2025-07-27 14:15:52,436 - DEBUG - Saved vanilla segmentation for frame 166
+2025-07-27 14:15:55,327 - DEBUG - Frame 166: Blob 1 memory frozen, not updating
+2025-07-27 14:15:55,330 - DEBUG - Using frozen mask for blob 1 at frame 166
+2025-07-27 14:15:55,344 - DEBUG - Frame 166: Reused frozen blob 1 memory mask
+2025-07-27 14:15:57,929 - DEBUG - Saved vanilla segmentation for frame 167
+2025-07-27 14:16:00,910 - DEBUG - Frame 167: Blob 1 memory frozen, not updating
+2025-07-27 14:16:00,914 - DEBUG - Using frozen mask for blob 1 at frame 167
+2025-07-27 14:16:00,928 - DEBUG - Frame 167: Reused frozen blob 1 memory mask
+2025-07-27 14:16:03,246 - DEBUG - Saved vanilla segmentation for frame 168
+2025-07-27 14:16:06,338 - DEBUG - Frame 168: Blob 1 memory frozen, not updating
+2025-07-27 14:16:06,342 - DEBUG - Using frozen mask for blob 1 at frame 168
+2025-07-27 14:16:06,357 - DEBUG - Frame 168: Reused frozen blob 1 memory mask
+2025-07-27 14:16:08,705 - DEBUG - Saved vanilla segmentation for frame 169
+2025-07-27 14:16:11,705 - DEBUG - Frame 169: Blob 1 memory frozen, not updating
+2025-07-27 14:16:11,709 - DEBUG - Using frozen mask for blob 1 at frame 169
+2025-07-27 14:16:11,726 - DEBUG - Frame 169: Reused frozen blob 1 memory mask
+2025-07-27 14:16:14,079 - DEBUG - Saved vanilla segmentation for frame 170
+2025-07-27 14:16:17,042 - DEBUG - Frame 170: Blob 1 memory frozen, not updating
+2025-07-27 14:16:17,046 - DEBUG - Using frozen mask for blob 1 at frame 170
+2025-07-27 14:16:17,059 - DEBUG - Frame 170: Reused frozen blob 1 memory mask
+2025-07-27 14:16:17,808 - INFO - Processed frame 170/269
+2025-07-27 14:16:19,732 - DEBUG - Saved vanilla segmentation for frame 171
+2025-07-27 14:16:22,607 - DEBUG - Frame 171: Blob 1 memory frozen, not updating
+2025-07-27 14:16:22,611 - DEBUG - Using frozen mask for blob 1 at frame 171
+2025-07-27 14:16:22,624 - DEBUG - Frame 171: Reused frozen blob 1 memory mask
+2025-07-27 14:16:24,981 - DEBUG - Saved vanilla segmentation for frame 172
+2025-07-27 14:16:28,193 - DEBUG - Frame 172: Blob 1 memory frozen, not updating
+2025-07-27 14:16:28,196 - DEBUG - Using frozen mask for blob 1 at frame 172
+2025-07-27 14:16:28,210 - DEBUG - Frame 172: Reused frozen blob 1 memory mask
+2025-07-27 14:16:30,583 - DEBUG - Saved vanilla segmentation for frame 173
+2025-07-27 14:16:33,574 - DEBUG - Frame 173: Blob 1 memory frozen, not updating
+2025-07-27 14:16:33,578 - DEBUG - Using frozen mask for blob 1 at frame 173
+2025-07-27 14:16:33,592 - DEBUG - Frame 173: Reused frozen blob 1 memory mask
+2025-07-27 14:16:35,939 - DEBUG - Saved vanilla segmentation for frame 174
+2025-07-27 14:16:38,873 - DEBUG - Frame 174: Blob 1 memory frozen, not updating
+2025-07-27 14:16:38,876 - DEBUG - Using frozen mask for blob 1 at frame 174
+2025-07-27 14:16:38,890 - DEBUG - Frame 174: Reused frozen blob 1 memory mask
+2025-07-27 14:16:41,491 - DEBUG - Saved vanilla segmentation for frame 175
+2025-07-27 14:16:44,478 - DEBUG - Frame 175: Blob 1 memory frozen, not updating
+2025-07-27 14:16:44,482 - DEBUG - Using frozen mask for blob 1 at frame 175
+2025-07-27 14:16:44,505 - DEBUG - Frame 175: Reused frozen blob 1 memory mask
+2025-07-27 14:16:46,826 - DEBUG - Saved vanilla segmentation for frame 176
+2025-07-27 14:16:49,918 - DEBUG - Frame 176: Blob 1 memory frozen, not updating
+2025-07-27 14:16:49,922 - DEBUG - Using frozen mask for blob 1 at frame 176
+2025-07-27 14:16:49,936 - DEBUG - Frame 176: Reused frozen blob 1 memory mask
+2025-07-27 14:16:52,262 - DEBUG - Saved vanilla segmentation for frame 177
+2025-07-27 14:16:55,190 - DEBUG - Frame 177: Blob 1 memory frozen, not updating
+2025-07-27 14:16:55,194 - DEBUG - Using frozen mask for blob 1 at frame 177
+2025-07-27 14:16:55,209 - DEBUG - Frame 177: Reused frozen blob 1 memory mask
+2025-07-27 14:16:57,591 - DEBUG - Saved vanilla segmentation for frame 178
+2025-07-27 14:17:00,553 - DEBUG - Frame 178: Blob 1 memory frozen, not updating
+2025-07-27 14:17:00,557 - DEBUG - Using frozen mask for blob 1 at frame 178
+2025-07-27 14:17:00,578 - DEBUG - Frame 178: Reused frozen blob 1 memory mask
+2025-07-27 14:17:03,171 - DEBUG - Saved vanilla segmentation for frame 179
+2025-07-27 14:17:06,047 - DEBUG - Frame 179: Blob 1 memory frozen, not updating
+2025-07-27 14:17:06,050 - DEBUG - Using frozen mask for blob 1 at frame 179
+2025-07-27 14:17:06,065 - DEBUG - Frame 179: Reused frozen blob 1 memory mask
+2025-07-27 14:17:08,415 - DEBUG - Saved vanilla segmentation for frame 180
+2025-07-27 14:17:11,612 - DEBUG - Frame 180: Blob 1 memory frozen, not updating
+2025-07-27 14:17:11,615 - DEBUG - Using frozen mask for blob 1 at frame 180
+2025-07-27 14:17:11,631 - DEBUG - Frame 180: Reused frozen blob 1 memory mask
+2025-07-27 14:17:12,120 - INFO - Processed frame 180/269
+2025-07-27 14:17:13,960 - DEBUG - Saved vanilla segmentation for frame 181
+2025-07-27 14:17:16,837 - DEBUG - Frame 181: Blob 1 memory frozen, not updating
+2025-07-27 14:17:16,840 - DEBUG - Using frozen mask for blob 1 at frame 181
+2025-07-27 14:17:16,854 - DEBUG - Frame 181: Reused frozen blob 1 memory mask
+2025-07-27 14:17:19,219 - DEBUG - Saved vanilla segmentation for frame 182
+2025-07-27 14:17:22,218 - DEBUG - Frame 182: Blob 1 memory frozen, not updating
+2025-07-27 14:17:22,222 - DEBUG - Using frozen mask for blob 1 at frame 182
+2025-07-27 14:17:22,236 - DEBUG - Frame 182: Reused frozen blob 1 memory mask
+2025-07-27 14:17:25,733 - DEBUG - Saved vanilla segmentation for frame 183
+2025-07-27 14:17:28,622 - DEBUG - Frame 183: Blob 1 memory frozen, not updating
+2025-07-27 14:17:28,625 - DEBUG - Using frozen mask for blob 1 at frame 183
+2025-07-27 14:17:28,642 - DEBUG - Frame 183: Reused frozen blob 1 memory mask
+2025-07-27 14:17:30,976 - DEBUG - Saved vanilla segmentation for frame 184
+2025-07-27 14:17:34,113 - DEBUG - Frame 184: Blob 1 memory frozen, not updating
+2025-07-27 14:17:34,116 - DEBUG - Using frozen mask for blob 1 at frame 184
+2025-07-27 14:17:34,131 - DEBUG - Frame 184: Reused frozen blob 1 memory mask
+2025-07-27 14:17:36,559 - DEBUG - Saved vanilla segmentation for frame 185
+2025-07-27 14:17:39,649 - DEBUG - Frame 185: Blob 1 memory frozen, not updating
+2025-07-27 14:17:39,653 - DEBUG - Using frozen mask for blob 1 at frame 185
+2025-07-27 14:17:39,666 - DEBUG - Frame 185: Reused frozen blob 1 memory mask
+2025-07-27 14:17:42,065 - DEBUG - Saved vanilla segmentation for frame 186
+2025-07-27 14:17:45,078 - DEBUG - Frame 186: Blob 1 memory frozen, not updating
+2025-07-27 14:17:45,081 - DEBUG - Using frozen mask for blob 1 at frame 186
+2025-07-27 14:17:45,098 - DEBUG - Frame 186: Reused frozen blob 1 memory mask
+2025-07-27 14:17:47,707 - DEBUG - Saved vanilla segmentation for frame 187
+2025-07-27 14:17:50,739 - DEBUG - Frame 187: Blob 1 memory frozen, not updating
+2025-07-27 14:17:50,742 - DEBUG - Using frozen mask for blob 1 at frame 187
+2025-07-27 14:17:50,757 - DEBUG - Frame 187: Reused frozen blob 1 memory mask
+2025-07-27 14:17:53,122 - DEBUG - Saved vanilla segmentation for frame 188
+2025-07-27 14:17:56,388 - DEBUG - Frame 188: Blob 1 memory frozen, not updating
+2025-07-27 14:17:56,392 - DEBUG - Using frozen mask for blob 1 at frame 188
+2025-07-27 14:17:56,407 - DEBUG - Frame 188: Reused frozen blob 1 memory mask
+2025-07-27 14:17:58,739 - DEBUG - Saved vanilla segmentation for frame 189
+2025-07-27 14:18:01,676 - DEBUG - Frame 189: Blob 1 memory frozen, not updating
+2025-07-27 14:18:01,679 - DEBUG - Using frozen mask for blob 1 at frame 189
+2025-07-27 14:18:01,694 - DEBUG - Frame 189: Reused frozen blob 1 memory mask
+2025-07-27 14:18:04,110 - DEBUG - Saved vanilla segmentation for frame 190
+2025-07-27 14:18:07,280 - DEBUG - Frame 190: Blob 1 memory frozen, not updating
+2025-07-27 14:18:07,283 - DEBUG - Using frozen mask for blob 1 at frame 190
+2025-07-27 14:18:07,298 - DEBUG - Frame 190: Reused frozen blob 1 memory mask
+2025-07-27 14:18:08,049 - INFO - Processed frame 190/269
+2025-07-27 14:18:09,996 - DEBUG - Saved vanilla segmentation for frame 191
+2025-07-27 14:18:13,211 - DEBUG - Frame 191: Blob 1 memory frozen, not updating
+2025-07-27 14:18:13,215 - DEBUG - Using frozen mask for blob 1 at frame 191
+2025-07-27 14:18:13,229 - DEBUG - Frame 191: Reused frozen blob 1 memory mask
+2025-07-27 14:18:15,625 - DEBUG - Saved vanilla segmentation for frame 192
+2025-07-27 14:18:18,978 - DEBUG - Frame 192: Blob 1 memory frozen, not updating
+2025-07-27 14:18:18,981 - DEBUG - Using frozen mask for blob 1 at frame 192
+2025-07-27 14:18:18,997 - DEBUG - Frame 192: Reused frozen blob 1 memory mask
+2025-07-27 14:18:21,396 - DEBUG - Saved vanilla segmentation for frame 193
+2025-07-27 14:18:24,512 - DEBUG - Frame 193: Blob 1 memory frozen, not updating
+2025-07-27 14:18:24,515 - DEBUG - Using frozen mask for blob 1 at frame 193
+2025-07-27 14:18:24,530 - DEBUG - Frame 193: Reused frozen blob 1 memory mask
+2025-07-27 14:18:26,978 - DEBUG - Saved vanilla segmentation for frame 194
+2025-07-27 14:18:30,024 - DEBUG - Frame 194: Blob 1 memory frozen, not updating
+2025-07-27 14:18:30,028 - DEBUG - Using frozen mask for blob 1 at frame 194
+2025-07-27 14:18:30,041 - DEBUG - Frame 194: Reused frozen blob 1 memory mask
+2025-07-27 14:18:32,721 - DEBUG - Saved vanilla segmentation for frame 195
+2025-07-27 14:18:35,920 - DEBUG - Frame 195: Blob 1 memory frozen, not updating
+2025-07-27 14:18:35,924 - DEBUG - Using frozen mask for blob 1 at frame 195
+2025-07-27 14:18:35,937 - DEBUG - Frame 195: Reused frozen blob 1 memory mask
+2025-07-27 14:18:38,358 - DEBUG - Saved vanilla segmentation for frame 196
+2025-07-27 14:18:41,744 - DEBUG - Frame 196: Blob 1 memory frozen, not updating
+2025-07-27 14:18:41,747 - DEBUG - Using frozen mask for blob 1 at frame 196
+2025-07-27 14:18:41,761 - DEBUG - Frame 196: Reused frozen blob 1 memory mask
+2025-07-27 14:18:44,173 - DEBUG - Saved vanilla segmentation for frame 197
+2025-07-27 14:18:47,130 - DEBUG - Frame 197: Blob 1 memory frozen, not updating
+2025-07-27 14:18:47,133 - DEBUG - Using frozen mask for blob 1 at frame 197
+2025-07-27 14:18:47,148 - DEBUG - Frame 197: Reused frozen blob 1 memory mask
+2025-07-27 14:18:49,583 - DEBUG - Saved vanilla segmentation for frame 198
+2025-07-27 14:18:52,818 - DEBUG - Frame 198: Blob 1 memory frozen, not updating
+2025-07-27 14:18:52,821 - DEBUG - Using frozen mask for blob 1 at frame 198
+2025-07-27 14:18:52,836 - DEBUG - Frame 198: Reused frozen blob 1 memory mask
+2025-07-27 14:18:55,515 - DEBUG - Saved vanilla segmentation for frame 199
+2025-07-27 14:18:58,649 - DEBUG - Frame 199: Blob 1 memory frozen, not updating
+2025-07-27 14:18:58,653 - DEBUG - Using frozen mask for blob 1 at frame 199
+2025-07-27 14:18:58,667 - DEBUG - Frame 199: Reused frozen blob 1 memory mask
+2025-07-27 14:19:01,065 - DEBUG - Saved vanilla segmentation for frame 200
+2025-07-27 14:19:04,415 - DEBUG - Frame 200: Blob 1 memory frozen, not updating
+2025-07-27 14:19:04,418 - DEBUG - Using frozen mask for blob 1 at frame 200
+2025-07-27 14:19:04,432 - DEBUG - Frame 200: Reused frozen blob 1 memory mask
+2025-07-27 14:19:04,917 - INFO - Processed frame 200/269
+2025-07-27 14:19:06,871 - DEBUG - Saved vanilla segmentation for frame 201
+2025-07-27 14:19:10,133 - DEBUG - Frame 201: Blob 1 memory frozen, not updating
+2025-07-27 14:19:10,137 - DEBUG - Using frozen mask for blob 1 at frame 201
+2025-07-27 14:19:10,151 - DEBUG - Frame 201: Reused frozen blob 1 memory mask
+2025-07-27 14:19:12,533 - DEBUG - Saved vanilla segmentation for frame 202
+2025-07-27 14:19:15,889 - DEBUG - Frame 202: Blob 1 memory frozen, not updating
+2025-07-27 14:19:15,892 - DEBUG - Using frozen mask for blob 1 at frame 202
+2025-07-27 14:19:15,907 - DEBUG - Frame 202: Reused frozen blob 1 memory mask
+2025-07-27 14:19:18,354 - DEBUG - Saved vanilla segmentation for frame 203
+2025-07-27 14:19:21,655 - DEBUG - Frame 203: Blob 1 memory frozen, not updating
+2025-07-27 14:19:21,659 - DEBUG - Using frozen mask for blob 1 at frame 203
+2025-07-27 14:19:21,677 - DEBUG - Frame 203: Reused frozen blob 1 memory mask
+2025-07-27 14:19:24,083 - DEBUG - Saved vanilla segmentation for frame 204
+2025-07-27 14:19:27,286 - DEBUG - Frame 204: Blob 1 memory frozen, not updating
+2025-07-27 14:19:27,289 - DEBUG - Using frozen mask for blob 1 at frame 204
+2025-07-27 14:19:27,304 - DEBUG - Frame 204: Reused frozen blob 1 memory mask
+2025-07-27 14:19:29,957 - DEBUG - Saved vanilla segmentation for frame 205
+2025-07-27 14:19:33,042 - DEBUG - Frame 205: Blob 1 memory frozen, not updating
+2025-07-27 14:19:33,046 - DEBUG - Using frozen mask for blob 1 at frame 205
+2025-07-27 14:19:33,059 - DEBUG - Frame 205: Reused frozen blob 1 memory mask
+2025-07-27 14:19:35,472 - DEBUG - Saved vanilla segmentation for frame 206
+2025-07-27 14:19:38,875 - DEBUG - Frame 206: Blob 1 memory frozen, not updating
+2025-07-27 14:19:38,878 - DEBUG - Using frozen mask for blob 1 at frame 206
+2025-07-27 14:19:38,893 - DEBUG - Frame 206: Reused frozen blob 1 memory mask
+2025-07-27 14:19:41,293 - DEBUG - Saved vanilla segmentation for frame 207
+2025-07-27 14:19:44,456 - DEBUG - Frame 207: Blob 1 memory frozen, not updating
+2025-07-27 14:19:44,460 - DEBUG - Using frozen mask for blob 1 at frame 207
+2025-07-27 14:19:44,473 - DEBUG - Frame 207: Reused frozen blob 1 memory mask
+2025-07-27 14:19:46,900 - DEBUG - Saved vanilla segmentation for frame 208
+2025-07-27 14:19:50,049 - DEBUG - Frame 208: Blob 1 memory frozen, not updating
+2025-07-27 14:19:50,052 - DEBUG - Using frozen mask for blob 1 at frame 208
+2025-07-27 14:19:50,066 - DEBUG - Frame 208: Reused frozen blob 1 memory mask
+2025-07-27 14:19:52,721 - DEBUG - Saved vanilla segmentation for frame 209
+2025-07-27 14:19:55,890 - DEBUG - Frame 209: Blob 1 memory frozen, not updating
+2025-07-27 14:19:55,893 - DEBUG - Using frozen mask for blob 1 at frame 209
+2025-07-27 14:19:55,907 - DEBUG - Frame 209: Reused frozen blob 1 memory mask
+2025-07-27 14:19:58,311 - DEBUG - Saved vanilla segmentation for frame 210
+2025-07-27 14:20:01,716 - DEBUG - Frame 210: Blob 1 memory frozen, not updating
+2025-07-27 14:20:01,720 - DEBUG - Using frozen mask for blob 1 at frame 210
+2025-07-27 14:20:01,734 - DEBUG - Frame 210: Reused frozen blob 1 memory mask
+2025-07-27 14:20:02,216 - INFO - Processed frame 210/269
+2025-07-27 14:20:04,188 - DEBUG - Saved vanilla segmentation for frame 211
+2025-07-27 14:20:07,371 - DEBUG - Frame 211: Blob 1 memory frozen, not updating
+2025-07-27 14:20:07,375 - DEBUG - Using frozen mask for blob 1 at frame 211
+2025-07-27 14:20:07,388 - DEBUG - Frame 211: Reused frozen blob 1 memory mask
+2025-07-27 14:20:09,827 - DEBUG - Saved vanilla segmentation for frame 212
+2025-07-27 14:20:13,265 - DEBUG - Frame 212: Blob 1 memory frozen, not updating
+2025-07-27 14:20:13,269 - DEBUG - Using frozen mask for blob 1 at frame 212
+2025-07-27 14:20:13,283 - DEBUG - Frame 212: Reused frozen blob 1 memory mask
+2025-07-27 14:20:15,697 - DEBUG - Saved vanilla segmentation for frame 213
+2025-07-27 14:20:18,946 - DEBUG - Frame 213: Blob 1 memory frozen, not updating
+2025-07-27 14:20:18,950 - DEBUG - Using frozen mask for blob 1 at frame 213
+2025-07-27 14:20:18,963 - DEBUG - Frame 213: Reused frozen blob 1 memory mask
+2025-07-27 14:20:19,462 - DEBUG - Frame 214: Only 1 blobs detected, missing count: 1
+2025-07-27 14:20:21,423 - DEBUG - Saved vanilla segmentation for frame 214
+2025-07-27 14:20:23,130 - DEBUG - Using frozen mask for blob 1 at frame 214
+2025-07-27 14:20:23,143 - DEBUG - Frame 214: Reused frozen blob 1 memory mask
+2025-07-27 14:20:23,436 - DEBUG - Frame 215: Only 1 blobs detected, missing count: 2
+2025-07-27 14:20:25,388 - DEBUG - Saved vanilla segmentation for frame 215
+2025-07-27 14:20:27,338 - DEBUG - Using frozen mask for blob 1 at frame 215
+2025-07-27 14:20:27,352 - DEBUG - Frame 215: Reused frozen blob 1 memory mask
+2025-07-27 14:20:27,644 - DEBUG - Frame 216: Only 1 blobs detected, missing count: 3
+2025-07-27 14:20:29,559 - DEBUG - Saved vanilla segmentation for frame 216
+2025-07-27 14:20:31,208 - DEBUG - Using frozen mask for blob 1 at frame 216
+2025-07-27 14:20:31,221 - DEBUG - Frame 216: Reused frozen blob 1 memory mask
+2025-07-27 14:20:31,516 - DEBUG - Frame 217: Only 1 blobs detected, missing count: 4
+2025-07-27 14:20:33,402 - DEBUG - Saved vanilla segmentation for frame 217
+2025-07-27 14:20:35,015 - DEBUG - Using frozen mask for blob 1 at frame 217
+2025-07-27 14:20:35,029 - DEBUG - Frame 217: Reused frozen blob 1 memory mask
+2025-07-27 14:20:35,329 - DEBUG - Frame 218: Only 1 blobs detected, missing count: 5
+2025-07-27 14:20:35,330 - INFO - Frame 218: Blob 1 marked as disappeared after 5 missing frames
+2025-07-27 14:20:37,211 - DEBUG - Saved vanilla segmentation for frame 218
+2025-07-27 14:20:38,998 - DEBUG - Using frozen mask for blob 1 at frame 218
+2025-07-27 14:20:39,012 - DEBUG - Frame 218: Reused frozen blob 1 memory mask
+2025-07-27 14:20:41,191 - DEBUG - Saved vanilla segmentation for frame 219
+2025-07-27 14:20:42,808 - DEBUG - Using frozen mask for blob 1 at frame 219
+2025-07-27 14:20:42,823 - DEBUG - Frame 219: Reused frozen blob 1 memory mask
+2025-07-27 14:20:45,017 - DEBUG - Saved vanilla segmentation for frame 220
+2025-07-27 14:20:46,634 - DEBUG - Using frozen mask for blob 1 at frame 220
+2025-07-27 14:20:46,648 - DEBUG - Frame 220: Reused frozen blob 1 memory mask
+2025-07-27 14:20:46,925 - INFO - Processed frame 220/269
+2025-07-27 14:20:48,802 - DEBUG - Saved vanilla segmentation for frame 221
+2025-07-27 14:20:50,336 - DEBUG - Using frozen mask for blob 1 at frame 221
+2025-07-27 14:20:50,349 - DEBUG - Frame 221: Reused frozen blob 1 memory mask
+2025-07-27 14:20:52,516 - DEBUG - Saved vanilla segmentation for frame 222
+2025-07-27 14:20:54,318 - DEBUG - Using frozen mask for blob 1 at frame 222
+2025-07-27 14:20:54,332 - DEBUG - Frame 222: Reused frozen blob 1 memory mask
+2025-07-27 14:20:56,518 - DEBUG - Saved vanilla segmentation for frame 223
+2025-07-27 14:20:58,105 - DEBUG - Using frozen mask for blob 1 at frame 223
+2025-07-27 14:20:58,119 - DEBUG - Frame 223: Reused frozen blob 1 memory mask
+2025-07-27 14:21:00,326 - DEBUG - Saved vanilla segmentation for frame 224
+2025-07-27 14:21:01,911 - DEBUG - Using frozen mask for blob 1 at frame 224
+2025-07-27 14:21:01,925 - DEBUG - Frame 224: Reused frozen blob 1 memory mask
+2025-07-27 14:21:04,124 - DEBUG - Saved vanilla segmentation for frame 225
+2025-07-27 14:21:05,781 - DEBUG - Using frozen mask for blob 1 at frame 225
+2025-07-27 14:21:05,796 - DEBUG - Frame 225: Reused frozen blob 1 memory mask
+2025-07-27 14:21:08,210 - DEBUG - Saved vanilla segmentation for frame 226
+2025-07-27 14:21:09,804 - DEBUG - Using frozen mask for blob 1 at frame 226
+2025-07-27 14:21:09,822 - DEBUG - Frame 226: Reused frozen blob 1 memory mask
+2025-07-27 14:21:12,062 - DEBUG - Saved vanilla segmentation for frame 227
+2025-07-27 14:21:13,761 - DEBUG - Using frozen mask for blob 1 at frame 227
+2025-07-27 14:21:13,775 - DEBUG - Frame 227: Reused frozen blob 1 memory mask
+2025-07-27 14:21:16,011 - DEBUG - Saved vanilla segmentation for frame 228
+2025-07-27 14:21:17,694 - DEBUG - Using frozen mask for blob 1 at frame 228
+2025-07-27 14:21:17,709 - DEBUG - Frame 228: Reused frozen blob 1 memory mask
+2025-07-27 14:21:19,940 - DEBUG - Saved vanilla segmentation for frame 229
+2025-07-27 14:21:21,873 - DEBUG - Using frozen mask for blob 1 at frame 229
+2025-07-27 14:21:21,887 - DEBUG - Frame 229: Reused frozen blob 1 memory mask
+2025-07-27 14:21:24,190 - DEBUG - Saved vanilla segmentation for frame 230
+2025-07-27 14:21:26,109 - DEBUG - Using frozen mask for blob 1 at frame 230
+2025-07-27 14:21:26,124 - DEBUG - Frame 230: Reused frozen blob 1 memory mask
+2025-07-27 14:21:26,448 - INFO - Processed frame 230/269
+2025-07-27 14:21:28,439 - DEBUG - Saved vanilla segmentation for frame 231
+2025-07-27 14:21:30,125 - DEBUG - Using frozen mask for blob 1 at frame 231
+2025-07-27 14:21:30,140 - DEBUG - Frame 231: Reused frozen blob 1 memory mask
+2025-07-27 14:21:32,356 - DEBUG - Saved vanilla segmentation for frame 232
+2025-07-27 14:21:34,004 - DEBUG - Using frozen mask for blob 1 at frame 232
+2025-07-27 14:21:34,020 - DEBUG - Frame 232: Reused frozen blob 1 memory mask
+2025-07-27 14:21:37,608 - DEBUG - Saved vanilla segmentation for frame 233
+2025-07-27 14:21:39,329 - DEBUG - Using frozen mask for blob 1 at frame 233
+2025-07-27 14:21:39,344 - DEBUG - Frame 233: Reused frozen blob 1 memory mask
+2025-07-27 14:21:41,901 - DEBUG - Saved vanilla segmentation for frame 234
+2025-07-27 14:21:43,462 - DEBUG - Using frozen mask for blob 1 at frame 234
+2025-07-27 14:21:43,477 - DEBUG - Frame 234: Reused frozen blob 1 memory mask
+2025-07-27 14:21:45,958 - DEBUG - Saved vanilla segmentation for frame 235
+2025-07-27 14:21:47,490 - DEBUG - Using frozen mask for blob 1 at frame 235
+2025-07-27 14:21:47,505 - DEBUG - Frame 235: Reused frozen blob 1 memory mask
+2025-07-27 14:21:49,697 - DEBUG - Saved vanilla segmentation for frame 236
+2025-07-27 14:21:51,487 - DEBUG - Using frozen mask for blob 1 at frame 236
+2025-07-27 14:21:51,502 - DEBUG - Frame 236: Reused frozen blob 1 memory mask
+2025-07-27 14:21:53,636 - DEBUG - Saved vanilla segmentation for frame 237
+2025-07-27 14:21:55,140 - DEBUG - Using frozen mask for blob 1 at frame 237
+2025-07-27 14:21:55,154 - DEBUG - Frame 237: Reused frozen blob 1 memory mask
+2025-07-27 14:21:57,336 - DEBUG - Saved vanilla segmentation for frame 238
+2025-07-27 14:21:58,911 - DEBUG - Using frozen mask for blob 1 at frame 238
+2025-07-27 14:21:58,933 - DEBUG - Frame 238: Reused frozen blob 1 memory mask
+2025-07-27 14:22:01,098 - DEBUG - Saved vanilla segmentation for frame 239
+2025-07-27 14:22:02,624 - DEBUG - Using frozen mask for blob 1 at frame 239
+2025-07-27 14:22:02,658 - DEBUG - Frame 239: Reused frozen blob 1 memory mask
+2025-07-27 14:22:05,021 - DEBUG - Saved vanilla segmentation for frame 240
+2025-07-27 14:22:06,554 - DEBUG - Using frozen mask for blob 1 at frame 240
+2025-07-27 14:22:06,571 - DEBUG - Frame 240: Reused frozen blob 1 memory mask
+2025-07-27 14:22:06,849 - INFO - Processed frame 240/269
+2025-07-27 14:22:08,802 - DEBUG - Saved vanilla segmentation for frame 241
+2025-07-27 14:22:10,405 - DEBUG - Using frozen mask for blob 1 at frame 241
+2025-07-27 14:22:10,424 - DEBUG - Frame 241: Reused frozen blob 1 memory mask
+2025-07-27 14:22:12,587 - DEBUG - Saved vanilla segmentation for frame 242
+2025-07-27 14:22:14,138 - DEBUG - Using frozen mask for blob 1 at frame 242
+2025-07-27 14:22:14,152 - DEBUG - Frame 242: Reused frozen blob 1 memory mask
+2025-07-27 14:22:16,472 - DEBUG - Saved vanilla segmentation for frame 243
+2025-07-27 14:22:18,476 - DEBUG - Using frozen mask for blob 1 at frame 243
+2025-07-27 14:22:18,512 - DEBUG - Frame 243: Reused frozen blob 1 memory mask
+2025-07-27 14:22:20,478 - DEBUG - Saved vanilla segmentation for frame 244
+2025-07-27 14:22:21,589 - DEBUG - Using frozen mask for blob 1 at frame 244
+2025-07-27 14:22:21,604 - DEBUG - Frame 244: Reused frozen blob 1 memory mask
+2025-07-27 14:22:23,687 - DEBUG - Saved vanilla segmentation for frame 245
+2025-07-27 14:22:24,851 - DEBUG - Using frozen mask for blob 1 at frame 245
+2025-07-27 14:22:24,865 - DEBUG - Frame 245: Reused frozen blob 1 memory mask
+2025-07-27 14:22:25,042 - INFO - No video file found, creating final video...
+2025-07-27 14:22:25,042 - INFO - Creating final video: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/detr/exp2TTC_detr-resnet-50-panoptic/processed_videos/detr_model-AConcave_FConcave/videos_processed/detr_model-AConcave_FConcave.mp4
+2025-07-27 14:22:25,051 - INFO - Found 246 processed frames out of 269 total frames
+2025-07-27 14:22:25,924 - INFO - Written 100/246 frames to video
+2025-07-27 14:22:26,686 - INFO - Written 200/246 frames to video
+2025-07-27 14:22:27,097 - INFO - Final video created successfully with 246 frames
+2025-07-27 14:22:27,100 - INFO - Video processing completed: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/detr/exp2TTC_detr-resnet-50-panoptic/processed_videos/detr_model-AConcave_FConcave
+2025-07-27 14:22:27,100 - INFO - Successfully completed processing for AConcave_FConcave
+2025-07-27 14:22:27,100 - INFO - Starting full processing for AConcave_FConcave
+2025-07-27 14:22:27,100 - INFO - Starting video processing: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/exp2TTC_files/AConcave_FConcave.mp4
+2025-07-27 14:22:27,100 - INFO - Reset blob state tracking for new video
+2025-07-27 14:22:27,107 - INFO - VanillaSegmentationSaver initialized with output dir: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/detr/exp2TTC_detr-resnet-50-panoptic/processed_videos/detr_model-AConcave_FConcave/org_segmentation
+2025-07-27 14:22:27,251 - INFO - Video metadata: {'width': 1500, 'height': 400, 'fps': 60.0, 'total_frames': 269, 'duration': 4.483333333333333}
+2025-07-27 14:22:27,253 - INFO - Starting processing from beginning

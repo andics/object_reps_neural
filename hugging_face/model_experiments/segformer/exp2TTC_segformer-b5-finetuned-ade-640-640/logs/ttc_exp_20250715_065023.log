@@ -1,0 +1,1426 @@
+2025-07-15 06:50:23,543 - INFO - Logger initialized. Writing detailed log to /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/logs/ttc_exp_20250715_065023.log
+2025-07-15 06:50:23,543 - INFO - VideoProcessor initialized with 2 blobs to detect
+2025-07-15 06:50:23,543 - INFO - Blob 1 memory strategy: running_average
+2025-07-15 06:50:23,543 - INFO - Blob 1 running average window: 10
+2025-07-15 06:50:23,543 - INFO - Blob 1 memory will freeze after frame: 80
+2025-07-15 06:50:23,543 - INFO - Vanilla segmentation enabled
+2025-07-15 06:50:23,543 - INFO - Initialized TTC Experiment with output dir: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC
+2025-07-15 06:50:23,543 - INFO - TTC-specific configuration:
+2025-07-15 06:50:23,543 - INFO -   - Blob 1 memory: running average of past 10 frames
+2025-07-15 06:50:23,543 - INFO -   - Blob 1 memory updates stop after frame 80
+2025-07-15 06:50:23,543 - INFO - Starting full TTC experiment
+2025-07-15 06:50:23,544 - INFO - Found 99 video files to process
+2025-07-15 06:50:23,544 - INFO - Reading participant CSV from /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/exp2TTC_files/experiment2-CollisionDetection-Data.csv...
+2025-07-15 06:50:23,561 - INFO - CSV loaded with 13974 rows and 10 columns.
+2025-07-15 06:50:23,561 - INFO - Starting collision detection across videos and IoU thresholds...
+2025-07-15 06:50:23,561 - INFO - Processing video: AConcave_FConcave
+2025-07-15 06:50:23,562 - INFO - Video AConcave_FConcave already processed, skipping...
+2025-07-15 06:50:23,581 - INFO - VanillaSegmentationSaver initialized with output dir: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_videos/segformer_model-AConcave_FConcave/org_segmentation
+2025-07-15 06:50:23,581 - INFO - Video AConcave_FConcave: Both blobs remained visible throughout
+2025-07-15 06:50:23,581 - INFO - Video AConcave_FConcave: Blob 1 memory strategy = running_average
+2025-07-15 06:50:23,581 - INFO - Video AConcave_FConcave: Blob 1 memory frozen after frame 80
+2025-07-15 06:50:23,588 - INFO - Found 507 mask files
+2025-07-15 06:50:26,669 - INFO - Found 252 frames with valid blob data
+2025-07-15 06:50:27,014 - DEBUG - No collision detected for AConcave_FConcave at IoU 0.05
+2025-07-15 06:50:27,357 - DEBUG - No collision detected for AConcave_FConcave at IoU 0.1
+2025-07-15 06:50:27,699 - DEBUG - No collision detected for AConcave_FConcave at IoU 0.15
+2025-07-15 06:50:28,043 - DEBUG - No collision detected for AConcave_FConcave at IoU 0.2
+2025-07-15 06:50:28,392 - DEBUG - No collision detected for AConcave_FConcave at IoU 0.25
+2025-07-15 06:50:28,734 - DEBUG - No collision detected for AConcave_FConcave at IoU 0.3
+2025-07-15 06:50:29,103 - DEBUG - No collision detected for AConcave_FConcave at IoU 0.35
+2025-07-15 06:50:29,450 - DEBUG - No collision detected for AConcave_FConcave at IoU 0.4
+2025-07-15 06:50:29,796 - DEBUG - No collision detected for AConcave_FConcave at IoU 0.45
+2025-07-15 06:50:30,138 - DEBUG - No collision detected for AConcave_FConcave at IoU 0.5
+2025-07-15 06:50:30,481 - DEBUG - No collision detected for AConcave_FConcave at IoU 0.55
+2025-07-15 06:50:30,824 - DEBUG - No collision detected for AConcave_FConcave at IoU 0.6
+2025-07-15 06:50:31,167 - DEBUG - No collision detected for AConcave_FConcave at IoU 0.65
+2025-07-15 06:50:31,509 - DEBUG - No collision detected for AConcave_FConcave at IoU 0.7
+2025-07-15 06:50:31,892 - DEBUG - No collision detected for AConcave_FConcave at IoU 0.75
+2025-07-15 06:50:32,250 - DEBUG - No collision detected for AConcave_FConcave at IoU 0.8
+2025-07-15 06:50:32,593 - DEBUG - No collision detected for AConcave_FConcave at IoU 0.85
+2025-07-15 06:50:32,935 - DEBUG - No collision detected for AConcave_FConcave at IoU 0.9
+2025-07-15 06:50:33,279 - DEBUG - No collision detected for AConcave_FConcave at IoU 0.95
+2025-07-15 06:50:33,279 - INFO - Processing video: BConcave+AConcave+3500
+2025-07-15 06:50:33,280 - INFO - Video BConcave+AConcave+3500 already processed, skipping...
+2025-07-15 06:50:33,312 - INFO - VanillaSegmentationSaver initialized with output dir: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_videos/segformer_model-BConcave+AConcave+3500/org_segmentation
+2025-07-15 06:50:33,312 - INFO - Video BConcave+AConcave+3500: Both blobs remained visible throughout
+2025-07-15 06:50:33,312 - INFO - Video BConcave+AConcave+3500: Blob 1 memory strategy = running_average
+2025-07-15 06:50:33,312 - INFO - Video BConcave+AConcave+3500: Blob 1 memory frozen after frame 80
+2025-07-15 06:50:33,320 - INFO - Found 630 mask files
+2025-07-15 06:50:37,026 - INFO - Found 315 frames with valid blob data
+2025-07-15 06:50:37,311 - DEBUG - Collision time for BConcave+AConcave+3500 at IoU 0.05: 3716.67ms
+2025-07-15 06:50:37,600 - DEBUG - Collision time for BConcave+AConcave+3500 at IoU 0.1: 3783.33ms
+2025-07-15 06:50:37,893 - DEBUG - Collision time for BConcave+AConcave+3500 at IoU 0.15: 3833.33ms
+2025-07-15 06:50:38,191 - DEBUG - Collision time for BConcave+AConcave+3500 at IoU 0.2: 3900.00ms
+2025-07-15 06:50:38,490 - DEBUG - Collision time for BConcave+AConcave+3500 at IoU 0.25: 3933.33ms
+2025-07-15 06:50:38,798 - DEBUG - Collision time for BConcave+AConcave+3500 at IoU 0.3: 4016.67ms
+2025-07-15 06:50:39,235 - DEBUG - No collision detected for BConcave+AConcave+3500 at IoU 0.35
+2025-07-15 06:50:39,656 - DEBUG - No collision detected for BConcave+AConcave+3500 at IoU 0.4
+2025-07-15 06:50:40,079 - DEBUG - No collision detected for BConcave+AConcave+3500 at IoU 0.45
+2025-07-15 06:50:40,510 - DEBUG - No collision detected for BConcave+AConcave+3500 at IoU 0.5
+2025-07-15 06:50:40,930 - DEBUG - No collision detected for BConcave+AConcave+3500 at IoU 0.55
+2025-07-15 06:50:41,347 - DEBUG - No collision detected for BConcave+AConcave+3500 at IoU 0.6
+2025-07-15 06:50:41,770 - DEBUG - No collision detected for BConcave+AConcave+3500 at IoU 0.65
+2025-07-15 06:50:42,187 - DEBUG - No collision detected for BConcave+AConcave+3500 at IoU 0.7
+2025-07-15 06:50:42,606 - DEBUG - No collision detected for BConcave+AConcave+3500 at IoU 0.75
+2025-07-15 06:50:43,024 - DEBUG - No collision detected for BConcave+AConcave+3500 at IoU 0.8
+2025-07-15 06:50:43,441 - DEBUG - No collision detected for BConcave+AConcave+3500 at IoU 0.85
+2025-07-15 06:50:43,857 - DEBUG - No collision detected for BConcave+AConcave+3500 at IoU 0.9
+2025-07-15 06:50:44,277 - DEBUG - No collision detected for BConcave+AConcave+3500 at IoU 0.95
+2025-07-15 06:50:44,277 - INFO - Processing video: BConcave+AConcave+3700_flipped
+2025-07-15 06:50:44,278 - INFO - Video BConcave+AConcave+3700_flipped already processed, skipping...
+2025-07-15 06:50:44,300 - INFO - VanillaSegmentationSaver initialized with output dir: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_videos/segformer_model-BConcave+AConcave+3700_flipped/org_segmentation
+2025-07-15 06:50:44,300 - INFO - Video BConcave+AConcave+3700_flipped: Both blobs remained visible throughout
+2025-07-15 06:50:44,300 - INFO - Video BConcave+AConcave+3700_flipped: Blob 1 memory strategy = running_average
+2025-07-15 06:50:44,300 - INFO - Video BConcave+AConcave+3700_flipped: Blob 1 memory frozen after frame 80
+2025-07-15 06:50:44,310 - INFO - Found 627 mask files
+2025-07-15 06:50:47,687 - INFO - Found 312 frames with valid blob data
+2025-07-15 06:50:48,119 - DEBUG - No collision detected for BConcave+AConcave+3700_flipped at IoU 0.05
+2025-07-15 06:50:48,549 - DEBUG - No collision detected for BConcave+AConcave+3700_flipped at IoU 0.1
+2025-07-15 06:50:48,983 - DEBUG - No collision detected for BConcave+AConcave+3700_flipped at IoU 0.15
+2025-07-15 06:50:49,410 - DEBUG - No collision detected for BConcave+AConcave+3700_flipped at IoU 0.2
+2025-07-15 06:50:49,833 - DEBUG - No collision detected for BConcave+AConcave+3700_flipped at IoU 0.25
+2025-07-15 06:50:50,260 - DEBUG - No collision detected for BConcave+AConcave+3700_flipped at IoU 0.3
+2025-07-15 06:50:50,680 - DEBUG - No collision detected for BConcave+AConcave+3700_flipped at IoU 0.35
+2025-07-15 06:50:51,100 - DEBUG - No collision detected for BConcave+AConcave+3700_flipped at IoU 0.4
+2025-07-15 06:50:51,515 - DEBUG - No collision detected for BConcave+AConcave+3700_flipped at IoU 0.45
+2025-07-15 06:50:51,936 - DEBUG - No collision detected for BConcave+AConcave+3700_flipped at IoU 0.5
+2025-07-15 06:50:52,359 - DEBUG - No collision detected for BConcave+AConcave+3700_flipped at IoU 0.55
+2025-07-15 06:50:52,772 - DEBUG - No collision detected for BConcave+AConcave+3700_flipped at IoU 0.6
+2025-07-15 06:50:53,187 - DEBUG - No collision detected for BConcave+AConcave+3700_flipped at IoU 0.65
+2025-07-15 06:50:53,603 - DEBUG - No collision detected for BConcave+AConcave+3700_flipped at IoU 0.7
+2025-07-15 06:50:54,019 - DEBUG - No collision detected for BConcave+AConcave+3700_flipped at IoU 0.75
+2025-07-15 06:50:54,434 - DEBUG - No collision detected for BConcave+AConcave+3700_flipped at IoU 0.8
+2025-07-15 06:50:54,854 - DEBUG - No collision detected for BConcave+AConcave+3700_flipped at IoU 0.85
+2025-07-15 06:50:55,268 - DEBUG - No collision detected for BConcave+AConcave+3700_flipped at IoU 0.9
+2025-07-15 06:50:55,684 - DEBUG - No collision detected for BConcave+AConcave+3700_flipped at IoU 0.95
+2025-07-15 06:50:55,684 - INFO - Processing video: BConcave+AConcave+3900
+2025-07-15 06:50:55,685 - INFO - Video BConcave+AConcave+3900 already processed, skipping...
+2025-07-15 06:50:55,706 - INFO - VanillaSegmentationSaver initialized with output dir: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_videos/segformer_model-BConcave+AConcave+3900/org_segmentation
+2025-07-15 06:50:55,706 - INFO - Video BConcave+AConcave+3900: Both blobs remained visible throughout
+2025-07-15 06:50:55,706 - INFO - Video BConcave+AConcave+3900: Blob 1 memory strategy = running_average
+2025-07-15 06:50:55,706 - INFO - Video BConcave+AConcave+3900: Blob 1 memory frozen after frame 80
+2025-07-15 06:50:55,714 - INFO - Found 630 mask files
+2025-07-15 06:50:59,064 - INFO - Found 315 frames with valid blob data
+2025-07-15 06:50:59,401 - DEBUG - Collision time for BConcave+AConcave+3900 at IoU 0.05: 3666.67ms
+2025-07-15 06:50:59,696 - DEBUG - Collision time for BConcave+AConcave+3900 at IoU 0.1: 3816.67ms
+2025-07-15 06:51:00,002 - DEBUG - Collision time for BConcave+AConcave+3900 at IoU 0.15: 3950.00ms
+2025-07-15 06:51:00,321 - DEBUG - Collision time for BConcave+AConcave+3900 at IoU 0.2: 4116.67ms
+2025-07-15 06:51:00,652 - DEBUG - Collision time for BConcave+AConcave+3900 at IoU 0.25: 4266.67ms
+2025-07-15 06:51:01,088 - DEBUG - No collision detected for BConcave+AConcave+3900 at IoU 0.3
+2025-07-15 06:51:01,513 - DEBUG - No collision detected for BConcave+AConcave+3900 at IoU 0.35
+2025-07-15 06:51:01,950 - DEBUG - No collision detected for BConcave+AConcave+3900 at IoU 0.4
+2025-07-15 06:51:02,402 - DEBUG - No collision detected for BConcave+AConcave+3900 at IoU 0.45
+2025-07-15 06:51:02,828 - DEBUG - No collision detected for BConcave+AConcave+3900 at IoU 0.5
+2025-07-15 06:51:03,254 - DEBUG - No collision detected for BConcave+AConcave+3900 at IoU 0.55
+2025-07-15 06:51:03,681 - DEBUG - No collision detected for BConcave+AConcave+3900 at IoU 0.6
+2025-07-15 06:51:04,108 - DEBUG - No collision detected for BConcave+AConcave+3900 at IoU 0.65
+2025-07-15 06:51:04,541 - DEBUG - No collision detected for BConcave+AConcave+3900 at IoU 0.7
+2025-07-15 06:51:04,964 - DEBUG - No collision detected for BConcave+AConcave+3900 at IoU 0.75
+2025-07-15 06:51:05,386 - DEBUG - No collision detected for BConcave+AConcave+3900 at IoU 0.8
+2025-07-15 06:51:05,810 - DEBUG - No collision detected for BConcave+AConcave+3900 at IoU 0.85
+2025-07-15 06:51:06,232 - DEBUG - No collision detected for BConcave+AConcave+3900 at IoU 0.9
+2025-07-15 06:51:06,657 - DEBUG - No collision detected for BConcave+AConcave+3900 at IoU 0.95
+2025-07-15 06:51:06,657 - INFO - Processing video: BConcave+AConcave+4100_flipped
+2025-07-15 06:51:06,658 - INFO - Video BConcave+AConcave+4100_flipped already processed, skipping...
+2025-07-15 06:51:06,678 - INFO - VanillaSegmentationSaver initialized with output dir: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_videos/segformer_model-BConcave+AConcave+4100_flipped/org_segmentation
+2025-07-15 06:51:06,678 - INFO - Video BConcave+AConcave+4100_flipped: Both blobs remained visible throughout
+2025-07-15 06:51:06,678 - INFO - Video BConcave+AConcave+4100_flipped: Blob 1 memory strategy = running_average
+2025-07-15 06:51:06,678 - INFO - Video BConcave+AConcave+4100_flipped: Blob 1 memory frozen after frame 80
+2025-07-15 06:51:06,687 - INFO - Found 629 mask files
+2025-07-15 06:51:10,048 - INFO - Found 314 frames with valid blob data
+2025-07-15 06:51:10,482 - DEBUG - No collision detected for BConcave+AConcave+4100_flipped at IoU 0.05
+2025-07-15 06:51:10,912 - DEBUG - No collision detected for BConcave+AConcave+4100_flipped at IoU 0.1
+2025-07-15 06:51:11,337 - DEBUG - No collision detected for BConcave+AConcave+4100_flipped at IoU 0.15
+2025-07-15 06:51:11,761 - DEBUG - No collision detected for BConcave+AConcave+4100_flipped at IoU 0.2
+2025-07-15 06:51:12,189 - DEBUG - No collision detected for BConcave+AConcave+4100_flipped at IoU 0.25
+2025-07-15 06:51:12,611 - DEBUG - No collision detected for BConcave+AConcave+4100_flipped at IoU 0.3
+2025-07-15 06:51:13,034 - DEBUG - No collision detected for BConcave+AConcave+4100_flipped at IoU 0.35
+2025-07-15 06:51:13,455 - DEBUG - No collision detected for BConcave+AConcave+4100_flipped at IoU 0.4
+2025-07-15 06:51:13,879 - DEBUG - No collision detected for BConcave+AConcave+4100_flipped at IoU 0.45
+2025-07-15 06:51:14,302 - DEBUG - No collision detected for BConcave+AConcave+4100_flipped at IoU 0.5
+2025-07-15 06:51:14,727 - DEBUG - No collision detected for BConcave+AConcave+4100_flipped at IoU 0.55
+2025-07-15 06:51:15,153 - DEBUG - No collision detected for BConcave+AConcave+4100_flipped at IoU 0.6
+2025-07-15 06:51:15,603 - DEBUG - No collision detected for BConcave+AConcave+4100_flipped at IoU 0.65
+2025-07-15 06:51:16,040 - DEBUG - No collision detected for BConcave+AConcave+4100_flipped at IoU 0.7
+2025-07-15 06:51:16,473 - DEBUG - No collision detected for BConcave+AConcave+4100_flipped at IoU 0.75
+2025-07-15 06:51:16,900 - DEBUG - No collision detected for BConcave+AConcave+4100_flipped at IoU 0.8
+2025-07-15 06:51:17,324 - DEBUG - No collision detected for BConcave+AConcave+4100_flipped at IoU 0.85
+2025-07-15 06:51:17,749 - DEBUG - No collision detected for BConcave+AConcave+4100_flipped at IoU 0.9
+2025-07-15 06:51:18,173 - DEBUG - No collision detected for BConcave+AConcave+4100_flipped at IoU 0.95
+2025-07-15 06:51:18,173 - INFO - Processing video: BConcave+AConcave+4300
+2025-07-15 06:51:18,174 - INFO - Video BConcave+AConcave+4300 already processed, skipping...
+2025-07-15 06:51:18,194 - INFO - VanillaSegmentationSaver initialized with output dir: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_videos/segformer_model-BConcave+AConcave+4300/org_segmentation
+2025-07-15 06:51:18,194 - INFO - Video BConcave+AConcave+4300: Both blobs remained visible throughout
+2025-07-15 06:51:18,195 - INFO - Video BConcave+AConcave+4300: Blob 1 memory strategy = running_average
+2025-07-15 06:51:18,195 - INFO - Video BConcave+AConcave+4300: Blob 1 memory frozen after frame 80
+2025-07-15 06:51:18,203 - INFO - Found 630 mask files
+2025-07-15 06:51:21,361 - INFO - Found 315 frames with valid blob data
+2025-07-15 06:51:21,743 - DEBUG - Collision time for BConcave+AConcave+4300 at IoU 0.05: 4500.00ms
+2025-07-15 06:51:22,095 - DEBUG - Collision time for BConcave+AConcave+4300 at IoU 0.1: 4550.00ms
+2025-07-15 06:51:22,460 - DEBUG - Collision time for BConcave+AConcave+4300 at IoU 0.15: 4600.00ms
+2025-07-15 06:51:22,821 - DEBUG - Collision time for BConcave+AConcave+4300 at IoU 0.2: 4650.00ms
+2025-07-15 06:51:23,182 - DEBUG - Collision time for BConcave+AConcave+4300 at IoU 0.25: 4683.33ms
+2025-07-15 06:51:23,546 - DEBUG - Collision time for BConcave+AConcave+4300 at IoU 0.3: 4733.33ms
+2025-07-15 06:51:23,917 - DEBUG - Collision time for BConcave+AConcave+4300 at IoU 0.35: 4800.00ms
+2025-07-15 06:51:24,345 - DEBUG - No collision detected for BConcave+AConcave+4300 at IoU 0.4
+2025-07-15 06:51:24,767 - DEBUG - No collision detected for BConcave+AConcave+4300 at IoU 0.45
+2025-07-15 06:51:25,189 - DEBUG - No collision detected for BConcave+AConcave+4300 at IoU 0.5
+2025-07-15 06:51:25,611 - DEBUG - No collision detected for BConcave+AConcave+4300 at IoU 0.55
+2025-07-15 06:51:26,033 - DEBUG - No collision detected for BConcave+AConcave+4300 at IoU 0.6
+2025-07-15 06:51:26,470 - DEBUG - No collision detected for BConcave+AConcave+4300 at IoU 0.65
+2025-07-15 06:51:26,898 - DEBUG - No collision detected for BConcave+AConcave+4300 at IoU 0.7
+2025-07-15 06:51:27,337 - DEBUG - No collision detected for BConcave+AConcave+4300 at IoU 0.75
+2025-07-15 06:51:27,787 - DEBUG - No collision detected for BConcave+AConcave+4300 at IoU 0.8
+2025-07-15 06:51:28,233 - DEBUG - No collision detected for BConcave+AConcave+4300 at IoU 0.85
+2025-07-15 06:51:28,659 - DEBUG - No collision detected for BConcave+AConcave+4300 at IoU 0.9
+2025-07-15 06:51:29,085 - DEBUG - No collision detected for BConcave+AConcave+4300 at IoU 0.95
+2025-07-15 06:51:29,085 - INFO - Processing video: BConcave+AConcave+4500_flipped
+2025-07-15 06:51:29,086 - INFO - Video BConcave+AConcave+4500_flipped already processed, skipping...
+2025-07-15 06:51:29,111 - INFO - VanillaSegmentationSaver initialized with output dir: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_videos/segformer_model-BConcave+AConcave+4500_flipped/org_segmentation
+2025-07-15 06:51:29,111 - INFO - Video BConcave+AConcave+4500_flipped: Both blobs remained visible throughout
+2025-07-15 06:51:29,111 - INFO - Video BConcave+AConcave+4500_flipped: Blob 1 memory strategy = running_average
+2025-07-15 06:51:29,111 - INFO - Video BConcave+AConcave+4500_flipped: Blob 1 memory frozen after frame 80
+2025-07-15 06:51:29,120 - INFO - Found 626 mask files
+2025-07-15 06:51:32,538 - INFO - Found 311 frames with valid blob data
+2025-07-15 06:51:32,964 - DEBUG - No collision detected for BConcave+AConcave+4500_flipped at IoU 0.05
+2025-07-15 06:51:33,436 - DEBUG - No collision detected for BConcave+AConcave+4500_flipped at IoU 0.1
+2025-07-15 06:51:33,862 - DEBUG - No collision detected for BConcave+AConcave+4500_flipped at IoU 0.15
+2025-07-15 06:51:34,293 - DEBUG - No collision detected for BConcave+AConcave+4500_flipped at IoU 0.2
+2025-07-15 06:51:34,714 - DEBUG - No collision detected for BConcave+AConcave+4500_flipped at IoU 0.25
+2025-07-15 06:51:35,136 - DEBUG - No collision detected for BConcave+AConcave+4500_flipped at IoU 0.3
+2025-07-15 06:51:35,557 - DEBUG - No collision detected for BConcave+AConcave+4500_flipped at IoU 0.35
+2025-07-15 06:51:35,978 - DEBUG - No collision detected for BConcave+AConcave+4500_flipped at IoU 0.4
+2025-07-15 06:51:36,401 - DEBUG - No collision detected for BConcave+AConcave+4500_flipped at IoU 0.45
+2025-07-15 06:51:36,836 - DEBUG - No collision detected for BConcave+AConcave+4500_flipped at IoU 0.5
+2025-07-15 06:51:37,266 - DEBUG - No collision detected for BConcave+AConcave+4500_flipped at IoU 0.55
+2025-07-15 06:51:37,688 - DEBUG - No collision detected for BConcave+AConcave+4500_flipped at IoU 0.6
+2025-07-15 06:51:38,108 - DEBUG - No collision detected for BConcave+AConcave+4500_flipped at IoU 0.65
+2025-07-15 06:51:38,533 - DEBUG - No collision detected for BConcave+AConcave+4500_flipped at IoU 0.7
+2025-07-15 06:51:38,953 - DEBUG - No collision detected for BConcave+AConcave+4500_flipped at IoU 0.75
+2025-07-15 06:51:39,372 - DEBUG - No collision detected for BConcave+AConcave+4500_flipped at IoU 0.8
+2025-07-15 06:51:39,792 - DEBUG - No collision detected for BConcave+AConcave+4500_flipped at IoU 0.85
+2025-07-15 06:51:40,219 - DEBUG - No collision detected for BConcave+AConcave+4500_flipped at IoU 0.9
+2025-07-15 06:51:40,650 - DEBUG - No collision detected for BConcave+AConcave+4500_flipped at IoU 0.95
+2025-07-15 06:51:40,650 - INFO - Processing video: BConcave+AConvex+3500_flipped
+2025-07-15 06:51:40,650 - INFO - Video BConcave+AConvex+3500_flipped already processed, skipping...
+2025-07-15 06:51:40,668 - INFO - VanillaSegmentationSaver initialized with output dir: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_videos/segformer_model-BConcave+AConvex+3500_flipped/org_segmentation
+2025-07-15 06:51:40,668 - INFO - Video BConcave+AConvex+3500_flipped: Both blobs remained visible throughout
+2025-07-15 06:51:40,668 - INFO - Video BConcave+AConvex+3500_flipped: Blob 1 memory strategy = running_average
+2025-07-15 06:51:40,668 - INFO - Video BConcave+AConvex+3500_flipped: Blob 1 memory frozen after frame 80
+2025-07-15 06:51:40,676 - INFO - Found 614 mask files
+2025-07-15 06:51:43,874 - INFO - Found 299 frames with valid blob data
+2025-07-15 06:51:44,185 - DEBUG - Collision time for BConcave+AConvex+3500_flipped at IoU 0.05: 3766.67ms
+2025-07-15 06:51:44,486 - DEBUG - Collision time for BConcave+AConvex+3500_flipped at IoU 0.1: 3900.00ms
+2025-07-15 06:51:44,797 - DEBUG - Collision time for BConcave+AConvex+3500_flipped at IoU 0.15: 4016.67ms
+2025-07-15 06:51:45,135 - DEBUG - Collision time for BConcave+AConvex+3500_flipped at IoU 0.2: 4366.67ms
+2025-07-15 06:51:45,496 - DEBUG - Collision time for BConcave+AConvex+3500_flipped at IoU 0.25: 4666.67ms
+2025-07-15 06:51:45,906 - DEBUG - Collision time for BConcave+AConvex+3500_flipped at IoU 0.3: 4666.67ms
+2025-07-15 06:51:46,285 - DEBUG - Collision time for BConcave+AConvex+3500_flipped at IoU 0.35: 4666.67ms
+2025-07-15 06:51:46,646 - DEBUG - Collision time for BConcave+AConvex+3500_flipped at IoU 0.4: 4666.67ms
+2025-07-15 06:51:47,008 - DEBUG - Collision time for BConcave+AConvex+3500_flipped at IoU 0.45: 4666.67ms
+2025-07-15 06:51:47,370 - DEBUG - Collision time for BConcave+AConvex+3500_flipped at IoU 0.5: 4666.67ms
+2025-07-15 06:51:47,777 - DEBUG - No collision detected for BConcave+AConvex+3500_flipped at IoU 0.55
+2025-07-15 06:51:48,181 - DEBUG - No collision detected for BConcave+AConvex+3500_flipped at IoU 0.6
+2025-07-15 06:51:48,585 - DEBUG - No collision detected for BConcave+AConvex+3500_flipped at IoU 0.65
+2025-07-15 06:51:48,989 - DEBUG - No collision detected for BConcave+AConvex+3500_flipped at IoU 0.7
+2025-07-15 06:51:49,423 - DEBUG - No collision detected for BConcave+AConvex+3500_flipped at IoU 0.75
+2025-07-15 06:51:49,854 - DEBUG - No collision detected for BConcave+AConvex+3500_flipped at IoU 0.8
+2025-07-15 06:51:50,259 - DEBUG - No collision detected for BConcave+AConvex+3500_flipped at IoU 0.85
+2025-07-15 06:51:50,663 - DEBUG - No collision detected for BConcave+AConvex+3500_flipped at IoU 0.9
+2025-07-15 06:51:51,067 - DEBUG - No collision detected for BConcave+AConvex+3500_flipped at IoU 0.95
+2025-07-15 06:51:51,067 - INFO - Processing video: BConcave+AConvex+3700
+2025-07-15 06:51:51,068 - INFO - Video BConcave+AConvex+3700 already processed, skipping...
+2025-07-15 06:51:51,093 - INFO - VanillaSegmentationSaver initialized with output dir: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_videos/segformer_model-BConcave+AConvex+3700/org_segmentation
+2025-07-15 06:51:51,093 - INFO - Video BConcave+AConvex+3700: Both blobs remained visible throughout
+2025-07-15 06:51:51,093 - INFO - Video BConcave+AConvex+3700: Blob 1 memory strategy = running_average
+2025-07-15 06:51:51,093 - INFO - Video BConcave+AConvex+3700: Blob 1 memory frozen after frame 80
+2025-07-15 06:51:51,101 - INFO - Found 630 mask files
+2025-07-15 06:51:54,281 - INFO - Found 315 frames with valid blob data
+2025-07-15 06:51:54,603 - DEBUG - Collision time for BConcave+AConvex+3700 at IoU 0.05: 4150.00ms
+2025-07-15 06:51:55,020 - DEBUG - No collision detected for BConcave+AConvex+3700 at IoU 0.1
+2025-07-15 06:51:55,438 - DEBUG - No collision detected for BConcave+AConvex+3700 at IoU 0.15
+2025-07-15 06:51:55,854 - DEBUG - No collision detected for BConcave+AConvex+3700 at IoU 0.2
+2025-07-15 06:51:56,271 - DEBUG - No collision detected for BConcave+AConvex+3700 at IoU 0.25
+2025-07-15 06:51:56,687 - DEBUG - No collision detected for BConcave+AConvex+3700 at IoU 0.3
+2025-07-15 06:51:57,103 - DEBUG - No collision detected for BConcave+AConvex+3700 at IoU 0.35
+2025-07-15 06:51:57,522 - DEBUG - No collision detected for BConcave+AConvex+3700 at IoU 0.4
+2025-07-15 06:51:57,942 - DEBUG - No collision detected for BConcave+AConvex+3700 at IoU 0.45
+2025-07-15 06:51:58,391 - DEBUG - No collision detected for BConcave+AConvex+3700 at IoU 0.5
+2025-07-15 06:51:58,817 - DEBUG - No collision detected for BConcave+AConvex+3700 at IoU 0.55
+2025-07-15 06:51:59,234 - DEBUG - No collision detected for BConcave+AConvex+3700 at IoU 0.6
+2025-07-15 06:51:59,652 - DEBUG - No collision detected for BConcave+AConvex+3700 at IoU 0.65
+2025-07-15 06:52:00,071 - DEBUG - No collision detected for BConcave+AConvex+3700 at IoU 0.7
+2025-07-15 06:52:00,489 - DEBUG - No collision detected for BConcave+AConvex+3700 at IoU 0.75
+2025-07-15 06:52:00,906 - DEBUG - No collision detected for BConcave+AConvex+3700 at IoU 0.8
+2025-07-15 06:52:01,323 - DEBUG - No collision detected for BConcave+AConvex+3700 at IoU 0.85
+2025-07-15 06:52:01,749 - DEBUG - No collision detected for BConcave+AConvex+3700 at IoU 0.9
+2025-07-15 06:52:02,194 - DEBUG - No collision detected for BConcave+AConvex+3700 at IoU 0.95
+2025-07-15 06:52:02,194 - INFO - Processing video: BConcave+AConvex+3900_flipped
+2025-07-15 06:52:02,195 - INFO - Video BConcave+AConvex+3900_flipped already processed, skipping...
+2025-07-15 06:52:02,211 - INFO - VanillaSegmentationSaver initialized with output dir: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_videos/segformer_model-BConcave+AConvex+3900_flipped/org_segmentation
+2025-07-15 06:52:02,211 - INFO - Video BConcave+AConvex+3900_flipped: Both blobs remained visible throughout
+2025-07-15 06:52:02,211 - INFO - Video BConcave+AConvex+3900_flipped: Blob 1 memory strategy = running_average
+2025-07-15 06:52:02,211 - INFO - Video BConcave+AConvex+3900_flipped: Blob 1 memory frozen after frame 80
+2025-07-15 06:52:02,218 - INFO - Found 626 mask files
+2025-07-15 06:52:05,400 - INFO - Found 311 frames with valid blob data
+2025-07-15 06:52:05,815 - DEBUG - No collision detected for BConcave+AConvex+3900_flipped at IoU 0.05
+2025-07-15 06:52:06,227 - DEBUG - No collision detected for BConcave+AConvex+3900_flipped at IoU 0.1
+2025-07-15 06:52:06,639 - DEBUG - No collision detected for BConcave+AConvex+3900_flipped at IoU 0.15
+2025-07-15 06:52:07,057 - DEBUG - No collision detected for BConcave+AConvex+3900_flipped at IoU 0.2
+2025-07-15 06:52:07,486 - DEBUG - No collision detected for BConcave+AConvex+3900_flipped at IoU 0.25
+2025-07-15 06:52:07,917 - DEBUG - No collision detected for BConcave+AConvex+3900_flipped at IoU 0.3
+2025-07-15 06:52:08,348 - DEBUG - No collision detected for BConcave+AConvex+3900_flipped at IoU 0.35
+2025-07-15 06:52:08,794 - DEBUG - No collision detected for BConcave+AConvex+3900_flipped at IoU 0.4
+2025-07-15 06:52:09,225 - DEBUG - No collision detected for BConcave+AConvex+3900_flipped at IoU 0.45
+2025-07-15 06:52:09,656 - DEBUG - No collision detected for BConcave+AConvex+3900_flipped at IoU 0.5
+2025-07-15 06:52:10,074 - DEBUG - No collision detected for BConcave+AConvex+3900_flipped at IoU 0.55
+2025-07-15 06:52:10,498 - DEBUG - No collision detected for BConcave+AConvex+3900_flipped at IoU 0.6
+2025-07-15 06:52:10,916 - DEBUG - No collision detected for BConcave+AConvex+3900_flipped at IoU 0.65
+2025-07-15 06:52:11,338 - DEBUG - No collision detected for BConcave+AConvex+3900_flipped at IoU 0.7
+2025-07-15 06:52:11,756 - DEBUG - No collision detected for BConcave+AConvex+3900_flipped at IoU 0.75
+2025-07-15 06:52:12,172 - DEBUG - No collision detected for BConcave+AConvex+3900_flipped at IoU 0.8
+2025-07-15 06:52:12,589 - DEBUG - No collision detected for BConcave+AConvex+3900_flipped at IoU 0.85
+2025-07-15 06:52:13,006 - DEBUG - No collision detected for BConcave+AConvex+3900_flipped at IoU 0.9
+2025-07-15 06:52:13,423 - DEBUG - No collision detected for BConcave+AConvex+3900_flipped at IoU 0.95
+2025-07-15 06:52:13,423 - INFO - Processing video: BConcave+AConvex+4100
+2025-07-15 06:52:13,424 - INFO - Video BConcave+AConvex+4100 already processed, skipping...
+2025-07-15 06:52:13,461 - INFO - VanillaSegmentationSaver initialized with output dir: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_videos/segformer_model-BConcave+AConvex+4100/org_segmentation
+2025-07-15 06:52:13,461 - INFO - Video BConcave+AConvex+4100: Both blobs remained visible throughout
+2025-07-15 06:52:13,461 - INFO - Video BConcave+AConvex+4100: Blob 1 memory strategy = running_average
+2025-07-15 06:52:13,461 - INFO - Video BConcave+AConvex+4100: Blob 1 memory frozen after frame 80
+2025-07-15 06:52:13,468 - INFO - Found 630 mask files
+2025-07-15 06:52:16,669 - INFO - Found 315 frames with valid blob data
+2025-07-15 06:52:17,037 - DEBUG - Collision time for BConcave+AConvex+4100 at IoU 0.05: 4683.33ms
+2025-07-15 06:52:17,429 - DEBUG - Collision time for BConcave+AConvex+4100 at IoU 0.1: 4866.67ms
+2025-07-15 06:52:17,854 - DEBUG - Collision time for BConcave+AConvex+4100 at IoU 0.15: 5050.00ms
+2025-07-15 06:52:18,283 - DEBUG - No collision detected for BConcave+AConvex+4100 at IoU 0.2
+2025-07-15 06:52:18,705 - DEBUG - No collision detected for BConcave+AConvex+4100 at IoU 0.25
+2025-07-15 06:52:19,128 - DEBUG - No collision detected for BConcave+AConvex+4100 at IoU 0.3
+2025-07-15 06:52:19,551 - DEBUG - No collision detected for BConcave+AConvex+4100 at IoU 0.35
+2025-07-15 06:52:19,975 - DEBUG - No collision detected for BConcave+AConvex+4100 at IoU 0.4
+2025-07-15 06:52:20,398 - DEBUG - No collision detected for BConcave+AConvex+4100 at IoU 0.45
+2025-07-15 06:52:20,822 - DEBUG - No collision detected for BConcave+AConvex+4100 at IoU 0.5
+2025-07-15 06:52:21,246 - DEBUG - No collision detected for BConcave+AConvex+4100 at IoU 0.55
+2025-07-15 06:52:21,669 - DEBUG - No collision detected for BConcave+AConvex+4100 at IoU 0.6
+2025-07-15 06:52:22,135 - DEBUG - No collision detected for BConcave+AConvex+4100 at IoU 0.65
+2025-07-15 06:52:22,575 - DEBUG - No collision detected for BConcave+AConvex+4100 at IoU 0.7
+2025-07-15 06:52:22,996 - DEBUG - No collision detected for BConcave+AConvex+4100 at IoU 0.75
+2025-07-15 06:52:23,418 - DEBUG - No collision detected for BConcave+AConvex+4100 at IoU 0.8
+2025-07-15 06:52:23,840 - DEBUG - No collision detected for BConcave+AConvex+4100 at IoU 0.85
+2025-07-15 06:52:24,263 - DEBUG - No collision detected for BConcave+AConvex+4100 at IoU 0.9
+2025-07-15 06:52:24,685 - DEBUG - No collision detected for BConcave+AConvex+4100 at IoU 0.95
+2025-07-15 06:52:24,685 - INFO - Processing video: BConcave+AConvex+4300_flipped
+2025-07-15 06:52:24,686 - INFO - Video BConcave+AConvex+4300_flipped already processed, skipping...
+2025-07-15 06:52:24,704 - INFO - VanillaSegmentationSaver initialized with output dir: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_videos/segformer_model-BConcave+AConvex+4300_flipped/org_segmentation
+2025-07-15 06:52:24,704 - INFO - Video BConcave+AConvex+4300_flipped: Both blobs remained visible throughout
+2025-07-15 06:52:24,704 - INFO - Video BConcave+AConvex+4300_flipped: Blob 1 memory strategy = running_average
+2025-07-15 06:52:24,704 - INFO - Video BConcave+AConvex+4300_flipped: Blob 1 memory frozen after frame 80
+2025-07-15 06:52:24,711 - INFO - Found 628 mask files
+2025-07-15 06:52:27,849 - INFO - Found 314 frames with valid blob data
+2025-07-15 06:52:28,286 - DEBUG - No collision detected for BConcave+AConvex+4300_flipped at IoU 0.05
+2025-07-15 06:52:28,710 - DEBUG - No collision detected for BConcave+AConvex+4300_flipped at IoU 0.1
+2025-07-15 06:52:29,132 - DEBUG - No collision detected for BConcave+AConvex+4300_flipped at IoU 0.15
+2025-07-15 06:52:29,554 - DEBUG - No collision detected for BConcave+AConvex+4300_flipped at IoU 0.2
+2025-07-15 06:52:29,976 - DEBUG - No collision detected for BConcave+AConvex+4300_flipped at IoU 0.25
+2025-07-15 06:52:30,396 - DEBUG - No collision detected for BConcave+AConvex+4300_flipped at IoU 0.3
+2025-07-15 06:52:30,819 - DEBUG - No collision detected for BConcave+AConvex+4300_flipped at IoU 0.35
+2025-07-15 06:52:31,241 - DEBUG - No collision detected for BConcave+AConvex+4300_flipped at IoU 0.4
+2025-07-15 06:52:31,662 - DEBUG - No collision detected for BConcave+AConvex+4300_flipped at IoU 0.45
+2025-07-15 06:52:32,083 - DEBUG - No collision detected for BConcave+AConvex+4300_flipped at IoU 0.5
+2025-07-15 06:52:32,511 - DEBUG - No collision detected for BConcave+AConvex+4300_flipped at IoU 0.55
+2025-07-15 06:52:32,932 - DEBUG - No collision detected for BConcave+AConvex+4300_flipped at IoU 0.6
+2025-07-15 06:52:33,355 - DEBUG - No collision detected for BConcave+AConvex+4300_flipped at IoU 0.65
+2025-07-15 06:52:33,777 - DEBUG - No collision detected for BConcave+AConvex+4300_flipped at IoU 0.7
+2025-07-15 06:52:34,206 - DEBUG - No collision detected for BConcave+AConvex+4300_flipped at IoU 0.75
+2025-07-15 06:52:34,628 - DEBUG - No collision detected for BConcave+AConvex+4300_flipped at IoU 0.8
+2025-07-15 06:52:35,049 - DEBUG - No collision detected for BConcave+AConvex+4300_flipped at IoU 0.85
+2025-07-15 06:52:35,470 - DEBUG - No collision detected for BConcave+AConvex+4300_flipped at IoU 0.9
+2025-07-15 06:52:35,890 - DEBUG - No collision detected for BConcave+AConvex+4300_flipped at IoU 0.95
+2025-07-15 06:52:35,891 - INFO - Processing video: BConcave+AConvex+4500
+2025-07-15 06:52:35,891 - INFO - Video BConcave+AConvex+4500 already processed, skipping...
+2025-07-15 06:52:35,909 - INFO - VanillaSegmentationSaver initialized with output dir: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_videos/segformer_model-BConcave+AConvex+4500/org_segmentation
+2025-07-15 06:52:35,909 - INFO - Video BConcave+AConvex+4500: Both blobs remained visible throughout
+2025-07-15 06:52:35,909 - INFO - Video BConcave+AConvex+4500: Blob 1 memory strategy = running_average
+2025-07-15 06:52:35,909 - INFO - Video BConcave+AConvex+4500: Blob 1 memory frozen after frame 80
+2025-07-15 06:52:35,916 - INFO - Found 630 mask files
+2025-07-15 06:52:39,152 - INFO - Found 315 frames with valid blob data
+2025-07-15 06:52:39,532 - DEBUG - Collision time for BConcave+AConvex+4500 at IoU 0.05: 4766.67ms
+2025-07-15 06:52:39,911 - DEBUG - Collision time for BConcave+AConvex+4500 at IoU 0.1: 4900.00ms
+2025-07-15 06:52:40,311 - DEBUG - Collision time for BConcave+AConvex+4500 at IoU 0.15: 5033.33ms
+2025-07-15 06:52:40,735 - DEBUG - No collision detected for BConcave+AConvex+4500 at IoU 0.2
+2025-07-15 06:52:41,158 - DEBUG - No collision detected for BConcave+AConvex+4500 at IoU 0.25
+2025-07-15 06:52:41,580 - DEBUG - No collision detected for BConcave+AConvex+4500 at IoU 0.3
+2025-07-15 06:52:42,005 - DEBUG - No collision detected for BConcave+AConvex+4500 at IoU 0.35
+2025-07-15 06:52:42,428 - DEBUG - No collision detected for BConcave+AConvex+4500 at IoU 0.4
+2025-07-15 06:52:42,850 - DEBUG - No collision detected for BConcave+AConvex+4500 at IoU 0.45
+2025-07-15 06:52:43,279 - DEBUG - No collision detected for BConcave+AConvex+4500 at IoU 0.5
+2025-07-15 06:52:43,703 - DEBUG - No collision detected for BConcave+AConvex+4500 at IoU 0.55
+2025-07-15 06:52:44,128 - DEBUG - No collision detected for BConcave+AConvex+4500 at IoU 0.6
+2025-07-15 06:52:44,550 - DEBUG - No collision detected for BConcave+AConvex+4500 at IoU 0.65
+2025-07-15 06:52:44,974 - DEBUG - No collision detected for BConcave+AConvex+4500 at IoU 0.7
+2025-07-15 06:52:45,396 - DEBUG - No collision detected for BConcave+AConvex+4500 at IoU 0.75
+2025-07-15 06:52:45,821 - DEBUG - No collision detected for BConcave+AConvex+4500 at IoU 0.8
+2025-07-15 06:52:46,254 - DEBUG - No collision detected for BConcave+AConvex+4500 at IoU 0.85
+2025-07-15 06:52:46,678 - DEBUG - No collision detected for BConcave+AConvex+4500 at IoU 0.9
+2025-07-15 06:52:47,102 - DEBUG - No collision detected for BConcave+AConvex+4500 at IoU 0.95
+2025-07-15 06:52:47,102 - INFO - Processing video: BConcave+BConcavePatient+3500
+2025-07-15 06:52:47,103 - INFO - Video BConcave+BConcavePatient+3500 already processed, skipping...
+2025-07-15 06:52:47,122 - INFO - VanillaSegmentationSaver initialized with output dir: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_videos/segformer_model-BConcave+BConcavePatient+3500/org_segmentation
+2025-07-15 06:52:47,122 - INFO - Video BConcave+BConcavePatient+3500: Both blobs remained visible throughout
+2025-07-15 06:52:47,122 - INFO - Video BConcave+BConcavePatient+3500: Blob 1 memory strategy = running_average
+2025-07-15 06:52:47,122 - INFO - Video BConcave+BConcavePatient+3500: Blob 1 memory frozen after frame 80
+2025-07-15 06:52:47,128 - INFO - Found 396 mask files
+2025-07-15 06:52:49,234 - INFO - Found 81 frames with valid blob data
+2025-07-15 06:52:49,378 - DEBUG - No collision detected for BConcave+BConcavePatient+3500 at IoU 0.05
+2025-07-15 06:52:49,493 - DEBUG - No collision detected for BConcave+BConcavePatient+3500 at IoU 0.1
+2025-07-15 06:52:49,644 - DEBUG - No collision detected for BConcave+BConcavePatient+3500 at IoU 0.15
+2025-07-15 06:52:49,760 - DEBUG - No collision detected for BConcave+BConcavePatient+3500 at IoU 0.2
+2025-07-15 06:52:49,873 - DEBUG - No collision detected for BConcave+BConcavePatient+3500 at IoU 0.25
+2025-07-15 06:52:49,987 - DEBUG - No collision detected for BConcave+BConcavePatient+3500 at IoU 0.3
+2025-07-15 06:52:50,100 - DEBUG - No collision detected for BConcave+BConcavePatient+3500 at IoU 0.35
+2025-07-15 06:52:50,213 - DEBUG - No collision detected for BConcave+BConcavePatient+3500 at IoU 0.4
+2025-07-15 06:52:50,327 - DEBUG - No collision detected for BConcave+BConcavePatient+3500 at IoU 0.45
+2025-07-15 06:52:50,441 - DEBUG - No collision detected for BConcave+BConcavePatient+3500 at IoU 0.5
+2025-07-15 06:52:50,554 - DEBUG - No collision detected for BConcave+BConcavePatient+3500 at IoU 0.55
+2025-07-15 06:52:50,667 - DEBUG - No collision detected for BConcave+BConcavePatient+3500 at IoU 0.6
+2025-07-15 06:52:50,781 - DEBUG - No collision detected for BConcave+BConcavePatient+3500 at IoU 0.65
+2025-07-15 06:52:50,894 - DEBUG - No collision detected for BConcave+BConcavePatient+3500 at IoU 0.7
+2025-07-15 06:52:51,009 - DEBUG - No collision detected for BConcave+BConcavePatient+3500 at IoU 0.75
+2025-07-15 06:52:51,125 - DEBUG - No collision detected for BConcave+BConcavePatient+3500 at IoU 0.8
+2025-07-15 06:52:51,239 - DEBUG - No collision detected for BConcave+BConcavePatient+3500 at IoU 0.85
+2025-07-15 06:52:51,352 - DEBUG - No collision detected for BConcave+BConcavePatient+3500 at IoU 0.9
+2025-07-15 06:52:51,466 - DEBUG - No collision detected for BConcave+BConcavePatient+3500 at IoU 0.95
+2025-07-15 06:52:51,466 - INFO - Processing video: BConcave+BConcavePatient+3700_flipped
+2025-07-15 06:52:51,467 - INFO - Video BConcave+BConcavePatient+3700_flipped already processed, skipping...
+2025-07-15 06:52:51,485 - INFO - VanillaSegmentationSaver initialized with output dir: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_videos/segformer_model-BConcave+BConcavePatient+3700_flipped/org_segmentation
+2025-07-15 06:52:51,486 - INFO - Video BConcave+BConcavePatient+3700_flipped: Both blobs remained visible throughout
+2025-07-15 06:52:51,486 - INFO - Video BConcave+BConcavePatient+3700_flipped: Blob 1 memory strategy = running_average
+2025-07-15 06:52:51,486 - INFO - Video BConcave+BConcavePatient+3700_flipped: Blob 1 memory frozen after frame 80
+2025-07-15 06:52:51,492 - INFO - Found 602 mask files
+2025-07-15 06:52:54,544 - INFO - Found 287 frames with valid blob data
+2025-07-15 06:52:54,945 - DEBUG - No collision detected for BConcave+BConcavePatient+3700_flipped at IoU 0.05
+2025-07-15 06:52:55,366 - DEBUG - No collision detected for BConcave+BConcavePatient+3700_flipped at IoU 0.1
+2025-07-15 06:52:55,751 - DEBUG - No collision detected for BConcave+BConcavePatient+3700_flipped at IoU 0.15
+2025-07-15 06:52:56,137 - DEBUG - No collision detected for BConcave+BConcavePatient+3700_flipped at IoU 0.2
+2025-07-15 06:52:56,524 - DEBUG - No collision detected for BConcave+BConcavePatient+3700_flipped at IoU 0.25
+2025-07-15 06:52:56,911 - DEBUG - No collision detected for BConcave+BConcavePatient+3700_flipped at IoU 0.3
+2025-07-15 06:52:57,299 - DEBUG - No collision detected for BConcave+BConcavePatient+3700_flipped at IoU 0.35
+2025-07-15 06:52:57,686 - DEBUG - No collision detected for BConcave+BConcavePatient+3700_flipped at IoU 0.4
+2025-07-15 06:52:58,073 - DEBUG - No collision detected for BConcave+BConcavePatient+3700_flipped at IoU 0.45
+2025-07-15 06:52:58,466 - DEBUG - No collision detected for BConcave+BConcavePatient+3700_flipped at IoU 0.5
+2025-07-15 06:52:58,855 - DEBUG - No collision detected for BConcave+BConcavePatient+3700_flipped at IoU 0.55
+2025-07-15 06:52:59,241 - DEBUG - No collision detected for BConcave+BConcavePatient+3700_flipped at IoU 0.6
+2025-07-15 06:52:59,657 - DEBUG - No collision detected for BConcave+BConcavePatient+3700_flipped at IoU 0.65
+2025-07-15 06:53:00,064 - DEBUG - No collision detected for BConcave+BConcavePatient+3700_flipped at IoU 0.7
+2025-07-15 06:53:00,449 - DEBUG - No collision detected for BConcave+BConcavePatient+3700_flipped at IoU 0.75
+2025-07-15 06:53:00,836 - DEBUG - No collision detected for BConcave+BConcavePatient+3700_flipped at IoU 0.8
+2025-07-15 06:53:01,220 - DEBUG - No collision detected for BConcave+BConcavePatient+3700_flipped at IoU 0.85
+2025-07-15 06:53:01,606 - DEBUG - No collision detected for BConcave+BConcavePatient+3700_flipped at IoU 0.9
+2025-07-15 06:53:01,993 - DEBUG - No collision detected for BConcave+BConcavePatient+3700_flipped at IoU 0.95
+2025-07-15 06:53:01,993 - INFO - Processing video: BConcave+BConcavePatient+3900
+2025-07-15 06:53:01,994 - INFO - Video BConcave+BConcavePatient+3900 already processed, skipping...
+2025-07-15 06:53:02,012 - INFO - VanillaSegmentationSaver initialized with output dir: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_videos/segformer_model-BConcave+BConcavePatient+3900/org_segmentation
+2025-07-15 06:53:02,013 - INFO - Video BConcave+BConcavePatient+3900: Both blobs remained visible throughout
+2025-07-15 06:53:02,013 - INFO - Video BConcave+BConcavePatient+3900: Blob 1 memory strategy = running_average
+2025-07-15 06:53:02,013 - INFO - Video BConcave+BConcavePatient+3900: Blob 1 memory frozen after frame 80
+2025-07-15 06:53:02,020 - INFO - Found 556 mask files
+2025-07-15 06:53:04,843 - INFO - Found 242 frames with valid blob data
+2025-07-15 06:53:05,173 - DEBUG - No collision detected for BConcave+BConcavePatient+3900 at IoU 0.05
+2025-07-15 06:53:05,510 - DEBUG - No collision detected for BConcave+BConcavePatient+3900 at IoU 0.1
+2025-07-15 06:53:05,850 - DEBUG - No collision detected for BConcave+BConcavePatient+3900 at IoU 0.15
+2025-07-15 06:53:06,177 - DEBUG - No collision detected for BConcave+BConcavePatient+3900 at IoU 0.2
+2025-07-15 06:53:06,508 - DEBUG - No collision detected for BConcave+BConcavePatient+3900 at IoU 0.25
+2025-07-15 06:53:06,834 - DEBUG - No collision detected for BConcave+BConcavePatient+3900 at IoU 0.3
+2025-07-15 06:53:07,162 - DEBUG - No collision detected for BConcave+BConcavePatient+3900 at IoU 0.35
+2025-07-15 06:53:07,487 - DEBUG - No collision detected for BConcave+BConcavePatient+3900 at IoU 0.4
+2025-07-15 06:53:07,813 - DEBUG - No collision detected for BConcave+BConcavePatient+3900 at IoU 0.45
+2025-07-15 06:53:08,139 - DEBUG - No collision detected for BConcave+BConcavePatient+3900 at IoU 0.5
+2025-07-15 06:53:08,466 - DEBUG - No collision detected for BConcave+BConcavePatient+3900 at IoU 0.55
+2025-07-15 06:53:08,792 - DEBUG - No collision detected for BConcave+BConcavePatient+3900 at IoU 0.6
+2025-07-15 06:53:09,118 - DEBUG - No collision detected for BConcave+BConcavePatient+3900 at IoU 0.65
+2025-07-15 06:53:09,447 - DEBUG - No collision detected for BConcave+BConcavePatient+3900 at IoU 0.7
+2025-07-15 06:53:09,775 - DEBUG - No collision detected for BConcave+BConcavePatient+3900 at IoU 0.75
+2025-07-15 06:53:10,106 - DEBUG - No collision detected for BConcave+BConcavePatient+3900 at IoU 0.8
+2025-07-15 06:53:10,439 - DEBUG - No collision detected for BConcave+BConcavePatient+3900 at IoU 0.85
+2025-07-15 06:53:10,766 - DEBUG - No collision detected for BConcave+BConcavePatient+3900 at IoU 0.9
+2025-07-15 06:53:11,093 - DEBUG - No collision detected for BConcave+BConcavePatient+3900 at IoU 0.95
+2025-07-15 06:53:11,093 - INFO - Processing video: BConcave+BConcavePatient+4100_flipped
+2025-07-15 06:53:11,093 - INFO - Video BConcave+BConcavePatient+4100_flipped already processed, skipping...
+2025-07-15 06:53:11,110 - INFO - VanillaSegmentationSaver initialized with output dir: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_videos/segformer_model-BConcave+BConcavePatient+4100_flipped/org_segmentation
+2025-07-15 06:53:11,110 - INFO - Video BConcave+BConcavePatient+4100_flipped: Both blobs remained visible throughout
+2025-07-15 06:53:11,110 - INFO - Video BConcave+BConcavePatient+4100_flipped: Blob 1 memory strategy = running_average
+2025-07-15 06:53:11,110 - INFO - Video BConcave+BConcavePatient+4100_flipped: Blob 1 memory frozen after frame 80
+2025-07-15 06:53:11,117 - INFO - Found 630 mask files
+2025-07-15 06:53:14,189 - INFO - Found 314 frames with valid blob data
+2025-07-15 06:53:14,611 - DEBUG - No collision detected for BConcave+BConcavePatient+4100_flipped at IoU 0.05
+2025-07-15 06:53:15,025 - DEBUG - No collision detected for BConcave+BConcavePatient+4100_flipped at IoU 0.1
+2025-07-15 06:53:15,447 - DEBUG - No collision detected for BConcave+BConcavePatient+4100_flipped at IoU 0.15
+2025-07-15 06:53:15,863 - DEBUG - No collision detected for BConcave+BConcavePatient+4100_flipped at IoU 0.2
+2025-07-15 06:53:16,296 - DEBUG - No collision detected for BConcave+BConcavePatient+4100_flipped at IoU 0.25
+2025-07-15 06:53:16,726 - DEBUG - No collision detected for BConcave+BConcavePatient+4100_flipped at IoU 0.3
+2025-07-15 06:53:17,144 - DEBUG - No collision detected for BConcave+BConcavePatient+4100_flipped at IoU 0.35
+2025-07-15 06:53:17,560 - DEBUG - No collision detected for BConcave+BConcavePatient+4100_flipped at IoU 0.4
+2025-07-15 06:53:17,976 - DEBUG - No collision detected for BConcave+BConcavePatient+4100_flipped at IoU 0.45
+2025-07-15 06:53:18,393 - DEBUG - No collision detected for BConcave+BConcavePatient+4100_flipped at IoU 0.5
+2025-07-15 06:53:18,814 - DEBUG - No collision detected for BConcave+BConcavePatient+4100_flipped at IoU 0.55
+2025-07-15 06:53:19,231 - DEBUG - No collision detected for BConcave+BConcavePatient+4100_flipped at IoU 0.6
+2025-07-15 06:53:19,647 - DEBUG - No collision detected for BConcave+BConcavePatient+4100_flipped at IoU 0.65
+2025-07-15 06:53:20,063 - DEBUG - No collision detected for BConcave+BConcavePatient+4100_flipped at IoU 0.7
+2025-07-15 06:53:20,480 - DEBUG - No collision detected for BConcave+BConcavePatient+4100_flipped at IoU 0.75
+2025-07-15 06:53:20,896 - DEBUG - No collision detected for BConcave+BConcavePatient+4100_flipped at IoU 0.8
+2025-07-15 06:53:21,348 - DEBUG - No collision detected for BConcave+BConcavePatient+4100_flipped at IoU 0.85
+2025-07-15 06:53:21,771 - DEBUG - No collision detected for BConcave+BConcavePatient+4100_flipped at IoU 0.9
+2025-07-15 06:53:22,195 - DEBUG - No collision detected for BConcave+BConcavePatient+4100_flipped at IoU 0.95
+2025-07-15 06:53:22,196 - INFO - Processing video: BConcave+BConcavePatient+4300
+2025-07-15 06:53:22,196 - INFO - Video BConcave+BConcavePatient+4300 already processed, skipping...
+2025-07-15 06:53:22,210 - INFO - VanillaSegmentationSaver initialized with output dir: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_videos/segformer_model-BConcave+BConcavePatient+4300/org_segmentation
+2025-07-15 06:53:22,210 - INFO - Video BConcave+BConcavePatient+4300: Both blobs remained visible throughout
+2025-07-15 06:53:22,210 - INFO - Video BConcave+BConcavePatient+4300: Blob 1 memory strategy = running_average
+2025-07-15 06:53:22,210 - INFO - Video BConcave+BConcavePatient+4300: Blob 1 memory frozen after frame 80
+2025-07-15 06:53:22,216 - INFO - Found 631 mask files
+2025-07-15 06:53:25,430 - INFO - Found 315 frames with valid blob data
+2025-07-15 06:53:25,763 - DEBUG - Collision time for BConcave+BConcavePatient+4300 at IoU 0.05: 4316.67ms
+2025-07-15 06:53:26,100 - DEBUG - Collision time for BConcave+BConcavePatient+4300 at IoU 0.1: 4400.00ms
+2025-07-15 06:53:26,445 - DEBUG - Collision time for BConcave+BConcavePatient+4300 at IoU 0.15: 4466.67ms
+2025-07-15 06:53:26,788 - DEBUG - Collision time for BConcave+BConcavePatient+4300 at IoU 0.2: 4533.33ms
+2025-07-15 06:53:27,135 - DEBUG - Collision time for BConcave+BConcavePatient+4300 at IoU 0.25: 4583.33ms
+2025-07-15 06:53:27,495 - DEBUG - Collision time for BConcave+BConcavePatient+4300 at IoU 0.3: 4650.00ms
+2025-07-15 06:53:27,882 - DEBUG - Collision time for BConcave+BConcavePatient+4300 at IoU 0.35: 4716.67ms
+2025-07-15 06:53:28,253 - DEBUG - Collision time for BConcave+BConcavePatient+4300 at IoU 0.4: 4766.67ms
+2025-07-15 06:53:28,676 - DEBUG - No collision detected for BConcave+BConcavePatient+4300 at IoU 0.45
+2025-07-15 06:53:29,095 - DEBUG - No collision detected for BConcave+BConcavePatient+4300 at IoU 0.5
+2025-07-15 06:53:29,511 - DEBUG - No collision detected for BConcave+BConcavePatient+4300 at IoU 0.55
+2025-07-15 06:53:29,929 - DEBUG - No collision detected for BConcave+BConcavePatient+4300 at IoU 0.6
+2025-07-15 06:53:30,346 - DEBUG - No collision detected for BConcave+BConcavePatient+4300 at IoU 0.65
+2025-07-15 06:53:30,763 - DEBUG - No collision detected for BConcave+BConcavePatient+4300 at IoU 0.7
+2025-07-15 06:53:31,180 - DEBUG - No collision detected for BConcave+BConcavePatient+4300 at IoU 0.75
+2025-07-15 06:53:31,598 - DEBUG - No collision detected for BConcave+BConcavePatient+4300 at IoU 0.8
+2025-07-15 06:53:32,015 - DEBUG - No collision detected for BConcave+BConcavePatient+4300 at IoU 0.85
+2025-07-15 06:53:32,444 - DEBUG - No collision detected for BConcave+BConcavePatient+4300 at IoU 0.9
+2025-07-15 06:53:32,899 - DEBUG - No collision detected for BConcave+BConcavePatient+4300 at IoU 0.95
+2025-07-15 06:53:32,899 - INFO - Processing video: BConcave+BConcavePatient+4500_flipped
+2025-07-15 06:53:32,899 - INFO - Video BConcave+BConcavePatient+4500_flipped already processed, skipping...
+2025-07-15 06:53:32,915 - INFO - VanillaSegmentationSaver initialized with output dir: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_videos/segformer_model-BConcave+BConcavePatient+4500_flipped/org_segmentation
+2025-07-15 06:53:32,915 - INFO - Video BConcave+BConcavePatient+4500_flipped: Both blobs remained visible throughout
+2025-07-15 06:53:32,915 - INFO - Video BConcave+BConcavePatient+4500_flipped: Blob 1 memory strategy = running_average
+2025-07-15 06:53:32,915 - INFO - Video BConcave+BConcavePatient+4500_flipped: Blob 1 memory frozen after frame 80
+2025-07-15 06:53:32,922 - INFO - Found 631 mask files
+2025-07-15 06:53:36,128 - INFO - Found 315 frames with valid blob data
+2025-07-15 06:53:36,469 - DEBUG - Collision time for BConcave+BConcavePatient+4500_flipped at IoU 0.05: 4433.33ms
+2025-07-15 06:53:36,818 - DEBUG - Collision time for BConcave+BConcavePatient+4500_flipped at IoU 0.1: 4550.00ms
+2025-07-15 06:53:37,170 - DEBUG - Collision time for BConcave+BConcavePatient+4500_flipped at IoU 0.15: 4616.67ms
+2025-07-15 06:53:37,526 - DEBUG - Collision time for BConcave+BConcavePatient+4500_flipped at IoU 0.2: 4683.33ms
+2025-07-15 06:53:37,892 - DEBUG - Collision time for BConcave+BConcavePatient+4500_flipped at IoU 0.25: 4750.00ms
+2025-07-15 06:53:38,257 - DEBUG - Collision time for BConcave+BConcavePatient+4500_flipped at IoU 0.3: 4783.33ms
+2025-07-15 06:53:38,624 - DEBUG - Collision time for BConcave+BConcavePatient+4500_flipped at IoU 0.35: 4833.33ms
+2025-07-15 06:53:39,004 - DEBUG - Collision time for BConcave+BConcavePatient+4500_flipped at IoU 0.4: 4883.33ms
+2025-07-15 06:53:39,383 - DEBUG - Collision time for BConcave+BConcavePatient+4500_flipped at IoU 0.45: 4916.67ms
+2025-07-15 06:53:39,764 - DEBUG - Collision time for BConcave+BConcavePatient+4500_flipped at IoU 0.5: 4950.00ms
+2025-07-15 06:53:40,151 - DEBUG - Collision time for BConcave+BConcavePatient+4500_flipped at IoU 0.55: 4983.33ms
+2025-07-15 06:53:40,550 - DEBUG - Collision time for BConcave+BConcavePatient+4500_flipped at IoU 0.6: 5033.33ms
+2025-07-15 06:53:40,950 - DEBUG - Collision time for BConcave+BConcavePatient+4500_flipped at IoU 0.65: 5066.67ms
+2025-07-15 06:53:41,355 - DEBUG - Collision time for BConcave+BConcavePatient+4500_flipped at IoU 0.7: 5116.67ms
+2025-07-15 06:53:41,790 - DEBUG - No collision detected for BConcave+BConcavePatient+4500_flipped at IoU 0.75
+2025-07-15 06:53:42,221 - DEBUG - No collision detected for BConcave+BConcavePatient+4500_flipped at IoU 0.8
+2025-07-15 06:53:42,654 - DEBUG - No collision detected for BConcave+BConcavePatient+4500_flipped at IoU 0.85
+2025-07-15 06:53:43,080 - DEBUG - No collision detected for BConcave+BConcavePatient+4500_flipped at IoU 0.9
+2025-07-15 06:53:43,502 - DEBUG - No collision detected for BConcave+BConcavePatient+4500_flipped at IoU 0.95
+2025-07-15 06:53:43,502 - INFO - Processing video: BConcave+BConvex+3500_flipped
+2025-07-15 06:53:43,502 - INFO - Video BConcave+BConvex+3500_flipped already processed, skipping...
+2025-07-15 06:53:43,519 - INFO - VanillaSegmentationSaver initialized with output dir: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_videos/segformer_model-BConcave+BConvex+3500_flipped/org_segmentation
+2025-07-15 06:53:43,519 - INFO - Video BConcave+BConvex+3500_flipped: Both blobs remained visible throughout
+2025-07-15 06:53:43,519 - INFO - Video BConcave+BConvex+3500_flipped: Blob 1 memory strategy = running_average
+2025-07-15 06:53:43,519 - INFO - Video BConcave+BConvex+3500_flipped: Blob 1 memory frozen after frame 80
+2025-07-15 06:53:43,526 - INFO - Found 631 mask files
+2025-07-15 06:53:46,718 - INFO - Found 315 frames with valid blob data
+2025-07-15 06:53:47,017 - DEBUG - Collision time for BConcave+BConvex+3500_flipped at IoU 0.05: 3800.00ms
+2025-07-15 06:53:47,318 - DEBUG - Collision time for BConcave+BConvex+3500_flipped at IoU 0.1: 3966.67ms
+2025-07-15 06:53:47,629 - DEBUG - Collision time for BConcave+BConvex+3500_flipped at IoU 0.15: 4100.00ms
+2025-07-15 06:53:47,948 - DEBUG - Collision time for BConcave+BConvex+3500_flipped at IoU 0.2: 4200.00ms
+2025-07-15 06:53:48,274 - DEBUG - Collision time for BConcave+BConvex+3500_flipped at IoU 0.25: 4300.00ms
+2025-07-15 06:53:48,610 - DEBUG - Collision time for BConcave+BConvex+3500_flipped at IoU 0.3: 4416.67ms
+2025-07-15 06:53:48,955 - DEBUG - Collision time for BConcave+BConvex+3500_flipped at IoU 0.35: 4500.00ms
+2025-07-15 06:53:49,308 - DEBUG - Collision time for BConcave+BConvex+3500_flipped at IoU 0.4: 4616.67ms
+2025-07-15 06:53:49,727 - DEBUG - No collision detected for BConcave+BConvex+3500_flipped at IoU 0.45
+2025-07-15 06:53:50,149 - DEBUG - No collision detected for BConcave+BConvex+3500_flipped at IoU 0.5
+2025-07-15 06:53:50,583 - DEBUG - No collision detected for BConcave+BConvex+3500_flipped at IoU 0.55
+2025-07-15 06:53:51,011 - DEBUG - No collision detected for BConcave+BConvex+3500_flipped at IoU 0.6
+2025-07-15 06:53:51,428 - DEBUG - No collision detected for BConcave+BConvex+3500_flipped at IoU 0.65
+2025-07-15 06:53:51,846 - DEBUG - No collision detected for BConcave+BConvex+3500_flipped at IoU 0.7
+2025-07-15 06:53:52,275 - DEBUG - No collision detected for BConcave+BConvex+3500_flipped at IoU 0.75
+2025-07-15 06:53:52,701 - DEBUG - No collision detected for BConcave+BConvex+3500_flipped at IoU 0.8
+2025-07-15 06:53:53,125 - DEBUG - No collision detected for BConcave+BConvex+3500_flipped at IoU 0.85
+2025-07-15 06:53:53,546 - DEBUG - No collision detected for BConcave+BConvex+3500_flipped at IoU 0.9
+2025-07-15 06:53:53,967 - DEBUG - No collision detected for BConcave+BConvex+3500_flipped at IoU 0.95
+2025-07-15 06:53:53,967 - INFO - Processing video: BConcave+BConvex+3700
+2025-07-15 06:53:53,967 - INFO - Video BConcave+BConvex+3700 already processed, skipping...
+2025-07-15 06:53:53,984 - INFO - VanillaSegmentationSaver initialized with output dir: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_videos/segformer_model-BConcave+BConvex+3700/org_segmentation
+2025-07-15 06:53:53,984 - INFO - Video BConcave+BConvex+3700: Both blobs remained visible throughout
+2025-07-15 06:53:53,984 - INFO - Video BConcave+BConvex+3700: Blob 1 memory strategy = running_average
+2025-07-15 06:53:53,984 - INFO - Video BConcave+BConvex+3700: Blob 1 memory frozen after frame 80
+2025-07-15 06:53:53,990 - INFO - Found 631 mask files
+2025-07-15 06:53:57,139 - INFO - Found 315 frames with valid blob data
+2025-07-15 06:53:57,591 - DEBUG - No collision detected for BConcave+BConvex+3700 at IoU 0.05
+2025-07-15 06:53:58,013 - DEBUG - No collision detected for BConcave+BConvex+3700 at IoU 0.1
+2025-07-15 06:53:58,449 - DEBUG - No collision detected for BConcave+BConvex+3700 at IoU 0.15
+2025-07-15 06:53:58,869 - DEBUG - No collision detected for BConcave+BConvex+3700 at IoU 0.2
+2025-07-15 06:53:59,291 - DEBUG - No collision detected for BConcave+BConvex+3700 at IoU 0.25
+2025-07-15 06:53:59,713 - DEBUG - No collision detected for BConcave+BConvex+3700 at IoU 0.3
+2025-07-15 06:54:00,136 - DEBUG - No collision detected for BConcave+BConvex+3700 at IoU 0.35
+2025-07-15 06:54:00,560 - DEBUG - No collision detected for BConcave+BConvex+3700 at IoU 0.4
+2025-07-15 06:54:00,983 - DEBUG - No collision detected for BConcave+BConvex+3700 at IoU 0.45
+2025-07-15 06:54:01,405 - DEBUG - No collision detected for BConcave+BConvex+3700 at IoU 0.5
+2025-07-15 06:54:01,852 - DEBUG - No collision detected for BConcave+BConvex+3700 at IoU 0.55
+2025-07-15 06:54:02,288 - DEBUG - No collision detected for BConcave+BConvex+3700 at IoU 0.6
+2025-07-15 06:54:02,708 - DEBUG - No collision detected for BConcave+BConvex+3700 at IoU 0.65
+2025-07-15 06:54:03,130 - DEBUG - No collision detected for BConcave+BConvex+3700 at IoU 0.7
+2025-07-15 06:54:03,550 - DEBUG - No collision detected for BConcave+BConvex+3700 at IoU 0.75
+2025-07-15 06:54:03,971 - DEBUG - No collision detected for BConcave+BConvex+3700 at IoU 0.8
+2025-07-15 06:54:04,400 - DEBUG - No collision detected for BConcave+BConvex+3700 at IoU 0.85
+2025-07-15 06:54:04,823 - DEBUG - No collision detected for BConcave+BConvex+3700 at IoU 0.9
+2025-07-15 06:54:05,242 - DEBUG - No collision detected for BConcave+BConvex+3700 at IoU 0.95
+2025-07-15 06:54:05,242 - INFO - Processing video: BConcave+BConvex+3900_flipped
+2025-07-15 06:54:05,243 - INFO - Video BConcave+BConvex+3900_flipped already processed, skipping...
+2025-07-15 06:54:05,259 - INFO - VanillaSegmentationSaver initialized with output dir: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_videos/segformer_model-BConcave+BConvex+3900_flipped/org_segmentation
+2025-07-15 06:54:05,259 - INFO - Video BConcave+BConvex+3900_flipped: Both blobs remained visible throughout
+2025-07-15 06:54:05,259 - INFO - Video BConcave+BConvex+3900_flipped: Blob 1 memory strategy = running_average
+2025-07-15 06:54:05,259 - INFO - Video BConcave+BConvex+3900_flipped: Blob 1 memory frozen after frame 80
+2025-07-15 06:54:05,266 - INFO - Found 479 mask files
+2025-07-15 06:54:07,647 - INFO - Found 164 frames with valid blob data
+2025-07-15 06:54:07,905 - DEBUG - No collision detected for BConcave+BConvex+3900_flipped at IoU 0.05
+2025-07-15 06:54:08,128 - DEBUG - No collision detected for BConcave+BConvex+3900_flipped at IoU 0.1
+2025-07-15 06:54:08,350 - DEBUG - No collision detected for BConcave+BConvex+3900_flipped at IoU 0.15
+2025-07-15 06:54:08,575 - DEBUG - No collision detected for BConcave+BConvex+3900_flipped at IoU 0.2
+2025-07-15 06:54:08,798 - DEBUG - No collision detected for BConcave+BConvex+3900_flipped at IoU 0.25
+2025-07-15 06:54:09,022 - DEBUG - No collision detected for BConcave+BConvex+3900_flipped at IoU 0.3
+2025-07-15 06:54:09,246 - DEBUG - No collision detected for BConcave+BConvex+3900_flipped at IoU 0.35
+2025-07-15 06:54:09,468 - DEBUG - No collision detected for BConcave+BConvex+3900_flipped at IoU 0.4
+2025-07-15 06:54:09,692 - DEBUG - No collision detected for BConcave+BConvex+3900_flipped at IoU 0.45
+2025-07-15 06:54:09,914 - DEBUG - No collision detected for BConcave+BConvex+3900_flipped at IoU 0.5
+2025-07-15 06:54:10,136 - DEBUG - No collision detected for BConcave+BConvex+3900_flipped at IoU 0.55
+2025-07-15 06:54:10,364 - DEBUG - No collision detected for BConcave+BConvex+3900_flipped at IoU 0.6
+2025-07-15 06:54:10,586 - DEBUG - No collision detected for BConcave+BConvex+3900_flipped at IoU 0.65
+2025-07-15 06:54:10,808 - DEBUG - No collision detected for BConcave+BConvex+3900_flipped at IoU 0.7
+2025-07-15 06:54:11,030 - DEBUG - No collision detected for BConcave+BConvex+3900_flipped at IoU 0.75
+2025-07-15 06:54:11,251 - DEBUG - No collision detected for BConcave+BConvex+3900_flipped at IoU 0.8
+2025-07-15 06:54:11,473 - DEBUG - No collision detected for BConcave+BConvex+3900_flipped at IoU 0.85
+2025-07-15 06:54:11,695 - DEBUG - No collision detected for BConcave+BConvex+3900_flipped at IoU 0.9
+2025-07-15 06:54:11,917 - DEBUG - No collision detected for BConcave+BConvex+3900_flipped at IoU 0.95
+2025-07-15 06:54:11,917 - INFO - Processing video: BConcave+BConvex+4100
+2025-07-15 06:54:11,917 - INFO - Video BConcave+BConvex+4100 already processed, skipping...
+2025-07-15 06:54:11,938 - INFO - VanillaSegmentationSaver initialized with output dir: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_videos/segformer_model-BConcave+BConvex+4100/org_segmentation
+2025-07-15 06:54:11,938 - INFO - Video BConcave+BConvex+4100: Both blobs remained visible throughout
+2025-07-15 06:54:11,938 - INFO - Video BConcave+BConvex+4100: Blob 1 memory strategy = running_average
+2025-07-15 06:54:11,938 - INFO - Video BConcave+BConvex+4100: Blob 1 memory frozen after frame 80
+2025-07-15 06:54:11,944 - INFO - Found 631 mask files
+2025-07-15 06:54:15,074 - INFO - Found 315 frames with valid blob data
+2025-07-15 06:54:15,424 - DEBUG - Collision time for BConcave+BConvex+4100 at IoU 0.05: 4433.33ms
+2025-07-15 06:54:15,777 - DEBUG - Collision time for BConcave+BConvex+4100 at IoU 0.1: 4583.33ms
+2025-07-15 06:54:16,142 - DEBUG - Collision time for BConcave+BConvex+4100 at IoU 0.15: 4666.67ms
+2025-07-15 06:54:16,568 - DEBUG - No collision detected for BConcave+BConvex+4100 at IoU 0.2
+2025-07-15 06:54:16,989 - DEBUG - No collision detected for BConcave+BConvex+4100 at IoU 0.25
+2025-07-15 06:54:17,409 - DEBUG - No collision detected for BConcave+BConvex+4100 at IoU 0.3
+2025-07-15 06:54:17,832 - DEBUG - No collision detected for BConcave+BConvex+4100 at IoU 0.35
+2025-07-15 06:54:18,252 - DEBUG - No collision detected for BConcave+BConvex+4100 at IoU 0.4
+2025-07-15 06:54:18,673 - DEBUG - No collision detected for BConcave+BConvex+4100 at IoU 0.45
+2025-07-15 06:54:19,095 - DEBUG - No collision detected for BConcave+BConvex+4100 at IoU 0.5
+2025-07-15 06:54:19,516 - DEBUG - No collision detected for BConcave+BConvex+4100 at IoU 0.55
+2025-07-15 06:54:19,937 - DEBUG - No collision detected for BConcave+BConvex+4100 at IoU 0.6
+2025-07-15 06:54:20,357 - DEBUG - No collision detected for BConcave+BConvex+4100 at IoU 0.65
+2025-07-15 06:54:20,777 - DEBUG - No collision detected for BConcave+BConvex+4100 at IoU 0.7
+2025-07-15 06:54:21,198 - DEBUG - No collision detected for BConcave+BConvex+4100 at IoU 0.75
+2025-07-15 06:54:21,619 - DEBUG - No collision detected for BConcave+BConvex+4100 at IoU 0.8
+2025-07-15 06:54:22,042 - DEBUG - No collision detected for BConcave+BConvex+4100 at IoU 0.85
+2025-07-15 06:54:22,469 - DEBUG - No collision detected for BConcave+BConvex+4100 at IoU 0.9
+2025-07-15 06:54:22,891 - DEBUG - No collision detected for BConcave+BConvex+4100 at IoU 0.95
+2025-07-15 06:54:22,891 - INFO - Processing video: BConcave+BConvex+4300_flipped
+2025-07-15 06:54:22,892 - INFO - Video BConcave+BConvex+4300_flipped already processed, skipping...
+2025-07-15 06:54:22,907 - INFO - VanillaSegmentationSaver initialized with output dir: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_videos/segformer_model-BConcave+BConvex+4300_flipped/org_segmentation
+2025-07-15 06:54:22,907 - INFO - Video BConcave+BConvex+4300_flipped: Both blobs remained visible throughout
+2025-07-15 06:54:22,908 - INFO - Video BConcave+BConvex+4300_flipped: Blob 1 memory strategy = running_average
+2025-07-15 06:54:22,908 - INFO - Video BConcave+BConvex+4300_flipped: Blob 1 memory frozen after frame 80
+2025-07-15 06:54:22,916 - INFO - Found 631 mask files
+2025-07-15 06:54:26,189 - INFO - Found 315 frames with valid blob data
+2025-07-15 06:54:26,547 - DEBUG - Collision time for BConcave+BConvex+4300_flipped at IoU 0.05: 4633.33ms
+2025-07-15 06:54:26,920 - DEBUG - Collision time for BConcave+BConvex+4300_flipped at IoU 0.1: 4850.00ms
+2025-07-15 06:54:27,307 - DEBUG - Collision time for BConcave+BConvex+4300_flipped at IoU 0.15: 5033.33ms
+2025-07-15 06:54:27,707 - DEBUG - Collision time for BConcave+BConvex+4300_flipped at IoU 0.2: 5200.00ms
+2025-07-15 06:54:28,133 - DEBUG - No collision detected for BConcave+BConvex+4300_flipped at IoU 0.25
+2025-07-15 06:54:28,559 - DEBUG - No collision detected for BConcave+BConvex+4300_flipped at IoU 0.3
+2025-07-15 06:54:28,980 - DEBUG - No collision detected for BConcave+BConvex+4300_flipped at IoU 0.35
+2025-07-15 06:54:29,402 - DEBUG - No collision detected for BConcave+BConvex+4300_flipped at IoU 0.4
+2025-07-15 06:54:29,826 - DEBUG - No collision detected for BConcave+BConvex+4300_flipped at IoU 0.45
+2025-07-15 06:54:30,264 - DEBUG - No collision detected for BConcave+BConvex+4300_flipped at IoU 0.5
+2025-07-15 06:54:30,716 - DEBUG - No collision detected for BConcave+BConvex+4300_flipped at IoU 0.55
+2025-07-15 06:54:31,142 - DEBUG - No collision detected for BConcave+BConvex+4300_flipped at IoU 0.6
+2025-07-15 06:54:31,568 - DEBUG - No collision detected for BConcave+BConvex+4300_flipped at IoU 0.65
+2025-07-15 06:54:31,992 - DEBUG - No collision detected for BConcave+BConvex+4300_flipped at IoU 0.7
+2025-07-15 06:54:32,412 - DEBUG - No collision detected for BConcave+BConvex+4300_flipped at IoU 0.75
+2025-07-15 06:54:32,835 - DEBUG - No collision detected for BConcave+BConvex+4300_flipped at IoU 0.8
+2025-07-15 06:54:33,260 - DEBUG - No collision detected for BConcave+BConvex+4300_flipped at IoU 0.85
+2025-07-15 06:54:33,685 - DEBUG - No collision detected for BConcave+BConvex+4300_flipped at IoU 0.9
+2025-07-15 06:54:34,109 - DEBUG - No collision detected for BConcave+BConvex+4300_flipped at IoU 0.95
+2025-07-15 06:54:34,109 - INFO - Processing video: BConcave+BConvex+4500
+2025-07-15 06:54:34,109 - INFO - Video BConcave+BConvex+4500 already processed, skipping...
+2025-07-15 06:54:34,125 - INFO - VanillaSegmentationSaver initialized with output dir: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_videos/segformer_model-BConcave+BConvex+4500/org_segmentation
+2025-07-15 06:54:34,125 - INFO - Video BConcave+BConvex+4500: Both blobs remained visible throughout
+2025-07-15 06:54:34,125 - INFO - Video BConcave+BConvex+4500: Blob 1 memory strategy = running_average
+2025-07-15 06:54:34,125 - INFO - Video BConcave+BConvex+4500: Blob 1 memory frozen after frame 80
+2025-07-15 06:54:34,131 - INFO - Found 631 mask files
+2025-07-15 06:54:37,282 - INFO - Found 315 frames with valid blob data
+2025-07-15 06:54:37,680 - DEBUG - Collision time for BConcave+BConvex+4500 at IoU 0.05: 4816.67ms
+2025-07-15 06:54:38,099 - DEBUG - No collision detected for BConcave+BConvex+4500 at IoU 0.1
+2025-07-15 06:54:38,517 - DEBUG - No collision detected for BConcave+BConvex+4500 at IoU 0.15
+2025-07-15 06:54:38,934 - DEBUG - No collision detected for BConcave+BConvex+4500 at IoU 0.2
+2025-07-15 06:54:39,352 - DEBUG - No collision detected for BConcave+BConvex+4500 at IoU 0.25
+2025-07-15 06:54:39,770 - DEBUG - No collision detected for BConcave+BConvex+4500 at IoU 0.3
+2025-07-15 06:54:40,201 - DEBUG - No collision detected for BConcave+BConvex+4500 at IoU 0.35
+2025-07-15 06:54:40,620 - DEBUG - No collision detected for BConcave+BConvex+4500 at IoU 0.4
+2025-07-15 06:54:41,036 - DEBUG - No collision detected for BConcave+BConvex+4500 at IoU 0.45
+2025-07-15 06:54:41,452 - DEBUG - No collision detected for BConcave+BConvex+4500 at IoU 0.5
+2025-07-15 06:54:41,893 - DEBUG - No collision detected for BConcave+BConvex+4500 at IoU 0.55
+2025-07-15 06:54:42,338 - DEBUG - No collision detected for BConcave+BConvex+4500 at IoU 0.6
+2025-07-15 06:54:42,754 - DEBUG - No collision detected for BConcave+BConvex+4500 at IoU 0.65
+2025-07-15 06:54:43,170 - DEBUG - No collision detected for BConcave+BConvex+4500 at IoU 0.7
+2025-07-15 06:54:43,587 - DEBUG - No collision detected for BConcave+BConvex+4500 at IoU 0.75
+2025-07-15 06:54:44,006 - DEBUG - No collision detected for BConcave+BConvex+4500 at IoU 0.8
+2025-07-15 06:54:44,426 - DEBUG - No collision detected for BConcave+BConvex+4500 at IoU 0.85
+2025-07-15 06:54:44,843 - DEBUG - No collision detected for BConcave+BConvex+4500 at IoU 0.9
+2025-07-15 06:54:45,259 - DEBUG - No collision detected for BConcave+BConvex+4500 at IoU 0.95
+2025-07-15 06:54:45,259 - INFO - Processing video: BConcave+CConcave+3500
+2025-07-15 06:54:45,259 - INFO - Video BConcave+CConcave+3500 already processed, skipping...
+2025-07-15 06:54:45,276 - INFO - VanillaSegmentationSaver initialized with output dir: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_videos/segformer_model-BConcave+CConcave+3500/org_segmentation
+2025-07-15 06:54:45,276 - INFO - Video BConcave+CConcave+3500: Both blobs remained visible throughout
+2025-07-15 06:54:45,276 - INFO - Video BConcave+CConcave+3500: Blob 1 memory strategy = running_average
+2025-07-15 06:54:45,276 - INFO - Video BConcave+CConcave+3500: Blob 1 memory frozen after frame 80
+2025-07-15 06:54:45,283 - INFO - Found 631 mask files
+2025-07-15 06:54:48,541 - INFO - Found 315 frames with valid blob data
+2025-07-15 06:54:48,831 - DEBUG - Collision time for BConcave+CConcave+3500 at IoU 0.05: 3483.33ms
+2025-07-15 06:54:49,110 - DEBUG - Collision time for BConcave+CConcave+3500 at IoU 0.1: 3616.67ms
+2025-07-15 06:54:49,400 - DEBUG - Collision time for BConcave+CConcave+3500 at IoU 0.15: 3766.67ms
+2025-07-15 06:54:49,710 - DEBUG - Collision time for BConcave+CConcave+3500 at IoU 0.2: 4000.00ms
+2025-07-15 06:54:50,145 - DEBUG - No collision detected for BConcave+CConcave+3500 at IoU 0.25
+2025-07-15 06:54:50,573 - DEBUG - No collision detected for BConcave+CConcave+3500 at IoU 0.3
+2025-07-15 06:54:51,000 - DEBUG - No collision detected for BConcave+CConcave+3500 at IoU 0.35
+2025-07-15 06:54:51,426 - DEBUG - No collision detected for BConcave+CConcave+3500 at IoU 0.4
+2025-07-15 06:54:51,852 - DEBUG - No collision detected for BConcave+CConcave+3500 at IoU 0.45
+2025-07-15 06:54:52,287 - DEBUG - No collision detected for BConcave+CConcave+3500 at IoU 0.5
+2025-07-15 06:54:52,714 - DEBUG - No collision detected for BConcave+CConcave+3500 at IoU 0.55
+2025-07-15 06:54:53,157 - DEBUG - No collision detected for BConcave+CConcave+3500 at IoU 0.6
+2025-07-15 06:54:53,589 - DEBUG - No collision detected for BConcave+CConcave+3500 at IoU 0.65
+2025-07-15 06:54:54,016 - DEBUG - No collision detected for BConcave+CConcave+3500 at IoU 0.7
+2025-07-15 06:54:54,442 - DEBUG - No collision detected for BConcave+CConcave+3500 at IoU 0.75
+2025-07-15 06:54:54,867 - DEBUG - No collision detected for BConcave+CConcave+3500 at IoU 0.8
+2025-07-15 06:54:55,294 - DEBUG - No collision detected for BConcave+CConcave+3500 at IoU 0.85
+2025-07-15 06:54:55,721 - DEBUG - No collision detected for BConcave+CConcave+3500 at IoU 0.9
+2025-07-15 06:54:56,147 - DEBUG - No collision detected for BConcave+CConcave+3500 at IoU 0.95
+2025-07-15 06:54:56,147 - INFO - Processing video: BConcave+CConcave+3700_flipped
+2025-07-15 06:54:56,148 - INFO - Video BConcave+CConcave+3700_flipped already processed, skipping...
+2025-07-15 06:54:56,164 - INFO - VanillaSegmentationSaver initialized with output dir: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_videos/segformer_model-BConcave+CConcave+3700_flipped/org_segmentation
+2025-07-15 06:54:56,164 - INFO - Video BConcave+CConcave+3700_flipped: Both blobs remained visible throughout
+2025-07-15 06:54:56,164 - INFO - Video BConcave+CConcave+3700_flipped: Blob 1 memory strategy = running_average
+2025-07-15 06:54:56,164 - INFO - Video BConcave+CConcave+3700_flipped: Blob 1 memory frozen after frame 80
+2025-07-15 06:54:56,170 - INFO - Found 631 mask files
+2025-07-15 06:54:59,515 - INFO - Found 315 frames with valid blob data
+2025-07-15 06:54:59,818 - DEBUG - Collision time for BConcave+CConcave+3700_flipped at IoU 0.05: 3416.67ms
+2025-07-15 06:55:00,078 - DEBUG - Collision time for BConcave+CConcave+3700_flipped at IoU 0.1: 3416.67ms
+2025-07-15 06:55:00,371 - DEBUG - Collision time for BConcave+CConcave+3700_flipped at IoU 0.15: 3800.00ms
+2025-07-15 06:55:00,677 - DEBUG - Collision time for BConcave+CConcave+3700_flipped at IoU 0.2: 3966.67ms
+2025-07-15 06:55:00,989 - DEBUG - Collision time for BConcave+CConcave+3700_flipped at IoU 0.25: 4016.67ms
+2025-07-15 06:55:01,427 - DEBUG - No collision detected for BConcave+CConcave+3700_flipped at IoU 0.3
+2025-07-15 06:55:01,854 - DEBUG - No collision detected for BConcave+CConcave+3700_flipped at IoU 0.35
+2025-07-15 06:55:02,280 - DEBUG - No collision detected for BConcave+CConcave+3700_flipped at IoU 0.4
+2025-07-15 06:55:02,705 - DEBUG - No collision detected for BConcave+CConcave+3700_flipped at IoU 0.45
+2025-07-15 06:55:03,130 - DEBUG - No collision detected for BConcave+CConcave+3700_flipped at IoU 0.5
+2025-07-15 06:55:03,552 - DEBUG - No collision detected for BConcave+CConcave+3700_flipped at IoU 0.55
+2025-07-15 06:55:03,974 - DEBUG - No collision detected for BConcave+CConcave+3700_flipped at IoU 0.6
+2025-07-15 06:55:04,418 - DEBUG - No collision detected for BConcave+CConcave+3700_flipped at IoU 0.65
+2025-07-15 06:55:04,877 - DEBUG - No collision detected for BConcave+CConcave+3700_flipped at IoU 0.7
+2025-07-15 06:55:05,299 - DEBUG - No collision detected for BConcave+CConcave+3700_flipped at IoU 0.75
+2025-07-15 06:55:05,726 - DEBUG - No collision detected for BConcave+CConcave+3700_flipped at IoU 0.8
+2025-07-15 06:55:06,147 - DEBUG - No collision detected for BConcave+CConcave+3700_flipped at IoU 0.85
+2025-07-15 06:55:06,567 - DEBUG - No collision detected for BConcave+CConcave+3700_flipped at IoU 0.9
+2025-07-15 06:55:06,987 - DEBUG - No collision detected for BConcave+CConcave+3700_flipped at IoU 0.95
+2025-07-15 06:55:06,988 - INFO - Processing video: BConcave+CConcave+3900
+2025-07-15 06:55:06,988 - INFO - Video BConcave+CConcave+3900 already processed, skipping...
+2025-07-15 06:55:07,003 - INFO - VanillaSegmentationSaver initialized with output dir: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_videos/segformer_model-BConcave+CConcave+3900/org_segmentation
+2025-07-15 06:55:07,003 - INFO - Video BConcave+CConcave+3900: Both blobs remained visible throughout
+2025-07-15 06:55:07,003 - INFO - Video BConcave+CConcave+3900: Blob 1 memory strategy = running_average
+2025-07-15 06:55:07,003 - INFO - Video BConcave+CConcave+3900: Blob 1 memory frozen after frame 80
+2025-07-15 06:55:07,009 - INFO - Found 631 mask files
+2025-07-15 06:55:10,325 - INFO - Found 315 frames with valid blob data
+2025-07-15 06:55:10,639 - DEBUG - Collision time for BConcave+CConcave+3900 at IoU 0.05: 4016.67ms
+2025-07-15 06:55:10,966 - DEBUG - Collision time for BConcave+CConcave+3900 at IoU 0.1: 4116.67ms
+2025-07-15 06:55:11,314 - DEBUG - Collision time for BConcave+CConcave+3900 at IoU 0.15: 4233.33ms
+2025-07-15 06:55:11,646 - DEBUG - Collision time for BConcave+CConcave+3900 at IoU 0.2: 4300.00ms
+2025-07-15 06:55:11,988 - DEBUG - Collision time for BConcave+CConcave+3900 at IoU 0.25: 4383.33ms
+2025-07-15 06:55:12,339 - DEBUG - Collision time for BConcave+CConcave+3900 at IoU 0.3: 4466.67ms
+2025-07-15 06:55:12,771 - DEBUG - No collision detected for BConcave+CConcave+3900 at IoU 0.35
+2025-07-15 06:55:13,196 - DEBUG - No collision detected for BConcave+CConcave+3900 at IoU 0.4
+2025-07-15 06:55:13,621 - DEBUG - No collision detected for BConcave+CConcave+3900 at IoU 0.45
+2025-07-15 06:55:14,052 - DEBUG - No collision detected for BConcave+CConcave+3900 at IoU 0.5
+2025-07-15 06:55:14,480 - DEBUG - No collision detected for BConcave+CConcave+3900 at IoU 0.55
+2025-07-15 06:55:14,908 - DEBUG - No collision detected for BConcave+CConcave+3900 at IoU 0.6
+2025-07-15 06:55:15,333 - DEBUG - No collision detected for BConcave+CConcave+3900 at IoU 0.65
+2025-07-15 06:55:15,759 - DEBUG - No collision detected for BConcave+CConcave+3900 at IoU 0.7
+2025-07-15 06:55:16,209 - DEBUG - No collision detected for BConcave+CConcave+3900 at IoU 0.75
+2025-07-15 06:55:16,634 - DEBUG - No collision detected for BConcave+CConcave+3900 at IoU 0.8
+2025-07-15 06:55:17,058 - DEBUG - No collision detected for BConcave+CConcave+3900 at IoU 0.85
+2025-07-15 06:55:17,482 - DEBUG - No collision detected for BConcave+CConcave+3900 at IoU 0.9
+2025-07-15 06:55:17,907 - DEBUG - No collision detected for BConcave+CConcave+3900 at IoU 0.95
+2025-07-15 06:55:17,908 - INFO - Processing video: BConcave+CConcave+4100_flipped
+2025-07-15 06:55:17,908 - INFO - Video BConcave+CConcave+4100_flipped already processed, skipping...
+2025-07-15 06:55:17,922 - INFO - VanillaSegmentationSaver initialized with output dir: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_videos/segformer_model-BConcave+CConcave+4100_flipped/org_segmentation
+2025-07-15 06:55:17,922 - INFO - Video BConcave+CConcave+4100_flipped: Both blobs remained visible throughout
+2025-07-15 06:55:17,922 - INFO - Video BConcave+CConcave+4100_flipped: Blob 1 memory strategy = running_average
+2025-07-15 06:55:17,922 - INFO - Video BConcave+CConcave+4100_flipped: Blob 1 memory frozen after frame 80
+2025-07-15 06:55:17,929 - INFO - Found 631 mask files
+2025-07-15 06:55:21,195 - INFO - Found 315 frames with valid blob data
+2025-07-15 06:55:21,542 - DEBUG - Collision time for BConcave+CConcave+4100_flipped at IoU 0.05: 4250.00ms
+2025-07-15 06:55:21,877 - DEBUG - Collision time for BConcave+CConcave+4100_flipped at IoU 0.1: 4350.00ms
+2025-07-15 06:55:22,231 - DEBUG - Collision time for BConcave+CConcave+4100_flipped at IoU 0.15: 4466.67ms
+2025-07-15 06:55:22,602 - DEBUG - Collision time for BConcave+CConcave+4100_flipped at IoU 0.2: 4550.00ms
+2025-07-15 06:55:22,964 - DEBUG - Collision time for BConcave+CConcave+4100_flipped at IoU 0.25: 4650.00ms
+2025-07-15 06:55:23,338 - DEBUG - Collision time for BConcave+CConcave+4100_flipped at IoU 0.3: 4833.33ms
+2025-07-15 06:55:23,762 - DEBUG - No collision detected for BConcave+CConcave+4100_flipped at IoU 0.35
+2025-07-15 06:55:24,198 - DEBUG - No collision detected for BConcave+CConcave+4100_flipped at IoU 0.4
+2025-07-15 06:55:24,638 - DEBUG - No collision detected for BConcave+CConcave+4100_flipped at IoU 0.45
+2025-07-15 06:55:25,075 - DEBUG - No collision detected for BConcave+CConcave+4100_flipped at IoU 0.5
+2025-07-15 06:55:25,522 - DEBUG - No collision detected for BConcave+CConcave+4100_flipped at IoU 0.55
+2025-07-15 06:55:25,948 - DEBUG - No collision detected for BConcave+CConcave+4100_flipped at IoU 0.6
+2025-07-15 06:55:26,372 - DEBUG - No collision detected for BConcave+CConcave+4100_flipped at IoU 0.65
+2025-07-15 06:55:26,794 - DEBUG - No collision detected for BConcave+CConcave+4100_flipped at IoU 0.7
+2025-07-15 06:55:27,215 - DEBUG - No collision detected for BConcave+CConcave+4100_flipped at IoU 0.75
+2025-07-15 06:55:27,639 - DEBUG - No collision detected for BConcave+CConcave+4100_flipped at IoU 0.8
+2025-07-15 06:55:28,056 - DEBUG - No collision detected for BConcave+CConcave+4100_flipped at IoU 0.85
+2025-07-15 06:55:28,479 - DEBUG - No collision detected for BConcave+CConcave+4100_flipped at IoU 0.9
+2025-07-15 06:55:28,896 - DEBUG - No collision detected for BConcave+CConcave+4100_flipped at IoU 0.95
+2025-07-15 06:55:28,896 - INFO - Processing video: BConcave+CConcave+4300
+2025-07-15 06:55:28,896 - INFO - Video BConcave+CConcave+4300 already processed, skipping...
+2025-07-15 06:55:28,918 - INFO - VanillaSegmentationSaver initialized with output dir: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_videos/segformer_model-BConcave+CConcave+4300/org_segmentation
+2025-07-15 06:55:28,918 - INFO - Video BConcave+CConcave+4300: Both blobs remained visible throughout
+2025-07-15 06:55:28,918 - INFO - Video BConcave+CConcave+4300: Blob 1 memory strategy = running_average
+2025-07-15 06:55:28,918 - INFO - Video BConcave+CConcave+4300: Blob 1 memory frozen after frame 80
+2025-07-15 06:55:28,925 - INFO - Found 631 mask files
+2025-07-15 06:55:32,153 - INFO - Found 315 frames with valid blob data
+2025-07-15 06:55:32,496 - DEBUG - Collision time for BConcave+CConcave+4300 at IoU 0.05: 4483.33ms
+2025-07-15 06:55:32,845 - DEBUG - Collision time for BConcave+CConcave+4300 at IoU 0.1: 4600.00ms
+2025-07-15 06:55:33,200 - DEBUG - Collision time for BConcave+CConcave+4300 at IoU 0.15: 4683.33ms
+2025-07-15 06:55:33,565 - DEBUG - Collision time for BConcave+CConcave+4300 at IoU 0.2: 4766.67ms
+2025-07-15 06:55:33,948 - DEBUG - Collision time for BConcave+CConcave+4300 at IoU 0.25: 4850.00ms
+2025-07-15 06:55:34,332 - DEBUG - Collision time for BConcave+CConcave+4300 at IoU 0.3: 4950.00ms
+2025-07-15 06:55:34,724 - DEBUG - Collision time for BConcave+CConcave+4300 at IoU 0.35: 5100.00ms
+2025-07-15 06:55:35,141 - DEBUG - No collision detected for BConcave+CConcave+4300 at IoU 0.4
+2025-07-15 06:55:35,556 - DEBUG - No collision detected for BConcave+CConcave+4300 at IoU 0.45
+2025-07-15 06:55:35,978 - DEBUG - No collision detected for BConcave+CConcave+4300 at IoU 0.5
+2025-07-15 06:55:36,411 - DEBUG - No collision detected for BConcave+CConcave+4300 at IoU 0.55
+2025-07-15 06:55:36,837 - DEBUG - No collision detected for BConcave+CConcave+4300 at IoU 0.6
+2025-07-15 06:55:37,253 - DEBUG - No collision detected for BConcave+CConcave+4300 at IoU 0.65
+2025-07-15 06:55:37,683 - DEBUG - No collision detected for BConcave+CConcave+4300 at IoU 0.7
+2025-07-15 06:55:38,100 - DEBUG - No collision detected for BConcave+CConcave+4300 at IoU 0.75
+2025-07-15 06:55:38,541 - DEBUG - No collision detected for BConcave+CConcave+4300 at IoU 0.8
+2025-07-15 06:55:38,977 - DEBUG - No collision detected for BConcave+CConcave+4300 at IoU 0.85
+2025-07-15 06:55:39,392 - DEBUG - No collision detected for BConcave+CConcave+4300 at IoU 0.9
+2025-07-15 06:55:39,810 - DEBUG - No collision detected for BConcave+CConcave+4300 at IoU 0.95
+2025-07-15 06:55:39,810 - INFO - Processing video: BConcave+CConcave+4500_flipped
+2025-07-15 06:55:39,811 - INFO - Video BConcave+CConcave+4500_flipped already processed, skipping...
+2025-07-15 06:55:39,828 - INFO - VanillaSegmentationSaver initialized with output dir: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_videos/segformer_model-BConcave+CConcave+4500_flipped/org_segmentation
+2025-07-15 06:55:39,828 - INFO - Video BConcave+CConcave+4500_flipped: Both blobs remained visible throughout
+2025-07-15 06:55:39,828 - INFO - Video BConcave+CConcave+4500_flipped: Blob 1 memory strategy = running_average
+2025-07-15 06:55:39,828 - INFO - Video BConcave+CConcave+4500_flipped: Blob 1 memory frozen after frame 80
+2025-07-15 06:55:39,834 - INFO - Found 631 mask files
+2025-07-15 06:55:43,049 - INFO - Found 315 frames with valid blob data
+2025-07-15 06:55:43,424 - DEBUG - Collision time for BConcave+CConcave+4500_flipped at IoU 0.05: 4683.33ms
+2025-07-15 06:55:43,788 - DEBUG - Collision time for BConcave+CConcave+4500_flipped at IoU 0.1: 4800.00ms
+2025-07-15 06:55:44,165 - DEBUG - Collision time for BConcave+CConcave+4500_flipped at IoU 0.15: 4866.67ms
+2025-07-15 06:55:44,551 - DEBUG - Collision time for BConcave+CConcave+4500_flipped at IoU 0.2: 4966.67ms
+2025-07-15 06:55:44,949 - DEBUG - Collision time for BConcave+CConcave+4500_flipped at IoU 0.25: 5033.33ms
+2025-07-15 06:55:45,361 - DEBUG - Collision time for BConcave+CConcave+4500_flipped at IoU 0.3: 5116.67ms
+2025-07-15 06:55:45,768 - DEBUG - Collision time for BConcave+CConcave+4500_flipped at IoU 0.35: 5316.67ms
+2025-07-15 06:55:46,197 - DEBUG - No collision detected for BConcave+CConcave+4500_flipped at IoU 0.4
+2025-07-15 06:55:46,616 - DEBUG - No collision detected for BConcave+CConcave+4500_flipped at IoU 0.45
+2025-07-15 06:55:47,053 - DEBUG - No collision detected for BConcave+CConcave+4500_flipped at IoU 0.5
+2025-07-15 06:55:47,488 - DEBUG - No collision detected for BConcave+CConcave+4500_flipped at IoU 0.55
+2025-07-15 06:55:47,918 - DEBUG - No collision detected for BConcave+CConcave+4500_flipped at IoU 0.6
+2025-07-15 06:55:48,347 - DEBUG - No collision detected for BConcave+CConcave+4500_flipped at IoU 0.65
+2025-07-15 06:55:48,789 - DEBUG - No collision detected for BConcave+CConcave+4500_flipped at IoU 0.7
+2025-07-15 06:55:49,217 - DEBUG - No collision detected for BConcave+CConcave+4500_flipped at IoU 0.75
+2025-07-15 06:55:49,645 - DEBUG - No collision detected for BConcave+CConcave+4500_flipped at IoU 0.8
+2025-07-15 06:55:50,096 - DEBUG - No collision detected for BConcave+CConcave+4500_flipped at IoU 0.85
+2025-07-15 06:55:50,525 - DEBUG - No collision detected for BConcave+CConcave+4500_flipped at IoU 0.9
+2025-07-15 06:55:50,953 - DEBUG - No collision detected for BConcave+CConcave+4500_flipped at IoU 0.95
+2025-07-15 06:55:50,953 - INFO - Processing video: BConcave+CConvex+3500_flipped
+2025-07-15 06:55:50,954 - INFO - Video BConcave+CConvex+3500_flipped already processed, skipping...
+2025-07-15 06:55:50,970 - INFO - VanillaSegmentationSaver initialized with output dir: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_videos/segformer_model-BConcave+CConvex+3500_flipped/org_segmentation
+2025-07-15 06:55:50,970 - INFO - Video BConcave+CConvex+3500_flipped: Both blobs remained visible throughout
+2025-07-15 06:55:50,970 - INFO - Video BConcave+CConvex+3500_flipped: Blob 1 memory strategy = running_average
+2025-07-15 06:55:50,970 - INFO - Video BConcave+CConvex+3500_flipped: Blob 1 memory frozen after frame 80
+2025-07-15 06:55:50,976 - INFO - Found 631 mask files
+2025-07-15 06:55:54,237 - INFO - Found 315 frames with valid blob data
+2025-07-15 06:55:54,661 - DEBUG - No collision detected for BConcave+CConvex+3500_flipped at IoU 0.05
+2025-07-15 06:55:55,083 - DEBUG - No collision detected for BConcave+CConvex+3500_flipped at IoU 0.1
+2025-07-15 06:55:55,507 - DEBUG - No collision detected for BConcave+CConvex+3500_flipped at IoU 0.15
+2025-07-15 06:55:55,928 - DEBUG - No collision detected for BConcave+CConvex+3500_flipped at IoU 0.2
+2025-07-15 06:55:56,358 - DEBUG - No collision detected for BConcave+CConvex+3500_flipped at IoU 0.25
+2025-07-15 06:55:56,806 - DEBUG - No collision detected for BConcave+CConvex+3500_flipped at IoU 0.3
+2025-07-15 06:55:57,230 - DEBUG - No collision detected for BConcave+CConvex+3500_flipped at IoU 0.35
+2025-07-15 06:55:57,654 - DEBUG - No collision detected for BConcave+CConvex+3500_flipped at IoU 0.4
+2025-07-15 06:55:58,079 - DEBUG - No collision detected for BConcave+CConvex+3500_flipped at IoU 0.45
+2025-07-15 06:55:58,502 - DEBUG - No collision detected for BConcave+CConvex+3500_flipped at IoU 0.5
+2025-07-15 06:55:58,919 - DEBUG - No collision detected for BConcave+CConvex+3500_flipped at IoU 0.55
+2025-07-15 06:55:59,334 - DEBUG - No collision detected for BConcave+CConvex+3500_flipped at IoU 0.6
+2025-07-15 06:55:59,749 - DEBUG - No collision detected for BConcave+CConvex+3500_flipped at IoU 0.65
+2025-07-15 06:56:00,176 - DEBUG - No collision detected for BConcave+CConvex+3500_flipped at IoU 0.7
+2025-07-15 06:56:00,608 - DEBUG - No collision detected for BConcave+CConvex+3500_flipped at IoU 0.75
+2025-07-15 06:56:01,038 - DEBUG - No collision detected for BConcave+CConvex+3500_flipped at IoU 0.8
+2025-07-15 06:56:01,473 - DEBUG - No collision detected for BConcave+CConvex+3500_flipped at IoU 0.85
+2025-07-15 06:56:01,901 - DEBUG - No collision detected for BConcave+CConvex+3500_flipped at IoU 0.9
+2025-07-15 06:56:02,319 - DEBUG - No collision detected for BConcave+CConvex+3500_flipped at IoU 0.95
+2025-07-15 06:56:02,319 - INFO - Processing video: BConcave+CConvex+3700
+2025-07-15 06:56:02,320 - INFO - Video BConcave+CConvex+3700 already processed, skipping...
+2025-07-15 06:56:02,335 - INFO - VanillaSegmentationSaver initialized with output dir: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_videos/segformer_model-BConcave+CConvex+3700/org_segmentation
+2025-07-15 06:56:02,335 - INFO - Video BConcave+CConvex+3700: Both blobs remained visible throughout
+2025-07-15 06:56:02,335 - INFO - Video BConcave+CConvex+3700: Blob 1 memory strategy = running_average
+2025-07-15 06:56:02,335 - INFO - Video BConcave+CConvex+3700: Blob 1 memory frozen after frame 80
+2025-07-15 06:56:02,341 - INFO - Found 631 mask files
+2025-07-15 06:56:05,542 - INFO - Found 315 frames with valid blob data
+2025-07-15 06:56:05,863 - DEBUG - Collision time for BConcave+CConvex+3700 at IoU 0.05: 3966.67ms
+2025-07-15 06:56:06,174 - DEBUG - Collision time for BConcave+CConvex+3700 at IoU 0.1: 4100.00ms
+2025-07-15 06:56:06,492 - DEBUG - Collision time for BConcave+CConvex+3700 at IoU 0.15: 4200.00ms
+2025-07-15 06:56:06,817 - DEBUG - Collision time for BConcave+CConvex+3700 at IoU 0.2: 4266.67ms
+2025-07-15 06:56:07,148 - DEBUG - Collision time for BConcave+CConvex+3700 at IoU 0.25: 4333.33ms
+2025-07-15 06:56:07,483 - DEBUG - Collision time for BConcave+CConvex+3700 at IoU 0.3: 4416.67ms
+2025-07-15 06:56:07,841 - DEBUG - Collision time for BConcave+CConvex+3700 at IoU 0.35: 4500.00ms
+2025-07-15 06:56:08,220 - DEBUG - Collision time for BConcave+CConvex+3700 at IoU 0.4: 4666.67ms
+2025-07-15 06:56:08,651 - DEBUG - No collision detected for BConcave+CConvex+3700 at IoU 0.45
+2025-07-15 06:56:09,085 - DEBUG - No collision detected for BConcave+CConvex+3700 at IoU 0.5
+2025-07-15 06:56:09,506 - DEBUG - No collision detected for BConcave+CConvex+3700 at IoU 0.55
+2025-07-15 06:56:09,923 - DEBUG - No collision detected for BConcave+CConvex+3700 at IoU 0.6
+2025-07-15 06:56:10,351 - DEBUG - No collision detected for BConcave+CConvex+3700 at IoU 0.65
+2025-07-15 06:56:10,769 - DEBUG - No collision detected for BConcave+CConvex+3700 at IoU 0.7
+2025-07-15 06:56:11,186 - DEBUG - No collision detected for BConcave+CConvex+3700 at IoU 0.75
+2025-07-15 06:56:11,605 - DEBUG - No collision detected for BConcave+CConvex+3700 at IoU 0.8
+2025-07-15 06:56:12,024 - DEBUG - No collision detected for BConcave+CConvex+3700 at IoU 0.85
+2025-07-15 06:56:12,445 - DEBUG - No collision detected for BConcave+CConvex+3700 at IoU 0.9
+2025-07-15 06:56:12,896 - DEBUG - No collision detected for BConcave+CConvex+3700 at IoU 0.95
+2025-07-15 06:56:12,896 - INFO - Processing video: BConcave+CConvex+3900_flipped
+2025-07-15 06:56:12,897 - INFO - Video BConcave+CConvex+3900_flipped already processed, skipping...
+2025-07-15 06:56:12,916 - INFO - VanillaSegmentationSaver initialized with output dir: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_videos/segformer_model-BConcave+CConvex+3900_flipped/org_segmentation
+2025-07-15 06:56:12,916 - INFO - Video BConcave+CConvex+3900_flipped: Both blobs remained visible throughout
+2025-07-15 06:56:12,916 - INFO - Video BConcave+CConvex+3900_flipped: Blob 1 memory strategy = running_average
+2025-07-15 06:56:12,916 - INFO - Video BConcave+CConvex+3900_flipped: Blob 1 memory frozen after frame 80
+2025-07-15 06:56:12,923 - INFO - Found 631 mask files
+2025-07-15 06:56:16,203 - INFO - Found 315 frames with valid blob data
+2025-07-15 06:56:16,525 - DEBUG - Collision time for BConcave+CConvex+3900_flipped at IoU 0.05: 4150.00ms
+2025-07-15 06:56:16,856 - DEBUG - Collision time for BConcave+CConvex+3900_flipped at IoU 0.1: 4283.33ms
+2025-07-15 06:56:17,195 - DEBUG - Collision time for BConcave+CConvex+3900_flipped at IoU 0.15: 4400.00ms
+2025-07-15 06:56:17,541 - DEBUG - Collision time for BConcave+CConvex+3900_flipped at IoU 0.2: 4483.33ms
+2025-07-15 06:56:17,889 - DEBUG - Collision time for BConcave+CConvex+3900_flipped at IoU 0.25: 4550.00ms
+2025-07-15 06:56:18,242 - DEBUG - Collision time for BConcave+CConvex+3900_flipped at IoU 0.3: 4616.67ms
+2025-07-15 06:56:18,603 - DEBUG - Collision time for BConcave+CConvex+3900_flipped at IoU 0.35: 4716.67ms
+2025-07-15 06:56:19,025 - DEBUG - No collision detected for BConcave+CConvex+3900_flipped at IoU 0.4
+2025-07-15 06:56:19,471 - DEBUG - No collision detected for BConcave+CConvex+3900_flipped at IoU 0.45
+2025-07-15 06:56:19,904 - DEBUG - No collision detected for BConcave+CConvex+3900_flipped at IoU 0.5
+2025-07-15 06:56:20,327 - DEBUG - No collision detected for BConcave+CConvex+3900_flipped at IoU 0.55
+2025-07-15 06:56:20,751 - DEBUG - No collision detected for BConcave+CConvex+3900_flipped at IoU 0.6
+2025-07-15 06:56:21,174 - DEBUG - No collision detected for BConcave+CConvex+3900_flipped at IoU 0.65
+2025-07-15 06:56:21,600 - DEBUG - No collision detected for BConcave+CConvex+3900_flipped at IoU 0.7
+2025-07-15 06:56:22,025 - DEBUG - No collision detected for BConcave+CConvex+3900_flipped at IoU 0.75
+2025-07-15 06:56:22,463 - DEBUG - No collision detected for BConcave+CConvex+3900_flipped at IoU 0.8
+2025-07-15 06:56:22,890 - DEBUG - No collision detected for BConcave+CConvex+3900_flipped at IoU 0.85
+2025-07-15 06:56:23,315 - DEBUG - No collision detected for BConcave+CConvex+3900_flipped at IoU 0.9
+2025-07-15 06:56:23,741 - DEBUG - No collision detected for BConcave+CConvex+3900_flipped at IoU 0.95
+2025-07-15 06:56:23,741 - INFO - Processing video: BConcave+CConvex+4100
+2025-07-15 06:56:23,742 - INFO - Video BConcave+CConvex+4100 already processed, skipping...
+2025-07-15 06:56:23,759 - INFO - VanillaSegmentationSaver initialized with output dir: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_videos/segformer_model-BConcave+CConvex+4100/org_segmentation
+2025-07-15 06:56:23,759 - INFO - Video BConcave+CConvex+4100: Both blobs remained visible throughout
+2025-07-15 06:56:23,759 - INFO - Video BConcave+CConvex+4100: Blob 1 memory strategy = running_average
+2025-07-15 06:56:23,759 - INFO - Video BConcave+CConvex+4100: Blob 1 memory frozen after frame 80
+2025-07-15 06:56:23,765 - INFO - Found 631 mask files
+2025-07-15 06:56:26,996 - INFO - Found 315 frames with valid blob data
+2025-07-15 06:56:27,356 - DEBUG - Collision time for BConcave+CConvex+4100 at IoU 0.05: 4416.67ms
+2025-07-15 06:56:27,708 - DEBUG - Collision time for BConcave+CConvex+4100 at IoU 0.1: 4550.00ms
+2025-07-15 06:56:28,066 - DEBUG - Collision time for BConcave+CConvex+4100 at IoU 0.15: 4633.33ms
+2025-07-15 06:56:28,445 - DEBUG - Collision time for BConcave+CConvex+4100 at IoU 0.2: 4700.00ms
+2025-07-15 06:56:28,817 - DEBUG - Collision time for BConcave+CConvex+4100 at IoU 0.25: 4766.67ms
+2025-07-15 06:56:29,216 - DEBUG - Collision time for BConcave+CConvex+4100 at IoU 0.3: 4933.33ms
+2025-07-15 06:56:29,655 - DEBUG - No collision detected for BConcave+CConvex+4100 at IoU 0.35
+2025-07-15 06:56:30,086 - DEBUG - No collision detected for BConcave+CConvex+4100 at IoU 0.4
+2025-07-15 06:56:30,508 - DEBUG - No collision detected for BConcave+CConvex+4100 at IoU 0.45
+2025-07-15 06:56:30,959 - DEBUG - No collision detected for BConcave+CConvex+4100 at IoU 0.5
+2025-07-15 06:56:31,381 - DEBUG - No collision detected for BConcave+CConvex+4100 at IoU 0.55
+2025-07-15 06:56:31,804 - DEBUG - No collision detected for BConcave+CConvex+4100 at IoU 0.6
+2025-07-15 06:56:32,226 - DEBUG - No collision detected for BConcave+CConvex+4100 at IoU 0.65
+2025-07-15 06:56:32,648 - DEBUG - No collision detected for BConcave+CConvex+4100 at IoU 0.7
+2025-07-15 06:56:33,071 - DEBUG - No collision detected for BConcave+CConvex+4100 at IoU 0.75
+2025-07-15 06:56:33,495 - DEBUG - No collision detected for BConcave+CConvex+4100 at IoU 0.8
+2025-07-15 06:56:33,918 - DEBUG - No collision detected for BConcave+CConvex+4100 at IoU 0.85
+2025-07-15 06:56:34,351 - DEBUG - No collision detected for BConcave+CConvex+4100 at IoU 0.9
+2025-07-15 06:56:34,772 - DEBUG - No collision detected for BConcave+CConvex+4100 at IoU 0.95
+2025-07-15 06:56:34,772 - INFO - Processing video: BConcave+CConvex+4300_flipped
+2025-07-15 06:56:34,773 - INFO - Video BConcave+CConvex+4300_flipped already processed, skipping...
+2025-07-15 06:56:34,787 - INFO - VanillaSegmentationSaver initialized with output dir: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_videos/segformer_model-BConcave+CConvex+4300_flipped/org_segmentation
+2025-07-15 06:56:34,788 - INFO - Video BConcave+CConvex+4300_flipped: Both blobs remained visible throughout
+2025-07-15 06:56:34,788 - INFO - Video BConcave+CConvex+4300_flipped: Blob 1 memory strategy = running_average
+2025-07-15 06:56:34,788 - INFO - Video BConcave+CConvex+4300_flipped: Blob 1 memory frozen after frame 80
+2025-07-15 06:56:34,794 - INFO - Found 631 mask files
+2025-07-15 06:56:37,858 - INFO - Found 315 frames with valid blob data
+2025-07-15 06:56:38,211 - DEBUG - Collision time for BConcave+CConvex+4300_flipped at IoU 0.05: 4550.00ms
+2025-07-15 06:56:38,570 - DEBUG - Collision time for BConcave+CConvex+4300_flipped at IoU 0.1: 4666.67ms
+2025-07-15 06:56:38,936 - DEBUG - Collision time for BConcave+CConvex+4300_flipped at IoU 0.15: 4766.67ms
+2025-07-15 06:56:39,309 - DEBUG - Collision time for BConcave+CConvex+4300_flipped at IoU 0.2: 4850.00ms
+2025-07-15 06:56:39,692 - DEBUG - Collision time for BConcave+CConvex+4300_flipped at IoU 0.25: 4933.33ms
+2025-07-15 06:56:40,084 - DEBUG - Collision time for BConcave+CConvex+4300_flipped at IoU 0.3: 5050.00ms
+2025-07-15 06:56:40,515 - DEBUG - No collision detected for BConcave+CConvex+4300_flipped at IoU 0.35
+2025-07-15 06:56:40,938 - DEBUG - No collision detected for BConcave+CConvex+4300_flipped at IoU 0.4
+2025-07-15 06:56:41,361 - DEBUG - No collision detected for BConcave+CConvex+4300_flipped at IoU 0.45
+2025-07-15 06:56:41,785 - DEBUG - No collision detected for BConcave+CConvex+4300_flipped at IoU 0.5
+2025-07-15 06:56:42,208 - DEBUG - No collision detected for BConcave+CConvex+4300_flipped at IoU 0.55
+2025-07-15 06:56:42,629 - DEBUG - No collision detected for BConcave+CConvex+4300_flipped at IoU 0.6
+2025-07-15 06:56:43,054 - DEBUG - No collision detected for BConcave+CConvex+4300_flipped at IoU 0.65
+2025-07-15 06:56:43,476 - DEBUG - No collision detected for BConcave+CConvex+4300_flipped at IoU 0.7
+2025-07-15 06:56:43,898 - DEBUG - No collision detected for BConcave+CConvex+4300_flipped at IoU 0.75
+2025-07-15 06:56:44,321 - DEBUG - No collision detected for BConcave+CConvex+4300_flipped at IoU 0.8
+2025-07-15 06:56:44,743 - DEBUG - No collision detected for BConcave+CConvex+4300_flipped at IoU 0.85
+2025-07-15 06:56:45,166 - DEBUG - No collision detected for BConcave+CConvex+4300_flipped at IoU 0.9
+2025-07-15 06:56:45,588 - DEBUG - No collision detected for BConcave+CConvex+4300_flipped at IoU 0.95
+2025-07-15 06:56:45,588 - INFO - Processing video: BConcave+CConvex+4500
+2025-07-15 06:56:45,589 - INFO - Video BConcave+CConvex+4500 already processed, skipping...
+2025-07-15 06:56:45,606 - INFO - VanillaSegmentationSaver initialized with output dir: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_videos/segformer_model-BConcave+CConvex+4500/org_segmentation
+2025-07-15 06:56:45,606 - INFO - Video BConcave+CConvex+4500: Both blobs remained visible throughout
+2025-07-15 06:56:45,606 - INFO - Video BConcave+CConvex+4500: Blob 1 memory strategy = running_average
+2025-07-15 06:56:45,606 - INFO - Video BConcave+CConvex+4500: Blob 1 memory frozen after frame 80
+2025-07-15 06:56:45,614 - INFO - Found 631 mask files
+2025-07-15 06:56:47,970 - INFO - Found 315 frames with valid blob data
+2025-07-15 06:56:48,353 - DEBUG - Collision time for BConcave+CConvex+4500 at IoU 0.05: 4766.67ms
+2025-07-15 06:56:48,724 - DEBUG - Collision time for BConcave+CConvex+4500 at IoU 0.1: 4900.00ms
+2025-07-15 06:56:49,103 - DEBUG - Collision time for BConcave+CConvex+4500 at IoU 0.15: 5000.00ms
+2025-07-15 06:56:49,490 - DEBUG - Collision time for BConcave+CConvex+4500 at IoU 0.2: 5083.33ms
+2025-07-15 06:56:49,881 - DEBUG - Collision time for BConcave+CConvex+4500 at IoU 0.25: 5150.00ms
+2025-07-15 06:56:50,277 - DEBUG - Collision time for BConcave+CConvex+4500 at IoU 0.3: 5216.67ms
+2025-07-15 06:56:50,680 - DEBUG - Collision time for BConcave+CConvex+4500 at IoU 0.35: 5316.67ms
+2025-07-15 06:56:51,095 - DEBUG - No collision detected for BConcave+CConvex+4500 at IoU 0.4
+2025-07-15 06:56:51,522 - DEBUG - No collision detected for BConcave+CConvex+4500 at IoU 0.45
+2025-07-15 06:56:51,936 - DEBUG - No collision detected for BConcave+CConvex+4500 at IoU 0.5
+2025-07-15 06:56:52,358 - DEBUG - No collision detected for BConcave+CConvex+4500 at IoU 0.55
+2025-07-15 06:56:52,772 - DEBUG - No collision detected for BConcave+CConvex+4500 at IoU 0.6
+2025-07-15 06:56:53,187 - DEBUG - No collision detected for BConcave+CConvex+4500 at IoU 0.65
+2025-07-15 06:56:53,603 - DEBUG - No collision detected for BConcave+CConvex+4500 at IoU 0.7
+2025-07-15 06:56:54,018 - DEBUG - No collision detected for BConcave+CConvex+4500 at IoU 0.75
+2025-07-15 06:56:54,433 - DEBUG - No collision detected for BConcave+CConvex+4500 at IoU 0.8
+2025-07-15 06:56:54,846 - DEBUG - No collision detected for BConcave+CConvex+4500 at IoU 0.85
+2025-07-15 06:56:55,264 - DEBUG - No collision detected for BConcave+CConvex+4500 at IoU 0.9
+2025-07-15 06:56:55,690 - DEBUG - No collision detected for BConcave+CConvex+4500 at IoU 0.95
+2025-07-15 06:56:55,691 - INFO - Processing video: BConcave+DConcave+3500
+2025-07-15 06:56:55,692 - INFO - Video BConcave+DConcave+3500 already processed, skipping...
+2025-07-15 06:56:55,708 - INFO - VanillaSegmentationSaver initialized with output dir: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_videos/segformer_model-BConcave+DConcave+3500/org_segmentation
+2025-07-15 06:56:55,708 - INFO - Video BConcave+DConcave+3500: Both blobs remained visible throughout
+2025-07-15 06:56:55,708 - INFO - Video BConcave+DConcave+3500: Blob 1 memory strategy = running_average
+2025-07-15 06:56:55,708 - INFO - Video BConcave+DConcave+3500: Blob 1 memory frozen after frame 80
+2025-07-15 06:56:55,715 - INFO - Found 631 mask files
+2025-07-15 06:56:58,096 - INFO - Found 315 frames with valid blob data
+2025-07-15 06:56:58,391 - DEBUG - Collision time for BConcave+DConcave+3500 at IoU 0.05: 3733.33ms
+2025-07-15 06:56:58,685 - DEBUG - Collision time for BConcave+DConcave+3500 at IoU 0.1: 3833.33ms
+2025-07-15 06:56:58,990 - DEBUG - Collision time for BConcave+DConcave+3500 at IoU 0.15: 3983.33ms
+2025-07-15 06:56:59,313 - DEBUG - Collision time for BConcave+DConcave+3500 at IoU 0.2: 4183.33ms
+2025-07-15 06:56:59,737 - DEBUG - No collision detected for BConcave+DConcave+3500 at IoU 0.25
+2025-07-15 06:57:00,160 - DEBUG - No collision detected for BConcave+DConcave+3500 at IoU 0.3
+2025-07-15 06:57:00,598 - DEBUG - No collision detected for BConcave+DConcave+3500 at IoU 0.35
+2025-07-15 06:57:01,030 - DEBUG - No collision detected for BConcave+DConcave+3500 at IoU 0.4
+2025-07-15 06:57:01,466 - DEBUG - No collision detected for BConcave+DConcave+3500 at IoU 0.45
+2025-07-15 06:57:01,889 - DEBUG - No collision detected for BConcave+DConcave+3500 at IoU 0.5
+2025-07-15 06:57:02,312 - DEBUG - No collision detected for BConcave+DConcave+3500 at IoU 0.55
+2025-07-15 06:57:02,731 - DEBUG - No collision detected for BConcave+DConcave+3500 at IoU 0.6
+2025-07-15 06:57:03,151 - DEBUG - No collision detected for BConcave+DConcave+3500 at IoU 0.65
+2025-07-15 06:57:03,572 - DEBUG - No collision detected for BConcave+DConcave+3500 at IoU 0.7
+2025-07-15 06:57:03,993 - DEBUG - No collision detected for BConcave+DConcave+3500 at IoU 0.75
+2025-07-15 06:57:04,424 - DEBUG - No collision detected for BConcave+DConcave+3500 at IoU 0.8
+2025-07-15 06:57:04,840 - DEBUG - No collision detected for BConcave+DConcave+3500 at IoU 0.85
+2025-07-15 06:57:05,258 - DEBUG - No collision detected for BConcave+DConcave+3500 at IoU 0.9
+2025-07-15 06:57:05,695 - DEBUG - No collision detected for BConcave+DConcave+3500 at IoU 0.95
+2025-07-15 06:57:05,695 - INFO - Processing video: BConcave+DConcave+3700_flipped
+2025-07-15 06:57:05,697 - INFO - Video BConcave+DConcave+3700_flipped already processed, skipping...
+2025-07-15 06:57:05,713 - INFO - VanillaSegmentationSaver initialized with output dir: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_videos/segformer_model-BConcave+DConcave+3700_flipped/org_segmentation
+2025-07-15 06:57:05,713 - INFO - Video BConcave+DConcave+3700_flipped: Both blobs remained visible throughout
+2025-07-15 06:57:05,713 - INFO - Video BConcave+DConcave+3700_flipped: Blob 1 memory strategy = running_average
+2025-07-15 06:57:05,713 - INFO - Video BConcave+DConcave+3700_flipped: Blob 1 memory frozen after frame 80
+2025-07-15 06:57:05,720 - INFO - Found 631 mask files
+2025-07-15 06:57:08,009 - INFO - Found 315 frames with valid blob data
+2025-07-15 06:57:08,326 - DEBUG - Collision time for BConcave+DConcave+3700_flipped at IoU 0.05: 3883.33ms
+2025-07-15 06:57:08,628 - DEBUG - Collision time for BConcave+DConcave+3700_flipped at IoU 0.1: 4000.00ms
+2025-07-15 06:57:08,937 - DEBUG - Collision time for BConcave+DConcave+3700_flipped at IoU 0.15: 4100.00ms
+2025-07-15 06:57:09,255 - DEBUG - Collision time for BConcave+DConcave+3700_flipped at IoU 0.2: 4200.00ms
+2025-07-15 06:57:09,584 - DEBUG - Collision time for BConcave+DConcave+3700_flipped at IoU 0.25: 4333.33ms
+2025-07-15 06:57:09,917 - DEBUG - Collision time for BConcave+DConcave+3700_flipped at IoU 0.3: 4416.67ms
+2025-07-15 06:57:10,270 - DEBUG - Collision time for BConcave+DConcave+3700_flipped at IoU 0.35: 4550.00ms
+2025-07-15 06:57:10,686 - DEBUG - No collision detected for BConcave+DConcave+3700_flipped at IoU 0.4
+2025-07-15 06:57:11,125 - DEBUG - No collision detected for BConcave+DConcave+3700_flipped at IoU 0.45
+2025-07-15 06:57:11,544 - DEBUG - No collision detected for BConcave+DConcave+3700_flipped at IoU 0.5
+2025-07-15 06:57:11,959 - DEBUG - No collision detected for BConcave+DConcave+3700_flipped at IoU 0.55
+2025-07-15 06:57:12,376 - DEBUG - No collision detected for BConcave+DConcave+3700_flipped at IoU 0.6
+2025-07-15 06:57:12,791 - DEBUG - No collision detected for BConcave+DConcave+3700_flipped at IoU 0.65
+2025-07-15 06:57:13,207 - DEBUG - No collision detected for BConcave+DConcave+3700_flipped at IoU 0.7
+2025-07-15 06:57:13,624 - DEBUG - No collision detected for BConcave+DConcave+3700_flipped at IoU 0.75
+2025-07-15 06:57:14,038 - DEBUG - No collision detected for BConcave+DConcave+3700_flipped at IoU 0.8
+2025-07-15 06:57:14,453 - DEBUG - No collision detected for BConcave+DConcave+3700_flipped at IoU 0.85
+2025-07-15 06:57:14,869 - DEBUG - No collision detected for BConcave+DConcave+3700_flipped at IoU 0.9
+2025-07-15 06:57:15,284 - DEBUG - No collision detected for BConcave+DConcave+3700_flipped at IoU 0.95
+2025-07-15 06:57:15,284 - INFO - Processing video: BConcave+DConcave+3900
+2025-07-15 06:57:15,285 - INFO - Video BConcave+DConcave+3900 already processed, skipping...
+2025-07-15 06:57:15,301 - INFO - VanillaSegmentationSaver initialized with output dir: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_videos/segformer_model-BConcave+DConcave+3900/org_segmentation
+2025-07-15 06:57:15,301 - INFO - Video BConcave+DConcave+3900: Both blobs remained visible throughout
+2025-07-15 06:57:15,301 - INFO - Video BConcave+DConcave+3900: Blob 1 memory strategy = running_average
+2025-07-15 06:57:15,301 - INFO - Video BConcave+DConcave+3900: Blob 1 memory frozen after frame 80
+2025-07-15 06:57:15,307 - INFO - Found 631 mask files
+2025-07-15 06:57:17,739 - INFO - Found 315 frames with valid blob data
+2025-07-15 06:57:18,053 - DEBUG - Collision time for BConcave+DConcave+3900 at IoU 0.05: 4083.33ms
+2025-07-15 06:57:18,368 - DEBUG - Collision time for BConcave+DConcave+3900 at IoU 0.1: 4150.00ms
+2025-07-15 06:57:18,689 - DEBUG - Collision time for BConcave+DConcave+3900 at IoU 0.15: 4216.67ms
+2025-07-15 06:57:19,017 - DEBUG - Collision time for BConcave+DConcave+3900 at IoU 0.2: 4283.33ms
+2025-07-15 06:57:19,351 - DEBUG - Collision time for BConcave+DConcave+3900 at IoU 0.25: 4366.67ms
+2025-07-15 06:57:19,693 - DEBUG - Collision time for BConcave+DConcave+3900 at IoU 0.3: 4483.33ms
+2025-07-15 06:57:20,044 - DEBUG - Collision time for BConcave+DConcave+3900 at IoU 0.35: 4600.00ms
+2025-07-15 06:57:20,463 - DEBUG - No collision detected for BConcave+DConcave+3900 at IoU 0.4
+2025-07-15 06:57:20,897 - DEBUG - No collision detected for BConcave+DConcave+3900 at IoU 0.45
+2025-07-15 06:57:21,324 - DEBUG - No collision detected for BConcave+DConcave+3900 at IoU 0.5
+2025-07-15 06:57:21,745 - DEBUG - No collision detected for BConcave+DConcave+3900 at IoU 0.55
+2025-07-15 06:57:22,171 - DEBUG - No collision detected for BConcave+DConcave+3900 at IoU 0.6
+2025-07-15 06:57:22,596 - DEBUG - No collision detected for BConcave+DConcave+3900 at IoU 0.65
+2025-07-15 06:57:23,017 - DEBUG - No collision detected for BConcave+DConcave+3900 at IoU 0.7
+2025-07-15 06:57:23,435 - DEBUG - No collision detected for BConcave+DConcave+3900 at IoU 0.75
+2025-07-15 06:57:23,854 - DEBUG - No collision detected for BConcave+DConcave+3900 at IoU 0.8
+2025-07-15 06:57:24,273 - DEBUG - No collision detected for BConcave+DConcave+3900 at IoU 0.85
+2025-07-15 06:57:24,693 - DEBUG - No collision detected for BConcave+DConcave+3900 at IoU 0.9
+2025-07-15 06:57:25,115 - DEBUG - No collision detected for BConcave+DConcave+3900 at IoU 0.95
+2025-07-15 06:57:25,115 - INFO - Processing video: BConcave+DConcave+4100_flipped
+2025-07-15 06:57:25,116 - INFO - Video BConcave+DConcave+4100_flipped already processed, skipping...
+2025-07-15 06:57:25,130 - INFO - VanillaSegmentationSaver initialized with output dir: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_videos/segformer_model-BConcave+DConcave+4100_flipped/org_segmentation
+2025-07-15 06:57:25,130 - INFO - Video BConcave+DConcave+4100_flipped: Both blobs remained visible throughout
+2025-07-15 06:57:25,130 - INFO - Video BConcave+DConcave+4100_flipped: Blob 1 memory strategy = running_average
+2025-07-15 06:57:25,130 - INFO - Video BConcave+DConcave+4100_flipped: Blob 1 memory frozen after frame 80
+2025-07-15 06:57:25,137 - INFO - Found 631 mask files
+2025-07-15 06:57:27,513 - INFO - Found 315 frames with valid blob data
+2025-07-15 06:57:27,864 - DEBUG - Collision time for BConcave+DConcave+4100_flipped at IoU 0.05: 4333.33ms
+2025-07-15 06:57:28,208 - DEBUG - Collision time for BConcave+DConcave+4100_flipped at IoU 0.1: 4400.00ms
+2025-07-15 06:57:28,558 - DEBUG - Collision time for BConcave+DConcave+4100_flipped at IoU 0.15: 4450.00ms
+2025-07-15 06:57:28,912 - DEBUG - Collision time for BConcave+DConcave+4100_flipped at IoU 0.2: 4500.00ms
+2025-07-15 06:57:29,261 - DEBUG - Collision time for BConcave+DConcave+4100_flipped at IoU 0.25: 4566.67ms
+2025-07-15 06:57:29,612 - DEBUG - Collision time for BConcave+DConcave+4100_flipped at IoU 0.3: 4616.67ms
+2025-07-15 06:57:29,966 - DEBUG - Collision time for BConcave+DConcave+4100_flipped at IoU 0.35: 4683.33ms
+2025-07-15 06:57:30,323 - DEBUG - Collision time for BConcave+DConcave+4100_flipped at IoU 0.4: 4733.33ms
+2025-07-15 06:57:30,701 - DEBUG - Collision time for BConcave+DConcave+4100_flipped at IoU 0.45: 4766.67ms
+2025-07-15 06:57:31,070 - DEBUG - Collision time for BConcave+DConcave+4100_flipped at IoU 0.5: 4850.00ms
+2025-07-15 06:57:31,490 - DEBUG - No collision detected for BConcave+DConcave+4100_flipped at IoU 0.55
+2025-07-15 06:57:31,905 - DEBUG - No collision detected for BConcave+DConcave+4100_flipped at IoU 0.6
+2025-07-15 06:57:32,321 - DEBUG - No collision detected for BConcave+DConcave+4100_flipped at IoU 0.65
+2025-07-15 06:57:32,736 - DEBUG - No collision detected for BConcave+DConcave+4100_flipped at IoU 0.7
+2025-07-15 06:57:33,152 - DEBUG - No collision detected for BConcave+DConcave+4100_flipped at IoU 0.75
+2025-07-15 06:57:33,573 - DEBUG - No collision detected for BConcave+DConcave+4100_flipped at IoU 0.8
+2025-07-15 06:57:33,995 - DEBUG - No collision detected for BConcave+DConcave+4100_flipped at IoU 0.85
+2025-07-15 06:57:34,426 - DEBUG - No collision detected for BConcave+DConcave+4100_flipped at IoU 0.9
+2025-07-15 06:57:34,859 - DEBUG - No collision detected for BConcave+DConcave+4100_flipped at IoU 0.95
+2025-07-15 06:57:34,859 - INFO - Processing video: BConcave+DConcave+4300
+2025-07-15 06:57:34,860 - INFO - Video BConcave+DConcave+4300 already processed, skipping...
+2025-07-15 06:57:34,876 - INFO - VanillaSegmentationSaver initialized with output dir: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_videos/segformer_model-BConcave+DConcave+4300/org_segmentation
+2025-07-15 06:57:34,876 - INFO - Video BConcave+DConcave+4300: Both blobs remained visible throughout
+2025-07-15 06:57:34,876 - INFO - Video BConcave+DConcave+4300: Blob 1 memory strategy = running_average
+2025-07-15 06:57:34,876 - INFO - Video BConcave+DConcave+4300: Blob 1 memory frozen after frame 80
+2025-07-15 06:57:34,882 - INFO - Found 631 mask files
+2025-07-15 06:57:37,375 - INFO - Found 315 frames with valid blob data
+2025-07-15 06:57:37,744 - DEBUG - Collision time for BConcave+DConcave+4300 at IoU 0.05: 4766.67ms
+2025-07-15 06:57:38,160 - DEBUG - No collision detected for BConcave+DConcave+4300 at IoU 0.1
+2025-07-15 06:57:38,575 - DEBUG - No collision detected for BConcave+DConcave+4300 at IoU 0.15
+2025-07-15 06:57:38,990 - DEBUG - No collision detected for BConcave+DConcave+4300 at IoU 0.2
+2025-07-15 06:57:39,405 - DEBUG - No collision detected for BConcave+DConcave+4300 at IoU 0.25
+2025-07-15 06:57:39,819 - DEBUG - No collision detected for BConcave+DConcave+4300 at IoU 0.3
+2025-07-15 06:57:40,242 - DEBUG - No collision detected for BConcave+DConcave+4300 at IoU 0.35
+2025-07-15 06:57:40,686 - DEBUG - No collision detected for BConcave+DConcave+4300 at IoU 0.4
+2025-07-15 06:57:41,113 - DEBUG - No collision detected for BConcave+DConcave+4300 at IoU 0.45
+2025-07-15 06:57:41,555 - DEBUG - No collision detected for BConcave+DConcave+4300 at IoU 0.5
+2025-07-15 06:57:41,990 - DEBUG - No collision detected for BConcave+DConcave+4300 at IoU 0.55
+2025-07-15 06:57:42,430 - DEBUG - No collision detected for BConcave+DConcave+4300 at IoU 0.6
+2025-07-15 06:57:42,869 - DEBUG - No collision detected for BConcave+DConcave+4300 at IoU 0.65
+2025-07-15 06:57:43,308 - DEBUG - No collision detected for BConcave+DConcave+4300 at IoU 0.7
+2025-07-15 06:57:43,746 - DEBUG - No collision detected for BConcave+DConcave+4300 at IoU 0.75
+2025-07-15 06:57:44,186 - DEBUG - No collision detected for BConcave+DConcave+4300 at IoU 0.8
+2025-07-15 06:57:44,624 - DEBUG - No collision detected for BConcave+DConcave+4300 at IoU 0.85
+2025-07-15 06:57:45,080 - DEBUG - No collision detected for BConcave+DConcave+4300 at IoU 0.9
+2025-07-15 06:57:45,527 - DEBUG - No collision detected for BConcave+DConcave+4300 at IoU 0.95
+2025-07-15 06:57:45,527 - INFO - Processing video: BConcave+DConcave+4500_flipped
+2025-07-15 06:57:45,529 - INFO - Video BConcave+DConcave+4500_flipped already processed, skipping...
+2025-07-15 06:57:45,546 - INFO - VanillaSegmentationSaver initialized with output dir: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_videos/segformer_model-BConcave+DConcave+4500_flipped/org_segmentation
+2025-07-15 06:57:45,546 - INFO - Video BConcave+DConcave+4500_flipped: Both blobs remained visible throughout
+2025-07-15 06:57:45,546 - INFO - Video BConcave+DConcave+4500_flipped: Blob 1 memory strategy = running_average
+2025-07-15 06:57:45,546 - INFO - Video BConcave+DConcave+4500_flipped: Blob 1 memory frozen after frame 80
+2025-07-15 06:57:45,553 - INFO - Found 381 mask files
+2025-07-15 06:57:46,982 - INFO - Found 65 frames with valid blob data
+2025-07-15 06:57:47,097 - DEBUG - No collision detected for BConcave+DConcave+4500_flipped at IoU 0.05
+2025-07-15 06:57:47,189 - DEBUG - No collision detected for BConcave+DConcave+4500_flipped at IoU 0.1
+2025-07-15 06:57:47,281 - DEBUG - No collision detected for BConcave+DConcave+4500_flipped at IoU 0.15
+2025-07-15 06:57:47,372 - DEBUG - No collision detected for BConcave+DConcave+4500_flipped at IoU 0.2
+2025-07-15 06:57:47,463 - DEBUG - No collision detected for BConcave+DConcave+4500_flipped at IoU 0.25
+2025-07-15 06:57:47,554 - DEBUG - No collision detected for BConcave+DConcave+4500_flipped at IoU 0.3
+2025-07-15 06:57:47,644 - DEBUG - No collision detected for BConcave+DConcave+4500_flipped at IoU 0.35
+2025-07-15 06:57:47,736 - DEBUG - No collision detected for BConcave+DConcave+4500_flipped at IoU 0.4
+2025-07-15 06:57:47,828 - DEBUG - No collision detected for BConcave+DConcave+4500_flipped at IoU 0.45
+2025-07-15 06:57:47,918 - DEBUG - No collision detected for BConcave+DConcave+4500_flipped at IoU 0.5
+2025-07-15 06:57:48,009 - DEBUG - No collision detected for BConcave+DConcave+4500_flipped at IoU 0.55
+2025-07-15 06:57:48,100 - DEBUG - No collision detected for BConcave+DConcave+4500_flipped at IoU 0.6
+2025-07-15 06:57:48,190 - DEBUG - No collision detected for BConcave+DConcave+4500_flipped at IoU 0.65
+2025-07-15 06:57:48,282 - DEBUG - No collision detected for BConcave+DConcave+4500_flipped at IoU 0.7
+2025-07-15 06:57:48,373 - DEBUG - No collision detected for BConcave+DConcave+4500_flipped at IoU 0.75
+2025-07-15 06:57:48,465 - DEBUG - No collision detected for BConcave+DConcave+4500_flipped at IoU 0.8
+2025-07-15 06:57:48,555 - DEBUG - No collision detected for BConcave+DConcave+4500_flipped at IoU 0.85
+2025-07-15 06:57:48,646 - DEBUG - No collision detected for BConcave+DConcave+4500_flipped at IoU 0.9
+2025-07-15 06:57:48,736 - DEBUG - No collision detected for BConcave+DConcave+4500_flipped at IoU 0.95
+2025-07-15 06:57:48,736 - INFO - Processing video: BConcave+DConvex+3500_flipped
+2025-07-15 06:57:48,737 - INFO - Video BConcave+DConvex+3500_flipped already processed, skipping...
+2025-07-15 06:57:48,753 - INFO - VanillaSegmentationSaver initialized with output dir: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_videos/segformer_model-BConcave+DConvex+3500_flipped/org_segmentation
+2025-07-15 06:57:48,753 - INFO - Video BConcave+DConvex+3500_flipped: Both blobs remained visible throughout
+2025-07-15 06:57:48,753 - INFO - Video BConcave+DConvex+3500_flipped: Blob 1 memory strategy = running_average
+2025-07-15 06:57:48,753 - INFO - Video BConcave+DConvex+3500_flipped: Blob 1 memory frozen after frame 80
+2025-07-15 06:57:48,760 - INFO - Found 630 mask files
+2025-07-15 06:57:51,053 - INFO - Found 314 frames with valid blob data
+2025-07-15 06:57:51,468 - DEBUG - No collision detected for BConcave+DConvex+3500_flipped at IoU 0.05
+2025-07-15 06:57:51,883 - DEBUG - No collision detected for BConcave+DConvex+3500_flipped at IoU 0.1
+2025-07-15 06:57:52,311 - DEBUG - No collision detected for BConcave+DConvex+3500_flipped at IoU 0.15
+2025-07-15 06:57:52,725 - DEBUG - No collision detected for BConcave+DConvex+3500_flipped at IoU 0.2
+2025-07-15 06:57:53,141 - DEBUG - No collision detected for BConcave+DConvex+3500_flipped at IoU 0.25
+2025-07-15 06:57:53,555 - DEBUG - No collision detected for BConcave+DConvex+3500_flipped at IoU 0.3
+2025-07-15 06:57:53,970 - DEBUG - No collision detected for BConcave+DConvex+3500_flipped at IoU 0.35
+2025-07-15 06:57:54,385 - DEBUG - No collision detected for BConcave+DConvex+3500_flipped at IoU 0.4
+2025-07-15 06:57:54,799 - DEBUG - No collision detected for BConcave+DConvex+3500_flipped at IoU 0.45
+2025-07-15 06:57:55,215 - DEBUG - No collision detected for BConcave+DConvex+3500_flipped at IoU 0.5
+2025-07-15 06:57:55,629 - DEBUG - No collision detected for BConcave+DConvex+3500_flipped at IoU 0.55
+2025-07-15 06:57:56,043 - DEBUG - No collision detected for BConcave+DConvex+3500_flipped at IoU 0.6
+2025-07-15 06:57:56,458 - DEBUG - No collision detected for BConcave+DConvex+3500_flipped at IoU 0.65
+2025-07-15 06:57:56,872 - DEBUG - No collision detected for BConcave+DConvex+3500_flipped at IoU 0.7
+2025-07-15 06:57:57,287 - DEBUG - No collision detected for BConcave+DConvex+3500_flipped at IoU 0.75
+2025-07-15 06:57:57,701 - DEBUG - No collision detected for BConcave+DConvex+3500_flipped at IoU 0.8
+2025-07-15 06:57:58,116 - DEBUG - No collision detected for BConcave+DConvex+3500_flipped at IoU 0.85
+2025-07-15 06:57:58,540 - DEBUG - No collision detected for BConcave+DConvex+3500_flipped at IoU 0.9
+2025-07-15 06:57:58,956 - DEBUG - No collision detected for BConcave+DConvex+3500_flipped at IoU 0.95
+2025-07-15 06:57:58,956 - INFO - Processing video: BConcave+DConvex+3700
+2025-07-15 06:57:58,957 - INFO - Video BConcave+DConvex+3700 already processed, skipping...
+2025-07-15 06:57:58,971 - INFO - VanillaSegmentationSaver initialized with output dir: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_videos/segformer_model-BConcave+DConvex+3700/org_segmentation
+2025-07-15 06:57:58,971 - INFO - Video BConcave+DConvex+3700: Both blobs remained visible throughout
+2025-07-15 06:57:58,971 - INFO - Video BConcave+DConvex+3700: Blob 1 memory strategy = running_average
+2025-07-15 06:57:58,971 - INFO - Video BConcave+DConvex+3700: Blob 1 memory frozen after frame 80
+2025-07-15 06:57:58,979 - INFO - Found 631 mask files
+2025-07-15 06:58:01,422 - INFO - Found 315 frames with valid blob data
+2025-07-15 06:58:01,783 - DEBUG - Collision time for BConcave+DConvex+3700 at IoU 0.05: 4600.00ms
+2025-07-15 06:58:02,136 - DEBUG - Collision time for BConcave+DConvex+3700 at IoU 0.1: 4650.00ms
+2025-07-15 06:58:02,493 - DEBUG - Collision time for BConcave+DConvex+3700 at IoU 0.15: 4700.00ms
+2025-07-15 06:58:02,855 - DEBUG - Collision time for BConcave+DConvex+3700 at IoU 0.2: 4783.33ms
+2025-07-15 06:58:03,272 - DEBUG - No collision detected for BConcave+DConvex+3700 at IoU 0.25
+2025-07-15 06:58:03,688 - DEBUG - No collision detected for BConcave+DConvex+3700 at IoU 0.3
+2025-07-15 06:58:04,106 - DEBUG - No collision detected for BConcave+DConvex+3700 at IoU 0.35
+2025-07-15 06:58:04,531 - DEBUG - No collision detected for BConcave+DConvex+3700 at IoU 0.4
+2025-07-15 06:58:04,947 - DEBUG - No collision detected for BConcave+DConvex+3700 at IoU 0.45
+2025-07-15 06:58:05,372 - DEBUG - No collision detected for BConcave+DConvex+3700 at IoU 0.5
+2025-07-15 06:58:05,829 - DEBUG - No collision detected for BConcave+DConvex+3700 at IoU 0.55
+2025-07-15 06:58:06,246 - DEBUG - No collision detected for BConcave+DConvex+3700 at IoU 0.6
+2025-07-15 06:58:06,662 - DEBUG - No collision detected for BConcave+DConvex+3700 at IoU 0.65
+2025-07-15 06:58:07,079 - DEBUG - No collision detected for BConcave+DConvex+3700 at IoU 0.7
+2025-07-15 06:58:07,495 - DEBUG - No collision detected for BConcave+DConvex+3700 at IoU 0.75
+2025-07-15 06:58:07,911 - DEBUG - No collision detected for BConcave+DConvex+3700 at IoU 0.8
+2025-07-15 06:58:08,326 - DEBUG - No collision detected for BConcave+DConvex+3700 at IoU 0.85
+2025-07-15 06:58:08,742 - DEBUG - No collision detected for BConcave+DConvex+3700 at IoU 0.9
+2025-07-15 06:58:09,157 - DEBUG - No collision detected for BConcave+DConvex+3700 at IoU 0.95
+2025-07-15 06:58:09,157 - INFO - Processing video: BConcave+DConvex+3900_flipped
+2025-07-15 06:58:09,158 - INFO - Video BConcave+DConvex+3900_flipped already processed, skipping...
+2025-07-15 06:58:09,173 - INFO - VanillaSegmentationSaver initialized with output dir: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_videos/segformer_model-BConcave+DConvex+3900_flipped/org_segmentation
+2025-07-15 06:58:09,173 - INFO - Video BConcave+DConvex+3900_flipped: Both blobs remained visible throughout
+2025-07-15 06:58:09,173 - INFO - Video BConcave+DConvex+3900_flipped: Blob 1 memory strategy = running_average
+2025-07-15 06:58:09,173 - INFO - Video BConcave+DConvex+3900_flipped: Blob 1 memory frozen after frame 80
+2025-07-15 06:58:09,180 - INFO - Found 631 mask files
+2025-07-15 06:58:11,572 - INFO - Found 315 frames with valid blob data
+2025-07-15 06:58:11,913 - DEBUG - Collision time for BConcave+DConvex+3900_flipped at IoU 0.05: 4316.67ms
+2025-07-15 06:58:12,255 - DEBUG - Collision time for BConcave+DConvex+3900_flipped at IoU 0.1: 4483.33ms
+2025-07-15 06:58:12,603 - DEBUG - Collision time for BConcave+DConvex+3900_flipped at IoU 0.15: 4566.67ms
+2025-07-15 06:58:12,979 - DEBUG - Collision time for BConcave+DConvex+3900_flipped at IoU 0.2: 4916.67ms
+2025-07-15 06:58:13,399 - DEBUG - No collision detected for BConcave+DConvex+3900_flipped at IoU 0.25
+2025-07-15 06:58:13,819 - DEBUG - No collision detected for BConcave+DConvex+3900_flipped at IoU 0.3
+2025-07-15 06:58:14,239 - DEBUG - No collision detected for BConcave+DConvex+3900_flipped at IoU 0.35
+2025-07-15 06:58:14,659 - DEBUG - No collision detected for BConcave+DConvex+3900_flipped at IoU 0.4
+2025-07-15 06:58:15,078 - DEBUG - No collision detected for BConcave+DConvex+3900_flipped at IoU 0.45
+2025-07-15 06:58:15,499 - DEBUG - No collision detected for BConcave+DConvex+3900_flipped at IoU 0.5
+2025-07-15 06:58:15,921 - DEBUG - No collision detected for BConcave+DConvex+3900_flipped at IoU 0.55
+2025-07-15 06:58:16,382 - DEBUG - No collision detected for BConcave+DConvex+3900_flipped at IoU 0.6
+2025-07-15 06:58:16,811 - DEBUG - No collision detected for BConcave+DConvex+3900_flipped at IoU 0.65
+2025-07-15 06:58:17,229 - DEBUG - No collision detected for BConcave+DConvex+3900_flipped at IoU 0.7
+2025-07-15 06:58:17,644 - DEBUG - No collision detected for BConcave+DConvex+3900_flipped at IoU 0.75
+2025-07-15 06:58:18,058 - DEBUG - No collision detected for BConcave+DConvex+3900_flipped at IoU 0.8
+2025-07-15 06:58:18,473 - DEBUG - No collision detected for BConcave+DConvex+3900_flipped at IoU 0.85
+2025-07-15 06:58:18,888 - DEBUG - No collision detected for BConcave+DConvex+3900_flipped at IoU 0.9
+2025-07-15 06:58:19,307 - DEBUG - No collision detected for BConcave+DConvex+3900_flipped at IoU 0.95
+2025-07-15 06:58:19,308 - INFO - Processing video: BConcave+DConvex+4100
+2025-07-15 06:58:19,309 - INFO - Video BConcave+DConvex+4100 already processed, skipping...
+2025-07-15 06:58:19,324 - INFO - VanillaSegmentationSaver initialized with output dir: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_videos/segformer_model-BConcave+DConvex+4100/org_segmentation
+2025-07-15 06:58:19,325 - INFO - Video BConcave+DConvex+4100: Both blobs remained visible throughout
+2025-07-15 06:58:19,325 - INFO - Video BConcave+DConvex+4100: Blob 1 memory strategy = running_average
+2025-07-15 06:58:19,325 - INFO - Video BConcave+DConvex+4100: Blob 1 memory frozen after frame 80
+2025-07-15 06:58:19,332 - INFO - Found 631 mask files
+2025-07-15 06:58:21,609 - INFO - Found 315 frames with valid blob data
+2025-07-15 06:58:21,974 - DEBUG - Collision time for BConcave+DConvex+4100 at IoU 0.05: 4700.00ms
+2025-07-15 06:58:22,352 - DEBUG - Collision time for BConcave+DConvex+4100 at IoU 0.1: 4866.67ms
+2025-07-15 06:58:22,745 - DEBUG - Collision time for BConcave+DConvex+4100 at IoU 0.15: 5083.33ms
+2025-07-15 06:58:23,166 - DEBUG - No collision detected for BConcave+DConvex+4100 at IoU 0.2
+2025-07-15 06:58:23,583 - DEBUG - No collision detected for BConcave+DConvex+4100 at IoU 0.25
+2025-07-15 06:58:24,000 - DEBUG - No collision detected for BConcave+DConvex+4100 at IoU 0.3
+2025-07-15 06:58:24,416 - DEBUG - No collision detected for BConcave+DConvex+4100 at IoU 0.35
+2025-07-15 06:58:24,832 - DEBUG - No collision detected for BConcave+DConvex+4100 at IoU 0.4
+2025-07-15 06:58:25,251 - DEBUG - No collision detected for BConcave+DConvex+4100 at IoU 0.45
+2025-07-15 06:58:25,667 - DEBUG - No collision detected for BConcave+DConvex+4100 at IoU 0.5
+2025-07-15 06:58:26,084 - DEBUG - No collision detected for BConcave+DConvex+4100 at IoU 0.55
+2025-07-15 06:58:26,511 - DEBUG - No collision detected for BConcave+DConvex+4100 at IoU 0.6
+2025-07-15 06:58:26,943 - DEBUG - No collision detected for BConcave+DConvex+4100 at IoU 0.65
+2025-07-15 06:58:27,362 - DEBUG - No collision detected for BConcave+DConvex+4100 at IoU 0.7
+2025-07-15 06:58:27,792 - DEBUG - No collision detected for BConcave+DConvex+4100 at IoU 0.75
+2025-07-15 06:58:28,217 - DEBUG - No collision detected for BConcave+DConvex+4100 at IoU 0.8
+2025-07-15 06:58:28,634 - DEBUG - No collision detected for BConcave+DConvex+4100 at IoU 0.85
+2025-07-15 06:58:29,049 - DEBUG - No collision detected for BConcave+DConvex+4100 at IoU 0.9
+2025-07-15 06:58:29,467 - DEBUG - No collision detected for BConcave+DConvex+4100 at IoU 0.95
+2025-07-15 06:58:29,467 - INFO - Processing video: BConcave+DConvex+4300_flipped
+2025-07-15 06:58:29,468 - INFO - Video BConcave+DConvex+4300_flipped already processed, skipping...
+2025-07-15 06:58:29,484 - INFO - VanillaSegmentationSaver initialized with output dir: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_videos/segformer_model-BConcave+DConvex+4300_flipped/org_segmentation
+2025-07-15 06:58:29,484 - INFO - Video BConcave+DConvex+4300_flipped: Both blobs remained visible throughout
+2025-07-15 06:58:29,484 - INFO - Video BConcave+DConvex+4300_flipped: Blob 1 memory strategy = running_average
+2025-07-15 06:58:29,485 - INFO - Video BConcave+DConvex+4300_flipped: Blob 1 memory frozen after frame 80
+2025-07-15 06:58:29,491 - INFO - Found 631 mask files
+2025-07-15 06:58:31,857 - INFO - Found 315 frames with valid blob data
+2025-07-15 06:58:32,216 - DEBUG - Collision time for BConcave+DConvex+4300_flipped at IoU 0.05: 4716.67ms
+2025-07-15 06:58:32,617 - DEBUG - Collision time for BConcave+DConvex+4300_flipped at IoU 0.1: 4850.00ms
+2025-07-15 06:58:33,000 - DEBUG - Collision time for BConcave+DConvex+4300_flipped at IoU 0.15: 4916.67ms
+2025-07-15 06:58:33,383 - DEBUG - Collision time for BConcave+DConvex+4300_flipped at IoU 0.2: 5016.67ms
+2025-07-15 06:58:33,786 - DEBUG - Collision time for BConcave+DConvex+4300_flipped at IoU 0.25: 5283.33ms
+2025-07-15 06:58:34,209 - DEBUG - Collision time for BConcave+DConvex+4300_flipped at IoU 0.3: 5433.33ms
+2025-07-15 06:58:34,630 - DEBUG - No collision detected for BConcave+DConvex+4300_flipped at IoU 0.35
+2025-07-15 06:58:35,048 - DEBUG - No collision detected for BConcave+DConvex+4300_flipped at IoU 0.4
+2025-07-15 06:58:35,465 - DEBUG - No collision detected for BConcave+DConvex+4300_flipped at IoU 0.45
+2025-07-15 06:58:35,880 - DEBUG - No collision detected for BConcave+DConvex+4300_flipped at IoU 0.5
+2025-07-15 06:58:36,300 - DEBUG - No collision detected for BConcave+DConvex+4300_flipped at IoU 0.55
+2025-07-15 06:58:36,716 - DEBUG - No collision detected for BConcave+DConvex+4300_flipped at IoU 0.6
+2025-07-15 06:58:37,134 - DEBUG - No collision detected for BConcave+DConvex+4300_flipped at IoU 0.65
+2025-07-15 06:58:37,588 - DEBUG - No collision detected for BConcave+DConvex+4300_flipped at IoU 0.7
+2025-07-15 06:58:38,007 - DEBUG - No collision detected for BConcave+DConvex+4300_flipped at IoU 0.75
+2025-07-15 06:58:38,423 - DEBUG - No collision detected for BConcave+DConvex+4300_flipped at IoU 0.8
+2025-07-15 06:58:38,840 - DEBUG - No collision detected for BConcave+DConvex+4300_flipped at IoU 0.85
+2025-07-15 06:58:39,260 - DEBUG - No collision detected for BConcave+DConvex+4300_flipped at IoU 0.9
+2025-07-15 06:58:39,678 - DEBUG - No collision detected for BConcave+DConvex+4300_flipped at IoU 0.95
+2025-07-15 06:58:39,678 - INFO - Processing video: BConcave+DConvex+4500
+2025-07-15 06:58:39,679 - INFO - Video BConcave+DConvex+4500 already processed, skipping...
+2025-07-15 06:58:39,694 - INFO - VanillaSegmentationSaver initialized with output dir: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_videos/segformer_model-BConcave+DConvex+4500/org_segmentation
+2025-07-15 06:58:39,694 - INFO - Video BConcave+DConvex+4500: Both blobs remained visible throughout
+2025-07-15 06:58:39,694 - INFO - Video BConcave+DConvex+4500: Blob 1 memory strategy = running_average
+2025-07-15 06:58:39,694 - INFO - Video BConcave+DConvex+4500: Blob 1 memory frozen after frame 80
+2025-07-15 06:58:39,701 - INFO - Found 631 mask files
+2025-07-15 06:58:42,010 - INFO - Found 315 frames with valid blob data
+2025-07-15 06:58:42,402 - DEBUG - Collision time for BConcave+DConvex+4500 at IoU 0.05: 5083.33ms
+2025-07-15 06:58:42,801 - DEBUG - Collision time for BConcave+DConvex+4500 at IoU 0.1: 5166.67ms
+2025-07-15 06:58:43,243 - DEBUG - Collision time for BConcave+DConvex+4500 at IoU 0.15: 5266.67ms
+2025-07-15 06:58:43,682 - DEBUG - No collision detected for BConcave+DConvex+4500 at IoU 0.2
+2025-07-15 06:58:44,107 - DEBUG - No collision detected for BConcave+DConvex+4500 at IoU 0.25
+2025-07-15 06:58:44,529 - DEBUG - No collision detected for BConcave+DConvex+4500 at IoU 0.3
+2025-07-15 06:58:44,956 - DEBUG - No collision detected for BConcave+DConvex+4500 at IoU 0.35
+2025-07-15 06:58:45,384 - DEBUG - No collision detected for BConcave+DConvex+4500 at IoU 0.4
+2025-07-15 06:58:45,808 - DEBUG - No collision detected for BConcave+DConvex+4500 at IoU 0.45
+2025-07-15 06:58:46,242 - DEBUG - No collision detected for BConcave+DConvex+4500 at IoU 0.5
+2025-07-15 06:58:46,668 - DEBUG - No collision detected for BConcave+DConvex+4500 at IoU 0.55
+2025-07-15 06:58:47,096 - DEBUG - No collision detected for BConcave+DConvex+4500 at IoU 0.6
+2025-07-15 06:58:47,524 - DEBUG - No collision detected for BConcave+DConvex+4500 at IoU 0.65
+2025-07-15 06:58:47,976 - DEBUG - No collision detected for BConcave+DConvex+4500 at IoU 0.7
+2025-07-15 06:58:48,438 - DEBUG - No collision detected for BConcave+DConvex+4500 at IoU 0.75
+2025-07-15 06:58:48,875 - DEBUG - No collision detected for BConcave+DConvex+4500 at IoU 0.8
+2025-07-15 06:58:49,304 - DEBUG - No collision detected for BConcave+DConvex+4500 at IoU 0.85
+2025-07-15 06:58:49,745 - DEBUG - No collision detected for BConcave+DConvex+4500 at IoU 0.9
+2025-07-15 06:58:50,182 - DEBUG - No collision detected for BConcave+DConvex+4500 at IoU 0.95
+2025-07-15 06:58:50,182 - INFO - Processing video: BConcave+EConcave+3500_flipped
+2025-07-15 06:58:50,183 - INFO - Video BConcave+EConcave+3500_flipped already processed, skipping...
+2025-07-15 06:58:50,197 - INFO - VanillaSegmentationSaver initialized with output dir: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_videos/segformer_model-BConcave+EConcave+3500_flipped/org_segmentation
+2025-07-15 06:58:50,197 - INFO - Video BConcave+EConcave+3500_flipped: Both blobs remained visible throughout
+2025-07-15 06:58:50,197 - INFO - Video BConcave+EConcave+3500_flipped: Blob 1 memory strategy = running_average
+2025-07-15 06:58:50,197 - INFO - Video BConcave+EConcave+3500_flipped: Blob 1 memory frozen after frame 80
+2025-07-15 06:58:50,204 - INFO - Found 631 mask files
+2025-07-15 06:58:52,575 - INFO - Found 315 frames with valid blob data
+2025-07-15 06:58:52,865 - DEBUG - Collision time for BConcave+EConcave+3500_flipped at IoU 0.05: 3700.00ms
+2025-07-15 06:58:53,160 - DEBUG - Collision time for BConcave+EConcave+3500_flipped at IoU 0.1: 3850.00ms
+2025-07-15 06:58:53,475 - DEBUG - Collision time for BConcave+EConcave+3500_flipped at IoU 0.15: 4000.00ms
+2025-07-15 06:58:53,912 - DEBUG - No collision detected for BConcave+EConcave+3500_flipped at IoU 0.2
+2025-07-15 06:58:54,330 - DEBUG - No collision detected for BConcave+EConcave+3500_flipped at IoU 0.25
+2025-07-15 06:58:54,749 - DEBUG - No collision detected for BConcave+EConcave+3500_flipped at IoU 0.3
+2025-07-15 06:58:55,168 - DEBUG - No collision detected for BConcave+EConcave+3500_flipped at IoU 0.35
+2025-07-15 06:58:55,596 - DEBUG - No collision detected for BConcave+EConcave+3500_flipped at IoU 0.4
+2025-07-15 06:58:56,015 - DEBUG - No collision detected for BConcave+EConcave+3500_flipped at IoU 0.45
+2025-07-15 06:58:56,432 - DEBUG - No collision detected for BConcave+EConcave+3500_flipped at IoU 0.5
+2025-07-15 06:58:56,850 - DEBUG - No collision detected for BConcave+EConcave+3500_flipped at IoU 0.55
+2025-07-15 06:58:57,271 - DEBUG - No collision detected for BConcave+EConcave+3500_flipped at IoU 0.6
+2025-07-15 06:58:57,693 - DEBUG - No collision detected for BConcave+EConcave+3500_flipped at IoU 0.65
+2025-07-15 06:58:58,117 - DEBUG - No collision detected for BConcave+EConcave+3500_flipped at IoU 0.7
+2025-07-15 06:58:58,559 - DEBUG - No collision detected for BConcave+EConcave+3500_flipped at IoU 0.75
+2025-07-15 06:58:58,978 - DEBUG - No collision detected for BConcave+EConcave+3500_flipped at IoU 0.8
+2025-07-15 06:58:59,400 - DEBUG - No collision detected for BConcave+EConcave+3500_flipped at IoU 0.85
+2025-07-15 06:58:59,823 - DEBUG - No collision detected for BConcave+EConcave+3500_flipped at IoU 0.9
+2025-07-15 06:59:00,242 - DEBUG - No collision detected for BConcave+EConcave+3500_flipped at IoU 0.95
+2025-07-15 06:59:00,242 - INFO - Processing video: BConcave+EConcave+3700
+2025-07-15 06:59:00,244 - INFO - Video BConcave+EConcave+3700 already processed, skipping...
+2025-07-15 06:59:00,259 - INFO - VanillaSegmentationSaver initialized with output dir: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_videos/segformer_model-BConcave+EConcave+3700/org_segmentation
+2025-07-15 06:59:00,259 - INFO - Video BConcave+EConcave+3700: Both blobs remained visible throughout
+2025-07-15 06:59:00,259 - INFO - Video BConcave+EConcave+3700: Blob 1 memory strategy = running_average
+2025-07-15 06:59:00,259 - INFO - Video BConcave+EConcave+3700: Blob 1 memory frozen after frame 80
+2025-07-15 06:59:00,266 - INFO - Found 631 mask files
+2025-07-15 06:59:02,599 - INFO - Found 315 frames with valid blob data
+2025-07-15 06:59:02,899 - DEBUG - Collision time for BConcave+EConcave+3700 at IoU 0.05: 3900.00ms
+2025-07-15 06:59:03,208 - DEBUG - Collision time for BConcave+EConcave+3700 at IoU 0.1: 4033.33ms
+2025-07-15 06:59:03,538 - DEBUG - Collision time for BConcave+EConcave+3700 at IoU 0.15: 4283.33ms
+2025-07-15 06:59:03,963 - DEBUG - No collision detected for BConcave+EConcave+3700 at IoU 0.2
+2025-07-15 06:59:04,393 - DEBUG - No collision detected for BConcave+EConcave+3700 at IoU 0.25
+2025-07-15 06:59:04,816 - DEBUG - No collision detected for BConcave+EConcave+3700 at IoU 0.3
+2025-07-15 06:59:05,237 - DEBUG - No collision detected for BConcave+EConcave+3700 at IoU 0.35
+2025-07-15 06:59:05,654 - DEBUG - No collision detected for BConcave+EConcave+3700 at IoU 0.4
+2025-07-15 06:59:06,071 - DEBUG - No collision detected for BConcave+EConcave+3700 at IoU 0.45
+2025-07-15 06:59:06,495 - DEBUG - No collision detected for BConcave+EConcave+3700 at IoU 0.5
+2025-07-15 06:59:06,916 - DEBUG - No collision detected for BConcave+EConcave+3700 at IoU 0.55
+2025-07-15 06:59:07,337 - DEBUG - No collision detected for BConcave+EConcave+3700 at IoU 0.6
+2025-07-15 06:59:07,760 - DEBUG - No collision detected for BConcave+EConcave+3700 at IoU 0.65
+2025-07-15 06:59:08,185 - DEBUG - No collision detected for BConcave+EConcave+3700 at IoU 0.7
+2025-07-15 06:59:08,603 - DEBUG - No collision detected for BConcave+EConcave+3700 at IoU 0.75
+2025-07-15 06:59:09,027 - DEBUG - No collision detected for BConcave+EConcave+3700 at IoU 0.8
+2025-07-15 06:59:09,469 - DEBUG - No collision detected for BConcave+EConcave+3700 at IoU 0.85
+2025-07-15 06:59:09,895 - DEBUG - No collision detected for BConcave+EConcave+3700 at IoU 0.9
+2025-07-15 06:59:10,334 - DEBUG - No collision detected for BConcave+EConcave+3700 at IoU 0.95
+2025-07-15 06:59:10,334 - INFO - Processing video: BConcave+EConcave+3900_flipped
+2025-07-15 06:59:10,335 - INFO - Video BConcave+EConcave+3900_flipped already processed, skipping...
+2025-07-15 06:59:10,354 - INFO - VanillaSegmentationSaver initialized with output dir: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_videos/segformer_model-BConcave+EConcave+3900_flipped/org_segmentation
+2025-07-15 06:59:10,354 - INFO - Video BConcave+EConcave+3900_flipped: Both blobs remained visible throughout
+2025-07-15 06:59:10,354 - INFO - Video BConcave+EConcave+3900_flipped: Blob 1 memory strategy = running_average
+2025-07-15 06:59:10,354 - INFO - Video BConcave+EConcave+3900_flipped: Blob 1 memory frozen after frame 80
+2025-07-15 06:59:10,360 - INFO - Found 631 mask files
+2025-07-15 06:59:28,831 - INFO - Found 315 frames with valid blob data
+2025-07-15 06:59:29,145 - DEBUG - Collision time for BConcave+EConcave+3900_flipped at IoU 0.05: 4066.67ms
+2025-07-15 06:59:29,460 - DEBUG - Collision time for BConcave+EConcave+3900_flipped at IoU 0.1: 4116.67ms
+2025-07-15 06:59:29,791 - DEBUG - Collision time for BConcave+EConcave+3900_flipped at IoU 0.15: 4283.33ms
+2025-07-15 06:59:30,126 - DEBUG - Collision time for BConcave+EConcave+3900_flipped at IoU 0.2: 4383.33ms
+2025-07-15 06:59:30,546 - DEBUG - No collision detected for BConcave+EConcave+3900_flipped at IoU 0.25
+2025-07-15 06:59:30,964 - DEBUG - No collision detected for BConcave+EConcave+3900_flipped at IoU 0.3
+2025-07-15 06:59:31,386 - DEBUG - No collision detected for BConcave+EConcave+3900_flipped at IoU 0.35
+2025-07-15 06:59:31,807 - DEBUG - No collision detected for BConcave+EConcave+3900_flipped at IoU 0.4
+2025-07-15 06:59:32,226 - DEBUG - No collision detected for BConcave+EConcave+3900_flipped at IoU 0.45
+2025-07-15 06:59:32,650 - DEBUG - No collision detected for BConcave+EConcave+3900_flipped at IoU 0.5
+2025-07-15 06:59:33,077 - DEBUG - No collision detected for BConcave+EConcave+3900_flipped at IoU 0.55
+2025-07-15 06:59:33,502 - DEBUG - No collision detected for BConcave+EConcave+3900_flipped at IoU 0.6
+2025-07-15 06:59:33,925 - DEBUG - No collision detected for BConcave+EConcave+3900_flipped at IoU 0.65
+2025-07-15 06:59:34,367 - DEBUG - No collision detected for BConcave+EConcave+3900_flipped at IoU 0.7
+2025-07-15 06:59:34,786 - DEBUG - No collision detected for BConcave+EConcave+3900_flipped at IoU 0.75
+2025-07-15 06:59:35,205 - DEBUG - No collision detected for BConcave+EConcave+3900_flipped at IoU 0.8
+2025-07-15 06:59:35,624 - DEBUG - No collision detected for BConcave+EConcave+3900_flipped at IoU 0.85
+2025-07-15 06:59:36,043 - DEBUG - No collision detected for BConcave+EConcave+3900_flipped at IoU 0.9
+2025-07-15 06:59:36,461 - DEBUG - No collision detected for BConcave+EConcave+3900_flipped at IoU 0.95
+2025-07-15 06:59:36,461 - INFO - Processing video: BConcave+EConcave+4100
+2025-07-15 06:59:36,462 - INFO - Video BConcave+EConcave+4100 already processed, skipping...
+2025-07-15 06:59:36,479 - INFO - VanillaSegmentationSaver initialized with output dir: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_videos/segformer_model-BConcave+EConcave+4100/org_segmentation
+2025-07-15 06:59:36,479 - INFO - Video BConcave+EConcave+4100: Both blobs remained visible throughout
+2025-07-15 06:59:36,479 - INFO - Video BConcave+EConcave+4100: Blob 1 memory strategy = running_average
+2025-07-15 06:59:36,479 - INFO - Video BConcave+EConcave+4100: Blob 1 memory frozen after frame 80
+2025-07-15 06:59:36,486 - INFO - Found 631 mask files

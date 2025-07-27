@@ -1,0 +1,667 @@
+2025-07-27 18:16:42,750 - INFO - Logger initialized. Writing detailed log to /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/maskrcnn/exp2TTC_maskrcnn_resnet50_fpn/logs/ttc_exp_20250727_181642.log
+2025-07-27 18:16:42,751 - INFO - VideoProcessor initialized with 2 blobs to detect
+2025-07-27 18:16:42,751 - INFO - Blob 1 memory strategy: running_average
+2025-07-27 18:16:42,751 - INFO - Blob 1 running average window: 10
+2025-07-27 18:16:42,751 - INFO - Blob 1 memory will freeze after frame: 80
+2025-07-27 18:16:42,751 - INFO - Vanilla segmentation enabled
+2025-07-27 18:16:42,751 - INFO - Initialized TTC Experiment with output dir: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/maskrcnn/exp2TTC_maskrcnn_resnet50_fpn
+2025-07-27 18:16:42,751 - INFO - Model prefix: maskrcnn_model
+2025-07-27 18:16:42,751 - INFO - Debug mode: False
+2025-07-27 18:16:42,751 - INFO - TTC-specific configuration:
+2025-07-27 18:16:42,752 - INFO -   - Blob 1 memory: running average of past 10 frames
+2025-07-27 18:16:42,752 - INFO -   - Blob 1 memory updates stop after frame 80
+2025-07-27 18:16:42,752 - INFO - Starting full TTC experiment
+2025-07-27 18:16:42,754 - INFO - Found 99 video files to process
+2025-07-27 18:16:42,754 - INFO - Reading participant CSV from /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/exp2TTC_files/experiment2-CollisionDetection-Data.csv...
+2025-07-27 18:16:42,774 - INFO - CSV loaded with 13974 rows and 10 columns.
+2025-07-27 18:16:42,774 - INFO - Reading name mapping from /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/exp2TTC_files/name_mapping.json...
+2025-07-27 18:16:42,774 - INFO - Loaded name mapping with 96 entries.
+2025-07-27 18:16:42,774 - INFO - Starting collision detection across videos and IoU thresholds...
+2025-07-27 18:16:42,776 - INFO - Processing video: AConcave_FConcave
+2025-07-27 18:16:42,778 - INFO - Found 1 existing frames for AConcave_FConcave, attempting to complete processing...
+2025-07-27 18:16:42,786 - INFO - VanillaSegmentationSaver initialized with output dir: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/maskrcnn/exp2TTC_maskrcnn_resnet50_fpn/processed_videos/maskrcnn_model-AConcave_FConcave/org_segmentation
+2025-07-27 18:16:42,786 - INFO - Starting video processing: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/exp2TTC_files/AConcave_FConcave.mp4
+2025-07-27 18:16:42,786 - INFO - Reset blob state tracking for new video
+2025-07-27 18:16:42,791 - INFO - VanillaSegmentationSaver initialized with output dir: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/maskrcnn/exp2TTC_maskrcnn_resnet50_fpn/processed_videos/maskrcnn_model-AConcave_FConcave/org_segmentation
+2025-07-27 18:16:42,791 - INFO - Loading model...
+2025-07-27 18:16:43,810 - ERROR - Failed to complete partial processing for AConcave_FConcave: name 'image' is not defined
+2025-07-27 18:16:43,810 - ERROR - Full traceback:
+2025-07-27 18:16:43,814 - ERROR - Traceback (most recent call last):
+2025-07-27 18:16:43,814 - ERROR -   File "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/exp2TTC.py", line 267, in _process_videos_for_collision_detection
+2025-07-27 18:16:43,814 - ERROR -     video_output_dirs = self.video_processor.process_video(
+2025-07-27 18:16:43,815 - ERROR -   File "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/video_processor.py", line 221, in process_video
+2025-07-27 18:16:43,815 - ERROR -     self.model_interface.load_model()
+2025-07-27 18:16:43,815 - ERROR -   File "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/maskrcnn/maskrcnn_interface.py", line 97, in load_model
+2025-07-27 18:16:43,815 - ERROR -     img_tensor = TF.to_tensor(image).to(self.device)
+2025-07-27 18:16:43,815 - ERROR - NameError: name 'image' is not defined. Did you mean: 'Image'?
+2025-07-27 18:16:43,815 - INFO - Will attempt full reprocessing for AConcave_FConcave
+2025-07-27 18:16:43,815 - INFO - Starting full processing for AConcave_FConcave
+2025-07-27 18:16:43,815 - INFO - Starting video processing: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/exp2TTC_files/AConcave_FConcave.mp4
+2025-07-27 18:16:43,815 - INFO - Reset blob state tracking for new video
+2025-07-27 18:16:43,822 - INFO - VanillaSegmentationSaver initialized with output dir: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/maskrcnn/exp2TTC_maskrcnn_resnet50_fpn/processed_videos/maskrcnn_model-AConcave_FConcave/org_segmentation
+2025-07-27 18:16:43,958 - INFO - Video metadata: {'width': 1500, 'height': 400, 'fps': 60.0, 'total_frames': 269, 'duration': 4.483333333333333}
+2025-07-27 18:16:43,960 - INFO - Starting processing from beginning
+2025-07-27 18:16:44,031 - ERROR - Model inference failed for frame 0: 
+2025-07-27 18:16:44,062 - INFO - Processed frame 0/269
+2025-07-27 18:16:44,066 - ERROR - Model inference failed for frame 1: 
+2025-07-27 18:16:44,090 - ERROR - Model inference failed for frame 2: 
+2025-07-27 18:16:44,113 - ERROR - Model inference failed for frame 3: 
+2025-07-27 18:16:44,136 - ERROR - Model inference failed for frame 4: 
+2025-07-27 18:16:44,160 - ERROR - Model inference failed for frame 5: 
+2025-07-27 18:16:44,189 - ERROR - Model inference failed for frame 6: 
+2025-07-27 18:16:44,214 - ERROR - Model inference failed for frame 7: 
+2025-07-27 18:16:44,237 - ERROR - Model inference failed for frame 8: 
+2025-07-27 18:16:44,261 - ERROR - Model inference failed for frame 9: 
+2025-07-27 18:16:44,283 - ERROR - Model inference failed for frame 10: 
+2025-07-27 18:16:44,303 - INFO - Processed frame 10/269
+2025-07-27 18:16:44,306 - ERROR - Model inference failed for frame 11: 
+2025-07-27 18:16:44,327 - ERROR - Model inference failed for frame 12: 
+2025-07-27 18:16:44,389 - ERROR - Failed model inference: 
+2025-07-27 18:16:44,389 - ERROR - Full traceback:
+2025-07-27 18:16:44,389 - ERROR - Traceback (most recent call last):
+2025-07-27 18:16:44,390 - ERROR -   File "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/video_processor.py", line 630, in _run_model_inference_with_splitting
+2025-07-27 18:16:44,390 - ERROR -     predictions = self.model_interface.infer_image(pil_image)
+2025-07-27 18:16:44,390 - ERROR -   File "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/maskrcnn/maskrcnn_interface.py", line 46, in infer_image
+2025-07-27 18:16:44,390 - ERROR -     raise NotImplementedError
+2025-07-27 18:16:44,390 - ERROR - NotImplementedError
+2025-07-27 18:16:44,391 - ERROR - Model inference failed for frame 13: 
+2025-07-27 18:16:44,915 - ERROR - Failed model inference: 
+2025-07-27 18:16:44,916 - ERROR - Full traceback:
+2025-07-27 18:16:44,916 - ERROR - Traceback (most recent call last):
+2025-07-27 18:16:44,916 - ERROR -   File "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/video_processor.py", line 630, in _run_model_inference_with_splitting
+2025-07-27 18:16:44,916 - ERROR -     predictions = self.model_interface.infer_image(pil_image)
+2025-07-27 18:16:44,916 - ERROR -   File "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/maskrcnn/maskrcnn_interface.py", line 46, in infer_image
+2025-07-27 18:16:44,917 - ERROR -     raise NotImplementedError
+2025-07-27 18:16:44,917 - ERROR - NotImplementedError
+2025-07-27 18:16:44,918 - ERROR - Model inference failed for frame 14: 
+2025-07-27 18:16:45,408 - ERROR - Failed model inference: 
+2025-07-27 18:16:45,409 - ERROR - Full traceback:
+2025-07-27 18:16:45,409 - ERROR - Traceback (most recent call last):
+2025-07-27 18:16:45,409 - ERROR -   File "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/video_processor.py", line 630, in _run_model_inference_with_splitting
+2025-07-27 18:16:45,409 - ERROR -     predictions = self.model_interface.infer_image(pil_image)
+2025-07-27 18:16:45,409 - ERROR -   File "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/maskrcnn/maskrcnn_interface.py", line 46, in infer_image
+2025-07-27 18:16:45,409 - ERROR -     raise NotImplementedError
+2025-07-27 18:16:45,410 - ERROR - NotImplementedError
+2025-07-27 18:16:45,410 - ERROR - Model inference failed for frame 15: 
+2025-07-27 18:16:45,918 - ERROR - Failed model inference: 
+2025-07-27 18:16:45,918 - ERROR - Full traceback:
+2025-07-27 18:16:45,919 - ERROR - Traceback (most recent call last):
+2025-07-27 18:16:45,919 - ERROR -   File "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/video_processor.py", line 630, in _run_model_inference_with_splitting
+2025-07-27 18:16:45,919 - ERROR -     predictions = self.model_interface.infer_image(pil_image)
+2025-07-27 18:16:45,919 - ERROR -   File "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/maskrcnn/maskrcnn_interface.py", line 46, in infer_image
+2025-07-27 18:16:45,919 - ERROR -     raise NotImplementedError
+2025-07-27 18:16:45,919 - ERROR - NotImplementedError
+2025-07-27 18:16:45,920 - ERROR - Model inference failed for frame 16: 
+2025-07-27 18:16:46,410 - ERROR - Failed model inference: 
+2025-07-27 18:16:46,410 - ERROR - Full traceback:
+2025-07-27 18:16:46,411 - ERROR - Traceback (most recent call last):
+2025-07-27 18:16:46,411 - ERROR -   File "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/video_processor.py", line 630, in _run_model_inference_with_splitting
+2025-07-27 18:16:46,411 - ERROR -     predictions = self.model_interface.infer_image(pil_image)
+2025-07-27 18:16:46,411 - ERROR -   File "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/maskrcnn/maskrcnn_interface.py", line 46, in infer_image
+2025-07-27 18:16:46,411 - ERROR -     raise NotImplementedError
+2025-07-27 18:16:46,411 - ERROR - NotImplementedError
+2025-07-27 18:16:46,412 - ERROR - Model inference failed for frame 17: 
+2025-07-27 18:16:47,106 - ERROR - Failed model inference: 
+2025-07-27 18:16:47,107 - ERROR - Full traceback:
+2025-07-27 18:16:47,107 - ERROR - Traceback (most recent call last):
+2025-07-27 18:16:47,107 - ERROR -   File "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/video_processor.py", line 630, in _run_model_inference_with_splitting
+2025-07-27 18:16:47,107 - ERROR -     predictions = self.model_interface.infer_image(pil_image)
+2025-07-27 18:16:47,108 - ERROR -   File "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/maskrcnn/maskrcnn_interface.py", line 46, in infer_image
+2025-07-27 18:16:47,108 - ERROR -     raise NotImplementedError
+2025-07-27 18:16:47,108 - ERROR - NotImplementedError
+2025-07-27 18:16:47,109 - ERROR - Model inference failed for frame 18: 
+2025-07-27 18:16:47,602 - ERROR - Failed model inference: 
+2025-07-27 18:16:47,603 - ERROR - Full traceback:
+2025-07-27 18:16:47,603 - ERROR - Traceback (most recent call last):
+2025-07-27 18:16:47,603 - ERROR -   File "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/video_processor.py", line 630, in _run_model_inference_with_splitting
+2025-07-27 18:16:47,603 - ERROR -     predictions = self.model_interface.infer_image(pil_image)
+2025-07-27 18:16:47,603 - ERROR -   File "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/maskrcnn/maskrcnn_interface.py", line 46, in infer_image
+2025-07-27 18:16:47,603 - ERROR -     raise NotImplementedError
+2025-07-27 18:16:47,604 - ERROR - NotImplementedError
+2025-07-27 18:16:47,604 - ERROR - Model inference failed for frame 19: 
+2025-07-27 18:16:48,111 - ERROR - Failed model inference: 
+2025-07-27 18:16:48,111 - ERROR - Full traceback:
+2025-07-27 18:16:48,112 - ERROR - Traceback (most recent call last):
+2025-07-27 18:16:48,112 - ERROR -   File "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/video_processor.py", line 630, in _run_model_inference_with_splitting
+2025-07-27 18:16:48,112 - ERROR -     predictions = self.model_interface.infer_image(pil_image)
+2025-07-27 18:16:48,112 - ERROR -   File "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/maskrcnn/maskrcnn_interface.py", line 46, in infer_image
+2025-07-27 18:16:48,112 - ERROR -     raise NotImplementedError
+2025-07-27 18:16:48,112 - ERROR - NotImplementedError
+2025-07-27 18:16:48,113 - ERROR - Model inference failed for frame 20: 
+2025-07-27 18:16:48,601 - INFO - Processed frame 20/269
+2025-07-27 18:16:48,620 - ERROR - Failed model inference: 
+2025-07-27 18:16:48,620 - ERROR - Full traceback:
+2025-07-27 18:16:48,621 - ERROR - Traceback (most recent call last):
+2025-07-27 18:16:48,621 - ERROR -   File "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/video_processor.py", line 630, in _run_model_inference_with_splitting
+2025-07-27 18:16:48,621 - ERROR -     predictions = self.model_interface.infer_image(pil_image)
+2025-07-27 18:16:48,621 - ERROR -   File "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/maskrcnn/maskrcnn_interface.py", line 46, in infer_image
+2025-07-27 18:16:48,621 - ERROR -     raise NotImplementedError
+2025-07-27 18:16:48,621 - ERROR - NotImplementedError
+2025-07-27 18:16:48,622 - ERROR - Model inference failed for frame 21: 
+2025-07-27 18:16:49,121 - ERROR - Failed model inference: 
+2025-07-27 18:16:49,122 - ERROR - Full traceback:
+2025-07-27 18:16:49,122 - ERROR - Traceback (most recent call last):
+2025-07-27 18:16:49,122 - ERROR -   File "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/video_processor.py", line 630, in _run_model_inference_with_splitting
+2025-07-27 18:16:49,122 - ERROR -     predictions = self.model_interface.infer_image(pil_image)
+2025-07-27 18:16:49,122 - ERROR -   File "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/maskrcnn/maskrcnn_interface.py", line 46, in infer_image
+2025-07-27 18:16:49,123 - ERROR -     raise NotImplementedError
+2025-07-27 18:16:49,123 - ERROR - NotImplementedError
+2025-07-27 18:16:49,124 - ERROR - Model inference failed for frame 22: 
+2025-07-27 18:16:49,621 - ERROR - Failed model inference: 
+2025-07-27 18:16:49,622 - ERROR - Full traceback:
+2025-07-27 18:16:49,622 - ERROR - Traceback (most recent call last):
+2025-07-27 18:16:49,622 - ERROR -   File "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/video_processor.py", line 630, in _run_model_inference_with_splitting
+2025-07-27 18:16:49,622 - ERROR -     predictions = self.model_interface.infer_image(pil_image)
+2025-07-27 18:16:49,622 - ERROR -   File "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/maskrcnn/maskrcnn_interface.py", line 46, in infer_image
+2025-07-27 18:16:49,623 - ERROR -     raise NotImplementedError
+2025-07-27 18:16:49,623 - ERROR - NotImplementedError
+2025-07-27 18:16:49,624 - ERROR - Model inference failed for frame 23: 
+2025-07-27 18:16:50,115 - ERROR - Failed model inference: 
+2025-07-27 18:16:50,116 - ERROR - Full traceback:
+2025-07-27 18:16:50,116 - ERROR - Traceback (most recent call last):
+2025-07-27 18:16:50,116 - ERROR -   File "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/video_processor.py", line 630, in _run_model_inference_with_splitting
+2025-07-27 18:16:50,116 - ERROR -     predictions = self.model_interface.infer_image(pil_image)
+2025-07-27 18:16:50,116 - ERROR -   File "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/maskrcnn/maskrcnn_interface.py", line 46, in infer_image
+2025-07-27 18:16:50,116 - ERROR -     raise NotImplementedError
+2025-07-27 18:16:50,117 - ERROR - NotImplementedError
+2025-07-27 18:16:50,117 - ERROR - Model inference failed for frame 24: 
+2025-07-27 18:16:50,609 - ERROR - Failed model inference: 
+2025-07-27 18:16:50,609 - ERROR - Full traceback:
+2025-07-27 18:16:50,609 - ERROR - Traceback (most recent call last):
+2025-07-27 18:16:50,610 - ERROR -   File "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/video_processor.py", line 630, in _run_model_inference_with_splitting
+2025-07-27 18:16:50,610 - ERROR -     predictions = self.model_interface.infer_image(pil_image)
+2025-07-27 18:16:50,610 - ERROR -   File "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/maskrcnn/maskrcnn_interface.py", line 46, in infer_image
+2025-07-27 18:16:50,610 - ERROR -     raise NotImplementedError
+2025-07-27 18:16:50,610 - ERROR - NotImplementedError
+2025-07-27 18:16:50,611 - ERROR - Model inference failed for frame 25: 
+2025-07-27 18:16:51,114 - ERROR - Failed model inference: 
+2025-07-27 18:16:51,114 - ERROR - Full traceback:
+2025-07-27 18:16:51,115 - ERROR - Traceback (most recent call last):
+2025-07-27 18:16:51,115 - ERROR -   File "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/video_processor.py", line 630, in _run_model_inference_with_splitting
+2025-07-27 18:16:51,115 - ERROR -     predictions = self.model_interface.infer_image(pil_image)
+2025-07-27 18:16:51,115 - ERROR -   File "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/maskrcnn/maskrcnn_interface.py", line 46, in infer_image
+2025-07-27 18:16:51,115 - ERROR -     raise NotImplementedError
+2025-07-27 18:16:51,116 - ERROR - NotImplementedError
+2025-07-27 18:16:51,116 - ERROR - Model inference failed for frame 26: 
+2025-07-27 18:16:51,613 - ERROR - Failed model inference: 
+2025-07-27 18:16:51,613 - ERROR - Full traceback:
+2025-07-27 18:16:51,614 - ERROR - Traceback (most recent call last):
+2025-07-27 18:16:51,614 - ERROR -   File "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/video_processor.py", line 630, in _run_model_inference_with_splitting
+2025-07-27 18:16:51,614 - ERROR -     predictions = self.model_interface.infer_image(pil_image)
+2025-07-27 18:16:51,614 - ERROR -   File "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/maskrcnn/maskrcnn_interface.py", line 46, in infer_image
+2025-07-27 18:16:51,614 - ERROR -     raise NotImplementedError
+2025-07-27 18:16:51,614 - ERROR - NotImplementedError
+2025-07-27 18:16:51,615 - ERROR - Model inference failed for frame 27: 
+2025-07-27 18:16:52,115 - ERROR - Failed model inference: 
+2025-07-27 18:16:52,115 - ERROR - Full traceback:
+2025-07-27 18:16:52,116 - ERROR - Traceback (most recent call last):
+2025-07-27 18:16:52,116 - ERROR -   File "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/video_processor.py", line 630, in _run_model_inference_with_splitting
+2025-07-27 18:16:52,116 - ERROR -     predictions = self.model_interface.infer_image(pil_image)
+2025-07-27 18:16:52,116 - ERROR -   File "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/maskrcnn/maskrcnn_interface.py", line 46, in infer_image
+2025-07-27 18:16:52,116 - ERROR -     raise NotImplementedError
+2025-07-27 18:16:52,116 - ERROR - NotImplementedError
+2025-07-27 18:16:52,117 - ERROR - Model inference failed for frame 28: 
+2025-07-27 18:16:52,632 - ERROR - Failed model inference: 
+2025-07-27 18:16:52,633 - ERROR - Full traceback:
+2025-07-27 18:16:52,634 - ERROR - Traceback (most recent call last):
+2025-07-27 18:16:52,634 - ERROR -   File "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/video_processor.py", line 630, in _run_model_inference_with_splitting
+2025-07-27 18:16:52,634 - ERROR -     predictions = self.model_interface.infer_image(pil_image)
+2025-07-27 18:16:52,635 - ERROR -   File "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/maskrcnn/maskrcnn_interface.py", line 46, in infer_image
+2025-07-27 18:16:52,635 - ERROR -     raise NotImplementedError
+2025-07-27 18:16:52,635 - ERROR - NotImplementedError
+2025-07-27 18:16:52,636 - ERROR - Model inference failed for frame 29: 
+2025-07-27 18:16:53,131 - ERROR - Failed model inference: 
+2025-07-27 18:16:53,131 - ERROR - Full traceback:
+2025-07-27 18:16:53,132 - ERROR - Traceback (most recent call last):
+2025-07-27 18:16:53,132 - ERROR -   File "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/video_processor.py", line 630, in _run_model_inference_with_splitting
+2025-07-27 18:16:53,132 - ERROR -     predictions = self.model_interface.infer_image(pil_image)
+2025-07-27 18:16:53,132 - ERROR -   File "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/maskrcnn/maskrcnn_interface.py", line 46, in infer_image
+2025-07-27 18:16:53,132 - ERROR -     raise NotImplementedError
+2025-07-27 18:16:53,132 - ERROR - NotImplementedError
+2025-07-27 18:16:53,133 - ERROR - Model inference failed for frame 30: 
+2025-07-27 18:16:53,869 - INFO - Processed frame 30/269
+2025-07-27 18:16:53,890 - ERROR - Failed model inference: 
+2025-07-27 18:16:53,890 - ERROR - Full traceback:
+2025-07-27 18:16:53,891 - ERROR - Traceback (most recent call last):
+2025-07-27 18:16:53,891 - ERROR -   File "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/video_processor.py", line 630, in _run_model_inference_with_splitting
+2025-07-27 18:16:53,892 - ERROR -     predictions = self.model_interface.infer_image(pil_image)
+2025-07-27 18:16:53,892 - ERROR -   File "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/maskrcnn/maskrcnn_interface.py", line 46, in infer_image
+2025-07-27 18:16:53,892 - ERROR -     raise NotImplementedError
+2025-07-27 18:16:53,892 - ERROR - NotImplementedError
+2025-07-27 18:16:53,893 - ERROR - Model inference failed for frame 31: 
+2025-07-27 18:16:54,392 - ERROR - Failed model inference: 
+2025-07-27 18:16:54,393 - ERROR - Full traceback:
+2025-07-27 18:16:54,393 - ERROR - Traceback (most recent call last):
+2025-07-27 18:16:54,393 - ERROR -   File "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/video_processor.py", line 630, in _run_model_inference_with_splitting
+2025-07-27 18:16:54,393 - ERROR -     predictions = self.model_interface.infer_image(pil_image)
+2025-07-27 18:16:54,393 - ERROR -   File "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/maskrcnn/maskrcnn_interface.py", line 46, in infer_image
+2025-07-27 18:16:54,393 - ERROR -     raise NotImplementedError
+2025-07-27 18:16:54,394 - ERROR - NotImplementedError
+2025-07-27 18:16:54,395 - ERROR - Model inference failed for frame 32: 
+2025-07-27 18:16:54,903 - ERROR - Failed model inference: 
+2025-07-27 18:16:54,903 - ERROR - Full traceback:
+2025-07-27 18:16:54,905 - ERROR - Traceback (most recent call last):
+2025-07-27 18:16:54,905 - ERROR -   File "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/video_processor.py", line 630, in _run_model_inference_with_splitting
+2025-07-27 18:16:54,905 - ERROR -     predictions = self.model_interface.infer_image(pil_image)
+2025-07-27 18:16:54,905 - ERROR -   File "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/maskrcnn/maskrcnn_interface.py", line 46, in infer_image
+2025-07-27 18:16:54,905 - ERROR -     raise NotImplementedError
+2025-07-27 18:16:54,905 - ERROR - NotImplementedError
+2025-07-27 18:16:54,906 - ERROR - Model inference failed for frame 33: 
+2025-07-27 18:16:55,428 - ERROR - Failed model inference: 
+2025-07-27 18:16:55,428 - ERROR - Full traceback:
+2025-07-27 18:16:55,430 - ERROR - Traceback (most recent call last):
+2025-07-27 18:16:55,430 - ERROR -   File "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/video_processor.py", line 630, in _run_model_inference_with_splitting
+2025-07-27 18:16:55,430 - ERROR -     predictions = self.model_interface.infer_image(pil_image)
+2025-07-27 18:16:55,430 - ERROR -   File "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/maskrcnn/maskrcnn_interface.py", line 46, in infer_image
+2025-07-27 18:16:55,430 - ERROR -     raise NotImplementedError
+2025-07-27 18:16:55,431 - ERROR - NotImplementedError
+2025-07-27 18:16:55,432 - ERROR - Model inference failed for frame 34: 
+2025-07-27 18:16:55,945 - ERROR - Failed model inference: 
+2025-07-27 18:16:55,946 - ERROR - Full traceback:
+2025-07-27 18:16:55,946 - ERROR - Traceback (most recent call last):
+2025-07-27 18:16:55,946 - ERROR -   File "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/video_processor.py", line 630, in _run_model_inference_with_splitting
+2025-07-27 18:16:55,946 - ERROR -     predictions = self.model_interface.infer_image(pil_image)
+2025-07-27 18:16:55,947 - ERROR -   File "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/maskrcnn/maskrcnn_interface.py", line 46, in infer_image
+2025-07-27 18:16:55,947 - ERROR -     raise NotImplementedError
+2025-07-27 18:16:55,947 - ERROR - NotImplementedError
+2025-07-27 18:16:55,948 - ERROR - Model inference failed for frame 35: 
+2025-07-27 18:16:56,498 - ERROR - Failed model inference: 
+2025-07-27 18:16:56,498 - ERROR - Full traceback:
+2025-07-27 18:16:56,499 - ERROR - Traceback (most recent call last):
+2025-07-27 18:16:56,499 - ERROR -   File "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/video_processor.py", line 630, in _run_model_inference_with_splitting
+2025-07-27 18:16:56,499 - ERROR -     predictions = self.model_interface.infer_image(pil_image)
+2025-07-27 18:16:56,499 - ERROR -   File "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/maskrcnn/maskrcnn_interface.py", line 46, in infer_image
+2025-07-27 18:16:56,499 - ERROR -     raise NotImplementedError
+2025-07-27 18:16:56,500 - ERROR - NotImplementedError
+2025-07-27 18:16:56,501 - ERROR - Model inference failed for frame 36: 
+2025-07-27 18:16:57,058 - ERROR - Failed model inference: 
+2025-07-27 18:16:57,058 - ERROR - Full traceback:
+2025-07-27 18:16:57,059 - ERROR - Traceback (most recent call last):
+2025-07-27 18:16:57,059 - ERROR -   File "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/video_processor.py", line 630, in _run_model_inference_with_splitting
+2025-07-27 18:16:57,059 - ERROR -     predictions = self.model_interface.infer_image(pil_image)
+2025-07-27 18:16:57,059 - ERROR -   File "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/maskrcnn/maskrcnn_interface.py", line 46, in infer_image
+2025-07-27 18:16:57,059 - ERROR -     raise NotImplementedError
+2025-07-27 18:16:57,059 - ERROR - NotImplementedError
+2025-07-27 18:16:57,060 - ERROR - Model inference failed for frame 37: 
+2025-07-27 18:16:57,567 - ERROR - Failed model inference: 
+2025-07-27 18:16:57,567 - ERROR - Full traceback:
+2025-07-27 18:16:57,568 - ERROR - Traceback (most recent call last):
+2025-07-27 18:16:57,568 - ERROR -   File "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/video_processor.py", line 630, in _run_model_inference_with_splitting
+2025-07-27 18:16:57,568 - ERROR -     predictions = self.model_interface.infer_image(pil_image)
+2025-07-27 18:16:57,568 - ERROR -   File "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/maskrcnn/maskrcnn_interface.py", line 46, in infer_image
+2025-07-27 18:16:57,568 - ERROR -     raise NotImplementedError
+2025-07-27 18:16:57,568 - ERROR - NotImplementedError
+2025-07-27 18:16:57,569 - ERROR - Model inference failed for frame 38: 
+2025-07-27 18:16:58,054 - ERROR - Failed model inference: 
+2025-07-27 18:16:58,054 - ERROR - Full traceback:
+2025-07-27 18:16:58,055 - ERROR - Traceback (most recent call last):
+2025-07-27 18:16:58,055 - ERROR -   File "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/video_processor.py", line 630, in _run_model_inference_with_splitting
+2025-07-27 18:16:58,055 - ERROR -     predictions = self.model_interface.infer_image(pil_image)
+2025-07-27 18:16:58,055 - ERROR -   File "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/maskrcnn/maskrcnn_interface.py", line 46, in infer_image
+2025-07-27 18:16:58,055 - ERROR -     raise NotImplementedError
+2025-07-27 18:16:58,055 - ERROR - NotImplementedError
+2025-07-27 18:16:58,056 - ERROR - Model inference failed for frame 39: 
+2025-07-27 18:16:58,547 - ERROR - Failed model inference: 
+2025-07-27 18:16:58,547 - ERROR - Full traceback:
+2025-07-27 18:16:58,547 - ERROR - Traceback (most recent call last):
+2025-07-27 18:16:58,548 - ERROR -   File "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/video_processor.py", line 630, in _run_model_inference_with_splitting
+2025-07-27 18:16:58,548 - ERROR -     predictions = self.model_interface.infer_image(pil_image)
+2025-07-27 18:16:58,548 - ERROR -   File "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/maskrcnn/maskrcnn_interface.py", line 46, in infer_image
+2025-07-27 18:16:58,548 - ERROR -     raise NotImplementedError
+2025-07-27 18:16:58,548 - ERROR - NotImplementedError
+2025-07-27 18:16:58,549 - ERROR - Model inference failed for frame 40: 
+2025-07-27 18:16:59,020 - INFO - Processed frame 40/269
+2025-07-27 18:16:59,039 - ERROR - Failed model inference: 
+2025-07-27 18:16:59,039 - ERROR - Full traceback:
+2025-07-27 18:16:59,039 - ERROR - Traceback (most recent call last):
+2025-07-27 18:16:59,039 - ERROR -   File "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/video_processor.py", line 630, in _run_model_inference_with_splitting
+2025-07-27 18:16:59,040 - ERROR -     predictions = self.model_interface.infer_image(pil_image)
+2025-07-27 18:16:59,040 - ERROR -   File "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/maskrcnn/maskrcnn_interface.py", line 46, in infer_image
+2025-07-27 18:16:59,040 - ERROR -     raise NotImplementedError
+2025-07-27 18:16:59,040 - ERROR - NotImplementedError
+2025-07-27 18:16:59,041 - ERROR - Model inference failed for frame 41: 
+2025-07-27 18:16:59,542 - ERROR - Failed model inference: 
+2025-07-27 18:16:59,542 - ERROR - Full traceback:
+2025-07-27 18:16:59,543 - ERROR - Traceback (most recent call last):
+2025-07-27 18:16:59,543 - ERROR -   File "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/video_processor.py", line 630, in _run_model_inference_with_splitting
+2025-07-27 18:16:59,543 - ERROR -     predictions = self.model_interface.infer_image(pil_image)
+2025-07-27 18:16:59,543 - ERROR -   File "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/maskrcnn/maskrcnn_interface.py", line 46, in infer_image
+2025-07-27 18:16:59,543 - ERROR -     raise NotImplementedError
+2025-07-27 18:16:59,543 - ERROR - NotImplementedError
+2025-07-27 18:16:59,544 - ERROR - Model inference failed for frame 42: 
+2025-07-27 18:17:00,034 - ERROR - Failed model inference: 
+2025-07-27 18:17:00,034 - ERROR - Full traceback:
+2025-07-27 18:17:00,034 - ERROR - Traceback (most recent call last):
+2025-07-27 18:17:00,034 - ERROR -   File "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/video_processor.py", line 630, in _run_model_inference_with_splitting
+2025-07-27 18:17:00,035 - ERROR -     predictions = self.model_interface.infer_image(pil_image)
+2025-07-27 18:17:00,035 - ERROR -   File "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/maskrcnn/maskrcnn_interface.py", line 46, in infer_image
+2025-07-27 18:17:00,035 - ERROR -     raise NotImplementedError
+2025-07-27 18:17:00,035 - ERROR - NotImplementedError
+2025-07-27 18:17:00,036 - ERROR - Model inference failed for frame 43: 
+2025-07-27 18:17:00,755 - ERROR - Failed model inference: 
+2025-07-27 18:17:00,755 - ERROR - Full traceback:
+2025-07-27 18:17:00,756 - ERROR - Traceback (most recent call last):
+2025-07-27 18:17:00,756 - ERROR -   File "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/video_processor.py", line 630, in _run_model_inference_with_splitting
+2025-07-27 18:17:00,756 - ERROR -     predictions = self.model_interface.infer_image(pil_image)
+2025-07-27 18:17:00,756 - ERROR -   File "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/maskrcnn/maskrcnn_interface.py", line 46, in infer_image
+2025-07-27 18:17:00,756 - ERROR -     raise NotImplementedError
+2025-07-27 18:17:00,756 - ERROR - NotImplementedError
+2025-07-27 18:17:00,757 - ERROR - Model inference failed for frame 44: 
+2025-07-27 18:17:01,279 - ERROR - Failed model inference: 
+2025-07-27 18:17:01,279 - ERROR - Full traceback:
+2025-07-27 18:17:01,281 - ERROR - Traceback (most recent call last):
+2025-07-27 18:17:01,281 - ERROR -   File "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/video_processor.py", line 630, in _run_model_inference_with_splitting
+2025-07-27 18:17:01,281 - ERROR -     predictions = self.model_interface.infer_image(pil_image)
+2025-07-27 18:17:01,281 - ERROR -   File "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/maskrcnn/maskrcnn_interface.py", line 46, in infer_image
+2025-07-27 18:17:01,281 - ERROR -     raise NotImplementedError
+2025-07-27 18:17:01,281 - ERROR - NotImplementedError
+2025-07-27 18:17:01,282 - ERROR - Model inference failed for frame 45: 
+2025-07-27 18:17:01,799 - ERROR - Failed model inference: 
+2025-07-27 18:17:01,799 - ERROR - Full traceback:
+2025-07-27 18:17:01,799 - ERROR - Traceback (most recent call last):
+2025-07-27 18:17:01,800 - ERROR -   File "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/video_processor.py", line 630, in _run_model_inference_with_splitting
+2025-07-27 18:17:01,800 - ERROR -     predictions = self.model_interface.infer_image(pil_image)
+2025-07-27 18:17:01,800 - ERROR -   File "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/maskrcnn/maskrcnn_interface.py", line 46, in infer_image
+2025-07-27 18:17:01,800 - ERROR -     raise NotImplementedError
+2025-07-27 18:17:01,800 - ERROR - NotImplementedError
+2025-07-27 18:17:01,801 - ERROR - Model inference failed for frame 46: 
+2025-07-27 18:17:02,313 - ERROR - Failed model inference: 
+2025-07-27 18:17:02,313 - ERROR - Full traceback:
+2025-07-27 18:17:02,315 - ERROR - Traceback (most recent call last):
+2025-07-27 18:17:02,315 - ERROR -   File "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/video_processor.py", line 630, in _run_model_inference_with_splitting
+2025-07-27 18:17:02,315 - ERROR -     predictions = self.model_interface.infer_image(pil_image)
+2025-07-27 18:17:02,315 - ERROR -   File "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/maskrcnn/maskrcnn_interface.py", line 46, in infer_image
+2025-07-27 18:17:02,315 - ERROR -     raise NotImplementedError
+2025-07-27 18:17:02,315 - ERROR - NotImplementedError
+2025-07-27 18:17:02,317 - ERROR - Model inference failed for frame 47: 
+2025-07-27 18:17:02,837 - ERROR - Failed model inference: 
+2025-07-27 18:17:02,837 - ERROR - Full traceback:
+2025-07-27 18:17:02,838 - ERROR - Traceback (most recent call last):
+2025-07-27 18:17:02,838 - ERROR -   File "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/video_processor.py", line 630, in _run_model_inference_with_splitting
+2025-07-27 18:17:02,838 - ERROR -     predictions = self.model_interface.infer_image(pil_image)
+2025-07-27 18:17:02,838 - ERROR -   File "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/maskrcnn/maskrcnn_interface.py", line 46, in infer_image
+2025-07-27 18:17:02,838 - ERROR -     raise NotImplementedError
+2025-07-27 18:17:02,838 - ERROR - NotImplementedError
+2025-07-27 18:17:02,839 - ERROR - Model inference failed for frame 48: 
+2025-07-27 18:17:03,344 - ERROR - Failed model inference: 
+2025-07-27 18:17:03,344 - ERROR - Full traceback:
+2025-07-27 18:17:03,347 - ERROR - Traceback (most recent call last):
+2025-07-27 18:17:03,347 - ERROR -   File "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/video_processor.py", line 630, in _run_model_inference_with_splitting
+2025-07-27 18:17:03,348 - ERROR -     predictions = self.model_interface.infer_image(pil_image)
+2025-07-27 18:17:03,348 - ERROR -   File "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/maskrcnn/maskrcnn_interface.py", line 46, in infer_image
+2025-07-27 18:17:03,348 - ERROR -     raise NotImplementedError
+2025-07-27 18:17:03,348 - ERROR - NotImplementedError
+2025-07-27 18:17:03,349 - ERROR - Model inference failed for frame 49: 
+2025-07-27 18:17:03,879 - ERROR - Failed model inference: 
+2025-07-27 18:17:03,879 - ERROR - Full traceback:
+2025-07-27 18:17:03,880 - ERROR - Traceback (most recent call last):
+2025-07-27 18:17:03,880 - ERROR -   File "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/video_processor.py", line 630, in _run_model_inference_with_splitting
+2025-07-27 18:17:03,880 - ERROR -     predictions = self.model_interface.infer_image(pil_image)
+2025-07-27 18:17:03,880 - ERROR -   File "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/maskrcnn/maskrcnn_interface.py", line 46, in infer_image
+2025-07-27 18:17:03,880 - ERROR -     raise NotImplementedError
+2025-07-27 18:17:03,880 - ERROR - NotImplementedError
+2025-07-27 18:17:03,881 - ERROR - Model inference failed for frame 50: 
+2025-07-27 18:17:04,389 - INFO - Processed frame 50/269
+2025-07-27 18:17:04,407 - ERROR - Failed model inference: 
+2025-07-27 18:17:04,408 - ERROR - Full traceback:
+2025-07-27 18:17:04,408 - ERROR - Traceback (most recent call last):
+2025-07-27 18:17:04,408 - ERROR -   File "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/video_processor.py", line 630, in _run_model_inference_with_splitting
+2025-07-27 18:17:04,408 - ERROR -     predictions = self.model_interface.infer_image(pil_image)
+2025-07-27 18:17:04,408 - ERROR -   File "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/maskrcnn/maskrcnn_interface.py", line 46, in infer_image
+2025-07-27 18:17:04,409 - ERROR -     raise NotImplementedError
+2025-07-27 18:17:04,409 - ERROR - NotImplementedError
+2025-07-27 18:17:04,410 - ERROR - Model inference failed for frame 51: 
+2025-07-27 18:17:04,938 - ERROR - Failed model inference: 
+2025-07-27 18:17:04,939 - ERROR - Full traceback:
+2025-07-27 18:17:04,940 - ERROR - Traceback (most recent call last):
+2025-07-27 18:17:04,940 - ERROR -   File "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/video_processor.py", line 630, in _run_model_inference_with_splitting
+2025-07-27 18:17:04,940 - ERROR -     predictions = self.model_interface.infer_image(pil_image)
+2025-07-27 18:17:04,941 - ERROR -   File "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/maskrcnn/maskrcnn_interface.py", line 46, in infer_image
+2025-07-27 18:17:04,941 - ERROR -     raise NotImplementedError
+2025-07-27 18:17:04,941 - ERROR - NotImplementedError
+2025-07-27 18:17:04,942 - ERROR - Model inference failed for frame 52: 
+2025-07-27 18:17:05,477 - ERROR - Failed model inference: 
+2025-07-27 18:17:05,477 - ERROR - Full traceback:
+2025-07-27 18:17:05,479 - ERROR - Traceback (most recent call last):
+2025-07-27 18:17:05,479 - ERROR -   File "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/video_processor.py", line 630, in _run_model_inference_with_splitting
+2025-07-27 18:17:05,479 - ERROR -     predictions = self.model_interface.infer_image(pil_image)
+2025-07-27 18:17:05,479 - ERROR -   File "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/maskrcnn/maskrcnn_interface.py", line 46, in infer_image
+2025-07-27 18:17:05,479 - ERROR -     raise NotImplementedError
+2025-07-27 18:17:05,479 - ERROR - NotImplementedError
+2025-07-27 18:17:05,481 - ERROR - Model inference failed for frame 53: 
+2025-07-27 18:17:05,984 - ERROR - Failed model inference: 
+2025-07-27 18:17:05,985 - ERROR - Full traceback:
+2025-07-27 18:17:05,985 - ERROR - Traceback (most recent call last):
+2025-07-27 18:17:05,985 - ERROR -   File "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/video_processor.py", line 630, in _run_model_inference_with_splitting
+2025-07-27 18:17:05,985 - ERROR -     predictions = self.model_interface.infer_image(pil_image)
+2025-07-27 18:17:05,985 - ERROR -   File "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/maskrcnn/maskrcnn_interface.py", line 46, in infer_image
+2025-07-27 18:17:05,986 - ERROR -     raise NotImplementedError
+2025-07-27 18:17:05,986 - ERROR - NotImplementedError
+2025-07-27 18:17:05,986 - ERROR - Model inference failed for frame 54: 
+2025-07-27 18:17:06,504 - ERROR - Failed model inference: 
+2025-07-27 18:17:06,504 - ERROR - Full traceback:
+2025-07-27 18:17:06,506 - ERROR - Traceback (most recent call last):
+2025-07-27 18:17:06,506 - ERROR -   File "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/video_processor.py", line 630, in _run_model_inference_with_splitting
+2025-07-27 18:17:06,506 - ERROR -     predictions = self.model_interface.infer_image(pil_image)
+2025-07-27 18:17:06,506 - ERROR -   File "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/maskrcnn/maskrcnn_interface.py", line 46, in infer_image
+2025-07-27 18:17:06,506 - ERROR -     raise NotImplementedError
+2025-07-27 18:17:06,506 - ERROR - NotImplementedError
+2025-07-27 18:17:06,507 - ERROR - Model inference failed for frame 55: 
+2025-07-27 18:17:07,031 - ERROR - Failed model inference: 
+2025-07-27 18:17:07,031 - ERROR - Full traceback:
+2025-07-27 18:17:07,033 - ERROR - Traceback (most recent call last):
+2025-07-27 18:17:07,033 - ERROR -   File "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/video_processor.py", line 630, in _run_model_inference_with_splitting
+2025-07-27 18:17:07,033 - ERROR -     predictions = self.model_interface.infer_image(pil_image)
+2025-07-27 18:17:07,033 - ERROR -   File "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/maskrcnn/maskrcnn_interface.py", line 46, in infer_image
+2025-07-27 18:17:07,033 - ERROR -     raise NotImplementedError
+2025-07-27 18:17:07,034 - ERROR - NotImplementedError
+2025-07-27 18:17:07,036 - ERROR - Model inference failed for frame 56: 
+2025-07-27 18:17:07,807 - ERROR - Failed model inference: 
+2025-07-27 18:17:07,807 - ERROR - Full traceback:
+2025-07-27 18:17:07,808 - ERROR - Traceback (most recent call last):
+2025-07-27 18:17:07,808 - ERROR -   File "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/video_processor.py", line 630, in _run_model_inference_with_splitting
+2025-07-27 18:17:07,808 - ERROR -     predictions = self.model_interface.infer_image(pil_image)
+2025-07-27 18:17:07,808 - ERROR -   File "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/maskrcnn/maskrcnn_interface.py", line 46, in infer_image
+2025-07-27 18:17:07,808 - ERROR -     raise NotImplementedError
+2025-07-27 18:17:07,808 - ERROR - NotImplementedError
+2025-07-27 18:17:07,810 - ERROR - Model inference failed for frame 57: 
+2025-07-27 18:17:08,332 - ERROR - Failed model inference: 
+2025-07-27 18:17:08,333 - ERROR - Full traceback:
+2025-07-27 18:17:08,334 - ERROR - Traceback (most recent call last):
+2025-07-27 18:17:08,334 - ERROR -   File "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/video_processor.py", line 630, in _run_model_inference_with_splitting
+2025-07-27 18:17:08,335 - ERROR -     predictions = self.model_interface.infer_image(pil_image)
+2025-07-27 18:17:08,335 - ERROR -   File "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/maskrcnn/maskrcnn_interface.py", line 46, in infer_image
+2025-07-27 18:17:08,335 - ERROR -     raise NotImplementedError
+2025-07-27 18:17:08,335 - ERROR - NotImplementedError
+2025-07-27 18:17:08,336 - ERROR - Model inference failed for frame 58: 
+2025-07-27 18:17:08,846 - ERROR - Failed model inference: 
+2025-07-27 18:17:08,846 - ERROR - Full traceback:
+2025-07-27 18:17:08,848 - ERROR - Traceback (most recent call last):
+2025-07-27 18:17:08,848 - ERROR -   File "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/video_processor.py", line 630, in _run_model_inference_with_splitting
+2025-07-27 18:17:08,848 - ERROR -     predictions = self.model_interface.infer_image(pil_image)
+2025-07-27 18:17:08,848 - ERROR -   File "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/maskrcnn/maskrcnn_interface.py", line 46, in infer_image
+2025-07-27 18:17:08,848 - ERROR -     raise NotImplementedError
+2025-07-27 18:17:08,849 - ERROR - NotImplementedError
+2025-07-27 18:17:08,850 - ERROR - Model inference failed for frame 59: 
+2025-07-27 18:17:09,359 - ERROR - Failed model inference: 
+2025-07-27 18:17:09,359 - ERROR - Full traceback:
+2025-07-27 18:17:09,362 - ERROR - Traceback (most recent call last):
+2025-07-27 18:17:09,362 - ERROR -   File "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/video_processor.py", line 630, in _run_model_inference_with_splitting
+2025-07-27 18:17:09,362 - ERROR -     predictions = self.model_interface.infer_image(pil_image)
+2025-07-27 18:17:09,362 - ERROR -   File "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/maskrcnn/maskrcnn_interface.py", line 46, in infer_image
+2025-07-27 18:17:09,362 - ERROR -     raise NotImplementedError
+2025-07-27 18:17:09,362 - ERROR - NotImplementedError
+2025-07-27 18:17:09,364 - ERROR - Model inference failed for frame 60: 
+2025-07-27 18:17:09,846 - INFO - Processed frame 60/269
+2025-07-27 18:17:09,865 - ERROR - Failed model inference: 
+2025-07-27 18:17:09,865 - ERROR - Full traceback:
+2025-07-27 18:17:09,865 - ERROR - Traceback (most recent call last):
+2025-07-27 18:17:09,865 - ERROR -   File "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/video_processor.py", line 630, in _run_model_inference_with_splitting
+2025-07-27 18:17:09,866 - ERROR -     predictions = self.model_interface.infer_image(pil_image)
+2025-07-27 18:17:09,866 - ERROR -   File "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/maskrcnn/maskrcnn_interface.py", line 46, in infer_image
+2025-07-27 18:17:09,866 - ERROR -     raise NotImplementedError
+2025-07-27 18:17:09,866 - ERROR - NotImplementedError
+2025-07-27 18:17:09,867 - ERROR - Model inference failed for frame 61: 
+2025-07-27 18:17:10,379 - ERROR - Failed model inference: 
+2025-07-27 18:17:10,380 - ERROR - Full traceback:
+2025-07-27 18:17:10,381 - ERROR - Traceback (most recent call last):
+2025-07-27 18:17:10,381 - ERROR -   File "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/video_processor.py", line 630, in _run_model_inference_with_splitting
+2025-07-27 18:17:10,381 - ERROR -     predictions = self.model_interface.infer_image(pil_image)
+2025-07-27 18:17:10,382 - ERROR -   File "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/maskrcnn/maskrcnn_interface.py", line 46, in infer_image
+2025-07-27 18:17:10,382 - ERROR -     raise NotImplementedError
+2025-07-27 18:17:10,382 - ERROR - NotImplementedError
+2025-07-27 18:17:10,383 - ERROR - Model inference failed for frame 62: 
+2025-07-27 18:17:10,892 - ERROR - Failed model inference: 
+2025-07-27 18:17:10,892 - ERROR - Full traceback:
+2025-07-27 18:17:10,894 - ERROR - Traceback (most recent call last):
+2025-07-27 18:17:10,894 - ERROR -   File "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/video_processor.py", line 630, in _run_model_inference_with_splitting
+2025-07-27 18:17:10,894 - ERROR -     predictions = self.model_interface.infer_image(pil_image)
+2025-07-27 18:17:10,894 - ERROR -   File "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/maskrcnn/maskrcnn_interface.py", line 46, in infer_image
+2025-07-27 18:17:10,895 - ERROR -     raise NotImplementedError
+2025-07-27 18:17:10,895 - ERROR - NotImplementedError
+2025-07-27 18:17:10,896 - ERROR - Model inference failed for frame 63: 
+2025-07-27 18:17:11,417 - ERROR - Failed model inference: 
+2025-07-27 18:17:11,417 - ERROR - Full traceback:
+2025-07-27 18:17:11,417 - ERROR - Traceback (most recent call last):
+2025-07-27 18:17:11,417 - ERROR -   File "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/video_processor.py", line 630, in _run_model_inference_with_splitting
+2025-07-27 18:17:11,418 - ERROR -     predictions = self.model_interface.infer_image(pil_image)
+2025-07-27 18:17:11,418 - ERROR -   File "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/maskrcnn/maskrcnn_interface.py", line 46, in infer_image
+2025-07-27 18:17:11,418 - ERROR -     raise NotImplementedError
+2025-07-27 18:17:11,418 - ERROR - NotImplementedError
+2025-07-27 18:17:11,419 - ERROR - Model inference failed for frame 64: 
+2025-07-27 18:17:11,980 - ERROR - Failed model inference: 
+2025-07-27 18:17:11,980 - ERROR - Full traceback:
+2025-07-27 18:17:11,981 - ERROR - Traceback (most recent call last):
+2025-07-27 18:17:11,981 - ERROR -   File "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/video_processor.py", line 630, in _run_model_inference_with_splitting
+2025-07-27 18:17:11,981 - ERROR -     predictions = self.model_interface.infer_image(pil_image)
+2025-07-27 18:17:11,981 - ERROR -   File "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/maskrcnn/maskrcnn_interface.py", line 46, in infer_image
+2025-07-27 18:17:11,981 - ERROR -     raise NotImplementedError
+2025-07-27 18:17:11,981 - ERROR - NotImplementedError
+2025-07-27 18:17:11,982 - ERROR - Model inference failed for frame 65: 
+2025-07-27 18:17:12,533 - ERROR - Failed model inference: 
+2025-07-27 18:17:12,533 - ERROR - Full traceback:
+2025-07-27 18:17:12,534 - ERROR - Traceback (most recent call last):
+2025-07-27 18:17:12,534 - ERROR -   File "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/video_processor.py", line 630, in _run_model_inference_with_splitting
+2025-07-27 18:17:12,534 - ERROR -     predictions = self.model_interface.infer_image(pil_image)
+2025-07-27 18:17:12,534 - ERROR -   File "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/maskrcnn/maskrcnn_interface.py", line 46, in infer_image
+2025-07-27 18:17:12,534 - ERROR -     raise NotImplementedError
+2025-07-27 18:17:12,534 - ERROR - NotImplementedError
+2025-07-27 18:17:12,535 - ERROR - Model inference failed for frame 66: 
+2025-07-27 18:17:13,032 - ERROR - Failed model inference: 
+2025-07-27 18:17:13,032 - ERROR - Full traceback:
+2025-07-27 18:17:13,033 - ERROR - Traceback (most recent call last):
+2025-07-27 18:17:13,033 - ERROR -   File "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/video_processor.py", line 630, in _run_model_inference_with_splitting
+2025-07-27 18:17:13,033 - ERROR -     predictions = self.model_interface.infer_image(pil_image)
+2025-07-27 18:17:13,033 - ERROR -   File "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/maskrcnn/maskrcnn_interface.py", line 46, in infer_image
+2025-07-27 18:17:13,033 - ERROR -     raise NotImplementedError
+2025-07-27 18:17:13,033 - ERROR - NotImplementedError
+2025-07-27 18:17:13,034 - ERROR - Model inference failed for frame 67: 
+2025-07-27 18:17:13,545 - ERROR - Failed model inference: 
+2025-07-27 18:17:13,546 - ERROR - Full traceback:
+2025-07-27 18:17:13,546 - ERROR - Traceback (most recent call last):
+2025-07-27 18:17:13,546 - ERROR -   File "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/video_processor.py", line 630, in _run_model_inference_with_splitting
+2025-07-27 18:17:13,546 - ERROR -     predictions = self.model_interface.infer_image(pil_image)
+2025-07-27 18:17:13,547 - ERROR -   File "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/maskrcnn/maskrcnn_interface.py", line 46, in infer_image
+2025-07-27 18:17:13,547 - ERROR -     raise NotImplementedError
+2025-07-27 18:17:13,547 - ERROR - NotImplementedError
+2025-07-27 18:17:13,548 - ERROR - Model inference failed for frame 68: 
+2025-07-27 18:17:14,271 - ERROR - Failed model inference: 
+2025-07-27 18:17:14,271 - ERROR - Full traceback:
+2025-07-27 18:17:14,271 - ERROR - Traceback (most recent call last):
+2025-07-27 18:17:14,272 - ERROR -   File "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/video_processor.py", line 630, in _run_model_inference_with_splitting
+2025-07-27 18:17:14,272 - ERROR -     predictions = self.model_interface.infer_image(pil_image)
+2025-07-27 18:17:14,272 - ERROR -   File "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/maskrcnn/maskrcnn_interface.py", line 46, in infer_image
+2025-07-27 18:17:14,272 - ERROR -     raise NotImplementedError
+2025-07-27 18:17:14,272 - ERROR - NotImplementedError
+2025-07-27 18:17:14,273 - ERROR - Model inference failed for frame 69: 
+2025-07-27 18:17:14,799 - ERROR - Failed model inference: 
+2025-07-27 18:17:14,799 - ERROR - Full traceback:
+2025-07-27 18:17:14,800 - ERROR - Traceback (most recent call last):
+2025-07-27 18:17:14,800 - ERROR -   File "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/video_processor.py", line 630, in _run_model_inference_with_splitting
+2025-07-27 18:17:14,800 - ERROR -     predictions = self.model_interface.infer_image(pil_image)
+2025-07-27 18:17:14,801 - ERROR -   File "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/maskrcnn/maskrcnn_interface.py", line 46, in infer_image
+2025-07-27 18:17:14,801 - ERROR -     raise NotImplementedError
+2025-07-27 18:17:14,801 - ERROR - NotImplementedError
+2025-07-27 18:17:14,802 - ERROR - Model inference failed for frame 70: 
+2025-07-27 18:17:15,341 - INFO - Processed frame 70/269
+2025-07-27 18:17:15,362 - ERROR - Failed model inference: 
+2025-07-27 18:17:15,363 - ERROR - Full traceback:
+2025-07-27 18:17:15,363 - ERROR - Traceback (most recent call last):
+2025-07-27 18:17:15,363 - ERROR -   File "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/video_processor.py", line 630, in _run_model_inference_with_splitting
+2025-07-27 18:17:15,363 - ERROR -     predictions = self.model_interface.infer_image(pil_image)
+2025-07-27 18:17:15,363 - ERROR -   File "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/maskrcnn/maskrcnn_interface.py", line 46, in infer_image
+2025-07-27 18:17:15,364 - ERROR -     raise NotImplementedError
+2025-07-27 18:17:15,364 - ERROR - NotImplementedError
+2025-07-27 18:17:15,365 - ERROR - Model inference failed for frame 71: 
+2025-07-27 18:17:15,928 - ERROR - Failed model inference: 
+2025-07-27 18:17:15,928 - ERROR - Full traceback:
+2025-07-27 18:17:15,929 - ERROR - Traceback (most recent call last):
+2025-07-27 18:17:15,929 - ERROR -   File "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/video_processor.py", line 630, in _run_model_inference_with_splitting
+2025-07-27 18:17:15,929 - ERROR -     predictions = self.model_interface.infer_image(pil_image)
+2025-07-27 18:17:15,929 - ERROR -   File "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/maskrcnn/maskrcnn_interface.py", line 46, in infer_image
+2025-07-27 18:17:15,929 - ERROR -     raise NotImplementedError
+2025-07-27 18:17:15,929 - ERROR - NotImplementedError
+2025-07-27 18:17:15,930 - ERROR - Model inference failed for frame 72: 
+2025-07-27 18:17:16,437 - ERROR - Failed model inference: 
+2025-07-27 18:17:16,437 - ERROR - Full traceback:
+2025-07-27 18:17:16,437 - ERROR - Traceback (most recent call last):
+2025-07-27 18:17:16,437 - ERROR -   File "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/video_processor.py", line 630, in _run_model_inference_with_splitting
+2025-07-27 18:17:16,438 - ERROR -     predictions = self.model_interface.infer_image(pil_image)
+2025-07-27 18:17:16,438 - ERROR -   File "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/maskrcnn/maskrcnn_interface.py", line 46, in infer_image
+2025-07-27 18:17:16,438 - ERROR -     raise NotImplementedError
+2025-07-27 18:17:16,438 - ERROR - NotImplementedError
+2025-07-27 18:17:16,439 - ERROR - Model inference failed for frame 73: 
+2025-07-27 18:17:16,940 - ERROR - Failed model inference: 
+2025-07-27 18:17:16,941 - ERROR - Full traceback:
+2025-07-27 18:17:16,941 - ERROR - Traceback (most recent call last):
+2025-07-27 18:17:16,941 - ERROR -   File "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/video_processor.py", line 630, in _run_model_inference_with_splitting
+2025-07-27 18:17:16,941 - ERROR -     predictions = self.model_interface.infer_image(pil_image)
+2025-07-27 18:17:16,941 - ERROR -   File "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/maskrcnn/maskrcnn_interface.py", line 46, in infer_image
+2025-07-27 18:17:16,942 - ERROR -     raise NotImplementedError
+2025-07-27 18:17:16,942 - ERROR - NotImplementedError
+2025-07-27 18:17:16,943 - ERROR - Model inference failed for frame 74: 
+2025-07-27 18:17:17,442 - ERROR - Failed model inference: 
+2025-07-27 18:17:17,443 - ERROR - Full traceback:
+2025-07-27 18:17:17,443 - ERROR - Traceback (most recent call last):
+2025-07-27 18:17:17,443 - ERROR -   File "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/video_processor.py", line 630, in _run_model_inference_with_splitting
+2025-07-27 18:17:17,443 - ERROR -     predictions = self.model_interface.infer_image(pil_image)
+2025-07-27 18:17:17,443 - ERROR -   File "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/maskrcnn/maskrcnn_interface.py", line 46, in infer_image
+2025-07-27 18:17:17,443 - ERROR -     raise NotImplementedError
+2025-07-27 18:17:17,444 - ERROR - NotImplementedError
+2025-07-27 18:17:17,444 - ERROR - Model inference failed for frame 75: 
+2025-07-27 18:17:17,997 - ERROR - Failed model inference: 
+2025-07-27 18:17:17,997 - ERROR - Full traceback:
+2025-07-27 18:17:17,998 - ERROR - Traceback (most recent call last):
+2025-07-27 18:17:17,998 - ERROR -   File "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/video_processor.py", line 630, in _run_model_inference_with_splitting
+2025-07-27 18:17:17,998 - ERROR -     predictions = self.model_interface.infer_image(pil_image)
+2025-07-27 18:17:17,998 - ERROR -   File "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/maskrcnn/maskrcnn_interface.py", line 46, in infer_image
+2025-07-27 18:17:17,998 - ERROR -     raise NotImplementedError
+2025-07-27 18:17:17,998 - ERROR - NotImplementedError
+2025-07-27 18:17:17,999 - ERROR - Model inference failed for frame 76: 
+2025-07-27 18:17:18,564 - ERROR - Failed model inference: 
+2025-07-27 18:17:18,564 - ERROR - Full traceback:
+2025-07-27 18:17:18,565 - ERROR - Traceback (most recent call last):
+2025-07-27 18:17:18,565 - ERROR -   File "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/video_processor.py", line 630, in _run_model_inference_with_splitting
+2025-07-27 18:17:18,565 - ERROR -     predictions = self.model_interface.infer_image(pil_image)
+2025-07-27 18:17:18,565 - ERROR -   File "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/maskrcnn/maskrcnn_interface.py", line 46, in infer_image
+2025-07-27 18:17:18,565 - ERROR -     raise NotImplementedError
+2025-07-27 18:17:18,565 - ERROR - NotImplementedError
+2025-07-27 18:17:18,566 - ERROR - Model inference failed for frame 77: 
+2025-07-27 18:17:19,073 - ERROR - Failed model inference: 
+2025-07-27 18:17:19,073 - ERROR - Full traceback:
+2025-07-27 18:17:19,074 - ERROR - Traceback (most recent call last):
+2025-07-27 18:17:19,074 - ERROR -   File "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/video_processor.py", line 630, in _run_model_inference_with_splitting
+2025-07-27 18:17:19,074 - ERROR -     predictions = self.model_interface.infer_image(pil_image)
+2025-07-27 18:17:19,074 - ERROR -   File "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/maskrcnn/maskrcnn_interface.py", line 46, in infer_image
+2025-07-27 18:17:19,074 - ERROR -     raise NotImplementedError
+2025-07-27 18:17:19,074 - ERROR - NotImplementedError
+2025-07-27 18:17:19,075 - ERROR - Model inference failed for frame 78: 
+2025-07-27 18:17:19,586 - ERROR - Failed model inference: 
+2025-07-27 18:17:19,587 - ERROR - Full traceback:
+2025-07-27 18:17:19,587 - ERROR - Traceback (most recent call last):
+2025-07-27 18:17:19,587 - ERROR -   File "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/video_processor.py", line 630, in _run_model_inference_with_splitting
+2025-07-27 18:17:19,587 - ERROR -     predictions = self.model_interface.infer_image(pil_image)
+2025-07-27 18:17:19,587 - ERROR -   File "/home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/maskrcnn/maskrcnn_interface.py", line 46, in infer_image
+2025-07-27 18:17:19,587 - ERROR -     raise NotImplementedError
+2025-07-27 18:17:19,587 - ERROR - NotImplementedError
+2025-07-27 18:17:19,588 - ERROR - Model inference failed for frame 79: 

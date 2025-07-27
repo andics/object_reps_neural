@@ -1,0 +1,54 @@
+2025-07-22 00:57:41,749 - INFO - Logger initialized. Writing detailed log to /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/logs/ttc_exp_20250722_005741.log
+2025-07-22 00:57:41,749 - INFO - VideoProcessor initialized with 2 blobs to detect
+2025-07-22 00:57:41,749 - INFO - Blob 1 memory strategy: running_average
+2025-07-22 00:57:41,749 - INFO - Blob 1 running average window: 10
+2025-07-22 00:57:41,749 - INFO - Blob 1 memory will freeze after frame: 80
+2025-07-22 00:57:41,749 - INFO - Vanilla segmentation enabled
+2025-07-22 00:57:41,749 - INFO - Initialized TTC Experiment with output dir: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC
+2025-07-22 00:57:41,749 - INFO - TTC-specific configuration:
+2025-07-22 00:57:41,749 - INFO -   - Blob 1 memory: running average of past 10 frames
+2025-07-22 00:57:41,749 - INFO -   - Blob 1 memory updates stop after frame 80
+2025-07-22 00:57:41,749 - INFO - Starting full TTC experiment
+2025-07-22 00:57:41,750 - INFO - Found 99 video files to process
+2025-07-22 00:57:41,750 - INFO - Reading participant CSV from /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/exp2TTC_files/experiment2-CollisionDetection-Data.csv...
+2025-07-22 00:57:41,767 - INFO - CSV loaded with 13974 rows and 10 columns.
+2025-07-22 00:57:41,768 - INFO - Starting collision detection across videos and IoU thresholds...
+2025-07-22 00:57:41,768 - INFO - Processing video: AConcave_FConcave
+2025-07-22 00:57:41,772 - INFO - Found 69 existing frames for AConcave_FConcave, attempting to complete processing...
+2025-07-22 00:57:41,780 - INFO - VanillaSegmentationSaver initialized with output dir: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_videos/segformer_model-AConcave_FConcave/org_segmentation
+2025-07-22 00:57:41,780 - INFO - Starting video processing: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/exp2TTC_files/AConcave_FConcave.mp4
+2025-07-22 00:57:41,780 - INFO - Reset blob state tracking for new video
+2025-07-22 00:57:41,786 - INFO - VanillaSegmentationSaver initialized with output dir: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_videos/segformer_model-AConcave_FConcave/org_segmentation
+2025-07-22 00:57:41,786 - INFO - Loading model...
+2025-07-22 00:57:43,892 - INFO - Video metadata: {'width': 1500, 'height': 400, 'fps': 60.0, 'total_frames': 269, 'duration': 4.483333333333333}
+2025-07-22 00:57:43,893 - INFO - Partial processing detected. Last frame: 68
+2025-07-22 00:57:43,894 - INFO - Not enough frames for video generation: 69 < 134
+2025-07-22 00:57:43,894 - INFO - Not enough frames for video, resuming processing from frame 69
+2025-07-22 00:57:45,966 - DEBUG - Saved vanilla segmentation for frame 69
+2025-07-22 00:57:47,527 - DEBUG - Frame 69: Updated blob 1 memory with running average of 1 masks
+2025-07-22 00:57:49,477 - DEBUG - Saved vanilla segmentation for frame 70
+2025-07-22 00:57:50,867 - DEBUG - Frame 70: Updated blob 1 memory with running average of 2 masks
+2025-07-22 00:57:51,200 - INFO - Processed frame 70/269
+2025-07-22 00:57:53,009 - DEBUG - Saved vanilla segmentation for frame 71
+2025-07-22 00:57:54,409 - DEBUG - Frame 71: Updated blob 1 memory with running average of 3 masks
+2025-07-22 00:57:56,344 - DEBUG - Saved vanilla segmentation for frame 72
+2025-07-22 00:57:57,916 - DEBUG - Frame 72: Updated blob 1 memory with running average of 4 masks
+2025-07-22 00:57:59,853 - DEBUG - Saved vanilla segmentation for frame 73
+2025-07-22 00:58:01,245 - DEBUG - Frame 73: Updated blob 1 memory with running average of 5 masks
+2025-07-22 00:58:03,257 - DEBUG - Saved vanilla segmentation for frame 74
+2025-07-22 00:58:04,892 - DEBUG - Frame 74: Updated blob 1 memory with running average of 6 masks
+2025-07-22 00:58:06,821 - DEBUG - Saved vanilla segmentation for frame 75
+2025-07-22 00:58:08,207 - DEBUG - Frame 75: Updated blob 1 memory with running average of 7 masks
+2025-07-22 00:58:10,151 - DEBUG - Saved vanilla segmentation for frame 76
+2025-07-22 00:58:11,774 - DEBUG - Frame 76: Updated blob 1 memory with running average of 8 masks
+2025-07-22 00:58:14,261 - DEBUG - Saved vanilla segmentation for frame 77
+2025-07-22 00:58:15,660 - DEBUG - Frame 77: Updated blob 1 memory with running average of 9 masks
+2025-07-22 00:58:17,715 - DEBUG - Saved vanilla segmentation for frame 78
+2025-07-22 00:58:19,374 - DEBUG - Frame 78: Updated blob 1 memory with running average of 10 masks
+2025-07-22 00:58:21,333 - DEBUG - Saved vanilla segmentation for frame 79
+2025-07-22 00:58:22,744 - DEBUG - Frame 79: Updated blob 1 memory with running average of 10 masks
+2025-07-22 00:58:22,761 - INFO - Frame 79: Saved blob 1 memory mask to be frozen at /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_videos/segformer_model-AConcave_FConcave/frames_masks/mask_memory_blob_1_frame_000079.png
+2025-07-22 00:58:24,883 - DEBUG - Saved vanilla segmentation for frame 80
+2025-07-22 00:58:26,260 - DEBUG - Frame 80: Blob 1 memory frozen, not updating
+2025-07-22 00:58:26,264 - DEBUG - Using frozen mask for blob 1 at frame 80
+2025-07-22 00:58:26,279 - DEBUG - Frame 80: Reused frozen blob 1 memory mask

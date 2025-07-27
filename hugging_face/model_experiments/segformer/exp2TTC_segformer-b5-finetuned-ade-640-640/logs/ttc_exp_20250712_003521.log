@@ -1,0 +1,290 @@
+2025-07-12 00:35:21,115 - INFO - Logger initialized. Writing detailed log to /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/logs/ttc_exp_20250712_003521.log
+2025-07-12 00:35:21,116 - INFO - VideoProcessor initialized with 2 blobs to detect
+2025-07-12 00:35:21,116 - INFO - Initialized TTC Experiment with output dir: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC
+2025-07-12 00:35:21,116 - INFO - Starting full TTC experiment
+2025-07-12 00:35:21,118 - INFO - Found 99 video files to process
+2025-07-12 00:35:21,118 - INFO - Reading participant CSV from /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/exp2TTC_files/experiment2-CollisionDetection-Data.csv...
+2025-07-12 00:35:21,138 - INFO - CSV loaded with 13974 rows and 10 columns.
+2025-07-12 00:35:21,138 - INFO - Starting collision detection across videos and IoU thresholds...
+2025-07-12 00:35:21,138 - INFO - Processing video: AConcave_FConcave
+2025-07-12 00:35:21,138 - INFO - Starting video processing: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/exp2TTC_files/AConcave_FConcave.mp4
+2025-07-12 00:35:21,143 - INFO - Loading model...
+2025-07-12 00:35:24,953 - INFO - Video metadata: {'width': 1500, 'height': 400, 'fps': 60.0, 'total_frames': 269, 'duration': 4.483333333333333}
+2025-07-12 00:35:24,956 - INFO - Processing already complete. Skipping to video creation if needed.
+2025-07-12 00:35:24,956 - INFO - Video processing already completed: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_videos/segformer_model-AConcave_FConcave
+2025-07-12 00:35:24,958 - WARNING - No mask files found in /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_videos/segformer_model-AConcave_FConcave/frames_masks
+2025-07-12 00:35:24,958 - WARNING - No mask data extracted for video AConcave_FConcave
+2025-07-12 00:35:24,958 - INFO - Processing video: BConcave+AConcave+3500
+2025-07-12 00:35:24,958 - INFO - Starting video processing: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/exp2TTC_files/BConcave+AConcave+3500.mp4
+2025-07-12 00:35:25,090 - INFO - Video metadata: {'width': 1500, 'height': 400, 'fps': 60.0, 'total_frames': 329, 'duration': 5.483333333333333}
+2025-07-12 00:35:25,092 - INFO - Processing already complete. Skipping to video creation if needed.
+2025-07-12 00:35:25,092 - INFO - Video processing already completed: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_videos/segformer_model-BConcave+AConcave+3500
+2025-07-12 00:35:25,093 - WARNING - No mask files found in /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_videos/segformer_model-BConcave+AConcave+3500/frames_masks
+2025-07-12 00:35:25,093 - WARNING - No mask data extracted for video BConcave+AConcave+3500
+2025-07-12 00:35:25,093 - INFO - Processing video: BConcave+AConcave+3700_flipped
+2025-07-12 00:35:25,093 - INFO - Starting video processing: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/exp2TTC_files/BConcave+AConcave+3700_flipped.mp4
+2025-07-12 00:35:25,247 - INFO - Video metadata: {'width': 1500, 'height': 400, 'fps': 60.0, 'total_frames': 329, 'duration': 5.483333333333333}
+2025-07-12 00:35:25,249 - INFO - Processing already complete. Skipping to video creation if needed.
+2025-07-12 00:35:25,249 - INFO - Video processing already completed: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_videos/segformer_model-BConcave+AConcave+3700_flipped
+2025-07-12 00:35:25,250 - WARNING - No mask files found in /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_videos/segformer_model-BConcave+AConcave+3700_flipped/frames_masks
+2025-07-12 00:35:25,250 - WARNING - No mask data extracted for video BConcave+AConcave+3700_flipped
+2025-07-12 00:35:25,250 - INFO - Processing video: BConcave+AConcave+3900
+2025-07-12 00:35:25,250 - INFO - Starting video processing: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/exp2TTC_files/BConcave+AConcave+3900.mp4
+2025-07-12 00:35:25,382 - INFO - Video metadata: {'width': 1500, 'height': 400, 'fps': 60.0, 'total_frames': 329, 'duration': 5.483333333333333}
+2025-07-12 00:35:25,384 - INFO - Processing already complete. Skipping to video creation if needed.
+2025-07-12 00:35:25,384 - INFO - Video processing already completed: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_videos/segformer_model-BConcave+AConcave+3900
+2025-07-12 00:35:25,385 - WARNING - No mask files found in /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_videos/segformer_model-BConcave+AConcave+3900/frames_masks
+2025-07-12 00:35:25,386 - WARNING - No mask data extracted for video BConcave+AConcave+3900
+2025-07-12 00:35:25,386 - INFO - Processing video: BConcave+AConcave+4100_flipped
+2025-07-12 00:35:25,386 - INFO - Starting video processing: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/exp2TTC_files/BConcave+AConcave+4100_flipped.mp4
+2025-07-12 00:35:25,539 - INFO - Video metadata: {'width': 1500, 'height': 400, 'fps': 60.0, 'total_frames': 329, 'duration': 5.483333333333333}
+2025-07-12 00:35:25,541 - INFO - Processing already complete. Skipping to video creation if needed.
+2025-07-12 00:35:25,542 - INFO - Video processing already completed: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_videos/segformer_model-BConcave+AConcave+4100_flipped
+2025-07-12 00:35:25,543 - WARNING - No mask files found in /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_videos/segformer_model-BConcave+AConcave+4100_flipped/frames_masks
+2025-07-12 00:35:25,543 - WARNING - No mask data extracted for video BConcave+AConcave+4100_flipped
+2025-07-12 00:35:25,543 - INFO - Processing video: BConcave+AConcave+4300
+2025-07-12 00:35:25,543 - INFO - Starting video processing: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/exp2TTC_files/BConcave+AConcave+4300.mp4
+2025-07-12 00:35:25,677 - INFO - Video metadata: {'width': 1500, 'height': 400, 'fps': 60.0, 'total_frames': 329, 'duration': 5.483333333333333}
+2025-07-12 00:35:25,679 - INFO - Resuming processing from frame 323
+2025-07-12 00:35:39,925 - INFO - Creating final video: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_videos/segformer_model-BConcave+AConcave+4300/videos_processed/segformer_model-BConcave+AConcave+4300.mp4
+2025-07-12 00:35:42,910 - INFO - Final video created successfully
+2025-07-12 00:35:42,914 - INFO - Video processing completed: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_videos/segformer_model-BConcave+AConcave+4300
+2025-07-12 00:35:42,915 - WARNING - No mask files found in /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_videos/segformer_model-BConcave+AConcave+4300/frames_masks
+2025-07-12 00:35:42,915 - WARNING - No mask data extracted for video BConcave+AConcave+4300
+2025-07-12 00:35:42,916 - INFO - Processing video: BConcave+AConcave+4500_flipped
+2025-07-12 00:35:42,916 - INFO - Starting video processing: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/exp2TTC_files/BConcave+AConcave+4500_flipped.mp4
+2025-07-12 00:35:43,122 - INFO - Video metadata: {'width': 1500, 'height': 400, 'fps': 60.0, 'total_frames': 329, 'duration': 5.483333333333333}
+2025-07-12 00:35:43,127 - INFO - Starting processing from beginning
+2025-07-12 00:35:43,234 - INFO - Processed frame 0/329
+2025-07-12 00:35:43,485 - INFO - Processed frame 10/329
+2025-07-12 00:35:53,265 - INFO - Processed frame 20/329
+2025-07-12 00:36:08,590 - INFO - Processed frame 30/329
+2025-07-12 00:36:45,609 - INFO - Processed frame 40/329
+2025-07-12 00:37:21,178 - INFO - Processed frame 50/329
+2025-07-12 00:37:56,482 - INFO - Processed frame 60/329
+2025-07-12 00:38:31,882 - INFO - Processed frame 70/329
+2025-07-12 00:39:06,610 - INFO - Processed frame 80/329
+2025-07-12 00:39:41,256 - INFO - Processed frame 90/329
+2025-07-12 00:40:08,423 - INFO - Processed frame 100/329
+2025-07-12 00:40:29,749 - INFO - Processed frame 110/329
+2025-07-12 00:40:51,431 - INFO - Processed frame 120/329
+2025-07-12 00:41:13,241 - INFO - Processed frame 130/329
+2025-07-12 00:41:34,210 - INFO - Processed frame 140/329
+2025-07-12 00:41:55,406 - INFO - Processed frame 150/329
+2025-07-12 00:42:16,474 - INFO - Processed frame 160/329
+2025-07-12 00:42:37,479 - INFO - Processed frame 170/329
+2025-07-12 00:42:58,702 - INFO - Processed frame 180/329
+2025-07-12 00:43:19,985 - INFO - Processed frame 190/329
+2025-07-12 00:43:41,186 - INFO - Processed frame 200/329
+2025-07-12 00:44:02,466 - INFO - Processed frame 210/329
+2025-07-12 00:44:24,000 - INFO - Processed frame 220/329
+2025-07-12 00:44:44,741 - INFO - Processed frame 230/329
+2025-07-12 00:45:05,660 - INFO - Processed frame 240/329
+2025-07-12 00:45:29,381 - INFO - Processed frame 250/329
+2025-07-12 00:46:03,885 - INFO - Processed frame 260/329
+2025-07-12 00:46:38,643 - INFO - Processed frame 270/329
+2025-07-12 00:47:13,109 - INFO - Processed frame 280/329
+2025-07-12 00:47:47,467 - INFO - Processed frame 290/329
+2025-07-12 00:48:21,757 - INFO - Processed frame 300/329
+2025-07-12 00:48:55,964 - INFO - Processed frame 310/329
+2025-07-12 00:49:30,332 - INFO - Processed frame 320/329
+2025-07-12 00:49:58,213 - INFO - Creating final video: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_videos/segformer_model-BConcave+AConcave+4500_flipped/videos_processed/segformer_model-BConcave+AConcave+4500_flipped.mp4
+2025-07-12 00:50:01,341 - INFO - Final video created successfully
+2025-07-12 00:50:01,346 - INFO - Video processing completed: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_videos/segformer_model-BConcave+AConcave+4500_flipped
+2025-07-12 00:50:01,357 - WARNING - No mask files found in /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_videos/segformer_model-BConcave+AConcave+4500_flipped/frames_masks
+2025-07-12 00:50:01,357 - WARNING - No mask data extracted for video BConcave+AConcave+4500_flipped
+2025-07-12 00:50:01,357 - INFO - Processing video: BConcave+AConvex+3500_flipped
+2025-07-12 00:50:01,357 - INFO - Starting video processing: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/exp2TTC_files/BConcave+AConvex+3500_flipped.mp4
+2025-07-12 00:50:01,546 - INFO - Video metadata: {'width': 1500, 'height': 400, 'fps': 60.0, 'total_frames': 329, 'duration': 5.483333333333333}
+2025-07-12 00:50:01,551 - INFO - Starting processing from beginning
+2025-07-12 00:50:01,660 - INFO - Processed frame 0/329
+2025-07-12 00:50:01,908 - INFO - Processed frame 10/329
+2025-07-12 00:50:11,787 - INFO - Processed frame 20/329
+2025-07-12 00:50:26,324 - INFO - Processed frame 30/329
+2025-07-12 00:51:00,405 - INFO - Processed frame 40/329
+2025-07-12 00:51:34,905 - INFO - Processed frame 50/329
+2025-07-12 00:52:09,185 - INFO - Processed frame 60/329
+2025-07-12 00:52:43,466 - INFO - Processed frame 70/329
+2025-07-12 00:53:18,375 - INFO - Processed frame 80/329
+2025-07-12 00:53:53,009 - INFO - Processed frame 90/329
+2025-07-12 00:54:19,798 - INFO - Processed frame 100/329
+2025-07-12 00:54:41,145 - INFO - Processed frame 110/329
+2025-07-12 00:55:02,482 - INFO - Processed frame 120/329
+2025-07-12 00:55:23,641 - INFO - Processed frame 130/329
+2025-07-12 00:55:44,754 - INFO - Processed frame 140/329
+2025-07-12 00:56:06,035 - INFO - Processed frame 150/329
+2025-07-12 00:56:27,504 - INFO - Processed frame 160/329
+2025-07-12 00:56:48,830 - INFO - Processed frame 170/329
+2025-07-12 00:57:10,422 - INFO - Processed frame 180/329
+2025-07-12 00:57:31,722 - INFO - Processed frame 190/329
+2025-07-12 00:57:53,207 - INFO - Processed frame 200/329
+2025-07-12 00:58:14,704 - INFO - Processed frame 210/329
+2025-07-12 00:58:35,781 - INFO - Processed frame 220/329
+2025-07-12 00:58:56,938 - INFO - Processed frame 230/329
+2025-07-12 00:59:18,138 - INFO - Processed frame 240/329
+2025-07-12 00:59:40,512 - INFO - Processed frame 250/329
+2025-07-12 01:00:01,651 - INFO - Processed frame 260/329
+2025-07-12 01:00:22,742 - INFO - Processed frame 270/329
+2025-07-12 01:00:50,574 - INFO - Processed frame 280/329
+2025-07-12 01:01:19,848 - INFO - Processed frame 290/329
+2025-07-12 01:01:54,162 - INFO - Processed frame 300/329
+2025-07-12 01:02:28,564 - INFO - Processed frame 310/329
+2025-07-12 01:03:03,118 - INFO - Processed frame 320/329
+2025-07-12 01:03:31,903 - INFO - Creating final video: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_videos/segformer_model-BConcave+AConvex+3500_flipped/videos_processed/segformer_model-BConcave+AConvex+3500_flipped.mp4
+2025-07-12 01:03:35,180 - INFO - Final video created successfully
+2025-07-12 01:03:35,185 - INFO - Video processing completed: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_videos/segformer_model-BConcave+AConvex+3500_flipped
+2025-07-12 01:03:35,195 - WARNING - No mask files found in /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_videos/segformer_model-BConcave+AConvex+3500_flipped/frames_masks
+2025-07-12 01:03:35,195 - WARNING - No mask data extracted for video BConcave+AConvex+3500_flipped
+2025-07-12 01:03:35,195 - INFO - Processing video: BConcave+AConvex+3700
+2025-07-12 01:03:35,195 - INFO - Starting video processing: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/exp2TTC_files/BConcave+AConvex+3700.mp4
+2025-07-12 01:03:35,363 - INFO - Video metadata: {'width': 1500, 'height': 400, 'fps': 60.0, 'total_frames': 329, 'duration': 5.483333333333333}
+2025-07-12 01:03:35,368 - INFO - Starting processing from beginning
+2025-07-12 01:03:35,477 - INFO - Processed frame 0/329
+2025-07-12 01:03:35,704 - INFO - Processed frame 10/329
+2025-07-12 01:03:45,194 - INFO - Processed frame 20/329
+2025-07-12 01:03:59,498 - INFO - Processed frame 30/329
+2025-07-12 01:04:34,696 - INFO - Processed frame 40/329
+2025-07-12 01:05:09,918 - INFO - Processed frame 50/329
+2025-07-12 01:05:45,224 - INFO - Processed frame 60/329
+2025-07-12 01:06:22,303 - INFO - Processed frame 70/329
+2025-07-12 01:06:58,560 - INFO - Processed frame 80/329
+2025-07-12 01:07:34,855 - INFO - Processed frame 90/329
+2025-07-12 01:08:01,676 - INFO - Processed frame 100/329
+2025-07-12 01:08:23,014 - INFO - Processed frame 110/329
+2025-07-12 01:08:44,430 - INFO - Processed frame 120/329
+2025-07-12 01:09:05,264 - INFO - Processed frame 130/329
+2025-07-12 01:09:26,334 - INFO - Processed frame 140/329
+2025-07-12 01:09:47,750 - INFO - Processed frame 150/329
+2025-07-12 01:10:08,952 - INFO - Processed frame 160/329
+2025-07-12 01:10:30,348 - INFO - Processed frame 170/329
+2025-07-12 01:10:51,598 - INFO - Processed frame 180/329
+2025-07-12 01:11:13,015 - INFO - Processed frame 190/329
+2025-07-12 01:11:34,362 - INFO - Processed frame 200/329
+2025-07-12 01:11:55,549 - INFO - Processed frame 210/329
+2025-07-12 01:12:16,828 - INFO - Processed frame 220/329
+2025-07-12 01:12:38,398 - INFO - Processed frame 230/329
+2025-07-12 01:12:59,559 - INFO - Processed frame 240/329
+2025-07-12 01:13:20,846 - INFO - Processed frame 250/329
+2025-07-12 01:13:41,807 - INFO - Processed frame 260/329
+2025-07-12 01:14:02,857 - INFO - Processed frame 270/329
+2025-07-12 01:14:24,285 - INFO - Processed frame 280/329
+2025-07-12 01:14:45,287 - INFO - Processed frame 290/329
+2025-07-12 01:15:06,619 - INFO - Processed frame 300/329
+2025-07-12 01:15:27,948 - INFO - Processed frame 310/329
+2025-07-12 01:15:48,995 - INFO - Processed frame 320/329
+2025-07-12 01:16:06,115 - INFO - Creating final video: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_videos/segformer_model-BConcave+AConvex+3700/videos_processed/segformer_model-BConcave+AConvex+3700.mp4
+2025-07-12 01:16:09,242 - INFO - Final video created successfully
+2025-07-12 01:16:09,247 - INFO - Video processing completed: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_videos/segformer_model-BConcave+AConvex+3700
+2025-07-12 01:16:09,260 - WARNING - No mask files found in /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_videos/segformer_model-BConcave+AConvex+3700/frames_masks
+2025-07-12 01:16:09,260 - WARNING - No mask data extracted for video BConcave+AConvex+3700
+2025-07-12 01:16:09,260 - INFO - Processing video: BConcave+AConvex+3900_flipped
+2025-07-12 01:16:09,260 - INFO - Starting video processing: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/exp2TTC_files/BConcave+AConvex+3900_flipped.mp4
+2025-07-12 01:16:09,444 - INFO - Video metadata: {'width': 1500, 'height': 400, 'fps': 60.0, 'total_frames': 329, 'duration': 5.483333333333333}
+2025-07-12 01:16:09,450 - INFO - Starting processing from beginning
+2025-07-12 01:16:09,559 - INFO - Processed frame 0/329
+2025-07-12 01:16:09,806 - INFO - Processed frame 10/329
+2025-07-12 01:16:20,226 - INFO - Processed frame 20/329
+2025-07-12 01:16:35,482 - INFO - Processed frame 30/329
+2025-07-12 01:17:09,982 - INFO - Processed frame 40/329
+2025-07-12 01:17:44,881 - INFO - Processed frame 50/329
+2025-07-12 01:18:19,603 - INFO - Processed frame 60/329
+2025-07-12 01:18:54,264 - INFO - Processed frame 70/329
+2025-07-12 01:19:29,225 - INFO - Processed frame 80/329
+2025-07-12 01:20:04,736 - INFO - Processed frame 90/329
+2025-07-12 01:20:31,534 - INFO - Processed frame 100/329
+2025-07-12 01:20:52,566 - INFO - Processed frame 110/329
+2025-07-12 01:21:13,741 - INFO - Processed frame 120/329
+2025-07-12 01:21:34,712 - INFO - Processed frame 130/329
+2025-07-12 01:21:55,634 - INFO - Processed frame 140/329
+2025-07-12 01:22:16,693 - INFO - Processed frame 150/329
+2025-07-12 01:22:37,727 - INFO - Processed frame 160/329
+2025-07-12 01:22:58,832 - INFO - Processed frame 170/329
+2025-07-12 01:23:19,764 - INFO - Processed frame 180/329
+2025-07-12 01:23:40,887 - INFO - Processed frame 190/329
+2025-07-12 01:24:02,267 - INFO - Processed frame 200/329
+2025-07-12 01:24:23,763 - INFO - Processed frame 210/329
+2025-07-12 01:24:45,806 - INFO - Processed frame 220/329
+2025-07-12 01:25:08,211 - INFO - Processed frame 230/329
+2025-07-12 01:25:29,219 - INFO - Processed frame 240/329
+2025-07-12 01:25:52,903 - INFO - Processed frame 250/329
+2025-07-12 01:26:27,265 - INFO - Processed frame 260/329
+2025-07-12 01:27:01,390 - INFO - Processed frame 270/329
+2025-07-12 01:27:35,583 - INFO - Processed frame 280/329
+2025-07-12 01:28:10,055 - INFO - Processed frame 290/329
+2025-07-12 01:28:44,635 - INFO - Processed frame 300/329
+2025-07-12 01:29:18,610 - INFO - Processed frame 310/329
+2025-07-12 01:29:52,665 - INFO - Processed frame 320/329
+2025-07-12 01:30:19,885 - INFO - Creating final video: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_videos/segformer_model-BConcave+AConvex+3900_flipped/videos_processed/segformer_model-BConcave+AConvex+3900_flipped.mp4
+2025-07-12 01:30:23,058 - INFO - Final video created successfully
+2025-07-12 01:30:23,063 - INFO - Video processing completed: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_videos/segformer_model-BConcave+AConvex+3900_flipped
+2025-07-12 01:30:23,076 - WARNING - No mask files found in /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_videos/segformer_model-BConcave+AConvex+3900_flipped/frames_masks
+2025-07-12 01:30:23,076 - WARNING - No mask data extracted for video BConcave+AConvex+3900_flipped
+2025-07-12 01:30:23,076 - INFO - Processing video: BConcave+AConvex+4100
+2025-07-12 01:30:23,076 - INFO - Starting video processing: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/exp2TTC_files/BConcave+AConvex+4100.mp4
+2025-07-12 01:30:23,245 - INFO - Video metadata: {'width': 1500, 'height': 400, 'fps': 60.0, 'total_frames': 329, 'duration': 5.483333333333333}
+2025-07-12 01:30:23,251 - INFO - Starting processing from beginning
+2025-07-12 01:30:23,362 - INFO - Processed frame 0/329
+2025-07-12 01:30:23,589 - INFO - Processed frame 10/329
+2025-07-12 01:30:33,498 - INFO - Processed frame 20/329
+2025-07-12 01:30:47,954 - INFO - Processed frame 30/329
+2025-07-12 01:31:23,273 - INFO - Processed frame 40/329
+2025-07-12 01:31:58,807 - INFO - Processed frame 50/329
+2025-07-12 01:32:34,057 - INFO - Processed frame 60/329
+2025-07-12 01:33:09,660 - INFO - Processed frame 70/329
+2025-07-12 01:33:45,148 - INFO - Processed frame 80/329
+2025-07-12 01:34:21,562 - INFO - Processed frame 90/329
+2025-07-12 01:34:47,714 - INFO - Processed frame 100/329
+2025-07-12 01:35:08,518 - INFO - Processed frame 110/329
+2025-07-12 01:35:29,160 - INFO - Processed frame 120/329
+2025-07-12 01:35:49,909 - INFO - Processed frame 130/329
+2025-07-12 01:36:10,794 - INFO - Processed frame 140/329
+2025-07-12 01:36:31,541 - INFO - Processed frame 150/329
+2025-07-12 01:36:52,303 - INFO - Processed frame 160/329
+2025-07-12 01:37:12,779 - INFO - Processed frame 170/329
+2025-07-12 01:37:33,461 - INFO - Processed frame 180/329
+2025-07-12 01:37:54,192 - INFO - Processed frame 190/329
+2025-07-12 01:38:14,978 - INFO - Processed frame 200/329
+2025-07-12 01:38:35,757 - INFO - Processed frame 210/329
+2025-07-12 01:38:56,516 - INFO - Processed frame 220/329
+2025-07-12 01:39:17,903 - INFO - Processed frame 230/329
+2025-07-12 01:39:38,627 - INFO - Processed frame 240/329
+2025-07-12 01:39:59,393 - INFO - Processed frame 250/329
+2025-07-12 01:40:20,248 - INFO - Processed frame 260/329
+2025-07-12 01:40:40,907 - INFO - Processed frame 270/329
+2025-07-12 01:41:01,379 - INFO - Processed frame 280/329
+2025-07-12 01:41:22,115 - INFO - Processed frame 290/329
+2025-07-12 01:41:43,374 - INFO - Processed frame 300/329
+2025-07-12 01:42:04,525 - INFO - Processed frame 310/329
+2025-07-12 01:42:25,666 - INFO - Processed frame 320/329
+2025-07-12 01:42:42,368 - INFO - Creating final video: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_videos/segformer_model-BConcave+AConvex+4100/videos_processed/segformer_model-BConcave+AConvex+4100.mp4
+2025-07-12 01:42:45,514 - INFO - Final video created successfully
+2025-07-12 01:42:45,519 - INFO - Video processing completed: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_videos/segformer_model-BConcave+AConvex+4100
+2025-07-12 01:42:45,531 - WARNING - No mask files found in /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_videos/segformer_model-BConcave+AConvex+4100/frames_masks
+2025-07-12 01:42:45,531 - WARNING - No mask data extracted for video BConcave+AConvex+4100
+2025-07-12 01:42:45,532 - INFO - Processing video: BConcave+AConvex+4300_flipped
+2025-07-12 01:42:45,532 - INFO - Starting video processing: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/exp2TTC_files/BConcave+AConvex+4300_flipped.mp4
+2025-07-12 01:42:45,721 - INFO - Video metadata: {'width': 1500, 'height': 400, 'fps': 60.0, 'total_frames': 329, 'duration': 5.483333333333333}
+2025-07-12 01:42:45,726 - INFO - Starting processing from beginning
+2025-07-12 01:42:45,837 - INFO - Processed frame 0/329
+2025-07-12 01:42:46,082 - INFO - Processed frame 10/329
+2025-07-12 01:42:56,028 - INFO - Processed frame 20/329
+2025-07-12 01:43:10,603 - INFO - Processed frame 30/329
+2025-07-12 01:43:46,372 - INFO - Processed frame 40/329
+2025-07-12 01:44:22,594 - INFO - Processed frame 50/329
+2025-07-12 01:44:58,644 - INFO - Processed frame 60/329
+2025-07-12 01:45:34,564 - INFO - Processed frame 70/329
+2025-07-12 01:46:11,131 - INFO - Processed frame 80/329
+2025-07-12 01:46:47,450 - INFO - Processed frame 90/329
+2025-07-12 01:47:21,591 - INFO - Processed frame 100/329
+2025-07-12 01:47:55,242 - INFO - Processed frame 110/329
+2025-07-12 01:48:29,422 - INFO - Processed frame 120/329
+2025-07-12 01:49:03,392 - INFO - Processed frame 130/329
+2025-07-12 01:49:37,508 - INFO - Processed frame 140/329
+2025-07-12 01:50:11,714 - INFO - Processed frame 150/329
+2025-07-12 01:50:46,095 - INFO - Processed frame 160/329
+2025-07-12 01:51:20,506 - INFO - Processed frame 170/329
+2025-07-12 01:51:54,636 - INFO - Processed frame 180/329
+2025-07-12 01:52:28,759 - INFO - Processed frame 190/329
+2025-07-12 01:53:04,460 - INFO - Processed frame 200/329
+2025-07-12 01:53:38,858 - INFO - Processed frame 210/329
+2025-07-12 01:54:12,512 - INFO - Processed frame 220/329

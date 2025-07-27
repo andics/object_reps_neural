@@ -1,0 +1,248 @@
+2025-07-11 04:02:55,446 - INFO - Logger initialized. Writing detailed log to /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/logs/ttc_exp_20250711_040255.log
+2025-07-11 04:02:55,447 - INFO - VideoProcessor initialized with 2 blobs to detect
+2025-07-11 04:02:55,447 - INFO - Initialized TTC Experiment with output dir: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC
+2025-07-11 04:02:55,447 - INFO - Starting full TTC experiment
+2025-07-11 04:02:55,447 - INFO - Found 99 video files to process
+2025-07-11 04:02:55,447 - INFO - Reading participant CSV from /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/exp2TTC_files/experiment2-CollisionDetection-Data.csv...
+2025-07-11 04:02:55,465 - INFO - CSV loaded with 13974 rows and 10 columns.
+2025-07-11 04:02:55,465 - INFO - Starting collision detection across videos and IoU thresholds...
+2025-07-11 04:02:55,465 - INFO - Processing video: AConcave_FConcave
+2025-07-11 04:02:55,465 - INFO - Starting video processing: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/exp2TTC_files/AConcave_FConcave.mp4
+2025-07-11 04:02:55,488 - INFO - Loading model...
+2025-07-11 04:02:59,642 - INFO - Video metadata: {'width': 1500, 'height': 400, 'fps': 60.0, 'total_frames': 269, 'duration': 4.483333333333333}
+2025-07-11 04:02:59,646 - INFO - Starting processing from beginning
+2025-07-11 04:02:59,727 - INFO - Processed frame 0/269
+2025-07-11 04:02:59,923 - INFO - Processed frame 10/269
+2025-07-11 04:03:06,754 - INFO - Processed frame 20/269
+2025-07-11 04:03:14,831 - INFO - Processed frame 30/269
+2025-07-11 04:03:22,748 - INFO - Processed frame 40/269
+2025-07-11 04:03:30,560 - INFO - Processed frame 50/269
+2025-07-11 04:03:38,319 - INFO - Processed frame 60/269
+2025-07-11 04:03:46,077 - INFO - Processed frame 70/269
+2025-07-11 04:03:53,975 - INFO - Processed frame 80/269
+2025-07-11 04:04:01,809 - INFO - Processed frame 90/269
+2025-07-11 04:04:09,587 - INFO - Processed frame 100/269
+2025-07-11 04:04:17,536 - INFO - Processed frame 110/269
+2025-07-11 04:04:25,380 - INFO - Processed frame 120/269
+2025-07-11 04:04:33,171 - INFO - Processed frame 130/269
+2025-07-11 04:04:41,022 - INFO - Processed frame 140/269
+2025-07-11 04:04:48,779 - INFO - Processed frame 150/269
+2025-07-11 04:04:56,590 - INFO - Processed frame 160/269
+2025-07-11 04:05:04,716 - INFO - Processed frame 170/269
+2025-07-11 04:05:12,543 - INFO - Processed frame 180/269
+2025-07-11 04:05:20,506 - INFO - Processed frame 190/269
+2025-07-11 04:05:28,455 - INFO - Processed frame 200/269
+2025-07-11 04:05:36,298 - INFO - Processed frame 210/269
+2025-07-11 04:05:44,579 - INFO - Processed frame 220/269
+2025-07-11 04:05:52,517 - INFO - Processed frame 230/269
+2025-07-11 04:06:00,162 - INFO - Processed frame 240/269
+2025-07-11 04:06:08,095 - INFO - Processed frame 250/269
+2025-07-11 04:06:16,040 - INFO - Processed frame 260/269
+2025-07-11 04:06:22,398 - INFO - Creating final video: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_videos/segformer_model-AConcave_FConcave/videos_processed/segformer_model-AConcave_FConcave.mp4
+2025-07-11 04:06:27,325 - INFO - Final video created successfully
+2025-07-11 04:06:27,325 - INFO - Video processing completed: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_videos/segformer_model-AConcave_FConcave
+2025-07-11 04:06:29,722 - DEBUG - Collision time for AConcave_FConcave at IoU 0.05: nan
+2025-07-11 04:06:30,305 - DEBUG - Collision time for AConcave_FConcave at IoU 0.1: nan
+2025-07-11 04:06:30,893 - DEBUG - Collision time for AConcave_FConcave at IoU 0.15: nan
+2025-07-11 04:06:31,480 - DEBUG - Collision time for AConcave_FConcave at IoU 0.2: nan
+2025-07-11 04:06:32,058 - DEBUG - Collision time for AConcave_FConcave at IoU 0.25: nan
+2025-07-11 04:06:32,632 - DEBUG - Collision time for AConcave_FConcave at IoU 0.3: nan
+2025-07-11 04:06:33,236 - DEBUG - Collision time for AConcave_FConcave at IoU 0.35: nan
+2025-07-11 04:06:33,824 - DEBUG - Collision time for AConcave_FConcave at IoU 0.4: nan
+2025-07-11 04:06:34,410 - DEBUG - Collision time for AConcave_FConcave at IoU 0.45: nan
+2025-07-11 04:06:34,993 - DEBUG - Collision time for AConcave_FConcave at IoU 0.5: nan
+2025-07-11 04:06:35,577 - DEBUG - Collision time for AConcave_FConcave at IoU 0.55: nan
+2025-07-11 04:06:36,167 - DEBUG - Collision time for AConcave_FConcave at IoU 0.6: nan
+2025-07-11 04:06:36,747 - DEBUG - Collision time for AConcave_FConcave at IoU 0.65: nan
+2025-07-11 04:06:37,357 - DEBUG - Collision time for AConcave_FConcave at IoU 0.7: nan
+2025-07-11 04:06:37,953 - DEBUG - Collision time for AConcave_FConcave at IoU 0.75: nan
+2025-07-11 04:06:38,552 - DEBUG - Collision time for AConcave_FConcave at IoU 0.8: nan
+2025-07-11 04:06:39,149 - DEBUG - Collision time for AConcave_FConcave at IoU 0.85: nan
+2025-07-11 04:06:39,731 - DEBUG - Collision time for AConcave_FConcave at IoU 0.9: nan
+2025-07-11 04:06:40,324 - DEBUG - Collision time for AConcave_FConcave at IoU 0.95: nan
+2025-07-11 04:06:40,324 - INFO - Processing video: BConcave+AConcave+3500
+2025-07-11 04:06:40,324 - INFO - Starting video processing: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/exp2TTC_files/BConcave+AConcave+3500.mp4
+2025-07-11 04:06:40,517 - INFO - Video metadata: {'width': 1500, 'height': 400, 'fps': 60.0, 'total_frames': 329, 'duration': 5.483333333333333}
+2025-07-11 04:06:40,522 - INFO - Starting processing from beginning
+2025-07-11 04:06:40,631 - INFO - Processed frame 0/329
+2025-07-11 04:06:40,817 - INFO - Processed frame 10/329
+2025-07-11 04:06:46,740 - INFO - Processed frame 20/329
+2025-07-11 04:06:54,104 - INFO - Processed frame 30/329
+2025-07-11 04:07:01,304 - INFO - Processed frame 40/329
+2025-07-11 04:07:08,400 - INFO - Processed frame 50/329
+2025-07-11 04:07:15,504 - INFO - Processed frame 60/329
+2025-07-11 04:07:22,628 - INFO - Processed frame 70/329
+2025-07-11 04:07:29,810 - INFO - Processed frame 80/329
+2025-07-11 04:07:37,110 - INFO - Processed frame 90/329
+2025-07-11 04:07:45,241 - INFO - Processed frame 100/329
+2025-07-11 04:07:52,334 - INFO - Processed frame 110/329
+2025-07-11 04:07:59,391 - INFO - Processed frame 120/329
+2025-07-11 04:08:06,573 - INFO - Processed frame 130/329
+2025-07-11 04:08:13,667 - INFO - Processed frame 140/329
+2025-07-11 04:08:20,699 - INFO - Processed frame 150/329
+2025-07-11 04:08:28,002 - INFO - Processed frame 160/329
+2025-07-11 04:08:35,511 - INFO - Processed frame 170/329
+2025-07-11 04:08:42,575 - INFO - Processed frame 180/329
+2025-07-11 04:08:50,063 - INFO - Processed frame 190/329
+2025-07-11 04:08:58,214 - INFO - Processed frame 200/329
+2025-07-11 04:09:06,828 - INFO - Processed frame 210/329
+2025-07-11 04:09:14,376 - INFO - Processed frame 220/329
+2025-07-11 04:09:22,217 - INFO - Processed frame 230/329
+2025-07-11 04:09:30,356 - INFO - Processed frame 240/329
+2025-07-11 04:09:38,456 - INFO - Processed frame 250/329
+2025-07-11 04:09:46,631 - INFO - Processed frame 260/329
+2025-07-11 04:09:54,377 - INFO - Processed frame 270/329
+2025-07-11 04:10:01,760 - INFO - Processed frame 280/329
+2025-07-11 04:10:09,918 - INFO - Processed frame 290/329
+2025-07-11 04:10:18,215 - INFO - Processed frame 300/329
+2025-07-11 04:10:25,957 - INFO - Processed frame 310/329
+2025-07-11 04:10:33,739 - INFO - Processed frame 320/329
+2025-07-11 04:10:39,669 - INFO - Creating final video: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_videos/segformer_model-BConcave+AConcave+3500/videos_processed/segformer_model-BConcave+AConcave+3500.mp4
+2025-07-11 04:10:43,518 - INFO - Final video created successfully
+2025-07-11 04:10:43,518 - INFO - Video processing completed: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_videos/segformer_model-BConcave+AConcave+3500
+2025-07-11 04:10:45,135 - DEBUG - Collision time for BConcave+AConcave+3500 at IoU 0.05: nan
+2025-07-11 04:10:45,325 - DEBUG - Collision time for BConcave+AConcave+3500 at IoU 0.1: nan
+2025-07-11 04:10:45,516 - DEBUG - Collision time for BConcave+AConcave+3500 at IoU 0.15: nan
+2025-07-11 04:10:45,710 - DEBUG - Collision time for BConcave+AConcave+3500 at IoU 0.2: nan
+2025-07-11 04:10:45,909 - DEBUG - Collision time for BConcave+AConcave+3500 at IoU 0.25: nan
+2025-07-11 04:10:46,100 - DEBUG - Collision time for BConcave+AConcave+3500 at IoU 0.3: nan
+2025-07-11 04:10:46,298 - DEBUG - Collision time for BConcave+AConcave+3500 at IoU 0.35: nan
+2025-07-11 04:10:46,487 - DEBUG - Collision time for BConcave+AConcave+3500 at IoU 0.4: nan
+2025-07-11 04:10:46,681 - DEBUG - Collision time for BConcave+AConcave+3500 at IoU 0.45: nan
+2025-07-11 04:10:46,884 - DEBUG - Collision time for BConcave+AConcave+3500 at IoU 0.5: nan
+2025-07-11 04:10:47,089 - DEBUG - Collision time for BConcave+AConcave+3500 at IoU 0.55: nan
+2025-07-11 04:10:47,281 - DEBUG - Collision time for BConcave+AConcave+3500 at IoU 0.6: nan
+2025-07-11 04:10:47,469 - DEBUG - Collision time for BConcave+AConcave+3500 at IoU 0.65: nan
+2025-07-11 04:10:47,658 - DEBUG - Collision time for BConcave+AConcave+3500 at IoU 0.7: nan
+2025-07-11 04:10:47,847 - DEBUG - Collision time for BConcave+AConcave+3500 at IoU 0.75: nan
+2025-07-11 04:10:48,043 - DEBUG - Collision time for BConcave+AConcave+3500 at IoU 0.8: nan
+2025-07-11 04:10:48,239 - DEBUG - Collision time for BConcave+AConcave+3500 at IoU 0.85: nan
+2025-07-11 04:10:48,430 - DEBUG - Collision time for BConcave+AConcave+3500 at IoU 0.9: nan
+2025-07-11 04:10:48,618 - DEBUG - Collision time for BConcave+AConcave+3500 at IoU 0.95: nan
+2025-07-11 04:10:48,618 - INFO - Processing video: BConcave+AConcave+3700_flipped
+2025-07-11 04:10:48,618 - INFO - Starting video processing: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/exp2TTC_files/BConcave+AConcave+3700_flipped.mp4
+2025-07-11 04:10:48,867 - INFO - Video metadata: {'width': 1500, 'height': 400, 'fps': 60.0, 'total_frames': 329, 'duration': 5.483333333333333}
+2025-07-11 04:10:48,872 - INFO - Starting processing from beginning
+2025-07-11 04:10:49,034 - INFO - Processed frame 0/329
+2025-07-11 04:10:49,239 - INFO - Processed frame 10/329
+2025-07-11 04:10:54,900 - INFO - Processed frame 20/329
+2025-07-11 04:11:01,913 - INFO - Processed frame 30/329
+2025-07-11 04:11:09,024 - INFO - Processed frame 40/329
+2025-07-11 04:11:16,016 - INFO - Processed frame 50/329
+2025-07-11 04:11:23,134 - INFO - Processed frame 60/329
+2025-07-11 04:11:30,050 - INFO - Processed frame 70/329
+2025-07-11 04:11:37,006 - INFO - Processed frame 80/329
+2025-07-11 04:11:44,026 - INFO - Processed frame 90/329
+2025-07-11 04:11:51,016 - INFO - Processed frame 100/329
+2025-07-11 04:11:57,877 - INFO - Processed frame 110/329
+2025-07-11 04:12:05,097 - INFO - Processed frame 120/329
+2025-07-11 04:12:11,868 - INFO - Processed frame 130/329
+2025-07-11 04:12:18,732 - INFO - Processed frame 140/329
+2025-07-11 04:12:29,566 - INFO - Processed frame 150/329
+2025-07-11 04:12:37,091 - INFO - Processed frame 160/329
+2025-07-11 04:12:44,841 - INFO - Processed frame 170/329
+2025-07-11 04:12:51,731 - INFO - Processed frame 180/329
+2025-07-11 04:13:03,895 - INFO - Processed frame 190/329
+2025-07-11 04:13:10,760 - INFO - Processed frame 200/329
+2025-07-11 04:13:17,700 - INFO - Processed frame 210/329
+2025-07-11 04:13:24,621 - INFO - Processed frame 220/329
+2025-07-11 04:13:31,333 - INFO - Processed frame 230/329
+2025-07-11 04:13:38,203 - INFO - Processed frame 240/329
+2025-07-11 04:13:45,174 - INFO - Processed frame 250/329
+2025-07-11 04:13:52,418 - INFO - Processed frame 260/329
+2025-07-11 04:13:59,692 - INFO - Processed frame 270/329
+2025-07-11 04:14:06,883 - INFO - Processed frame 280/329
+2025-07-11 04:14:19,145 - INFO - Processed frame 290/329
+2025-07-11 04:14:26,281 - INFO - Processed frame 300/329
+2025-07-11 04:14:33,318 - INFO - Processed frame 310/329
+2025-07-11 04:14:40,594 - INFO - Processed frame 320/329
+2025-07-11 04:14:46,208 - INFO - Creating final video: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_videos/segformer_model-BConcave+AConcave+3700_flipped/videos_processed/segformer_model-BConcave+AConcave+3700_flipped.mp4
+2025-07-11 04:14:50,236 - INFO - Final video created successfully
+2025-07-11 04:14:50,236 - INFO - Video processing completed: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_videos/segformer_model-BConcave+AConcave+3700_flipped
+2025-07-11 04:14:52,366 - DEBUG - Collision time for BConcave+AConcave+3700_flipped at IoU 0.05: nan
+2025-07-11 04:14:52,792 - DEBUG - Collision time for BConcave+AConcave+3700_flipped at IoU 0.1: nan
+2025-07-11 04:14:53,222 - DEBUG - Collision time for BConcave+AConcave+3700_flipped at IoU 0.15: nan
+2025-07-11 04:14:53,642 - DEBUG - Collision time for BConcave+AConcave+3700_flipped at IoU 0.2: nan
+2025-07-11 04:14:54,058 - DEBUG - Collision time for BConcave+AConcave+3700_flipped at IoU 0.25: nan
+2025-07-11 04:14:54,473 - DEBUG - Collision time for BConcave+AConcave+3700_flipped at IoU 0.3: nan
+2025-07-11 04:14:54,888 - DEBUG - Collision time for BConcave+AConcave+3700_flipped at IoU 0.35: nan
+2025-07-11 04:14:55,309 - DEBUG - Collision time for BConcave+AConcave+3700_flipped at IoU 0.4: nan
+2025-07-11 04:14:55,726 - DEBUG - Collision time for BConcave+AConcave+3700_flipped at IoU 0.45: nan
+2025-07-11 04:14:56,145 - DEBUG - Collision time for BConcave+AConcave+3700_flipped at IoU 0.5: nan
+2025-07-11 04:14:56,562 - DEBUG - Collision time for BConcave+AConcave+3700_flipped at IoU 0.55: nan
+2025-07-11 04:14:56,981 - DEBUG - Collision time for BConcave+AConcave+3700_flipped at IoU 0.6: nan
+2025-07-11 04:14:57,414 - DEBUG - Collision time for BConcave+AConcave+3700_flipped at IoU 0.65: nan
+2025-07-11 04:14:57,855 - DEBUG - Collision time for BConcave+AConcave+3700_flipped at IoU 0.7: nan
+2025-07-11 04:14:58,279 - DEBUG - Collision time for BConcave+AConcave+3700_flipped at IoU 0.75: nan
+2025-07-11 04:14:58,694 - DEBUG - Collision time for BConcave+AConcave+3700_flipped at IoU 0.8: nan
+2025-07-11 04:14:59,118 - DEBUG - Collision time for BConcave+AConcave+3700_flipped at IoU 0.85: nan
+2025-07-11 04:14:59,534 - DEBUG - Collision time for BConcave+AConcave+3700_flipped at IoU 0.9: nan
+2025-07-11 04:14:59,949 - DEBUG - Collision time for BConcave+AConcave+3700_flipped at IoU 0.95: nan
+2025-07-11 04:14:59,949 - INFO - Processing video: BConcave+AConcave+3900
+2025-07-11 04:14:59,949 - INFO - Starting video processing: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/exp2TTC_files/BConcave+AConcave+3900.mp4
+2025-07-11 04:15:00,148 - INFO - Video metadata: {'width': 1500, 'height': 400, 'fps': 60.0, 'total_frames': 329, 'duration': 5.483333333333333}
+2025-07-11 04:15:00,152 - INFO - Starting processing from beginning
+2025-07-11 04:15:00,279 - INFO - Processed frame 0/329
+2025-07-11 04:15:00,459 - INFO - Processed frame 10/329
+2025-07-11 04:15:06,695 - INFO - Processed frame 20/329
+2025-07-11 04:15:14,534 - INFO - Processed frame 30/329
+2025-07-11 04:15:22,279 - INFO - Processed frame 40/329
+2025-07-11 04:15:29,952 - INFO - Processed frame 50/329
+2025-07-11 04:15:38,649 - INFO - Processed frame 60/329
+2025-07-11 04:15:46,229 - INFO - Processed frame 70/329
+2025-07-11 04:15:53,785 - INFO - Processed frame 80/329
+2025-07-11 04:16:01,070 - INFO - Processed frame 90/329
+2025-07-11 04:16:08,161 - INFO - Processed frame 100/329
+2025-07-11 04:16:15,071 - INFO - Processed frame 110/329
+2025-07-11 04:16:22,007 - INFO - Processed frame 120/329
+2025-07-11 04:16:28,875 - INFO - Processed frame 130/329
+2025-07-11 04:16:35,797 - INFO - Processed frame 140/329
+2025-07-11 04:16:42,767 - INFO - Processed frame 150/329
+2025-07-11 04:16:49,783 - INFO - Processed frame 160/329
+2025-07-11 04:16:56,722 - INFO - Processed frame 170/329
+2025-07-11 04:17:03,837 - INFO - Processed frame 180/329
+2025-07-11 04:17:10,837 - INFO - Processed frame 190/329
+2025-07-11 04:17:17,788 - INFO - Processed frame 200/329
+2025-07-11 04:17:24,717 - INFO - Processed frame 210/329
+2025-07-11 04:17:31,665 - INFO - Processed frame 220/329
+2025-07-11 04:17:38,617 - INFO - Processed frame 230/329
+2025-07-11 04:17:46,433 - INFO - Processed frame 240/329
+2025-07-11 04:17:53,386 - INFO - Processed frame 250/329
+2025-07-11 04:18:00,321 - INFO - Processed frame 260/329
+2025-07-11 04:18:07,351 - INFO - Processed frame 270/329
+2025-07-11 04:18:14,425 - INFO - Processed frame 280/329
+2025-07-11 04:18:21,492 - INFO - Processed frame 290/329
+2025-07-11 04:18:28,428 - INFO - Processed frame 300/329
+2025-07-11 04:18:35,339 - INFO - Processed frame 310/329
+2025-07-11 04:18:42,290 - INFO - Processed frame 320/329
+2025-07-11 04:18:47,866 - INFO - Creating final video: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_videos/segformer_model-BConcave+AConcave+3900/videos_processed/segformer_model-BConcave+AConcave+3900.mp4
+2025-07-11 04:18:50,964 - INFO - Final video created successfully
+2025-07-11 04:18:50,965 - INFO - Video processing completed: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_videos/segformer_model-BConcave+AConcave+3900
+2025-07-11 04:18:52,531 - DEBUG - Collision time for BConcave+AConcave+3900 at IoU 0.05: nan
+2025-07-11 04:18:52,718 - DEBUG - Collision time for BConcave+AConcave+3900 at IoU 0.1: nan
+2025-07-11 04:18:52,904 - DEBUG - Collision time for BConcave+AConcave+3900 at IoU 0.15: nan
+2025-07-11 04:18:53,093 - DEBUG - Collision time for BConcave+AConcave+3900 at IoU 0.2: nan
+2025-07-11 04:18:53,278 - DEBUG - Collision time for BConcave+AConcave+3900 at IoU 0.25: nan
+2025-07-11 04:18:53,463 - DEBUG - Collision time for BConcave+AConcave+3900 at IoU 0.3: nan
+2025-07-11 04:18:53,648 - DEBUG - Collision time for BConcave+AConcave+3900 at IoU 0.35: nan
+2025-07-11 04:18:53,834 - DEBUG - Collision time for BConcave+AConcave+3900 at IoU 0.4: nan
+2025-07-11 04:18:54,018 - DEBUG - Collision time for BConcave+AConcave+3900 at IoU 0.45: nan
+2025-07-11 04:18:54,203 - DEBUG - Collision time for BConcave+AConcave+3900 at IoU 0.5: nan
+2025-07-11 04:18:54,389 - DEBUG - Collision time for BConcave+AConcave+3900 at IoU 0.55: nan
+2025-07-11 04:18:54,575 - DEBUG - Collision time for BConcave+AConcave+3900 at IoU 0.6: nan
+2025-07-11 04:18:54,765 - DEBUG - Collision time for BConcave+AConcave+3900 at IoU 0.65: nan
+2025-07-11 04:18:54,953 - DEBUG - Collision time for BConcave+AConcave+3900 at IoU 0.7: nan
+2025-07-11 04:18:55,144 - DEBUG - Collision time for BConcave+AConcave+3900 at IoU 0.75: nan
+2025-07-11 04:18:55,329 - DEBUG - Collision time for BConcave+AConcave+3900 at IoU 0.8: nan
+2025-07-11 04:18:55,513 - DEBUG - Collision time for BConcave+AConcave+3900 at IoU 0.85: nan
+2025-07-11 04:18:55,698 - DEBUG - Collision time for BConcave+AConcave+3900 at IoU 0.9: nan
+2025-07-11 04:18:55,883 - DEBUG - Collision time for BConcave+AConcave+3900 at IoU 0.95: nan
+2025-07-11 04:18:55,883 - INFO - Processing video: BConcave+AConcave+4100_flipped
+2025-07-11 04:18:55,883 - INFO - Starting video processing: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/exp2TTC_files/BConcave+AConcave+4100_flipped.mp4
+2025-07-11 04:18:56,125 - INFO - Video metadata: {'width': 1500, 'height': 400, 'fps': 60.0, 'total_frames': 329, 'duration': 5.483333333333333}
+2025-07-11 04:18:56,129 - INFO - Starting processing from beginning
+2025-07-11 04:18:56,280 - INFO - Processed frame 0/329
+2025-07-11 04:18:56,478 - INFO - Processed frame 10/329
+2025-07-11 04:19:02,259 - INFO - Processed frame 20/329
+2025-07-11 04:19:09,226 - INFO - Processed frame 30/329
+2025-07-11 04:19:17,017 - INFO - Processed frame 40/329

@@ -58,7 +58,7 @@ class MaskRCNNInterface(ModelInterface):
         device: Union[str, torch.device, None] = None,
         num_queries: int = 100,
         logger: logging.Logger = None,
-        confidence_threshold: float = 0.5,
+        confidence_threshold: float = 0.0,
     ):
         self.model_name = model_name
         self.num_queries = num_queries
@@ -92,13 +92,13 @@ class MaskRCNNInterface(ModelInterface):
             raise ValueError(f"Unsupported model name: {self.model_name}")
         
         self.model = self.model.to(self.device).eval()
-        
+
         self.logger.info("Mask R-CNN model loaded successfully")
 
     def infer_image(self, image: Image.Image) -> Dict[str, Any]:
         """
         Run inference and return DETR-compatible predictions.
-        
+
         The Mask R-CNN model outputs proper instance segmentation masks.
         """
         if self.model is None:
@@ -106,7 +106,7 @@ class MaskRCNNInterface(ModelInterface):
 
         # Get original image dimensions
         orig_width, orig_height = image.size
-        
+
         # Preprocess image
         if image.mode != 'RGB':
             image = image.convert('RGB')

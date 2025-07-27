@@ -1,0 +1,203 @@
+2025-07-27 12:32:52,759 - INFO - Logger initialized. Writing detailed log to /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/detr/exp2TTC_detr-resnet-50-panoptic/logs/ttc_exp_20250727_123252.log
+2025-07-27 12:32:52,759 - INFO - VideoProcessor initialized with 2 blobs to detect
+2025-07-27 12:32:52,760 - INFO - Blob 1 memory strategy: running_average
+2025-07-27 12:32:52,760 - INFO - Blob 1 running average window: 10
+2025-07-27 12:32:52,760 - INFO - Blob 1 memory will freeze after frame: 80
+2025-07-27 12:32:52,760 - INFO - Vanilla segmentation enabled
+2025-07-27 12:32:52,760 - INFO - DEBUG MODE enabled: exceptions will not be caught to show full tracebacks
+2025-07-27 12:32:52,760 - INFO - Initialized TTC Experiment with output dir: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/detr/exp2TTC_detr-resnet-50-panoptic
+2025-07-27 12:32:52,760 - INFO - Model prefix: detr_model
+2025-07-27 12:32:52,760 - INFO - Debug mode: True
+2025-07-27 12:32:52,760 - INFO - TTC-specific configuration:
+2025-07-27 12:32:52,760 - INFO -   - Blob 1 memory: running average of past 10 frames
+2025-07-27 12:32:52,760 - INFO -   - Blob 1 memory updates stop after frame 80
+2025-07-27 12:32:52,760 - INFO - Starting full TTC experiment
+2025-07-27 12:32:52,760 - INFO - Found 99 video files to process
+2025-07-27 12:32:52,761 - INFO - Reading participant CSV from /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/exp2TTC_files/experiment2-CollisionDetection-Data.csv...
+2025-07-27 12:32:52,779 - INFO - CSV loaded with 13974 rows and 10 columns.
+2025-07-27 12:32:52,779 - INFO - Reading name mapping from /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/exp2TTC_files/name_mapping.json...
+2025-07-27 12:32:52,780 - INFO - Loaded name mapping with 96 entries.
+2025-07-27 12:32:52,780 - INFO - Starting collision detection across videos and IoU thresholds...
+2025-07-27 12:32:52,781 - INFO - Processing video: AConcave_FConcave
+2025-07-27 12:32:52,782 - INFO - Starting full processing for AConcave_FConcave
+2025-07-27 12:32:52,782 - INFO - Starting video processing: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/exp2TTC_files/AConcave_FConcave.mp4
+2025-07-27 12:32:52,782 - INFO - Reset blob state tracking for new video
+2025-07-27 12:32:52,798 - INFO - VanillaSegmentationSaver initialized with output dir: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/detr/exp2TTC_detr-resnet-50-panoptic/processed_videos/detr_model-AConcave_FConcave/org_segmentation
+2025-07-27 12:32:52,798 - INFO - Loading model...
+2025-07-27 12:32:56,309 - INFO - Video metadata: {'width': 1500, 'height': 400, 'fps': 60.0, 'total_frames': 269, 'duration': 4.483333333333333}
+2025-07-27 12:32:56,312 - INFO - Starting processing from beginning
+2025-07-27 12:32:59,061 - DEBUG - Saved vanilla segmentation for frame 0
+2025-07-27 12:32:59,085 - INFO - Processed frame 0/269
+2025-07-27 12:33:00,577 - DEBUG - Saved vanilla segmentation for frame 1
+2025-07-27 12:33:02,120 - DEBUG - Saved vanilla segmentation for frame 2
+2025-07-27 12:33:04,007 - DEBUG - Saved vanilla segmentation for frame 3
+2025-07-27 12:33:05,674 - DEBUG - Saved vanilla segmentation for frame 4
+2025-07-27 12:33:07,181 - DEBUG - Saved vanilla segmentation for frame 5
+2025-07-27 12:33:08,645 - DEBUG - Saved vanilla segmentation for frame 6
+2025-07-27 12:33:10,224 - DEBUG - Saved vanilla segmentation for frame 7
+2025-07-27 12:33:11,706 - DEBUG - Saved vanilla segmentation for frame 8
+2025-07-27 12:33:13,175 - DEBUG - Saved vanilla segmentation for frame 9
+2025-07-27 12:33:14,893 - DEBUG - Saved vanilla segmentation for frame 10
+2025-07-27 12:33:14,912 - INFO - Processed frame 10/269
+2025-07-27 12:33:16,432 - DEBUG - Saved vanilla segmentation for frame 11
+2025-07-27 12:33:18,489 - DEBUG - Saved vanilla segmentation for frame 12
+2025-07-27 12:33:20,949 - DEBUG - Saved vanilla segmentation for frame 13
+2025-07-27 12:33:23,479 - DEBUG - Saved vanilla segmentation for frame 14
+2025-07-27 12:33:26,373 - DEBUG - Saved vanilla segmentation for frame 15
+2025-07-27 12:33:29,052 - DEBUG - Saved vanilla segmentation for frame 16
+2025-07-27 12:33:32,600 - DEBUG - Saved vanilla segmentation for frame 17
+2025-07-27 12:33:36,567 - DEBUG - Saved vanilla segmentation for frame 18
+2025-07-27 12:33:39,200 - DEBUG - Saved vanilla segmentation for frame 19
+2025-07-27 12:33:41,691 - DEBUG - Saved vanilla segmentation for frame 20
+2025-07-27 12:33:41,972 - INFO - Processed frame 20/269
+2025-07-27 12:33:44,099 - DEBUG - Saved vanilla segmentation for frame 21
+2025-07-27 12:33:46,657 - DEBUG - Saved vanilla segmentation for frame 22
+2025-07-27 12:33:48,993 - DEBUG - Saved vanilla segmentation for frame 23
+2025-07-27 12:33:51,485 - DEBUG - Saved vanilla segmentation for frame 24
+2025-07-27 12:33:53,770 - DEBUG - Saved vanilla segmentation for frame 25
+2025-07-27 12:33:56,053 - DEBUG - Saved vanilla segmentation for frame 26
+2025-07-27 12:33:58,442 - DEBUG - Saved vanilla segmentation for frame 27
+2025-07-27 12:34:00,729 - DEBUG - Saved vanilla segmentation for frame 28
+2025-07-27 12:34:03,033 - DEBUG - Saved vanilla segmentation for frame 29
+2025-07-27 12:34:05,423 - DEBUG - Saved vanilla segmentation for frame 30
+2025-07-27 12:34:05,915 - INFO - Processed frame 30/269
+2025-07-27 12:34:08,082 - DEBUG - Saved vanilla segmentation for frame 31
+2025-07-27 12:34:10,425 - DEBUG - Saved vanilla segmentation for frame 32
+2025-07-27 12:34:12,792 - DEBUG - Saved vanilla segmentation for frame 33
+2025-07-27 12:34:15,256 - DEBUG - Saved vanilla segmentation for frame 34
+2025-07-27 12:34:17,658 - DEBUG - Saved vanilla segmentation for frame 35
+2025-07-27 12:34:20,239 - DEBUG - Saved vanilla segmentation for frame 36
+2025-07-27 12:34:22,509 - DEBUG - Saved vanilla segmentation for frame 37
+2025-07-27 12:34:24,782 - DEBUG - Saved vanilla segmentation for frame 38
+2025-07-27 12:34:27,042 - DEBUG - Saved vanilla segmentation for frame 39
+2025-07-27 12:34:29,407 - DEBUG - Saved vanilla segmentation for frame 40
+2025-07-27 12:34:29,695 - INFO - Processed frame 40/269
+2025-07-27 12:34:31,774 - DEBUG - Saved vanilla segmentation for frame 41
+2025-07-27 12:34:34,136 - DEBUG - Saved vanilla segmentation for frame 42
+2025-07-27 12:34:36,734 - DEBUG - Saved vanilla segmentation for frame 43
+2025-07-27 12:34:39,144 - DEBUG - Saved vanilla segmentation for frame 44
+2025-07-27 12:34:41,498 - DEBUG - Saved vanilla segmentation for frame 45
+2025-07-27 12:34:43,807 - DEBUG - Saved vanilla segmentation for frame 46
+2025-07-27 12:34:46,104 - DEBUG - Saved vanilla segmentation for frame 47
+2025-07-27 12:34:48,457 - DEBUG - Saved vanilla segmentation for frame 48
+2025-07-27 12:34:51,028 - DEBUG - Saved vanilla segmentation for frame 49
+2025-07-27 12:34:53,381 - DEBUG - Saved vanilla segmentation for frame 50
+2025-07-27 12:34:53,670 - INFO - Processed frame 50/269
+2025-07-27 12:34:55,706 - DEBUG - Saved vanilla segmentation for frame 51
+2025-07-27 12:34:58,000 - DEBUG - Saved vanilla segmentation for frame 52
+2025-07-27 12:35:00,488 - DEBUG - Saved vanilla segmentation for frame 53
+2025-07-27 12:35:02,755 - DEBUG - Saved vanilla segmentation for frame 54
+2025-07-27 12:35:05,309 - DEBUG - Saved vanilla segmentation for frame 55
+2025-07-27 12:35:07,605 - DEBUG - Saved vanilla segmentation for frame 56
+2025-07-27 12:35:09,890 - DEBUG - Saved vanilla segmentation for frame 57
+2025-07-27 12:35:12,202 - DEBUG - Saved vanilla segmentation for frame 58
+2025-07-27 12:35:14,499 - DEBUG - Saved vanilla segmentation for frame 59
+2025-07-27 12:35:16,827 - DEBUG - Saved vanilla segmentation for frame 60
+2025-07-27 12:35:17,110 - INFO - Processed frame 60/269
+2025-07-27 12:35:19,345 - DEBUG - Saved vanilla segmentation for frame 61
+2025-07-27 12:35:21,647 - DEBUG - Saved vanilla segmentation for frame 62
+2025-07-27 12:35:23,916 - DEBUG - Saved vanilla segmentation for frame 63
+2025-07-27 12:35:26,207 - DEBUG - Saved vanilla segmentation for frame 64
+2025-07-27 12:35:28,513 - DEBUG - Saved vanilla segmentation for frame 65
+2025-07-27 12:35:30,824 - DEBUG - Saved vanilla segmentation for frame 66
+2025-07-27 12:35:33,363 - DEBUG - Saved vanilla segmentation for frame 67
+2025-07-27 12:35:35,655 - DEBUG - Saved vanilla segmentation for frame 68
+2025-07-27 12:35:37,990 - DEBUG - Saved vanilla segmentation for frame 69
+2025-07-27 12:35:40,336 - DEBUG - Saved vanilla segmentation for frame 70
+2025-07-27 12:35:40,614 - INFO - Processed frame 70/269
+2025-07-27 12:35:42,647 - DEBUG - Saved vanilla segmentation for frame 71
+2025-07-27 12:35:44,922 - DEBUG - Saved vanilla segmentation for frame 72
+2025-07-27 12:35:47,225 - DEBUG - Saved vanilla segmentation for frame 73
+2025-07-27 12:35:49,738 - DEBUG - Saved vanilla segmentation for frame 74
+2025-07-27 12:35:52,039 - DEBUG - Saved vanilla segmentation for frame 75
+2025-07-27 12:35:54,330 - DEBUG - Saved vanilla segmentation for frame 76
+2025-07-27 12:35:56,606 - DEBUG - Saved vanilla segmentation for frame 77
+2025-07-27 12:35:58,911 - DEBUG - Saved vanilla segmentation for frame 78
+2025-07-27 12:36:01,233 - DEBUG - Saved vanilla segmentation for frame 79
+2025-07-27 12:36:03,766 - DEBUG - Saved vanilla segmentation for frame 80
+2025-07-27 12:36:03,798 - WARNING - Frame 80: No frozen mask stored for blob 1
+2025-07-27 12:36:04,043 - INFO - Processed frame 80/269
+2025-07-27 12:36:06,046 - DEBUG - Saved vanilla segmentation for frame 81
+2025-07-27 12:36:06,078 - WARNING - Frame 81: No frozen mask stored for blob 1
+2025-07-27 12:36:08,346 - DEBUG - Saved vanilla segmentation for frame 82
+2025-07-27 12:36:08,378 - WARNING - Frame 82: No frozen mask stored for blob 1
+2025-07-27 12:36:10,624 - DEBUG - Saved vanilla segmentation for frame 83
+2025-07-27 12:36:10,657 - WARNING - Frame 83: No frozen mask stored for blob 1
+2025-07-27 12:36:12,920 - DEBUG - Saved vanilla segmentation for frame 84
+2025-07-27 12:36:12,953 - WARNING - Frame 84: No frozen mask stored for blob 1
+2025-07-27 12:36:15,222 - DEBUG - Saved vanilla segmentation for frame 85
+2025-07-27 12:36:15,256 - WARNING - Frame 85: No frozen mask stored for blob 1
+2025-07-27 12:36:17,740 - DEBUG - Saved vanilla segmentation for frame 86
+2025-07-27 12:36:17,772 - WARNING - Frame 86: No frozen mask stored for blob 1
+2025-07-27 12:36:20,048 - DEBUG - Saved vanilla segmentation for frame 87
+2025-07-27 12:36:20,081 - WARNING - Frame 87: No frozen mask stored for blob 1
+2025-07-27 12:36:22,371 - DEBUG - Saved vanilla segmentation for frame 88
+2025-07-27 12:36:22,403 - WARNING - Frame 88: No frozen mask stored for blob 1
+2025-07-27 12:36:24,745 - DEBUG - Saved vanilla segmentation for frame 89
+2025-07-27 12:36:24,777 - WARNING - Frame 89: No frozen mask stored for blob 1
+2025-07-27 12:36:27,020 - DEBUG - Saved vanilla segmentation for frame 90
+2025-07-27 12:36:27,053 - WARNING - Frame 90: No frozen mask stored for blob 1
+2025-07-27 12:36:27,298 - INFO - Processed frame 90/269
+2025-07-27 12:36:29,320 - DEBUG - Saved vanilla segmentation for frame 91
+2025-07-27 12:36:29,352 - WARNING - Frame 91: No frozen mask stored for blob 1
+2025-07-27 12:36:31,824 - DEBUG - Saved vanilla segmentation for frame 92
+2025-07-27 12:36:31,856 - WARNING - Frame 92: No frozen mask stored for blob 1
+2025-07-27 12:36:34,103 - DEBUG - Saved vanilla segmentation for frame 93
+2025-07-27 12:36:34,136 - WARNING - Frame 93: No frozen mask stored for blob 1
+2025-07-27 12:36:36,412 - DEBUG - Saved vanilla segmentation for frame 94
+2025-07-27 12:36:36,446 - WARNING - Frame 94: No frozen mask stored for blob 1
+2025-07-27 12:36:38,711 - DEBUG - Saved vanilla segmentation for frame 95
+2025-07-27 12:36:38,742 - WARNING - Frame 95: No frozen mask stored for blob 1
+2025-07-27 12:36:40,984 - DEBUG - Saved vanilla segmentation for frame 96
+2025-07-27 12:36:41,017 - WARNING - Frame 96: No frozen mask stored for blob 1
+2025-07-27 12:36:43,290 - DEBUG - Saved vanilla segmentation for frame 97
+2025-07-27 12:36:43,324 - WARNING - Frame 97: No frozen mask stored for blob 1
+2025-07-27 12:36:45,623 - DEBUG - Saved vanilla segmentation for frame 98
+2025-07-27 12:36:45,658 - WARNING - Frame 98: No frozen mask stored for blob 1
+2025-07-27 12:36:48,150 - DEBUG - Saved vanilla segmentation for frame 99
+2025-07-27 12:36:48,183 - WARNING - Frame 99: No frozen mask stored for blob 1
+2025-07-27 12:36:50,507 - DEBUG - Saved vanilla segmentation for frame 100
+2025-07-27 12:36:50,541 - WARNING - Frame 100: No frozen mask stored for blob 1
+2025-07-27 12:36:50,806 - INFO - Processed frame 100/269
+2025-07-27 12:36:54,096 - DEBUG - Saved vanilla segmentation for frame 101
+2025-07-27 12:36:54,128 - WARNING - Frame 101: No frozen mask stored for blob 1
+2025-07-27 12:36:56,566 - DEBUG - Saved vanilla segmentation for frame 102
+2025-07-27 12:36:56,597 - WARNING - Frame 102: No frozen mask stored for blob 1
+2025-07-27 12:36:58,864 - DEBUG - Saved vanilla segmentation for frame 103
+2025-07-27 12:36:58,896 - WARNING - Frame 103: No frozen mask stored for blob 1
+2025-07-27 12:37:01,220 - DEBUG - Saved vanilla segmentation for frame 104
+2025-07-27 12:37:01,254 - WARNING - Frame 104: No frozen mask stored for blob 1
+2025-07-27 12:37:03,734 - DEBUG - Saved vanilla segmentation for frame 105
+2025-07-27 12:37:03,766 - WARNING - Frame 105: No frozen mask stored for blob 1
+2025-07-27 12:37:06,026 - DEBUG - Saved vanilla segmentation for frame 106
+2025-07-27 12:37:06,058 - WARNING - Frame 106: No frozen mask stored for blob 1
+2025-07-27 12:37:08,320 - DEBUG - Saved vanilla segmentation for frame 107
+2025-07-27 12:37:08,351 - WARNING - Frame 107: No frozen mask stored for blob 1
+2025-07-27 12:37:10,625 - DEBUG - Saved vanilla segmentation for frame 108
+2025-07-27 12:37:10,656 - WARNING - Frame 108: No frozen mask stored for blob 1
+2025-07-27 12:37:12,922 - DEBUG - Saved vanilla segmentation for frame 109
+2025-07-27 12:37:12,955 - WARNING - Frame 109: No frozen mask stored for blob 1
+2025-07-27 12:37:15,227 - DEBUG - Saved vanilla segmentation for frame 110
+2025-07-27 12:37:15,264 - WARNING - Frame 110: No frozen mask stored for blob 1
+2025-07-27 12:37:15,732 - INFO - Processed frame 110/269
+2025-07-27 12:37:17,747 - DEBUG - Saved vanilla segmentation for frame 111
+2025-07-27 12:37:17,779 - WARNING - Frame 111: No frozen mask stored for blob 1
+2025-07-27 12:37:20,061 - DEBUG - Saved vanilla segmentation for frame 112
+2025-07-27 12:37:20,095 - WARNING - Frame 112: No frozen mask stored for blob 1
+2025-07-27 12:37:22,391 - DEBUG - Saved vanilla segmentation for frame 113
+2025-07-27 12:37:22,423 - WARNING - Frame 113: No frozen mask stored for blob 1
+2025-07-27 12:37:24,691 - DEBUG - Saved vanilla segmentation for frame 114
+2025-07-27 12:37:24,724 - WARNING - Frame 114: No frozen mask stored for blob 1
+2025-07-27 12:37:26,975 - DEBUG - Saved vanilla segmentation for frame 115
+2025-07-27 12:37:27,007 - WARNING - Frame 115: No frozen mask stored for blob 1
+2025-07-27 12:37:29,901 - DEBUG - Saved vanilla segmentation for frame 116
+2025-07-27 12:37:29,935 - WARNING - Frame 116: No frozen mask stored for blob 1
+2025-07-27 12:37:32,391 - DEBUG - Saved vanilla segmentation for frame 117
+2025-07-27 12:37:32,423 - WARNING - Frame 117: No frozen mask stored for blob 1
+2025-07-27 12:37:34,711 - DEBUG - Saved vanilla segmentation for frame 118
+2025-07-27 12:37:34,745 - WARNING - Frame 118: No frozen mask stored for blob 1
+2025-07-27 12:37:37,014 - DEBUG - Saved vanilla segmentation for frame 119
+2025-07-27 12:37:37,046 - WARNING - Frame 119: No frozen mask stored for blob 1
+2025-07-27 12:37:39,320 - DEBUG - Saved vanilla segmentation for frame 120
+2025-07-27 12:37:39,352 - WARNING - Frame 120: No frozen mask stored for blob 1
+2025-07-27 12:37:39,604 - INFO - Processed frame 120/269

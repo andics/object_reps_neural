@@ -1,0 +1,44 @@
+2025-07-27 13:22:46,101 - INFO - Logger initialized. Writing detailed log to /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/detr/exp2TTC_detr-resnet-50-panoptic/logs/ttc_exp_20250727_132246.log
+2025-07-27 13:22:46,102 - INFO - VideoProcessor initialized with 2 blobs to detect
+2025-07-27 13:22:46,102 - INFO - Blob 1 memory strategy: running_average
+2025-07-27 13:22:46,102 - INFO - Blob 1 running average window: 10
+2025-07-27 13:22:46,102 - INFO - Blob 1 memory will freeze after frame: 80
+2025-07-27 13:22:46,102 - INFO - Vanilla segmentation enabled
+2025-07-27 13:22:46,102 - INFO - DEBUG MODE enabled: exceptions will not be caught to show full tracebacks
+2025-07-27 13:22:46,102 - INFO - Initialized TTC Experiment with output dir: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/detr/exp2TTC_detr-resnet-50-panoptic
+2025-07-27 13:22:46,102 - INFO - Model prefix: detr_model
+2025-07-27 13:22:46,102 - INFO - Debug mode: True
+2025-07-27 13:22:46,103 - INFO - TTC-specific configuration:
+2025-07-27 13:22:46,103 - INFO -   - Blob 1 memory: running average of past 10 frames
+2025-07-27 13:22:46,103 - INFO -   - Blob 1 memory updates stop after frame 80
+2025-07-27 13:22:46,103 - INFO - Starting full TTC experiment
+2025-07-27 13:22:46,106 - INFO - Found 99 video files to process
+2025-07-27 13:22:46,106 - INFO - Reading participant CSV from /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/exp2TTC_files/experiment2-CollisionDetection-Data.csv...
+2025-07-27 13:22:46,128 - INFO - CSV loaded with 13974 rows and 10 columns.
+2025-07-27 13:22:46,128 - INFO - Reading name mapping from /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/exp2TTC_files/name_mapping.json...
+2025-07-27 13:22:46,128 - INFO - Loaded name mapping with 96 entries.
+2025-07-27 13:22:46,129 - INFO - Starting collision detection across videos and IoU thresholds...
+2025-07-27 13:22:46,131 - INFO - Processing video: AConcave_FConcave
+2025-07-27 13:22:46,131 - INFO - Found 1 existing frames for AConcave_FConcave, attempting to complete processing...
+2025-07-27 13:22:46,137 - INFO - VanillaSegmentationSaver initialized with output dir: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/detr/exp2TTC_detr-resnet-50-panoptic/processed_videos/detr_model-AConcave_FConcave/org_segmentation
+2025-07-27 13:22:46,137 - INFO - Starting video processing: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/exp2TTC_files/AConcave_FConcave.mp4
+2025-07-27 13:22:46,138 - INFO - Reset blob state tracking for new video
+2025-07-27 13:22:46,142 - INFO - VanillaSegmentationSaver initialized with output dir: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/detr/exp2TTC_detr-resnet-50-panoptic/processed_videos/detr_model-AConcave_FConcave/org_segmentation
+2025-07-27 13:22:46,143 - INFO - Loading model...
+2025-07-27 13:23:01,923 - INFO - Video metadata: {'width': 1500, 'height': 400, 'fps': 60.0, 'total_frames': 269, 'duration': 4.483333333333333}
+2025-07-27 13:23:01,925 - INFO - Partial processing detected. Last frame: 0
+2025-07-27 13:23:08,965 - INFO - Not enough frames for video generation: 1 < 134
+2025-07-27 13:23:08,965 - INFO - Not enough frames for video, resuming processing from frame 1
+2025-07-27 13:36:09,141 - DEBUG - Saved vanilla segmentation for frame 1
+2025-07-27 13:36:18,957 - DEBUG - Saved vanilla segmentation for frame 2
+2025-07-27 13:36:20,826 - DEBUG - Saved vanilla segmentation for frame 3
+2025-07-27 13:36:22,715 - DEBUG - Saved vanilla segmentation for frame 4
+2025-07-27 13:38:10,373 - DEBUG - Saved vanilla segmentation for frame 5
+2025-07-27 13:38:12,176 - DEBUG - Saved vanilla segmentation for frame 6
+2025-07-27 13:38:14,004 - DEBUG - Saved vanilla segmentation for frame 7
+2025-07-27 13:38:15,827 - DEBUG - Saved vanilla segmentation for frame 8
+2025-07-27 13:38:17,687 - DEBUG - Saved vanilla segmentation for frame 9
+2025-07-27 13:38:19,499 - DEBUG - Saved vanilla segmentation for frame 10
+2025-07-27 13:38:19,519 - INFO - Processed frame 10/269
+2025-07-27 13:38:21,321 - DEBUG - Saved vanilla segmentation for frame 11
+2025-07-27 13:38:23,152 - DEBUG - Saved vanilla segmentation for frame 12

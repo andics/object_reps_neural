@@ -1,0 +1,45 @@
+2025-07-22 00:56:56,871 - INFO - Logger initialized. Writing detailed log to /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/logs/ttc_exp_20250722_005656.log
+2025-07-22 00:56:56,871 - INFO - VideoProcessor initialized with 2 blobs to detect
+2025-07-22 00:56:56,871 - INFO - Blob 1 memory strategy: running_average
+2025-07-22 00:56:56,871 - INFO - Blob 1 running average window: 10
+2025-07-22 00:56:56,871 - INFO - Blob 1 memory will freeze after frame: 80
+2025-07-22 00:56:56,871 - INFO - Vanilla segmentation enabled
+2025-07-22 00:56:56,871 - INFO - Initialized TTC Experiment with output dir: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC
+2025-07-22 00:56:56,871 - INFO - TTC-specific configuration:
+2025-07-22 00:56:56,872 - INFO -   - Blob 1 memory: running average of past 10 frames
+2025-07-22 00:56:56,872 - INFO -   - Blob 1 memory updates stop after frame 80
+2025-07-22 00:56:56,872 - INFO - Starting full TTC experiment
+2025-07-22 00:56:56,872 - INFO - Found 99 video files to process
+2025-07-22 00:56:56,872 - INFO - Reading participant CSV from /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/exp2TTC_files/experiment2-CollisionDetection-Data.csv...
+2025-07-22 00:56:56,890 - INFO - CSV loaded with 13974 rows and 10 columns.
+2025-07-22 00:56:56,891 - INFO - Starting collision detection across videos and IoU thresholds...
+2025-07-22 00:56:56,891 - INFO - Processing video: AConcave_FConcave
+2025-07-22 00:56:56,892 - INFO - Found 80 existing frames for AConcave_FConcave, attempting to complete processing...
+2025-07-22 00:56:56,900 - INFO - VanillaSegmentationSaver initialized with output dir: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_videos/segformer_model-AConcave_FConcave/org_segmentation
+2025-07-22 00:56:56,900 - INFO - Starting video processing: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/exp2TTC_files/AConcave_FConcave.mp4
+2025-07-22 00:56:56,900 - INFO - Reset blob state tracking for new video
+2025-07-22 00:56:56,906 - INFO - VanillaSegmentationSaver initialized with output dir: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/segformer/exp2TTC/processed_videos/segformer_model-AConcave_FConcave/org_segmentation
+2025-07-22 00:56:56,906 - INFO - Loading model...
+2025-07-22 00:56:59,027 - INFO - Video metadata: {'width': 1500, 'height': 400, 'fps': 60.0, 'total_frames': 269, 'duration': 4.483333333333333}
+2025-07-22 00:56:59,028 - INFO - Partial processing detected. Last frame: 79
+2025-07-22 00:56:59,028 - INFO - Not enough frames for video generation: 80 < 134
+2025-07-22 00:56:59,028 - INFO - Not enough frames for video, resuming processing from frame 80
+2025-07-22 00:57:01,207 - DEBUG - Saved vanilla segmentation for frame 80
+2025-07-22 00:57:02,777 - DEBUG - Frame 80: Blob 1 memory frozen, not updating
+2025-07-22 00:57:02,779 - WARNING - Frame 80: No frozen mask stored for blob 1
+2025-07-22 00:57:03,071 - INFO - Processed frame 80/269
+2025-07-22 00:57:04,777 - DEBUG - Saved vanilla segmentation for frame 81
+2025-07-22 00:57:06,173 - DEBUG - Frame 81: Blob 1 memory frozen, not updating
+2025-07-22 00:57:06,183 - WARNING - Frame 81: No frozen mask stored for blob 1
+2025-07-22 00:57:08,375 - DEBUG - Saved vanilla segmentation for frame 82
+2025-07-22 00:57:09,745 - DEBUG - Frame 82: Blob 1 memory frozen, not updating
+2025-07-22 00:57:09,755 - WARNING - Frame 82: No frozen mask stored for blob 1
+2025-07-22 00:57:11,770 - DEBUG - Saved vanilla segmentation for frame 83
+2025-07-22 00:57:13,334 - DEBUG - Frame 83: Blob 1 memory frozen, not updating
+2025-07-22 00:57:13,344 - WARNING - Frame 83: No frozen mask stored for blob 1
+2025-07-22 00:57:15,407 - DEBUG - Saved vanilla segmentation for frame 84
+2025-07-22 00:57:16,791 - DEBUG - Frame 84: Blob 1 memory frozen, not updating
+2025-07-22 00:57:16,800 - WARNING - Frame 84: No frozen mask stored for blob 1
+2025-07-22 00:57:18,748 - DEBUG - Saved vanilla segmentation for frame 85
+2025-07-22 00:57:20,366 - DEBUG - Frame 85: Blob 1 memory frozen, not updating
+2025-07-22 00:57:20,375 - WARNING - Frame 85: No frozen mask stored for blob 1

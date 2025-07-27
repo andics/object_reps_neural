@@ -1,0 +1,29 @@
+2025-07-27 14:54:42,645 - INFO - Logger initialized. Writing detailed log to /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/maskrcnn/exp2TTC_maskrcnn_resnet50_fpn/logs/ttc_exp_20250727_145442.log
+2025-07-27 14:54:42,646 - INFO - VideoProcessor initialized with 2 blobs to detect
+2025-07-27 14:54:42,646 - INFO - Blob 1 memory strategy: running_average
+2025-07-27 14:54:42,646 - INFO - Blob 1 running average window: 10
+2025-07-27 14:54:42,646 - INFO - Blob 1 memory will freeze after frame: 80
+2025-07-27 14:54:42,646 - INFO - Vanilla segmentation enabled
+2025-07-27 14:54:42,646 - INFO - Initialized TTC Experiment with output dir: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/maskrcnn/exp2TTC_maskrcnn_resnet50_fpn
+2025-07-27 14:54:42,646 - INFO - Model prefix: maskrcnn_model
+2025-07-27 14:54:42,646 - INFO - Debug mode: False
+2025-07-27 14:54:42,647 - INFO - TTC-specific configuration:
+2025-07-27 14:54:42,647 - INFO -   - Blob 1 memory: running average of past 10 frames
+2025-07-27 14:54:42,647 - INFO -   - Blob 1 memory updates stop after frame 80
+2025-07-27 14:54:42,647 - INFO - Starting full TTC experiment
+2025-07-27 14:54:42,650 - INFO - Found 99 video files to process
+2025-07-27 14:54:42,650 - INFO - Reading participant CSV from /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/exp2TTC_files/experiment2-CollisionDetection-Data.csv...
+2025-07-27 14:54:42,670 - INFO - CSV loaded with 13974 rows and 10 columns.
+2025-07-27 14:54:42,670 - INFO - Reading name mapping from /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/exp2TTC_files/name_mapping.json...
+2025-07-27 14:54:42,671 - INFO - Loaded name mapping with 96 entries.
+2025-07-27 14:54:42,671 - INFO - Starting collision detection across videos and IoU thresholds...
+2025-07-27 14:54:42,674 - INFO - Processing video: AConcave_FConcave
+2025-07-27 14:54:42,675 - INFO - Starting full processing for AConcave_FConcave
+2025-07-27 14:54:42,675 - INFO - Starting video processing: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/exp2TTC_files/AConcave_FConcave.mp4
+2025-07-27 14:54:42,675 - INFO - Reset blob state tracking for new video
+2025-07-27 14:54:42,691 - INFO - VanillaSegmentationSaver initialized with output dir: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/maskrcnn/exp2TTC_maskrcnn_resnet50_fpn/processed_videos/maskrcnn_model-AConcave_FConcave/org_segmentation
+2025-07-27 14:54:42,692 - INFO - Loading model...
+2025-07-27 14:55:30,395 - INFO - Video metadata: {'width': 1500, 'height': 400, 'fps': 60.0, 'total_frames': 269, 'duration': 4.483333333333333}
+2025-07-27 14:55:30,401 - INFO - Starting processing from beginning
+2025-07-27 15:01:29,272 - DEBUG - Saved vanilla segmentation for frame 0
+2025-07-27 15:01:29,297 - INFO - Processed frame 0/269

@@ -13,6 +13,7 @@ from pathlib import Path
 from typing import Union, Dict, Any
 import logging
 import io
+import traceback
 
 import numpy as np
 import torch
@@ -121,34 +122,22 @@ class DetrInterface(ModelInterface):
 
             with torch.no_grad():
                 outputs = self.model(**inputs)
-
-            # Post-process the panoptic segmentation outputs
-            processed_sizes = torch.as_tensor(inputs["pixel_values"].shape[-2:]).unsqueeze(0)
-            result = self.processor.post_process_panoptic(outputs, processed_sizes)[0]
-            
-            # Extract the panoptic segmentation
-            panoptic_seg = Image.open(io.BytesIO(result["png_string"]))
-            panoptic_seg = np.array(panoptic_seg, dtype=np.uint8)
-            # Convert RGB to segment IDs
-            panoptic_seg_id = rgb_to_id(panoptic_seg)
-            
-            # Convert panoptic segmentation to individual masks
-            pred_masks = self._convert_panoptic_to_masks(
-                panoptic_seg_id, result["segments_info"], orig_height, orig_width
-            )
             
             # Use the original DETR outputs for logits and boxes
             pred_logits = outputs.logits  # (1, num_queries, num_classes)
             pred_boxes = outputs.pred_boxes  # (1, num_queries, 4)
             
             return {
-                'pred_masks': pred_masks,
+                'pred_masks': outputs.pred_masks,
                 'pred_logits': pred_logits,
                 'pred_boxes': pred_boxes
             }
             
         except Exception as e:
             self.logger.error(f"Error in DETR inference: {e}")
+            self.logger.error("Full traceback:")
+            for line in traceback.format_exc().splitlines():
+                self.logger.error(line)
             # Return empty predictions to avoid crashing
             return self._get_empty_predictions(orig_height, orig_width)
 

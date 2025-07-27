@@ -1,0 +1,87 @@
+2025-07-27 18:20:04,503 - INFO - Logger initialized. Writing detailed log to /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/maskrcnn/exp2TTC_maskrcnn_resnet50_fpn/logs/ttc_exp_20250727_182004.log
+2025-07-27 18:20:04,503 - INFO - VideoProcessor initialized with 2 blobs to detect
+2025-07-27 18:20:04,503 - INFO - Blob 1 memory strategy: running_average
+2025-07-27 18:20:04,503 - INFO - Blob 1 running average window: 10
+2025-07-27 18:20:04,503 - INFO - Blob 1 memory will freeze after frame: 80
+2025-07-27 18:20:04,503 - INFO - Vanilla segmentation enabled
+2025-07-27 18:20:04,503 - INFO - Initialized TTC Experiment with output dir: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/maskrcnn/exp2TTC_maskrcnn_resnet50_fpn
+2025-07-27 18:20:04,503 - INFO - Model prefix: maskrcnn_model
+2025-07-27 18:20:04,503 - INFO - Debug mode: False
+2025-07-27 18:20:04,504 - INFO - TTC-specific configuration:
+2025-07-27 18:20:04,504 - INFO -   - Blob 1 memory: running average of past 10 frames
+2025-07-27 18:20:04,504 - INFO -   - Blob 1 memory updates stop after frame 80
+2025-07-27 18:20:04,504 - INFO - Starting full TTC experiment
+2025-07-27 18:20:04,506 - INFO - Found 99 video files to process
+2025-07-27 18:20:04,507 - INFO - Reading participant CSV from /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/exp2TTC_files/experiment2-CollisionDetection-Data.csv...
+2025-07-27 18:20:04,526 - INFO - CSV loaded with 13974 rows and 10 columns.
+2025-07-27 18:20:04,526 - INFO - Reading name mapping from /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/exp2TTC_files/name_mapping.json...
+2025-07-27 18:20:04,527 - INFO - Loaded name mapping with 96 entries.
+2025-07-27 18:20:04,528 - INFO - Starting collision detection across videos and IoU thresholds...
+2025-07-27 18:20:04,530 - INFO - Processing video: AConcave_FConcave
+2025-07-27 18:20:04,534 - INFO - Found 79 existing frames for AConcave_FConcave, attempting to complete processing...
+2025-07-27 18:20:04,542 - INFO - VanillaSegmentationSaver initialized with output dir: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/maskrcnn/exp2TTC_maskrcnn_resnet50_fpn/processed_videos/maskrcnn_model-AConcave_FConcave/org_segmentation
+2025-07-27 18:20:04,543 - INFO - Starting video processing: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/exp2TTC_files/AConcave_FConcave.mp4
+2025-07-27 18:20:04,543 - INFO - Reset blob state tracking for new video
+2025-07-27 18:20:04,550 - INFO - VanillaSegmentationSaver initialized with output dir: /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/maskrcnn/exp2TTC_maskrcnn_resnet50_fpn/processed_videos/maskrcnn_model-AConcave_FConcave/org_segmentation
+2025-07-27 18:20:04,550 - INFO - Loading model...
+2025-07-27 18:20:05,961 - INFO - Video metadata: {'width': 1500, 'height': 400, 'fps': 60.0, 'total_frames': 269, 'duration': 4.483333333333333}
+2025-07-27 18:20:05,963 - INFO - Partial processing detected. Last frame: 78
+2025-07-27 18:20:05,964 - INFO - Not enough frames for video generation: 79 < 134
+2025-07-27 18:20:05,964 - INFO - Not enough frames for video, resuming processing from frame 79
+2025-07-27 18:22:42,289 - DEBUG - Saved vanilla segmentation for frame 79
+2025-07-27 18:22:45,229 - INFO - Frame 79: Saved blob 1 memory mask to be frozen at /home/projects/bagon/andreyg/Projects/Object_reps_neural/Programming/hugging_face/model_experiments/maskrcnn/exp2TTC_maskrcnn_resnet50_fpn/processed_videos/maskrcnn_model-AConcave_FConcave/frames_masks/mask_memory_blob_1_frame_000079.png
+2025-07-27 18:22:47,422 - DEBUG - Saved vanilla segmentation for frame 80
+2025-07-27 18:22:50,096 - DEBUG - Frame 80: Blob 1 memory frozen, not updating
+2025-07-27 18:22:50,100 - DEBUG - Using frozen mask for blob 1 at frame 80
+2025-07-27 18:22:50,114 - DEBUG - Frame 80: Reused frozen blob 1 memory mask
+2025-07-27 18:22:50,609 - INFO - Processed frame 80/269
+2025-07-27 18:22:52,443 - DEBUG - Saved vanilla segmentation for frame 81
+2025-07-27 18:22:55,717 - DEBUG - Frame 81: Blob 1 memory frozen, not updating
+2025-07-27 18:22:55,721 - DEBUG - Using frozen mask for blob 1 at frame 81
+2025-07-27 18:22:55,737 - DEBUG - Frame 81: Reused frozen blob 1 memory mask
+2025-07-27 18:22:58,179 - DEBUG - Saved vanilla segmentation for frame 82
+2025-07-27 18:23:01,322 - DEBUG - Frame 82: Blob 1 memory frozen, not updating
+2025-07-27 18:23:01,326 - DEBUG - Using frozen mask for blob 1 at frame 82
+2025-07-27 18:23:01,341 - DEBUG - Frame 82: Reused frozen blob 1 memory mask
+2025-07-27 18:23:03,948 - DEBUG - Saved vanilla segmentation for frame 83
+2025-07-27 18:23:07,388 - DEBUG - Frame 83: Blob 1 memory frozen, not updating
+2025-07-27 18:23:07,392 - DEBUG - Using frozen mask for blob 1 at frame 83
+2025-07-27 18:23:07,412 - DEBUG - Frame 83: Reused frozen blob 1 memory mask
+2025-07-27 18:23:10,014 - DEBUG - Saved vanilla segmentation for frame 84
+2025-07-27 18:23:13,176 - DEBUG - Frame 84: Blob 1 memory frozen, not updating
+2025-07-27 18:23:13,180 - DEBUG - Using frozen mask for blob 1 at frame 84
+2025-07-27 18:23:13,196 - DEBUG - Frame 84: Reused frozen blob 1 memory mask
+2025-07-27 18:23:15,927 - DEBUG - Saved vanilla segmentation for frame 85
+2025-07-27 18:23:18,825 - DEBUG - Frame 85: Blob 1 memory frozen, not updating
+2025-07-27 18:23:18,829 - DEBUG - Using frozen mask for blob 1 at frame 85
+2025-07-27 18:23:18,845 - DEBUG - Frame 85: Reused frozen blob 1 memory mask
+2025-07-27 18:23:21,190 - DEBUG - Saved vanilla segmentation for frame 86
+2025-07-27 18:23:24,011 - DEBUG - Frame 86: Blob 1 memory frozen, not updating
+2025-07-27 18:23:24,015 - DEBUG - Using frozen mask for blob 1 at frame 86
+2025-07-27 18:23:24,030 - DEBUG - Frame 86: Reused frozen blob 1 memory mask
+2025-07-27 18:23:26,587 - DEBUG - Saved vanilla segmentation for frame 87
+2025-07-27 18:23:29,484 - DEBUG - Frame 87: Blob 1 memory frozen, not updating
+2025-07-27 18:23:29,487 - DEBUG - Using frozen mask for blob 1 at frame 87
+2025-07-27 18:23:29,503 - DEBUG - Frame 87: Reused frozen blob 1 memory mask
+2025-07-27 18:23:31,808 - DEBUG - Saved vanilla segmentation for frame 88
+2025-07-27 18:23:34,921 - DEBUG - Frame 88: Blob 1 memory frozen, not updating
+2025-07-27 18:23:34,925 - DEBUG - Using frozen mask for blob 1 at frame 88
+2025-07-27 18:23:34,939 - DEBUG - Frame 88: Reused frozen blob 1 memory mask
+2025-07-27 18:23:37,252 - DEBUG - Saved vanilla segmentation for frame 89
+2025-07-27 18:23:40,170 - DEBUG - Frame 89: Blob 1 memory frozen, not updating
+2025-07-27 18:23:40,173 - DEBUG - Using frozen mask for blob 1 at frame 89
+2025-07-27 18:23:40,188 - DEBUG - Frame 89: Reused frozen blob 1 memory mask
+2025-07-27 18:23:42,394 - DEBUG - Saved vanilla segmentation for frame 90
+2025-07-27 18:23:45,375 - DEBUG - Frame 90: Blob 1 memory frozen, not updating
+2025-07-27 18:23:45,378 - DEBUG - Using frozen mask for blob 1 at frame 90
+2025-07-27 18:23:45,393 - DEBUG - Frame 90: Reused frozen blob 1 memory mask
+2025-07-27 18:23:45,872 - INFO - Processed frame 90/269
+2025-07-27 18:23:47,682 - DEBUG - Saved vanilla segmentation for frame 91
+2025-07-27 18:23:50,395 - DEBUG - Frame 91: Blob 1 memory frozen, not updating
+2025-07-27 18:23:50,399 - DEBUG - Using frozen mask for blob 1 at frame 91
+2025-07-27 18:23:50,414 - DEBUG - Frame 91: Reused frozen blob 1 memory mask
+2025-07-27 18:23:52,627 - DEBUG - Saved vanilla segmentation for frame 92
+2025-07-27 18:23:55,585 - DEBUG - Frame 92: Blob 1 memory frozen, not updating
+2025-07-27 18:23:55,589 - DEBUG - Using frozen mask for blob 1 at frame 92
+2025-07-27 18:23:55,603 - DEBUG - Frame 92: Reused frozen blob 1 memory mask
+2025-07-27 18:23:57,831 - DEBUG - Saved vanilla segmentation for frame 93
