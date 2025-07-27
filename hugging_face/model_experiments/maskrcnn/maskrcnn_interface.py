@@ -59,11 +59,30 @@ class MaskRCNNInterface(ModelInterface):
         num_queries: int = 100,
         logger: logging.Logger = None,
         confidence_threshold: float = 0.0,
+        # NEW: Detection parameters to control proposal generation
+        box_score_thresh: float = 0.05,
+        box_nms_thresh: float = 0.3,
+        box_detections_per_img: int = 200,
+        rpn_score_thresh: float = 0.0,
+        rpn_nms_thresh: float = 0.5,
+        rpn_fg_iou_thresh: float = 0.7,
+        rpn_bg_iou_thresh: float = 0.3,
     ):
         self.model_name = model_name
         self.num_queries = num_queries
         self.confidence_threshold = confidence_threshold
         self.logger = logger or logging.getLogger(__name__)
+        
+        # Store detection parameters for more sensitive detection
+        self.detection_params = {
+            'box_score_thresh': box_score_thresh,
+            'box_nms_thresh': box_nms_thresh,
+            'box_detections_per_img': box_detections_per_img,
+            'rpn_score_thresh': rpn_score_thresh,
+            'rpn_nms_thresh': rpn_nms_thresh,
+            'rpn_fg_iou_thresh': rpn_fg_iou_thresh,
+            'rpn_bg_iou_thresh': rpn_bg_iou_thresh
+        }
         
         self.device = (
             torch.device(device)
@@ -81,9 +100,10 @@ class MaskRCNNInterface(ModelInterface):
         self.model = None
         
         self.logger.info(f"Initialized Mask R-CNN interface with device: {self.device}")
+        self.logger.info(f"Detection parameters: {self.detection_params}")
 
     def load_model(self, pretrained: bool = True) -> None:
-        """Downloads and loads the Mask R-CNN model."""
+        """Downloads and loads the Mask R-CNN model with custom detection parameters."""
         self.logger.info(f"Loading Mask R-CNN model: {self.model_name}")
         
         if self.model_name == "maskrcnn_resnet50_fpn":
@@ -91,9 +111,89 @@ class MaskRCNNInterface(ModelInterface):
         else:
             raise ValueError(f"Unsupported model name: {self.model_name}")
         
+        # Configure detection parameters for more sensitive detection
+        self._configure_detection_parameters()
+        
         self.model = self.model.to(self.device).eval()
 
-        self.logger.info("Mask R-CNN model loaded successfully")
+        self.logger.info("Mask R-CNN model loaded successfully with custom detection parameters")
+        
+    def _configure_detection_parameters(self) -> None:
+        """Configure the model's detection parameters to generate more proposals."""
+        # Configure RPN (Region Proposal Network) parameters
+        if hasattr(self.model, 'rpn'):
+            rpn = self.model.rpn
+            if hasattr(rpn, 'score_thresh'):
+                rpn.score_thresh = self.detection_params['rpn_score_thresh']
+            if hasattr(rpn, 'nms_thresh'):
+                rpn.nms_thresh = self.detection_params['rpn_nms_thresh']
+            if hasattr(rpn, 'fg_iou_thresh'):
+                rpn.fg_iou_thresh = self.detection_params['rpn_fg_iou_thresh']
+            if hasattr(rpn, 'bg_iou_thresh'):
+                rpn.bg_iou_thresh = self.detection_params['rpn_bg_iou_thresh']
+                
+        # Configure ROI heads parameters
+        if hasattr(self.model, 'roi_heads'):
+            roi_heads = self.model.roi_heads
+            if hasattr(roi_heads, 'score_thresh'):
+                roi_heads.score_thresh = self.detection_params['box_score_thresh']
+            if hasattr(roi_heads, 'nms_thresh'):
+                roi_heads.nms_thresh = self.detection_params['box_nms_thresh']
+            if hasattr(roi_heads, 'detections_per_img'):
+                roi_heads.detections_per_img = self.detection_params['box_detections_per_img']
+                
+        self.logger.info("Configured detection parameters for more sensitive detection")
+
+    def set_detection_sensitivity(self, sensitivity: str = "high") -> None:
+        """
+        Set detection sensitivity level for generating more proposals.
+        
+        Args:
+            sensitivity: "low", "medium", "high", or "max"
+        """
+        if sensitivity == "low":
+            params = {
+                'box_score_thresh': 0.5,
+                'box_nms_thresh': 0.5,
+                'box_detections_per_img': 50,
+                'rpn_score_thresh': 0.0,
+                'rpn_nms_thresh': 0.7,
+            }
+        elif sensitivity == "medium":
+            params = {
+                'box_score_thresh': 0.2,
+                'box_nms_thresh': 0.4,
+                'box_detections_per_img': 100,
+                'rpn_score_thresh': 0.0,
+                'rpn_nms_thresh': 0.6,
+            }
+        elif sensitivity == "high":
+            params = {
+                'box_score_thresh': 0.05,
+                'box_nms_thresh': 0.3,
+                'box_detections_per_img': 200,
+                'rpn_score_thresh': 0.0,
+                'rpn_nms_thresh': 0.5,
+            }
+        elif sensitivity == "max":
+            params = {
+                'box_score_thresh': 0.001,
+                'box_nms_thresh': 0.1,
+                'box_detections_per_img': 500,
+                'rpn_score_thresh': 0.0,
+                'rpn_nms_thresh': 0.3,
+            }
+        else:
+            raise ValueError(f"Unknown sensitivity level: {sensitivity}")
+            
+        # Update detection parameters
+        self.detection_params.update(params)
+        
+        # Reconfigure model if it's already loaded
+        if self.model is not None:
+            self._configure_detection_parameters()
+            
+        self.logger.info(f"Set detection sensitivity to '{sensitivity}': {params}")
 
     def infer_image(self, image: Image.Image) -> Dict[str, Any]:
         """
@@ -486,7 +586,7 @@ MaskRCNNPredictor = MaskRCNNInterface
 
 
 if __name__ == "__main__":
-    # Demo usage
+    # Demo usage with different sensitivity levels
     interface = MaskRCNNInterface()
     interface.load_model()
 
@@ -501,18 +601,31 @@ if __name__ == "__main__":
         # Fallback to a simple test image
         image = Image.new('RGB', (640, 480), color='white')
 
-    # Run inference
-    predictions = interface.infer_image(image)
+    print("Testing different sensitivity levels:")
     
-    print(f"Prediction format:")
-    print(f"- pred_masks shape: {predictions['pred_masks'].shape}")
-    print(f"- pred_logits shape: {predictions['pred_logits'].shape}")
-    print(f"- pred_boxes shape: {predictions['pred_boxes'].shape}")
-    print(f"- Number of non-empty masks: {(predictions['pred_masks'].sum(dim=(-2, -1)) > 0).sum().item()}")
+    # Test different sensitivity levels
+    for sensitivity in ["medium", "high", "max"]:
+        print(f"\n--- Testing sensitivity: {sensitivity} ---")
+        interface.set_detection_sensitivity(sensitivity)
+        
+        # Run inference
+        predictions = interface.infer_image(image)
+        
+        print(f"Prediction format:")
+        print(f"- pred_masks shape: {predictions['pred_masks'].shape}")
+        print(f"- pred_logits shape: {predictions['pred_logits'].shape}")
+        print(f"- pred_boxes shape: {predictions['pred_boxes'].shape}")
+        num_detections = (predictions['pred_masks'].sum(dim=(-2, -1)) > 0).sum().item()
+        print(f"- Number of non-empty masks: {num_detections}")
 
-    # For visualization, show instance segmentation
-    results_vis = interface.visualize_predictions(image)
-    
-    # Save visualization
-    results_vis.save("maskrcnn_segmentation_demo_output.png")
-    print("Saved visualization to maskrcnn_segmentation_demo_output.png") 
+        # For visualization, show instance segmentation
+        results_vis = interface.visualize_predictions(image)
+        
+        # Save visualization
+        output_file = f"maskrcnn_segmentation_{sensitivity}_sensitivity.png"
+        results_vis.save(output_file)
+        print(f"Saved visualization to {output_file}")
+        
+    print("\nFor out-of-distribution images with simple blobs, try:")
+    print("interface.set_detection_sensitivity('max')")
+    print("This uses very low thresholds and minimal NMS suppression.") 
